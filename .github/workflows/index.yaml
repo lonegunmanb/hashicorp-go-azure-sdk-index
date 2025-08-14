@@ -71,10 +71,6 @@ jobs:
         if: ${{ env.TAG_EXISTS != 'true' }}
         run: rm -rf ./index
 
-      - name: Pre-warm cache
-        if: ${{ env.TAG_EXISTS != 'true' }}
-        run: cd tmp/go-azure-sdk && go mod download
-
       - name: Generate index
         if: ${{ env.TAG_EXISTS != 'true' }}
         env:
