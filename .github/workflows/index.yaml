@@ -78,11 +78,11 @@ jobs:
         run: |
           cd ./tmp/go-azure-sdk
           cd ./sdk
-          gophon -base=github.com/hashicorp/go-azure-sdk/sdk -dest=../../../index
+          gophon -base=github.com/hashicorp/go-azure-sdk/sdk -dest=../../../index/sdk
           cd ../resource-manager
-          gophon -base=github.com/hashicorp/go-azure-sdk/resource-manager -dest=../../../index
+          gophon -base=github.com/hashicorp/go-azure-sdk/resource-manager -dest=../../../index/resource-manager
           cd ../microsoft-graph
-          gophon -base=github.com/hashicorp/go-azure-sdk/microsoft-graph -dest=../../../index
+          gophon -base=github.com/hashicorp/go-azure-sdk/microsoft-graph -dest=../../../index/microsoft-graph
 
       - name: Commit and push index files
         if: ${{ env.TAG_EXISTS != 'true' }}
