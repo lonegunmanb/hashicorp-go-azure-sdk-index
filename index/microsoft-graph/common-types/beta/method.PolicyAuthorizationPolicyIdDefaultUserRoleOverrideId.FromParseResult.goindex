@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *PolicyAuthorizationPolicyIdDefaultUserRoleOverrideId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.AuthorizationPolicyId, ok = input.Parsed["authorizationPolicyId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "authorizationPolicyId", input)
+	}
+
+	if id.DefaultUserRoleOverrideId, ok = input.Parsed["defaultUserRoleOverrideId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "defaultUserRoleOverrideId", input)
+	}
+
+	return nil
+}

@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/topleveldomains
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id TopLevelDomainId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Top Level Domain Name: %q", id.TopLevelDomainName),
+	}
+	return fmt.Sprintf("Top Level Domain (%s)", strings.Join(components, "\n"))
+}

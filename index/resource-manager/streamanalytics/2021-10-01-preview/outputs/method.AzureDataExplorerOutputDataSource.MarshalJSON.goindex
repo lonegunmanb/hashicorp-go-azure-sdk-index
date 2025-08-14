@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/streamanalytics/2021-10-01-preview/outputs
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s AzureDataExplorerOutputDataSource) MarshalJSON() ([]byte, error) {
+	type wrapper AzureDataExplorerOutputDataSource
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AzureDataExplorerOutputDataSource: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AzureDataExplorerOutputDataSource: %+v", err)
+	}
+
+	decoded["type"] = "Microsoft.Kusto/clusters/databases"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AzureDataExplorerOutputDataSource: %+v", err)
+	}
+
+	return encoded, nil
+}

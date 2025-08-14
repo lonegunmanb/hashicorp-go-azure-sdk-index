@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/streamanalytics/2021-10-01-preview/subscriptions
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SubscriptionsClient) TestOutputThenPoll(ctx context.Context, id LocationId, input TestOutput) error {
+	result, err := c.TestOutput(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing TestOutput: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after TestOutput: %+v", err)
+	}
+
+	return nil
+}

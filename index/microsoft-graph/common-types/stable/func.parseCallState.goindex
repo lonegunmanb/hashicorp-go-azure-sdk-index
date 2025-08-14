@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCallState(input string) (*CallState, error) {
+	vals := map[string]CallState{
+		"established":      CallState_Established,
+		"establishing":     CallState_Establishing,
+		"hold":             CallState_Hold,
+		"incoming":         CallState_Incoming,
+		"redirecting":      CallState_Redirecting,
+		"terminated":       CallState_Terminated,
+		"terminating":      CallState_Terminating,
+		"transferaccepted": CallState_TransferAccepted,
+		"transferring":     CallState_Transferring,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CallState(input)
+	return &out, nil
+}

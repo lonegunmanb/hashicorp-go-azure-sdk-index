@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2022-09-01/deploymentoperations
+
+func (p DeploymentOperationOperationPredicate) Matches(input DeploymentOperation) bool {
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.OperationId != nil && (input.OperationId == nil || *p.OperationId != *input.OperationId) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/topleveldomains
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTopLevelDomainsClientWithBaseURI(sdkApi sdkEnv.Api) (*TopLevelDomainsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "topleveldomains", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TopLevelDomainsClient: %+v", err)
+	}
+
+	return &TopLevelDomainsClient{
+		Client: client,
+	}, nil
+}

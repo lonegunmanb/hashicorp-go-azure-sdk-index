@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/timezones
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id TimeZoneId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
+		fmt.Sprintf("Time Zone: %q", id.TimeZoneId),
+	}
+	return fmt.Sprintf("Time Zone (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/confidentialledger/2022-05-13/confidentialledger
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *LedgerId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.LedgerName, ok = input.Parsed["ledgerName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "ledgerName", input)
+	}
+
+	return nil
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/redis/2024-03-01/redis
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAccessPolicyType(input string) (*AccessPolicyType, error) {
+	vals := map[string]AccessPolicyType{
+		"builtin": AccessPolicyTypeBuiltIn,
+		"custom":  AccessPolicyTypeCustom,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AccessPolicyType(input)
+	return &out, nil
+}

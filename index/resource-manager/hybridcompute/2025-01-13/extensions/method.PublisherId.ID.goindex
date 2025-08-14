@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2025-01-13/extensions
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id PublisherId) ID() string {
+	fmtString := "/providers/Microsoft.HybridCompute/locations/%s/publishers/%s"
+	return fmt.Sprintf(fmtString, id.LocationName, id.PublisherName)
+}

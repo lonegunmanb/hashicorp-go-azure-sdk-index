@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s PrivilegedAccessGroupEligibilityScheduleRequest) PrivilegedAccessScheduleRequest() BasePrivilegedAccessScheduleRequestImpl {
+	return BasePrivilegedAccessScheduleRequestImpl{
+		Action:            s.Action,
+		IsValidationOnly:  s.IsValidationOnly,
+		Justification:     s.Justification,
+		ScheduleInfo:      s.ScheduleInfo,
+		TicketInfo:        s.TicketInfo,
+		ApprovalId:        s.ApprovalId,
+		CompletedDateTime: s.CompletedDateTime,
+		CreatedBy:         s.CreatedBy,
+		CreatedDateTime:   s.CreatedDateTime,
+		CustomData:        s.CustomData,
+		Status:            s.Status,
+		Id:                s.Id,
+		ODataId:           s.ODataId,
+		ODataType:         s.ODataType,
+	}
+}

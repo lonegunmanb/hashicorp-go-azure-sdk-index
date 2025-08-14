@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTeamworkSoftwareType(input string) (*TeamworkSoftwareType, error) {
+	vals := map[string]TeamworkSoftwareType{
+		"adminagent":      TeamworkSoftwareType_AdminAgent,
+		"companyportal":   TeamworkSoftwareType_CompanyPortal,
+		"firmware":        TeamworkSoftwareType_Firmware,
+		"operatingsystem": TeamworkSoftwareType_OperatingSystem,
+		"partneragent":    TeamworkSoftwareType_PartnerAgent,
+		"teamsclient":     TeamworkSoftwareType_TeamsClient,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TeamworkSoftwareType(input)
+	return &out, nil
+}

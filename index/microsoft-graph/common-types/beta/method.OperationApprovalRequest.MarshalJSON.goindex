@@ -1,0 +1,40 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s OperationApprovalRequest) MarshalJSON() ([]byte, error) {
+	type wrapper OperationApprovalRequest
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling OperationApprovalRequest: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling OperationApprovalRequest: %+v", err)
+	}
+
+	delete(decoded, "approvalJustification")
+	delete(decoded, "approver")
+	delete(decoded, "expirationDateTime")
+	delete(decoded, "lastModifiedDateTime")
+	delete(decoded, "requestDateTime")
+	delete(decoded, "requestJustification")
+	delete(decoded, "requestor")
+	delete(decoded, "requiredOperationApprovalPolicyTypes")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.operationApprovalRequest"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling OperationApprovalRequest: %+v", err)
+	}
+
+	return encoded, nil
+}

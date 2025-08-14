@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/sitelistlastmodifiedbyusermailboxsetting
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSiteListLastModifiedByUserMailboxSettingClientWithBaseURI(sdkApi sdkEnv.Api) (*SiteListLastModifiedByUserMailboxSettingClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "sitelistlastmodifiedbyusermailboxsetting", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SiteListLastModifiedByUserMailboxSettingClient: %+v", err)
+	}
+
+	return &SiteListLastModifiedByUserMailboxSettingClient{
+		Client: client,
+	}, nil
+}

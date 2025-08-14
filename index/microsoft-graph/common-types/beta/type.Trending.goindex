@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type Trending struct {
+	// The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example,
+	// midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+	LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+
+	// Used for navigating to the trending document.
+	Resource Entity `json:"resource"`
+
+	// Reference properties of the trending document, such as the url and type of the document.
+	ResourceReference *ResourceReference `json:"resourceReference,omitempty"`
+
+	// Properties that you can use to visualize the document in your experience.
+	ResourceVisualization *ResourceVisualization `json:"resourceVisualization,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

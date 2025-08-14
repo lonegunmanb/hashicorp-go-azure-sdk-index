@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWindowsAppStartLayoutTileSize(input string) (*WindowsAppStartLayoutTileSize, error) {
+	vals := map[string]WindowsAppStartLayoutTileSize{
+		"hidden": WindowsAppStartLayoutTileSize_Hidden,
+		"large":  WindowsAppStartLayoutTileSize_Large,
+		"medium": WindowsAppStartLayoutTileSize_Medium,
+		"small":  WindowsAppStartLayoutTileSize_Small,
+		"wide":   WindowsAppStartLayoutTileSize_Wide,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsAppStartLayoutTileSize(input)
+	return &out, nil
+}

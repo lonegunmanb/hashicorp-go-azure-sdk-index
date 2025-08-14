@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-10-01/tags
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id TagValueId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Tag Name: %q", id.TagName),
+		fmt.Sprintf("Tag Value Name: %q", id.TagValueName),
+	}
+	return fmt.Sprintf("Tag Value (%s)", strings.Join(components, "\n"))
+}

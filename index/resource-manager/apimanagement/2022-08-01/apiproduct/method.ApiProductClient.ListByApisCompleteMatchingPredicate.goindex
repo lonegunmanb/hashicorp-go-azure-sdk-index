@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2022-08-01/apiproduct
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ApiProductClient) ListByApisCompleteMatchingPredicate(ctx context.Context, id ApiId, options ListByApisOperationOptions, predicate ProductContractOperationPredicate) (result ListByApisCompleteResult, err error) {
+	items := make([]ProductContract, 0)
+
+	resp, err := c.ListByApis(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByApisCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

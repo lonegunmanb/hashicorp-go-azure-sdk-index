@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2022-03-01/users
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c UsersClient) ListByDataBoxEdgeDeviceComplete(ctx context.Context, id DataBoxEdgeDeviceId, options ListByDataBoxEdgeDeviceOperationOptions) (ListByDataBoxEdgeDeviceCompleteResult, error) {
+	return c.ListByDataBoxEdgeDeviceCompleteMatchingPredicate(ctx, id, options, UserOperationPredicate{})
+}

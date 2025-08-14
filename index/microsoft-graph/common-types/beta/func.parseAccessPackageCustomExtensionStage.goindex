@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAccessPackageCustomExtensionStage(input string) (*AccessPackageCustomExtensionStage, error) {
+	vals := map[string]AccessPackageCustomExtensionStage{
+		"assignmentfourteendaysbeforeexpiration": AccessPackageCustomExtensionStage_AssignmentFourteenDaysBeforeExpiration,
+		"assignmentonedaybeforeexpiration":       AccessPackageCustomExtensionStage_AssignmentOneDayBeforeExpiration,
+		"assignmentrequestapproved":              AccessPackageCustomExtensionStage_AssignmentRequestApproved,
+		"assignmentrequestcreated":               AccessPackageCustomExtensionStage_AssignmentRequestCreated,
+		"assignmentrequestgranted":               AccessPackageCustomExtensionStage_AssignmentRequestGranted,
+		"assignmentrequestremoved":               AccessPackageCustomExtensionStage_AssignmentRequestRemoved,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AccessPackageCustomExtensionStage(input)
+	return &out, nil
+}

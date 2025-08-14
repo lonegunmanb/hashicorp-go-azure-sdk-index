@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2025-02-15/eventsubscriptions
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s IsNullOrUndefinedFilter) MarshalJSON() ([]byte, error) {
+	type wrapper IsNullOrUndefinedFilter
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling IsNullOrUndefinedFilter: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling IsNullOrUndefinedFilter: %+v", err)
+	}
+
+	decoded["operatorType"] = "IsNullOrUndefined"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling IsNullOrUndefinedFilter: %+v", err)
+	}
+
+	return encoded, nil
+}

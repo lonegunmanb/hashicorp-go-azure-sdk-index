@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/b2xuserflowlanguage
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c B2xUserFlowLanguageClient) ListB2xUserFlowLanguagesComplete(ctx context.Context, id stable.IdentityB2xUserFlowId, options ListB2xUserFlowLanguagesOperationOptions) (ListB2xUserFlowLanguagesCompleteResult, error) {
+	return c.ListB2xUserFlowLanguagesCompleteMatchingPredicate(ctx, id, options, UserFlowLanguageConfigurationOperationPredicate{})
+}

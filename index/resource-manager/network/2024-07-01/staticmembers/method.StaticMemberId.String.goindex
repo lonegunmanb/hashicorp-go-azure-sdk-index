@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/staticmembers
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id StaticMemberId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Network Manager Name: %q", id.NetworkManagerName),
+		fmt.Sprintf("Network Group Name: %q", id.NetworkGroupName),
+		fmt.Sprintf("Static Member Name: %q", id.StaticMemberName),
+	}
+	return fmt.Sprintf("Static Member (%s)", strings.Join(components, "\n"))
+}

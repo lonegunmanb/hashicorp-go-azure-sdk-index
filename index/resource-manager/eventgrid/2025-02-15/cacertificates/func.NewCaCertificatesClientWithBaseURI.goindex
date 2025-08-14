@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2025-02-15/cacertificates
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewCaCertificatesClientWithBaseURI(sdkApi sdkEnv.Api) (*CaCertificatesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "cacertificates", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating CaCertificatesClient: %+v", err)
+	}
+
+	return &CaCertificatesClient{
+		Client: client,
+	}, nil
+}

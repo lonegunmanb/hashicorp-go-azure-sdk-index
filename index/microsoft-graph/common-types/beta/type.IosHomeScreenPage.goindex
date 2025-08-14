@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type IosHomeScreenPage struct {
+	// Name of the page
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// A list of apps, folders, and web clips to appear on a page. This collection can contain a maximum of 500 elements.
+	Icons *[]IosHomeScreenItem `json:"icons,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+}

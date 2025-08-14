@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWiFiProxySetting(input string) (*WiFiProxySetting, error) {
+	vals := map[string]WiFiProxySetting{
+		"automatic": WiFiProxySetting_Automatic,
+		"manual":    WiFiProxySetting_Manual,
+		"none":      WiFiProxySetting_None,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WiFiProxySetting(input)
+	return &out, nil
+}

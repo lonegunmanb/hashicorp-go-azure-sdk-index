@@ -1,0 +1,43 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalWindowsPhone81AppXImplementation(input []byte) (WindowsPhone81AppX, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling WindowsPhone81AppX into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.windowsPhone81AppXBundle") {
+		var out WindowsPhone81AppXBundle
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into WindowsPhone81AppXBundle: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseWindowsPhone81AppXImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseWindowsPhone81AppXImpl: %+v", err)
+	}
+
+	return RawWindowsPhone81AppXImpl{
+		windowsPhone81AppX: parent,
+		Type:               value,
+		Values:             temp,
+	}, nil
+
+}

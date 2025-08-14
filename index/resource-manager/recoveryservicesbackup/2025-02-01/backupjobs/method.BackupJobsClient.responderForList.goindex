@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/backupjobs
+import (
+	"context"
+	"fmt"
+	"net/http"
+	"net/url"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+)
+func (c BackupJobsClient) responderForList(resp *http.Response) (result ListOperationResponse, err error) {
+	type page struct {
+		Values   []JobResource `json:"value"`
+		NextLink *string       `json:"nextLink"`
+	}
+	var respObj page
+	err = autorest.Respond(
+		resp,
+		azure.WithErrorUnlessStatusCode(http.StatusOK),
+		autorest.ByUnmarshallingJSON(&respObj),
+		autorest.ByClosing())
+	result.HttpResponse = resp
+	result.Model = &respObj.Values
+	result.nextLink = respObj.NextLink
+	if respObj.NextLink != nil {
+		result.nextPageFunc = func(ctx context.Context, nextLink string) (result ListOperationResponse, err error) {
+			req, err := c.preparerForListWithNextLink(ctx, nextLink)
+			if err != nil {
+				err = autorest.NewErrorWithError(err, "backupjobs.BackupJobsClient", "List", nil, "Failure preparing request")
+				return
+			}
+
+			result.HttpResponse, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
+			if err != nil {
+				err = autorest.NewErrorWithError(err, "backupjobs.BackupJobsClient", "List", result.HttpResponse, "Failure sending request")
+				return
+			}
+
+			result, err = c.responderForList(result.HttpResponse)
+			if err != nil {
+				err = autorest.NewErrorWithError(err, "backupjobs.BackupJobsClient", "List", result.HttpResponse, "Failure responding to request")
+				return
+			}
+
+			return
+		}
+	}
+	return
+}

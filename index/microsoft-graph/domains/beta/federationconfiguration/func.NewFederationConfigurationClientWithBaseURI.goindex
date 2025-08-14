@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/domains/beta/federationconfiguration
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewFederationConfigurationClientWithBaseURI(sdkApi sdkEnv.Api) (*FederationConfigurationClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "federationconfiguration", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating FederationConfigurationClient: %+v", err)
+	}
+
+	return &FederationConfigurationClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/thread
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewThreadClientWithBaseURI(sdkApi sdkEnv.Api) (*ThreadClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "thread", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ThreadClient: %+v", err)
+	}
+
+	return &ThreadClient{
+		Client: client,
+	}, nil
+}

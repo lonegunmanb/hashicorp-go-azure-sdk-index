@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hdinsight/2021-06-01/promote
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPromoteClientWithBaseURI(sdkApi sdkEnv.Api) (*PromoteClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "promote", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PromoteClient: %+v", err)
+	}
+
+	return &PromoteClient{
+		Client: client,
+	}, nil
+}

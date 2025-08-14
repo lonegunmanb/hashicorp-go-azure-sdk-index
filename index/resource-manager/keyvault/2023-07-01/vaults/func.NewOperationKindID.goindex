@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2023-07-01/vaults
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func NewOperationKindID(subscriptionId string, resourceGroupName string, vaultName string, operationKind AccessPolicyUpdateKind) OperationKindId {
+	return OperationKindId{
+		SubscriptionId:    subscriptionId,
+		ResourceGroupName: resourceGroupName,
+		VaultName:         vaultName,
+		OperationKind:     operationKind,
+	}
+}

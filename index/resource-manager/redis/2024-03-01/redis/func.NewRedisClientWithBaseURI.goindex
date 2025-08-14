@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/redis/2024-03-01/redis
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewRedisClientWithBaseURI(sdkApi sdkEnv.Api) (*RedisClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "redis", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating RedisClient: %+v", err)
+	}
+
+	return &RedisClient{
+		Client: client,
+	}, nil
+}

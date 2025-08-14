@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/longtermretentionmanagedinstancebackups
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id LongTermRetentionManagedInstanceLongTermRetentionDatabaseId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
+		fmt.Sprintf("Long Term Retention Managed Instance Name: %q", id.LongTermRetentionManagedInstanceName),
+		fmt.Sprintf("Long Term Retention Database Name: %q", id.LongTermRetentionDatabaseName),
+	}
+	return fmt.Sprintf("Long Term Retention Managed Instance Long Term Retention Database (%s)", strings.Join(components, "\n"))
+}

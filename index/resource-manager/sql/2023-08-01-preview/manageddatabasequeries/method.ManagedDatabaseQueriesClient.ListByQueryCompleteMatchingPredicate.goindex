@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/manageddatabasequeries
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ManagedDatabaseQueriesClient) ListByQueryCompleteMatchingPredicate(ctx context.Context, id QueryId, options ListByQueryOperationOptions, predicate QueryStatisticsOperationPredicate) (result ListByQueryCompleteResult, err error) {
+	items := make([]QueryStatistics, 0)
+
+	resp, err := c.ListByQuery(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByQueryCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

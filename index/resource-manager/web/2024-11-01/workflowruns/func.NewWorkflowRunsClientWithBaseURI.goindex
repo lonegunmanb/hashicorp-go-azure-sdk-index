@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-11-01/workflowruns
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewWorkflowRunsClientWithBaseURI(sdkApi sdkEnv.Api) (*WorkflowRunsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "workflowruns", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating WorkflowRunsClient: %+v", err)
+	}
+
+	return &WorkflowRunsClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type IdentityGovernanceAttributeChangeTrigger struct {
+	// The trigger attribute being changed that triggers the workflowexecutiontrigger of a workflow.)
+	TriggerAttributes *[]IdentityGovernanceTriggerAttribute `json:"triggerAttributes,omitempty"`
+
+	// Fields inherited from IdentityGovernanceWorkflowExecutionTrigger
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

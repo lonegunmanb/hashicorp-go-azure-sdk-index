@@ -1,0 +1,65 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalMacOSSingleSignOnExtensionImplementation(input []byte) (MacOSSingleSignOnExtension, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling MacOSSingleSignOnExtension into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.macOSAzureAdSingleSignOnExtension") {
+		var out MacOSAzureAdSingleSignOnExtension
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into MacOSAzureAdSingleSignOnExtension: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.macOSCredentialSingleSignOnExtension") {
+		var out MacOSCredentialSingleSignOnExtension
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into MacOSCredentialSingleSignOnExtension: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.macOSKerberosSingleSignOnExtension") {
+		var out MacOSKerberosSingleSignOnExtension
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into MacOSKerberosSingleSignOnExtension: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.macOSRedirectSingleSignOnExtension") {
+		var out MacOSRedirectSingleSignOnExtension
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into MacOSRedirectSingleSignOnExtension: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseMacOSSingleSignOnExtensionImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseMacOSSingleSignOnExtensionImpl: %+v", err)
+	}
+
+	return RawMacOSSingleSignOnExtensionImpl{
+		macOSSingleSignOnExtension: parent,
+		Type:                       value,
+		Values:                     temp,
+	}, nil
+
+}

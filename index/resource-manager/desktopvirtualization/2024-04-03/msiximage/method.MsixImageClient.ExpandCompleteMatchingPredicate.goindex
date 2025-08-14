@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/desktopvirtualization/2024-04-03/msiximage
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c MsixImageClient) ExpandCompleteMatchingPredicate(ctx context.Context, id HostPoolId, input MSIXImageURI, predicate ExpandMsixImageOperationPredicate) (result ExpandCompleteResult, err error) {
+	items := make([]ExpandMsixImage, 0)
+
+	resp, err := c.Expand(ctx, id, input)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ExpandCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

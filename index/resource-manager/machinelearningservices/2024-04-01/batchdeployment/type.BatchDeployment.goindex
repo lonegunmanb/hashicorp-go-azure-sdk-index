@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/batchdeployment
+import (
+	"encoding/json"
+	"fmt"
+)
+type BatchDeployment struct {
+	CodeConfiguration         *CodeConfiguration           `json:"codeConfiguration,omitempty"`
+	Compute                   *string                      `json:"compute,omitempty"`
+	DeploymentConfiguration   BatchDeploymentConfiguration `json:"deploymentConfiguration"`
+	Description               *string                      `json:"description,omitempty"`
+	EnvironmentId             *string                      `json:"environmentId,omitempty"`
+	EnvironmentVariables      *map[string]string           `json:"environmentVariables,omitempty"`
+	ErrorThreshold            *int64                       `json:"errorThreshold,omitempty"`
+	LoggingLevel              *BatchLoggingLevel           `json:"loggingLevel,omitempty"`
+	MaxConcurrencyPerInstance *int64                       `json:"maxConcurrencyPerInstance,omitempty"`
+	MiniBatchSize             *int64                       `json:"miniBatchSize,omitempty"`
+	Model                     AssetReferenceBase           `json:"model"`
+	OutputAction              *BatchOutputAction           `json:"outputAction,omitempty"`
+	OutputFileName            *string                      `json:"outputFileName,omitempty"`
+	Properties                *map[string]string           `json:"properties,omitempty"`
+	ProvisioningState         *DeploymentProvisioningState `json:"provisioningState,omitempty"`
+	Resources                 *ResourceConfiguration       `json:"resources,omitempty"`
+	RetrySettings             *BatchRetrySettings          `json:"retrySettings,omitempty"`
+}

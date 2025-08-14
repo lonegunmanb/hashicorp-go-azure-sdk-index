@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/enterpriseapp
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c EnterpriseAppClient) ListEnterpriseAppsCompleteMatchingPredicate(ctx context.Context, options ListEnterpriseAppsOperationOptions, predicate RbacApplicationOperationPredicate) (result ListEnterpriseAppsCompleteResult, err error) {
+	items := make([]beta.RbacApplication, 0)
+
+	resp, err := c.ListEnterpriseApps(ctx, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListEnterpriseAppsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

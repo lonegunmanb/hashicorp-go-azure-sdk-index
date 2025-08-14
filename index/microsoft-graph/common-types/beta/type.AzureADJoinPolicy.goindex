@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type AzureADJoinPolicy struct {
+	// Determines if Microsoft Entra join is allowed.
+	AllowedToJoin DeviceRegistrationMembership `json:"allowedToJoin"`
+
+	// Determines if administrators can modify this policy.
+	IsAdminConfigurable nullable.Type[bool] `json:"isAdminConfigurable,omitempty"`
+
+	// Determines who becomes a local administrator on joined devices.
+	LocalAdmins *LocalAdminSettings `json:"localAdmins,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+}

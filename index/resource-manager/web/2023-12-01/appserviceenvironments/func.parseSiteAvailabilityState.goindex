@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/appserviceenvironments
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSiteAvailabilityState(input string) (*SiteAvailabilityState, error) {
+	vals := map[string]SiteAvailabilityState{
+		"disasterrecoverymode": SiteAvailabilityStateDisasterRecoveryMode,
+		"limited":              SiteAvailabilityStateLimited,
+		"normal":               SiteAvailabilityStateNormal,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SiteAvailabilityState(input)
+	return &out, nil
+}

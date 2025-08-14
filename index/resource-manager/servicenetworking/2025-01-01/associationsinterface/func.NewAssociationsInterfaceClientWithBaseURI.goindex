@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicenetworking/2025-01-01/associationsinterface
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAssociationsInterfaceClientWithBaseURI(sdkApi sdkEnv.Api) (*AssociationsInterfaceClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "associationsinterface", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AssociationsInterfaceClient: %+v", err)
+	}
+
+	return &AssociationsInterfaceClient{
+		Client: client,
+	}, nil
+}

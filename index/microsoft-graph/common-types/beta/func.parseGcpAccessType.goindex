@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseGcpAccessType(input string) (*GcpAccessType, error) {
+	vals := map[string]GcpAccessType{
+		"private":             GcpAccessType_Private,
+		"public":              GcpAccessType_Public,
+		"subjecttoobjectacls": GcpAccessType_SubjectToObjectAcls,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := GcpAccessType(input)
+	return &out, nil
+}

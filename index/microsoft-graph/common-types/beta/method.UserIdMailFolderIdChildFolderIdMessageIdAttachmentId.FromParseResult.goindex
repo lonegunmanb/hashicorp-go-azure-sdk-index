@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *UserIdMailFolderIdChildFolderIdMessageIdAttachmentId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.UserId, ok = input.Parsed["userId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "userId", input)
+	}
+
+	if id.MailFolderId, ok = input.Parsed["mailFolderId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "mailFolderId", input)
+	}
+
+	if id.MailFolderId1, ok = input.Parsed["mailFolderId1"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "mailFolderId1", input)
+	}
+
+	if id.MessageId, ok = input.Parsed["messageId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "messageId", input)
+	}
+
+	if id.AttachmentId, ok = input.Parsed["attachmentId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "attachmentId", input)
+	}
+
+	return nil
+}

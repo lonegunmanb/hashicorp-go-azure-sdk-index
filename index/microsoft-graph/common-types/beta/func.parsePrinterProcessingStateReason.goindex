@@ -1,0 +1,51 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePrinterProcessingStateReason(input string) (*PrinterProcessingStateReason, error) {
+	vals := map[string]PrinterProcessingStateReason{
+		"connectingtodevice":                 PrinterProcessingStateReason_ConnectingToDevice,
+		"coveropen":                          PrinterProcessingStateReason_CoverOpen,
+		"developerempty":                     PrinterProcessingStateReason_DeveloperEmpty,
+		"developerlow":                       PrinterProcessingStateReason_DeveloperLow,
+		"dooropen":                           PrinterProcessingStateReason_DoorOpen,
+		"fuserovertemp":                      PrinterProcessingStateReason_FuserOverTemp,
+		"fuserundertemp":                     PrinterProcessingStateReason_FuserUnderTemp,
+		"inputtraymissing":                   PrinterProcessingStateReason_InputTrayMissing,
+		"interlockopen":                      PrinterProcessingStateReason_InterlockOpen,
+		"interpreterresourceunavailable":     PrinterProcessingStateReason_InterpreterResourceUnavailable,
+		"markersupplyempty":                  PrinterProcessingStateReason_MarkerSupplyEmpty,
+		"markersupplylow":                    PrinterProcessingStateReason_MarkerSupplyLow,
+		"markerwastealmostfull":              PrinterProcessingStateReason_MarkerWasteAlmostFull,
+		"markerwastefull":                    PrinterProcessingStateReason_MarkerWasteFull,
+		"mediaempty":                         PrinterProcessingStateReason_MediaEmpty,
+		"mediajam":                           PrinterProcessingStateReason_MediaJam,
+		"medialow":                           PrinterProcessingStateReason_MediaLow,
+		"medianeeded":                        PrinterProcessingStateReason_MediaNeeded,
+		"movingtopaused":                     PrinterProcessingStateReason_MovingToPaused,
+		"none":                               PrinterProcessingStateReason_None,
+		"opticalphotoconductorlifeover":      PrinterProcessingStateReason_OpticalPhotoConductorLifeOver,
+		"opticalphotoconductornearendoflife": PrinterProcessingStateReason_OpticalPhotoConductorNearEndOfLife,
+		"other":                              PrinterProcessingStateReason_Other,
+		"outputareaalmostfull":               PrinterProcessingStateReason_OutputAreaAlmostFull,
+		"outputareafull":                     PrinterProcessingStateReason_OutputAreaFull,
+		"outputtraymissing":                  PrinterProcessingStateReason_OutputTrayMissing,
+		"paused":                             PrinterProcessingStateReason_Paused,
+		"shutdown":                           PrinterProcessingStateReason_Shutdown,
+		"spoolareafull":                      PrinterProcessingStateReason_SpoolAreaFull,
+		"stoppedpartially":                   PrinterProcessingStateReason_StoppedPartially,
+		"stopping":                           PrinterProcessingStateReason_Stopping,
+		"timedout":                           PrinterProcessingStateReason_TimedOut,
+		"tonerempty":                         PrinterProcessingStateReason_TonerEmpty,
+		"tonerlow":                           PrinterProcessingStateReason_TonerLow,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PrinterProcessingStateReason(input)
+	return &out, nil
+}

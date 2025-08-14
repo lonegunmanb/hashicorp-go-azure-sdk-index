@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2021-05-01-preview/diagnosticsettingscategories
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ScopedDiagnosticSettingsCategoryId) String() string {
+	components := []string{
+		fmt.Sprintf("Resource Uri: %q", id.ResourceUri),
+		fmt.Sprintf("Diagnostic Settings Category Name: %q", id.DiagnosticSettingsCategoryName),
+	}
+	return fmt.Sprintf("Scoped Diagnostic Settings Category (%s)", strings.Join(components, "\n"))
+}

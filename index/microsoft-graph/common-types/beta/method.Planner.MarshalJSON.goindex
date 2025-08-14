@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s Planner) MarshalJSON() ([]byte, error) {
+	type wrapper Planner
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling Planner: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling Planner: %+v", err)
+	}
+
+	delete(decoded, "buckets")
+	delete(decoded, "plans")
+	delete(decoded, "rosters")
+	delete(decoded, "tasks")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.planner"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling Planner: %+v", err)
+	}
+
+	return encoded, nil
+}

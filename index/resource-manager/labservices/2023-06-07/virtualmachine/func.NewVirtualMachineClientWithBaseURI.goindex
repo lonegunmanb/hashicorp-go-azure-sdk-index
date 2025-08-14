@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/labservices/2023-06-07/virtualmachine
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewVirtualMachineClientWithBaseURI(sdkApi sdkEnv.Api) (*VirtualMachineClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "virtualmachine", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating VirtualMachineClient: %+v", err)
+	}
+
+	return &VirtualMachineClient{
+		Client: client,
+	}, nil
+}

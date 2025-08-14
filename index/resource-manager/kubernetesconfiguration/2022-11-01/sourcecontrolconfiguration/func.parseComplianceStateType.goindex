@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/kubernetesconfiguration/2022-11-01/sourcecontrolconfiguration
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseComplianceStateType(input string) (*ComplianceStateType, error) {
+	vals := map[string]ComplianceStateType{
+		"compliant":    ComplianceStateTypeCompliant,
+		"failed":       ComplianceStateTypeFailed,
+		"installed":    ComplianceStateTypeInstalled,
+		"noncompliant": ComplianceStateTypeNoncompliant,
+		"pending":      ComplianceStateTypePending,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ComplianceStateType(input)
+	return &out, nil
+}

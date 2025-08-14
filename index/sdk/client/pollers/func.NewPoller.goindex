@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client/pollers
+import (
+	"context"
+	"fmt"
+	"sync"
+	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+)
+func NewPoller(pollerType PollerType, initialDelayDuration time.Duration, maxNumberOfDroppedConnections int) Poller {
+	return Poller{
+		initialDelayDuration:          initialDelayDuration,
+		maxNumberOfDroppedConnections: maxNumberOfDroppedConnections,
+		poller:                        pollerType,
+	}
+}

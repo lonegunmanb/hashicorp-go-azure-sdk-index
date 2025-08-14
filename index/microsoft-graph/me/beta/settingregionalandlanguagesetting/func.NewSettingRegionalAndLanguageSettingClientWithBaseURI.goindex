@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/settingregionalandlanguagesetting
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSettingRegionalAndLanguageSettingClientWithBaseURI(sdkApi sdkEnv.Api) (*SettingRegionalAndLanguageSettingClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "settingregionalandlanguagesetting", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SettingRegionalAndLanguageSettingClient: %+v", err)
+	}
+
+	return &SettingRegionalAndLanguageSettingClient{
+		Client: client,
+	}, nil
+}

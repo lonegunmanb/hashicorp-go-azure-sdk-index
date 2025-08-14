@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type PrinterStatus struct {
+	// A human-readable description of the printer's current processing state. Read-only.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// The list of details describing why the printer is in the current state. Valid values are described in the following
+	// table. Read-only.
+	Details *[]PrinterProcessingStateDetail `json:"details,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	State *PrinterProcessingState `json:"state,omitempty"`
+}

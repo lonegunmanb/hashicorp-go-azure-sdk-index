@@ -1,0 +1,59 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalSearchSearchAnswerImplementation(input []byte) (SearchSearchAnswer, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling SearchSearchAnswer into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.search.acronym") {
+		var out SearchAcronym
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SearchAcronym: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.search.bookmark") {
+		var out SearchBookmark
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SearchBookmark: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.search.qna") {
+		var out SearchQna
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SearchQna: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseSearchSearchAnswerImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseSearchSearchAnswerImpl: %+v", err)
+	}
+
+	return RawSearchSearchAnswerImpl{
+		searchSearchAnswer: parent,
+		Type:               value,
+		Values:             temp,
+	}, nil
+
+}

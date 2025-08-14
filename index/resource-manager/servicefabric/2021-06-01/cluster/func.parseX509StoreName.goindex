@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicefabric/2021-06-01/cluster
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseX509StoreName(input string) (*X509StoreName, error) {
+	vals := map[string]X509StoreName{
+		"addressbook":          X509StoreNameAddressBook,
+		"authroot":             X509StoreNameAuthRoot,
+		"certificateauthority": X509StoreNameCertificateAuthority,
+		"disallowed":           X509StoreNameDisallowed,
+		"my":                   X509StoreNameMy,
+		"root":                 X509StoreNameRoot,
+		"trustedpeople":        X509StoreNameTrustedPeople,
+		"trustedpublisher":     X509StoreNameTrustedPublisher,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := X509StoreName(input)
+	return &out, nil
+}

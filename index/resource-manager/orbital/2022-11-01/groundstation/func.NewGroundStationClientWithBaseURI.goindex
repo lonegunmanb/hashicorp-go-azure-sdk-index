@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/orbital/2022-11-01/groundstation
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewGroundStationClientWithBaseURI(sdkApi sdkEnv.Api) (*GroundStationClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "groundstation", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating GroundStationClient: %+v", err)
+	}
+
+	return &GroundStationClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,59 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalAndroidDeviceOwnerCertificateProfileBaseImplementation(input []byte) (AndroidDeviceOwnerCertificateProfileBase, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling AndroidDeviceOwnerCertificateProfileBase into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.androidDeviceOwnerImportedPFXCertificateProfile") {
+		var out AndroidDeviceOwnerImportedPFXCertificateProfile
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AndroidDeviceOwnerImportedPFXCertificateProfile: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.androidDeviceOwnerPkcsCertificateProfile") {
+		var out AndroidDeviceOwnerPkcsCertificateProfile
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AndroidDeviceOwnerPkcsCertificateProfile: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.androidDeviceOwnerScepCertificateProfile") {
+		var out AndroidDeviceOwnerScepCertificateProfile
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AndroidDeviceOwnerScepCertificateProfile: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseAndroidDeviceOwnerCertificateProfileBaseImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseAndroidDeviceOwnerCertificateProfileBaseImpl: %+v", err)
+	}
+
+	return RawAndroidDeviceOwnerCertificateProfileBaseImpl{
+		androidDeviceOwnerCertificateProfileBase: parent,
+		Type:                                     value,
+		Values:                                   temp,
+	}, nil
+
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type AccessReviewNotificationRecipientItem struct {
+	// Determines the recipient of the notification email.
+	NotificationRecipientScope AccessReviewNotificationRecipientScope `json:"notificationRecipientScope"`
+
+	// Indicates the type of access review email to be sent. Supported template type is CompletedAdditionalRecipients which
+	// sends review completion notifications to the recipients.
+	NotificationTemplateType nullable.Type[string] `json:"notificationTemplateType,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+}

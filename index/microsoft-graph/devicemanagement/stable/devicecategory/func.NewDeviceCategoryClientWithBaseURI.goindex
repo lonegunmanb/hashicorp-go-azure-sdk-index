@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/devicecategory
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDeviceCategoryClientWithBaseURI(sdkApi sdkEnv.Api) (*DeviceCategoryClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "devicecategory", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DeviceCategoryClient: %+v", err)
+	}
+
+	return &DeviceCategoryClient{
+		Client: client,
+	}, nil
+}

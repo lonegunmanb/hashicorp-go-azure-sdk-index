@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/sdk/internal/azurecli
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"log"
+	"os/exec"
+	"regexp"
+	"strings"
+
+	"github.com/hashicorp/go-version"
+)
+type azAccount struct {
+	EnvironmentName *string `json:"environmentName"`
+	HomeTenantId    *string `json:"homeTenantId"`
+	Id              *string `json:"id"`
+	Default         *bool   `json:"isDefault"`
+	Name            *string `json:"name"`
+	State           *string `json:"state"`
+	TenantId        *string `json:"tenantId"`
+
+	ManagedByTenants *[]struct {
+		TenantId *string `json:"tenantId"`
+	} `json:"managedByTenants"`
+
+	User *struct {
+		AssignedIdentityInfo *string `json:"assignedIdentityInfo"`
+		Name                 *string `json:"name"`
+		Type                 *string `json:"type"`
+	}
+}

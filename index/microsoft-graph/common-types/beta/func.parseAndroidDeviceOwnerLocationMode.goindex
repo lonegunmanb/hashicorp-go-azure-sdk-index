@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAndroidDeviceOwnerLocationMode(input string) (*AndroidDeviceOwnerLocationMode, error) {
+	vals := map[string]AndroidDeviceOwnerLocationMode{
+		"disabled":      AndroidDeviceOwnerLocationMode_Disabled,
+		"notconfigured": AndroidDeviceOwnerLocationMode_NotConfigured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AndroidDeviceOwnerLocationMode(input)
+	return &out, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2022-05-01/workloadnetworks
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DnsServiceId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Private Cloud Name: %q", id.PrivateCloudName),
+		fmt.Sprintf("Dns Service: %q", id.DnsServiceId),
+	}
+	return fmt.Sprintf("Dns Service (%s)", strings.Join(components, "\n"))
+}

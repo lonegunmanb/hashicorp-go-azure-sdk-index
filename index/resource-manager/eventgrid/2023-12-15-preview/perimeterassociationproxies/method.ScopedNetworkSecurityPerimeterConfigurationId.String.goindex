@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2023-12-15-preview/perimeterassociationproxies
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ScopedNetworkSecurityPerimeterConfigurationId) String() string {
+	components := []string{
+		fmt.Sprintf("Scope: %q", id.Scope),
+		fmt.Sprintf("Network Security Perimeter Configuration Name: %q", id.NetworkSecurityPerimeterConfigurationName),
+	}
+	return fmt.Sprintf("Scoped Network Security Perimeter Configuration (%s)", strings.Join(components, "\n"))
+}

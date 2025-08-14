@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dns/2018-05-01/recordsets
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func NewRecordTypeID(subscriptionId string, resourceGroupName string, dnsZoneName string, recordType RecordType, relativeRecordSetName string) RecordTypeId {
+	return RecordTypeId{
+		SubscriptionId:        subscriptionId,
+		ResourceGroupName:     resourceGroupName,
+		DnsZoneName:           dnsZoneName,
+		RecordType:            recordType,
+		RelativeRecordSetName: relativeRecordSetName,
+	}
+}

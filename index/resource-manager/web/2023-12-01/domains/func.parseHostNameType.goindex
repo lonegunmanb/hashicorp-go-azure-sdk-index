@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/domains
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseHostNameType(input string) (*HostNameType, error) {
+	vals := map[string]HostNameType{
+		"managed":  HostNameTypeManaged,
+		"verified": HostNameTypeVerified,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := HostNameType(input)
+	return &out, nil
+}

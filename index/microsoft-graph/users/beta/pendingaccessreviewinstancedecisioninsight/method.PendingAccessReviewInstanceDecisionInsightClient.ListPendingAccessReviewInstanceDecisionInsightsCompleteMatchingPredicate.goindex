@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/pendingaccessreviewinstancedecisioninsight
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c PendingAccessReviewInstanceDecisionInsightClient) ListPendingAccessReviewInstanceDecisionInsightsCompleteMatchingPredicate(ctx context.Context, id beta.UserIdPendingAccessReviewInstanceIdDecisionId, options ListPendingAccessReviewInstanceDecisionInsightsOperationOptions, predicate GovernanceInsightOperationPredicate) (result ListPendingAccessReviewInstanceDecisionInsightsCompleteResult, err error) {
+	items := make([]beta.GovernanceInsight, 0)
+
+	resp, err := c.ListPendingAccessReviewInstanceDecisionInsights(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListPendingAccessReviewInstanceDecisionInsightsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

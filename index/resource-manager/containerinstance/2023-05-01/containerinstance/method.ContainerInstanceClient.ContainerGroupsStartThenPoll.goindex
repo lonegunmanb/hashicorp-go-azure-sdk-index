@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerinstance/2023-05-01/containerinstance
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ContainerInstanceClient) ContainerGroupsStartThenPoll(ctx context.Context, id ContainerGroupId) error {
+	result, err := c.ContainerGroupsStart(ctx, id)
+	if err != nil {
+		return fmt.Errorf("performing ContainerGroupsStart: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after ContainerGroupsStart: %+v", err)
+	}
+
+	return nil
+}

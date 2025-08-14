@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/endpoints
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s OriginGroupOverrideAction) MarshalJSON() ([]byte, error) {
+	type wrapper OriginGroupOverrideAction
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling OriginGroupOverrideAction: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling OriginGroupOverrideAction: %+v", err)
+	}
+
+	decoded["name"] = "OriginGroupOverride"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling OriginGroupOverrideAction: %+v", err)
+	}
+
+	return encoded, nil
+}

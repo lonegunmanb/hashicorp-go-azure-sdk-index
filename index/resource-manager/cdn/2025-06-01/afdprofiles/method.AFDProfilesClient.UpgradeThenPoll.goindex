@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/afdprofiles
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c AFDProfilesClient) UpgradeThenPoll(ctx context.Context, id ProfileId, input ProfileUpgradeParameters) error {
+	result, err := c.Upgrade(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing Upgrade: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after Upgrade: %+v", err)
+	}
+
+	return nil
+}

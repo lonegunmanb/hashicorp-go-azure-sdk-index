@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id UserIdChatIdPermissionGrantId) String() string {
+	components := []string{
+		fmt.Sprintf("User: %q", id.UserId),
+		fmt.Sprintf("Chat: %q", id.ChatId),
+		fmt.Sprintf("Resource Specific Permission Grant: %q", id.ResourceSpecificPermissionGrantId),
+	}
+	return fmt.Sprintf("User Id Chat Id Permission Grant (%s)", strings.Join(components, "\n"))
+}

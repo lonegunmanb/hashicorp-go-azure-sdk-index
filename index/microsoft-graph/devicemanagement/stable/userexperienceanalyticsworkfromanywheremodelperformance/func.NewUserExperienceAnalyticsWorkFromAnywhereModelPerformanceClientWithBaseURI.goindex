@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsworkfromanywheremodelperformance
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewUserExperienceAnalyticsWorkFromAnywhereModelPerformanceClientWithBaseURI(sdkApi sdkEnv.Api) (*UserExperienceAnalyticsWorkFromAnywhereModelPerformanceClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "userexperienceanalyticsworkfromanywheremodelperformance", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating UserExperienceAnalyticsWorkFromAnywhereModelPerformanceClient: %+v", err)
+	}
+
+	return &UserExperienceAnalyticsWorkFromAnywhereModelPerformanceClient{
+		Client: client,
+	}, nil
+}

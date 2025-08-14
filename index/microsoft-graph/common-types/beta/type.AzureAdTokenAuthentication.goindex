@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type AzureAdTokenAuthentication struct {
+	// The appID of the Microsoft Entra application to use to authenticate a logic app with a custom access package workflow
+	// extension.
+	ResourceId nullable.Type[string] `json:"resourceId,omitempty"`
+
+	// Fields inherited from CustomExtensionAuthenticationConfiguration
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

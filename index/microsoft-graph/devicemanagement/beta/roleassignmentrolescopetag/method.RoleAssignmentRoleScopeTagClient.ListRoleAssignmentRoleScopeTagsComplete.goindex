@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/roleassignmentrolescopetag
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c RoleAssignmentRoleScopeTagClient) ListRoleAssignmentRoleScopeTagsComplete(ctx context.Context, id beta.DeviceManagementRoleAssignmentId, options ListRoleAssignmentRoleScopeTagsOperationOptions) (ListRoleAssignmentRoleScopeTagsCompleteResult, error) {
+	return c.ListRoleAssignmentRoleScopeTagsCompleteMatchingPredicate(ctx, id, options, RoleScopeTagOperationPredicate{})
+}

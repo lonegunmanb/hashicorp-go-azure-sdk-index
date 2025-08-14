@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/deviceregistry/2024-11-01/assetendpointprofiles
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseAssetEndpointProfileID(input string) (*AssetEndpointProfileId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&AssetEndpointProfileId{})
+	parsed, err := parser.Parse(input, false)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := AssetEndpointProfileId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-08-01/alerts
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ScopedAlertId) String() string {
+	components := []string{
+		fmt.Sprintf("Scope: %q", id.Scope),
+		fmt.Sprintf("Alert: %q", id.AlertId),
+	}
+	return fmt.Sprintf("Scoped Alert (%s)", strings.Join(components, "\n"))
+}

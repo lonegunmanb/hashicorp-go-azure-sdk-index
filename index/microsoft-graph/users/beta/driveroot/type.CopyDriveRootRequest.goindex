@@ -1,0 +1,11 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/driveroot
+import (
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type CopyDriveRootRequest struct {
+	ChildrenOnly             nullable.Type[bool]   `json:"childrenOnly,omitempty"`
+	IncludeAllVersionHistory nullable.Type[bool]   `json:"includeAllVersionHistory,omitempty"`
+	Name                     nullable.Type[string] `json:"name,omitempty"`
+	ParentReference          *beta.ItemReference   `json:"parentReference,omitempty"`
+}

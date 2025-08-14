@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerregistry/2023-07-01/registries
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseImportMode(input string) (*ImportMode, error) {
+	vals := map[string]ImportMode{
+		"force":   ImportModeForce,
+		"noforce": ImportModeNoForce,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ImportMode(input)
+	return &out, nil
+}

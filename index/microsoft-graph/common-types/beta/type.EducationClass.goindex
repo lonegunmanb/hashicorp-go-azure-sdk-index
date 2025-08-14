@@ -1,0 +1,85 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type EducationClass struct {
+	// All categories associated with this class. Nullable.
+	AssignmentCategories *[]EducationCategory `json:"assignmentCategories,omitempty"`
+
+	// Specifies class-level defaults respected by new assignments created in the class.
+	AssignmentDefaults *EducationAssignmentDefaults `json:"assignmentDefaults,omitempty"`
+
+	// Specifies class-level assignments settings.
+	AssignmentSettings *EducationAssignmentSettings `json:"assignmentSettings,omitempty"`
+
+	// All assignments associated with this class. Nullable.
+	Assignments *[]EducationAssignment `json:"assignments,omitempty"`
+
+	// Class code used by the school to identify the class.
+	ClassCode nullable.Type[string] `json:"classCode,omitempty"`
+
+	// Course information for the class.
+	Course *EducationCourse `json:"course,omitempty"`
+
+	// Entity who created the class.
+	CreatedBy IdentitySet `json:"createdBy"`
+
+	// Description of the class.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// Name of the class.
+	DisplayName *string `json:"displayName,omitempty"`
+
+	// ID of the class from the syncing system.
+	ExternalId nullable.Type[string] `json:"externalId,omitempty"`
+
+	// Name of the class in the syncing system.
+	ExternalName nullable.Type[string] `json:"externalName,omitempty"`
+
+	// The type of external source this resource was generated from (automatically determined from externalSourceDetail).
+	// Possible values are: sis, lms, or manual.
+	ExternalSource *EducationExternalSource `json:"externalSource,omitempty"`
+
+	// The name of the external source from which this resource was generated.
+	ExternalSourceDetail nullable.Type[string] `json:"externalSourceDetail,omitempty"`
+
+	// Grade level of the class.
+	Grade nullable.Type[string] `json:"grade,omitempty"`
+
+	Group *Group `json:"group,omitempty"`
+
+	// Mail name for sending email to all members, if this is enabled.
+	MailNickname *string `json:"mailNickname,omitempty"`
+
+	// All users in the class. Nullable.
+	Members *[]EducationUser `json:"members,omitempty"`
+
+	// All modules in the class. Nullable.
+	Modules *[]EducationModule `json:"modules,omitempty"`
+
+	// All schools that this class is associated with. Nullable.
+	Schools *[]EducationSchool `json:"schools,omitempty"`
+
+	// All teachers in the class. Nullable.
+	Teachers *[]EducationUser `json:"teachers,omitempty"`
+
+	// Term for the class.
+	Term *EducationTerm `json:"term,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

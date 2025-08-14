@@ -1,0 +1,105 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type Call struct {
+	// The list of active modalities. Possible values are: unknown, audio, video, videoBasedScreenSharing, data. Read-only.
+	ActiveModalities *[]Modality `json:"activeModalities,omitempty"`
+
+	// The participant that answered the call. Read-only.
+	AnsweredBy *ParticipantInfo `json:"answeredBy,omitempty"`
+
+	AudioRoutingGroups *[]AudioRoutingGroup `json:"audioRoutingGroups,omitempty"`
+
+	// A unique identifier for all the participant calls in a conference or a unique identifier for two participant calls in
+	// a P2P call. This needs to be copied over from Microsoft.Graph.Call.CallChainId.
+	CallChainId nullable.Type[string] `json:"callChainId,omitempty"`
+
+	// Contains the optional features for the call.
+	CallOptions CallOptions `json:"callOptions"`
+
+	// The routing information on how the call was retargeted. Read-only.
+	CallRoutes *[]CallRoute `json:"callRoutes,omitempty"`
+
+	// The callback URL on which callbacks will be delivered. Must be https.
+	CallbackUri *string `json:"callbackUri,omitempty"`
+
+	// The chat information. Required information for meeting scenarios.
+	ChatInfo *ChatInfo `json:"chatInfo,omitempty"`
+
+	ContentSharingSessions *[]ContentSharingSession `json:"contentSharingSessions,omitempty"`
+
+	// The direction of the call. The possible values are incoming or outgoing. Read-only.
+	Direction *CallDirection `json:"direction,omitempty"`
+
+	// The context associated with an incoming call. Read-only. Server generated.
+	IncomingContext *IncomingContext `json:"incomingContext,omitempty"`
+
+	// The media configuration. Required information for creating peer to peer calls or joining meetings.
+	MediaConfig MediaConfig `json:"mediaConfig"`
+
+	// Read-only. The call media state.
+	MediaState *CallMediaState `json:"mediaState,omitempty"`
+
+	// Contains the capabilities of a meeting. Read-only.
+	MeetingCapability *MeetingCapability `json:"meetingCapability,omitempty"`
+
+	// The meeting information. Required information for meeting scenarios.
+	MeetingInfo MeetingInfo `json:"meetingInfo"`
+
+	MyParticipantId nullable.Type[string] `json:"myParticipantId,omitempty"`
+	Operations      *[]CommsOperation     `json:"operations,omitempty"`
+	Participants    *[]Participant        `json:"participants,omitempty"`
+
+	// The list of requested modalities. Possible values are: unknown, audio, video, videoBasedScreenSharing, data.
+	RequestedModalities *[]Modality `json:"requestedModalities,omitempty"`
+
+	// The result information. For example, the result can hold termination reason. Read-only.
+	ResultInfo *ResultInfo `json:"resultInfo,omitempty"`
+
+	// Ringing timeout in seconds for outgoing peer to peer calls. The max value for this attribute is 115 seconds.
+	RingingTimeoutInSeconds nullable.Type[int64] `json:"ringingTimeoutInSeconds,omitempty"`
+
+	// This property is applicable for peer to peer calls only. Possible values are: none, noMissedCall,
+	// disableForwardingExceptPhone, disableForwarding, preferSkypeForBusiness, unknownFutureValue.
+	RoutingPolicies *[]RoutingPolicy `json:"routingPolicies,omitempty"`
+
+	// The originator of the call.
+	Source *ParticipantInfo `json:"source,omitempty"`
+
+	// The call state. Possible values are: incoming, establishing, ringing, established, hold, transferring,
+	// transferAccepted, redirecting, terminating, terminated. Read-only.
+	State *CallState `json:"state,omitempty"`
+
+	// The subject of the conversation.
+	Subject nullable.Type[string] `json:"subject,omitempty"`
+
+	// The targets of the call. Required information for creating peer to peer call.
+	Targets *[]InvitationParticipantInfo `json:"targets,omitempty"`
+
+	// Read-only. tenantId in Microsoft Entra ID.
+	TenantId nullable.Type[string] `json:"tenantId,omitempty"`
+
+	TerminationReason nullable.Type[string] `json:"terminationReason,omitempty"`
+	ToneInfo          *ToneInfo             `json:"toneInfo,omitempty"`
+
+	// The transcription information for the call. Read-only.
+	Transcription *CallTranscriptionInfo `json:"transcription,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

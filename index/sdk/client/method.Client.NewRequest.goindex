@@ -1,0 +1,63 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client
+import (
+	"bytes"
+	"context"
+	"crypto/tls"
+	"encoding/json"
+	"encoding/xml"
+	"errors"
+	"fmt"
+	"io"
+	"log"
+	"math"
+	"net"
+	"net/http"
+	"net/url"
+	"regexp"
+	"runtime"
+	"strconv"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/auth"
+	"github.com/hashicorp/go-azure-sdk/sdk/internal/accept"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+	"github.com/hashicorp/go-retryablehttp"
+)
+func (c *Client) NewRequest(ctx context.Context, input RequestOptions) (*Request, error) {
+	req := (&http.Request{}).WithContext(ctx)
+
+	req.Method = input.HttpMethod
+
+	req.Header = make(http.Header)
+
+	if input.ContentType != "" {
+		req.Header.Add("Content-Type", input.ContentType)
+	}
+
+	if c.UserAgent != "" {
+		req.Header.Add("User-Agent", c.UserAgent)
+	}
+	if c.CorrelationId != "" {
+		req.Header.Add("X-Ms-Correlation-Request-Id", c.CorrelationId)
+	}
+
+	path := strings.TrimPrefix(input.Path, "/")
+	u, err := url.ParseRequestURI(fmt.Sprintf("%s/%s", c.BaseUri, path))
+	if err != nil {
+		return nil, err
+	}
+
+	req.Host = u.Host
+	req.URL = u
+
+	ret := Request{
+		Client:           c,
+		Request:          req,
+		Pager:            input.Pager,
+		RetryFunc:        input.RetryFunc,
+		ValidStatusCodes: input.ExpectedStatusCodes,
+	}
+
+	return &ret, nil
+}

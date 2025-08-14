@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id RoleManagementEnterpriseAppIdRoleAssignmentApprovalId) String() string {
+	components := []string{
+		fmt.Sprintf("Rbac Application: %q", id.RbacApplicationId),
+		fmt.Sprintf("Approval: %q", id.ApprovalId),
+	}
+	return fmt.Sprintf("Role Management Enterprise App Id Role Assignment Approval (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseUserExperienceAnalyticsMachineType(input string) (*UserExperienceAnalyticsMachineType, error) {
+	vals := map[string]UserExperienceAnalyticsMachineType{
+		"physical": UserExperienceAnalyticsMachineType_Physical,
+		"unknown":  UserExperienceAnalyticsMachineType_Unknown,
+		"virtual":  UserExperienceAnalyticsMachineType_Virtual,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UserExperienceAnalyticsMachineType(input)
+	return &out, nil
+}

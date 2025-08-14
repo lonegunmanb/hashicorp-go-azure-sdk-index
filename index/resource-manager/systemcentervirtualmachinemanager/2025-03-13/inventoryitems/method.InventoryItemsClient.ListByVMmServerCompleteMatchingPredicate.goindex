@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/systemcentervirtualmachinemanager/2025-03-13/inventoryitems
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c InventoryItemsClient) ListByVMmServerCompleteMatchingPredicate(ctx context.Context, id VMmServerId, predicate InventoryItemOperationPredicate) (result ListByVMmServerCompleteResult, err error) {
+	items := make([]InventoryItem, 0)
+
+	resp, err := c.ListByVMmServer(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByVMmServerCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

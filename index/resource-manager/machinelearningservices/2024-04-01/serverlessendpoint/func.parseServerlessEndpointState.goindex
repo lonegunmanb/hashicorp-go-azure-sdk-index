@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/serverlessendpoint
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseServerlessEndpointState(input string) (*ServerlessEndpointState, error) {
+	vals := map[string]ServerlessEndpointState{
+		"creating":       ServerlessEndpointStateCreating,
+		"creationfailed": ServerlessEndpointStateCreationFailed,
+		"deleting":       ServerlessEndpointStateDeleting,
+		"deletionfailed": ServerlessEndpointStateDeletionFailed,
+		"online":         ServerlessEndpointStateOnline,
+		"reinstating":    ServerlessEndpointStateReinstating,
+		"suspended":      ServerlessEndpointStateSuspended,
+		"suspending":     ServerlessEndpointStateSuspending,
+		"unknown":        ServerlessEndpointStateUnknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ServerlessEndpointState(input)
+	return &out, nil
+}

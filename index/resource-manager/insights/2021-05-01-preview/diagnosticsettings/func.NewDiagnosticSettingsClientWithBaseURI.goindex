@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2021-05-01-preview/diagnosticsettings
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDiagnosticSettingsClientWithBaseURI(sdkApi sdkEnv.Api) (*DiagnosticSettingsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "diagnosticsettings", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DiagnosticSettingsClient: %+v", err)
+	}
+
+	return &DiagnosticSettingsClient{
+		Client: client,
+	}, nil
+}

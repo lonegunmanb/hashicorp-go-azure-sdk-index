@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2020-03-01/serverendpointresource
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *ServerEndpointSyncActivityStatus) GetTimestampAsTime() (*time.Time, error) {
+	if o.Timestamp == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.Timestamp, "2006-01-02T15:04:05Z07:00")
+}

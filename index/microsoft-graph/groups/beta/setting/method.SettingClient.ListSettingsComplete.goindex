@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/setting
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SettingClient) ListSettingsComplete(ctx context.Context, id beta.GroupId, options ListSettingsOperationOptions) (ListSettingsCompleteResult, error) {
+	return c.ListSettingsCompleteMatchingPredicate(ctx, id, options, DirectorySettingOperationPredicate{})
+}

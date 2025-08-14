@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/dbservers
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDbServerPatchingStatus(input string) (*DbServerPatchingStatus, error) {
+	vals := map[string]DbServerPatchingStatus{
+		"complete":              DbServerPatchingStatusComplete,
+		"failed":                DbServerPatchingStatusFailed,
+		"maintenanceinprogress": DbServerPatchingStatusMaintenanceInProgress,
+		"scheduled":             DbServerPatchingStatusScheduled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DbServerPatchingStatus(input)
+	return &out, nil
+}

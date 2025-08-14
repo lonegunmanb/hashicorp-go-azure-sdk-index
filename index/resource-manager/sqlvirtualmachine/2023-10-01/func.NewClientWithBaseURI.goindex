@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sqlvirtualmachine/v2023_10_01
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sqlvirtualmachine/2023-10-01/availabilitygrouplisteners"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sqlvirtualmachine/2023-10-01/sqlvirtualmachinegroups"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sqlvirtualmachine/2023-10-01/sqlvirtualmachines"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	availabilityGroupListenersClient, err := availabilitygrouplisteners.NewAvailabilityGroupListenersClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AvailabilityGroupListeners client: %+v", err)
+	}
+	configureFunc(availabilityGroupListenersClient.Client)
+
+	sqlVirtualMachineGroupsClient, err := sqlvirtualmachinegroups.NewSqlVirtualMachineGroupsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SqlVirtualMachineGroups client: %+v", err)
+	}
+	configureFunc(sqlVirtualMachineGroupsClient.Client)
+
+	sqlVirtualMachinesClient, err := sqlvirtualmachines.NewSqlVirtualMachinesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SqlVirtualMachines client: %+v", err)
+	}
+	configureFunc(sqlVirtualMachinesClient.Client)
+
+	return &Client{
+		AvailabilityGroupListeners: availabilityGroupListenersClient,
+		SqlVirtualMachineGroups:    sqlVirtualMachineGroupsClient,
+		SqlVirtualMachines:         sqlVirtualMachinesClient,
+	}, nil
+}

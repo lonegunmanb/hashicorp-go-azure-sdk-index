@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s ItemReference) MarshalJSON() ([]byte, error) {
+	type wrapper ItemReference
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ItemReference: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ItemReference: %+v", err)
+	}
+
+	delete(decoded, "driveId")
+	delete(decoded, "id")
+	delete(decoded, "name")
+	delete(decoded, "path")
+	delete(decoded, "sharepointIds")
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ItemReference: %+v", err)
+	}
+
+	return encoded, nil
+}

@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s ManagedTenantsManagedDeviceComplianceTrend) MarshalJSON() ([]byte, error) {
+	type wrapper ManagedTenantsManagedDeviceComplianceTrend
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ManagedTenantsManagedDeviceComplianceTrend: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ManagedTenantsManagedDeviceComplianceTrend: %+v", err)
+	}
+
+	delete(decoded, "compliantDeviceCount")
+	delete(decoded, "configManagerDeviceCount")
+	delete(decoded, "countDateTime")
+	delete(decoded, "errorDeviceCount")
+	delete(decoded, "inGracePeriodDeviceCount")
+	delete(decoded, "noncompliantDeviceCount")
+	delete(decoded, "tenantDisplayName")
+	delete(decoded, "tenantId")
+	delete(decoded, "unknownDeviceCount")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.managedTenants.managedDeviceComplianceTrend"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ManagedTenantsManagedDeviceComplianceTrend: %+v", err)
+	}
+
+	return encoded, nil
+}

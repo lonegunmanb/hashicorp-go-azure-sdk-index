@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseConditionalAccessTransferMethods(input string) (*ConditionalAccessTransferMethods, error) {
+	vals := map[string]ConditionalAccessTransferMethods{
+		"authenticationtransfer": ConditionalAccessTransferMethods_AuthenticationTransfer,
+		"devicecodeflow":         ConditionalAccessTransferMethods_DeviceCodeFlow,
+		"none":                   ConditionalAccessTransferMethods_None,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ConditionalAccessTransferMethods(input)
+	return &out, nil
+}

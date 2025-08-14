@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cosmosdb/2023-04-15/managedcassandras
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNodeState(input string) (*NodeState, error) {
+	vals := map[string]NodeState{
+		"joining": NodeStateJoining,
+		"leaving": NodeStateLeaving,
+		"moving":  NodeStateMoving,
+		"normal":  NodeStateNormal,
+		"stopped": NodeStateStopped,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NodeState(input)
+	return &out, nil
+}

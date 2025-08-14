@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseProtectionSource(input string) (*ProtectionSource, error) {
+	vals := map[string]ProtectionSource{
+		"dynamicrule": ProtectionSource_DynamicRule,
+		"manual":      ProtectionSource_Manual,
+		"none":        ProtectionSource_None,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ProtectionSource(input)
+	return &out, nil
+}

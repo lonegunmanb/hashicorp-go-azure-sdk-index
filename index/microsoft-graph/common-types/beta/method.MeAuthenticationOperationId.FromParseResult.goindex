@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *MeAuthenticationOperationId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.LongRunningOperationId, ok = input.Parsed["longRunningOperationId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "longRunningOperationId", input)
+	}
+
+	return nil
+}

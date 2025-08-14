@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDriveItemSourceApplication(input string) (*DriveItemSourceApplication, error) {
+	vals := map[string]DriveItemSourceApplication{
+		"loki":       DriveItemSourceApplication_Loki,
+		"loop":       DriveItemSourceApplication_Loop,
+		"office":     DriveItemSourceApplication_Office,
+		"onedrive":   DriveItemSourceApplication_OneDrive,
+		"other":      DriveItemSourceApplication_Other,
+		"powerpoint": DriveItemSourceApplication_PowerPoint,
+		"sharepoint": DriveItemSourceApplication_SharePoint,
+		"stream":     DriveItemSourceApplication_Stream,
+		"teams":      DriveItemSourceApplication_Teams,
+		"yammer":     DriveItemSourceApplication_Yammer,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DriveItemSourceApplication(input)
+	return &out, nil
+}

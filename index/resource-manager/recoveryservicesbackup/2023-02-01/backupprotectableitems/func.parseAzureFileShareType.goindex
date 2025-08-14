@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2023-02-01/backupprotectableitems
+import (
+	"strings"
+)
+func parseAzureFileShareType(input string) (*AzureFileShareType, error) {
+	vals := map[string]AzureFileShareType{
+		"invalid": AzureFileShareTypeInvalid,
+		"xsmb":    AzureFileShareTypeXSMB,
+		"xsync":   AzureFileShareTypeXSync,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AzureFileShareType(input)
+	return &out, nil
+}

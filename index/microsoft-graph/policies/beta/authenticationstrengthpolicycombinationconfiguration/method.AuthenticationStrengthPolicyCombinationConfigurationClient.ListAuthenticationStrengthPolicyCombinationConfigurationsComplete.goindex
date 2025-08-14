@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/authenticationstrengthpolicycombinationconfiguration
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c AuthenticationStrengthPolicyCombinationConfigurationClient) ListAuthenticationStrengthPolicyCombinationConfigurationsComplete(ctx context.Context, id beta.PolicyAuthenticationStrengthPolicyId, options ListAuthenticationStrengthPolicyCombinationConfigurationsOperationOptions) (ListAuthenticationStrengthPolicyCombinationConfigurationsCompleteResult, error) {
+	return c.ListAuthenticationStrengthPolicyCombinationConfigurationsCompleteMatchingPredicate(ctx, id, options, AuthenticationCombinationConfigurationOperationPredicate{})
+}

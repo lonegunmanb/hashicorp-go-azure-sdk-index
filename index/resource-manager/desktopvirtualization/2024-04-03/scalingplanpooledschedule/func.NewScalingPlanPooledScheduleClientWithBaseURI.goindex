@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/desktopvirtualization/2024-04-03/scalingplanpooledschedule
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewScalingPlanPooledScheduleClientWithBaseURI(sdkApi sdkEnv.Api) (*ScalingPlanPooledScheduleClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "scalingplanpooledschedule", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ScalingPlanPooledScheduleClient: %+v", err)
+	}
+
+	return &ScalingPlanPooledScheduleClient{
+		Client: client,
+	}, nil
+}

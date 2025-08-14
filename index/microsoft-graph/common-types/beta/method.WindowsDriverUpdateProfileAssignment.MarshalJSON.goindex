@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s WindowsDriverUpdateProfileAssignment) MarshalJSON() ([]byte, error) {
+	type wrapper WindowsDriverUpdateProfileAssignment
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling WindowsDriverUpdateProfileAssignment: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling WindowsDriverUpdateProfileAssignment: %+v", err)
+	}
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.windowsDriverUpdateProfileAssignment"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling WindowsDriverUpdateProfileAssignment: %+v", err)
+	}
+
+	return encoded, nil
+}

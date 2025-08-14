@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/communication/2023-04-01/domains
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DomainsClient) InitiateVerificationThenPoll(ctx context.Context, id DomainId, input VerificationParameter) error {
+	result, err := c.InitiateVerification(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing InitiateVerification: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after InitiateVerification: %+v", err)
+	}
+
+	return nil
+}

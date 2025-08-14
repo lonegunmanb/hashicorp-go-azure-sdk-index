@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-05-01/adminrules
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+)
+func (s AdminRule) MarshalJSON() ([]byte, error) {
+	type wrapper AdminRule
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AdminRule: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AdminRule: %+v", err)
+	}
+
+	decoded["kind"] = "Custom"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AdminRule: %+v", err)
+	}
+
+	return encoded, nil
+}

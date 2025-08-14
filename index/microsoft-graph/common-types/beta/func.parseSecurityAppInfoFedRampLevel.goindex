@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityAppInfoFedRampLevel(input string) (*SecurityAppInfoFedRampLevel, error) {
+	vals := map[string]SecurityAppInfoFedRampLevel{
+		"high":         SecurityAppInfoFedRampLevel_High,
+		"lisaas":       SecurityAppInfoFedRampLevel_LiSaaS,
+		"low":          SecurityAppInfoFedRampLevel_Low,
+		"moderate":     SecurityAppInfoFedRampLevel_Moderate,
+		"notsupported": SecurityAppInfoFedRampLevel_NotSupported,
+		"unknown":      SecurityAppInfoFedRampLevel_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityAppInfoFedRampLevel(input)
+	return &out, nil
+}

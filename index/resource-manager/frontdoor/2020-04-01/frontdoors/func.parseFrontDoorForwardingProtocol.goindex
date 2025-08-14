@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/frontdoor/2020-04-01/frontdoors
+import (
+	"strings"
+)
+func parseFrontDoorForwardingProtocol(input string) (*FrontDoorForwardingProtocol, error) {
+	vals := map[string]FrontDoorForwardingProtocol{
+		"httponly":     FrontDoorForwardingProtocolHTTPOnly,
+		"httpsonly":    FrontDoorForwardingProtocolHTTPSOnly,
+		"matchrequest": FrontDoorForwardingProtocolMatchRequest,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FrontDoorForwardingProtocol(input)
+	return &out, nil
+}

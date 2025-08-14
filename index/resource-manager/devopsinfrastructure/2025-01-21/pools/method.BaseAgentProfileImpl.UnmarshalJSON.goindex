@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devopsinfrastructure/2025-01-21/pools
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func (s *BaseAgentProfileImpl) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		Kind                string       `json:"kind"`
+		ResourcePredictions *interface{} `json:"resourcePredictions,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.Kind = decoded.Kind
+	s.ResourcePredictions = decoded.ResourcePredictions
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling BaseAgentProfileImpl into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["resourcePredictionsProfile"]; ok {
+		impl, err := UnmarshalResourcePredictionsProfileImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'ResourcePredictionsProfile' for 'BaseAgentProfileImpl': %+v", err)
+		}
+		s.ResourcePredictionsProfile = impl
+	}
+
+	return nil
+}

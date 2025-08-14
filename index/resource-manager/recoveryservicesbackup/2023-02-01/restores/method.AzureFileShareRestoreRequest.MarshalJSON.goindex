@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2023-02-01/restores
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s AzureFileShareRestoreRequest) MarshalJSON() ([]byte, error) {
+	type wrapper AzureFileShareRestoreRequest
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AzureFileShareRestoreRequest: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AzureFileShareRestoreRequest: %+v", err)
+	}
+
+	decoded["objectType"] = "AzureFileShareRestoreRequest"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AzureFileShareRestoreRequest: %+v", err)
+	}
+
+	return encoded, nil
+}

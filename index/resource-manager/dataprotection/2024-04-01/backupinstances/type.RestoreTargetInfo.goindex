@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2024-04-01/backupinstances
+import (
+	"encoding/json"
+	"fmt"
+)
+type RestoreTargetInfo struct {
+	DatasourceAuthCredentials AuthCredentials `json:"datasourceAuthCredentials"`
+	DatasourceInfo            Datasource      `json:"datasourceInfo"`
+	DatasourceSetInfo         *DatasourceSet  `json:"datasourceSetInfo,omitempty"`
+
+	// Fields inherited from RestoreTargetInfoBase
+
+	ObjectType      string         `json:"objectType"`
+	RecoveryOption  RecoveryOption `json:"recoveryOption"`
+	RestoreLocation *string        `json:"restoreLocation,omitempty"`
+}

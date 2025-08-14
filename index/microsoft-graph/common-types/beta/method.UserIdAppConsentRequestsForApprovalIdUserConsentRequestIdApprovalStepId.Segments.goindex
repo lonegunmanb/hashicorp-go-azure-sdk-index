@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id UserIdAppConsentRequestsForApprovalIdUserConsentRequestIdApprovalStepId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.StaticSegment("users", "users", "users"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
+		resourceids.StaticSegment("appConsentRequestsForApproval", "appConsentRequestsForApproval", "appConsentRequestsForApproval"),
+		resourceids.UserSpecifiedSegment("appConsentRequestId", "appConsentRequestId"),
+		resourceids.StaticSegment("userConsentRequests", "userConsentRequests", "userConsentRequests"),
+		resourceids.UserSpecifiedSegment("userConsentRequestId", "userConsentRequestId"),
+		resourceids.StaticSegment("approval", "approval", "approval"),
+		resourceids.StaticSegment("steps", "steps", "steps"),
+		resourceids.UserSpecifiedSegment("approvalStepId", "approvalStepId"),
+	}
+}

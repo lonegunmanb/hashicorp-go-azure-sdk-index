@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCloudPCStorageAccountAccessTier(input string) (*CloudPCStorageAccountAccessTier, error) {
+	vals := map[string]CloudPCStorageAccountAccessTier{
+		"cold":    CloudPCStorageAccountAccessTier_Cold,
+		"cool":    CloudPCStorageAccountAccessTier_Cool,
+		"hot":     CloudPCStorageAccountAccessTier_Hot,
+		"premium": CloudPCStorageAccountAccessTier_Premium,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CloudPCStorageAccountAccessTier(input)
+	return &out, nil
+}

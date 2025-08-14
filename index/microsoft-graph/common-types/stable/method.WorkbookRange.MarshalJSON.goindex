@@ -1,0 +1,45 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s WorkbookRange) MarshalJSON() ([]byte, error) {
+	type wrapper WorkbookRange
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling WorkbookRange: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling WorkbookRange: %+v", err)
+	}
+
+	delete(decoded, "address")
+	delete(decoded, "addressLocal")
+	delete(decoded, "cellCount")
+	delete(decoded, "columnCount")
+	delete(decoded, "columnIndex")
+	delete(decoded, "format")
+	delete(decoded, "hidden")
+	delete(decoded, "rowCount")
+	delete(decoded, "rowIndex")
+	delete(decoded, "sort")
+	delete(decoded, "text")
+	delete(decoded, "valueTypes")
+	delete(decoded, "worksheet")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.workbookRange"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling WorkbookRange: %+v", err)
+	}
+
+	return encoded, nil
+}

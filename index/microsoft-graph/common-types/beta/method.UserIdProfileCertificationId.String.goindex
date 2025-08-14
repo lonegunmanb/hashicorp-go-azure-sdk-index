@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id UserIdProfileCertificationId) String() string {
+	components := []string{
+		fmt.Sprintf("User: %q", id.UserId),
+		fmt.Sprintf("Person Certification: %q", id.PersonCertificationId),
+	}
+	return fmt.Sprintf("User Id Profile Certification (%s)", strings.Join(components, "\n"))
+}

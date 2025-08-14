@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMobileThreatPartnerTenantState(input string) (*MobileThreatPartnerTenantState, error) {
+	vals := map[string]MobileThreatPartnerTenantState{
+		"available":    MobileThreatPartnerTenantState_Available,
+		"enabled":      MobileThreatPartnerTenantState_Enabled,
+		"unavailable":  MobileThreatPartnerTenantState_Unavailable,
+		"unresponsive": MobileThreatPartnerTenantState_Unresponsive,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MobileThreatPartnerTenantState(input)
+	return &out, nil
+}

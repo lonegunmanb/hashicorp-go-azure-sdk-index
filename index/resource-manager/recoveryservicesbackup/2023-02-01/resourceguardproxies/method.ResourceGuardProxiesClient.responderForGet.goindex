@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2023-02-01/resourceguardproxies
+import (
+	"context"
+	"fmt"
+	"net/http"
+	"net/url"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+)
+func (c ResourceGuardProxiesClient) responderForGet(resp *http.Response) (result GetOperationResponse, err error) {
+	type page struct {
+		Values   []ResourceGuardProxyBaseResource `json:"value"`
+		NextLink *string                          `json:"nextLink"`
+	}
+	var respObj page
+	err = autorest.Respond(
+		resp,
+		azure.WithErrorUnlessStatusCode(http.StatusOK),
+		autorest.ByUnmarshallingJSON(&respObj),
+		autorest.ByClosing())
+	result.HttpResponse = resp
+	result.Model = &respObj.Values
+	result.nextLink = respObj.NextLink
+	if respObj.NextLink != nil {
+		result.nextPageFunc = func(ctx context.Context, nextLink string) (result GetOperationResponse, err error) {
+			req, err := c.preparerForGetWithNextLink(ctx, nextLink)
+			if err != nil {
+				err = autorest.NewErrorWithError(err, "resourceguardproxies.ResourceGuardProxiesClient", "Get", nil, "Failure preparing request")
+				return
+			}
+
+			result.HttpResponse, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
+			if err != nil {
+				err = autorest.NewErrorWithError(err, "resourceguardproxies.ResourceGuardProxiesClient", "Get", result.HttpResponse, "Failure sending request")
+				return
+			}
+
+			result, err = c.responderForGet(result.HttpResponse)
+			if err != nil {
+				err = autorest.NewErrorWithError(err, "resourceguardproxies.ResourceGuardProxiesClient", "Get", result.HttpResponse, "Failure responding to request")
+				return
+			}
+
+			return
+		}
+	}
+	return
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/powerbidedicated/2021-01-01/autoscalevcores
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAutoScaleVCoresClientWithBaseURI(sdkApi sdkEnv.Api) (*AutoScaleVCoresClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "autoscalevcores", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AutoScaleVCoresClient: %+v", err)
+	}
+
+	return &AutoScaleVCoresClient{
+		Client: client,
+	}, nil
+}

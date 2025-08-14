@@ -1,0 +1,37 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s ArchivedPrintJob) MarshalJSON() ([]byte, error) {
+	type wrapper ArchivedPrintJob
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ArchivedPrintJob: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ArchivedPrintJob: %+v", err)
+	}
+
+	delete(decoded, "acquiredByPrinter")
+	delete(decoded, "acquiredDateTime")
+	delete(decoded, "completionDateTime")
+	delete(decoded, "copiesPrinted")
+	delete(decoded, "createdBy")
+	delete(decoded, "createdDateTime")
+	delete(decoded, "id")
+	delete(decoded, "printerId")
+	delete(decoded, "printerName")
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ArchivedPrintJob: %+v", err)
+	}
+
+	return encoded, nil
+}

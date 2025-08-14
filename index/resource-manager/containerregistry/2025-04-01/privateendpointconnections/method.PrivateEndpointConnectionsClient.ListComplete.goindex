@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerregistry/2025-04-01/privateendpointconnections
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c PrivateEndpointConnectionsClient) ListComplete(ctx context.Context, id RegistryId) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, PrivateEndpointConnectionOperationPredicate{})
+}

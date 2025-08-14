@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type BaseClassificationErrorImpl struct {
+	// A collection of more specific errors contributing to the overall error.
+	Details *[]ClassifcationErrorBase `json:"details,omitempty"`
+
+	// Fields inherited from ClassifcationErrorBase
+
+	// A service-defined error code string.
+	Code nullable.Type[string] `json:"code,omitempty"`
+
+	// Contains more specific, potentially internal error details.
+	InnerError *ClassificationInnerError `json:"innerError,omitempty"`
+
+	// A human-readable representation of the error.
+	Message nullable.Type[string] `json:"message,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The target of the error (for example, the specific property or item causing the issue).
+	Target nullable.Type[string] `json:"target,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

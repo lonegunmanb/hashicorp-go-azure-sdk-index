@@ -1,0 +1,69 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type TeamsAppDefinition struct {
+	// A collection of scopes where the Teams app can be installed. Possible values are:team—Indicates that the Teams app
+	// can be installed within a team and is authorized to access that team's data. groupChat—Indicates that the Teams app
+	// can be installed within a group chat and is authorized to access that group chat's data. personal—Indicates that
+	// the Teams app can be installed in the personal scope of a user and is authorized to access that user's data.
+	AllowedInstallationScopes *TeamsAppInstallationScopes `json:"allowedInstallationScopes,omitempty"`
+
+	// Authorization requirements specified in the Teams app manifest.
+	Authorization *TeamsAppAuthorization `json:"authorization,omitempty"`
+
+	// The WebApplicationInfo.Id from the Teams app manifest.
+	AzureADAppId nullable.Type[string] `json:"azureADAppId,omitempty"`
+
+	// The details of the bot specified in the Teams app manifest.
+	Bot *TeamworkBot `json:"bot,omitempty"`
+
+	// The color version of the Teams app's icon.
+	ColorIcon *TeamsAppIcon `json:"colorIcon,omitempty"`
+
+	CreatedBy IdentitySet `json:"createdBy"`
+
+	// Dashboard cards specified in the Teams app manifest.
+	DashboardCards *[]TeamsAppDashboardCardDefinition `json:"dashboardCards,omitempty"`
+
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// The name of the app provided by the app developer.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+
+	// The outline version of the Teams app's icon.
+	OutlineIcon *TeamsAppIcon `json:"outlineIcon,omitempty"`
+
+	// The published status of a specific version of a Teams app. Possible values are:submitted—The specific version of
+	// the Teams app has been submitted and is under review. published - The request to publish the specific version of the
+	// Teams app has been approved by the admin and the app is published. rejected - The request to publish the specific
+	// version of the Teams app was rejected by the admin.
+	PublishingState *TeamsAppPublishingState `json:"publishingState,omitempty"`
+
+	Shortdescription nullable.Type[string] `json:"shortdescription,omitempty"`
+
+	// The ID from the Teams app manifest.
+	TeamsAppId nullable.Type[string] `json:"teamsAppId,omitempty"`
+
+	// The version number of the application.
+	Version nullable.Type[string] `json:"version,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

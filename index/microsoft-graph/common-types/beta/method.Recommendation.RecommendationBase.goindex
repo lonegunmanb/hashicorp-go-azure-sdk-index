@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s Recommendation) RecommendationBase() BaseRecommendationBaseImpl {
+	return BaseRecommendationBaseImpl{
+		ActionSteps:           s.ActionSteps,
+		Benefits:              s.Benefits,
+		Category:              s.Category,
+		CreatedDateTime:       s.CreatedDateTime,
+		DisplayName:           s.DisplayName,
+		FeatureAreas:          s.FeatureAreas,
+		ImpactStartDateTime:   s.ImpactStartDateTime,
+		ImpactType:            s.ImpactType,
+		ImpactedResources:     s.ImpactedResources,
+		Insights:              s.Insights,
+		LastCheckedDateTime:   s.LastCheckedDateTime,
+		LastModifiedBy:        s.LastModifiedBy,
+		LastModifiedDateTime:  s.LastModifiedDateTime,
+		PostponeUntilDateTime: s.PostponeUntilDateTime,
+		Priority:              s.Priority,
+		RecommendationType:    s.RecommendationType,
+		ReleaseType:           s.ReleaseType,
+		RemediationImpact:     s.RemediationImpact,
+		RequiredLicenses:      s.RequiredLicenses,
+		Status:                s.Status,
+		Id:                    s.Id,
+		ODataId:               s.ODataId,
+		ODataType:             s.ODataType,
+	}
+}

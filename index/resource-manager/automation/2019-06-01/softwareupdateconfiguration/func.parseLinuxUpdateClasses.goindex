@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2019-06-01/softwareupdateconfiguration
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseLinuxUpdateClasses(input string) (*LinuxUpdateClasses, error) {
+	vals := map[string]LinuxUpdateClasses{
+		"critical":     LinuxUpdateClassesCritical,
+		"other":        LinuxUpdateClassesOther,
+		"security":     LinuxUpdateClassesSecurity,
+		"unclassified": LinuxUpdateClassesUnclassified,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := LinuxUpdateClasses(input)
+	return &out, nil
+}

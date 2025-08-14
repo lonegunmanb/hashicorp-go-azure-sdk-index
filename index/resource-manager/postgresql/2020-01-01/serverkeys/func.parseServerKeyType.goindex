@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2020-01-01/serverkeys
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseServerKeyType(input string) (*ServerKeyType, error) {
+	vals := map[string]ServerKeyType{
+		"azurekeyvault": ServerKeyTypeAzureKeyVault,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ServerKeyType(input)
+	return &out, nil
+}

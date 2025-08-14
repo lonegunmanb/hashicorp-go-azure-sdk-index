@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/sqlpoolsrestorepoints
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SqlPoolsRestorePointsClient) SqlPoolRestorePointsCreateThenPoll(ctx context.Context, id SqlPoolId, input CreateSqlPoolRestorePointDefinition) error {
+	result, err := c.SqlPoolRestorePointsCreate(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing SqlPoolRestorePointsCreate: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after SqlPoolRestorePointsCreate: %+v", err)
+	}
+
+	return nil
+}

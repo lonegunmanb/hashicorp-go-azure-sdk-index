@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ChannelSharingUpdatedEventMessageDetail struct {
+	// Initiator of the event.
+	Initiator IdentitySet `json:"initiator"`
+
+	// The ID of the team to which the shared channel belongs.
+	OwnerTeamId nullable.Type[string] `json:"ownerTeamId,omitempty"`
+
+	// The ID of the tenant to which the shared channel belongs.
+	OwnerTenantId nullable.Type[string] `json:"ownerTenantId,omitempty"`
+
+	// The ID of the shared channel.
+	SharedChannelId nullable.Type[string] `json:"sharedChannelId,omitempty"`
+
+	// Fields inherited from EventMessageDetail
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

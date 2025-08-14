@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-07-15/quotarequests
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s LimitObject) MarshalJSON() ([]byte, error) {
+	type wrapper LimitObject
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling LimitObject: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling LimitObject: %+v", err)
+	}
+
+	decoded["limitObjectType"] = "LimitValue"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling LimitObject: %+v", err)
+	}
+
+	return encoded, nil
+}

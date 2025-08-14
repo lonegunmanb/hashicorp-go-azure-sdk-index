@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/sqlpoolsdatamaskingrules
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSqlPoolsDataMaskingRulesClientWithBaseURI(sdkApi sdkEnv.Api) (*SqlPoolsDataMaskingRulesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "sqlpoolsdatamaskingrules", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SqlPoolsDataMaskingRulesClient: %+v", err)
+	}
+
+	return &SqlPoolsDataMaskingRulesClient{
+		Client: client,
+	}, nil
+}

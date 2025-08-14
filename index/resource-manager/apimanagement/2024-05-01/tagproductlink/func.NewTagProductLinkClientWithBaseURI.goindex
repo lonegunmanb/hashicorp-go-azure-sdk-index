@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/tagproductlink
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTagProductLinkClientWithBaseURI(sdkApi sdkEnv.Api) (*TagProductLinkClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "tagproductlink", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TagProductLinkClient: %+v", err)
+	}
+
+	return &TagProductLinkClient{
+		Client: client,
+	}, nil
+}

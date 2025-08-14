@@ -1,0 +1,43 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalSecurityDiscoveredCloudAppDetailImplementation(input []byte) (SecurityDiscoveredCloudAppDetail, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling SecurityDiscoveredCloudAppDetail into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.security.endpointDiscoveredCloudAppDetail") {
+		var out SecurityEndpointDiscoveredCloudAppDetail
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SecurityEndpointDiscoveredCloudAppDetail: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseSecurityDiscoveredCloudAppDetailImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseSecurityDiscoveredCloudAppDetailImpl: %+v", err)
+	}
+
+	return RawSecurityDiscoveredCloudAppDetailImpl{
+		securityDiscoveredCloudAppDetail: parent,
+		Type:                             value,
+		Values:                           temp,
+	}, nil
+
+}

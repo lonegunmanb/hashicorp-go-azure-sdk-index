@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ActivateDeviceEsimActionResult struct {
+	// Carrier Url to activate the device eSIM
+	CarrierUrl nullable.Type[string] `json:"carrierUrl,omitempty"`
+
+	// Fields inherited from DeviceActionResult
+
+	// Action name
+	ActionName nullable.Type[string] `json:"actionName,omitempty"`
+
+	ActionState *ActionState `json:"actionState,omitempty"`
+
+	// Time the action state was last updated
+	LastUpdatedDateTime *string `json:"lastUpdatedDateTime,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Time the action was initiated
+	StartDateTime *string `json:"startDateTime,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

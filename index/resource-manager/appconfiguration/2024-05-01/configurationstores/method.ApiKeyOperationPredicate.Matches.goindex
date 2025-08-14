@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/appconfiguration/2024-05-01/configurationstores
+
+func (p ApiKeyOperationPredicate) Matches(input ApiKey) bool {
+
+	if p.ConnectionString != nil && (input.ConnectionString == nil || *p.ConnectionString != *input.ConnectionString) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.LastModified != nil && (input.LastModified == nil || *p.LastModified != *input.LastModified) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.ReadOnly != nil && (input.ReadOnly == nil || *p.ReadOnly != *input.ReadOnly) {
+		return false
+	}
+
+	if p.Value != nil && (input.Value == nil || *p.Value != *input.Value) {
+		return false
+	}
+
+	return true
+}

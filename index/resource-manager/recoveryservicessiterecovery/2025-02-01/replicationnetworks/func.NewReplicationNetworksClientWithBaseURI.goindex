@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationnetworks
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewReplicationNetworksClientWithBaseURI(sdkApi sdkEnv.Api) (*ReplicationNetworksClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "replicationnetworks", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ReplicationNetworksClient: %+v", err)
+	}
+
+	return &ReplicationNetworksClient{
+		Client: client,
+	}, nil
+}

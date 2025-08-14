@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-03-01/virtualmachineimages
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *PublisherId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.LocationName, ok = input.Parsed["locationName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "locationName", input)
+	}
+
+	if id.PublisherName, ok = input.Parsed["publisherName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "publisherName", input)
+	}
+
+	return nil
+}

@@ -1,0 +1,92 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type Drive struct {
+	// The list of recent activities that took place under this drive.
+	Activities *[]ItemActivityOLD `json:"activities,omitempty"`
+
+	// Collection of bundles (albums and multi-select-shared sets of items). Only in personal OneDrive.
+	Bundles *[]DriveItem `json:"bundles,omitempty"`
+
+	// Describes the type of drive represented by this resource. OneDrive personal drives return personal. OneDrive for
+	// Business returns business. SharePoint document libraries return documentLibrary. Read-only.
+	DriveType nullable.Type[string] `json:"driveType,omitempty"`
+
+	// The list of items the user is following. Only in OneDrive for Business.
+	Following *[]DriveItem `json:"following,omitempty"`
+
+	// All items contained in the drive. Read-only. Nullable.
+	Items *[]DriveItem `json:"items,omitempty"`
+
+	// For drives in SharePoint, the underlying document library list. Read-only. Nullable.
+	List *List `json:"list,omitempty"`
+
+	// Optional. The user account that owns the drive. Read-only.
+	Owner *IdentitySet `json:"owner,omitempty"`
+
+	// Optional. Information about the drive's storage space quota. Read-only.
+	Quota *Quota `json:"quota,omitempty"`
+
+	// The root folder of the drive. Read-only.
+	Root *DriveItem `json:"root,omitempty"`
+
+	SharePointIds *SharepointIds `json:"sharePointIds,omitempty"`
+
+	// Collection of common folders available in OneDrive. Read-only. Nullable.
+	Special *[]DriveItem `json:"special,omitempty"`
+
+	// If present, indicates that it's a system-managed drive. Read-only.
+	System *SystemFacet `json:"system,omitempty"`
+
+	// Fields inherited from BaseItem
+
+	// Identity of the user, device, or application that created the item. Read-only.
+	CreatedBy *IdentitySet `json:"createdBy,omitempty"`
+
+	CreatedByUser *User `json:"createdByUser,omitempty"`
+
+	// Date and time of item creation. Read-only.
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+
+	// The description of the item.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// ETag for the item. Read-only.
+	ETag nullable.Type[string] `json:"eTag,omitempty"`
+
+	// Identity of the user, device, and application that last modified the item. Read-only.
+	LastModifiedBy *IdentitySet `json:"lastModifiedBy,omitempty"`
+
+	LastModifiedByUser *User `json:"lastModifiedByUser,omitempty"`
+
+	// Date and time the item was last modified. Read-only.
+	LastModifiedDateTime *string `json:"lastModifiedDateTime,omitempty"`
+
+	// The name of the item. Read-write.
+	Name nullable.Type[string] `json:"name,omitempty"`
+
+	// Parent information, if the item has a parent. Read-write.
+	ParentReference *ItemReference `json:"parentReference,omitempty"`
+
+	// URL that either displays the resource in the browser (for Office file formats), or is a direct link to the file (for
+	// other formats). Read-only.
+	WebUrl nullable.Type[string] `json:"webUrl,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

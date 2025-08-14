@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type BaseSecurityDataSourceContainerImpl struct {
+	// Created date and time of the dataSourceContainer entity.
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// Display name of the dataSourceContainer entity.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// The hold status of the dataSourceContainer. The possible values are: notApplied, applied, applying, removing, partial
+	HoldStatus *SecurityDataSourceHoldStatus `json:"holdStatus,omitempty"`
+
+	// Last modified date and time of the dataSourceContainer.
+	LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+
+	// Date and time that the dataSourceContainer was released from the case.
+	ReleasedDateTime nullable.Type[string] `json:"releasedDateTime,omitempty"`
+
+	// Latest status of the dataSourceContainer. Possible values are: Active, Released.
+	Status *SecurityDataSourceContainerStatus `json:"status,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

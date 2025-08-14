@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWin32LobAppRegistryDetectionType(input string) (*Win32LobAppRegistryDetectionType, error) {
+	vals := map[string]Win32LobAppRegistryDetectionType{
+		"doesnotexist":  Win32LobAppRegistryDetectionType_DoesNotExist,
+		"exists":        Win32LobAppRegistryDetectionType_Exists,
+		"integer":       Win32LobAppRegistryDetectionType_Integer,
+		"notconfigured": Win32LobAppRegistryDetectionType_NotConfigured,
+		"string":        Win32LobAppRegistryDetectionType_String,
+		"version":       Win32LobAppRegistryDetectionType_Version,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Win32LobAppRegistryDetectionType(input)
+	return &out, nil
+}

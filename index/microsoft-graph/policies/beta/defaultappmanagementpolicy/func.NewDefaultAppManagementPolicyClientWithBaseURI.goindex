@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/defaultappmanagementpolicy
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDefaultAppManagementPolicyClientWithBaseURI(sdkApi sdkEnv.Api) (*DefaultAppManagementPolicyClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "defaultappmanagementpolicy", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DefaultAppManagementPolicyClient: %+v", err)
+	}
+
+	return &DefaultAppManagementPolicyClient{
+		Client: client,
+	}, nil
+}

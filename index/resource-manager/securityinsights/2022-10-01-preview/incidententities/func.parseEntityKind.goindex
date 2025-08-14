@@ -1,0 +1,39 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/incidententities
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEntityKind(input string) (*EntityKind, error) {
+	vals := map[string]EntityKind{
+		"account":          EntityKindAccount,
+		"azureresource":    EntityKindAzureResource,
+		"bookmark":         EntityKindBookmark,
+		"cloudapplication": EntityKindCloudApplication,
+		"dnsresolution":    EntityKindDnsResolution,
+		"file":             EntityKindFile,
+		"filehash":         EntityKindFileHash,
+		"host":             EntityKindHost,
+		"ip":               EntityKindIP,
+		"iotdevice":        EntityKindIoTDevice,
+		"mailcluster":      EntityKindMailCluster,
+		"mailmessage":      EntityKindMailMessage,
+		"mailbox":          EntityKindMailbox,
+		"malware":          EntityKindMalware,
+		"nic":              EntityKindNic,
+		"process":          EntityKindProcess,
+		"registrykey":      EntityKindRegistryKey,
+		"registryvalue":    EntityKindRegistryValue,
+		"securityalert":    EntityKindSecurityAlert,
+		"securitygroup":    EntityKindSecurityGroup,
+		"submissionmail":   EntityKindSubmissionMail,
+		"url":              EntityKindURL,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EntityKind(input)
+	return &out, nil
+}

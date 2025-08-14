@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2025-03-01/exports
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *ScopedExportId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.Scope, ok = input.Parsed["scope"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "scope", input)
+	}
+
+	if id.ExportName, ok = input.Parsed["exportName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "exportName", input)
+	}
+
+	return nil
+}

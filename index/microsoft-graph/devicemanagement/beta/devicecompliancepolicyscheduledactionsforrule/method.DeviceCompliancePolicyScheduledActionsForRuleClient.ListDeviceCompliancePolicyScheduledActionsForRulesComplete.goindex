@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/devicecompliancepolicyscheduledactionsforrule
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DeviceCompliancePolicyScheduledActionsForRuleClient) ListDeviceCompliancePolicyScheduledActionsForRulesComplete(ctx context.Context, id beta.DeviceManagementDeviceCompliancePolicyId, options ListDeviceCompliancePolicyScheduledActionsForRulesOperationOptions) (ListDeviceCompliancePolicyScheduledActionsForRulesCompleteResult, error) {
+	return c.ListDeviceCompliancePolicyScheduledActionsForRulesCompleteMatchingPredicate(ctx, id, options, DeviceComplianceScheduledActionForRuleOperationPredicate{})
+}

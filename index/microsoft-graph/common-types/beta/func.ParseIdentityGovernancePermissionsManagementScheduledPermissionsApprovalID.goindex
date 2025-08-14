@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseIdentityGovernancePermissionsManagementScheduledPermissionsApprovalID(input string) (*IdentityGovernancePermissionsManagementScheduledPermissionsApprovalId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&IdentityGovernancePermissionsManagementScheduledPermissionsApprovalId{})
+	parsed, err := parser.Parse(input, false)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := IdentityGovernancePermissionsManagementScheduledPermissionsApprovalId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

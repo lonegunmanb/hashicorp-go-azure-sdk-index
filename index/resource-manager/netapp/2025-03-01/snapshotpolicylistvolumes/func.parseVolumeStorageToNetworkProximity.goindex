@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-03-01/snapshotpolicylistvolumes
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVolumeStorageToNetworkProximity(input string) (*VolumeStorageToNetworkProximity, error) {
+	vals := map[string]VolumeStorageToNetworkProximity{
+		"acrosst2": VolumeStorageToNetworkProximityAcrossTTwo,
+		"default":  VolumeStorageToNetworkProximityDefault,
+		"t1":       VolumeStorageToNetworkProximityTOne,
+		"t2":       VolumeStorageToNetworkProximityTTwo,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VolumeStorageToNetworkProximity(input)
+	return &out, nil
+}

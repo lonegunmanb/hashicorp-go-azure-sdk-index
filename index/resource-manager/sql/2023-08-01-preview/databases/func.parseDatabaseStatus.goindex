@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/databases
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDatabaseStatus(input string) (*DatabaseStatus, error) {
+	vals := map[string]DatabaseStatus{
+		"autoclosed":                        DatabaseStatusAutoClosed,
+		"copying":                           DatabaseStatusCopying,
+		"creating":                          DatabaseStatusCreating,
+		"disabled":                          DatabaseStatusDisabled,
+		"emergencymode":                     DatabaseStatusEmergencyMode,
+		"inaccessible":                      DatabaseStatusInaccessible,
+		"offline":                           DatabaseStatusOffline,
+		"offlinechangingdwperformancetiers": DatabaseStatusOfflineChangingDwPerformanceTiers,
+		"offlinesecondary":                  DatabaseStatusOfflineSecondary,
+		"online":                            DatabaseStatusOnline,
+		"onlinechangingdwperformancetiers":  DatabaseStatusOnlineChangingDwPerformanceTiers,
+		"paused":                            DatabaseStatusPaused,
+		"pausing":                           DatabaseStatusPausing,
+		"recovering":                        DatabaseStatusRecovering,
+		"recoverypending":                   DatabaseStatusRecoveryPending,
+		"restoring":                         DatabaseStatusRestoring,
+		"resuming":                          DatabaseStatusResuming,
+		"scaling":                           DatabaseStatusScaling,
+		"shutdown":                          DatabaseStatusShutdown,
+		"standby":                           DatabaseStatusStandby,
+		"starting":                          DatabaseStatusStarting,
+		"stopped":                           DatabaseStatusStopped,
+		"stopping":                          DatabaseStatusStopping,
+		"suspect":                           DatabaseStatusSuspect,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DatabaseStatus(input)
+	return &out, nil
+}

@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTeamworkDeviceType(input string) (*TeamworkDeviceType, error) {
+	vals := map[string]TeamworkDeviceType{
+		"collaborationbar": TeamworkDeviceType_CollaborationBar,
+		"ipphone":          TeamworkDeviceType_IPPhone,
+		"lowcostphone":     TeamworkDeviceType_LowCostPhone,
+		"sip":              TeamworkDeviceType_Sip,
+		"surfacehub":       TeamworkDeviceType_SurfaceHub,
+		"teamsdisplay":     TeamworkDeviceType_TeamsDisplay,
+		"teamspanel":       TeamworkDeviceType_TeamsPanel,
+		"teamsroom":        TeamworkDeviceType_TeamsRoom,
+		"touchconsole":     TeamworkDeviceType_TouchConsole,
+		"unknown":          TeamworkDeviceType_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TeamworkDeviceType(input)
+	return &out, nil
+}

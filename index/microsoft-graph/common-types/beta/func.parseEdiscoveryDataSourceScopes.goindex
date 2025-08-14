@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEdiscoveryDataSourceScopes(input string) (*EdiscoveryDataSourceScopes, error) {
+	vals := map[string]EdiscoveryDataSourceScopes{
+		"allcasecustodians":              EdiscoveryDataSourceScopes_AllCaseCustodians,
+		"allcasenoncustodialdatasources": EdiscoveryDataSourceScopes_AllCaseNoncustodialDataSources,
+		"alltenantmailboxes":             EdiscoveryDataSourceScopes_AllTenantMailboxes,
+		"alltenantsites":                 EdiscoveryDataSourceScopes_AllTenantSites,
+		"none":                           EdiscoveryDataSourceScopes_None,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EdiscoveryDataSourceScopes(input)
+	return &out, nil
+}

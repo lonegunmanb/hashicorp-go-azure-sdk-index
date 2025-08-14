@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/sdk/internal/azurecli
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"log"
+	"os/exec"
+	"regexp"
+	"strings"
+
+	"github.com/hashicorp/go-version"
+)
+type azVersion struct {
+	AzureCli          *string      `json:"azure-cli,omitempty"`
+	AzureCliCore      *string      `json:"azure-cli-core,omitempty"`
+	AzureCliTelemetry *string      `json:"azure-cli-telemetry,omitempty"`
+	Extensions        *interface{} `json:"extensions,omitempty"`
+}

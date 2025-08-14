@@ -1,0 +1,40 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityNetworkProtocol(input string) (*SecurityNetworkProtocol, error) {
+	vals := map[string]SecurityNetworkProtocol{
+		"ggp":                               SecurityNetworkProtocol_Ggp,
+		"ipsecauthenticationheader":         SecurityNetworkProtocol_IPSecAuthenticationHeader,
+		"ipsecencapsulatingsecuritypayload": SecurityNetworkProtocol_IPSecEncapsulatingSecurityPayload,
+		"ipv4":                              SecurityNetworkProtocol_IPv4,
+		"ipv6":                              SecurityNetworkProtocol_IPv6,
+		"ipv6destinationoptions":            SecurityNetworkProtocol_IPv6DestinationOptions,
+		"ipv6fragmentheader":                SecurityNetworkProtocol_IPv6FragmentHeader,
+		"ipv6nonextheader":                  SecurityNetworkProtocol_IPv6NoNextHeader,
+		"ipv6routingheader":                 SecurityNetworkProtocol_IPv6RoutingHeader,
+		"icmp":                              SecurityNetworkProtocol_Icmp,
+		"icmpv6":                            SecurityNetworkProtocol_IcmpV6,
+		"idp":                               SecurityNetworkProtocol_Idp,
+		"igmp":                              SecurityNetworkProtocol_Igmp,
+		"ip":                                SecurityNetworkProtocol_Ip,
+		"ipx":                               SecurityNetworkProtocol_Ipx,
+		"nd":                                SecurityNetworkProtocol_Nd,
+		"pup":                               SecurityNetworkProtocol_Pup,
+		"raw":                               SecurityNetworkProtocol_Raw,
+		"spx":                               SecurityNetworkProtocol_Spx,
+		"spxii":                             SecurityNetworkProtocol_SpxII,
+		"tcp":                               SecurityNetworkProtocol_Tcp,
+		"udp":                               SecurityNetworkProtocol_Udp,
+		"unknown":                           SecurityNetworkProtocol_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityNetworkProtocol(input)
+	return &out, nil
+}

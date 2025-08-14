@@ -1,0 +1,72 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client
+import (
+	"bytes"
+	"context"
+	"crypto/tls"
+	"encoding/json"
+	"encoding/xml"
+	"errors"
+	"fmt"
+	"io"
+	"log"
+	"math"
+	"net"
+	"net/http"
+	"net/url"
+	"regexp"
+	"runtime"
+	"strconv"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/auth"
+	"github.com/hashicorp/go-azure-sdk/sdk/internal/accept"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+	"github.com/hashicorp/go-retryablehttp"
+)
+func (r *Request) Marshal(payload interface{}) error {
+	contentType := strings.ToLower(r.Header.Get("Content-Type"))
+
+	switch {
+	case strings.Contains(contentType, "application/json"):
+		body, err := json.Marshal(payload)
+		if err == nil {
+			r.ContentLength = int64(len(body))
+			r.Body = io.NopCloser(bytes.NewReader(body))
+		}
+
+		return nil
+
+	case strings.Contains(contentType, "application/xml") || strings.Contains(contentType, "text/xml"):
+		body, err := xml.Marshal(payload)
+		if err == nil {
+			// Prepend the xml doctype declaration if not detected
+			if !strings.HasPrefix(strings.TrimSpace(strings.ToLower(string(body[0:5]))), "<?xml") {
+				body = append([]byte(xml.Header), body...)
+			}
+
+			r.ContentLength = int64(len(body))
+			r.Body = io.NopCloser(bytes.NewReader(body))
+		}
+
+		return nil
+	}
+
+	switch v := payload.(type) {
+	case *[]byte:
+		if v == nil {
+			r.ContentLength = int64(len([]byte{}))
+			r.Body = io.NopCloser(bytes.NewReader([]byte{}))
+		} else {
+			r.ContentLength = int64(len(*v))
+			r.Body = io.NopCloser(bytes.NewReader(*v))
+		}
+	case []byte:
+		r.ContentLength = int64(len(v))
+		r.Body = io.NopCloser(bytes.NewReader(v))
+	default:
+		return fmt.Errorf("internal-error: `payload` must be []byte or *[]byte but got type %T", payload)
+	}
+
+	return nil
+}

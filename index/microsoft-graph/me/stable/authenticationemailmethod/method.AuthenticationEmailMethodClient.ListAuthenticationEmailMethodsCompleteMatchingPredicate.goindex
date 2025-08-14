@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/authenticationemailmethod
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c AuthenticationEmailMethodClient) ListAuthenticationEmailMethodsCompleteMatchingPredicate(ctx context.Context, options ListAuthenticationEmailMethodsOperationOptions, predicate EmailAuthenticationMethodOperationPredicate) (result ListAuthenticationEmailMethodsCompleteResult, err error) {
+	items := make([]stable.EmailAuthenticationMethod, 0)
+
+	resp, err := c.ListAuthenticationEmailMethods(ctx, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListAuthenticationEmailMethodsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

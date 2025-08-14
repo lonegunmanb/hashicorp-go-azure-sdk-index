@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/appplatform/2024-01-01-preview/appplatform
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c AppPlatformClient) ContainerRegistriesValidateThenPoll(ctx context.Context, id ContainerRegistryId, input ContainerRegistryProperties) error {
+	result, err := c.ContainerRegistriesValidate(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing ContainerRegistriesValidate: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after ContainerRegistriesValidate: %+v", err)
+	}
+
+	return nil
+}

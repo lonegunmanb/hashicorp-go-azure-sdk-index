@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/sensitivitylabels
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSensitivityLabelRank(input string) (*SensitivityLabelRank, error) {
+	vals := map[string]SensitivityLabelRank{
+		"critical": SensitivityLabelRankCritical,
+		"high":     SensitivityLabelRankHigh,
+		"low":      SensitivityLabelRankLow,
+		"medium":   SensitivityLabelRankMedium,
+		"none":     SensitivityLabelRankNone,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SensitivityLabelRank(input)
+	return &out, nil
+}

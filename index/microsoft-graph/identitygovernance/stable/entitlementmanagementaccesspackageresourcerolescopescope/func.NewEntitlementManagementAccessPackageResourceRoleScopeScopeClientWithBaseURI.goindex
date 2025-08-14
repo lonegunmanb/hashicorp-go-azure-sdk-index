@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementaccesspackageresourcerolescopescope
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewEntitlementManagementAccessPackageResourceRoleScopeScopeClientWithBaseURI(sdkApi sdkEnv.Api) (*EntitlementManagementAccessPackageResourceRoleScopeScopeClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "entitlementmanagementaccesspackageresourcerolescopescope", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating EntitlementManagementAccessPackageResourceRoleScopeScopeClient: %+v", err)
+	}
+
+	return &EntitlementManagementAccessPackageResourceRoleScopeScopeClient{
+		Client: client,
+	}, nil
+}

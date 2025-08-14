@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *IdentityGovernanceRoleManagementAlertAlertIdAlertIncidentId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.UnifiedRoleManagementAlertId, ok = input.Parsed["unifiedRoleManagementAlertId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "unifiedRoleManagementAlertId", input)
+	}
+
+	if id.UnifiedRoleManagementAlertIncidentId, ok = input.Parsed["unifiedRoleManagementAlertIncidentId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "unifiedRoleManagementAlertIncidentId", input)
+	}
+
+	return nil
+}

@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *PolicyServicePrincipalCreationPolicyId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.ServicePrincipalCreationPolicyId, ok = input.Parsed["servicePrincipalCreationPolicyId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "servicePrincipalCreationPolicyId", input)
+	}
+
+	return nil
+}

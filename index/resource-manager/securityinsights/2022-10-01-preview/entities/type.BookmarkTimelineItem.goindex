@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/entities
+import (
+	"encoding/json"
+	"fmt"
+)
+type BookmarkTimelineItem struct {
+	AzureResourceId string    `json:"azureResourceId"`
+	CreatedBy       *UserInfo `json:"createdBy,omitempty"`
+	DisplayName     *string   `json:"displayName,omitempty"`
+	EndTimeUtc      *string   `json:"endTimeUtc,omitempty"`
+	EventTime       *string   `json:"eventTime,omitempty"`
+	Labels          *[]string `json:"labels,omitempty"`
+	Notes           *string   `json:"notes,omitempty"`
+	StartTimeUtc    *string   `json:"startTimeUtc,omitempty"`
+
+	// Fields inherited from EntityTimelineItem
+
+	Kind EntityTimelineKind `json:"kind"`
+}

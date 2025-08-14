@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-01-01/storageaccounts
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseGeoReplicationStatus(input string) (*GeoReplicationStatus, error) {
+	vals := map[string]GeoReplicationStatus{
+		"bootstrap":   GeoReplicationStatusBootstrap,
+		"live":        GeoReplicationStatusLive,
+		"unavailable": GeoReplicationStatusUnavailable,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := GeoReplicationStatus(input)
+	return &out, nil
+}

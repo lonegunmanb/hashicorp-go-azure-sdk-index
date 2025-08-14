@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2025-01-13/settings
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *ScopedSettingId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.Scope, ok = input.Parsed["scope"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "scope", input)
+	}
+
+	if id.SettingName, ok = input.Parsed["settingName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "settingName", input)
+	}
+
+	return nil
+}

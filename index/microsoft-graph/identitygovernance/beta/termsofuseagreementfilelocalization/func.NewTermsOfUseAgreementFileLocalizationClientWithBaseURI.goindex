@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/termsofuseagreementfilelocalization
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTermsOfUseAgreementFileLocalizationClientWithBaseURI(sdkApi sdkEnv.Api) (*TermsOfUseAgreementFileLocalizationClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "termsofuseagreementfilelocalization", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TermsOfUseAgreementFileLocalizationClient: %+v", err)
+	}
+
+	return &TermsOfUseAgreementFileLocalizationClient{
+		Client: client,
+	}, nil
+}

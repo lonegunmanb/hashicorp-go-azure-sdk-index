@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/intentcategorysetting
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewIntentCategorySettingClientWithBaseURI(sdkApi sdkEnv.Api) (*IntentCategorySettingClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "intentcategorysetting", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating IntentCategorySettingClient: %+v", err)
+	}
+
+	return &IntentCategorySettingClient{
+		Client: client,
+	}, nil
+}

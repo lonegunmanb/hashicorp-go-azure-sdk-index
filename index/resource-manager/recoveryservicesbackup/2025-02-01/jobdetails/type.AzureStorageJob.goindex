@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/jobdetails
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type AzureStorageJob struct {
+	ActionsInfo           *[]JobSupportedAction        `json:"actionsInfo,omitempty"`
+	Duration              *string                      `json:"duration,omitempty"`
+	ErrorDetails          *[]AzureStorageErrorInfo     `json:"errorDetails,omitempty"`
+	ExtendedInfo          *AzureStorageJobExtendedInfo `json:"extendedInfo,omitempty"`
+	IsUserTriggered       *bool                        `json:"isUserTriggered,omitempty"`
+	StorageAccountName    *string                      `json:"storageAccountName,omitempty"`
+	StorageAccountVersion *string                      `json:"storageAccountVersion,omitempty"`
+
+	// Fields inherited from Job
+
+	ActivityId           *string               `json:"activityId,omitempty"`
+	BackupManagementType *BackupManagementType `json:"backupManagementType,omitempty"`
+	EndTime              *string               `json:"endTime,omitempty"`
+	EntityFriendlyName   *string               `json:"entityFriendlyName,omitempty"`
+	JobType              string                `json:"jobType"`
+	Operation            *string               `json:"operation,omitempty"`
+	StartTime            *string               `json:"startTime,omitempty"`
+	Status               *string               `json:"status,omitempty"`
+}

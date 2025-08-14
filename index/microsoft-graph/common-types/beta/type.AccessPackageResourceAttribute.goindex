@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type AccessPackageResourceAttribute struct {
+	// Information about how to set the attribute, currently a accessPackageUserDirectoryAttributeStore object type.
+	AttributeDestination AccessPackageResourceAttributeDestination `json:"attributeDestination"`
+
+	// The name of the attribute in the end system. If the destination is accessPackageUserDirectoryAttributeStore, then a
+	// user property such as jobTitle or a directory schema extension for the user object type, such as
+	// extension2b676109c7c74ae2b41549205f1947edpersonalTitle.
+	AttributeName nullable.Type[string] `json:"attributeName,omitempty"`
+
+	// Information about how to populate the attribute value when an accessPackageAssignmentRequest is being fulfilled,
+	// currently a accessPackageResourceAttributeQuestion object type.
+	AttributeSource AccessPackageResourceAttributeSource `json:"attributeSource"`
+
+	// Unique identifier for the attribute on the access package resource. Read-only.
+	Id nullable.Type[string] `json:"id,omitempty"`
+
+	// Specifies whether or not an existing attribute value can be edited by the requester.
+	IsEditable nullable.Type[bool] `json:"isEditable,omitempty"`
+
+	// Specifies whether the attribute will remain in the end system after an assignment ends.
+	IsPersistedOnAssignmentRemoval nullable.Type[bool] `json:"isPersistedOnAssignmentRemoval,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+}

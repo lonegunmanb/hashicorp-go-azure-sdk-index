@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cognitive/2025-06-01/accountcapabilityhost
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCapabilityHostProvisioningState(input string) (*CapabilityHostProvisioningState, error) {
+	vals := map[string]CapabilityHostProvisioningState{
+		"canceled":  CapabilityHostProvisioningStateCanceled,
+		"creating":  CapabilityHostProvisioningStateCreating,
+		"deleting":  CapabilityHostProvisioningStateDeleting,
+		"failed":    CapabilityHostProvisioningStateFailed,
+		"succeeded": CapabilityHostProvisioningStateSucceeded,
+		"updating":  CapabilityHostProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CapabilityHostProvisioningState(input)
+	return &out, nil
+}

@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/digitaltwins/2023-01-31/privateendpoints
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c PrivateEndpointsClient) PrivateEndpointConnectionsCreateOrUpdateThenPoll(ctx context.Context, id PrivateEndpointConnectionId, input PrivateEndpointConnection) error {
+	result, err := c.PrivateEndpointConnectionsCreateOrUpdate(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing PrivateEndpointConnectionsCreateOrUpdate: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after PrivateEndpointConnectionsCreateOrUpdate: %+v", err)
+	}
+
+	return nil
+}

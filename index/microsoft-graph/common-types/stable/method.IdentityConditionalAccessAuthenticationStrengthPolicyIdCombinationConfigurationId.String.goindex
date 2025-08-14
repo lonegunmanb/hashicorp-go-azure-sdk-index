@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id IdentityConditionalAccessAuthenticationStrengthPolicyIdCombinationConfigurationId) String() string {
+	components := []string{
+		fmt.Sprintf("Authentication Strength Policy: %q", id.AuthenticationStrengthPolicyId),
+		fmt.Sprintf("Authentication Combination Configuration: %q", id.AuthenticationCombinationConfigurationId),
+	}
+	return fmt.Sprintf("Identity Conditional Access Authentication Strength Policy Id Combination Configuration (%s)", strings.Join(components, "\n"))
+}

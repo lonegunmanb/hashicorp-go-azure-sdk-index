@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type DataClassificationService struct {
+	ClassifyFileJobs        *[]JobResponseBase       `json:"classifyFileJobs,omitempty"`
+	ClassifyTextJobs        *[]JobResponseBase       `json:"classifyTextJobs,omitempty"`
+	EvaluateDlpPoliciesJobs *[]JobResponseBase       `json:"evaluateDlpPoliciesJobs,omitempty"`
+	EvaluateLabelJobs       *[]JobResponseBase       `json:"evaluateLabelJobs,omitempty"`
+	ExactMatchDataStores    *[]ExactMatchDataStore   `json:"exactMatchDataStores,omitempty"`
+	ExactMatchUploadAgents  *[]ExactMatchUploadAgent `json:"exactMatchUploadAgents,omitempty"`
+	Jobs                    *[]JobResponseBase       `json:"jobs,omitempty"`
+	SensitiveTypes          *[]SensitiveType         `json:"sensitiveTypes,omitempty"`
+	SensitivityLabels       *[]SensitivityLabel      `json:"sensitivityLabels,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

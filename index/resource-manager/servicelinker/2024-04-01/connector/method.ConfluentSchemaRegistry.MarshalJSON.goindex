@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicelinker/2024-04-01/connector
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s ConfluentSchemaRegistry) MarshalJSON() ([]byte, error) {
+	type wrapper ConfluentSchemaRegistry
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ConfluentSchemaRegistry: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ConfluentSchemaRegistry: %+v", err)
+	}
+
+	decoded["type"] = "ConfluentSchemaRegistry"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ConfluentSchemaRegistry: %+v", err)
+	}
+
+	return encoded, nil
+}

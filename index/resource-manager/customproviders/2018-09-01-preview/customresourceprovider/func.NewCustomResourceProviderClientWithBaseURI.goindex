@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/customproviders/2018-09-01-preview/customresourceprovider
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewCustomResourceProviderClientWithBaseURI(sdkApi sdkEnv.Api) (*CustomResourceProviderClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "customresourceprovider", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating CustomResourceProviderClient: %+v", err)
+	}
+
+	return &CustomResourceProviderClient{
+		Client: client,
+	}, nil
+}

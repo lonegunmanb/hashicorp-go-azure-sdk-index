@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-05-01/expressrouteportslocations
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewExpressRoutePortsLocationsClientWithBaseURI(sdkApi sdkEnv.Api) (*ExpressRoutePortsLocationsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "expressrouteportslocations", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ExpressRoutePortsLocationsClient: %+v", err)
+	}
+
+	return &ExpressRoutePortsLocationsClient{
+		Client: client,
+	}, nil
+}

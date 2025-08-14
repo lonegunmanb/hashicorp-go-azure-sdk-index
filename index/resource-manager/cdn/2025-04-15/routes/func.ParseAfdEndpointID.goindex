@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-04-15/routes
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseAfdEndpointID(input string) (*AfdEndpointId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&AfdEndpointId{})
+	parsed, err := parser.Parse(input, false)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := AfdEndpointId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

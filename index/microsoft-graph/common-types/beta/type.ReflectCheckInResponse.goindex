@@ -1,0 +1,52 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ReflectCheckInResponse struct {
+	// Identifier for the Reflect check-in.
+	CheckInId nullable.Type[string] `json:"checkInId,omitempty"`
+
+	// The question or prompt of the Reflect check-in that this response addresses.
+	CheckInTitle *string `json:"checkInTitle,omitempty"`
+
+	// ID of the class associated with the Reflect check-in.
+	ClassId nullable.Type[string] `json:"classId,omitempty"`
+
+	// Date and time when the Reflect check-in was created. The timestamp type represents date and time information using
+	// ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+
+	// ID of the user who created the Reflect check-in.
+	CreatorId nullable.Type[string] `json:"creatorId,omitempty"`
+
+	// Indicates whether the Reflect check-in is closed (true) or open (false).
+	IsClosed *bool `json:"isClosed,omitempty"`
+
+	// ID of the user who responded to the Reflect check-in.
+	ResponderId nullable.Type[string] `json:"responderId,omitempty"`
+
+	ResponseEmotion  *ResponseEmotionType  `json:"responseEmotion,omitempty"`
+	ResponseFeedback *ResponseFeedbackType `json:"responseFeedback,omitempty"`
+
+	// Date and time when the response to the Reflect check-in was submitted. The timestamp type represents date and time
+	// information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is
+	// 2014-01-01T00:00:00Z.
+	SubmitDateTime *string `json:"submitDateTime,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

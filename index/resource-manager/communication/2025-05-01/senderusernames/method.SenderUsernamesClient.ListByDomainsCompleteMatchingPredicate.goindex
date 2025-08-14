@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/communication/2025-05-01/senderusernames
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SenderUsernamesClient) ListByDomainsCompleteMatchingPredicate(ctx context.Context, id DomainId, predicate SenderUsernameResourceOperationPredicate) (result ListByDomainsCompleteResult, err error) {
+	items := make([]SenderUsernameResource, 0)
+
+	resp, err := c.ListByDomains(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByDomainsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

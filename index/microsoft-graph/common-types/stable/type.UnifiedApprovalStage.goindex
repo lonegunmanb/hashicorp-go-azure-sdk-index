@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type UnifiedApprovalStage struct {
+	// The number of days that a request can be pending a response before it is automatically denied.
+	ApprovalStageTimeOutInDays nullable.Type[int64] `json:"approvalStageTimeOutInDays,omitempty"`
+
+	// The escalation approvers for this stage when the primary approvers don't respond.
+	EscalationApprovers *[]SubjectSet `json:"escalationApprovers,omitempty"`
+
+	// The time a request can be pending a response from a primary approver before it can be escalated to the escalation
+	// approvers.
+	EscalationTimeInMinutes nullable.Type[int64] `json:"escalationTimeInMinutes,omitempty"`
+
+	// Indicates whether the approver must provide justification for their reponse.
+	IsApproverJustificationRequired nullable.Type[bool] `json:"isApproverJustificationRequired,omitempty"`
+
+	// Indicates whether escalation if enabled.
+	IsEscalationEnabled nullable.Type[bool] `json:"isEscalationEnabled,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The primary approvers of this stage.
+	PrimaryApprovers *[]SubjectSet `json:"primaryApprovers,omitempty"`
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-10-01/deploymentscripts
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+)
+func (s AzureCliScript) DeploymentScript() BaseDeploymentScriptImpl {
+	return BaseDeploymentScriptImpl{
+		Id:         s.Id,
+		Identity:   s.Identity,
+		Kind:       s.Kind,
+		Location:   s.Location,
+		Name:       s.Name,
+		SystemData: s.SystemData,
+		Tags:       s.Tags,
+		Type:       s.Type,
+	}
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/systemcentervirtualmachinemanager/2023-10-07/virtualmachinetemplates
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCreateDiffDisk(input string) (*CreateDiffDisk, error) {
+	vals := map[string]CreateDiffDisk{
+		"false": CreateDiffDiskFalse,
+		"true":  CreateDiffDiskTrue,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CreateDiffDisk(input)
+	return &out, nil
+}

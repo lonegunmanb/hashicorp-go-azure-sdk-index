@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2022-09-01/deploymentoperations
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ResourceGroupDeploymentOperationId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Deployment Name: %q", id.DeploymentName),
+		fmt.Sprintf("Operation: %q", id.OperationId),
+	}
+	return fmt.Sprintf("Resource Group Deployment Operation (%s)", strings.Join(components, "\n"))
+}

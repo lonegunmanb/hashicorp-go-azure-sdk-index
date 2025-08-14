@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCallEventType(input string) (*CallEventType, error) {
+	vals := map[string]CallEventType{
+		"callended":     CallEventType_CallEnded,
+		"callstarted":   CallEventType_CallStarted,
+		"rosterupdated": CallEventType_RosterUpdated,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CallEventType(input)
+	return &out, nil
+}

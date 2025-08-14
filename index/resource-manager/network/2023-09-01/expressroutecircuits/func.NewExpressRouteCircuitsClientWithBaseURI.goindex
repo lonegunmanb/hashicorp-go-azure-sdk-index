@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-09-01/expressroutecircuits
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewExpressRouteCircuitsClientWithBaseURI(sdkApi sdkEnv.Api) (*ExpressRouteCircuitsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "expressroutecircuits", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ExpressRouteCircuitsClient: %+v", err)
+	}
+
+	return &ExpressRouteCircuitsClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2024-04-01/replicationprotecteditems
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseChurnOptionSelected(input string) (*ChurnOptionSelected, error) {
+	vals := map[string]ChurnOptionSelected{
+		"high":   ChurnOptionSelectedHigh,
+		"normal": ChurnOptionSelectedNormal,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ChurnOptionSelected(input)
+	return &out, nil
+}

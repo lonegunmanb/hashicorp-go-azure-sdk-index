@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2020-03-01/cloudendpointresource
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewCloudEndpointResourceClientWithBaseURI(sdkApi sdkEnv.Api) (*CloudEndpointResourceClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "cloudendpointresource", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating CloudEndpointResourceClient: %+v", err)
+	}
+
+	return &CloudEndpointResourceClient{
+		Client: client,
+	}, nil
+}

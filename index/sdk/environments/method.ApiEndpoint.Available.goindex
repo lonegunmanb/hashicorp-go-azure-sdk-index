@@ -1,0 +1,7 @@
+package github.com/hashicorp/go-azure-sdk/sdk/environments
+import (
+	"github.com/hashicorp/go-azure-helpers/lang/pointer"
+)
+func (e *ApiEndpoint) Available() bool {
+	return e != nil && (e.resourceIdentifier != nil || e.endpoint != nil)
+}

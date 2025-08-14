@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/networkcloud/2025-02-01/networkclouds
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseKubernetesClusterIDInsensitively(input string) (*KubernetesClusterId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&KubernetesClusterId{})
+	parsed, err := parser.Parse(input, true)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := KubernetesClusterId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

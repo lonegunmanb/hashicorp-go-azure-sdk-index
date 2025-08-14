@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"io"
+	"net/http"
+	"net/url"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	"golang.org/x/oauth2"
+)
+func (a *ADOPipelineOIDCAuthorizer) AuxiliaryTokens(ctx context.Context, req *http.Request) ([]*oauth2.Token, error) {
+	source, err := a.tokenSource(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+	return source.AuxiliaryTokens(ctx, req)
+}

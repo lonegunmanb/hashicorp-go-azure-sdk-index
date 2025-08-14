@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationjobs
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type ASRTask struct {
+	AllowedActions         *[]string          `json:"allowedActions,omitempty"`
+	CustomDetails          TaskTypeDetails    `json:"customDetails"`
+	EndTime                *string            `json:"endTime,omitempty"`
+	Errors                 *[]JobErrorDetails `json:"errors,omitempty"`
+	FriendlyName           *string            `json:"friendlyName,omitempty"`
+	GroupTaskCustomDetails GroupTaskDetails   `json:"groupTaskCustomDetails"`
+	Name                   *string            `json:"name,omitempty"`
+	StartTime              *string            `json:"startTime,omitempty"`
+	State                  *string            `json:"state,omitempty"`
+	StateDescription       *string            `json:"stateDescription,omitempty"`
+	TaskId                 *string            `json:"taskId,omitempty"`
+	TaskType               *string            `json:"taskType,omitempty"`
+}

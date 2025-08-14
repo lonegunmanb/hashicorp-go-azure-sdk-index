@@ -1,0 +1,59 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalDeviceManagementConfigurationSettingApplicabilityImplementation(input []byte) (DeviceManagementConfigurationSettingApplicability, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling DeviceManagementConfigurationSettingApplicability into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.deviceManagementConfigurationApplicationSettingApplicability") {
+		var out DeviceManagementConfigurationApplicationSettingApplicability
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DeviceManagementConfigurationApplicationSettingApplicability: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.deviceManagementConfigurationExchangeOnlineSettingApplicability") {
+		var out DeviceManagementConfigurationExchangeOnlineSettingApplicability
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DeviceManagementConfigurationExchangeOnlineSettingApplicability: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.deviceManagementConfigurationWindowsSettingApplicability") {
+		var out DeviceManagementConfigurationWindowsSettingApplicability
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DeviceManagementConfigurationWindowsSettingApplicability: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseDeviceManagementConfigurationSettingApplicabilityImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseDeviceManagementConfigurationSettingApplicabilityImpl: %+v", err)
+	}
+
+	return RawDeviceManagementConfigurationSettingApplicabilityImpl{
+		deviceManagementConfigurationSettingApplicability: parent,
+		Type:   value,
+		Values: temp,
+	}, nil
+
+}

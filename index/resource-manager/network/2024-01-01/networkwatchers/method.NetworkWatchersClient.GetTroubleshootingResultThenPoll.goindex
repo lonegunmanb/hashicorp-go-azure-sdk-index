@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-01-01/networkwatchers
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c NetworkWatchersClient) GetTroubleshootingResultThenPoll(ctx context.Context, id NetworkWatcherId, input QueryTroubleshootingParameters) error {
+	result, err := c.GetTroubleshootingResult(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing GetTroubleshootingResult: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after GetTroubleshootingResult: %+v", err)
+	}
+
+	return nil
+}

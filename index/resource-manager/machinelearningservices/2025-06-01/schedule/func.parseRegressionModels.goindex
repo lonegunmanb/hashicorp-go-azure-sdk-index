@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2025-06-01/schedule
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRegressionModels(input string) (*RegressionModels, error) {
+	vals := map[string]RegressionModels{
+		"decisiontree":       RegressionModelsDecisionTree,
+		"elasticnet":         RegressionModelsElasticNet,
+		"extremerandomtrees": RegressionModelsExtremeRandomTrees,
+		"gradientboosting":   RegressionModelsGradientBoosting,
+		"knn":                RegressionModelsKNN,
+		"lassolars":          RegressionModelsLassoLars,
+		"lightgbm":           RegressionModelsLightGBM,
+		"randomforest":       RegressionModelsRandomForest,
+		"sgd":                RegressionModelsSGD,
+		"xgboostregressor":   RegressionModelsXGBoostRegressor,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RegressionModels(input)
+	return &out, nil
+}

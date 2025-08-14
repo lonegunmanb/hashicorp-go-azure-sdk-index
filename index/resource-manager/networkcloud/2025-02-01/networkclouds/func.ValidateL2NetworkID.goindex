@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/networkcloud/2025-02-01/networkclouds
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ValidateL2NetworkID(input interface{}, key string) (warnings []string, errors []error) {
+	v, ok := input.(string)
+	if !ok {
+		errors = append(errors, fmt.Errorf("expected %q to be a string", key))
+		return
+	}
+
+	if _, err := ParseL2NetworkID(v); err != nil {
+		errors = append(errors, err)
+	}
+
+	return
+}

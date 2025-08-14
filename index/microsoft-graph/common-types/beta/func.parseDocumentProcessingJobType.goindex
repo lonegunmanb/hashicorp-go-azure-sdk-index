@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDocumentProcessingJobType(input string) (*DocumentProcessingJobType, error) {
+	vals := map[string]DocumentProcessingJobType{
+		"file":   DocumentProcessingJobType_File,
+		"folder": DocumentProcessingJobType_Folder,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DocumentProcessingJobType(input)
+	return &out, nil
+}

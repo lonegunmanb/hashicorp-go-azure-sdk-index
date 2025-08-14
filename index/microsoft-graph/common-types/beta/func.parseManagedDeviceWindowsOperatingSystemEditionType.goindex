@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseManagedDeviceWindowsOperatingSystemEditionType(input string) (*ManagedDeviceWindowsOperatingSystemEditionType, error) {
+	vals := map[string]ManagedDeviceWindowsOperatingSystemEditionType{
+		"education":       ManagedDeviceWindowsOperatingSystemEditionType_Education,
+		"educationn":      ManagedDeviceWindowsOperatingSystemEditionType_EducationN,
+		"enterprise":      ManagedDeviceWindowsOperatingSystemEditionType_Enterprise,
+		"enterprisen":     ManagedDeviceWindowsOperatingSystemEditionType_EnterpriseN,
+		"proeducation":    ManagedDeviceWindowsOperatingSystemEditionType_ProEducation,
+		"proeducationn":   ManagedDeviceWindowsOperatingSystemEditionType_ProEducationN,
+		"proworkstation":  ManagedDeviceWindowsOperatingSystemEditionType_ProWorkstation,
+		"proworkstationn": ManagedDeviceWindowsOperatingSystemEditionType_ProWorkstationN,
+		"professional":    ManagedDeviceWindowsOperatingSystemEditionType_Professional,
+		"professionaln":   ManagedDeviceWindowsOperatingSystemEditionType_ProfessionalN,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagedDeviceWindowsOperatingSystemEditionType(input)
+	return &out, nil
+}

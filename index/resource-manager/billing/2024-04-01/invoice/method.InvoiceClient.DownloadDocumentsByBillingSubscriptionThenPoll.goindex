@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/invoice
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c InvoiceClient) DownloadDocumentsByBillingSubscriptionThenPoll(ctx context.Context, id BillingSubscriptionId, input []DocumentDownloadRequest) error {
+	result, err := c.DownloadDocumentsByBillingSubscription(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing DownloadDocumentsByBillingSubscription: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after DownloadDocumentsByBillingSubscription: %+v", err)
+	}
+
+	return nil
+}

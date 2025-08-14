@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/exascaledbnodes
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ExascaleDbNodesClient) ActionThenPoll(ctx context.Context, id ExadbVMClusterDbNodeId, input DbNodeAction) error {
+	result, err := c.Action(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing Action: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after Action: %+v", err)
+	}
+
+	return nil
+}

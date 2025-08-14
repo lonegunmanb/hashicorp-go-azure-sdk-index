@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/driveitemlistitemanalytics
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDriveItemListItemAnalyticsClientWithBaseURI(sdkApi sdkEnv.Api) (*DriveItemListItemAnalyticsClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "driveitemlistitemanalytics", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DriveItemListItemAnalyticsClient: %+v", err)
+	}
+
+	return &DriveItemListItemAnalyticsClient{
+		Client: client,
+	}, nil
+}

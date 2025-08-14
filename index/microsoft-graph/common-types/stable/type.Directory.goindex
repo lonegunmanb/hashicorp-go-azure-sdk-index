@@ -1,0 +1,50 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+)
+type Directory struct {
+	// Conceptual container for user and group directory objects.
+	AdministrativeUnits *[]AdministrativeUnit `json:"administrativeUnits,omitempty"`
+
+	// Group of related custom security attribute definitions.
+	AttributeSets *[]AttributeSet `json:"attributeSets,omitempty"`
+
+	// Schema of a custom security attributes (key-value pairs).
+	CustomSecurityAttributeDefinitions *[]CustomSecurityAttributeDefinition `json:"customSecurityAttributeDefinitions,omitempty"`
+
+	// Recently deleted items. Read-only. Nullable.
+	DeletedItems *[]DirectoryObject `json:"deletedItems,omitempty"`
+
+	// List of OData IDs for `DeletedItems` to bind to this entity
+	DeletedItems_ODataBind *[]string `json:"deletedItems@odata.bind,omitempty"`
+
+	// The credentials of the device's local administrator account backed up to Microsoft Entra ID.
+	DeviceLocalCredentials *[]DeviceLocalCredentialInfo `json:"deviceLocalCredentials,omitempty"`
+
+	// Configure domain federation with organizations whose identity provider (IdP) supports either the SAML or WS-Fed
+	// protocol.
+	FederationConfigurations *[]IdentityProviderBase `json:"federationConfigurations,omitempty"`
+
+	// A container for on-premises directory synchronization functionalities that are available for the organization.
+	OnPremisesSynchronization *[]OnPremisesDirectorySynchronization `json:"onPremisesSynchronization,omitempty"`
+
+	PublicKeyInfrastructure *PublicKeyInfrastructureRoot `json:"publicKeyInfrastructure,omitempty"`
+
+	// List of commercial subscriptions that an organization acquired.
+	Subscriptions *[]CompanySubscription `json:"subscriptions,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

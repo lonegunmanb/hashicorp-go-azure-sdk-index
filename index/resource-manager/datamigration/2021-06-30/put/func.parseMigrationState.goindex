@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/put
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMigrationState(input string) (*MigrationState, error) {
+	vals := map[string]MigrationState{
+		"completed":  MigrationStateCompleted,
+		"failed":     MigrationStateFailed,
+		"inprogress": MigrationStateInProgress,
+		"none":       MigrationStateNone,
+		"skipped":    MigrationStateSkipped,
+		"stopped":    MigrationStateStopped,
+		"warning":    MigrationStateWarning,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MigrationState(input)
+	return &out, nil
+}

@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *DeviceManagementVirtualEndpointDeviceImageId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.CloudPCDeviceImageId, ok = input.Parsed["cloudPCDeviceImageId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "cloudPCDeviceImageId", input)
+	}
+
+	return nil
+}

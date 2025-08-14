@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2023-11-01/operations
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseGraphRunbookType(input string) (*GraphRunbookType, error) {
+	vals := map[string]GraphRunbookType{
+		"graphpowershell":         GraphRunbookTypeGraphPowerShell,
+		"graphpowershellworkflow": GraphRunbookTypeGraphPowerShellWorkflow,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := GraphRunbookType(input)
+	return &out, nil
+}

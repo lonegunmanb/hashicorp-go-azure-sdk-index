@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2024-04-01/replicationjobs
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalGroupTaskDetailsImplementation(input []byte) (GroupTaskDetails, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling GroupTaskDetails into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["instanceType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "InlineWorkflowTaskDetails") {
+		var out InlineWorkflowTaskDetails
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into InlineWorkflowTaskDetails: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "RecoveryPlanGroupTaskDetails") {
+		var out RecoveryPlanGroupTaskDetails
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into RecoveryPlanGroupTaskDetails: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseGroupTaskDetailsImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseGroupTaskDetailsImpl: %+v", err)
+	}
+
+	return RawGroupTaskDetailsImpl{
+		groupTaskDetails: parent,
+		Type:             value,
+		Values:           temp,
+	}, nil
+
+}

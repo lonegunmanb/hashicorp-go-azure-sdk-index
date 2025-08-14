@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/serviceprincipalcreationpolicyexclude
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ServicePrincipalCreationPolicyExcludeClient) ListServicePrincipalCreationPolicyExcludesComplete(ctx context.Context, id beta.PolicyServicePrincipalCreationPolicyId, options ListServicePrincipalCreationPolicyExcludesOperationOptions) (ListServicePrincipalCreationPolicyExcludesCompleteResult, error) {
+	return c.ListServicePrincipalCreationPolicyExcludesCompleteMatchingPredicate(ctx, id, options, ServicePrincipalCreationConditionSetOperationPredicate{})
+}

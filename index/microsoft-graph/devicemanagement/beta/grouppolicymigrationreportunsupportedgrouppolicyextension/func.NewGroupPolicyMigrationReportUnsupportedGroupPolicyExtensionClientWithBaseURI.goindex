@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/grouppolicymigrationreportunsupportedgrouppolicyextension
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewGroupPolicyMigrationReportUnsupportedGroupPolicyExtensionClientWithBaseURI(sdkApi sdkEnv.Api) (*GroupPolicyMigrationReportUnsupportedGroupPolicyExtensionClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "grouppolicymigrationreportunsupportedgrouppolicyextension", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating GroupPolicyMigrationReportUnsupportedGroupPolicyExtensionClient: %+v", err)
+	}
+
+	return &GroupPolicyMigrationReportUnsupportedGroupPolicyExtensionClient{
+		Client: client,
+	}, nil
+}

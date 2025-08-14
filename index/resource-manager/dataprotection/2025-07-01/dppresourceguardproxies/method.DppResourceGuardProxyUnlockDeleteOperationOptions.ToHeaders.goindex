@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2025-07-01/dppresourceguardproxies
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o DppResourceGuardProxyUnlockDeleteOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+	if o.XMsAuthorizationAuxiliary != nil {
+		out.Append("x-ms-authorization-auxiliary", fmt.Sprintf("%v", *o.XMsAuthorizationAuxiliary))
+	}
+	return &out
+}

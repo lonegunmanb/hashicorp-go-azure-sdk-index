@@ -1,0 +1,40 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type AccessPackageApprovalStage struct {
+	// The number of days that a request can be pending a response before it is automatically denied.
+	DurationBeforeAutomaticDenial nullable.Type[string] `json:"durationBeforeAutomaticDenial,omitempty"`
+
+	// If escalation is required, the time a request can be pending a response from a primary approver.
+	DurationBeforeEscalation nullable.Type[string] `json:"durationBeforeEscalation,omitempty"`
+
+	// If escalation is enabled and the primary approvers do not respond before the escalation time, the escalationApprovers
+	// are the users who will be asked to approve requests.
+	EscalationApprovers *[]SubjectSet `json:"escalationApprovers,omitempty"`
+
+	// The subjects, typically users, who are the fallback escalation approvers.
+	FallbackEscalationApprovers *[]SubjectSet `json:"fallbackEscalationApprovers,omitempty"`
+
+	// The subjects, typically users, who are the fallback primary approvers.
+	FallbackPrimaryApprovers *[]SubjectSet `json:"fallbackPrimaryApprovers,omitempty"`
+
+	// Indicates whether the approver is required to provide a justification for approving a request.
+	IsApproverJustificationRequired nullable.Type[bool] `json:"isApproverJustificationRequired,omitempty"`
+
+	// If true, then one or more escalationApprovers are configured in this approval stage.
+	IsEscalationEnabled nullable.Type[bool] `json:"isEscalationEnabled,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The subjects, typically users, who will be asked to approve requests. A collection of singleUser, groupMembers,
+	// requestorManager, internalSponsors, externalSponsors, or targetUserSponsors.
+	PrimaryApprovers *[]SubjectSet `json:"primaryApprovers,omitempty"`
+}

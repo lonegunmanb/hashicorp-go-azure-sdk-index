@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cosmosdb/2024-08-15/restorables
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o RestorableSqlContainersListOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.EndTime != nil {
+		out.Append("endTime", fmt.Sprintf("%v", *o.EndTime))
+	}
+	if o.RestorableSqlDatabaseRid != nil {
+		out.Append("restorableSqlDatabaseRid", fmt.Sprintf("%v", *o.RestorableSqlDatabaseRid))
+	}
+	if o.StartTime != nil {
+		out.Append("startTime", fmt.Sprintf("%v", *o.StartTime))
+	}
+	return &out
+}

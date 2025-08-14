@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *DirectoryRoleId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.DirectoryRoleId, ok = input.Parsed["directoryRoleId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "directoryRoleId", input)
+	}
+
+	return nil
+}

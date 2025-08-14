@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/managedservices/2022-10-01/registrationassignments
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ScopedRegistrationAssignmentId) ID() string {
+	fmtString := "/%s/providers/Microsoft.ManagedServices/registrationAssignments/%s"
+	return fmt.Sprintf(fmtString, strings.TrimPrefix(id.Scope, "/"), id.RegistrationAssignmentId)
+}

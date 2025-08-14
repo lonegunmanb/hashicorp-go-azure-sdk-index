@@ -1,0 +1,65 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2022-05-01/addons
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalAddonPropertiesImplementation(input []byte) (AddonProperties, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling AddonProperties into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["addonType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "Arc") {
+		var out AddonArcProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AddonArcProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "HCX") {
+		var out AddonHcxProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AddonHcxProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "SRM") {
+		var out AddonSrmProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AddonSrmProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "VR") {
+		var out AddonVrProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AddonVrProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseAddonPropertiesImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseAddonPropertiesImpl: %+v", err)
+	}
+
+	return RawAddonPropertiesImpl{
+		addonProperties: parent,
+		Type:            value,
+		Values:          temp,
+	}, nil
+
+}

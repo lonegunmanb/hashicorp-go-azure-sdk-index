@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicelinker/2022-05-01/servicelinker
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ServicelinkerClient) LinkerListComplete(ctx context.Context, id commonids.ScopeId) (LinkerListCompleteResult, error) {
+	return c.LinkerListCompleteMatchingPredicate(ctx, id, LinkerResourceOperationPredicate{})
+}

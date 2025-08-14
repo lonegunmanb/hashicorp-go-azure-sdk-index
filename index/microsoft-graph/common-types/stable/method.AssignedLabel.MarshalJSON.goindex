@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s AssignedLabel) MarshalJSON() ([]byte, error) {
+	type wrapper AssignedLabel
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AssignedLabel: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AssignedLabel: %+v", err)
+	}
+
+	delete(decoded, "displayName")
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AssignedLabel: %+v", err)
+	}
+
+	return encoded, nil
+}

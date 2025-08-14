@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-11-01/appservicecertificateorders
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAppServiceCertificateOrdersClientWithBaseURI(sdkApi sdkEnv.Api) (*AppServiceCertificateOrdersClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "appservicecertificateorders", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AppServiceCertificateOrdersClient: %+v", err)
+	}
+
+	return &AppServiceCertificateOrdersClient{
+		Client: client,
+	}, nil
+}

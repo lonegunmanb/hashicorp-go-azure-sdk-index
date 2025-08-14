@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2025-06-01/job
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseUseStl(input string) (*UseStl, error) {
+	vals := map[string]UseStl{
+		"none":        UseStlNone,
+		"season":      UseStlSeason,
+		"seasontrend": UseStlSeasonTrend,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UseStl(input)
+	return &out, nil
+}

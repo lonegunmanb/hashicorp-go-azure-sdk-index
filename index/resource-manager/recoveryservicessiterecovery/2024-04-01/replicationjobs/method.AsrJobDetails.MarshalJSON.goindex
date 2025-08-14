@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2024-04-01/replicationjobs
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s AsrJobDetails) MarshalJSON() ([]byte, error) {
+	type wrapper AsrJobDetails
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AsrJobDetails: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AsrJobDetails: %+v", err)
+	}
+
+	decoded["instanceType"] = "AsrJobDetails"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AsrJobDetails: %+v", err)
+	}
+
+	return encoded, nil
+}

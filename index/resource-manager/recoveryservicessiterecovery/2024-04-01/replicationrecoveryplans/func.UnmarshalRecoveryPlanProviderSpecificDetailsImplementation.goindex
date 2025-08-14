@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2024-04-01/replicationrecoveryplans
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalRecoveryPlanProviderSpecificDetailsImplementation(input []byte) (RecoveryPlanProviderSpecificDetails, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling RecoveryPlanProviderSpecificDetails into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["instanceType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "A2A") {
+		var out RecoveryPlanA2ADetails
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into RecoveryPlanA2ADetails: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseRecoveryPlanProviderSpecificDetailsImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseRecoveryPlanProviderSpecificDetailsImpl: %+v", err)
+	}
+
+	return RawRecoveryPlanProviderSpecificDetailsImpl{
+		recoveryPlanProviderSpecificDetails: parent,
+		Type:                                value,
+		Values:                              temp,
+	}, nil
+
+}

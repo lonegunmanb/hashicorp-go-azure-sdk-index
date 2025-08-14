@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/conditionalaccesssetting
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewConditionalAccessSettingClientWithBaseURI(sdkApi sdkEnv.Api) (*ConditionalAccessSettingClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "conditionalaccesssetting", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ConditionalAccessSettingClient: %+v", err)
+	}
+
+	return &ConditionalAccessSettingClient{
+		Client: client,
+	}, nil
+}

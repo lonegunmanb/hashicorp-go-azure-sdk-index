@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2025-01-13/machines
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseLicenseTarget(input string) (*LicenseTarget, error) {
+	vals := map[string]LicenseTarget{
+		"windows server 2012":    LicenseTargetWindowsServerTwoZeroOneTwo,
+		"windows server 2012 r2": LicenseTargetWindowsServerTwoZeroOneTwoRTwo,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := LicenseTarget(input)
+	return &out, nil
+}

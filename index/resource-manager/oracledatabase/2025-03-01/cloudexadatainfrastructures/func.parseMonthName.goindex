@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/cloudexadatainfrastructures
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMonthName(input string) (*MonthName, error) {
+	vals := map[string]MonthName{
+		"april":     MonthNameApril,
+		"august":    MonthNameAugust,
+		"december":  MonthNameDecember,
+		"february":  MonthNameFebruary,
+		"january":   MonthNameJanuary,
+		"july":      MonthNameJuly,
+		"june":      MonthNameJune,
+		"march":     MonthNameMarch,
+		"may":       MonthNameMay,
+		"november":  MonthNameNovember,
+		"october":   MonthNameOctober,
+		"september": MonthNameSeptember,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MonthName(input)
+	return &out, nil
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDriverApprovalAction(input string) (*DriverApprovalAction, error) {
+	vals := map[string]DriverApprovalAction{
+		"approve": DriverApprovalAction_Approve,
+		"decline": DriverApprovalAction_Decline,
+		"suspend": DriverApprovalAction_Suspend,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DriverApprovalAction(input)
+	return &out, nil
+}

@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2022-05-01/scripts
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ScriptsClient) ScriptPackagesListComplete(ctx context.Context, id PrivateCloudId) (ScriptPackagesListCompleteResult, error) {
+	return c.ScriptPackagesListCompleteMatchingPredicate(ctx, id, ScriptPackageOperationPredicate{})
+}

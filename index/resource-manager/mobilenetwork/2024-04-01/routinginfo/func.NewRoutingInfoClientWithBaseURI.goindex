@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mobilenetwork/2024-04-01/routinginfo
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewRoutingInfoClientWithBaseURI(sdkApi sdkEnv.Api) (*RoutingInfoClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "routinginfo", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating RoutingInfoClient: %+v", err)
+	}
+
+	return &RoutingInfoClient{
+		Client: client,
+	}, nil
+}

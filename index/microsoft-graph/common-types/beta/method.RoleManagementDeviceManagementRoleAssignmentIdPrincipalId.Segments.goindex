@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id RoleManagementDeviceManagementRoleAssignmentIdPrincipalId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.StaticSegment("roleManagement", "roleManagement", "roleManagement"),
+		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
+		resourceids.StaticSegment("roleAssignments", "roleAssignments", "roleAssignments"),
+		resourceids.UserSpecifiedSegment("unifiedRoleAssignmentMultipleId", "unifiedRoleAssignmentMultipleId"),
+		resourceids.StaticSegment("principals", "principals", "principals"),
+		resourceids.UserSpecifiedSegment("directoryObjectId", "directoryObjectId"),
+	}
+}

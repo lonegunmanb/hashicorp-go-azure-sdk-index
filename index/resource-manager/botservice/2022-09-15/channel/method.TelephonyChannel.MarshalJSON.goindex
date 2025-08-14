@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/botservice/2022-09-15/channel
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s TelephonyChannel) MarshalJSON() ([]byte, error) {
+	type wrapper TelephonyChannel
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling TelephonyChannel: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling TelephonyChannel: %+v", err)
+	}
+
+	decoded["channelName"] = "TelephonyChannel"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling TelephonyChannel: %+v", err)
+	}
+
+	return encoded, nil
+}

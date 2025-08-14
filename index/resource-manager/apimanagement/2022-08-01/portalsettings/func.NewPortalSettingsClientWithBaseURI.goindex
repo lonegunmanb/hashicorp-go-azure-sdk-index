@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2022-08-01/portalsettings
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPortalSettingsClientWithBaseURI(sdkApi sdkEnv.Api) (*PortalSettingsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "portalsettings", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PortalSettingsClient: %+v", err)
+	}
+
+	return &PortalSettingsClient{
+		Client: client,
+	}, nil
+}

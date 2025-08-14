@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationaccountmaps
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ListOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.Filter != nil {
+		out.Append("$filter", fmt.Sprintf("%v", *o.Filter))
+	}
+	if o.Top != nil {
+		out.Append("$top", fmt.Sprintf("%v", *o.Top))
+	}
+	return &out
+}

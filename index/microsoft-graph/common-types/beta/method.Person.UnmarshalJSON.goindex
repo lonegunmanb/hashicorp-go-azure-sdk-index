@@ -1,0 +1,83 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *Person) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		Birthday          nullable.Type[string] `json:"birthday,omitempty"`
+		CompanyName       nullable.Type[string] `json:"companyName,omitempty"`
+		Department        nullable.Type[string] `json:"department,omitempty"`
+		DisplayName       nullable.Type[string] `json:"displayName,omitempty"`
+		EmailAddresses    *[]RankedEmailAddress `json:"emailAddresses,omitempty"`
+		GivenName         nullable.Type[string] `json:"givenName,omitempty"`
+		IsFavorite        nullable.Type[bool]   `json:"isFavorite,omitempty"`
+		MailboxType       nullable.Type[string] `json:"mailboxType,omitempty"`
+		OfficeLocation    nullable.Type[string] `json:"officeLocation,omitempty"`
+		PersonNotes       nullable.Type[string] `json:"personNotes,omitempty"`
+		PersonType        nullable.Type[string] `json:"personType,omitempty"`
+		Phones            *[]Phone              `json:"phones,omitempty"`
+		Profession        nullable.Type[string] `json:"profession,omitempty"`
+		Sources           *[]PersonDataSource   `json:"sources,omitempty"`
+		Surname           nullable.Type[string] `json:"surname,omitempty"`
+		Title             nullable.Type[string] `json:"title,omitempty"`
+		UserPrincipalName nullable.Type[string] `json:"userPrincipalName,omitempty"`
+		Websites          *[]Website            `json:"websites,omitempty"`
+		YomiCompany       nullable.Type[string] `json:"yomiCompany,omitempty"`
+		Id                *string               `json:"id,omitempty"`
+		ODataId           *string               `json:"@odata.id,omitempty"`
+		ODataType         *string               `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.Birthday = decoded.Birthday
+	s.CompanyName = decoded.CompanyName
+	s.Department = decoded.Department
+	s.DisplayName = decoded.DisplayName
+	s.EmailAddresses = decoded.EmailAddresses
+	s.GivenName = decoded.GivenName
+	s.IsFavorite = decoded.IsFavorite
+	s.MailboxType = decoded.MailboxType
+	s.OfficeLocation = decoded.OfficeLocation
+	s.PersonNotes = decoded.PersonNotes
+	s.PersonType = decoded.PersonType
+	s.Phones = decoded.Phones
+	s.Profession = decoded.Profession
+	s.Sources = decoded.Sources
+	s.Surname = decoded.Surname
+	s.Title = decoded.Title
+	s.UserPrincipalName = decoded.UserPrincipalName
+	s.Websites = decoded.Websites
+	s.YomiCompany = decoded.YomiCompany
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling Person into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["postalAddresses"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling PostalAddresses into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]Location, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalLocationImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'PostalAddresses' for 'Person': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.PostalAddresses = &output
+	}
+
+	return nil
+}

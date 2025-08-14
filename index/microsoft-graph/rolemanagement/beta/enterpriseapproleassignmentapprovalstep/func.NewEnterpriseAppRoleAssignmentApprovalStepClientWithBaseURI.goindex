@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/enterpriseapproleassignmentapprovalstep
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewEnterpriseAppRoleAssignmentApprovalStepClientWithBaseURI(sdkApi sdkEnv.Api) (*EnterpriseAppRoleAssignmentApprovalStepClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "enterpriseapproleassignmentapprovalstep", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating EnterpriseAppRoleAssignmentApprovalStepClient: %+v", err)
+	}
+
+	return &EnterpriseAppRoleAssignmentApprovalStepClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client/pollers
+import (
+	"context"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+)
+type PollerType interface {
+	// Poll performs a poll to determine whether the Operation has been Completed/Cancelled or Failed.
+	// Behaviourally this method should:
+	//   1. Perform a single poll, and assume that it will be called again after the PollInterval
+	//      defined within the PollResult.
+	//   2. When the operation is still in progress, a PollResult should be returned with the Status
+	//      `InProgress` and the next PollInterval.
+	//   3. When the operation is Completed, a PollResult should be returned with the Status
+	//      `Succeeded`.
+	//   4. When the operation is Cancelled a PollingCancelledError should be returned.
+	//   5. When the operation Fails a PollingFailedError should be returned.
+	Poll(ctx context.Context) (*PollResult, error)
+}

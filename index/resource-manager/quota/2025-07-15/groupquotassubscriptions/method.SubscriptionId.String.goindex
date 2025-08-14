@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-07-15/groupquotassubscriptions
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id SubscriptionId) String() string {
+	components := []string{
+		fmt.Sprintf("Management Group: %q", id.ManagementGroupId),
+		fmt.Sprintf("Group Quota Name: %q", id.GroupQuotaName),
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+	}
+	return fmt.Sprintf("Subscription (%s)", strings.Join(components, "\n"))
+}

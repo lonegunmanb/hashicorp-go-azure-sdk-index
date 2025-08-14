@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-01-01/groupidlistforldapuser
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewGroupIdListForLDAPUserClientWithBaseURI(sdkApi sdkEnv.Api) (*GroupIdListForLDAPUserClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "groupidlistforldapuser", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating GroupIdListForLDAPUserClient: %+v", err)
+	}
+
+	return &GroupIdListForLDAPUserClient{
+		Client: client,
+	}, nil
+}

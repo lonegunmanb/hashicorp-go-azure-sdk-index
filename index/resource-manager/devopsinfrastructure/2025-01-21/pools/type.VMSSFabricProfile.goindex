@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devopsinfrastructure/2025-01-21/pools
+import (
+	"encoding/json"
+	"fmt"
+)
+type VMSSFabricProfile struct {
+	Images         []PoolImage     `json:"images"`
+	NetworkProfile *NetworkProfile `json:"networkProfile,omitempty"`
+	OsProfile      *OsProfile      `json:"osProfile,omitempty"`
+	Sku            DevOpsAzureSku  `json:"sku"`
+	StorageProfile *StorageProfile `json:"storageProfile,omitempty"`
+
+	// Fields inherited from FabricProfile
+
+	Kind string `json:"kind"`
+}

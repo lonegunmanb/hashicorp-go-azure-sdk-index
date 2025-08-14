@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2022-03-01/storageaccountcredentials
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSSLStatus(input string) (*SSLStatus, error) {
+	vals := map[string]SSLStatus{
+		"disabled": SSLStatusDisabled,
+		"enabled":  SSLStatusEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SSLStatus(input)
+	return &out, nil
+}

@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2023-02-01/protectionpolicies
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/polling"
+)
+func (c ProtectionPoliciesClient) DeleteThenPoll(ctx context.Context, id BackupPolicyId) error {
+	result, err := c.Delete(ctx, id)
+	if err != nil {
+		return fmt.Errorf("performing Delete: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(); err != nil {
+		return fmt.Errorf("polling after Delete: %+v", err)
+	}
+
+	return nil
+}

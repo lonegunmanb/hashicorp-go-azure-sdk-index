@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/domains/beta/domain
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDomainClientWithBaseURI(sdkApi sdkEnv.Api) (*DomainClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "domain", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DomainClient: %+v", err)
+	}
+
+	return &DomainClient{
+		Client: client,
+	}, nil
+}

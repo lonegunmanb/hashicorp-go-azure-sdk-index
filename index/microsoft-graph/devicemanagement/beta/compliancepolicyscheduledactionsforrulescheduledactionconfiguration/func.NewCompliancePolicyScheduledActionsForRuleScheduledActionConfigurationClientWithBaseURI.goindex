@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/compliancepolicyscheduledactionsforrulescheduledactionconfiguration
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewCompliancePolicyScheduledActionsForRuleScheduledActionConfigurationClientWithBaseURI(sdkApi sdkEnv.Api) (*CompliancePolicyScheduledActionsForRuleScheduledActionConfigurationClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "compliancepolicyscheduledactionsforrulescheduledactionconfiguration", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating CompliancePolicyScheduledActionsForRuleScheduledActionConfigurationClient: %+v", err)
+	}
+
+	return &CompliancePolicyScheduledActionsForRuleScheduledActionConfigurationClient{
+		Client: client,
+	}, nil
+}

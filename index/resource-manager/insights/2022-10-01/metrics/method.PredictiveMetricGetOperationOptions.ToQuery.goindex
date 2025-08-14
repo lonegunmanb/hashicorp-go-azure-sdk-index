@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2022-10-01/metrics
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o PredictiveMetricGetOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.Aggregation != nil {
+		out.Append("aggregation", fmt.Sprintf("%v", *o.Aggregation))
+	}
+	if o.Interval != nil {
+		out.Append("interval", fmt.Sprintf("%v", *o.Interval))
+	}
+	if o.MetricName != nil {
+		out.Append("metricName", fmt.Sprintf("%v", *o.MetricName))
+	}
+	if o.MetricNamespace != nil {
+		out.Append("metricNamespace", fmt.Sprintf("%v", *o.MetricNamespace))
+	}
+	if o.Timespan != nil {
+		out.Append("timespan", fmt.Sprintf("%v", *o.Timespan))
+	}
+	return &out
+}

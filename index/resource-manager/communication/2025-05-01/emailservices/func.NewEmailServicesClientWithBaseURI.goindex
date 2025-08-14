@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/communication/2025-05-01/emailservices
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewEmailServicesClientWithBaseURI(sdkApi sdkEnv.Api) (*EmailServicesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "emailservices", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating EmailServicesClient: %+v", err)
+	}
+
+	return &EmailServicesClient{
+		Client: client,
+	}, nil
+}

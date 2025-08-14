@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2025-06-01/operationalizationclusters
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *AmlComputeProperties) GetAllocationStateTransitionTimeAsTime() (*time.Time, error) {
+	if o.AllocationStateTransitionTime == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.AllocationStateTransitionTime, "2006-01-02T15:04:05Z07:00")
+}

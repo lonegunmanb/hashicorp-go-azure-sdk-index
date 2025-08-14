@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/costs
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseReportingCycleType(input string) (*ReportingCycleType, error) {
+	vals := map[string]ReportingCycleType{
+		"calendarmonth": ReportingCycleTypeCalendarMonth,
+		"custom":        ReportingCycleTypeCustom,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ReportingCycleType(input)
+	return &out, nil
+}

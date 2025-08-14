@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-01-01/virtualwans
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c VirtualWANsClient) VpnGatewaysDeleteThenPoll(ctx context.Context, id VpnGatewayId) error {
+	result, err := c.VpnGatewaysDelete(ctx, id)
+	if err != nil {
+		return fmt.Errorf("performing VpnGatewaysDelete: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after VpnGatewaysDelete: %+v", err)
+	}
+
+	return nil
+}

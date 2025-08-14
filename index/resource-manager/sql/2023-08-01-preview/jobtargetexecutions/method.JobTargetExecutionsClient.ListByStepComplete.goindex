@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/jobtargetexecutions
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c JobTargetExecutionsClient) ListByStepComplete(ctx context.Context, id ExecutionStepId, options ListByStepOperationOptions) (ListByStepCompleteResult, error) {
+	return c.ListByStepCompleteMatchingPredicate(ctx, id, options, JobExecutionOperationPredicate{})
+}

@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2022-08-08/python2package
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func (s *ModuleProvisioningState) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseModuleProvisioningState(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}

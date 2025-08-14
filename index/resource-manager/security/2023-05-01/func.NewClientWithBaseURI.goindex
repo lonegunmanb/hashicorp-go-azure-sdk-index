@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/security/v2023_05_01
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/security/2023-05-01/servervulnerabilityassessmentssettings"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	serverVulnerabilityAssessmentsSettingsClient, err := servervulnerabilityassessmentssettings.NewServerVulnerabilityAssessmentsSettingsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ServerVulnerabilityAssessmentsSettings client: %+v", err)
+	}
+	configureFunc(serverVulnerabilityAssessmentsSettingsClient.Client)
+
+	return &Client{
+		ServerVulnerabilityAssessmentsSettings: serverVulnerabilityAssessmentsSettingsClient,
+	}, nil
+}

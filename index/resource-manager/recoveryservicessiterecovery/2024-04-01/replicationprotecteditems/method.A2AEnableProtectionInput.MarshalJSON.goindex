@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2024-04-01/replicationprotecteditems
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/edgezones"
+)
+func (s A2AEnableProtectionInput) MarshalJSON() ([]byte, error) {
+	type wrapper A2AEnableProtectionInput
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling A2AEnableProtectionInput: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling A2AEnableProtectionInput: %+v", err)
+	}
+
+	decoded["instanceType"] = "A2A"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling A2AEnableProtectionInput: %+v", err)
+	}
+
+	return encoded, nil
+}

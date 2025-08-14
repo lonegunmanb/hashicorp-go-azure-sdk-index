@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2024-04-01/replicationprotectableitems
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewReplicationProtectableItemsClientWithBaseURI(sdkApi sdkEnv.Api) (*ReplicationProtectableItemsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "replicationprotectableitems", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ReplicationProtectableItemsClient: %+v", err)
+	}
+
+	return &ReplicationProtectableItemsClient{
+		Client: client,
+	}, nil
+}

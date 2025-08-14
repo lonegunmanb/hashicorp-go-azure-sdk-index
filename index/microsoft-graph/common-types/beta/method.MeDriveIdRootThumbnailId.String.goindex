@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id MeDriveIdRootThumbnailId) String() string {
+	components := []string{
+		fmt.Sprintf("Drive: %q", id.DriveId),
+		fmt.Sprintf("Thumbnail Set: %q", id.ThumbnailSetId),
+	}
+	return fmt.Sprintf("Me Drive Id Root Thumbnail (%s)", strings.Join(components, "\n"))
+}

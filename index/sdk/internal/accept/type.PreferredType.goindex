@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/sdk/internal/accept
+import (
+	"fmt"
+	"sort"
+	"strconv"
+	"strings"
+)
+type PreferredType struct {
+	// ContentType is a singular media type (e.g. text/plain), or one partially containing
+	// wildcards (e.g. text/*), or entirely wildcards (e.g. */*)
+	ContentType string
+
+	// Parameters is a map of media type parameters, e.g. charset=utf-8
+	Parameters map[string]string
+
+	// Weight is the integer-normalized quality value representing the relative weight/preference
+	Weight qValue
+}

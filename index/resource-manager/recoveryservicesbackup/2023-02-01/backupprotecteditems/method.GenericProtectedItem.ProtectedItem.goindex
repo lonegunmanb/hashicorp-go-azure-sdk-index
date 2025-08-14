@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2023-02-01/backupprotecteditems
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (s GenericProtectedItem) ProtectedItem() BaseProtectedItemImpl {
+	return BaseProtectedItemImpl{
+		BackupManagementType:             s.BackupManagementType,
+		BackupSetName:                    s.BackupSetName,
+		ContainerName:                    s.ContainerName,
+		CreateMode:                       s.CreateMode,
+		DeferredDeleteTimeInUTC:          s.DeferredDeleteTimeInUTC,
+		DeferredDeleteTimeRemaining:      s.DeferredDeleteTimeRemaining,
+		IsArchiveEnabled:                 s.IsArchiveEnabled,
+		IsDeferredDeleteScheduleUpcoming: s.IsDeferredDeleteScheduleUpcoming,
+		IsRehydrate:                      s.IsRehydrate,
+		IsScheduledForDeferredDelete:     s.IsScheduledForDeferredDelete,
+		LastRecoveryPoint:                s.LastRecoveryPoint,
+		PolicyId:                         s.PolicyId,
+		PolicyName:                       s.PolicyName,
+		ProtectedItemType:                s.ProtectedItemType,
+		ResourceGuardOperationRequests:   s.ResourceGuardOperationRequests,
+		SoftDeleteRetentionPeriodInDays:  s.SoftDeleteRetentionPeriodInDays,
+		SourceResourceId:                 s.SourceResourceId,
+		WorkloadType:                     s.WorkloadType,
+	}
+}

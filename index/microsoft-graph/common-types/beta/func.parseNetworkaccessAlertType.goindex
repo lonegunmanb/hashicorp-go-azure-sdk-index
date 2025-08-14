@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNetworkaccessAlertType(input string) (*NetworkaccessAlertType, error) {
+	vals := map[string]NetworkaccessAlertType{
+		"crosstenantanomaly":             NetworkaccessAlertType_CrossTenantAnomaly,
+		"devicetokeninconsistency":       NetworkaccessAlertType_DeviceTokenInconsistency,
+		"dlp":                            NetworkaccessAlertType_Dlp,
+		"malware":                        NetworkaccessAlertType_Malware,
+		"patientzero":                    NetworkaccessAlertType_PatientZero,
+		"suspiciousprocess":              NetworkaccessAlertType_SuspiciousProcess,
+		"threatintelligencetransactions": NetworkaccessAlertType_ThreatIntelligenceTransactions,
+		"unhealthyconnectors":            NetworkaccessAlertType_UnhealthyConnectors,
+		"unhealthyremotenetworks":        NetworkaccessAlertType_UnhealthyRemoteNetworks,
+		"webcontentblocked":              NetworkaccessAlertType_WebContentBlocked,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NetworkaccessAlertType(input)
+	return &out, nil
+}

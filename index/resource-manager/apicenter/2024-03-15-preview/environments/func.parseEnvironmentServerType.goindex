@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apicenter/2024-03-15-preview/environments
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEnvironmentServerType(input string) (*EnvironmentServerType, error) {
+	vals := map[string]EnvironmentServerType{
+		"aws api gateway":         EnvironmentServerTypeAWSAPIGateway,
+		"apigee api management":   EnvironmentServerTypeApigeeAPIManagement,
+		"azure api management":    EnvironmentServerTypeAzureAPIManagement,
+		"azure compute service":   EnvironmentServerTypeAzureComputeService,
+		"kong api gateway":        EnvironmentServerTypeKongAPIGateway,
+		"kubernetes":              EnvironmentServerTypeKubernetes,
+		"mulesoft api management": EnvironmentServerTypeMuleSoftAPIManagement,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EnvironmentServerType(input)
+	return &out, nil
+}

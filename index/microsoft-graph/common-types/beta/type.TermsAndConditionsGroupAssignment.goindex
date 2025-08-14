@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type TermsAndConditionsGroupAssignment struct {
+	// Unique identifier of a group that the T&C policy is assigned to.
+	TargetGroupId nullable.Type[string] `json:"targetGroupId,omitempty"`
+
+	// Navigation link to the terms and conditions that are assigned.
+	TermsAndConditions *TermsAndConditions `json:"termsAndConditions,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

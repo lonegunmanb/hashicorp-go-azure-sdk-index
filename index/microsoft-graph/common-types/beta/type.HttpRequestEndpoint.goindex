@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type HttpRequestEndpoint struct {
+	// The HTTP endpoint that a custom extension calls.
+	TargetUrl nullable.Type[string] `json:"targetUrl,omitempty"`
+
+	// Fields inherited from CustomExtensionEndpointConfiguration
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

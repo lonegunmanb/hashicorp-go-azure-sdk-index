@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/certificateordersdiagnostics
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseInsightStatus(input string) (*InsightStatus, error) {
+	vals := map[string]InsightStatus{
+		"critical": InsightStatusCritical,
+		"info":     InsightStatusInfo,
+		"none":     InsightStatusNone,
+		"success":  InsightStatusSuccess,
+		"warning":  InsightStatusWarning,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := InsightStatus(input)
+	return &out, nil
+}

@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-11-01/alertrules
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMicrosoftSecurityProductName(input string) (*MicrosoftSecurityProductName, error) {
+	vals := map[string]MicrosoftSecurityProductName{
+		"azure active directory identity protection": MicrosoftSecurityProductNameAzureActiveDirectoryIdentityProtection,
+		"azure advanced threat protection":           MicrosoftSecurityProductNameAzureAdvancedThreatProtection,
+		"azure security center":                      MicrosoftSecurityProductNameAzureSecurityCenter,
+		"azure security center for iot":              MicrosoftSecurityProductNameAzureSecurityCenterForIoT,
+		"microsoft cloud app security":               MicrosoftSecurityProductNameMicrosoftCloudAppSecurity,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MicrosoftSecurityProductName(input)
+	return &out, nil
+}

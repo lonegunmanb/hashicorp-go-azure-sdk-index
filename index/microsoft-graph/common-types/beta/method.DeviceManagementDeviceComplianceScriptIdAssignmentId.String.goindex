@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DeviceManagementDeviceComplianceScriptIdAssignmentId) String() string {
+	components := []string{
+		fmt.Sprintf("Device Compliance Script: %q", id.DeviceComplianceScriptId),
+		fmt.Sprintf("Device Health Script Assignment: %q", id.DeviceHealthScriptAssignmentId),
+	}
+	return fmt.Sprintf("Device Management Device Compliance Script Id Assignment (%s)", strings.Join(components, "\n"))
+}

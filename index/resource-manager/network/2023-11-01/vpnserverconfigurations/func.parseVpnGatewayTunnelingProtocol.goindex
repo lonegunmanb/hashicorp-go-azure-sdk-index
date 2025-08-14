@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-11-01/vpnserverconfigurations
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVpnGatewayTunnelingProtocol(input string) (*VpnGatewayTunnelingProtocol, error) {
+	vals := map[string]VpnGatewayTunnelingProtocol{
+		"ikev2":   VpnGatewayTunnelingProtocolIkeVTwo,
+		"openvpn": VpnGatewayTunnelingProtocolOpenVPN,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VpnGatewayTunnelingProtocol(input)
+	return &out, nil
+}

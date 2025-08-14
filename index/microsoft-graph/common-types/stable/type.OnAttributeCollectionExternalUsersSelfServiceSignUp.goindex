@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+)
+type OnAttributeCollectionExternalUsersSelfServiceSignUp struct {
+	// Required. The configuration for how attributes are displayed in the sign-up experience defined by a user flow, like
+	// the externalUsersSelfServiceSignupEventsFlow, specifically on the attribute collection page.
+	AttributeCollectionPage AuthenticationAttributeCollectionPage `json:"attributeCollectionPage"`
+
+	Attributes *[]IdentityUserFlowAttribute `json:"attributes,omitempty"`
+
+	// Fields inherited from OnAttributeCollectionHandler
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

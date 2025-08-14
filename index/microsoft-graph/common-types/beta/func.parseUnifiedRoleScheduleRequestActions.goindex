@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseUnifiedRoleScheduleRequestActions(input string) (*UnifiedRoleScheduleRequestActions, error) {
+	vals := map[string]UnifiedRoleScheduleRequestActions{
+		"adminassign":    UnifiedRoleScheduleRequestActions_AdminAssign,
+		"adminextend":    UnifiedRoleScheduleRequestActions_AdminExtend,
+		"adminremove":    UnifiedRoleScheduleRequestActions_AdminRemove,
+		"adminrenew":     UnifiedRoleScheduleRequestActions_AdminRenew,
+		"adminupdate":    UnifiedRoleScheduleRequestActions_AdminUpdate,
+		"selfactivate":   UnifiedRoleScheduleRequestActions_SelfActivate,
+		"selfdeactivate": UnifiedRoleScheduleRequestActions_SelfDeactivate,
+		"selfextend":     UnifiedRoleScheduleRequestActions_SelfExtend,
+		"selfrenew":      UnifiedRoleScheduleRequestActions_SelfRenew,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UnifiedRoleScheduleRequestActions(input)
+	return &out, nil
+}

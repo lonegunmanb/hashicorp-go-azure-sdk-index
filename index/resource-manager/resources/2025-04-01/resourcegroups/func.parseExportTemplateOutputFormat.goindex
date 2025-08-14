@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2025-04-01/resourcegroups
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseExportTemplateOutputFormat(input string) (*ExportTemplateOutputFormat, error) {
+	vals := map[string]ExportTemplateOutputFormat{
+		"bicep": ExportTemplateOutputFormatBicep,
+		"json":  ExportTemplateOutputFormatJson,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ExportTemplateOutputFormat(input)
+	return &out, nil
+}

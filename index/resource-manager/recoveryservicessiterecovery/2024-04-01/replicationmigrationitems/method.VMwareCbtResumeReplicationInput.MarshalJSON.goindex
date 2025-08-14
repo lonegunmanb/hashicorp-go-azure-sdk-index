@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2024-04-01/replicationmigrationitems
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s VMwareCbtResumeReplicationInput) MarshalJSON() ([]byte, error) {
+	type wrapper VMwareCbtResumeReplicationInput
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling VMwareCbtResumeReplicationInput: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling VMwareCbtResumeReplicationInput: %+v", err)
+	}
+
+	decoded["instanceType"] = "VMwareCbt"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling VMwareCbtResumeReplicationInput: %+v", err)
+	}
+
+	return encoded, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/lifecycleworkflowcustomtaskextension
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewLifecycleWorkflowCustomTaskExtensionClientWithBaseURI(sdkApi sdkEnv.Api) (*LifecycleWorkflowCustomTaskExtensionClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "lifecycleworkflowcustomtaskextension", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating LifecycleWorkflowCustomTaskExtensionClient: %+v", err)
+	}
+
+	return &LifecycleWorkflowCustomTaskExtensionClient{
+		Client: client,
+	}, nil
+}

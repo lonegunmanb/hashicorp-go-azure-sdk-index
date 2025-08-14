@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicefabricmanagedcluster/2024-04-01/services
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalScalingMechanismImplementation(input []byte) (ScalingMechanism, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling ScalingMechanism into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["kind"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "AddRemoveIncrementalNamedPartition") {
+		var out AddRemoveIncrementalNamedPartitionScalingMechanism
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AddRemoveIncrementalNamedPartitionScalingMechanism: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "ScalePartitionInstanceCount") {
+		var out PartitionInstanceCountScaleMechanism
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into PartitionInstanceCountScaleMechanism: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseScalingMechanismImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseScalingMechanismImpl: %+v", err)
+	}
+
+	return RawScalingMechanismImpl{
+		scalingMechanism: parent,
+		Type:             value,
+		Values:           temp,
+	}, nil
+
+}

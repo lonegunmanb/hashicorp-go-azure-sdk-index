@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id UserIdAuthenticationWindowsHelloForBusinessMethodId) String() string {
+	components := []string{
+		fmt.Sprintf("User: %q", id.UserId),
+		fmt.Sprintf("Windows Hello For Business Authentication Method: %q", id.WindowsHelloForBusinessAuthenticationMethodId),
+	}
+	return fmt.Sprintf("User Id Authentication Windows Hello For Business Method (%s)", strings.Join(components, "\n"))
+}

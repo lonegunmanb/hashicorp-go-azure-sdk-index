@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type CommentAction struct {
+	// If true, this activity was a reply to an existing comment thread.
+	IsReply nullable.Type[bool] `json:"isReply,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The identity of the user who started the comment thread.
+	ParentAuthor IdentitySet `json:"parentAuthor"`
+
+	// The identities of the users participating in this comment thread.
+	Participants *[]IdentitySet `json:"participants,omitempty"`
+}

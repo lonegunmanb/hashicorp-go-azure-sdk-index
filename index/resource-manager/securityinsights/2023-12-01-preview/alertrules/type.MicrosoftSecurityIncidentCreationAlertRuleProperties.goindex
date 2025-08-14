@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-12-01-preview/alertrules
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type MicrosoftSecurityIncidentCreationAlertRuleProperties struct {
+	AlertRuleTemplateName     *string                      `json:"alertRuleTemplateName,omitempty"`
+	Description               *string                      `json:"description,omitempty"`
+	DisplayName               string                       `json:"displayName"`
+	DisplayNamesExcludeFilter *[]string                    `json:"displayNamesExcludeFilter,omitempty"`
+	DisplayNamesFilter        *[]string                    `json:"displayNamesFilter,omitempty"`
+	Enabled                   bool                         `json:"enabled"`
+	LastModifiedUtc           *string                      `json:"lastModifiedUtc,omitempty"`
+	ProductFilter             MicrosoftSecurityProductName `json:"productFilter"`
+	SeveritiesFilter          *[]AlertSeverity             `json:"severitiesFilter,omitempty"`
+}

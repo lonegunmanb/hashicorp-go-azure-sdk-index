@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseLostModeState(input string) (*LostModeState, error) {
+	vals := map[string]LostModeState{
+		"disabled": LostModeState_Disabled,
+		"enabled":  LostModeState_Enabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := LostModeState(input)
+	return &out, nil
+}

@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/devicemanagementscriptuserrunstate
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DeviceManagementScriptUserRunStateClient) ListDeviceManagementScriptUserRunStatesComplete(ctx context.Context, id beta.DeviceManagementDeviceManagementScriptId, options ListDeviceManagementScriptUserRunStatesOperationOptions) (ListDeviceManagementScriptUserRunStatesCompleteResult, error) {
+	return c.ListDeviceManagementScriptUserRunStatesCompleteMatchingPredicate(ctx, id, options, DeviceManagementScriptUserStateOperationPredicate{})
+}

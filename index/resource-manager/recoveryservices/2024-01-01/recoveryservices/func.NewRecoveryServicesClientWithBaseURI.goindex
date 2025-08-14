@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservices/2024-01-01/recoveryservices
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewRecoveryServicesClientWithBaseURI(sdkApi sdkEnv.Api) (*RecoveryServicesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "recoveryservices", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating RecoveryServicesClient: %+v", err)
+	}
+
+	return &RecoveryServicesClient{
+		Client: client,
+	}, nil
+}

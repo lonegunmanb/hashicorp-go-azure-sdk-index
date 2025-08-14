@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/job
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRegressionPrimaryMetrics(input string) (*RegressionPrimaryMetrics, error) {
+	vals := map[string]RegressionPrimaryMetrics{
+		"normalizedmeanabsoluteerror":    RegressionPrimaryMetricsNormalizedMeanAbsoluteError,
+		"normalizedrootmeansquarederror": RegressionPrimaryMetricsNormalizedRootMeanSquaredError,
+		"r2score":                        RegressionPrimaryMetricsRTwoScore,
+		"spearmancorrelation":            RegressionPrimaryMetricsSpearmanCorrelation,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RegressionPrimaryMetrics(input)
+	return &out, nil
+}

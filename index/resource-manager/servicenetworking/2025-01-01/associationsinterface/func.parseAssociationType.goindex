@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicenetworking/2025-01-01/associationsinterface
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAssociationType(input string) (*AssociationType, error) {
+	vals := map[string]AssociationType{
+		"subnets": AssociationTypeSubnets,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AssociationType(input)
+	return &out, nil
+}

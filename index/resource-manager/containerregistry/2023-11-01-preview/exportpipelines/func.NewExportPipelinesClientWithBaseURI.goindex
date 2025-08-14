@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerregistry/2023-11-01-preview/exportpipelines
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewExportPipelinesClientWithBaseURI(sdkApi sdkEnv.Api) (*ExportPipelinesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "exportpipelines", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ExportPipelinesClient: %+v", err)
+	}
+
+	return &ExportPipelinesClient{
+		Client: client,
+	}, nil
+}

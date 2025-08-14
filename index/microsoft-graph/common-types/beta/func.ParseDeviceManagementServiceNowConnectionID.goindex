@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseDeviceManagementServiceNowConnectionID(input string) (*DeviceManagementServiceNowConnectionId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&DeviceManagementServiceNowConnectionId{})
+	parsed, err := parser.Parse(input, false)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := DeviceManagementServiceNowConnectionId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDevicePlatformType(input string) (*DevicePlatformType, error) {
+	vals := map[string]DevicePlatformType{
+		"android":                            DevicePlatformType_Android,
+		"androidaosp":                        DevicePlatformType_AndroidAOSP,
+		"androidforwork":                     DevicePlatformType_AndroidForWork,
+		"androidmobileapplicationmanagement": DevicePlatformType_AndroidMobileApplicationManagement,
+		"androidworkprofile":                 DevicePlatformType_AndroidWorkProfile,
+		"ios":                                DevicePlatformType_IOS,
+		"iosmobileapplicationmanagement":     DevicePlatformType_IOSMobileApplicationManagement,
+		"macos":                              DevicePlatformType_MacOS,
+		"unknown":                            DevicePlatformType_Unknown,
+		"windows10andlater":                  DevicePlatformType_Windows10AndLater,
+		"windows81andlater":                  DevicePlatformType_Windows81AndLater,
+		"windowsphone81":                     DevicePlatformType_WindowsPhone81,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DevicePlatformType(input)
+	return &out, nil
+}

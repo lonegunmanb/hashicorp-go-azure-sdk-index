@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseResultantAppState(input string) (*ResultantAppState, error) {
+	vals := map[string]ResultantAppState{
+		"failed":          ResultantAppState_Failed,
+		"installed":       ResultantAppState_Installed,
+		"notapplicable":   ResultantAppState_NotApplicable,
+		"notinstalled":    ResultantAppState_NotInstalled,
+		"pendinginstall":  ResultantAppState_PendingInstall,
+		"uninstallfailed": ResultantAppState_UninstallFailed,
+		"unknown":         ResultantAppState_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ResultantAppState(input)
+	return &out, nil
+}

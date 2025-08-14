@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2023-11-01/softwareupdateconfigurationmachinerun
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSoftwareUpdateConfigurationMachineRunClientWithBaseURI(sdkApi sdkEnv.Api) (*SoftwareUpdateConfigurationMachineRunClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "softwareupdateconfigurationmachinerun", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SoftwareUpdateConfigurationMachineRunClient: %+v", err)
+	}
+
+	return &SoftwareUpdateConfigurationMachineRunClient{
+		Client: client,
+	}, nil
+}

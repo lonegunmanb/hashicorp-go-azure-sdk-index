@@ -1,0 +1,37 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s ManagedTenantsTenantStatusInformation) MarshalJSON() ([]byte, error) {
+	type wrapper ManagedTenantsTenantStatusInformation
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ManagedTenantsTenantStatusInformation: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ManagedTenantsTenantStatusInformation: %+v", err)
+	}
+
+	delete(decoded, "delegatedPrivilegeStatus")
+	delete(decoded, "lastDelegatedPrivilegeRefreshDateTime")
+	delete(decoded, "offboardedByUserId")
+	delete(decoded, "offboardedDateTime")
+	delete(decoded, "onboardedByUserId")
+	delete(decoded, "onboardedDateTime")
+	delete(decoded, "onboardingStatus")
+	delete(decoded, "tenantOnboardingEligibilityReason")
+	delete(decoded, "workloadStatuses")
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ManagedTenantsTenantStatusInformation: %+v", err)
+	}
+
+	return encoded, nil
+}

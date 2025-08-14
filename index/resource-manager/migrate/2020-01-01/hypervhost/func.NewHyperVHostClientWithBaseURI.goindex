@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-01-01/hypervhost
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewHyperVHostClientWithBaseURI(sdkApi sdkEnv.Api) (*HyperVHostClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "hypervhost", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating HyperVHostClient: %+v", err)
+	}
+
+	return &HyperVHostClient{
+		Client: client,
+	}, nil
+}

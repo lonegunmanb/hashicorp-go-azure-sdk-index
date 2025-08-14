@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s MailAssessmentRequest) ThreatAssessmentRequest() BaseThreatAssessmentRequestImpl {
+	return BaseThreatAssessmentRequestImpl{
+		Category:           s.Category,
+		ContentType:        s.ContentType,
+		CreatedBy:          s.CreatedBy,
+		CreatedDateTime:    s.CreatedDateTime,
+		ExpectedAssessment: s.ExpectedAssessment,
+		RequestSource:      s.RequestSource,
+		Results:            s.Results,
+		Status:             s.Status,
+		Id:                 s.Id,
+		ODataId:            s.ODataId,
+		ODataType:          s.ODataType,
+	}
+}

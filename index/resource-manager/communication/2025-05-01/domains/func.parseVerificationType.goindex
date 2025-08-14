@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/communication/2025-05-01/domains
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVerificationType(input string) (*VerificationType, error) {
+	vals := map[string]VerificationType{
+		"dkim":   VerificationTypeDKIM,
+		"dkim2":  VerificationTypeDKIMTwo,
+		"dmarc":  VerificationTypeDMARC,
+		"domain": VerificationTypeDomain,
+		"spf":    VerificationTypeSPF,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VerificationType(input)
+	return &out, nil
+}

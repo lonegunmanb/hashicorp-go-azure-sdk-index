@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelmember
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c TeamPrimaryChannelMemberClient) RemoveTeamPrimaryChannelMembersComplete(ctx context.Context, id beta.GroupId, input RemoveTeamPrimaryChannelMembersRequest, options RemoveTeamPrimaryChannelMembersOperationOptions) (RemoveTeamPrimaryChannelMembersCompleteResult, error) {
+	return c.RemoveTeamPrimaryChannelMembersCompleteMatchingPredicate(ctx, id, input, options, ActionResultPartOperationPredicate{})
+}

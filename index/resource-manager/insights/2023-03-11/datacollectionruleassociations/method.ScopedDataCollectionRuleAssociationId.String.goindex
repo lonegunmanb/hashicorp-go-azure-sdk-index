@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2023-03-11/datacollectionruleassociations
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ScopedDataCollectionRuleAssociationId) String() string {
+	components := []string{
+		fmt.Sprintf("Resource Uri: %q", id.ResourceUri),
+		fmt.Sprintf("Data Collection Rule Association Name: %q", id.DataCollectionRuleAssociationName),
+	}
+	return fmt.Sprintf("Scoped Data Collection Rule Association (%s)", strings.Join(components, "\n"))
+}

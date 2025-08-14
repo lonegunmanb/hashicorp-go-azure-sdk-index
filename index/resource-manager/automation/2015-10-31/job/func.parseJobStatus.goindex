@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/job
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseJobStatus(input string) (*JobStatus, error) {
+	vals := map[string]JobStatus{
+		"activating":   JobStatusActivating,
+		"blocked":      JobStatusBlocked,
+		"completed":    JobStatusCompleted,
+		"disconnected": JobStatusDisconnected,
+		"failed":       JobStatusFailed,
+		"new":          JobStatusNew,
+		"removing":     JobStatusRemoving,
+		"resuming":     JobStatusResuming,
+		"running":      JobStatusRunning,
+		"stopped":      JobStatusStopped,
+		"stopping":     JobStatusStopping,
+		"suspended":    JobStatusSuspended,
+		"suspending":   JobStatusSuspending,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := JobStatus(input)
+	return &out, nil
+}

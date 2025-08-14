@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-09-01/virtualwans
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c VirtualWANsClient) VirtualHubsGetInboundRoutesThenPoll(ctx context.Context, id VirtualHubId, input GetInboundRoutesParameters) error {
+	result, err := c.VirtualHubsGetInboundRoutes(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing VirtualHubsGetInboundRoutes: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after VirtualHubsGetInboundRoutes: %+v", err)
+	}
+
+	return nil
+}

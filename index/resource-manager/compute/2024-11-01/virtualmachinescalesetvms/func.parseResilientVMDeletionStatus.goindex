@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/virtualmachinescalesetvms
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseResilientVMDeletionStatus(input string) (*ResilientVMDeletionStatus, error) {
+	vals := map[string]ResilientVMDeletionStatus{
+		"disabled":   ResilientVMDeletionStatusDisabled,
+		"enabled":    ResilientVMDeletionStatusEnabled,
+		"failed":     ResilientVMDeletionStatusFailed,
+		"inprogress": ResilientVMDeletionStatusInProgress,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ResilientVMDeletionStatus(input)
+	return &out, nil
+}

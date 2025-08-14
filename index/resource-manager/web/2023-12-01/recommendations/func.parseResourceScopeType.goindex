@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/recommendations
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseResourceScopeType(input string) (*ResourceScopeType, error) {
+	vals := map[string]ResourceScopeType{
+		"serverfarm":   ResourceScopeTypeServerFarm,
+		"subscription": ResourceScopeTypeSubscription,
+		"website":      ResourceScopeTypeWebSite,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ResourceScopeType(input)
+	return &out, nil
+}

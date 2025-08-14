@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/triggerruns
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTriggerrunsClientWithBaseURI(sdkApi sdkEnv.Api) (*TriggerrunsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "triggerruns", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TriggerrunsClient: %+v", err)
+	}
+
+	return &TriggerrunsClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,36 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ManagedTenantsDeviceHealthStatus struct {
+	BlueScreenCount     nullable.Type[int64]  `json:"blueScreenCount,omitempty"`
+	DeviceId            nullable.Type[string] `json:"deviceId,omitempty"`
+	DeviceMake          nullable.Type[string] `json:"deviceMake,omitempty"`
+	DeviceModel         nullable.Type[string] `json:"deviceModel,omitempty"`
+	DeviceName          nullable.Type[string] `json:"deviceName,omitempty"`
+	HealthStatus        nullable.Type[string] `json:"healthStatus,omitempty"`
+	LastUpdatedDateTime nullable.Type[string] `json:"lastUpdatedDateTime,omitempty"`
+	OsVersion           nullable.Type[string] `json:"osVersion,omitempty"`
+	PrimaryDiskType     nullable.Type[string] `json:"primaryDiskType,omitempty"`
+	RestartCount        nullable.Type[int64]  `json:"restartCount,omitempty"`
+	TenantDisplayName   nullable.Type[string] `json:"tenantDisplayName,omitempty"`
+	TenantId            nullable.Type[string] `json:"tenantId,omitempty"`
+	TopProcesses        nullable.Type[string] `json:"topProcesses,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

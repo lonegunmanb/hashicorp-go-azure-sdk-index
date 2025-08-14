@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/labservices/2023-06-07/lab
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c LabClient) PublishThenPoll(ctx context.Context, id LabId) error {
+	result, err := c.Publish(ctx, id)
+	if err != nil {
+		return fmt.Errorf("performing Publish: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after Publish: %+v", err)
+	}
+
+	return nil
+}

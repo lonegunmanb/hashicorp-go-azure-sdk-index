@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/databaseadvisors
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAutoExecuteStatusInheritedFrom(input string) (*AutoExecuteStatusInheritedFrom, error) {
+	vals := map[string]AutoExecuteStatusInheritedFrom{
+		"database":     AutoExecuteStatusInheritedFromDatabase,
+		"default":      AutoExecuteStatusInheritedFromDefault,
+		"elasticpool":  AutoExecuteStatusInheritedFromElasticPool,
+		"server":       AutoExecuteStatusInheritedFromServer,
+		"subscription": AutoExecuteStatusInheritedFromSubscription,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AutoExecuteStatusInheritedFrom(input)
+	return &out, nil
+}

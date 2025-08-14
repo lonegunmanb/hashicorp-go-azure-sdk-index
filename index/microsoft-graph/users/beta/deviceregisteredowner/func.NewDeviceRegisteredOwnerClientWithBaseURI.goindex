@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/deviceregisteredowner
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDeviceRegisteredOwnerClientWithBaseURI(sdkApi sdkEnv.Api) (*DeviceRegisteredOwnerClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "deviceregisteredowner", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DeviceRegisteredOwnerClient: %+v", err)
+	}
+
+	return &DeviceRegisteredOwnerClient{
+		Client: client,
+	}, nil
+}

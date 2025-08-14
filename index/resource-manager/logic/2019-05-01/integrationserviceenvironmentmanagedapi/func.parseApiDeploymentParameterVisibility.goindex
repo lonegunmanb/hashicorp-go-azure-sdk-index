@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationserviceenvironmentmanagedapi
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseApiDeploymentParameterVisibility(input string) (*ApiDeploymentParameterVisibility, error) {
+	vals := map[string]ApiDeploymentParameterVisibility{
+		"default":      ApiDeploymentParameterVisibilityDefault,
+		"internal":     ApiDeploymentParameterVisibilityInternal,
+		"notspecified": ApiDeploymentParameterVisibilityNotSpecified,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ApiDeploymentParameterVisibility(input)
+	return &out, nil
+}

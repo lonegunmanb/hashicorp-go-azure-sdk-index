@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2024-09-01/workloadnetworks
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewWorkloadNetworksClientWithBaseURI(sdkApi sdkEnv.Api) (*WorkloadNetworksClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "workloadnetworks", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating WorkloadNetworksClient: %+v", err)
+	}
+
+	return &WorkloadNetworksClient{
+		Client: client,
+	}, nil
+}

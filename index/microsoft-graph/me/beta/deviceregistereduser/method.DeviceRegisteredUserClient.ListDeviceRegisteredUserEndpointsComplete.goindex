@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/deviceregistereduser
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DeviceRegisteredUserClient) ListDeviceRegisteredUserEndpointsComplete(ctx context.Context, id beta.MeDeviceId, options ListDeviceRegisteredUserEndpointsOperationOptions) (ListDeviceRegisteredUserEndpointsCompleteResult, error) {
+	return c.ListDeviceRegisteredUserEndpointsCompleteMatchingPredicate(ctx, id, options, EndpointOperationPredicate{})
+}

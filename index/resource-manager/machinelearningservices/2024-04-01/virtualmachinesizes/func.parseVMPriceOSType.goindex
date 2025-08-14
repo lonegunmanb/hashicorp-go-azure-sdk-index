@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/virtualmachinesizes
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVMPriceOSType(input string) (*VMPriceOSType, error) {
+	vals := map[string]VMPriceOSType{
+		"linux":   VMPriceOSTypeLinux,
+		"windows": VMPriceOSTypeWindows,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VMPriceOSType(input)
+	return &out, nil
+}

@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerregistry/2019-06-01-preview/registries
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseArchitecture(input string) (*Architecture, error) {
+	vals := map[string]Architecture{
+		"amd64": ArchitectureAmdSixFour,
+		"arm":   ArchitectureArm,
+		"arm64": ArchitectureArmSixFour,
+		"386":   ArchitectureThreeEightSix,
+		"x86":   ArchitectureXEightSix,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Architecture(input)
+	return &out, nil
+}

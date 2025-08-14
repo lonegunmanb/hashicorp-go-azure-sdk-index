@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMediaDirection(input string) (*MediaDirection, error) {
+	vals := map[string]MediaDirection{
+		"inactive":    MediaDirection_Inactive,
+		"receiveonly": MediaDirection_ReceiveOnly,
+		"sendonly":    MediaDirection_SendOnly,
+		"sendreceive": MediaDirection_SendReceive,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MediaDirection(input)
+	return &out, nil
+}

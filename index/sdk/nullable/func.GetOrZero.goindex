@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/sdk/nullable
+import (
+	"bytes"
+	"encoding/json"
+)
+func (t Type[T]) GetOrZero() T {
+	var empty T
+	val := t.Get()
+	if val == nil {
+		return empty
+	}
+	return *val
+}

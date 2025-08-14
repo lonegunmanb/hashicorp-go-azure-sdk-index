@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/put
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s MigratePostgreSqlAzureDbForPostgreSqlSyncTaskProperties) MarshalJSON() ([]byte, error) {
+	type wrapper MigratePostgreSqlAzureDbForPostgreSqlSyncTaskProperties
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling MigratePostgreSqlAzureDbForPostgreSqlSyncTaskProperties: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling MigratePostgreSqlAzureDbForPostgreSqlSyncTaskProperties: %+v", err)
+	}
+
+	decoded["taskType"] = "Migrate.PostgreSql.AzureDbForPostgreSql.SyncV2"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling MigratePostgreSqlAzureDbForPostgreSqlSyncTaskProperties: %+v", err)
+	}
+
+	return encoded, nil
+}

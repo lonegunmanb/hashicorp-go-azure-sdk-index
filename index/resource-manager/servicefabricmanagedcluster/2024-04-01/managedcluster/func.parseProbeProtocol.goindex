@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicefabricmanagedcluster/2024-04-01/managedcluster
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseProbeProtocol(input string) (*ProbeProtocol, error) {
+	vals := map[string]ProbeProtocol{
+		"http":  ProbeProtocolHTTP,
+		"https": ProbeProtocolHTTPS,
+		"tcp":   ProbeProtocolTcp,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ProbeProtocol(input)
+	return &out, nil
+}

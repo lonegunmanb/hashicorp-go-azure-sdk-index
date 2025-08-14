@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalOnTokenIssuanceStartHandlerImplementation(input []byte) (OnTokenIssuanceStartHandler, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling OnTokenIssuanceStartHandler into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.onTokenIssuanceStartCustomExtensionHandler") {
+		var out OnTokenIssuanceStartCustomExtensionHandler
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into OnTokenIssuanceStartCustomExtensionHandler: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseOnTokenIssuanceStartHandlerImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseOnTokenIssuanceStartHandlerImpl: %+v", err)
+	}
+
+	return RawOnTokenIssuanceStartHandlerImpl{
+		onTokenIssuanceStartHandler: parent,
+		Type:                        value,
+		Values:                      temp,
+	}, nil
+
+}

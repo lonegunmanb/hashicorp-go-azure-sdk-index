@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type SecurityFilePlanCitation struct {
+	// Represents the jurisdiction or agency that published the filePlanCitation.
+	CitationJurisdiction nullable.Type[string] `json:"citationJurisdiction,omitempty"`
+
+	// Represents the URL to the published filePlanCitation.
+	CitationUrl nullable.Type[string] `json:"citationUrl,omitempty"`
+
+	// Fields inherited from SecurityFilePlanDescriptorBase
+
+	// Unique string that defines the name for the file plan descriptor associated with a particular retention label.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

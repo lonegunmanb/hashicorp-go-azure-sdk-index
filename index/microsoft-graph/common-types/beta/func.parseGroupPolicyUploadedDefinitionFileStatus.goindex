@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseGroupPolicyUploadedDefinitionFileStatus(input string) (*GroupPolicyUploadedDefinitionFileStatus, error) {
+	vals := map[string]GroupPolicyUploadedDefinitionFileStatus{
+		"assigned":          GroupPolicyUploadedDefinitionFileStatus_Assigned,
+		"available":         GroupPolicyUploadedDefinitionFileStatus_Available,
+		"none":              GroupPolicyUploadedDefinitionFileStatus_None,
+		"removalfailed":     GroupPolicyUploadedDefinitionFileStatus_RemovalFailed,
+		"removalinprogress": GroupPolicyUploadedDefinitionFileStatus_RemovalInProgress,
+		"uploadfailed":      GroupPolicyUploadedDefinitionFileStatus_UploadFailed,
+		"uploadinprogress":  GroupPolicyUploadedDefinitionFileStatus_UploadInProgress,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := GroupPolicyUploadedDefinitionFileStatus(input)
+	return &out, nil
+}

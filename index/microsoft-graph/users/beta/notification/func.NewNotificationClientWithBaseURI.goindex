@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/notification
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewNotificationClientWithBaseURI(sdkApi sdkEnv.Api) (*NotificationClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "notification", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating NotificationClient: %+v", err)
+	}
+
+	return &NotificationClient{
+		Client: client,
+	}, nil
+}

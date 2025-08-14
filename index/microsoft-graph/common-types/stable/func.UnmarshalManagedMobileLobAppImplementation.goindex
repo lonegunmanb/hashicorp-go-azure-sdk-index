@@ -1,0 +1,51 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalManagedMobileLobAppImplementation(input []byte) (ManagedMobileLobApp, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling ManagedMobileLobApp into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.managedAndroidLobApp") {
+		var out ManagedAndroidLobApp
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ManagedAndroidLobApp: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.managedIOSLobApp") {
+		var out ManagedIOSLobApp
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ManagedIOSLobApp: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseManagedMobileLobAppImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseManagedMobileLobAppImpl: %+v", err)
+	}
+
+	return RawManagedMobileLobAppImpl{
+		managedMobileLobApp: parent,
+		Type:                value,
+		Values:              temp,
+	}, nil
+
+}

@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseFreeBusyStatus(input string) (*FreeBusyStatus, error) {
+	vals := map[string]FreeBusyStatus{
+		"busy":             FreeBusyStatus_Busy,
+		"free":             FreeBusyStatus_Free,
+		"oof":              FreeBusyStatus_Oof,
+		"tentative":        FreeBusyStatus_Tentative,
+		"unknown":          FreeBusyStatus_Unknown,
+		"workingelsewhere": FreeBusyStatus_WorkingElsewhere,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FreeBusyStatus(input)
+	return &out, nil
+}

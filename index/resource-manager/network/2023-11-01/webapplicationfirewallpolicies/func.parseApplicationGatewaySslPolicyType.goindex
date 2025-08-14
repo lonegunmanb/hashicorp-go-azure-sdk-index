@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-11-01/webapplicationfirewallpolicies
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseApplicationGatewaySslPolicyType(input string) (*ApplicationGatewaySslPolicyType, error) {
+	vals := map[string]ApplicationGatewaySslPolicyType{
+		"custom":     ApplicationGatewaySslPolicyTypeCustom,
+		"customv2":   ApplicationGatewaySslPolicyTypeCustomVTwo,
+		"predefined": ApplicationGatewaySslPolicyTypePredefined,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ApplicationGatewaySslPolicyType(input)
+	return &out, nil
+}

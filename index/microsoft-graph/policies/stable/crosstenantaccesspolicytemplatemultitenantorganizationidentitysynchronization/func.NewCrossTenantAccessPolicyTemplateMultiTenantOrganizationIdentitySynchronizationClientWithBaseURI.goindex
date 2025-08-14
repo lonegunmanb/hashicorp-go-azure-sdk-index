@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/stable/crosstenantaccesspolicytemplatemultitenantorganizationidentitysynchronization
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewCrossTenantAccessPolicyTemplateMultiTenantOrganizationIdentitySynchronizationClientWithBaseURI(sdkApi sdkEnv.Api) (*CrossTenantAccessPolicyTemplateMultiTenantOrganizationIdentitySynchronizationClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "crosstenantaccesspolicytemplatemultitenantorganizationidentitysynchronization", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating CrossTenantAccessPolicyTemplateMultiTenantOrganizationIdentitySynchronizationClient: %+v", err)
+	}
+
+	return &CrossTenantAccessPolicyTemplateMultiTenantOrganizationIdentitySynchronizationClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseServiceUpdateSeverity(input string) (*ServiceUpdateSeverity, error) {
+	vals := map[string]ServiceUpdateSeverity{
+		"critical": ServiceUpdateSeverity_Critical,
+		"high":     ServiceUpdateSeverity_High,
+		"normal":   ServiceUpdateSeverity_Normal,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ServiceUpdateSeverity(input)
+	return &out, nil
+}

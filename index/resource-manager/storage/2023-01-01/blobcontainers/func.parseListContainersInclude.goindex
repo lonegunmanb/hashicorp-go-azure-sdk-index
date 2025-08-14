@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-01-01/blobcontainers
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseListContainersInclude(input string) (*ListContainersInclude, error) {
+	vals := map[string]ListContainersInclude{
+		"deleted": ListContainersIncludeDeleted,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ListContainersInclude(input)
+	return &out, nil
+}

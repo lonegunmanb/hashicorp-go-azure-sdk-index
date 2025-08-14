@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+)
+type VirtualEventsRoot struct {
+	Events *[]VirtualEvent `json:"events,omitempty"`
+
+	// A collection of town halls. Nullable.
+	Townhalls *[]VirtualEventTownhall `json:"townhalls,omitempty"`
+
+	// A collection of webinars. Nullable.
+	Webinars *[]VirtualEventWebinar `json:"webinars,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

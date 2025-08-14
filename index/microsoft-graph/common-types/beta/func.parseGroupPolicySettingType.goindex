@@ -1,0 +1,45 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseGroupPolicySettingType(input string) (*GroupPolicySettingType, error) {
+	vals := map[string]GroupPolicySettingType{
+		"account":                 GroupPolicySettingType_Account,
+		"applockerrulecollection": GroupPolicySettingType_AppLockerRuleCollection,
+		"auditsetting":            GroupPolicySettingType_AuditSetting,
+		"datasourcessettings":     GroupPolicySettingType_DataSourcesSettings,
+		"devicessettings":         GroupPolicySettingType_DevicesSettings,
+		"drivemapsettings":        GroupPolicySettingType_DriveMapSettings,
+		"environmentvariables":    GroupPolicySettingType_EnvironmentVariables,
+		"filessettings":           GroupPolicySettingType_FilesSettings,
+		"folderoptions":           GroupPolicySettingType_FolderOptions,
+		"folders":                 GroupPolicySettingType_Folders,
+		"inifiles":                GroupPolicySettingType_IniFiles,
+		"internetoptions":         GroupPolicySettingType_InternetOptions,
+		"localusersandgroups":     GroupPolicySettingType_LocalUsersAndGroups,
+		"networkoptions":          GroupPolicySettingType_NetworkOptions,
+		"networkshares":           GroupPolicySettingType_NetworkShares,
+		"ntservices":              GroupPolicySettingType_NtServices,
+		"policy":                  GroupPolicySettingType_Policy,
+		"poweroptions":            GroupPolicySettingType_PowerOptions,
+		"printers":                GroupPolicySettingType_Printers,
+		"regionaloptionssettings": GroupPolicySettingType_RegionalOptionsSettings,
+		"registrysettings":        GroupPolicySettingType_RegistrySettings,
+		"scheduledtasks":          GroupPolicySettingType_ScheduledTasks,
+		"securityoptions":         GroupPolicySettingType_SecurityOptions,
+		"shortcutsettings":        GroupPolicySettingType_ShortcutSettings,
+		"startmenusettings":       GroupPolicySettingType_StartMenuSettings,
+		"unknown":                 GroupPolicySettingType_Unknown,
+		"userrightsassignment":    GroupPolicySettingType_UserRightsAssignment,
+		"windowsfirewallsettings": GroupPolicySettingType_WindowsFirewallSettings,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := GroupPolicySettingType(input)
+	return &out, nil
+}

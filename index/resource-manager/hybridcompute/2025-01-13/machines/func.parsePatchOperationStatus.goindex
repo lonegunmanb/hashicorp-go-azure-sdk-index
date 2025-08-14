@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2025-01-13/machines
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePatchOperationStatus(input string) (*PatchOperationStatus, error) {
+	vals := map[string]PatchOperationStatus{
+		"completedwithwarnings": PatchOperationStatusCompletedWithWarnings,
+		"failed":                PatchOperationStatusFailed,
+		"inprogress":            PatchOperationStatusInProgress,
+		"succeeded":             PatchOperationStatusSucceeded,
+		"unknown":               PatchOperationStatusUnknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PatchOperationStatus(input)
+	return &out, nil
+}

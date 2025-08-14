@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/managedinstancekeys
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ManagedInstanceKeysClient) ListByInstanceComplete(ctx context.Context, id commonids.SqlManagedInstanceId, options ListByInstanceOperationOptions) (ListByInstanceCompleteResult, error) {
+	return c.ListByInstanceCompleteMatchingPredicate(ctx, id, options, ManagedInstanceKeyOperationPredicate{})
+}

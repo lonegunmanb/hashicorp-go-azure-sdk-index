@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2024-08-01/flexibleservercapabilities
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c FlexibleServerCapabilitiesClient) ServerCapabilitiesListComplete(ctx context.Context, id FlexibleServerId) (ServerCapabilitiesListCompleteResult, error) {
+	return c.ServerCapabilitiesListCompleteMatchingPredicate(ctx, id, FlexibleServerCapabilityOperationPredicate{})
+}

@@ -1,0 +1,42 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s FileStorageContainer) MarshalJSON() ([]byte, error) {
+	type wrapper FileStorageContainer
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling FileStorageContainer: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling FileStorageContainer: %+v", err)
+	}
+
+	delete(decoded, "containerTypeId")
+	delete(decoded, "createdDateTime")
+	delete(decoded, "drive")
+	delete(decoded, "lockState")
+	delete(decoded, "owners")
+	delete(decoded, "ownershipType")
+	delete(decoded, "recycleBin")
+	delete(decoded, "status")
+	delete(decoded, "storageUsedInBytes")
+	delete(decoded, "viewpoint")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.fileStorageContainer"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling FileStorageContainer: %+v", err)
+	}
+
+	return encoded, nil
+}

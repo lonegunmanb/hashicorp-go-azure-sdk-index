@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s BusinessFlowSettings) AccessReviewSettings() BaseAccessReviewSettingsImpl {
+	return BaseAccessReviewSettingsImpl{
+		AccessRecommendationsEnabled:    s.AccessRecommendationsEnabled,
+		ActivityDurationInDays:          s.ActivityDurationInDays,
+		AutoApplyReviewResultsEnabled:   s.AutoApplyReviewResultsEnabled,
+		AutoReviewEnabled:               s.AutoReviewEnabled,
+		AutoReviewSettings:              s.AutoReviewSettings,
+		JustificationRequiredOnApproval: s.JustificationRequiredOnApproval,
+		MailNotificationsEnabled:        s.MailNotificationsEnabled,
+		ODataId:                         s.ODataId,
+		ODataType:                       s.ODataType,
+		RecurrenceSettings:              s.RecurrenceSettings,
+		RemindersEnabled:                s.RemindersEnabled,
+	}
+}

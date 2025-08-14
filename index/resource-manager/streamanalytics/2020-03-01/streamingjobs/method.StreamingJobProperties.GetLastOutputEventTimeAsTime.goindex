@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/streamanalytics/2020-03-01/streamingjobs
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *StreamingJobProperties) GetLastOutputEventTimeAsTime() (*time.Time, error) {
+	if o.LastOutputEventTime == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.LastOutputEventTime, "2006-01-02T15:04:05Z07:00")
+}

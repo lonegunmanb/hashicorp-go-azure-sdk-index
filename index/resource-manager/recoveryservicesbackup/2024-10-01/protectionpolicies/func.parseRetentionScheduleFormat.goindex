@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2024-10-01/protectionpolicies
+import (
+	"strings"
+)
+func parseRetentionScheduleFormat(input string) (*RetentionScheduleFormat, error) {
+	vals := map[string]RetentionScheduleFormat{
+		"daily":   RetentionScheduleFormatDaily,
+		"invalid": RetentionScheduleFormatInvalid,
+		"weekly":  RetentionScheduleFormatWeekly,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RetentionScheduleFormat(input)
+	return &out, nil
+}

@@ -1,0 +1,36 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/botservice/2022-09-15/channel
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseBotServiceChannelType(input string) (*BotServiceChannelType, error) {
+	vals := map[string]BotServiceChannelType{
+		"acschatchannel":          BotServiceChannelTypeAcsChatChannel,
+		"alexachannel":            BotServiceChannelTypeAlexaChannel,
+		"directlinechannel":       BotServiceChannelTypeDirectLineChannel,
+		"directlinespeechchannel": BotServiceChannelTypeDirectLineSpeechChannel,
+		"emailchannel":            BotServiceChannelTypeEmailChannel,
+		"facebookchannel":         BotServiceChannelTypeFacebookChannel,
+		"kikchannel":              BotServiceChannelTypeKikChannel,
+		"linechannel":             BotServiceChannelTypeLineChannel,
+		"m365extensions":          BotServiceChannelTypeM365Extensions,
+		"msteamschannel":          BotServiceChannelTypeMsTeamsChannel,
+		"omnichannel":             BotServiceChannelTypeOmnichannel,
+		"outlookchannel":          BotServiceChannelTypeOutlookChannel,
+		"searchassistant":         BotServiceChannelTypeSearchAssistant,
+		"skypechannel":            BotServiceChannelTypeSkypeChannel,
+		"slackchannel":            BotServiceChannelTypeSlackChannel,
+		"smschannel":              BotServiceChannelTypeSmsChannel,
+		"telegramchannel":         BotServiceChannelTypeTelegramChannel,
+		"telephonychannel":        BotServiceChannelTypeTelephonyChannel,
+		"webchatchannel":          BotServiceChannelTypeWebChatChannel,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := BotServiceChannelType(input)
+	return &out, nil
+}

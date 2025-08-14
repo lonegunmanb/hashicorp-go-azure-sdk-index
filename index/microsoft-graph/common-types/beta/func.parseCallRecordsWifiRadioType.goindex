@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCallRecordsWifiRadioType(input string) (*CallRecordsWifiRadioType, error) {
+	vals := map[string]CallRecordsWifiRadioType{
+		"unknown":     CallRecordsWifiRadioType_Unknown,
+		"wifi80211a":  CallRecordsWifiRadioType_Wifi80211a,
+		"wifi80211ac": CallRecordsWifiRadioType_Wifi80211ac,
+		"wifi80211ax": CallRecordsWifiRadioType_Wifi80211ax,
+		"wifi80211b":  CallRecordsWifiRadioType_Wifi80211b,
+		"wifi80211g":  CallRecordsWifiRadioType_Wifi80211g,
+		"wifi80211n":  CallRecordsWifiRadioType_Wifi80211n,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CallRecordsWifiRadioType(input)
+	return &out, nil
+}

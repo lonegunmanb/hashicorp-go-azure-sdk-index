@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/guestconfiguration/2024-04-05/guestconfigurations
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c GuestconfigurationsClient) GuestConfigurationAssignmentReportsVMSSListCompleteMatchingPredicate(ctx context.Context, id GuestConfigurationAssignmentId, predicate GuestConfigurationAssignmentReportOperationPredicate) (result GuestConfigurationAssignmentReportsVMSSListCompleteResult, err error) {
+	items := make([]GuestConfigurationAssignmentReport, 0)
+
+	resp, err := c.GuestConfigurationAssignmentReportsVMSSList(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = GuestConfigurationAssignmentReportsVMSSListCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

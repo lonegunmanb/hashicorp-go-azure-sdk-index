@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/workspacemanagedsqlserversecurityalertpolicies
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityAlertPolicyState(input string) (*SecurityAlertPolicyState, error) {
+	vals := map[string]SecurityAlertPolicyState{
+		"disabled": SecurityAlertPolicyStateDisabled,
+		"enabled":  SecurityAlertPolicyStateEnabled,
+		"new":      SecurityAlertPolicyStateNew,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityAlertPolicyState(input)
+	return &out, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/authenticationmicrosoftauthenticatormethoddevice
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAuthenticationMicrosoftAuthenticatorMethodDeviceClientWithBaseURI(sdkApi sdkEnv.Api) (*AuthenticationMicrosoftAuthenticatorMethodDeviceClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "authenticationmicrosoftauthenticatormethoddevice", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AuthenticationMicrosoftAuthenticatorMethodDeviceClient: %+v", err)
+	}
+
+	return &AuthenticationMicrosoftAuthenticatorMethodDeviceClient{
+		Client: client,
+	}, nil
+}

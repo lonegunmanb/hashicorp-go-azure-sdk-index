@@ -1,0 +1,107 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *AccessReviewInstanceDecisionItem) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AccessReviewId              *string                                  `json:"accessReviewId,omitempty"`
+		AppliedDateTime             nullable.Type[string]                    `json:"appliedDateTime,omitempty"`
+		ApplyResult                 nullable.Type[string]                    `json:"applyResult,omitempty"`
+		Decision                    nullable.Type[string]                    `json:"decision,omitempty"`
+		Instance                    *AccessReviewInstance                    `json:"instance,omitempty"`
+		Justification               nullable.Type[string]                    `json:"justification,omitempty"`
+		PrincipalLink               nullable.Type[string]                    `json:"principalLink,omitempty"`
+		PrincipalResourceMembership *DecisionItemPrincipalResourceMembership `json:"principalResourceMembership,omitempty"`
+		Recommendation              nullable.Type[string]                    `json:"recommendation,omitempty"`
+		ResourceLink                nullable.Type[string]                    `json:"resourceLink,omitempty"`
+		ReviewedDateTime            nullable.Type[string]                    `json:"reviewedDateTime,omitempty"`
+		Id                          *string                                  `json:"id,omitempty"`
+		ODataId                     *string                                  `json:"@odata.id,omitempty"`
+		ODataType                   *string                                  `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AccessReviewId = decoded.AccessReviewId
+	s.AppliedDateTime = decoded.AppliedDateTime
+	s.ApplyResult = decoded.ApplyResult
+	s.Decision = decoded.Decision
+	s.Instance = decoded.Instance
+	s.Justification = decoded.Justification
+	s.PrincipalLink = decoded.PrincipalLink
+	s.PrincipalResourceMembership = decoded.PrincipalResourceMembership
+	s.Recommendation = decoded.Recommendation
+	s.ResourceLink = decoded.ResourceLink
+	s.ReviewedDateTime = decoded.ReviewedDateTime
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling AccessReviewInstanceDecisionItem into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["appliedBy"]; ok {
+		impl, err := UnmarshalUserIdentityImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'AppliedBy' for 'AccessReviewInstanceDecisionItem': %+v", err)
+		}
+		s.AppliedBy = &impl
+	}
+
+	if v, ok := temp["insights"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling Insights into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]GovernanceInsight, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalGovernanceInsightImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'Insights' for 'AccessReviewInstanceDecisionItem': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.Insights = &output
+	}
+
+	if v, ok := temp["principal"]; ok {
+		impl, err := UnmarshalIdentityImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Principal' for 'AccessReviewInstanceDecisionItem': %+v", err)
+		}
+		s.Principal = &impl
+	}
+
+	if v, ok := temp["resource"]; ok {
+		impl, err := UnmarshalAccessReviewInstanceDecisionItemResourceImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Resource' for 'AccessReviewInstanceDecisionItem': %+v", err)
+		}
+		s.Resource = &impl
+	}
+
+	if v, ok := temp["reviewedBy"]; ok {
+		impl, err := UnmarshalUserIdentityImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'ReviewedBy' for 'AccessReviewInstanceDecisionItem': %+v", err)
+		}
+		s.ReviewedBy = &impl
+	}
+
+	if v, ok := temp["target"]; ok {
+		impl, err := UnmarshalAccessReviewInstanceDecisionItemTargetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Target' for 'AccessReviewInstanceDecisionItem': %+v", err)
+		}
+		s.Target = &impl
+	}
+
+	return nil
+}

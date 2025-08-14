@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2024-10-01/backuppolicies
+import (
+	"encoding/json"
+	"fmt"
+)
+type AzureIaaSVMProtectionPolicy struct {
+	InstantRPDetails              *InstantRPAdditionalDetails    `json:"instantRPDetails,omitempty"`
+	InstantRpRetentionRangeInDays *int64                         `json:"instantRpRetentionRangeInDays,omitempty"`
+	PolicyType                    *IAASVMPolicyType              `json:"policyType,omitempty"`
+	RetentionPolicy               RetentionPolicy                `json:"retentionPolicy"`
+	SchedulePolicy                SchedulePolicy                 `json:"schedulePolicy"`
+	SnapshotConsistencyType       *IaasVMSnapshotConsistencyType `json:"snapshotConsistencyType,omitempty"`
+	TieringPolicy                 *map[string]TieringPolicy      `json:"tieringPolicy,omitempty"`
+	TimeZone                      *string                        `json:"timeZone,omitempty"`
+
+	// Fields inherited from ProtectionPolicy
+
+	BackupManagementType           string    `json:"backupManagementType"`
+	ProtectedItemsCount            *int64    `json:"protectedItemsCount,omitempty"`
+	ResourceGuardOperationRequests *[]string `json:"resourceGuardOperationRequests,omitempty"`
+}

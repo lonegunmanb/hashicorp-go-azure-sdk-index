@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/report
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewReportClientWithBaseURI(sdkApi sdkEnv.Api) (*ReportClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "report", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ReportClient: %+v", err)
+	}
+
+	return &ReportClient{
+		Client: client,
+	}, nil
+}

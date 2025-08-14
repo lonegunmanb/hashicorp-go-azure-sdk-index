@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWindowsQualityUpdateCadence(input string) (*WindowsQualityUpdateCadence, error) {
+	vals := map[string]WindowsQualityUpdateCadence{
+		"monthly":   WindowsQualityUpdateCadence_Monthly,
+		"outofband": WindowsQualityUpdateCadence_OutOfBand,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsQualityUpdateCadence(input)
+	return &out, nil
+}

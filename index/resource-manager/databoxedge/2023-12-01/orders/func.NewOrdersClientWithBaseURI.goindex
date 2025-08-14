@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/orders
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewOrdersClientWithBaseURI(sdkApi sdkEnv.Api) (*OrdersClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "orders", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating OrdersClient: %+v", err)
+	}
+
+	return &OrdersClient{
+		Client: client,
+	}, nil
+}

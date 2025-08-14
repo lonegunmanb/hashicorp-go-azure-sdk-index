@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseUpdateClassification(input string) (*UpdateClassification, error) {
+	vals := map[string]UpdateClassification{
+		"important":               UpdateClassification_Important,
+		"none":                    UpdateClassification_None,
+		"recommendedandimportant": UpdateClassification_RecommendedAndImportant,
+		"userdefined":             UpdateClassification_UserDefined,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UpdateClassification(input)
+	return &out, nil
+}

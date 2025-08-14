@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/azureactivedirectory/2020-03-01/privatelinkforazuread
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c PrivateLinkForAzureAdClient) ListComplete(ctx context.Context, id commonids.ResourceGroupId) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, PrivateLinkPolicyOperationPredicate{})
+}

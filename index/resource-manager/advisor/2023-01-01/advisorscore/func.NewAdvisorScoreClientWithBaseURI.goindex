@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/advisor/2023-01-01/advisorscore
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAdvisorScoreClientWithBaseURI(sdkApi sdkEnv.Api) (*AdvisorScoreClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "advisorscore", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AdvisorScoreClient: %+v", err)
+	}
+
+	return &AdvisorScoreClient{
+		Client: client,
+	}, nil
+}

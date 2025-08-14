@@ -1,0 +1,39 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s Post) MarshalJSON() ([]byte, error) {
+	type wrapper Post
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling Post: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling Post: %+v", err)
+	}
+
+	delete(decoded, "attachments")
+	delete(decoded, "conversationId")
+	delete(decoded, "conversationThreadId")
+	delete(decoded, "extensions")
+	delete(decoded, "inReplyTo")
+	delete(decoded, "multiValueExtendedProperties")
+	delete(decoded, "singleValueExtendedProperties")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.post"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling Post: %+v", err)
+	}
+
+	return encoded, nil
+}

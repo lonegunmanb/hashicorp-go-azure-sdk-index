@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DeviceManagementAppleUserInitiatedEnrollmentProfileIdAssignmentId) String() string {
+	components := []string{
+		fmt.Sprintf("Apple User Initiated Enrollment Profile: %q", id.AppleUserInitiatedEnrollmentProfileId),
+		fmt.Sprintf("Apple Enrollment Profile Assignment: %q", id.AppleEnrollmentProfileAssignmentId),
+	}
+	return fmt.Sprintf("Device Management Apple User Initiated Enrollment Profile Id Assignment (%s)", strings.Join(components, "\n"))
+}

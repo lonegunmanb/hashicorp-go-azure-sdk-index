@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/environmentdefinitions
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewEnvironmentDefinitionsClientWithBaseURI(sdkApi sdkEnv.Api) (*EnvironmentDefinitionsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "environmentdefinitions", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating EnvironmentDefinitionsClient: %+v", err)
+	}
+
+	return &EnvironmentDefinitionsClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,72 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type Chat struct {
+	ChatType *ChatType `json:"chatType,omitempty"`
+
+	// Date and time at which the chat was created. Read-only.
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// A collection of all the apps in the chat. Nullable.
+	InstalledApps *[]TeamsAppInstallation `json:"installedApps,omitempty"`
+
+	// Indicates whether the chat is hidden for all its members. Read-only.
+	IsHiddenForAllMembers nullable.Type[bool] `json:"isHiddenForAllMembers,omitempty"`
+
+	// Preview of the last message sent in the chat. Null if no messages were sent in the chat. Currently, only the list
+	// chats operation supports this property.
+	LastMessagePreview *ChatMessageInfo `json:"lastMessagePreview,omitempty"`
+
+	// Date and time at which the chat was renamed or the list of members was last changed. Read-only.
+	LastUpdatedDateTime nullable.Type[string] `json:"lastUpdatedDateTime,omitempty"`
+
+	// A collection of all the members in the chat. Nullable.
+	Members *[]ConversationMember `json:"members,omitempty"`
+
+	// A collection of all the messages in the chat. Nullable.
+	Messages *[]ChatMessage `json:"messages,omitempty"`
+
+	// Represents details about an online meeting. If the chat isn't associated with an online meeting, the property is
+	// empty. Read-only.
+	OnlineMeetingInfo *TeamworkOnlineMeetingInfo `json:"onlineMeetingInfo,omitempty"`
+
+	// A collection of permissions granted to apps for the chat.
+	PermissionGrants *[]ResourceSpecificPermissionGrant `json:"permissionGrants,omitempty"`
+
+	// A collection of all the pinned messages in the chat. Nullable.
+	PinnedMessages *[]PinnedChatMessageInfo `json:"pinnedMessages,omitempty"`
+
+	// A collection of all the tabs in the chat. Nullable.
+	Tabs *[]TeamsTab `json:"tabs,omitempty"`
+
+	// The identifier of the tenant in which the chat was created. Read-only.
+	TenantId nullable.Type[string] `json:"tenantId,omitempty"`
+
+	// (Optional) Subject or topic for the chat. Only available for group chats.
+	Topic nullable.Type[string] `json:"topic,omitempty"`
+
+	// Represents caller-specific information about the chat, such as the last message read date and time. This property is
+	// populated only when the request is made in a delegated context.
+	Viewpoint *ChatViewpoint `json:"viewpoint,omitempty"`
+
+	// The URL for the chat in Microsoft Teams. The URL should be treated as an opaque blob, and not parsed. Read-only.
+	WebUrl nullable.Type[string] `json:"webUrl,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

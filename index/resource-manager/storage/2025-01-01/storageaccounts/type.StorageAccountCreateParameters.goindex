@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-01-01/storageaccounts
+import (
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/edgezones"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+type StorageAccountCreateParameters struct {
+	ExtendedLocation *edgezones.Model                          `json:"extendedLocation,omitempty"`
+	Identity         *identity.LegacySystemAndUserAssignedMap  `json:"identity,omitempty"`
+	Kind             Kind                                      `json:"kind"`
+	Location         string                                    `json:"location"`
+	Placement        *Placement                                `json:"placement,omitempty"`
+	Properties       *StorageAccountPropertiesCreateParameters `json:"properties,omitempty"`
+	Sku              Sku                                       `json:"sku"`
+	Tags             *map[string]string                        `json:"tags,omitempty"`
+	Zones            *zones.Schema                             `json:"zones,omitempty"`
+}

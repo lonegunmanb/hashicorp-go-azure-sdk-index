@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/security/2019-01-01-preview/subassessments
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ScopedAssessmentId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.ScopeSegment("resourceId", "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group"),
+		resourceids.StaticSegment("staticProviders", "providers", "providers"),
+		resourceids.ResourceProviderSegment("staticMicrosoftSecurity", "Microsoft.Security", "Microsoft.Security"),
+		resourceids.StaticSegment("staticAssessments", "assessments", "assessments"),
+		resourceids.UserSpecifiedSegment("assessmentName", "assessmentName"),
+	}
+}

@@ -1,0 +1,40 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager
+import (
+	"context"
+	"errors"
+	"fmt"
+	"net/http"
+	"net/url"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/pointer"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func resourceManagerResourcePathFromUri(input string) (*string, error) {
+	parsed, err := url.ParseRequestURI(input)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	segments := strings.Split(strings.TrimPrefix(parsed.Path, "/"), "/")
+	if len(segments) == 0 {
+		return nil, fmt.Errorf("polling uri was empty")
+	}
+
+	// Resources within Resource Manager are always a matching list of key-value pairs
+	// however Operations against a given resource (e.g. `/start`) will be an uneven pair
+	// as such, if we have matching pairs, this a Resource
+	if len(segments)%2 != 0 {
+		segments = segments[0 : len(segments)-1]
+		parsed.Path = fmt.Sprintf("/%s", strings.Join(segments, "/"))
+	}
+
+	if parsed.Path == "/" {
+		return nil, fmt.Errorf("expected a Resource Manager URI but got %q", parsed.Path)
+	}
+
+	return pointer.To(parsed.Path), nil
+}

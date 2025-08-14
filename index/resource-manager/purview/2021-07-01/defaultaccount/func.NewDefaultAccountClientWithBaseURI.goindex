@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/purview/2021-07-01/defaultaccount
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDefaultAccountClientWithBaseURI(sdkApi sdkEnv.Api) (*DefaultAccountClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "defaultaccount", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DefaultAccountClient: %+v", err)
+	}
+
+	return &DefaultAccountClient{
+		Client: client,
+	}, nil
+}

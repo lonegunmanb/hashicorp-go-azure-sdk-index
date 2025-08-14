@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/wafloganalytics
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewWafLogAnalyticsClientWithBaseURI(sdkApi sdkEnv.Api) (*WafLogAnalyticsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "wafloganalytics", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating WafLogAnalyticsClient: %+v", err)
+	}
+
+	return &WafLogAnalyticsClient{
+		Client: client,
+	}, nil
+}

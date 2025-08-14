@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingrequest
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ListByBillingAccountOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.Count != nil {
+		out.Append("count", fmt.Sprintf("%v", *o.Count))
+	}
+	if o.Filter != nil {
+		out.Append("filter", fmt.Sprintf("%v", *o.Filter))
+	}
+	if o.OrderBy != nil {
+		out.Append("orderBy", fmt.Sprintf("%v", *o.OrderBy))
+	}
+	if o.Search != nil {
+		out.Append("search", fmt.Sprintf("%v", *o.Search))
+	}
+	if o.Skip != nil {
+		out.Append("skip", fmt.Sprintf("%v", *o.Skip))
+	}
+	if o.Top != nil {
+		out.Append("top", fmt.Sprintf("%v", *o.Top))
+	}
+	return &out
+}

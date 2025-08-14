@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/sdk/internal/azurecli
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"log"
+	"os/exec"
+	"regexp"
+	"strings"
+
+	"github.com/hashicorp/go-version"
+)
+func GetAccountType() (*string, error) {
+	account, err := getAzAccount()
+	if err != nil {
+		return nil, fmt.Errorf("obtaining account type: %s", err)
+	}
+	if account.User == nil {
+		return nil, fmt.Errorf("account details were nil: %s", err)
+	}
+	return account.User.Type, nil
+}

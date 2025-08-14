@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2024-04-01/replicationprotectionintents
+import (
+	"encoding/json"
+	"fmt"
+)
+type A2AReplicationIntentDetails struct {
+	AgentAutoUpdateStatus               *AgentAutoUpdateStatus                        `json:"agentAutoUpdateStatus,omitempty"`
+	AutoProtectionOfDataDisk            *AutoProtectionOfDataDisk                     `json:"autoProtectionOfDataDisk,omitempty"`
+	AutomationAccountArmId              *string                                       `json:"automationAccountArmId,omitempty"`
+	AutomationAccountAuthenticationType *AutomationAccountAuthenticationType          `json:"automationAccountAuthenticationType,omitempty"`
+	DiskEncryptionInfo                  *DiskEncryptionInfo                           `json:"diskEncryptionInfo,omitempty"`
+	FabricObjectId                      *string                                       `json:"fabricObjectId,omitempty"`
+	MultiVMGroupId                      *string                                       `json:"multiVmGroupId,omitempty"`
+	MultiVMGroupName                    *string                                       `json:"multiVmGroupName,omitempty"`
+	PrimaryLocation                     *string                                       `json:"primaryLocation,omitempty"`
+	PrimaryStagingStorageAccount        StorageAccountCustomDetails                   `json:"primaryStagingStorageAccount"`
+	ProtectionProfile                   ProtectionProfileCustomDetails                `json:"protectionProfile"`
+	RecoveryAvailabilitySet             RecoveryAvailabilitySetCustomDetails          `json:"recoveryAvailabilitySet"`
+	RecoveryAvailabilityType            string                                        `json:"recoveryAvailabilityType"`
+	RecoveryAvailabilityZone            *string                                       `json:"recoveryAvailabilityZone,omitempty"`
+	RecoveryBootDiagStorageAccount      StorageAccountCustomDetails                   `json:"recoveryBootDiagStorageAccount"`
+	RecoveryLocation                    *string                                       `json:"recoveryLocation,omitempty"`
+	RecoveryProximityPlacementGroup     RecoveryProximityPlacementGroupCustomDetails  `json:"recoveryProximityPlacementGroup"`
+	RecoveryResourceGroupId             *string                                       `json:"recoveryResourceGroupId,omitempty"`
+	RecoverySubscriptionId              *string                                       `json:"recoverySubscriptionId,omitempty"`
+	RecoveryVirtualNetwork              RecoveryVirtualNetworkCustomDetails           `json:"recoveryVirtualNetwork"`
+	VMDisks                             *[]A2AProtectionIntentDiskInputDetails        `json:"vmDisks,omitempty"`
+	VMManagedDisks                      *[]A2AProtectionIntentManagedDiskInputDetails `json:"vmManagedDisks,omitempty"`
+
+	// Fields inherited from ReplicationProtectionIntentProviderSpecificSettings
+
+	InstanceType string `json:"instanceType"`
+}

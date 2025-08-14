@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-11-01/diagnostics
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id AnalysisId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Site Name: %q", id.SiteName),
+		fmt.Sprintf("Diagnostic Name: %q", id.DiagnosticName),
+		fmt.Sprintf("Analysis Name: %q", id.AnalysisName),
+	}
+	return fmt.Sprintf("Analysis (%s)", strings.Join(components, "\n"))
+}

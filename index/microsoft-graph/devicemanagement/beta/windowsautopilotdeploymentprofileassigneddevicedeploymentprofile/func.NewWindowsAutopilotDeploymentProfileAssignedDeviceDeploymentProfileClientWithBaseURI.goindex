@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/windowsautopilotdeploymentprofileassigneddevicedeploymentprofile
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewWindowsAutopilotDeploymentProfileAssignedDeviceDeploymentProfileClientWithBaseURI(sdkApi sdkEnv.Api) (*WindowsAutopilotDeploymentProfileAssignedDeviceDeploymentProfileClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "windowsautopilotdeploymentprofileassigneddevicedeploymentprofile", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating WindowsAutopilotDeploymentProfileAssignedDeviceDeploymentProfileClient: %+v", err)
+	}
+
+	return &WindowsAutopilotDeploymentProfileAssignedDeviceDeploymentProfileClient{
+		Client: client,
+	}, nil
+}

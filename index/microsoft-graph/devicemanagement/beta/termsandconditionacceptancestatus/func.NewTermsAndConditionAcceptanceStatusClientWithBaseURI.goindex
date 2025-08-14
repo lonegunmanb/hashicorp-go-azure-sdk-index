@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/termsandconditionacceptancestatus
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTermsAndConditionAcceptanceStatusClientWithBaseURI(sdkApi sdkEnv.Api) (*TermsAndConditionAcceptanceStatusClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "termsandconditionacceptancestatus", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TermsAndConditionAcceptanceStatusClient: %+v", err)
+	}
+
+	return &TermsAndConditionAcceptanceStatusClient{
+		Client: client,
+	}, nil
+}

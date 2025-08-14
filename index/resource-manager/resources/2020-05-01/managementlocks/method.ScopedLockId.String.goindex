@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-05-01/managementlocks
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ScopedLockId) String() string {
+	components := []string{
+		fmt.Sprintf("Scope: %q", id.Scope),
+		fmt.Sprintf("Lock Name: %q", id.LockName),
+	}
+	return fmt.Sprintf("Scoped Lock (%s)", strings.Join(components, "\n"))
+}

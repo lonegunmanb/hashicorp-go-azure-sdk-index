@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/sdk/internal/accept
+import (
+	"fmt"
+	"sort"
+	"strconv"
+	"strings"
+)
+func (h Header) String() string {
+	out := make([]string, 0)
+	for _, typ := range h.types {
+		out = append(out, typ.String())
+	}
+	return strings.Join(out, ", ")
+}

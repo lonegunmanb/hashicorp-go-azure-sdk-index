@@ -1,0 +1,72 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *IdentityGovernanceWorkflow) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		DeletedDateTime         nullable.Type[string]                        `json:"deletedDateTime,omitempty"`
+		ExecutionScope          *[]IdentityGovernanceUserProcessingResult    `json:"executionScope,omitempty"`
+		Id                      *string                                      `json:"id,omitempty"`
+		NextScheduleRunDateTime nullable.Type[string]                        `json:"nextScheduleRunDateTime,omitempty"`
+		Runs                    *[]IdentityGovernanceRun                     `json:"runs,omitempty"`
+		TaskReports             *[]IdentityGovernanceTaskReport              `json:"taskReports,omitempty"`
+		UserProcessingResults   *[]IdentityGovernanceUserProcessingResult    `json:"userProcessingResults,omitempty"`
+		Version                 nullable.Type[int64]                         `json:"version,omitempty"`
+		Versions                *[]IdentityGovernanceWorkflowVersion         `json:"versions,omitempty"`
+		Category                *IdentityGovernanceLifecycleWorkflowCategory `json:"category,omitempty"`
+		CreatedBy               *User                                        `json:"createdBy,omitempty"`
+		CreatedDateTime         nullable.Type[string]                        `json:"createdDateTime,omitempty"`
+		Description             nullable.Type[string]                        `json:"description,omitempty"`
+		DisplayName             *string                                      `json:"displayName,omitempty"`
+		IsEnabled               *bool                                        `json:"isEnabled,omitempty"`
+		IsSchedulingEnabled     *bool                                        `json:"isSchedulingEnabled,omitempty"`
+		LastModifiedBy          *User                                        `json:"lastModifiedBy,omitempty"`
+		LastModifiedDateTime    nullable.Type[string]                        `json:"lastModifiedDateTime,omitempty"`
+		ODataId                 *string                                      `json:"@odata.id,omitempty"`
+		ODataType               *string                                      `json:"@odata.type,omitempty"`
+		Tasks                   *[]IdentityGovernanceTask                    `json:"tasks,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.DeletedDateTime = decoded.DeletedDateTime
+	s.ExecutionScope = decoded.ExecutionScope
+	s.Id = decoded.Id
+	s.NextScheduleRunDateTime = decoded.NextScheduleRunDateTime
+	s.Runs = decoded.Runs
+	s.TaskReports = decoded.TaskReports
+	s.UserProcessingResults = decoded.UserProcessingResults
+	s.Version = decoded.Version
+	s.Versions = decoded.Versions
+	s.Category = decoded.Category
+	s.CreatedBy = decoded.CreatedBy
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Description = decoded.Description
+	s.DisplayName = decoded.DisplayName
+	s.IsEnabled = decoded.IsEnabled
+	s.IsSchedulingEnabled = decoded.IsSchedulingEnabled
+	s.LastModifiedBy = decoded.LastModifiedBy
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.Tasks = decoded.Tasks
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling IdentityGovernanceWorkflow into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["executionConditions"]; ok {
+		impl, err := UnmarshalIdentityGovernanceWorkflowExecutionConditionsImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'ExecutionConditions' for 'IdentityGovernanceWorkflow': %+v", err)
+		}
+		s.ExecutionConditions = impl
+	}
+
+	return nil
+}

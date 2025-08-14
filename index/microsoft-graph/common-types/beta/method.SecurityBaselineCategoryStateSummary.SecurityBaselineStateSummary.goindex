@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s SecurityBaselineCategoryStateSummary) SecurityBaselineStateSummary() BaseSecurityBaselineStateSummaryImpl {
+	return BaseSecurityBaselineStateSummaryImpl{
+		ConflictCount:      s.ConflictCount,
+		ErrorCount:         s.ErrorCount,
+		NotApplicableCount: s.NotApplicableCount,
+		NotSecureCount:     s.NotSecureCount,
+		SecureCount:        s.SecureCount,
+		UnknownCount:       s.UnknownCount,
+		Id:                 s.Id,
+		ODataId:            s.ODataId,
+		ODataType:          s.ODataType,
+	}
+}

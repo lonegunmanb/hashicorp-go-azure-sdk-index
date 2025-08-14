@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAndroidWorkProfileVpnConnectionType(input string) (*AndroidWorkProfileVpnConnectionType, error) {
+	vals := map[string]AndroidWorkProfileVpnConnectionType{
+		"checkpointcapsulevpn":       AndroidWorkProfileVpnConnectionType_CheckPointCapsuleVpn,
+		"ciscoanyconnect":            AndroidWorkProfileVpnConnectionType_CiscoAnyConnect,
+		"citrix":                     AndroidWorkProfileVpnConnectionType_Citrix,
+		"dellsonicwallmobileconnect": AndroidWorkProfileVpnConnectionType_DellSonicWallMobileConnect,
+		"f5edgeclient":               AndroidWorkProfileVpnConnectionType_F5EdgeClient,
+		"microsoftprotect":           AndroidWorkProfileVpnConnectionType_MicrosoftProtect,
+		"microsofttunnel":            AndroidWorkProfileVpnConnectionType_MicrosoftTunnel,
+		"netmotionmobility":          AndroidWorkProfileVpnConnectionType_NetMotionMobility,
+		"paloaltoglobalprotect":      AndroidWorkProfileVpnConnectionType_PaloAltoGlobalProtect,
+		"pulsesecure":                AndroidWorkProfileVpnConnectionType_PulseSecure,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AndroidWorkProfileVpnConnectionType(input)
+	return &out, nil
+}

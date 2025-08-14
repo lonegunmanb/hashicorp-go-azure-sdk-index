@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-05-01/dscpconfigurations
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseLoadBalancerBackendAddressAdminState(input string) (*LoadBalancerBackendAddressAdminState, error) {
+	vals := map[string]LoadBalancerBackendAddressAdminState{
+		"down": LoadBalancerBackendAddressAdminStateDown,
+		"none": LoadBalancerBackendAddressAdminStateNone,
+		"up":   LoadBalancerBackendAddressAdminStateUp,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := LoadBalancerBackendAddressAdminState(input)
+	return &out, nil
+}

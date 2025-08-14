@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-01-01/volumesreplication
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewVolumesReplicationClientWithBaseURI(sdkApi sdkEnv.Api) (*VolumesReplicationClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "volumesreplication", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating VolumesReplicationClient: %+v", err)
+	}
+
+	return &VolumesReplicationClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchannelplannerplanbucket
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c TeamChannelPlannerPlanBucketClient) ListTeamChannelPlannerPlanBucketsComplete(ctx context.Context, id beta.GroupIdTeamChannelIdPlannerPlanId, options ListTeamChannelPlannerPlanBucketsOperationOptions) (ListTeamChannelPlannerPlanBucketsCompleteResult, error) {
+	return c.ListTeamChannelPlannerPlanBucketsCompleteMatchingPredicate(ctx, id, options, PlannerBucketOperationPredicate{})
+}

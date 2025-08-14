@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type ProcessContentRequest struct {
+	ActivityMetadata *ActivityMetadata `json:"activityMetadata,omitempty"`
+
+	// A collection of content entries to be processed. Each entry contains the content itself and its metadata. Use
+	// conversation metadata for content like prompts and responses and file metadata for files. Required.
+	ContentEntries []ProcessContentMetadataBase `json:"contentEntries"`
+
+	IntegratedAppMetadata IntegratedApplicationMetadata `json:"integratedAppMetadata"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Metadata about the protected application making the request. Required.
+	ProtectedAppMetadata ProtectedApplicationMetadata `json:"protectedAppMetadata"`
+}

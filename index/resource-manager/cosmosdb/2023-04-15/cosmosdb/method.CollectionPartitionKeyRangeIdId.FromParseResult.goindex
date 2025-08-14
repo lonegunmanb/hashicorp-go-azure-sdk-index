@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cosmosdb/2023-04-15/cosmosdb
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *CollectionPartitionKeyRangeIdId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.DatabaseAccountName, ok = input.Parsed["databaseAccountName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "databaseAccountName", input)
+	}
+
+	if id.RegionName, ok = input.Parsed["regionName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "regionName", input)
+	}
+
+	if id.DatabaseName, ok = input.Parsed["databaseName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "databaseName", input)
+	}
+
+	if id.CollectionName, ok = input.Parsed["collectionName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "collectionName", input)
+	}
+
+	if id.PartitionKeyRangeId, ok = input.Parsed["partitionKeyRangeId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "partitionKeyRangeId", input)
+	}
+
+	return nil
+}

@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseStatusDetail(input string) (*StatusDetail, error) {
+	vals := map[string]StatusDetail{
+		"approved":  StatusDetail_Approved,
+		"canceled":  StatusDetail_Canceled,
+		"completed": StatusDetail_Completed,
+		"rejected":  StatusDetail_Rejected,
+		"submitted": StatusDetail_Submitted,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := StatusDetail(input)
+	return &out, nil
+}

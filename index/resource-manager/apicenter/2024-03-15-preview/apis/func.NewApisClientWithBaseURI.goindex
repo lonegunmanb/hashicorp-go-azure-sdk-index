@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apicenter/2024-03-15-preview/apis
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewApisClientWithBaseURI(sdkApi sdkEnv.Api) (*ApisClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "apis", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ApisClient: %+v", err)
+	}
+
+	return &ApisClient{
+		Client: client,
+	}, nil
+}

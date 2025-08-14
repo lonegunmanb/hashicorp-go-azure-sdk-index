@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePartnerSecurityPolicyStatus(input string) (*PartnerSecurityPolicyStatus, error) {
+	vals := map[string]PartnerSecurityPolicyStatus{
+		"disabled": PartnerSecurityPolicyStatus_Disabled,
+		"enabled":  PartnerSecurityPolicyStatus_Enabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PartnerSecurityPolicyStatus(input)
+	return &out, nil
+}

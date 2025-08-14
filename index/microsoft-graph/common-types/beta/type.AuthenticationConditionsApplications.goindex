@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+
+type AuthenticationConditionsApplications struct {
+	// Whether the custom authentication extension should trigger for all applications with appIds specified in the
+	// includeApplications relationship. This property must be set to false for listener of type
+	// onTokenIssuanceStartListener.
+	IncludeAllApplications *bool `json:"includeAllApplications,omitempty"`
+
+	IncludeApplications *[]AuthenticationConditionApplication `json:"includeApplications,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+}

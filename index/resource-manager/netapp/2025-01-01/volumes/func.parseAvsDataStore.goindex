@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-01-01/volumes
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAvsDataStore(input string) (*AvsDataStore, error) {
+	vals := map[string]AvsDataStore{
+		"disabled": AvsDataStoreDisabled,
+		"enabled":  AvsDataStoreEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AvsDataStore(input)
+	return &out, nil
+}

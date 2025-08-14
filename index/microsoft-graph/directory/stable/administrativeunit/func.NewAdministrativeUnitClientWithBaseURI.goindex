@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable/administrativeunit
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAdministrativeUnitClientWithBaseURI(sdkApi sdkEnv.Api) (*AdministrativeUnitClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "administrativeunit", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AdministrativeUnitClient: %+v", err)
+	}
+
+	return &AdministrativeUnitClient{
+		Client: client,
+	}, nil
+}

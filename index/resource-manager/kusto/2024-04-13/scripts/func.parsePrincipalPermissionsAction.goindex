@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/kusto/2024-04-13/scripts
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePrincipalPermissionsAction(input string) (*PrincipalPermissionsAction, error) {
+	vals := map[string]PrincipalPermissionsAction{
+		"removepermissiononscriptcompletion": PrincipalPermissionsActionRemovePermissionOnScriptCompletion,
+		"retainpermissiononscriptcompletion": PrincipalPermissionsActionRetainPermissionOnScriptCompletion,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PrincipalPermissionsAction(input)
+	return &out, nil
+}

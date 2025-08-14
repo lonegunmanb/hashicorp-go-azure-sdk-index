@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerservice/2025-02-01/managedclusters
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ManagedClustersClient) ListMeshUpgradeProfilesCompleteMatchingPredicate(ctx context.Context, id commonids.KubernetesClusterId, predicate MeshUpgradeProfileOperationPredicate) (result ListMeshUpgradeProfilesCompleteResult, err error) {
+	items := make([]MeshUpgradeProfile, 0)
+
+	resp, err := c.ListMeshUpgradeProfiles(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListMeshUpgradeProfilesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

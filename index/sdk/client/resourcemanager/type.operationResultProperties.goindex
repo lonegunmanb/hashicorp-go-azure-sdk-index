@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager
+import (
+	"bytes"
+	"context"
+	"encoding/json"
+	"errors"
+	"fmt"
+	"io"
+	"net/http"
+	"net/url"
+	"strconv"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+)
+type operationResultProperties struct {
+	// Some APIs (such as Storage) return the Resource Representation from the LRO API, as such we need to check provisioningState
+	ProvisioningState status `json:"provisioningState"`
+}

@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2024-10-01/backupworkloaditems
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s AzureVMWorkloadSAPAseSystemWorkloadItem) MarshalJSON() ([]byte, error) {
+	type wrapper AzureVMWorkloadSAPAseSystemWorkloadItem
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AzureVMWorkloadSAPAseSystemWorkloadItem: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AzureVMWorkloadSAPAseSystemWorkloadItem: %+v", err)
+	}
+
+	decoded["workloadItemType"] = "SAPAseSystem"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AzureVMWorkloadSAPAseSystemWorkloadItem: %+v", err)
+	}
+
+	return encoded, nil
+}

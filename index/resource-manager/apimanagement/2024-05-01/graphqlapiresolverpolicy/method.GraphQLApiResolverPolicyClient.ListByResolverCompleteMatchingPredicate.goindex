@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/graphqlapiresolverpolicy
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c GraphQLApiResolverPolicyClient) ListByResolverCompleteMatchingPredicate(ctx context.Context, id ResolverId, predicate PolicyContractOperationPredicate) (result ListByResolverCompleteResult, err error) {
+	items := make([]PolicyContract, 0)
+
+	resp, err := c.ListByResolver(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByResolverCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

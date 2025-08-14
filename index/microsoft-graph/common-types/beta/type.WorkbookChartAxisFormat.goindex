@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type WorkbookChartAxisFormat struct {
+	// Represents the font attributes (font name, font size, color, etc.) for a chart axis element. Read-only.
+	Font *WorkbookChartFont `json:"font,omitempty"`
+
+	// Represents chart line formatting. Read-only.
+	Line *WorkbookChartLineFormat `json:"line,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

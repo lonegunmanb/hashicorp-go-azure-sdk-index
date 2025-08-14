@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2022-06-15/partnernamespaces
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePartnerNamespaceProvisioningState(input string) (*PartnerNamespaceProvisioningState, error) {
+	vals := map[string]PartnerNamespaceProvisioningState{
+		"canceled":  PartnerNamespaceProvisioningStateCanceled,
+		"creating":  PartnerNamespaceProvisioningStateCreating,
+		"deleting":  PartnerNamespaceProvisioningStateDeleting,
+		"failed":    PartnerNamespaceProvisioningStateFailed,
+		"succeeded": PartnerNamespaceProvisioningStateSucceeded,
+		"updating":  PartnerNamespaceProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PartnerNamespaceProvisioningState(input)
+	return &out, nil
+}

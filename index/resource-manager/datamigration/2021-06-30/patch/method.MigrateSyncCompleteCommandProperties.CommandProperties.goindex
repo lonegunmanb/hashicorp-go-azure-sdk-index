@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/patch
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s MigrateSyncCompleteCommandProperties) CommandProperties() BaseCommandPropertiesImpl {
+	return BaseCommandPropertiesImpl{
+		CommandType: s.CommandType,
+		Errors:      s.Errors,
+		State:       s.State,
+	}
+}

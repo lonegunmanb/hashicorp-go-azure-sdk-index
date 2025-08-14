@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/managedapplogcollectionrequest
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ManagedAppLogCollectionRequestClient) ListManagedAppLogCollectionRequestsCompleteMatchingPredicate(ctx context.Context, options ListManagedAppLogCollectionRequestsOperationOptions, predicate ManagedAppLogCollectionRequestOperationPredicate) (result ListManagedAppLogCollectionRequestsCompleteResult, err error) {
+	items := make([]beta.ManagedAppLogCollectionRequest, 0)
+
+	resp, err := c.ListManagedAppLogCollectionRequests(ctx, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListManagedAppLogCollectionRequestsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

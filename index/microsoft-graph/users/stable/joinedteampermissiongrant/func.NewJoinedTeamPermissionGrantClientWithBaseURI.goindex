@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteampermissiongrant
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewJoinedTeamPermissionGrantClientWithBaseURI(sdkApi sdkEnv.Api) (*JoinedTeamPermissionGrantClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "joinedteampermissiongrant", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating JoinedTeamPermissionGrantClient: %+v", err)
+	}
+
+	return &JoinedTeamPermissionGrantClient{
+		Client: client,
+	}, nil
+}

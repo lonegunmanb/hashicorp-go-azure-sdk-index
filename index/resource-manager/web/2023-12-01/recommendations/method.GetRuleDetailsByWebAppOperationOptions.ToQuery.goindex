@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/recommendations
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o GetRuleDetailsByWebAppOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.RecommendationId != nil {
+		out.Append("recommendationId", fmt.Sprintf("%v", *o.RecommendationId))
+	}
+	if o.UpdateSeen != nil {
+		out.Append("updateSeen", fmt.Sprintf("%v", *o.UpdateSeen))
+	}
+	return &out
+}

@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/bastionshareablelink
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c BastionShareableLinkClient) GetBastionShareableLinkCompleteMatchingPredicate(ctx context.Context, id BastionHostId, input BastionShareableLinkListRequest, predicate BastionShareableLinkOperationPredicate) (result GetBastionShareableLinkCompleteResult, err error) {
+	items := make([]BastionShareableLink, 0)
+
+	resp, err := c.GetBastionShareableLink(ctx, id, input)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = GetBastionShareableLinkCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

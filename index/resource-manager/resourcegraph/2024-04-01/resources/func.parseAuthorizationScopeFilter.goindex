@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resourcegraph/2024-04-01/resources
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAuthorizationScopeFilter(input string) (*AuthorizationScopeFilter, error) {
+	vals := map[string]AuthorizationScopeFilter{
+		"atscopeaboveandbelow": AuthorizationScopeFilterAtScopeAboveAndBelow,
+		"atscopeandabove":      AuthorizationScopeFilterAtScopeAndAbove,
+		"atscopeandbelow":      AuthorizationScopeFilterAtScopeAndBelow,
+		"atscopeexact":         AuthorizationScopeFilterAtScopeExact,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AuthorizationScopeFilter(input)
+	return &out, nil
+}

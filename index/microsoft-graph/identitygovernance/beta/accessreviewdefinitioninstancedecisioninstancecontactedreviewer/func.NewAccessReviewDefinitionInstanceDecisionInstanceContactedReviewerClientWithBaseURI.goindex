@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/accessreviewdefinitioninstancedecisioninstancecontactedreviewer
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAccessReviewDefinitionInstanceDecisionInstanceContactedReviewerClientWithBaseURI(sdkApi sdkEnv.Api) (*AccessReviewDefinitionInstanceDecisionInstanceContactedReviewerClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "accessreviewdefinitioninstancedecisioninstancecontactedreviewer", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AccessReviewDefinitionInstanceDecisionInstanceContactedReviewerClient: %+v", err)
+	}
+
+	return &AccessReviewDefinitionInstanceDecisionInstanceContactedReviewerClient{
+		Client: client,
+	}, nil
+}

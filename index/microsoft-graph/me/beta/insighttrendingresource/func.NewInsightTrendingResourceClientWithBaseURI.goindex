@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/insighttrendingresource
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewInsightTrendingResourceClientWithBaseURI(sdkApi sdkEnv.Api) (*InsightTrendingResourceClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "insighttrendingresource", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating InsightTrendingResourceClient: %+v", err)
+	}
+
+	return &InsightTrendingResourceClient{
+		Client: client,
+	}, nil
+}

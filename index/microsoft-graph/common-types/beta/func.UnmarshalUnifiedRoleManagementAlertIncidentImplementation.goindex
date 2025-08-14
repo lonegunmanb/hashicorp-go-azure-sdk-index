@@ -1,0 +1,89 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalUnifiedRoleManagementAlertIncidentImplementation(input []byte) (UnifiedRoleManagementAlertIncident, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling UnifiedRoleManagementAlertIncident into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.invalidLicenseAlertIncident") {
+		var out InvalidLicenseAlertIncident
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into InvalidLicenseAlertIncident: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.noMfaOnRoleActivationAlertIncident") {
+		var out NoMfaOnRoleActivationAlertIncident
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into NoMfaOnRoleActivationAlertIncident: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.redundantAssignmentAlertIncident") {
+		var out RedundantAssignmentAlertIncident
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into RedundantAssignmentAlertIncident: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.rolesAssignedOutsidePrivilegedIdentityManagementAlertIncident") {
+		var out RolesAssignedOutsidePrivilegedIdentityManagementAlertIncident
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into RolesAssignedOutsidePrivilegedIdentityManagementAlertIncident: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.sequentialActivationRenewalsAlertIncident") {
+		var out SequentialActivationRenewalsAlertIncident
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SequentialActivationRenewalsAlertIncident: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.staleSignInAlertIncident") {
+		var out StaleSignInAlertIncident
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into StaleSignInAlertIncident: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.tooManyGlobalAdminsAssignedToTenantAlertIncident") {
+		var out TooManyGlobalAdminsAssignedToTenantAlertIncident
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into TooManyGlobalAdminsAssignedToTenantAlertIncident: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseUnifiedRoleManagementAlertIncidentImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseUnifiedRoleManagementAlertIncidentImpl: %+v", err)
+	}
+
+	return RawUnifiedRoleManagementAlertIncidentImpl{
+		unifiedRoleManagementAlertIncident: parent,
+		Type:                               value,
+		Values:                             temp,
+	}, nil
+
+}

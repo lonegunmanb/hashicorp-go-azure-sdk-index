@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type DeviceManagementConfigurationReferenceSettingValue struct {
+	// A note that admin can use to put some contextual information
+	Note nullable.Type[string] `json:"note,omitempty"`
+
+	// Fields inherited from DeviceManagementConfigurationStringSettingValue
+
+	// Value of the string setting.
+	Value nullable.Type[string] `json:"value,omitempty"`
+
+	// Fields inherited from DeviceManagementConfigurationSettingValue
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Setting value template reference
+	SettingValueTemplateReference *DeviceManagementConfigurationSettingValueTemplateReference `json:"settingValueTemplateReference,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

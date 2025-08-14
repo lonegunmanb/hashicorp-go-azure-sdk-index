@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/orbital/2022-11-01/contactprofile
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ContactProfileClient) CreateOrUpdateThenPoll(ctx context.Context, id ContactProfileId, input ContactProfile) error {
+	result, err := c.CreateOrUpdate(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing CreateOrUpdate: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after CreateOrUpdate: %+v", err)
+	}
+
+	return nil
+}

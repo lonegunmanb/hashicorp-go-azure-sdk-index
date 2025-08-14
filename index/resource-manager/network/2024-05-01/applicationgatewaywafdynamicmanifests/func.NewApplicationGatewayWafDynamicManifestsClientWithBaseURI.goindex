@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-05-01/applicationgatewaywafdynamicmanifests
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewApplicationGatewayWafDynamicManifestsClientWithBaseURI(sdkApi sdkEnv.Api) (*ApplicationGatewayWafDynamicManifestsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "applicationgatewaywafdynamicmanifests", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ApplicationGatewayWafDynamicManifestsClient: %+v", err)
+	}
+
+	return &ApplicationGatewayWafDynamicManifestsClient{
+		Client: client,
+	}, nil
+}

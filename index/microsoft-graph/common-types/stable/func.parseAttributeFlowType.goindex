@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAttributeFlowType(input string) (*AttributeFlowType, error) {
+	vals := map[string]AttributeFlowType{
+		"always":            AttributeFlowType_Always,
+		"attributeaddonly":  AttributeFlowType_AttributeAddOnly,
+		"multivalueaddonly": AttributeFlowType_MultiValueAddOnly,
+		"objectaddonly":     AttributeFlowType_ObjectAddOnly,
+		"valueaddonly":      AttributeFlowType_ValueAddOnly,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AttributeFlowType(input)
+	return &out, nil
+}

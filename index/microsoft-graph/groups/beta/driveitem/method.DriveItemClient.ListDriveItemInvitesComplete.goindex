@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/driveitem
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DriveItemClient) ListDriveItemInvitesComplete(ctx context.Context, id beta.GroupIdDriveIdItemId, input ListDriveItemInvitesRequest, options ListDriveItemInvitesOperationOptions) (ListDriveItemInvitesCompleteResult, error) {
+	return c.ListDriveItemInvitesCompleteMatchingPredicate(ctx, id, input, options, PermissionOperationPredicate{})
+}

@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2025-06-01/monitorsresource
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c MonitorsResourceClient) MonitorsUpdateThenPoll(ctx context.Context, id MonitorId, input ElasticMonitorResourceUpdateParameters) error {
+	result, err := c.MonitorsUpdate(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing MonitorsUpdate: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after MonitorsUpdate: %+v", err)
+	}
+
+	return nil
+}

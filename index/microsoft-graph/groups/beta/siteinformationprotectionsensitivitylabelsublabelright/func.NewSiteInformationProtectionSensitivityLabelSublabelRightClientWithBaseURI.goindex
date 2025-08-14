@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/siteinformationprotectionsensitivitylabelsublabelright
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSiteInformationProtectionSensitivityLabelSublabelRightClientWithBaseURI(sdkApi sdkEnv.Api) (*SiteInformationProtectionSensitivityLabelSublabelRightClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "siteinformationprotectionsensitivitylabelsublabelright", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SiteInformationProtectionSensitivityLabelSublabelRightClient: %+v", err)
+	}
+
+	return &SiteInformationProtectionSensitivityLabelSublabelRightClient{
+		Client: client,
+	}, nil
+}

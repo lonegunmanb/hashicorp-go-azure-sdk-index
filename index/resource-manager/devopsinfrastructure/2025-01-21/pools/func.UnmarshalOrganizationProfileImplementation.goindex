@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devopsinfrastructure/2025-01-21/pools
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalOrganizationProfileImplementation(input []byte) (OrganizationProfile, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling OrganizationProfile into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["kind"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "AzureDevOps") {
+		var out AzureDevOpsOrganizationProfile
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureDevOpsOrganizationProfile: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "GitHub") {
+		var out GitHubOrganizationProfile
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into GitHubOrganizationProfile: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseOrganizationProfileImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseOrganizationProfileImpl: %+v", err)
+	}
+
+	return RawOrganizationProfileImpl{
+		organizationProfile: parent,
+		Type:                value,
+		Values:              temp,
+	}, nil
+
+}

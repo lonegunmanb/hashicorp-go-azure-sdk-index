@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/redis/2024-11-01/aad
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAccessPolicyProvisioningState(input string) (*AccessPolicyProvisioningState, error) {
+	vals := map[string]AccessPolicyProvisioningState{
+		"canceled":  AccessPolicyProvisioningStateCanceled,
+		"deleted":   AccessPolicyProvisioningStateDeleted,
+		"deleting":  AccessPolicyProvisioningStateDeleting,
+		"failed":    AccessPolicyProvisioningStateFailed,
+		"succeeded": AccessPolicyProvisioningStateSucceeded,
+		"updating":  AccessPolicyProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AccessPolicyProvisioningState(input)
+	return &out, nil
+}

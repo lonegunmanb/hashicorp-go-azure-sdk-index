@@ -1,0 +1,39 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s CallAiInsight) MarshalJSON() ([]byte, error) {
+	type wrapper CallAiInsight
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling CallAiInsight: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling CallAiInsight: %+v", err)
+	}
+
+	delete(decoded, "actionItems")
+	delete(decoded, "callId")
+	delete(decoded, "contentCorrelationId")
+	delete(decoded, "createdDateTime")
+	delete(decoded, "endDateTime")
+	delete(decoded, "meetingNotes")
+	delete(decoded, "viewpoint")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.callAiInsight"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling CallAiInsight: %+v", err)
+	}
+
+	return encoded, nil
+}

@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/sdk/internal/test
+import (
+	"context"
+	"crypto/ecdsa"
+	"crypto/elliptic"
+	"crypto/rand"
+	"fmt"
+	"net/http"
+	"time"
+
+	"github.com/golang-jwt/jwt/v4"
+	"github.com/hashicorp/go-azure-sdk/sdk/auth"
+	"golang.org/x/oauth2"
+)
+func (*TestAuthorizer) AuxiliaryTokens(_ context.Context, _ *http.Request) ([]*oauth2.Token, error) {
+	return []*oauth2.Token{
+		{
+			AccessToken: testAccessToken(),
+			TokenType:   "Bearer",
+			Expiry:      TestTokenExpiry,
+		},
+		{
+			AccessToken: testAccessToken(),
+			TokenType:   "Bearer",
+			Expiry:      TestTokenExpiry,
+		},
+		{
+			AccessToken: testAccessToken(),
+			TokenType:   "Bearer",
+			Expiry:      TestTokenExpiry,
+		},
+	}, nil
+}

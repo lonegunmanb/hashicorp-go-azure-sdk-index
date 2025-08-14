@@ -1,0 +1,75 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-12-01-preview/automationrules
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAutomationRulePropertyConditionSupportedProperty(input string) (*AutomationRulePropertyConditionSupportedProperty, error) {
+	vals := map[string]AutomationRulePropertyConditionSupportedProperty{
+		"accountaadtenantid":             AutomationRulePropertyConditionSupportedPropertyAccountAadTenantId,
+		"accountaaduserid":               AutomationRulePropertyConditionSupportedPropertyAccountAadUserId,
+		"accountntdomain":                AutomationRulePropertyConditionSupportedPropertyAccountNTDomain,
+		"accountname":                    AutomationRulePropertyConditionSupportedPropertyAccountName,
+		"accountobjectguid":              AutomationRulePropertyConditionSupportedPropertyAccountObjectGuid,
+		"accountpuid":                    AutomationRulePropertyConditionSupportedPropertyAccountPUID,
+		"accountsid":                     AutomationRulePropertyConditionSupportedPropertyAccountSid,
+		"accountupnsuffix":               AutomationRulePropertyConditionSupportedPropertyAccountUPNSuffix,
+		"alertanalyticruleids":           AutomationRulePropertyConditionSupportedPropertyAlertAnalyticRuleIds,
+		"alertproductnames":              AutomationRulePropertyConditionSupportedPropertyAlertProductNames,
+		"azureresourceresourceid":        AutomationRulePropertyConditionSupportedPropertyAzureResourceResourceId,
+		"azureresourcesubscriptionid":    AutomationRulePropertyConditionSupportedPropertyAzureResourceSubscriptionId,
+		"cloudapplicationappid":          AutomationRulePropertyConditionSupportedPropertyCloudApplicationAppId,
+		"cloudapplicationappname":        AutomationRulePropertyConditionSupportedPropertyCloudApplicationAppName,
+		"dnsdomainname":                  AutomationRulePropertyConditionSupportedPropertyDNSDomainName,
+		"filedirectory":                  AutomationRulePropertyConditionSupportedPropertyFileDirectory,
+		"filehashvalue":                  AutomationRulePropertyConditionSupportedPropertyFileHashValue,
+		"filename":                       AutomationRulePropertyConditionSupportedPropertyFileName,
+		"hostazureid":                    AutomationRulePropertyConditionSupportedPropertyHostAzureID,
+		"hostntdomain":                   AutomationRulePropertyConditionSupportedPropertyHostNTDomain,
+		"hostname":                       AutomationRulePropertyConditionSupportedPropertyHostName,
+		"hostnetbiosname":                AutomationRulePropertyConditionSupportedPropertyHostNetBiosName,
+		"hostosversion":                  AutomationRulePropertyConditionSupportedPropertyHostOSVersion,
+		"ipaddress":                      AutomationRulePropertyConditionSupportedPropertyIPAddress,
+		"incidentcustomdetailskey":       AutomationRulePropertyConditionSupportedPropertyIncidentCustomDetailsKey,
+		"incidentcustomdetailsvalue":     AutomationRulePropertyConditionSupportedPropertyIncidentCustomDetailsValue,
+		"incidentdescription":            AutomationRulePropertyConditionSupportedPropertyIncidentDescription,
+		"incidentlabel":                  AutomationRulePropertyConditionSupportedPropertyIncidentLabel,
+		"incidentprovidername":           AutomationRulePropertyConditionSupportedPropertyIncidentProviderName,
+		"incidentrelatedanalyticruleids": AutomationRulePropertyConditionSupportedPropertyIncidentRelatedAnalyticRuleIds,
+		"incidentseverity":               AutomationRulePropertyConditionSupportedPropertyIncidentSeverity,
+		"incidentstatus":                 AutomationRulePropertyConditionSupportedPropertyIncidentStatus,
+		"incidenttactics":                AutomationRulePropertyConditionSupportedPropertyIncidentTactics,
+		"incidenttitle":                  AutomationRulePropertyConditionSupportedPropertyIncidentTitle,
+		"incidentupdatedbysource":        AutomationRulePropertyConditionSupportedPropertyIncidentUpdatedBySource,
+		"iotdeviceid":                    AutomationRulePropertyConditionSupportedPropertyIoTDeviceId,
+		"iotdevicemodel":                 AutomationRulePropertyConditionSupportedPropertyIoTDeviceModel,
+		"iotdevicename":                  AutomationRulePropertyConditionSupportedPropertyIoTDeviceName,
+		"iotdeviceoperatingsystem":       AutomationRulePropertyConditionSupportedPropertyIoTDeviceOperatingSystem,
+		"iotdevicetype":                  AutomationRulePropertyConditionSupportedPropertyIoTDeviceType,
+		"iotdevicevendor":                AutomationRulePropertyConditionSupportedPropertyIoTDeviceVendor,
+		"mailmessagedeliveryaction":      AutomationRulePropertyConditionSupportedPropertyMailMessageDeliveryAction,
+		"mailmessagedeliverylocation":    AutomationRulePropertyConditionSupportedPropertyMailMessageDeliveryLocation,
+		"mailmessagep1sender":            AutomationRulePropertyConditionSupportedPropertyMailMessagePOneSender,
+		"mailmessagep2sender":            AutomationRulePropertyConditionSupportedPropertyMailMessagePTwoSender,
+		"mailmessagerecipient":           AutomationRulePropertyConditionSupportedPropertyMailMessageRecipient,
+		"mailmessagesenderip":            AutomationRulePropertyConditionSupportedPropertyMailMessageSenderIP,
+		"mailmessagesubject":             AutomationRulePropertyConditionSupportedPropertyMailMessageSubject,
+		"mailboxdisplayname":             AutomationRulePropertyConditionSupportedPropertyMailboxDisplayName,
+		"mailboxprimaryaddress":          AutomationRulePropertyConditionSupportedPropertyMailboxPrimaryAddress,
+		"mailboxupn":                     AutomationRulePropertyConditionSupportedPropertyMailboxUPN,
+		"malwarecategory":                AutomationRulePropertyConditionSupportedPropertyMalwareCategory,
+		"malwarename":                    AutomationRulePropertyConditionSupportedPropertyMalwareName,
+		"processcommandline":             AutomationRulePropertyConditionSupportedPropertyProcessCommandLine,
+		"processid":                      AutomationRulePropertyConditionSupportedPropertyProcessId,
+		"registrykey":                    AutomationRulePropertyConditionSupportedPropertyRegistryKey,
+		"registryvaluedata":              AutomationRulePropertyConditionSupportedPropertyRegistryValueData,
+		"url":                            AutomationRulePropertyConditionSupportedPropertyURL,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AutomationRulePropertyConditionSupportedProperty(input)
+	return &out, nil
+}

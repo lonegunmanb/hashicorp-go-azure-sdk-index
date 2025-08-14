@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-09-01/connectionmonitors
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEvaluationState(input string) (*EvaluationState, error) {
+	vals := map[string]EvaluationState{
+		"completed":  EvaluationStateCompleted,
+		"inprogress": EvaluationStateInProgress,
+		"notstarted": EvaluationStateNotStarted,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EvaluationState(input)
+	return &out, nil
+}

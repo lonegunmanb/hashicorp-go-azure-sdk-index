@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/trigger
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type TumblingWindowTriggerTypeProperties struct {
+	Delay          *interface{}            `json:"delay,omitempty"`
+	DependsOn      *[]DependencyReference  `json:"dependsOn,omitempty"`
+	EndTime        *string                 `json:"endTime,omitempty"`
+	Frequency      TumblingWindowFrequency `json:"frequency"`
+	Interval       int64                   `json:"interval"`
+	MaxConcurrency int64                   `json:"maxConcurrency"`
+	RetryPolicy    *RetryPolicy            `json:"retryPolicy,omitempty"`
+	StartTime      string                  `json:"startTime"`
+}

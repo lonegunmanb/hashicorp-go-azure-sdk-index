@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/security/2025-03-01/devops
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseInheritFromParentState(input string) (*InheritFromParentState, error) {
+	vals := map[string]InheritFromParentState{
+		"disabled": InheritFromParentStateDisabled,
+		"enabled":  InheritFromParentStateEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := InheritFromParentState(input)
+	return &out, nil
+}

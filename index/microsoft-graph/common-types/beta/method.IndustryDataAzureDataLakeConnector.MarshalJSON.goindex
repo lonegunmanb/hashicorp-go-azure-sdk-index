@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s IndustryDataAzureDataLakeConnector) MarshalJSON() ([]byte, error) {
+	type wrapper IndustryDataAzureDataLakeConnector
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling IndustryDataAzureDataLakeConnector: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling IndustryDataAzureDataLakeConnector: %+v", err)
+	}
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.industryData.azureDataLakeConnector"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling IndustryDataAzureDataLakeConnector: %+v", err)
+	}
+
+	return encoded, nil
+}

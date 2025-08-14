@@ -1,0 +1,42 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *PlannerChecklistItem) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		IsChecked            nullable.Type[bool]   `json:"isChecked,omitempty"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+		OrderHint            nullable.Type[string] `json:"orderHint,omitempty"`
+		Title                nullable.Type[string] `json:"title,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.IsChecked = decoded.IsChecked
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.OrderHint = decoded.OrderHint
+	s.Title = decoded.Title
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling PlannerChecklistItem into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["lastModifiedBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'LastModifiedBy' for 'PlannerChecklistItem': %+v", err)
+		}
+		s.LastModifiedBy = &impl
+	}
+
+	return nil
+}

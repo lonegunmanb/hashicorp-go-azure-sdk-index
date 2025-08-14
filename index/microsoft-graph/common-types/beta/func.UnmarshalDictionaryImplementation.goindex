@@ -1,0 +1,105 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalDictionaryImplementation(input []byte) (Dictionary, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling Dictionary into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.customAppScopeAttributesDictionary") {
+		var out CustomAppScopeAttributesDictionary
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into CustomAppScopeAttributesDictionary: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.customMetadataDictionary") {
+		var out CustomMetadataDictionary
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into CustomMetadataDictionary: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.fileStorageContainerCustomPropertyDictionary") {
+		var out FileStorageContainerCustomPropertyDictionary
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into FileStorageContainerCustomPropertyDictionary: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.networkaccess.extendedProperties") {
+		var out NetworkaccessExtendedProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into NetworkaccessExtendedProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.partner.security.additionalDataDictionary") {
+		var out PartnerSecurityAdditionalDataDictionary
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into PartnerSecurityAdditionalDataDictionary: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.plannerFormsDictionary") {
+		var out PlannerFormsDictionary
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into PlannerFormsDictionary: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.resultTemplateDictionary") {
+		var out ResultTemplateDictionary
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ResultTemplateDictionary: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.stringDictionary") {
+		var out StringDictionary
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into StringDictionary: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.wafAllowedHeadersDictionary") {
+		var out WafAllowedHeadersDictionary
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into WafAllowedHeadersDictionary: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseDictionaryImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseDictionaryImpl: %+v", err)
+	}
+
+	return RawDictionaryImpl{
+		dictionary: parent,
+		Type:       value,
+		Values:     temp,
+	}, nil
+
+}

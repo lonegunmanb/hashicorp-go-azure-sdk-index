@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/authorization/2020-10-01/rolemanagementpolicyassignments
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseApprovalMode(input string) (*ApprovalMode, error) {
+	vals := map[string]ApprovalMode{
+		"noapproval":  ApprovalModeNoApproval,
+		"parallel":    ApprovalModeParallel,
+		"serial":      ApprovalModeSerial,
+		"singlestage": ApprovalModeSingleStage,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ApprovalMode(input)
+	return &out, nil
+}

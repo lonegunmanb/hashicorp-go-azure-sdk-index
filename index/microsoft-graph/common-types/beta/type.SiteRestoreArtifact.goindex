@@ -1,0 +1,53 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type SiteRestoreArtifact struct {
+	// The new site identifier if the value of the destinationType property is new, and the existing site ID if the value is
+	// inPlace.
+	RestoredSiteId nullable.Type[string] `json:"restoredSiteId,omitempty"`
+
+	// The name of the restored site.
+	RestoredSiteName nullable.Type[string] `json:"restoredSiteName,omitempty"`
+
+	// The web URL of the restored site.
+	RestoredSiteWebUrl nullable.Type[string] `json:"restoredSiteWebUrl,omitempty"`
+
+	// Fields inherited from RestoreArtifactBase
+
+	// The time when restoration of restore artifact is completed.
+	CompletionDateTime nullable.Type[string] `json:"completionDateTime,omitempty"`
+
+	// Indicates the restoration destination. The possible values are: new, inPlace, unknownFutureValue.
+	DestinationType *DestinationType `json:"destinationType,omitempty"`
+
+	// Contains error details if the restore session fails or completes with an error.
+	Error *PublicError `json:"error,omitempty"`
+
+	// Represents the date and time when an artifact is protected by a protectionPolicy and can be restored.
+	RestorePoint *RestorePoint `json:"restorePoint,omitempty"`
+
+	// The time when restoration of restore artifact is started.
+	StartDateTime nullable.Type[string] `json:"startDateTime,omitempty"`
+
+	// The individual restoration status of the restore artifact. The possible values are: added, scheduling, scheduled,
+	// inProgress, succeeded, failed, unknownFutureValue.
+	Status *ArtifactRestoreStatus `json:"status,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

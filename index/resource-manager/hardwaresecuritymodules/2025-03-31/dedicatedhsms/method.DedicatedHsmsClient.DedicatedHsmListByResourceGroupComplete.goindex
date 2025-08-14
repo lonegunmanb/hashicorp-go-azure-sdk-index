@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hardwaresecuritymodules/2025-03-31/dedicatedhsms
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DedicatedHsmsClient) DedicatedHsmListByResourceGroupComplete(ctx context.Context, id commonids.ResourceGroupId, options DedicatedHsmListByResourceGroupOperationOptions) (DedicatedHsmListByResourceGroupCompleteResult, error) {
+	return c.DedicatedHsmListByResourceGroupCompleteMatchingPredicate(ctx, id, options, DedicatedHsmOperationPredicate{})
+}

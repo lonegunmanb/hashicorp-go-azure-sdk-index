@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/containers
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseContainerStatus(input string) (*ContainerStatus, error) {
+	vals := map[string]ContainerStatus{
+		"needsattention": ContainerStatusNeedsAttention,
+		"ok":             ContainerStatusOK,
+		"offline":        ContainerStatusOffline,
+		"unknown":        ContainerStatusUnknown,
+		"updating":       ContainerStatusUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ContainerStatus(input)
+	return &out, nil
+}

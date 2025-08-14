@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-05-01/managementlocks
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *ProviderLockId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.LockName, ok = input.Parsed["lockName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "lockName", input)
+	}
+
+	return nil
+}

@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *MeInformationProtectionBitlockerRecoveryKeyId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.BitlockerRecoveryKeyId, ok = input.Parsed["bitlockerRecoveryKeyId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "bitlockerRecoveryKeyId", input)
+	}
+
+	return nil
+}

@@ -1,0 +1,78 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type NewsLinkPage struct {
+	// A link to the banner image for the newsLinkPage.
+	BannerImageWebUrl nullable.Type[string] `json:"bannerImageWebUrl,omitempty"`
+
+	// The SharePoint IDs of the referenced news article if it's recognized as a SharePoint resource. Read-only.
+	NewsSharepointIds *SharepointIds `json:"newsSharepointIds,omitempty"`
+
+	// The URL of the news article referenced by the newsLinkPage. It can be an external link.
+	NewsWebUrl nullable.Type[string] `json:"newsWebUrl,omitempty"`
+
+	// Fields inherited from BaseSitePage
+
+	// The name of the page layout of the page. The possible values are: microsoftReserved, article, home,
+	// unknownFutureValue, newsLink. Use the Prefer: include-unknown-enum-members request header to get the following value
+	// in this evolvable enum: newsLink.
+	PageLayout *PageLayoutType `json:"pageLayout,omitempty"`
+
+	// The publishing status and the MM.mm version of the page.
+	PublishingState *PublicationFacet `json:"publishingState,omitempty"`
+
+	// Title of the sitePage.
+	Title nullable.Type[string] `json:"title,omitempty"`
+
+	// Fields inherited from BaseItem
+
+	// Identity of the user, device, or application that created the item. Read-only.
+	CreatedBy *IdentitySet `json:"createdBy,omitempty"`
+
+	CreatedByUser *User `json:"createdByUser,omitempty"`
+
+	// Date and time of item creation. Read-only.
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+
+	// The description of the item.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// ETag for the item. Read-only.
+	ETag nullable.Type[string] `json:"eTag,omitempty"`
+
+	// Identity of the user, device, and application that last modified the item. Read-only.
+	LastModifiedBy *IdentitySet `json:"lastModifiedBy,omitempty"`
+
+	LastModifiedByUser *User `json:"lastModifiedByUser,omitempty"`
+
+	// Date and time the item was last modified. Read-only.
+	LastModifiedDateTime *string `json:"lastModifiedDateTime,omitempty"`
+
+	// The name of the item. Read-write.
+	Name nullable.Type[string] `json:"name,omitempty"`
+
+	// Parent information, if the item has a parent. Read-write.
+	ParentReference *ItemReference `json:"parentReference,omitempty"`
+
+	// URL that either displays the resource in the browser (for Office file formats), or is a direct link to the file (for
+	// other formats). Read-only.
+	WebUrl nullable.Type[string] `json:"webUrl,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

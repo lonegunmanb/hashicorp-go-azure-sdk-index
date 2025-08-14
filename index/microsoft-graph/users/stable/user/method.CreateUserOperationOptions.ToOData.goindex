@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/user
+import (
+	"context"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o CreateUserOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}

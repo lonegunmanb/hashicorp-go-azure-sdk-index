@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s ExternalUsersSelfServiceSignUpEventsFlow) AuthenticationEventsFlow() BaseAuthenticationEventsFlowImpl {
+	return BaseAuthenticationEventsFlowImpl{
+		Conditions:  s.Conditions,
+		Description: s.Description,
+		DisplayName: s.DisplayName,
+		Priority:    s.Priority,
+		Id:          s.Id,
+		ODataId:     s.ODataId,
+		ODataType:   s.ODataType,
+	}
+}

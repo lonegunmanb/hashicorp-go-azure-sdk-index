@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/customoperation
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s MigrateMySqlAzureDbForMySqlOfflineTaskOutputTableLevel) MarshalJSON() ([]byte, error) {
+	type wrapper MigrateMySqlAzureDbForMySqlOfflineTaskOutputTableLevel
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling MigrateMySqlAzureDbForMySqlOfflineTaskOutputTableLevel: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling MigrateMySqlAzureDbForMySqlOfflineTaskOutputTableLevel: %+v", err)
+	}
+
+	decoded["resultType"] = "TableLevelOutput"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling MigrateMySqlAzureDbForMySqlOfflineTaskOutputTableLevel: %+v", err)
+	}
+
+	return encoded, nil
+}

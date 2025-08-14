@@ -1,0 +1,99 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *UnifiedRoleAssignmentMultiple) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AppScopeIds               *[]string              `json:"appScopeIds,omitempty"`
+		Condition                 nullable.Type[string]  `json:"condition,omitempty"`
+		Description               nullable.Type[string]  `json:"description,omitempty"`
+		DirectoryScopeIds         *[]string              `json:"directoryScopeIds,omitempty"`
+		DirectoryScopes_ODataBind *[]string              `json:"directoryScopes@odata.bind,omitempty"`
+		DisplayName               nullable.Type[string]  `json:"displayName,omitempty"`
+		PrincipalIds              *[]string              `json:"principalIds,omitempty"`
+		Principals_ODataBind      *[]string              `json:"principals@odata.bind,omitempty"`
+		RoleDefinition            *UnifiedRoleDefinition `json:"roleDefinition,omitempty"`
+		RoleDefinitionId          *string                `json:"roleDefinitionId,omitempty"`
+		Id                        *string                `json:"id,omitempty"`
+		ODataId                   *string                `json:"@odata.id,omitempty"`
+		ODataType                 *string                `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AppScopeIds = decoded.AppScopeIds
+	s.Condition = decoded.Condition
+	s.Description = decoded.Description
+	s.DirectoryScopeIds = decoded.DirectoryScopeIds
+	s.DirectoryScopes_ODataBind = decoded.DirectoryScopes_ODataBind
+	s.DisplayName = decoded.DisplayName
+	s.PrincipalIds = decoded.PrincipalIds
+	s.Principals_ODataBind = decoded.Principals_ODataBind
+	s.RoleDefinition = decoded.RoleDefinition
+	s.RoleDefinitionId = decoded.RoleDefinitionId
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling UnifiedRoleAssignmentMultiple into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["appScopes"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling AppScopes into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]AppScope, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalAppScopeImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'AppScopes' for 'UnifiedRoleAssignmentMultiple': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.AppScopes = &output
+	}
+
+	if v, ok := temp["directoryScopes"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling DirectoryScopes into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]DirectoryObject, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalDirectoryObjectImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'DirectoryScopes' for 'UnifiedRoleAssignmentMultiple': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.DirectoryScopes = &output
+	}
+
+	if v, ok := temp["principals"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling Principals into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]DirectoryObject, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalDirectoryObjectImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'Principals' for 'UnifiedRoleAssignmentMultiple': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.Principals = &output
+	}
+
+	return nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationaccountpartners
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id PartnerId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Integration Account Name: %q", id.IntegrationAccountName),
+		fmt.Sprintf("Partner Name: %q", id.PartnerName),
+	}
+	return fmt.Sprintf("Partner (%s)", strings.Join(components, "\n"))
+}

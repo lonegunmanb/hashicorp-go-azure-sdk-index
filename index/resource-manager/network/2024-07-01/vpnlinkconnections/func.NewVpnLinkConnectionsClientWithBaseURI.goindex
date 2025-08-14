@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/vpnlinkconnections
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewVpnLinkConnectionsClientWithBaseURI(sdkApi sdkEnv.Api) (*VpnLinkConnectionsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "vpnlinkconnections", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating VpnLinkConnectionsClient: %+v", err)
+	}
+
+	return &VpnLinkConnectionsClient{
+		Client: client,
+	}, nil
+}

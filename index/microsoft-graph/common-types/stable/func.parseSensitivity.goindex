@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSensitivity(input string) (*Sensitivity, error) {
+	vals := map[string]Sensitivity{
+		"confidential": Sensitivity_Confidential,
+		"normal":       Sensitivity_Normal,
+		"personal":     Sensitivity_Personal,
+		"private":      Sensitivity_Private,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Sensitivity(input)
+	return &out, nil
+}

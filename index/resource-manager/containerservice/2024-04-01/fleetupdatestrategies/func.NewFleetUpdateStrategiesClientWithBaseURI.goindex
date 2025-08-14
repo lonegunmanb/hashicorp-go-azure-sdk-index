@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerservice/2024-04-01/fleetupdatestrategies
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewFleetUpdateStrategiesClientWithBaseURI(sdkApi sdkEnv.Api) (*FleetUpdateStrategiesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "fleetupdatestrategies", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating FleetUpdateStrategiesClient: %+v", err)
+	}
+
+	return &FleetUpdateStrategiesClient{
+		Client: client,
+	}, nil
+}

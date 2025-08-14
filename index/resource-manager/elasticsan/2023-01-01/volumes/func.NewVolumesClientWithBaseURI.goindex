@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/elasticsan/2023-01-01/volumes
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewVolumesClientWithBaseURI(sdkApi sdkEnv.Api) (*VolumesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "volumes", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating VolumesClient: %+v", err)
+	}
+
+	return &VolumesClient{
+		Client: client,
+	}, nil
+}

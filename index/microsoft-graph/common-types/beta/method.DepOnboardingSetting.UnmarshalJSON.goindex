@@ -1,0 +1,94 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *DepOnboardingSetting) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AppleIdentifier                     nullable.Type[string]         `json:"appleIdentifier,omitempty"`
+		DataSharingConsentGranted           *bool                         `json:"dataSharingConsentGranted,omitempty"`
+		DefaultIosEnrollmentProfile         *DepIOSEnrollmentProfile      `json:"defaultIosEnrollmentProfile,omitempty"`
+		DefaultMacOsEnrollmentProfile       *DepMacOSEnrollmentProfile    `json:"defaultMacOsEnrollmentProfile,omitempty"`
+		DefaultTvOSEnrollmentProfile        *DepTvOSEnrollmentProfile     `json:"defaultTvOSEnrollmentProfile,omitempty"`
+		DefaultVisionOSEnrollmentProfile    *DepVisionOSEnrollmentProfile `json:"defaultVisionOSEnrollmentProfile,omitempty"`
+		LastModifiedDateTime                *string                       `json:"lastModifiedDateTime,omitempty"`
+		LastSuccessfulSyncDateTime          *string                       `json:"lastSuccessfulSyncDateTime,omitempty"`
+		LastSyncErrorCode                   *int64                        `json:"lastSyncErrorCode,omitempty"`
+		LastSyncTriggeredDateTime           *string                       `json:"lastSyncTriggeredDateTime,omitempty"`
+		RoleScopeTagIds                     *[]string                     `json:"roleScopeTagIds,omitempty"`
+		ShareTokenWithSchoolDataSyncService *bool                         `json:"shareTokenWithSchoolDataSyncService,omitempty"`
+		SyncedDeviceCount                   *int64                        `json:"syncedDeviceCount,omitempty"`
+		TokenExpirationDateTime             *string                       `json:"tokenExpirationDateTime,omitempty"`
+		TokenName                           nullable.Type[string]         `json:"tokenName,omitempty"`
+		TokenType                           *DepTokenType                 `json:"tokenType,omitempty"`
+		Id                                  *string                       `json:"id,omitempty"`
+		ODataId                             *string                       `json:"@odata.id,omitempty"`
+		ODataType                           *string                       `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AppleIdentifier = decoded.AppleIdentifier
+	s.DataSharingConsentGranted = decoded.DataSharingConsentGranted
+	s.DefaultIosEnrollmentProfile = decoded.DefaultIosEnrollmentProfile
+	s.DefaultMacOsEnrollmentProfile = decoded.DefaultMacOsEnrollmentProfile
+	s.DefaultTvOSEnrollmentProfile = decoded.DefaultTvOSEnrollmentProfile
+	s.DefaultVisionOSEnrollmentProfile = decoded.DefaultVisionOSEnrollmentProfile
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.LastSuccessfulSyncDateTime = decoded.LastSuccessfulSyncDateTime
+	s.LastSyncErrorCode = decoded.LastSyncErrorCode
+	s.LastSyncTriggeredDateTime = decoded.LastSyncTriggeredDateTime
+	s.RoleScopeTagIds = decoded.RoleScopeTagIds
+	s.ShareTokenWithSchoolDataSyncService = decoded.ShareTokenWithSchoolDataSyncService
+	s.SyncedDeviceCount = decoded.SyncedDeviceCount
+	s.TokenExpirationDateTime = decoded.TokenExpirationDateTime
+	s.TokenName = decoded.TokenName
+	s.TokenType = decoded.TokenType
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling DepOnboardingSetting into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["enrollmentProfiles"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling EnrollmentProfiles into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]EnrollmentProfile, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalEnrollmentProfileImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'EnrollmentProfiles' for 'DepOnboardingSetting': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.EnrollmentProfiles = &output
+	}
+
+	if v, ok := temp["importedAppleDeviceIdentities"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling ImportedAppleDeviceIdentities into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]ImportedAppleDeviceIdentity, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalImportedAppleDeviceIdentityImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'ImportedAppleDeviceIdentities' for 'DepOnboardingSetting': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.ImportedAppleDeviceIdentities = &output
+	}
+
+	return nil
+}

@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEligibilityScheduleFilterByCurrentUserOptions(input string) (*EligibilityScheduleFilterByCurrentUserOptions, error) {
+	vals := map[string]EligibilityScheduleFilterByCurrentUserOptions{
+		"principal": EligibilityScheduleFilterByCurrentUserOptions_Principal,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EligibilityScheduleFilterByCurrentUserOptions(input)
+	return &out, nil
+}

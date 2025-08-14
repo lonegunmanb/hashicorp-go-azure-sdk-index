@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/redis/2024-03-01/redis
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c RedisClient) ListUpgradeNotificationsComplete(ctx context.Context, id RediId, options ListUpgradeNotificationsOperationOptions) (ListUpgradeNotificationsCompleteResult, error) {
+	return c.ListUpgradeNotificationsCompleteMatchingPredicate(ctx, id, options, UpgradeNotificationOperationPredicate{})
+}

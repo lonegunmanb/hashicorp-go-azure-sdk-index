@@ -1,0 +1,43 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type BaseLocationImpl struct {
+	// The street address of the location.
+	Address *PhysicalAddress `json:"address,omitempty"`
+
+	// The geographic coordinates and elevation of the location.
+	Coordinates *OutlookGeoCoordinates `json:"coordinates,omitempty"`
+
+	// The name associated with the location.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// Optional email address of the location.
+	LocationEmailAddress nullable.Type[string] `json:"locationEmailAddress,omitempty"`
+
+	// The type of location. Possible values are: default, conferenceRoom, homeAddress, businessAddress,geoCoordinates,
+	// streetAddress, hotel, restaurant, localBusiness, postalAddress. Read-only.
+	LocationType *LocationType `json:"locationType,omitempty"`
+
+	// Optional URI representing the location.
+	LocationUri nullable.Type[string] `json:"locationUri,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// For internal use only.
+	UniqueId nullable.Type[string] `json:"uniqueId,omitempty"`
+
+	// For internal use only.
+	UniqueIdType *LocationUniqueIdType `json:"uniqueIdType,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

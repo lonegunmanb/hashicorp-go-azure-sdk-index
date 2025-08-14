@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2025-01-01/policydefinitionversions
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id PolicyDefinitionId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.StaticSegment("staticProviders", "providers", "providers"),
+		resourceids.ResourceProviderSegment("staticMicrosoftAuthorization", "Microsoft.Authorization", "Microsoft.Authorization"),
+		resourceids.StaticSegment("staticPolicyDefinitions", "policyDefinitions", "policyDefinitions"),
+		resourceids.UserSpecifiedSegment("policyDefinitionName", "policyDefinitionName"),
+	}
+}

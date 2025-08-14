@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingroledefinition
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *DepartmentBillingRoleDefinitionId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.BillingAccountName, ok = input.Parsed["billingAccountName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "billingAccountName", input)
+	}
+
+	if id.DepartmentName, ok = input.Parsed["departmentName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "departmentName", input)
+	}
+
+	if id.BillingRoleDefinitionName, ok = input.Parsed["billingRoleDefinitionName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "billingRoleDefinitionName", input)
+	}
+
+	return nil
+}

@@ -1,0 +1,82 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePrintFinishing(input string) (*PrintFinishing, error) {
+	vals := map[string]PrintFinishing{
+		"bale":               PrintFinishing_Bale,
+		"bind":               PrintFinishing_Bind,
+		"bindbottom":         PrintFinishing_BindBottom,
+		"bindleft":           PrintFinishing_BindLeft,
+		"bindright":          PrintFinishing_BindRight,
+		"bindtop":            PrintFinishing_BindTop,
+		"bookletmaker":       PrintFinishing_BookletMaker,
+		"coat":               PrintFinishing_Coat,
+		"cover":              PrintFinishing_Cover,
+		"fold":               PrintFinishing_Fold,
+		"foldaccordion":      PrintFinishing_FoldAccordion,
+		"folddoublegate":     PrintFinishing_FoldDoubleGate,
+		"foldengineeringz":   PrintFinishing_FoldEngineeringZ,
+		"foldgate":           PrintFinishing_FoldGate,
+		"foldhalf":           PrintFinishing_FoldHalf,
+		"foldhalfz":          PrintFinishing_FoldHalfZ,
+		"foldleftgate":       PrintFinishing_FoldLeftGate,
+		"foldletter":         PrintFinishing_FoldLetter,
+		"foldparallel":       PrintFinishing_FoldParallel,
+		"foldposter":         PrintFinishing_FoldPoster,
+		"foldrightgate":      PrintFinishing_FoldRightGate,
+		"foldz":              PrintFinishing_FoldZ,
+		"laminate":           PrintFinishing_Laminate,
+		"none":               PrintFinishing_None,
+		"punch":              PrintFinishing_Punch,
+		"punchbottomleft":    PrintFinishing_PunchBottomLeft,
+		"punchbottomright":   PrintFinishing_PunchBottomRight,
+		"punchdualbottom":    PrintFinishing_PunchDualBottom,
+		"punchdualleft":      PrintFinishing_PunchDualLeft,
+		"punchdualright":     PrintFinishing_PunchDualRight,
+		"punchdualtop":       PrintFinishing_PunchDualTop,
+		"punchquadbottom":    PrintFinishing_PunchQuadBottom,
+		"punchquadleft":      PrintFinishing_PunchQuadLeft,
+		"punchquadright":     PrintFinishing_PunchQuadRight,
+		"punchquadtop":       PrintFinishing_PunchQuadTop,
+		"punchtopleft":       PrintFinishing_PunchTopLeft,
+		"punchtopright":      PrintFinishing_PunchTopRight,
+		"punchtriplebottom":  PrintFinishing_PunchTripleBottom,
+		"punchtripleleft":    PrintFinishing_PunchTripleLeft,
+		"punchtripleright":   PrintFinishing_PunchTripleRight,
+		"punchtripletop":     PrintFinishing_PunchTripleTop,
+		"saddlestitch":       PrintFinishing_SaddleStitch,
+		"staple":             PrintFinishing_Staple,
+		"staplebottomleft":   PrintFinishing_StapleBottomLeft,
+		"staplebottomright":  PrintFinishing_StapleBottomRight,
+		"stapledualbottom":   PrintFinishing_StapleDualBottom,
+		"stapledualleft":     PrintFinishing_StapleDualLeft,
+		"stapledualright":    PrintFinishing_StapleDualRight,
+		"stapledualtop":      PrintFinishing_StapleDualTop,
+		"stapletopleft":      PrintFinishing_StapleTopLeft,
+		"stapletopright":     PrintFinishing_StapleTopRight,
+		"stapletriplebottom": PrintFinishing_StapleTripleBottom,
+		"stapletripleleft":   PrintFinishing_StapleTripleLeft,
+		"stapletripleright":  PrintFinishing_StapleTripleRight,
+		"stapletripletop":    PrintFinishing_StapleTripleTop,
+		"stitchbottomedge":   PrintFinishing_StitchBottomEdge,
+		"stitchedge":         PrintFinishing_StitchEdge,
+		"stitchleftedge":     PrintFinishing_StitchLeftEdge,
+		"stitchrightedge":    PrintFinishing_StitchRightEdge,
+		"stitchtopedge":      PrintFinishing_StitchTopEdge,
+		"trim":               PrintFinishing_Trim,
+		"trimaftercopies":    PrintFinishing_TrimAfterCopies,
+		"trimafterdocuments": PrintFinishing_TrimAfterDocuments,
+		"trimafterjob":       PrintFinishing_TrimAfterJob,
+		"trimafterpages":     PrintFinishing_TrimAfterPages,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PrintFinishing(input)
+	return &out, nil
+}

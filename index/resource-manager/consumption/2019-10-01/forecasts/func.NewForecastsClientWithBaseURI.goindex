@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2019-10-01/forecasts
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewForecastsClientWithBaseURI(sdkApi sdkEnv.Api) (*ForecastsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "forecasts", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ForecastsClient: %+v", err)
+	}
+
+	return &ForecastsClient{
+		Client: client,
+	}, nil
+}

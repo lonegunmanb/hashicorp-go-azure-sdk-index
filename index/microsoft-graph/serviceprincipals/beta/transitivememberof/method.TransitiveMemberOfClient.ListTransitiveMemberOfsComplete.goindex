@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/transitivememberof
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c TransitiveMemberOfClient) ListTransitiveMemberOfsComplete(ctx context.Context, id beta.ServicePrincipalId, options ListTransitiveMemberOfsOperationOptions) (ListTransitiveMemberOfsCompleteResult, error) {
+	return c.ListTransitiveMemberOfsCompleteMatchingPredicate(ctx, id, options, DirectoryObjectOperationPredicate{})
+}

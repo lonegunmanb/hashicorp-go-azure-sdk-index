@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagemover/2023-03-01/endpoints
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *EndpointId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.StorageMoverName, ok = input.Parsed["storageMoverName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "storageMoverName", input)
+	}
+
+	if id.EndpointName, ok = input.Parsed["endpointName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "endpointName", input)
+	}
+
+	return nil
+}

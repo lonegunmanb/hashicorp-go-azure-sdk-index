@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2023-07-01/providers
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ProvidersClient) ProviderPermissionsCompleteMatchingPredicate(ctx context.Context, id SubscriptionProviderId, predicate ProviderPermissionOperationPredicate) (result ProviderPermissionsCompleteResult, err error) {
+	items := make([]ProviderPermission, 0)
+
+	resp, err := c.ProviderPermissions(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ProviderPermissionsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

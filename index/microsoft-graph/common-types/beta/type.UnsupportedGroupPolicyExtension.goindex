@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type UnsupportedGroupPolicyExtension struct {
+	// ExtensionType of the unsupported extension.
+	ExtensionType nullable.Type[string] `json:"extensionType,omitempty"`
+
+	// Namespace Url of the unsupported extension.
+	NamespaceUrl nullable.Type[string] `json:"namespaceUrl,omitempty"`
+
+	// Node name of the unsupported extension.
+	NodeName nullable.Type[string] `json:"nodeName,omitempty"`
+
+	// Scope of the group policy setting.
+	SettingScope *GroupPolicySettingScope `json:"settingScope,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/newrelic/2024-10-01/linkedresources
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewLinkedResourcesClientWithBaseURI(sdkApi sdkEnv.Api) (*LinkedResourcesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "linkedresources", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating LinkedResourcesClient: %+v", err)
+	}
+
+	return &LinkedResourcesClient{
+		Client: client,
+	}, nil
+}

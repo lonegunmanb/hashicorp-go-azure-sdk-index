@@ -1,0 +1,89 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/v2024_04_01
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/batchdeployment"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/batchendpoint"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/codecontainer"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/codeversion"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/componentcontainer"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/componentversion"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/datacontainer"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/datacontainerregistry"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/datareference"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/datastore"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/dataversion"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/dataversionregistry"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/environmentcontainer"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/environmentversion"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/feature"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/featuresetcontainer"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/featuresetversion"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/featurestoreentitycontainer"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/featurestoreentityversion"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/job"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/machinelearningcomputes"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/managednetwork"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/marketplacesubscription"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/modelcontainer"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/modelversion"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/onlinedeployment"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/onlineendpoint"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/operationalizationclusters"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/outboundnetworkdependenciesendpoints"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/privateendpointconnections"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/proxyoperations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/quota"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/registrymanagement"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/schedule"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/serverlessendpoint"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/v2workspaceconnectionresource"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/virtualmachinesizes"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/workspaceprivateendpointconnections"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/workspaceprivatelinkresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/workspaces"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	BatchDeployment                      *batchdeployment.BatchDeploymentClient
+	BatchEndpoint                        *batchendpoint.BatchEndpointClient
+	CodeContainer                        *codecontainer.CodeContainerClient
+	CodeVersion                          *codeversion.CodeVersionClient
+	ComponentContainer                   *componentcontainer.ComponentContainerClient
+	ComponentVersion                     *componentversion.ComponentVersionClient
+	DataContainer                        *datacontainer.DataContainerClient
+	DataContainerRegistry                *datacontainerregistry.DataContainerRegistryClient
+	DataReference                        *datareference.DataReferenceClient
+	DataVersion                          *dataversion.DataVersionClient
+	DataVersionRegistry                  *dataversionregistry.DataVersionRegistryClient
+	Datastore                            *datastore.DatastoreClient
+	EnvironmentContainer                 *environmentcontainer.EnvironmentContainerClient
+	EnvironmentVersion                   *environmentversion.EnvironmentVersionClient
+	Feature                              *feature.FeatureClient
+	FeaturesetContainer                  *featuresetcontainer.FeaturesetContainerClient
+	FeaturesetVersion                    *featuresetversion.FeaturesetVersionClient
+	FeaturestoreEntityContainer          *featurestoreentitycontainer.FeaturestoreEntityContainerClient
+	FeaturestoreEntityVersion            *featurestoreentityversion.FeaturestoreEntityVersionClient
+	Job                                  *job.JobClient
+	MachineLearningComputes              *machinelearningcomputes.MachineLearningComputesClient
+	ManagedNetwork                       *managednetwork.ManagedNetworkClient
+	MarketplaceSubscription              *marketplacesubscription.MarketplaceSubscriptionClient
+	ModelContainer                       *modelcontainer.ModelContainerClient
+	ModelVersion                         *modelversion.ModelVersionClient
+	OnlineDeployment                     *onlinedeployment.OnlineDeploymentClient
+	OnlineEndpoint                       *onlineendpoint.OnlineEndpointClient
+	OperationalizationClusters           *operationalizationclusters.OperationalizationClustersClient
+	OutboundNetworkDependenciesEndpoints *outboundnetworkdependenciesendpoints.OutboundNetworkDependenciesEndpointsClient
+	PrivateEndpointConnections           *privateendpointconnections.PrivateEndpointConnectionsClient
+	ProxyOperations                      *proxyoperations.ProxyOperationsClient
+	Quota                                *quota.QuotaClient
+	RegistryManagement                   *registrymanagement.RegistryManagementClient
+	Schedule                             *schedule.ScheduleClient
+	ServerlessEndpoint                   *serverlessendpoint.ServerlessEndpointClient
+	V2WorkspaceConnectionResource        *v2workspaceconnectionresource.V2WorkspaceConnectionResourceClient
+	VirtualMachineSizes                  *virtualmachinesizes.VirtualMachineSizesClient
+	WorkspacePrivateEndpointConnections  *workspaceprivateendpointconnections.WorkspacePrivateEndpointConnectionsClient
+	WorkspacePrivateLinkResources        *workspaceprivatelinkresources.WorkspacePrivateLinkResourcesClient
+	Workspaces                           *workspaces.WorkspacesClient
+}

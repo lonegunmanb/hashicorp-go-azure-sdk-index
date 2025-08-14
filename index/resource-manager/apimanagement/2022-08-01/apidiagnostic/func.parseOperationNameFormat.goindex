@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2022-08-01/apidiagnostic
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseOperationNameFormat(input string) (*OperationNameFormat, error) {
+	vals := map[string]OperationNameFormat{
+		"name": OperationNameFormatName,
+		"url":  OperationNameFormatURL,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := OperationNameFormat(input)
+	return &out, nil
+}

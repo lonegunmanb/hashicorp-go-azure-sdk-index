@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/directreport
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DirectReportClient) ListDirectReportsComplete(ctx context.Context, id stable.UserId, options ListDirectReportsOperationOptions) (ListDirectReportsCompleteResult, error) {
+	return c.ListDirectReportsCompleteMatchingPredicate(ctx, id, options, DirectoryObjectOperationPredicate{})
+}

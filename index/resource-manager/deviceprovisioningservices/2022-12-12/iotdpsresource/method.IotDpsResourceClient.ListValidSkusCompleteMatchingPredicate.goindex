@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/deviceprovisioningservices/2022-12-12/iotdpsresource
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c IotDpsResourceClient) ListValidSkusCompleteMatchingPredicate(ctx context.Context, id commonids.ProvisioningServiceId, predicate IotDpsSkuDefinitionOperationPredicate) (result ListValidSkusCompleteResult, err error) {
+	items := make([]IotDpsSkuDefinition, 0)
+
+	resp, err := c.ListValidSkus(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListValidSkusCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

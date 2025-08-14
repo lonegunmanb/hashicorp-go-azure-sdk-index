@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/dataconnectorsdisconnect
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDataConnectorsDisconnectClientWithBaseURI(sdkApi sdkEnv.Api) (*DataConnectorsDisconnectClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "dataconnectorsdisconnect", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DataConnectorsDisconnectClient: %+v", err)
+	}
+
+	return &DataConnectorsDisconnectClient{
+		Client: client,
+	}, nil
+}

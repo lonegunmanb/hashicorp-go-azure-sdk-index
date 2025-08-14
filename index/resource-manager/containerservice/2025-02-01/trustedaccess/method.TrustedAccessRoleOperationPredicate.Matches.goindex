@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerservice/2025-02-01/trustedaccess
+
+func (p TrustedAccessRoleOperationPredicate) Matches(input TrustedAccessRole) bool {
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.SourceResourceType != nil && (input.SourceResourceType == nil || *p.SourceResourceType != *input.SourceResourceType) {
+		return false
+	}
+
+	return true
+}

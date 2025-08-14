@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-09-01/networkinterfaces
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id RoleInstanceNetworkInterfaceId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Cloud Service Name: %q", id.CloudServiceName),
+		fmt.Sprintf("Role Instance Name: %q", id.RoleInstanceName),
+		fmt.Sprintf("Network Interface Name: %q", id.NetworkInterfaceName),
+	}
+	return fmt.Sprintf("Role Instance Network Interface (%s)", strings.Join(components, "\n"))
+}

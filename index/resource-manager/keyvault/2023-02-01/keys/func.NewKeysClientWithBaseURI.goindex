@@ -1,0 +1,8 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2023-02-01/keys
+import "github.com/Azure/go-autorest/autorest"
+func NewKeysClientWithBaseURI(endpoint string) KeysClient {
+	return KeysClient{
+		Client:  autorest.NewClientWithUserAgent(userAgent()),
+		baseUri: endpoint,
+	}
+}

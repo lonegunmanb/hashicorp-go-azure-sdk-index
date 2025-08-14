@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/pipelines
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s SalesforceServiceCloudSource) MarshalJSON() ([]byte, error) {
+	type wrapper SalesforceServiceCloudSource
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling SalesforceServiceCloudSource: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling SalesforceServiceCloudSource: %+v", err)
+	}
+
+	decoded["type"] = "SalesforceServiceCloudSource"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling SalesforceServiceCloudSource: %+v", err)
+	}
+
+	return encoded, nil
+}

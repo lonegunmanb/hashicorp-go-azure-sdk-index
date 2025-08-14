@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2023-09-01/prefixlistglobalrulestack
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id PrefixListId) String() string {
+	components := []string{
+		fmt.Sprintf("Global Rulestack Name: %q", id.GlobalRulestackName),
+		fmt.Sprintf("Prefix List Name: %q", id.PrefixListName),
+	}
+	return fmt.Sprintf("Prefix List (%s)", strings.Join(components, "\n"))
+}

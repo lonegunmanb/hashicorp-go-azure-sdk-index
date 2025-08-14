@@ -1,0 +1,40 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type CallRecordingEventMessageDetail struct {
+	// Unique identifier of the call.
+	CallId nullable.Type[string] `json:"callId,omitempty"`
+
+	// Display name for the call recording.
+	CallRecordingDisplayName nullable.Type[string] `json:"callRecordingDisplayName,omitempty"`
+
+	// Duration of the call recording.
+	CallRecordingDuration nullable.Type[string] `json:"callRecordingDuration,omitempty"`
+
+	// Status of the call recording. Possible values are: success, failure, initial, chunkFinished, unknownFutureValue.
+	CallRecordingStatus *CallRecordingStatus `json:"callRecordingStatus,omitempty"`
+
+	// Call recording URL.
+	CallRecordingUrl nullable.Type[string] `json:"callRecordingUrl,omitempty"`
+
+	// Initiator of the event.
+	Initiator IdentitySet `json:"initiator"`
+
+	// Organizer of the meeting.
+	MeetingOrganizer IdentitySet `json:"meetingOrganizer"`
+
+	// Fields inherited from EventMessageDetail
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/openidconnectprovider
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewOpenidConnectProviderClientWithBaseURI(sdkApi sdkEnv.Api) (*OpenidConnectProviderClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "openidconnectprovider", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating OpenidConnectProviderClient: %+v", err)
+	}
+
+	return &OpenidConnectProviderClient{
+		Client: client,
+	}, nil
+}

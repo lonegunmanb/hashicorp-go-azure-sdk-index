@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id UserIdManagedAppRegistrationId) String() string {
+	components := []string{
+		fmt.Sprintf("User: %q", id.UserId),
+		fmt.Sprintf("Managed App Registration: %q", id.ManagedAppRegistrationId),
+	}
+	return fmt.Sprintf("User Id Managed App Registration (%s)", strings.Join(components, "\n"))
+}

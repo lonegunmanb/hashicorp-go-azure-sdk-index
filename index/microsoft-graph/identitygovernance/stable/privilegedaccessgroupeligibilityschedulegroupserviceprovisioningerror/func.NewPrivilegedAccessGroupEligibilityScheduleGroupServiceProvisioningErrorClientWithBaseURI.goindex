@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/privilegedaccessgroupeligibilityschedulegroupserviceprovisioningerror
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPrivilegedAccessGroupEligibilityScheduleGroupServiceProvisioningErrorClientWithBaseURI(sdkApi sdkEnv.Api) (*PrivilegedAccessGroupEligibilityScheduleGroupServiceProvisioningErrorClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "privilegedaccessgroupeligibilityschedulegroupserviceprovisioningerror", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PrivilegedAccessGroupEligibilityScheduleGroupServiceProvisioningErrorClient: %+v", err)
+	}
+
+	return &PrivilegedAccessGroupEligibilityScheduleGroupServiceProvisioningErrorClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagepool/2021-08-01/iscsitargets
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c IscsiTargetsClient) ListByDiskPoolCompleteMatchingPredicate(ctx context.Context, id DiskPoolId, predicate IscsiTargetOperationPredicate) (result ListByDiskPoolCompleteResult, err error) {
+	items := make([]IscsiTarget, 0)
+
+	resp, err := c.ListByDiskPool(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByDiskPoolCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

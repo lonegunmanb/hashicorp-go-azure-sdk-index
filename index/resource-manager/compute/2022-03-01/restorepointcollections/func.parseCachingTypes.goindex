@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2022-03-01/restorepointcollections
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCachingTypes(input string) (*CachingTypes, error) {
+	vals := map[string]CachingTypes{
+		"none":      CachingTypesNone,
+		"readonly":  CachingTypesReadOnly,
+		"readwrite": CachingTypesReadWrite,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CachingTypes(input)
+	return &out, nil
+}

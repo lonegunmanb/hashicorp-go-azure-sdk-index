@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/kubeenvironments
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseKubeEnvironmentProvisioningState(input string) (*KubeEnvironmentProvisioningState, error) {
+	vals := map[string]KubeEnvironmentProvisioningState{
+		"canceled":                      KubeEnvironmentProvisioningStateCanceled,
+		"failed":                        KubeEnvironmentProvisioningStateFailed,
+		"infrastructuresetupcomplete":   KubeEnvironmentProvisioningStateInfrastructureSetupComplete,
+		"infrastructuresetupinprogress": KubeEnvironmentProvisioningStateInfrastructureSetupInProgress,
+		"initializationinprogress":      KubeEnvironmentProvisioningStateInitializationInProgress,
+		"scheduledfordelete":            KubeEnvironmentProvisioningStateScheduledForDelete,
+		"succeeded":                     KubeEnvironmentProvisioningStateSucceeded,
+		"upgradefailed":                 KubeEnvironmentProvisioningStateUpgradeFailed,
+		"upgraderequested":              KubeEnvironmentProvisioningStateUpgradeRequested,
+		"waiting":                       KubeEnvironmentProvisioningStateWaiting,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := KubeEnvironmentProvisioningState(input)
+	return &out, nil
+}

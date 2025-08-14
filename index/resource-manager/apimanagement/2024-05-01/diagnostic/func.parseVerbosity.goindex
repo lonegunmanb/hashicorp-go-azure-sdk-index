@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/diagnostic
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVerbosity(input string) (*Verbosity, error) {
+	vals := map[string]Verbosity{
+		"error":       VerbosityError,
+		"information": VerbosityInformation,
+		"verbose":     VerbosityVerbose,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Verbosity(input)
+	return &out, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/hardwareconfigurationuserrunstate
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewHardwareConfigurationUserRunStateClientWithBaseURI(sdkApi sdkEnv.Api) (*HardwareConfigurationUserRunStateClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "hardwareconfigurationuserrunstate", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating HardwareConfigurationUserRunStateClient: %+v", err)
+	}
+
+	return &HardwareConfigurationUserRunStateClient{
+		Client: client,
+	}, nil
+}

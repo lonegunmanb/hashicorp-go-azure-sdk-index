@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devopsinfrastructure/2025-01-21/pools
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s StatelessAgentProfile) MarshalJSON() ([]byte, error) {
+	type wrapper StatelessAgentProfile
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling StatelessAgentProfile: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling StatelessAgentProfile: %+v", err)
+	}
+
+	decoded["kind"] = "Stateless"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling StatelessAgentProfile: %+v", err)
+	}
+
+	return encoded, nil
+}

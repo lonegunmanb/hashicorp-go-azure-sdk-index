@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/aggregatedcost
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *Providers2BillingPeriodId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.ManagementGroupId, ok = input.Parsed["managementGroupId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "managementGroupId", input)
+	}
+
+	if id.BillingPeriodName, ok = input.Parsed["billingPeriodName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "billingPeriodName", input)
+	}
+
+	return nil
+}

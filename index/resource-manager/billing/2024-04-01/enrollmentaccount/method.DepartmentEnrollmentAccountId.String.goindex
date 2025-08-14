@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/enrollmentaccount
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DepartmentEnrollmentAccountId) String() string {
+	components := []string{
+		fmt.Sprintf("Billing Account Name: %q", id.BillingAccountName),
+		fmt.Sprintf("Department Name: %q", id.DepartmentName),
+		fmt.Sprintf("Enrollment Account Name: %q", id.EnrollmentAccountName),
+	}
+	return fmt.Sprintf("Department Enrollment Account (%s)", strings.Join(components, "\n"))
+}

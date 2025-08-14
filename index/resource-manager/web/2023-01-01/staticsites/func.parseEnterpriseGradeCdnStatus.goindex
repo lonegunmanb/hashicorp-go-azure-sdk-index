@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/staticsites
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEnterpriseGradeCdnStatus(input string) (*EnterpriseGradeCdnStatus, error) {
+	vals := map[string]EnterpriseGradeCdnStatus{
+		"disabled":  EnterpriseGradeCdnStatusDisabled,
+		"disabling": EnterpriseGradeCdnStatusDisabling,
+		"enabled":   EnterpriseGradeCdnStatusEnabled,
+		"enabling":  EnterpriseGradeCdnStatusEnabling,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EnterpriseGradeCdnStatus(input)
+	return &out, nil
+}

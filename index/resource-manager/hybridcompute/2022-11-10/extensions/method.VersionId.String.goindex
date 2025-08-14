@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2022-11-10/extensions
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id VersionId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
+		fmt.Sprintf("Publisher Name: %q", id.PublisherName),
+		fmt.Sprintf("Extension Type Name: %q", id.ExtensionTypeName),
+		fmt.Sprintf("Version Name: %q", id.VersionName),
+	}
+	return fmt.Sprintf("Version (%s)", strings.Join(components, "\n"))
+}

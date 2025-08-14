@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cognitive/2025-06-01/projectcapabilityhost
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ProjectCapabilityHostId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Account Name: %q", id.AccountName),
+		fmt.Sprintf("Project Name: %q", id.ProjectName),
+		fmt.Sprintf("Capability Host Name: %q", id.CapabilityHostName),
+	}
+	return fmt.Sprintf("Project Capability Host (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRecipientScopeType(input string) (*RecipientScopeType, error) {
+	vals := map[string]RecipientScopeType{
+		"external":           RecipientScopeType_External,
+		"externalnonpartner": RecipientScopeType_ExternalNonPartner,
+		"externalpartner":    RecipientScopeType_ExternalPartner,
+		"internal":           RecipientScopeType_Internal,
+		"none":               RecipientScopeType_None,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RecipientScopeType(input)
+	return &out, nil
+}

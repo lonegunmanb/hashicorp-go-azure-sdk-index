@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2024-09-01/vmwares
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c VMwaresClient) WorkloadNetworksCreateVMGroupThenPoll(ctx context.Context, id VMGroupId, input WorkloadNetworkVMGroup) error {
+	result, err := c.WorkloadNetworksCreateVMGroup(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing WorkloadNetworksCreateVMGroup: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after WorkloadNetworksCreateVMGroup: %+v", err)
+	}
+
+	return nil
+}

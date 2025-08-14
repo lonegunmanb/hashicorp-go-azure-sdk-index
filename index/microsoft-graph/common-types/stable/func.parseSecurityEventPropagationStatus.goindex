@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityEventPropagationStatus(input string) (*SecurityEventPropagationStatus, error) {
+	vals := map[string]SecurityEventPropagationStatus{
+		"failed":       SecurityEventPropagationStatus_Failed,
+		"inprocessing": SecurityEventPropagationStatus_InProcessing,
+		"none":         SecurityEventPropagationStatus_None,
+		"success":      SecurityEventPropagationStatus_Success,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityEventPropagationStatus(input)
+	return &out, nil
+}

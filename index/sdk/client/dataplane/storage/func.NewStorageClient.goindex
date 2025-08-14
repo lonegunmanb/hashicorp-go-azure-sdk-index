@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client/dataplane/storage
+import (
+	"context"
+	"fmt"
+	"net/url"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/dataplane"
+)
+func NewStorageClient(baseUri string, componentName, apiVersion string) (*Client, error) {
+	// NOTE: both the domain name _and_ the domain format can change entirely depending on the type of storage account being used
+	// when provisioned in an edge zone, and when AzureDNSZone is used, as such we require the baseUri is provided here
+	return &Client{
+		Client: dataplane.NewDataPlaneClient(baseUri, fmt.Sprintf("storage/%s", componentName), apiVersion),
+	}, nil
+}

@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerservice/2019-08-01/containerservices
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ListOrchestratorsOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.ResourceType != nil {
+		out.Append("resource-type", fmt.Sprintf("%v", *o.ResourceType))
+	}
+	return &out
+}

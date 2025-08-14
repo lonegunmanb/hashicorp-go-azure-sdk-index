@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/stable/partnerbillingusageunbilled
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPartnerBillingUsageUnbilledClientWithBaseURI(sdkApi sdkEnv.Api) (*PartnerBillingUsageUnbilledClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "partnerbillingusageunbilled", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PartnerBillingUsageUnbilledClient: %+v", err)
+	}
+
+	return &PartnerBillingUsageUnbilledClient{
+		Client: client,
+	}, nil
+}

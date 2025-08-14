@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/b2xuserflowlanguagedefaultpage
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewB2xUserFlowLanguageDefaultPageClientWithBaseURI(sdkApi sdkEnv.Api) (*B2xUserFlowLanguageDefaultPageClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "b2xuserflowlanguagedefaultpage", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating B2xUserFlowLanguageDefaultPageClient: %+v", err)
+	}
+
+	return &B2xUserFlowLanguageDefaultPageClient{
+		Client: client,
+	}, nil
+}

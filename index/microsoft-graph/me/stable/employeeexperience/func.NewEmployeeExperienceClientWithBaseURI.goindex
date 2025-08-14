@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/employeeexperience
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewEmployeeExperienceClientWithBaseURI(sdkApi sdkEnv.Api) (*EmployeeExperienceClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "employeeexperience", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating EmployeeExperienceClient: %+v", err)
+	}
+
+	return &EmployeeExperienceClient{
+		Client: client,
+	}, nil
+}

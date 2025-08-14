@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/databaseoperations
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseManagementOperationState(input string) (*ManagementOperationState, error) {
+	vals := map[string]ManagementOperationState{
+		"cancelinprogress": ManagementOperationStateCancelInProgress,
+		"cancelled":        ManagementOperationStateCancelled,
+		"failed":           ManagementOperationStateFailed,
+		"inprogress":       ManagementOperationStateInProgress,
+		"pending":          ManagementOperationStatePending,
+		"succeeded":        ManagementOperationStateSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagementOperationState(input)
+	return &out, nil
+}

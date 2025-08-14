@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/security/2019-01-01-preview/assessments
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ScopedAssessmentId) ID() string {
+	fmtString := "/%s/providers/Microsoft.Security/assessments/%s"
+	return fmt.Sprintf(fmtString, strings.TrimPrefix(id.ResourceId, "/"), id.AssessmentName)
+}

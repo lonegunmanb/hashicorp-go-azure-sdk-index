@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/sqlpoolstables
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSqlPoolsTablesClientWithBaseURI(sdkApi sdkEnv.Api) (*SqlPoolsTablesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "sqlpoolstables", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SqlPoolsTablesClient: %+v", err)
+	}
+
+	return &SqlPoolsTablesClient{
+		Client: client,
+	}, nil
+}

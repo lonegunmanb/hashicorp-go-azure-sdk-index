@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseManagedTenantsNotificationDestination(input string) (*ManagedTenantsNotificationDestination, error) {
+	vals := map[string]ManagedTenantsNotificationDestination{
+		"api":   ManagedTenantsNotificationDestination_Api,
+		"email": ManagedTenantsNotificationDestination_Email,
+		"none":  ManagedTenantsNotificationDestination_None,
+		"sms":   ManagedTenantsNotificationDestination_Sms,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagedTenantsNotificationDestination(input)
+	return &out, nil
+}

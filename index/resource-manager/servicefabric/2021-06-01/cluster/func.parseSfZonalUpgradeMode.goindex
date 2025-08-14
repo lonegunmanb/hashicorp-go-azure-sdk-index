@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicefabric/2021-06-01/cluster
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSfZonalUpgradeMode(input string) (*SfZonalUpgradeMode, error) {
+	vals := map[string]SfZonalUpgradeMode{
+		"hierarchical": SfZonalUpgradeModeHierarchical,
+		"parallel":     SfZonalUpgradeModeParallel,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SfZonalUpgradeMode(input)
+	return &out, nil
+}

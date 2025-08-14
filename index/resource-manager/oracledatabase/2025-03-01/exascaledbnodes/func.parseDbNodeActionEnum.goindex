@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/exascaledbnodes
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDbNodeActionEnum(input string) (*DbNodeActionEnum, error) {
+	vals := map[string]DbNodeActionEnum{
+		"reset":     DbNodeActionEnumReset,
+		"softreset": DbNodeActionEnumSoftReset,
+		"start":     DbNodeActionEnumStart,
+		"stop":      DbNodeActionEnumStop,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DbNodeActionEnum(input)
+	return &out, nil
+}

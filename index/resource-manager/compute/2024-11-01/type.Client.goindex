@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/v2024_11_01
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/availabilitysets"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/capacityreservationgroups"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/capacityreservations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/computerps"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/dedicatedhostgroups"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/dedicatedhosts"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/images"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/proximityplacementgroups"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/restorepointcollections"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/restorepoints"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/rollingupgradestatusinfos"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/sshpublickeyresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/virtualmachineextensions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/virtualmachineruncommands"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/virtualmachines"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/virtualmachinescalesetextensions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/virtualmachinescalesets"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/virtualmachinescalesetvmextensions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/virtualmachinescalesetvmruncommands"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/virtualmachinescalesetvms"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	AvailabilitySets                    *availabilitysets.AvailabilitySetsClient
+	CapacityReservationGroups           *capacityreservationgroups.CapacityReservationGroupsClient
+	CapacityReservations                *capacityreservations.CapacityReservationsClient
+	ComputeRPS                          *computerps.ComputeRPSClient
+	DedicatedHostGroups                 *dedicatedhostgroups.DedicatedHostGroupsClient
+	DedicatedHosts                      *dedicatedhosts.DedicatedHostsClient
+	Images                              *images.ImagesClient
+	ProximityPlacementGroups            *proximityplacementgroups.ProximityPlacementGroupsClient
+	RestorePointCollections             *restorepointcollections.RestorePointCollectionsClient
+	RestorePoints                       *restorepoints.RestorePointsClient
+	RollingUpgradeStatusInfos           *rollingupgradestatusinfos.RollingUpgradeStatusInfosClient
+	SshPublicKeyResources               *sshpublickeyresources.SshPublicKeyResourcesClient
+	VirtualMachineExtensions            *virtualmachineextensions.VirtualMachineExtensionsClient
+	VirtualMachineRunCommands           *virtualmachineruncommands.VirtualMachineRunCommandsClient
+	VirtualMachineScaleSetExtensions    *virtualmachinescalesetextensions.VirtualMachineScaleSetExtensionsClient
+	VirtualMachineScaleSetVMExtensions  *virtualmachinescalesetvmextensions.VirtualMachineScaleSetVMExtensionsClient
+	VirtualMachineScaleSetVMRunCommands *virtualmachinescalesetvmruncommands.VirtualMachineScaleSetVMRunCommandsClient
+	VirtualMachineScaleSetVMs           *virtualmachinescalesetvms.VirtualMachineScaleSetVMsClient
+	VirtualMachineScaleSets             *virtualmachinescalesets.VirtualMachineScaleSetsClient
+	VirtualMachines                     *virtualmachines.VirtualMachinesClient
+}

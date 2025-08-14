@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/serviceresource
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalMigrateSsisTaskOutputImplementation(input []byte) (MigrateSsisTaskOutput, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling MigrateSsisTaskOutput into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["resultType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "MigrationLevelOutput") {
+		var out MigrateSsisTaskOutputMigrationLevel
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into MigrateSsisTaskOutputMigrationLevel: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "SsisProjectLevelOutput") {
+		var out MigrateSsisTaskOutputProjectLevel
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into MigrateSsisTaskOutputProjectLevel: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseMigrateSsisTaskOutputImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseMigrateSsisTaskOutputImpl: %+v", err)
+	}
+
+	return RawMigrateSsisTaskOutputImpl{
+		migrateSsisTaskOutput: parent,
+		Type:                  value,
+		Values:                temp,
+	}, nil
+
+}

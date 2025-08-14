@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type BaseCallRecordsCallLogRowImpl struct {
+	AdministrativeUnitInfos *[]CallRecordsAdministrativeUnitInfo `json:"administrativeUnitInfos,omitempty"`
+	Id                      nullable.Type[string]                `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	OtherPartyCountryCode nullable.Type[string] `json:"otherPartyCountryCode,omitempty"`
+	UserDisplayName       nullable.Type[string] `json:"userDisplayName,omitempty"`
+	UserId                nullable.Type[string] `json:"userId,omitempty"`
+	UserPrincipalName     nullable.Type[string] `json:"userPrincipalName,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

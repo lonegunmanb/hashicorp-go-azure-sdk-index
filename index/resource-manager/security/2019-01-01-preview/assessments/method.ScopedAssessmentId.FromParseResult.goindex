@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/security/2019-01-01-preview/assessments
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *ScopedAssessmentId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.ResourceId, ok = input.Parsed["resourceId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceId", input)
+	}
+
+	if id.AssessmentName, ok = input.Parsed["assessmentName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "assessmentName", input)
+	}
+
+	return nil
+}

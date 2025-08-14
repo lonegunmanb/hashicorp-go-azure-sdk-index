@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/recommendationimpactedresource
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewRecommendationImpactedResourceClientWithBaseURI(sdkApi sdkEnv.Api) (*RecommendationImpactedResourceClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "recommendationimpactedresource", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating RecommendationImpactedResourceClient: %+v", err)
+	}
+
+	return &RecommendationImpactedResourceClient{
+		Client: client,
+	}, nil
+}

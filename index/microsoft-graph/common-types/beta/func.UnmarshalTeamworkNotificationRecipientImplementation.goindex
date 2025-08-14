@@ -1,0 +1,65 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalTeamworkNotificationRecipientImplementation(input []byte) (TeamworkNotificationRecipient, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling TeamworkNotificationRecipient into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.aadUserNotificationRecipient") {
+		var out AadUserNotificationRecipient
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AadUserNotificationRecipient: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.channelMembersNotificationRecipient") {
+		var out ChannelMembersNotificationRecipient
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ChannelMembersNotificationRecipient: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.chatMembersNotificationRecipient") {
+		var out ChatMembersNotificationRecipient
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ChatMembersNotificationRecipient: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.teamMembersNotificationRecipient") {
+		var out TeamMembersNotificationRecipient
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into TeamMembersNotificationRecipient: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseTeamworkNotificationRecipientImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseTeamworkNotificationRecipientImpl: %+v", err)
+	}
+
+	return RawTeamworkNotificationRecipientImpl{
+		teamworkNotificationRecipient: parent,
+		Type:                          value,
+		Values:                        temp,
+	}, nil
+
+}

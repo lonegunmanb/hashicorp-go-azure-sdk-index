@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCloudPCAuditActivityOperationType(input string) (*CloudPCAuditActivityOperationType, error) {
+	vals := map[string]CloudPCAuditActivityOperationType{
+		"create": CloudPCAuditActivityOperationType_Create,
+		"delete": CloudPCAuditActivityOperationType_Delete,
+		"patch":  CloudPCAuditActivityOperationType_Patch,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CloudPCAuditActivityOperationType(input)
+	return &out, nil
+}

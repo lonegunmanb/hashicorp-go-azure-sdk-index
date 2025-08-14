@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id MeContactId) String() string {
+	components := []string{
+		fmt.Sprintf("Contact: %q", id.ContactId),
+	}
+	return fmt.Sprintf("Me Contact (%s)", strings.Join(components, "\n"))
+}

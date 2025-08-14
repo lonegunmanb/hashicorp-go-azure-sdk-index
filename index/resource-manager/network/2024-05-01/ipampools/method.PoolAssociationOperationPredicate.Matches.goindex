@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-05-01/ipampools
+
+func (p PoolAssociationOperationPredicate) Matches(input PoolAssociation) bool {
+
+	if p.CreatedAt != nil && (input.CreatedAt == nil || *p.CreatedAt != *input.CreatedAt) {
+		return false
+	}
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.NumberOfReservedIPAddresses != nil && (input.NumberOfReservedIPAddresses == nil || *p.NumberOfReservedIPAddresses != *input.NumberOfReservedIPAddresses) {
+		return false
+	}
+
+	if p.PoolId != nil && (input.PoolId == nil || *p.PoolId != *input.PoolId) {
+		return false
+	}
+
+	if p.ReservationExpiresAt != nil && (input.ReservationExpiresAt == nil || *p.ReservationExpiresAt != *input.ReservationExpiresAt) {
+		return false
+	}
+
+	if p.ResourceId != nil && *p.ResourceId != input.ResourceId {
+		return false
+	}
+
+	if p.TotalNumberOfIPAddresses != nil && (input.TotalNumberOfIPAddresses == nil || *p.TotalNumberOfIPAddresses != *input.TotalNumberOfIPAddresses) {
+		return false
+	}
+
+	return true
+}

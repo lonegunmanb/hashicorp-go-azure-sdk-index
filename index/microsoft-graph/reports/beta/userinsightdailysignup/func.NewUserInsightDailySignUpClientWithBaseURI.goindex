@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightdailysignup
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewUserInsightDailySignUpClientWithBaseURI(sdkApi sdkEnv.Api) (*UserInsightDailySignUpClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "userinsightdailysignup", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating UserInsightDailySignUpClient: %+v", err)
+	}
+
+	return &UserInsightDailySignUpClient{
+		Client: client,
+	}, nil
+}

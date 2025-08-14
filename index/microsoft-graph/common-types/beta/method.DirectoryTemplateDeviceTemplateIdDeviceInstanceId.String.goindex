@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DirectoryTemplateDeviceTemplateIdDeviceInstanceId) String() string {
+	components := []string{
+		fmt.Sprintf("Device Template: %q", id.DeviceTemplateId),
+		fmt.Sprintf("Device: %q", id.DeviceId),
+	}
+	return fmt.Sprintf("Directory Template Device Template Id Device Instance (%s)", strings.Join(components, "\n"))
+}

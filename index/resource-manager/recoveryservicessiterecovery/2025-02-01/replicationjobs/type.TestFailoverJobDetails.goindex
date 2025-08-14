@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationjobs
+import (
+	"encoding/json"
+	"fmt"
+)
+type TestFailoverJobDetails struct {
+	Comments             *string                                    `json:"comments,omitempty"`
+	NetworkFriendlyName  *string                                    `json:"networkFriendlyName,omitempty"`
+	NetworkName          *string                                    `json:"networkName,omitempty"`
+	NetworkType          *string                                    `json:"networkType,omitempty"`
+	ProtectedItemDetails *[]FailoverReplicationProtectedItemDetails `json:"protectedItemDetails,omitempty"`
+	TestFailoverStatus   *string                                    `json:"testFailoverStatus,omitempty"`
+
+	// Fields inherited from JobDetails
+
+	AffectedObjectDetails *map[string]string `json:"affectedObjectDetails,omitempty"`
+	InstanceType          string             `json:"instanceType"`
+}

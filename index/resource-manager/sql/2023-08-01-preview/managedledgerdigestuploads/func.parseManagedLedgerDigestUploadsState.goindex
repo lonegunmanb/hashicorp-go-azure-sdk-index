@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/managedledgerdigestuploads
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseManagedLedgerDigestUploadsState(input string) (*ManagedLedgerDigestUploadsState, error) {
+	vals := map[string]ManagedLedgerDigestUploadsState{
+		"disabled": ManagedLedgerDigestUploadsStateDisabled,
+		"enabled":  ManagedLedgerDigestUploadsStateEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagedLedgerDigestUploadsState(input)
+	return &out, nil
+}

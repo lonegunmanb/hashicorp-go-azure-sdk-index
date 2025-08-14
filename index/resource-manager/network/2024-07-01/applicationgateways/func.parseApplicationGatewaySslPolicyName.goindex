@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/applicationgateways
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseApplicationGatewaySslPolicyName(input string) (*ApplicationGatewaySslPolicyName, error) {
+	vals := map[string]ApplicationGatewaySslPolicyName{
+		"appgwsslpolicy20150501":  ApplicationGatewaySslPolicyNameAppGwSslPolicyTwoZeroOneFiveZeroFiveZeroOne,
+		"appgwsslpolicy20170401":  ApplicationGatewaySslPolicyNameAppGwSslPolicyTwoZeroOneSevenZeroFourZeroOne,
+		"appgwsslpolicy20170401s": ApplicationGatewaySslPolicyNameAppGwSslPolicyTwoZeroOneSevenZeroFourZeroOneS,
+		"appgwsslpolicy20220101":  ApplicationGatewaySslPolicyNameAppGwSslPolicyTwoZeroTwoTwoZeroOneZeroOne,
+		"appgwsslpolicy20220101s": ApplicationGatewaySslPolicyNameAppGwSslPolicyTwoZeroTwoTwoZeroOneZeroOneS,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ApplicationGatewaySslPolicyName(input)
+	return &out, nil
+}

@@ -1,0 +1,46 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *DeviceManagementScriptDeviceState) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		ErrorCode               *int64                `json:"errorCode,omitempty"`
+		ErrorDescription        nullable.Type[string] `json:"errorDescription,omitempty"`
+		LastStateUpdateDateTime *string               `json:"lastStateUpdateDateTime,omitempty"`
+		ResultMessage           nullable.Type[string] `json:"resultMessage,omitempty"`
+		RunState                *RunState             `json:"runState,omitempty"`
+		Id                      *string               `json:"id,omitempty"`
+		ODataId                 *string               `json:"@odata.id,omitempty"`
+		ODataType               *string               `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.ErrorCode = decoded.ErrorCode
+	s.ErrorDescription = decoded.ErrorDescription
+	s.LastStateUpdateDateTime = decoded.LastStateUpdateDateTime
+	s.ResultMessage = decoded.ResultMessage
+	s.RunState = decoded.RunState
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling DeviceManagementScriptDeviceState into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["managedDevice"]; ok {
+		impl, err := UnmarshalManagedDeviceImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'ManagedDevice' for 'DeviceManagementScriptDeviceState': %+v", err)
+		}
+		s.ManagedDevice = &impl
+	}
+
+	return nil
+}

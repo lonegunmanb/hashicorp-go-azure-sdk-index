@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2019-06-01/python2package
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPython2PackageClientWithBaseURI(sdkApi sdkEnv.Api) (*Python2PackageClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "python2package", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating Python2PackageClient: %+v", err)
+	}
+
+	return &Python2PackageClient{
+		Client: client,
+	}, nil
+}

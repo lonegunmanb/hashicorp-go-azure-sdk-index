@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/security/2021-06-01/assessmentsmetadata
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTactics(input string) (*Tactics, error) {
+	vals := map[string]Tactics{
+		"collection":           TacticsCollection,
+		"command and control":  TacticsCommandAndControl,
+		"credential access":    TacticsCredentialAccess,
+		"defense evasion":      TacticsDefenseEvasion,
+		"discovery":            TacticsDiscovery,
+		"execution":            TacticsExecution,
+		"exfiltration":         TacticsExfiltration,
+		"impact":               TacticsImpact,
+		"initial access":       TacticsInitialAccess,
+		"lateral movement":     TacticsLateralMovement,
+		"persistence":          TacticsPersistence,
+		"privilege escalation": TacticsPrivilegeEscalation,
+		"reconnaissance":       TacticsReconnaissance,
+		"resource development": TacticsResourceDevelopment,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Tactics(input)
+	return &out, nil
+}

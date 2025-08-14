@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable/administrativeunit"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable/administrativeunitextension"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable/administrativeunitmember"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable/administrativeunitscopedrolemember"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable/attributeset"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable/customsecurityattributedefinition"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable/customsecurityattributedefinitionallowedvalue"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable/deleteditem"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable/devicelocalcredential"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable/directory"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable/federationconfiguration"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable/onpremisessynchronization"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable/publickeyinfrastructure"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable/publickeyinfrastructurecertificatebasedauthconfiguration"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable/publickeyinfrastructurecertificatebasedauthconfigurationcertificateauthority"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable/subscription"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	AdministrativeUnit                                                           *administrativeunit.AdministrativeUnitClient
+	AdministrativeUnitExtension                                                  *administrativeunitextension.AdministrativeUnitExtensionClient
+	AdministrativeUnitMember                                                     *administrativeunitmember.AdministrativeUnitMemberClient
+	AdministrativeUnitScopedRoleMember                                           *administrativeunitscopedrolemember.AdministrativeUnitScopedRoleMemberClient
+	AttributeSet                                                                 *attributeset.AttributeSetClient
+	CustomSecurityAttributeDefinition                                            *customsecurityattributedefinition.CustomSecurityAttributeDefinitionClient
+	CustomSecurityAttributeDefinitionAllowedValue                                *customsecurityattributedefinitionallowedvalue.CustomSecurityAttributeDefinitionAllowedValueClient
+	DeletedItem                                                                  *deleteditem.DeletedItemClient
+	DeviceLocalCredential                                                        *devicelocalcredential.DeviceLocalCredentialClient
+	Directory                                                                    *directory.DirectoryClient
+	FederationConfiguration                                                      *federationconfiguration.FederationConfigurationClient
+	OnPremisesSynchronization                                                    *onpremisessynchronization.OnPremisesSynchronizationClient
+	PublicKeyInfrastructure                                                      *publickeyinfrastructure.PublicKeyInfrastructureClient
+	PublicKeyInfrastructureCertificateBasedAuthConfiguration                     *publickeyinfrastructurecertificatebasedauthconfiguration.PublicKeyInfrastructureCertificateBasedAuthConfigurationClient
+	PublicKeyInfrastructureCertificateBasedAuthConfigurationCertificateAuthority *publickeyinfrastructurecertificatebasedauthconfigurationcertificateauthority.PublicKeyInfrastructureCertificateBasedAuthConfigurationCertificateAuthorityClient
+	Subscription                                                                 *subscription.SubscriptionClient
+}

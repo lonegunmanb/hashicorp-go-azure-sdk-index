@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2024-11-01/mhsmlistprivateendpointconnections
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewMHSMListPrivateEndpointConnectionsClientWithBaseURI(sdkApi sdkEnv.Api) (*MHSMListPrivateEndpointConnectionsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "mhsmlistprivateendpointconnections", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating MHSMListPrivateEndpointConnectionsClient: %+v", err)
+	}
+
+	return &MHSMListPrivateEndpointConnectionsClient{
+		Client: client,
+	}, nil
+}

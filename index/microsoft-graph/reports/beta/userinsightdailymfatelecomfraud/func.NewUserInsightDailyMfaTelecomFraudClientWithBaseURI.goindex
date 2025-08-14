@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightdailymfatelecomfraud
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewUserInsightDailyMfaTelecomFraudClientWithBaseURI(sdkApi sdkEnv.Api) (*UserInsightDailyMfaTelecomFraudClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "userinsightdailymfatelecomfraud", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating UserInsightDailyMfaTelecomFraudClient: %+v", err)
+	}
+
+	return &UserInsightDailyMfaTelecomFraudClient{
+		Client: client,
+	}, nil
+}

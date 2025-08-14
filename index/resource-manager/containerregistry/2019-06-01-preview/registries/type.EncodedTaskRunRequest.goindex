@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerregistry/2019-06-01-preview/registries
+import (
+	"encoding/json"
+	"fmt"
+)
+type EncodedTaskRunRequest struct {
+	AgentConfiguration   *AgentProperties   `json:"agentConfiguration,omitempty"`
+	Credentials          *Credentials       `json:"credentials,omitempty"`
+	EncodedTaskContent   string             `json:"encodedTaskContent"`
+	EncodedValuesContent *string            `json:"encodedValuesContent,omitempty"`
+	Platform             PlatformProperties `json:"platform"`
+	SourceLocation       *string            `json:"sourceLocation,omitempty"`
+	Timeout              *int64             `json:"timeout,omitempty"`
+	Values               *[]SetValue        `json:"values,omitempty"`
+
+	// Fields inherited from RunRequest
+
+	AgentPoolName    *string `json:"agentPoolName,omitempty"`
+	IsArchiveEnabled *bool   `json:"isArchiveEnabled,omitempty"`
+	LogTemplate      *string `json:"logTemplate,omitempty"`
+	Type             string  `json:"type"`
+}

@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/directoryroles/stable/directoryrole
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DirectoryRoleClient) ListGetsAvailableExtensionPropertiesComplete(ctx context.Context, input ListGetsAvailableExtensionPropertiesRequest, options ListGetsAvailableExtensionPropertiesOperationOptions) (ListGetsAvailableExtensionPropertiesCompleteResult, error) {
+	return c.ListGetsAvailableExtensionPropertiesCompleteMatchingPredicate(ctx, input, options, ExtensionPropertyOperationPredicate{})
+}

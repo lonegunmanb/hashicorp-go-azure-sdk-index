@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/sqlpoolstransparentdataencryption
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SqlPoolsTransparentDataEncryptionClient) SqlPoolTransparentDataEncryptionsListComplete(ctx context.Context, id SqlPoolId) (SqlPoolTransparentDataEncryptionsListCompleteResult, error) {
+	return c.SqlPoolTransparentDataEncryptionsListCompleteMatchingPredicate(ctx, id, TransparentDataEncryptionOperationPredicate{})
+}

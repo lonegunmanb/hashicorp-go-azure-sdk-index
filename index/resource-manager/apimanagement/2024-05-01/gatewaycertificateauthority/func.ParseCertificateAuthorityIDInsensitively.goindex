@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/gatewaycertificateauthority
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseCertificateAuthorityIDInsensitively(input string) (*CertificateAuthorityId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&CertificateAuthorityId{})
+	parsed, err := parser.Parse(input, true)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := CertificateAuthorityId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

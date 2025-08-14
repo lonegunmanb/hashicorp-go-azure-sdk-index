@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNetworkaccessIntentCategory(input string) (*NetworkaccessIntentCategory, error) {
+	vals := map[string]NetworkaccessIntentCategory{
+		"collection":              NetworkaccessIntentCategory_Collection,
+		"commandandcontrol":       NetworkaccessIntentCategory_CommandAndControl,
+		"credentialaccess":        NetworkaccessIntentCategory_CredentialAccess,
+		"defenseevasion":          NetworkaccessIntentCategory_DefenseEvasion,
+		"discovery":               NetworkaccessIntentCategory_Discovery,
+		"evasion":                 NetworkaccessIntentCategory_Evasion,
+		"execution":               NetworkaccessIntentCategory_Execution,
+		"exfiltration":            NetworkaccessIntentCategory_Exfiltration,
+		"impact":                  NetworkaccessIntentCategory_Impact,
+		"impairprocesscontrol":    NetworkaccessIntentCategory_ImpairProcessControl,
+		"inhibitresponsefunction": NetworkaccessIntentCategory_InhibitResponseFunction,
+		"initialaccess":           NetworkaccessIntentCategory_InitialAccess,
+		"lateralmovement":         NetworkaccessIntentCategory_LateralMovement,
+		"persistence":             NetworkaccessIntentCategory_Persistence,
+		"privilegeescalation":     NetworkaccessIntentCategory_PrivilegeEscalation,
+		"reconnaissance":          NetworkaccessIntentCategory_Reconnaissance,
+		"resourcedevelopment":     NetworkaccessIntentCategory_ResourceDevelopment,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NetworkaccessIntentCategory(input)
+	return &out, nil
+}

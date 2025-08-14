@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/applicationinsights/2015-05-01/analyticsitemsapis
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseItemType(input string) (*ItemType, error) {
+	vals := map[string]ItemType{
+		"function": ItemTypeFunction,
+		"none":     ItemTypeNone,
+		"query":    ItemTypeQuery,
+		"recent":   ItemTypeRecent,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ItemType(input)
+	return &out, nil
+}

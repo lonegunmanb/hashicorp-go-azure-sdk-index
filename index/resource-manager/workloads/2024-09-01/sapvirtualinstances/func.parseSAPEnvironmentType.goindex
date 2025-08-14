@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/workloads/2024-09-01/sapvirtualinstances
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSAPEnvironmentType(input string) (*SAPEnvironmentType, error) {
+	vals := map[string]SAPEnvironmentType{
+		"nonprod": SAPEnvironmentTypeNonProd,
+		"prod":    SAPEnvironmentTypeProd,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SAPEnvironmentType(input)
+	return &out, nil
+}

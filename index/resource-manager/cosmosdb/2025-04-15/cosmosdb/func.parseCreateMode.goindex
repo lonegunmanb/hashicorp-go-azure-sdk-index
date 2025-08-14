@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cosmosdb/2025-04-15/cosmosdb
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCreateMode(input string) (*CreateMode, error) {
+	vals := map[string]CreateMode{
+		"default": CreateModeDefault,
+		"restore": CreateModeRestore,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CreateMode(input)
+	return &out, nil
+}

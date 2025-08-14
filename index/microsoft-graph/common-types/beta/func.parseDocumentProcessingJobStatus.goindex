@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDocumentProcessingJobStatus(input string) (*DocumentProcessingJobStatus, error) {
+	vals := map[string]DocumentProcessingJobStatus{
+		"completed":  DocumentProcessingJobStatus_Completed,
+		"failed":     DocumentProcessingJobStatus_Failed,
+		"inprogress": DocumentProcessingJobStatus_InProgress,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DocumentProcessingJobStatus(input)
+	return &out, nil
+}

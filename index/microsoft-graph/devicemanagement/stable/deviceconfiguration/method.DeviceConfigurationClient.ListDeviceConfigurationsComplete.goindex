@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/deviceconfiguration
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DeviceConfigurationClient) ListDeviceConfigurationsComplete(ctx context.Context, options ListDeviceConfigurationsOperationOptions) (ListDeviceConfigurationsCompleteResult, error) {
+	return c.ListDeviceConfigurationsCompleteMatchingPredicate(ctx, options, DeviceConfigurationOperationPredicate{})
+}

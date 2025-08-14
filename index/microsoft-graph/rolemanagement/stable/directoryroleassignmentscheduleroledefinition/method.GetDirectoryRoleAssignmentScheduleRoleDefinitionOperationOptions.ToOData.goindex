@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/stable/directoryroleassignmentscheduleroledefinition
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o GetDirectoryRoleAssignmentScheduleRoleDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Expand != nil {
+		out.Expand = *o.Expand
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	if o.Select != nil {
+		out.Select = *o.Select
+	}
+	return &out
+}

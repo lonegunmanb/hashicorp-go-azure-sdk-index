@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/blobcontainers
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseImmutabilityPolicyState(input string) (*ImmutabilityPolicyState, error) {
+	vals := map[string]ImmutabilityPolicyState{
+		"locked":   ImmutabilityPolicyStateLocked,
+		"unlocked": ImmutabilityPolicyStateUnlocked,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ImmutabilityPolicyState(input)
+	return &out, nil
+}

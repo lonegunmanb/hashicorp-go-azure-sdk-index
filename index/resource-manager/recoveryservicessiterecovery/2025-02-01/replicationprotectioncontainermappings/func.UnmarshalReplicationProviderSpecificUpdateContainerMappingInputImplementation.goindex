@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationprotectioncontainermappings
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalReplicationProviderSpecificUpdateContainerMappingInputImplementation(input []byte) (ReplicationProviderSpecificUpdateContainerMappingInput, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling ReplicationProviderSpecificUpdateContainerMappingInput into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["instanceType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "A2A") {
+		var out A2AUpdateContainerMappingInput
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into A2AUpdateContainerMappingInput: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "InMageRcm") {
+		var out InMageRcmUpdateContainerMappingInput
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into InMageRcmUpdateContainerMappingInput: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseReplicationProviderSpecificUpdateContainerMappingInputImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseReplicationProviderSpecificUpdateContainerMappingInputImpl: %+v", err)
+	}
+
+	return RawReplicationProviderSpecificUpdateContainerMappingInputImpl{
+		replicationProviderSpecificUpdateContainerMappingInput: parent,
+		Type:   value,
+		Values: temp,
+	}, nil
+
+}

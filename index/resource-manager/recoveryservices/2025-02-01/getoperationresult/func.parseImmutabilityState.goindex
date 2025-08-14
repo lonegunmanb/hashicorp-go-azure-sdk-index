@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservices/2025-02-01/getoperationresult
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseImmutabilityState(input string) (*ImmutabilityState, error) {
+	vals := map[string]ImmutabilityState{
+		"disabled": ImmutabilityStateDisabled,
+		"locked":   ImmutabilityStateLocked,
+		"unlocked": ImmutabilityStateUnlocked,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ImmutabilityState(input)
+	return &out, nil
+}

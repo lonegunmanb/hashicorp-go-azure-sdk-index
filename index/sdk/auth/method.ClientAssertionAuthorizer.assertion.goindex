@@ -1,0 +1,60 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"bytes"
+	"context"
+	"crypto"
+	"crypto/ecdsa"
+	"crypto/rand"
+	"crypto/rsa"
+	"crypto/sha1"
+	"crypto/x509"
+	"encoding/base64"
+	"encoding/json"
+	"fmt"
+	"io"
+	"net/http"
+	"net/url"
+	"strconv"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	"github.com/hashicorp/go-uuid"
+	"golang.org/x/oauth2"
+)
+func (a *ClientAssertionAuthorizer) assertion(tokenUrl string) (*string, error) {
+	if a.conf == nil {
+		return nil, fmt.Errorf("internal-error: ClientAssertionAuthorizer not configured")
+	}
+
+	if a.conf.Certificate == nil {
+		return nil, fmt.Errorf("internal-error: ClientAssertionAuthorizer misconfigured; Certificate was nil")
+	}
+
+	keySig := sha1.Sum(a.conf.Certificate.Raw)
+	keyId := base64.URLEncoding.EncodeToString(keySig[:])
+
+	audience := a.conf.Audience
+	if audience == "" {
+		audience = tokenUrl
+	}
+
+	t := clientAssertionToken{
+		header: clientAssertionTokenHeader{
+			Type:  "JWT",
+			KeyId: keyId,
+		},
+		claims: clientAssertionTokenClaims{
+			Audience: audience,
+			Issuer:   a.conf.ClientID,
+			Subject:  a.conf.ClientID,
+		},
+	}
+
+	assertion, err := t.encode(a.conf.PrivateKey)
+	if err != nil {
+		return nil, fmt.Errorf("ClientAssertionAuthorizer: failed to encode and sign JWT assertion: %v", err)
+	}
+
+	return assertion, nil
+}

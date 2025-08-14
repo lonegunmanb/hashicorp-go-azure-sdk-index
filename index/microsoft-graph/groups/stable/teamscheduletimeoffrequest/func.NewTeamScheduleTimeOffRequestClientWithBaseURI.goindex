@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/teamscheduletimeoffrequest
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTeamScheduleTimeOffRequestClientWithBaseURI(sdkApi sdkEnv.Api) (*TeamScheduleTimeOffRequestClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "teamscheduletimeoffrequest", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TeamScheduleTimeOffRequestClient: %+v", err)
+	}
+
+	return &TeamScheduleTimeOffRequestClient{
+		Client: client,
+	}, nil
+}

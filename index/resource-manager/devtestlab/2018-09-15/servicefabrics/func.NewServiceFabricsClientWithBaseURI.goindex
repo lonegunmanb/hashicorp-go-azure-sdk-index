@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/servicefabrics
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewServiceFabricsClientWithBaseURI(sdkApi sdkEnv.Api) (*ServiceFabricsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "servicefabrics", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ServiceFabricsClient: %+v", err)
+	}
+
+	return &ServiceFabricsClient{
+		Client: client,
+	}, nil
+}

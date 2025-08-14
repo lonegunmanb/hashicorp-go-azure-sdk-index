@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseApplicationGuardEnabledOptions(input string) (*ApplicationGuardEnabledOptions, error) {
+	vals := map[string]ApplicationGuardEnabledOptions{
+		"enabledforedge":          ApplicationGuardEnabledOptions_EnabledForEdge,
+		"enabledforedgeandoffice": ApplicationGuardEnabledOptions_EnabledForEdgeAndOffice,
+		"enabledforoffice":        ApplicationGuardEnabledOptions_EnabledForOffice,
+		"notconfigured":           ApplicationGuardEnabledOptions_NotConfigured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ApplicationGuardEnabledOptions(input)
+	return &out, nil
+}

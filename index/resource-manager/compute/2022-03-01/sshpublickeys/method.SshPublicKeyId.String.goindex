@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2022-03-01/sshpublickeys
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id SshPublicKeyId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Ssh Public Key Name: %q", id.SshPublicKeyName),
+	}
+	return fmt.Sprintf("Ssh Public Key (%s)", strings.Join(components, "\n"))
+}

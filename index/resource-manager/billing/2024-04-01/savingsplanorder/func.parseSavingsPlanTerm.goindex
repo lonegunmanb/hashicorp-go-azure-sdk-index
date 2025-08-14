@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/savingsplanorder
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSavingsPlanTerm(input string) (*SavingsPlanTerm, error) {
+	vals := map[string]SavingsPlanTerm{
+		"p5y": SavingsPlanTermPFiveY,
+		"p1y": SavingsPlanTermPOneY,
+		"p3y": SavingsPlanTermPThreeY,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SavingsPlanTerm(input)
+	return &out, nil
+}

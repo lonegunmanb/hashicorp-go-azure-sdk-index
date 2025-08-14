@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2024-04-01/replicationmigrationitems
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMigrationItemOperation(input string) (*MigrationItemOperation, error) {
+	vals := map[string]MigrationItemOperation{
+		"disablemigration":   MigrationItemOperationDisableMigration,
+		"migrate":            MigrationItemOperationMigrate,
+		"pausereplication":   MigrationItemOperationPauseReplication,
+		"resumereplication":  MigrationItemOperationResumeReplication,
+		"startresync":        MigrationItemOperationStartResync,
+		"testmigrate":        MigrationItemOperationTestMigrate,
+		"testmigratecleanup": MigrationItemOperationTestMigrateCleanup,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MigrationItemOperation(input)
+	return &out, nil
+}

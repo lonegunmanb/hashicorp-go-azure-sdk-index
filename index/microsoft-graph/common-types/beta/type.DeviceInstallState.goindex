@@ -1,0 +1,46 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type DeviceInstallState struct {
+	// Device Id.
+	DeviceId nullable.Type[string] `json:"deviceId,omitempty"`
+
+	// Device name.
+	DeviceName nullable.Type[string] `json:"deviceName,omitempty"`
+
+	// The error code for install failures.
+	ErrorCode nullable.Type[string] `json:"errorCode,omitempty"`
+
+	// Possible values for install state.
+	InstallState *InstallState `json:"installState,omitempty"`
+
+	// Last sync date and time.
+	LastSyncDateTime *string `json:"lastSyncDateTime,omitempty"`
+
+	// OS Description.
+	OsDescription nullable.Type[string] `json:"osDescription,omitempty"`
+
+	// OS Version.
+	OsVersion nullable.Type[string] `json:"osVersion,omitempty"`
+
+	// Device User Name.
+	UserName nullable.Type[string] `json:"userName,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

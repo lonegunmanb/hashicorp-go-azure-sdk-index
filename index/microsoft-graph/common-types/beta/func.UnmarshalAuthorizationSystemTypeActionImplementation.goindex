@@ -1,0 +1,57 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalAuthorizationSystemTypeActionImplementation(input []byte) (AuthorizationSystemTypeAction, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling AuthorizationSystemTypeAction into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.awsAuthorizationSystemTypeAction") {
+		var out AwsAuthorizationSystemTypeAction
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AwsAuthorizationSystemTypeAction: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.azureAuthorizationSystemTypeAction") {
+		var out AzureAuthorizationSystemTypeAction
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureAuthorizationSystemTypeAction: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.gcpAuthorizationSystemTypeAction") {
+		var out GcpAuthorizationSystemTypeAction
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into GcpAuthorizationSystemTypeAction: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseAuthorizationSystemTypeActionImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseAuthorizationSystemTypeActionImpl: %+v", err)
+	}
+
+	return RawAuthorizationSystemTypeActionImpl{
+		authorizationSystemTypeAction: parent,
+		Type:                          value,
+		Values:                        temp,
+	}, nil
+
+}

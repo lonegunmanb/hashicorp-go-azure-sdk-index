@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-05-01/applicationgatewaywafdynamicmanifests
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseApplicationGatewayTierTypes(input string) (*ApplicationGatewayTierTypes, error) {
+	vals := map[string]ApplicationGatewayTierTypes{
+		"standard":    ApplicationGatewayTierTypesStandard,
+		"standard_v2": ApplicationGatewayTierTypesStandardVTwo,
+		"waf":         ApplicationGatewayTierTypesWAF,
+		"waf_v2":      ApplicationGatewayTierTypesWAFVTwo,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ApplicationGatewayTierTypes(input)
+	return &out, nil
+}

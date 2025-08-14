@@ -1,0 +1,45 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/lifecycleworkflowdeleteditemworkflowruntaskprocessingresultsubjectmailboxsetting
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c LifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultSubjectMailboxSettingClient) GetLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultSubjectMailboxSetting(ctx context.Context, id stable.IdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdRunIdTaskProcessingResultId, options GetLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultSubjectMailboxSettingOperationOptions) (result GetLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultSubjectMailboxSettingOperationResponse, err error) {
+	opts := client.RequestOptions{
+		ContentType: "application/json; charset=utf-8",
+		ExpectedStatusCodes: []int{
+			http.StatusOK,
+		},
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/subject/mailboxSettings", id.ID()),
+		RetryFunc:     options.RetryFunc,
+	}
+
+	req, err := c.Client.NewRequest(ctx, opts)
+	if err != nil {
+		return
+	}
+
+	var resp *client.Response
+	resp, err = req.Execute(ctx)
+	if resp != nil {
+		result.OData = resp.OData
+		result.HttpResponse = resp.Response
+	}
+	if err != nil {
+		return
+	}
+
+	var model stable.MailboxSettings
+	result.Model = &model
+	if err = resp.Unmarshal(result.Model); err != nil {
+		return
+	}
+
+	return
+}

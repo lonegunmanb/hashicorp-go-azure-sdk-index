@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/cache
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewCacheClientWithBaseURI(sdkApi sdkEnv.Api) (*CacheClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "cache", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating CacheClient: %+v", err)
+	}
+
+	return &CacheClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-07-15/quotarequests
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *QuotaRequestProperties) GetRequestSubmitTimeAsTime() (*time.Time, error) {
+	if o.RequestSubmitTime == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.RequestSubmitTime, "2006-01-02T15:04:05Z07:00")
+}

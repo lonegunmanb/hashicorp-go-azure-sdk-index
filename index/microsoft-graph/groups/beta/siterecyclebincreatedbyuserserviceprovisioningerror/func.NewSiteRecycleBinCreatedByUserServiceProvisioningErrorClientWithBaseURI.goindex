@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/siterecyclebincreatedbyuserserviceprovisioningerror
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSiteRecycleBinCreatedByUserServiceProvisioningErrorClientWithBaseURI(sdkApi sdkEnv.Api) (*SiteRecycleBinCreatedByUserServiceProvisioningErrorClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "siterecyclebincreatedbyuserserviceprovisioningerror", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SiteRecycleBinCreatedByUserServiceProvisioningErrorClient: %+v", err)
+	}
+
+	return &SiteRecycleBinCreatedByUserServiceProvisioningErrorClient{
+		Client: client,
+	}, nil
+}

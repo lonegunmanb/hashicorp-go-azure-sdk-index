@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWindowsAutopilotProfileAssignmentStatus(input string) (*WindowsAutopilotProfileAssignmentStatus, error) {
+	vals := map[string]WindowsAutopilotProfileAssignmentStatus{
+		"assignedinsync":          WindowsAutopilotProfileAssignmentStatus_AssignedInSync,
+		"assignedoutofsync":       WindowsAutopilotProfileAssignmentStatus_AssignedOutOfSync,
+		"assignedunkownsyncstate": WindowsAutopilotProfileAssignmentStatus_AssignedUnkownSyncState,
+		"failed":                  WindowsAutopilotProfileAssignmentStatus_Failed,
+		"notassigned":             WindowsAutopilotProfileAssignmentStatus_NotAssigned,
+		"pending":                 WindowsAutopilotProfileAssignmentStatus_Pending,
+		"unknown":                 WindowsAutopilotProfileAssignmentStatus_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsAutopilotProfileAssignmentStatus(input)
+	return &out, nil
+}

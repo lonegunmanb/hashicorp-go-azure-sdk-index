@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingproperty
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseInvoiceSectionState(input string) (*InvoiceSectionState, error) {
+	vals := map[string]InvoiceSectionState{
+		"active":      InvoiceSectionStateActive,
+		"deleted":     InvoiceSectionStateDeleted,
+		"disabled":    InvoiceSectionStateDisabled,
+		"other":       InvoiceSectionStateOther,
+		"restricted":  InvoiceSectionStateRestricted,
+		"underreview": InvoiceSectionStateUnderReview,
+		"warned":      InvoiceSectionStateWarned,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := InvoiceSectionState(input)
+	return &out, nil
+}

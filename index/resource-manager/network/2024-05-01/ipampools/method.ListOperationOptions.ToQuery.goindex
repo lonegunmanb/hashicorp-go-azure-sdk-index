@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-05-01/ipampools
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ListOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.Skip != nil {
+		out.Append("skip", fmt.Sprintf("%v", *o.Skip))
+	}
+	if o.SkipToken != nil {
+		out.Append("skipToken", fmt.Sprintf("%v", *o.SkipToken))
+	}
+	if o.SortKey != nil {
+		out.Append("sortKey", fmt.Sprintf("%v", *o.SortKey))
+	}
+	if o.SortValue != nil {
+		out.Append("sortValue", fmt.Sprintf("%v", *o.SortValue))
+	}
+	if o.Top != nil {
+		out.Append("top", fmt.Sprintf("%v", *o.Top))
+	}
+	return &out
+}

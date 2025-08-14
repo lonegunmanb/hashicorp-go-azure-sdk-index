@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/dnsprivatezones
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDnsPrivateZonesLifecycleState(input string) (*DnsPrivateZonesLifecycleState, error) {
+	vals := map[string]DnsPrivateZonesLifecycleState{
+		"active":   DnsPrivateZonesLifecycleStateActive,
+		"creating": DnsPrivateZonesLifecycleStateCreating,
+		"deleted":  DnsPrivateZonesLifecycleStateDeleted,
+		"deleting": DnsPrivateZonesLifecycleStateDeleting,
+		"updating": DnsPrivateZonesLifecycleStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DnsPrivateZonesLifecycleState(input)
+	return &out, nil
+}

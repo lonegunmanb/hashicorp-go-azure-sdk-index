@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/conversationthreadpostinreplytoattachment
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewConversationThreadPostInReplyToAttachmentClientWithBaseURI(sdkApi sdkEnv.Api) (*ConversationThreadPostInReplyToAttachmentClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "conversationthreadpostinreplytoattachment", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ConversationThreadPostInReplyToAttachmentClient: %+v", err)
+	}
+
+	return &ConversationThreadPostInReplyToAttachmentClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/templatesettingsettingdefinition
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c TemplateSettingSettingDefinitionClient) ListTemplateSettingDefinitionsComplete(ctx context.Context, id beta.DeviceManagementTemplateSettingId, options ListTemplateSettingDefinitionsOperationOptions) (ListTemplateSettingDefinitionsCompleteResult, error) {
+	return c.ListTemplateSettingDefinitionsCompleteMatchingPredicate(ctx, id, options, DeviceManagementConfigurationSettingDefinitionOperationPredicate{})
+}

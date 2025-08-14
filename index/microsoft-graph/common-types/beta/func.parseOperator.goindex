@@ -1,0 +1,42 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseOperator(input string) (*Operator, error) {
+	vals := map[string]Operator{
+		"allof":            Operator_AllOf,
+		"and":              Operator_And,
+		"beginswith":       Operator_BeginsWith,
+		"between":          Operator_Between,
+		"contains":         Operator_Contains,
+		"daytimebetween":   Operator_DayTimeBetween,
+		"endswith":         Operator_EndsWith,
+		"excludesall":      Operator_ExcludesAll,
+		"greaterequals":    Operator_GreaterEquals,
+		"greaterthan":      Operator_GreaterThan,
+		"isequals":         Operator_IsEquals,
+		"lessequals":       Operator_LessEquals,
+		"lessthan":         Operator_LessThan,
+		"none":             Operator_None,
+		"noneof":           Operator_NoneOf,
+		"notbeginswith":    Operator_NotBeginsWith,
+		"notbetween":       Operator_NotBetween,
+		"notcontains":      Operator_NotContains,
+		"notendswith":      Operator_NotEndsWith,
+		"notequals":        Operator_NotEquals,
+		"oneof":            Operator_OneOf,
+		"or":               Operator_Or,
+		"orderedsetequals": Operator_OrderedSetEquals,
+		"setequals":        Operator_SetEquals,
+		"subsetof":         Operator_SubsetOf,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Operator(input)
+	return &out, nil
+}

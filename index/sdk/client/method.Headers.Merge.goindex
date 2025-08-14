@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client
+import (
+	"net/http"
+	"net/url"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (h *Headers) Merge(h2 Headers) {
+	if h.vals == nil {
+		h.vals = map[string]string{}
+	}
+	if h2.vals == nil {
+		return
+	}
+	for k, v := range h2.vals {
+		h.vals[k] = v
+	}
+}

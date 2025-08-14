@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2024-09-01/customdomains
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseUpdateRule(input string) (*UpdateRule, error) {
+	vals := map[string]UpdateRule{
+		"noaction": UpdateRuleNoAction,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UpdateRule(input)
+	return &out, nil
+}

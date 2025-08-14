@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2024-08-01/virtualendpoints
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c VirtualEndpointsClient) ListByServerComplete(ctx context.Context, id FlexibleServerId) (ListByServerCompleteResult, error) {
+	return c.ListByServerCompleteMatchingPredicate(ctx, id, VirtualEndpointResourceOperationPredicate{})
+}

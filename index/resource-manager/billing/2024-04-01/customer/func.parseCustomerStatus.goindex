@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/customer
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCustomerStatus(input string) (*CustomerStatus, error) {
+	vals := map[string]CustomerStatus{
+		"active":      CustomerStatusActive,
+		"deleted":     CustomerStatusDeleted,
+		"disabled":    CustomerStatusDisabled,
+		"other":       CustomerStatusOther,
+		"pending":     CustomerStatusPending,
+		"underreview": CustomerStatusUnderReview,
+		"warned":      CustomerStatusWarned,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CustomerStatus(input)
+	return &out, nil
+}

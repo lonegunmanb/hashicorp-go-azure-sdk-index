@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2022-03-01/restorepointcollections
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseComponentNames(input string) (*ComponentNames, error) {
+	vals := map[string]ComponentNames{
+		"microsoft-windows-shell-setup": ComponentNamesMicrosoftNegativeWindowsNegativeShellNegativeSetup,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ComponentNames(input)
+	return &out, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/setting
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSettingClientWithBaseURI(sdkApi sdkEnv.Api) (*SettingClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "setting", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SettingClient: %+v", err)
+	}
+
+	return &SettingClient{
+		Client: client,
+	}, nil
+}

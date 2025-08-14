@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/azurestackhci/2024-01-01/updateruns
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseUpdateRunPropertiesState(input string) (*UpdateRunPropertiesState, error) {
+	vals := map[string]UpdateRunPropertiesState{
+		"failed":     UpdateRunPropertiesStateFailed,
+		"inprogress": UpdateRunPropertiesStateInProgress,
+		"succeeded":  UpdateRunPropertiesStateSucceeded,
+		"unknown":    UpdateRunPropertiesStateUnknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UpdateRunPropertiesState(input)
+	return &out, nil
+}

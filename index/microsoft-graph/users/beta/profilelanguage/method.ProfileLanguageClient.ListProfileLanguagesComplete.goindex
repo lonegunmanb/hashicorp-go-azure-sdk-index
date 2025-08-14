@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/profilelanguage
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ProfileLanguageClient) ListProfileLanguagesComplete(ctx context.Context, id beta.UserId, options ListProfileLanguagesOperationOptions) (ListProfileLanguagesCompleteResult, error) {
+	return c.ListProfileLanguagesCompleteMatchingPredicate(ctx, id, options, LanguageProficiencyOperationPredicate{})
+}

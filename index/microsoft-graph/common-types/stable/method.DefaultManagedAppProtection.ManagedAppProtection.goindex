@@ -1,0 +1,46 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s DefaultManagedAppProtection) ManagedAppProtection() BaseManagedAppProtectionImpl {
+	return BaseManagedAppProtectionImpl{
+		AllowedDataStorageLocations:             s.AllowedDataStorageLocations,
+		AllowedInboundDataTransferSources:       s.AllowedInboundDataTransferSources,
+		AllowedOutboundClipboardSharingLevel:    s.AllowedOutboundClipboardSharingLevel,
+		AllowedOutboundDataTransferDestinations: s.AllowedOutboundDataTransferDestinations,
+		ContactSyncBlocked:                      s.ContactSyncBlocked,
+		DataBackupBlocked:                       s.DataBackupBlocked,
+		DeviceComplianceRequired:                s.DeviceComplianceRequired,
+		DisableAppPinIfDevicePinIsSet:           s.DisableAppPinIfDevicePinIsSet,
+		FingerprintBlocked:                      s.FingerprintBlocked,
+		ManagedBrowser:                          s.ManagedBrowser,
+		ManagedBrowserToOpenLinksRequired:       s.ManagedBrowserToOpenLinksRequired,
+		MaximumPinRetries:                       s.MaximumPinRetries,
+		MinimumPinLength:                        s.MinimumPinLength,
+		MinimumRequiredAppVersion:               s.MinimumRequiredAppVersion,
+		MinimumRequiredOsVersion:                s.MinimumRequiredOsVersion,
+		MinimumWarningAppVersion:                s.MinimumWarningAppVersion,
+		MinimumWarningOsVersion:                 s.MinimumWarningOsVersion,
+		OrganizationalCredentialsRequired:       s.OrganizationalCredentialsRequired,
+		PeriodBeforePinReset:                    s.PeriodBeforePinReset,
+		PeriodOfflineBeforeAccessCheck:          s.PeriodOfflineBeforeAccessCheck,
+		PeriodOfflineBeforeWipeIsEnforced:       s.PeriodOfflineBeforeWipeIsEnforced,
+		PeriodOnlineBeforeAccessCheck:           s.PeriodOnlineBeforeAccessCheck,
+		PinCharacterSet:                         s.PinCharacterSet,
+		PinRequired:                             s.PinRequired,
+		PrintBlocked:                            s.PrintBlocked,
+		SaveAsBlocked:                           s.SaveAsBlocked,
+		SimplePinBlocked:                        s.SimplePinBlocked,
+		CreatedDateTime:                         s.CreatedDateTime,
+		Description:                             s.Description,
+		DisplayName:                             s.DisplayName,
+		LastModifiedDateTime:                    s.LastModifiedDateTime,
+		Version:                                 s.Version,
+		Id:                                      s.Id,
+		ODataId:                                 s.ODataId,
+		ODataType:                               s.ODataType,
+	}
+}

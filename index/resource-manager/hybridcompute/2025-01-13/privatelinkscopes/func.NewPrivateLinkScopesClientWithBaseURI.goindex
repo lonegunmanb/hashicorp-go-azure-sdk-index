@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2025-01-13/privatelinkscopes
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPrivateLinkScopesClientWithBaseURI(sdkApi sdkEnv.Api) (*PrivateLinkScopesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "privatelinkscopes", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PrivateLinkScopesClient: %+v", err)
+	}
+
+	return &PrivateLinkScopesClient{
+		Client: client,
+	}, nil
+}

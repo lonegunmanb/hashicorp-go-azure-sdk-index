@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/videoanalyzer/2021-05-01-preview/videos
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewVideosClientWithBaseURI(sdkApi sdkEnv.Api) (*VideosClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "videos", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating VideosClient: %+v", err)
+	}
+
+	return &VideosClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2023-12-15-preview/eventsubscriptions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEventSubscriptionProvisioningState(input string) (*EventSubscriptionProvisioningState, error) {
+	vals := map[string]EventSubscriptionProvisioningState{
+		"awaitingmanualaction": EventSubscriptionProvisioningStateAwaitingManualAction,
+		"canceled":             EventSubscriptionProvisioningStateCanceled,
+		"creating":             EventSubscriptionProvisioningStateCreating,
+		"deleting":             EventSubscriptionProvisioningStateDeleting,
+		"failed":               EventSubscriptionProvisioningStateFailed,
+		"succeeded":            EventSubscriptionProvisioningStateSucceeded,
+		"updating":             EventSubscriptionProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EventSubscriptionProvisioningState(input)
+	return &out, nil
+}

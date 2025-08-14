@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/restores
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/polling"
+)
+func (c RestoresClient) preparerForTrigger(ctx context.Context, id RecoveryPointId, input RestoreRequestResource, options TriggerOperationOptions) (*http.Request, error) {
+	queryParameters := map[string]interface{}{
+		"api-version": defaultApiVersion,
+	}
+
+	for k, v := range options.toQueryString() {
+		queryParameters[k] = autorest.Encode("query", v)
+	}
+
+	preparer := autorest.CreatePreparer(
+		autorest.AsContentType("application/json; charset=utf-8"),
+		autorest.AsPost(),
+		autorest.WithBaseURL(c.baseUri),
+		autorest.WithHeaders(options.toHeaders()),
+		autorest.WithPath(fmt.Sprintf("%s/restore", id.ID())),
+		autorest.WithJSON(input),
+		autorest.WithQueryParameters(queryParameters))
+	return preparer.Prepare((&http.Request{}).WithContext(ctx))
+}

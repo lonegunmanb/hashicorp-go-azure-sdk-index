@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityEvidenceRole(input string) (*SecurityEvidenceRole, error) {
+	vals := map[string]SecurityEvidenceRole{
+		"added":             SecurityEvidenceRole_Added,
+		"attacked":          SecurityEvidenceRole_Attacked,
+		"attacker":          SecurityEvidenceRole_Attacker,
+		"commandandcontrol": SecurityEvidenceRole_CommandAndControl,
+		"compromised":       SecurityEvidenceRole_Compromised,
+		"contextual":        SecurityEvidenceRole_Contextual,
+		"created":           SecurityEvidenceRole_Created,
+		"destination":       SecurityEvidenceRole_Destination,
+		"edited":            SecurityEvidenceRole_Edited,
+		"loaded":            SecurityEvidenceRole_Loaded,
+		"policyviolator":    SecurityEvidenceRole_PolicyViolator,
+		"scanned":           SecurityEvidenceRole_Scanned,
+		"source":            SecurityEvidenceRole_Source,
+		"suspicious":        SecurityEvidenceRole_Suspicious,
+		"unknown":           SecurityEvidenceRole_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityEvidenceRole(input)
+	return &out, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2022-08-01/groupuser
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewGroupUserClientWithBaseURI(sdkApi sdkEnv.Api) (*GroupUserClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "groupuser", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating GroupUserClient: %+v", err)
+	}
+
+	return &GroupUserClient{
+		Client: client,
+	}, nil
+}

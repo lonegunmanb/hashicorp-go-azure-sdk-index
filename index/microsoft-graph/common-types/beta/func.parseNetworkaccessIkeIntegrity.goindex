@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNetworkaccessIkeIntegrity(input string) (*NetworkaccessIkeIntegrity, error) {
+	vals := map[string]NetworkaccessIkeIntegrity{
+		"gcmaes128": NetworkaccessIkeIntegrity_GcmAes128,
+		"gcmaes256": NetworkaccessIkeIntegrity_GcmAes256,
+		"sha256":    NetworkaccessIkeIntegrity_Sha256,
+		"sha384":    NetworkaccessIkeIntegrity_Sha384,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NetworkaccessIkeIntegrity(input)
+	return &out, nil
+}

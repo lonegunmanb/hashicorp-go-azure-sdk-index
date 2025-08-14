@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/disks
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDisksClientWithBaseURI(sdkApi sdkEnv.Api) (*DisksClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "disks", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DisksClient: %+v", err)
+	}
+
+	return &DisksClient{
+		Client: client,
+	}, nil
+}

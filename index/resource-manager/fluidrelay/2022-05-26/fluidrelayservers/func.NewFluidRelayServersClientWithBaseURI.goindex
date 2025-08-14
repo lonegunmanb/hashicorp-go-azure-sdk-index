@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/fluidrelay/2022-05-26/fluidrelayservers
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewFluidRelayServersClientWithBaseURI(sdkApi sdkEnv.Api) (*FluidRelayServersClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "fluidrelayservers", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating FluidRelayServersClient: %+v", err)
+	}
+
+	return &FluidRelayServersClient{
+		Client: client,
+	}, nil
+}

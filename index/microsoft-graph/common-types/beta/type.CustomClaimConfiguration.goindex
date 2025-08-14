@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type CustomClaimConfiguration struct {
+	// The attribute on which we source this property.
+	Attribute CustomClaimAttributeBase `json:"attribute"`
+
+	// The condition, if any, associated with this configuration.
+	Condition CustomClaimConditionBase `json:"condition"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// An ordered list of transformations that are applied in sequence.
+	Transformations *[]CustomClaimTransformation `json:"transformations,omitempty"`
+}

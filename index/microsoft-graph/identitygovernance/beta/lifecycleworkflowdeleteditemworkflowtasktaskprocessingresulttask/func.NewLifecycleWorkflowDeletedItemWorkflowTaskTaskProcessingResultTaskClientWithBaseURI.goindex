@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/lifecycleworkflowdeleteditemworkflowtasktaskprocessingresulttask
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewLifecycleWorkflowDeletedItemWorkflowTaskTaskProcessingResultTaskClientWithBaseURI(sdkApi sdkEnv.Api) (*LifecycleWorkflowDeletedItemWorkflowTaskTaskProcessingResultTaskClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "lifecycleworkflowdeleteditemworkflowtasktaskprocessingresulttask", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating LifecycleWorkflowDeletedItemWorkflowTaskTaskProcessingResultTaskClient: %+v", err)
+	}
+
+	return &LifecycleWorkflowDeletedItemWorkflowTaskTaskProcessingResultTaskClient{
+		Client: client,
+	}, nil
+}

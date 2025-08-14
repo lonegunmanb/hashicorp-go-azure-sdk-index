@@ -1,0 +1,59 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalProtectionRuleBaseImplementation(input []byte) (ProtectionRuleBase, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling ProtectionRuleBase into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.driveProtectionRule") {
+		var out DriveProtectionRule
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DriveProtectionRule: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.mailboxProtectionRule") {
+		var out MailboxProtectionRule
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into MailboxProtectionRule: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.siteProtectionRule") {
+		var out SiteProtectionRule
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SiteProtectionRule: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseProtectionRuleBaseImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseProtectionRuleBaseImpl: %+v", err)
+	}
+
+	return RawProtectionRuleBaseImpl{
+		protectionRuleBase: parent,
+		Type:               value,
+		Values:             temp,
+	}, nil
+
+}

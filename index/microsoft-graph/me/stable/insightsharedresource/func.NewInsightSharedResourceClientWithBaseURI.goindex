@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/insightsharedresource
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewInsightSharedResourceClientWithBaseURI(sdkApi sdkEnv.Api) (*InsightSharedResourceClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "insightsharedresource", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating InsightSharedResourceClient: %+v", err)
+	}
+
+	return &InsightSharedResourceClient{
+		Client: client,
+	}, nil
+}

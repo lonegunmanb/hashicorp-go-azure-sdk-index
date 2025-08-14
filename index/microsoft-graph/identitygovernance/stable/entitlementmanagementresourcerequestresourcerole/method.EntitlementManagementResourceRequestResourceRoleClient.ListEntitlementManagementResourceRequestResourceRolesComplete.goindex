@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerequestresourcerole
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c EntitlementManagementResourceRequestResourceRoleClient) ListEntitlementManagementResourceRequestResourceRolesComplete(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestId, options ListEntitlementManagementResourceRequestResourceRolesOperationOptions) (ListEntitlementManagementResourceRequestResourceRolesCompleteResult, error) {
+	return c.ListEntitlementManagementResourceRequestResourceRolesCompleteMatchingPredicate(ctx, id, options, AccessPackageResourceRoleOperationPredicate{})
+}

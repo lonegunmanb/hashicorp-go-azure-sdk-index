@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/desktopvirtualization/2024-04-03/application
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRemoteApplicationType(input string) (*RemoteApplicationType, error) {
+	vals := map[string]RemoteApplicationType{
+		"inbuilt":         RemoteApplicationTypeInBuilt,
+		"msixapplication": RemoteApplicationTypeMsixApplication,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RemoteApplicationType(input)
+	return &out, nil
+}

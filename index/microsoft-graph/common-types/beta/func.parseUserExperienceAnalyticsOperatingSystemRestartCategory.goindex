@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseUserExperienceAnalyticsOperatingSystemRestartCategory(input string) (*UserExperienceAnalyticsOperatingSystemRestartCategory, error) {
+	vals := map[string]UserExperienceAnalyticsOperatingSystemRestartCategory{
+		"bluescreen":            UserExperienceAnalyticsOperatingSystemRestartCategory_BlueScreen,
+		"booterror":             UserExperienceAnalyticsOperatingSystemRestartCategory_BootError,
+		"longpowerbuttonpress":  UserExperienceAnalyticsOperatingSystemRestartCategory_LongPowerButtonPress,
+		"restartwithupdate":     UserExperienceAnalyticsOperatingSystemRestartCategory_RestartWithUpdate,
+		"restartwithoutupdate":  UserExperienceAnalyticsOperatingSystemRestartCategory_RestartWithoutUpdate,
+		"shutdownwithupdate":    UserExperienceAnalyticsOperatingSystemRestartCategory_ShutdownWithUpdate,
+		"shutdownwithoutupdate": UserExperienceAnalyticsOperatingSystemRestartCategory_ShutdownWithoutUpdate,
+		"unknown":               UserExperienceAnalyticsOperatingSystemRestartCategory_Unknown,
+		"update":                UserExperienceAnalyticsOperatingSystemRestartCategory_Update,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UserExperienceAnalyticsOperatingSystemRestartCategory(input)
+	return &out, nil
+}

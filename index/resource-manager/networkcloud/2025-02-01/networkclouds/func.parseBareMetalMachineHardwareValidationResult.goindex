@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/networkcloud/2025-02-01/networkclouds
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseBareMetalMachineHardwareValidationResult(input string) (*BareMetalMachineHardwareValidationResult, error) {
+	vals := map[string]BareMetalMachineHardwareValidationResult{
+		"fail": BareMetalMachineHardwareValidationResultFail,
+		"pass": BareMetalMachineHardwareValidationResultPass,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := BareMetalMachineHardwareValidationResult(input)
+	return &out, nil
+}

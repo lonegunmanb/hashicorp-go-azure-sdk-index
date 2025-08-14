@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/databricks/2022-04-01-preview/accessconnector
+import (
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+)
+type AccessConnector struct {
+	Id         *string                    `json:"id,omitempty"`
+	Identity   *identity.SystemAssigned   `json:"identity,omitempty"`
+	Location   string                     `json:"location"`
+	Name       *string                    `json:"name,omitempty"`
+	Properties *AccessConnectorProperties `json:"properties,omitempty"`
+	SystemData *systemdata.SystemData     `json:"systemData,omitempty"`
+	Tags       *map[string]string         `json:"tags,omitempty"`
+	Type       *string                    `json:"type,omitempty"`
+}

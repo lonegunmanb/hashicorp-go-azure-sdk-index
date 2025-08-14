@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2022-06-15/topictypes
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTopicTypeSourceScope(input string) (*TopicTypeSourceScope, error) {
+	vals := map[string]TopicTypeSourceScope{
+		"azuresubscription": TopicTypeSourceScopeAzureSubscription,
+		"managementgroup":   TopicTypeSourceScopeManagementGroup,
+		"resource":          TopicTypeSourceScopeResource,
+		"resourcegroup":     TopicTypeSourceScopeResourceGroup,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TopicTypeSourceScope(input)
+	return &out, nil
+}

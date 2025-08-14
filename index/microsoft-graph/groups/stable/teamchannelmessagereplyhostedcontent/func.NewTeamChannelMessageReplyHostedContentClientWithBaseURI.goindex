@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/teamchannelmessagereplyhostedcontent
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTeamChannelMessageReplyHostedContentClientWithBaseURI(sdkApi sdkEnv.Api) (*TeamChannelMessageReplyHostedContentClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "teamchannelmessagereplyhostedcontent", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TeamChannelMessageReplyHostedContentClient: %+v", err)
+	}
+
+	return &TeamChannelMessageReplyHostedContentClient{
+		Client: client,
+	}, nil
+}

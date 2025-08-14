@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/imagedefinitions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAutoImageBuildStatus(input string) (*AutoImageBuildStatus, error) {
+	vals := map[string]AutoImageBuildStatus{
+		"disabled": AutoImageBuildStatusDisabled,
+		"enabled":  AutoImageBuildStatusEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AutoImageBuildStatus(input)
+	return &out, nil
+}

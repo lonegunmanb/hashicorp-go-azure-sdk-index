@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/todo
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTodoClientWithBaseURI(sdkApi sdkEnv.Api) (*TodoClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "todo", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TodoClient: %+v", err)
+	}
+
+	return &TodoClient{
+		Client: client,
+	}, nil
+}

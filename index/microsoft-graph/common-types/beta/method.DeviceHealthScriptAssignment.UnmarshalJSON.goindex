@@ -1,0 +1,44 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s *DeviceHealthScriptAssignment) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		RunRemediationScript *bool   `json:"runRemediationScript,omitempty"`
+		Id                   *string `json:"id,omitempty"`
+		ODataId              *string `json:"@odata.id,omitempty"`
+		ODataType            *string `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.RunRemediationScript = decoded.RunRemediationScript
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling DeviceHealthScriptAssignment into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["runSchedule"]; ok {
+		impl, err := UnmarshalDeviceHealthScriptRunScheduleImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'RunSchedule' for 'DeviceHealthScriptAssignment': %+v", err)
+		}
+		s.RunSchedule = impl
+	}
+
+	if v, ok := temp["target"]; ok {
+		impl, err := UnmarshalDeviceAndAppManagementAssignmentTargetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Target' for 'DeviceHealthScriptAssignment': %+v", err)
+		}
+		s.Target = impl
+	}
+
+	return nil
+}

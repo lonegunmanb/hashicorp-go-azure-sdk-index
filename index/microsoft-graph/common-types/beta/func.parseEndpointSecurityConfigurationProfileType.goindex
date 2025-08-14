@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEndpointSecurityConfigurationProfileType(input string) (*EndpointSecurityConfigurationProfileType, error) {
+	vals := map[string]EndpointSecurityConfigurationProfileType{
+		"accountprotection":            EndpointSecurityConfigurationProfileType_AccountProtection,
+		"antivirus":                    EndpointSecurityConfigurationProfileType_Antivirus,
+		"appandbrowserisolation":       EndpointSecurityConfigurationProfileType_AppAndBrowserIsolation,
+		"applicationcontrol":           EndpointSecurityConfigurationProfileType_ApplicationControl,
+		"attacksurfacereductionrules":  EndpointSecurityConfigurationProfileType_AttackSurfaceReductionRules,
+		"bitlocker":                    EndpointSecurityConfigurationProfileType_BitLocker,
+		"devicecontrol":                EndpointSecurityConfigurationProfileType_DeviceControl,
+		"endpointdetectionandresponse": EndpointSecurityConfigurationProfileType_EndpointDetectionAndResponse,
+		"exploitprotection":            EndpointSecurityConfigurationProfileType_ExploitProtection,
+		"filevault":                    EndpointSecurityConfigurationProfileType_FileVault,
+		"firewall":                     EndpointSecurityConfigurationProfileType_Firewall,
+		"firewallrules":                EndpointSecurityConfigurationProfileType_FirewallRules,
+		"unknown":                      EndpointSecurityConfigurationProfileType_Unknown,
+		"webprotection":                EndpointSecurityConfigurationProfileType_WebProtection,
+		"windowssecurity":              EndpointSecurityConfigurationProfileType_WindowsSecurity,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EndpointSecurityConfigurationProfileType(input)
+	return &out, nil
+}

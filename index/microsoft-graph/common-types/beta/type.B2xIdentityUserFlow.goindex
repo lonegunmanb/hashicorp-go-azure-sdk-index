@@ -1,0 +1,40 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type B2xIdentityUserFlow struct {
+	// Configuration for enabling an API connector for use as part of the self-service sign-up user flow. You can only
+	// obtain the value of this object using Get userFlowApiConnectorConfiguration.
+	ApiConnectorConfiguration *UserFlowApiConnectorConfiguration `json:"apiConnectorConfiguration,omitempty"`
+
+	// The identity providers included in the user flow.
+	IdentityProviders *[]IdentityProvider `json:"identityProviders,omitempty"`
+
+	// The languages supported for customization within the user flow. Language customization is enabled by default in
+	// self-service sign-up user flow. You can't create custom languages in self-service sign-up user flows.
+	Languages *[]UserFlowLanguageConfiguration `json:"languages,omitempty"`
+
+	// The user attribute assignments included in the user flow.
+	UserAttributeAssignments *[]IdentityUserFlowAttributeAssignment `json:"userAttributeAssignments,omitempty"`
+
+	UserFlowIdentityProviders *[]IdentityProviderBase `json:"userFlowIdentityProviders,omitempty"`
+
+	// Fields inherited from IdentityUserFlow
+
+	UserFlowType *UserFlowType `json:"userFlowType,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

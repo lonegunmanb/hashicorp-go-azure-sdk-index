@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/pendingaccessreviewinstancestagedecisioninstancedecision
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c PendingAccessReviewInstanceStageDecisionInstanceDecisionClient) ListPendingAccessReviewInstanceStageDecisionInstanceDecisionsComplete(ctx context.Context, id beta.UserIdPendingAccessReviewInstanceIdStageIdDecisionId, options ListPendingAccessReviewInstanceStageDecisionInstanceDecisionsOperationOptions) (ListPendingAccessReviewInstanceStageDecisionInstanceDecisionsCompleteResult, error) {
+	return c.ListPendingAccessReviewInstanceStageDecisionInstanceDecisionsCompleteMatchingPredicate(ctx, id, options, AccessReviewInstanceDecisionItemOperationPredicate{})
+}

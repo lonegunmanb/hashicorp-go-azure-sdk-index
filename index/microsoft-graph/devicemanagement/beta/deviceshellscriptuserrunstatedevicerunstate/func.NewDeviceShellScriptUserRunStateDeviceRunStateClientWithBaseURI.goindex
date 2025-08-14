@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/deviceshellscriptuserrunstatedevicerunstate
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDeviceShellScriptUserRunStateDeviceRunStateClientWithBaseURI(sdkApi sdkEnv.Api) (*DeviceShellScriptUserRunStateDeviceRunStateClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "deviceshellscriptuserrunstatedevicerunstate", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DeviceShellScriptUserRunStateDeviceRunStateClient: %+v", err)
+	}
+
+	return &DeviceShellScriptUserRunStateDeviceRunStateClient{
+		Client: client,
+	}, nil
+}

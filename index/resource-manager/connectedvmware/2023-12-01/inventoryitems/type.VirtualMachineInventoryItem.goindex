@@ -1,0 +1,39 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/connectedvmware/2023-12-01/inventoryitems
+import (
+	"encoding/json"
+	"fmt"
+)
+type VirtualMachineInventoryItem struct {
+	ChangeTrackingEnabled   *bool                    `json:"changeTrackingEnabled,omitempty"`
+	ChangeTrackingSupported *bool                    `json:"changeTrackingSupported,omitempty"`
+	Cluster                 *InventoryItemDetails    `json:"cluster,omitempty"`
+	ComputerName            *string                  `json:"computerName,omitempty"`
+	DiskEnabledUuid         *string                  `json:"diskEnabledUuid,omitempty"`
+	FirmwareType            *FirmwareType            `json:"firmwareType,omitempty"`
+	FolderPath              *string                  `json:"folderPath,omitempty"`
+	Host                    *InventoryItemDetails    `json:"host,omitempty"`
+	IPAddresses             *[]string                `json:"ipAddresses,omitempty"`
+	InstanceUuid            *string                  `json:"instanceUuid,omitempty"`
+	MaxSnapshots            *int64                   `json:"maxSnapshots,omitempty"`
+	MemorySizeMB            *int64                   `json:"memorySizeMB,omitempty"`
+	NetworkProfile          *NetworkProfileInventory `json:"networkProfile,omitempty"`
+	NumCPUs                 *int64                   `json:"numCPUs,omitempty"`
+	NumberOfSnapshots       *int64                   `json:"numberOfSnapshots,omitempty"`
+	OsName                  *string                  `json:"osName,omitempty"`
+	OsType                  *OsType                  `json:"osType,omitempty"`
+	PowerState              *string                  `json:"powerState,omitempty"`
+	ResourcePool            *InventoryItemDetails    `json:"resourcePool,omitempty"`
+	SmbiosUuid              *string                  `json:"smbiosUuid,omitempty"`
+	StorageProfile          *StorageProfileInventory `json:"storageProfile,omitempty"`
+	ToolsRunningStatus      *string                  `json:"toolsRunningStatus,omitempty"`
+	ToolsVersion            *string                  `json:"toolsVersion,omitempty"`
+	ToolsVersionStatus      *string                  `json:"toolsVersionStatus,omitempty"`
+
+	// Fields inherited from InventoryItemProperties
+
+	InventoryType     InventoryType      `json:"inventoryType"`
+	ManagedResourceId *string            `json:"managedResourceId,omitempty"`
+	MoName            *string            `json:"moName,omitempty"`
+	MoRefId           *string            `json:"moRefId,omitempty"`
+	ProvisioningState *ProvisioningState `json:"provisioningState,omitempty"`
+}

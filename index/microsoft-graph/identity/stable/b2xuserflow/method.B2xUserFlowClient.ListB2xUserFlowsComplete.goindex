@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/b2xuserflow
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c B2xUserFlowClient) ListB2xUserFlowsComplete(ctx context.Context, options ListB2xUserFlowsOperationOptions) (ListB2xUserFlowsCompleteResult, error) {
+	return c.ListB2xUserFlowsCompleteMatchingPredicate(ctx, options, B2xIdentityUserFlowOperationPredicate{})
+}

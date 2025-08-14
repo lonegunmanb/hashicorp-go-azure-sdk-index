@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/subscription/2021-10-01/subscriptions
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+)
+func (c SubscriptionsClient) SubscriptionRename(ctx context.Context, id commonids.SubscriptionId, input SubscriptionName) (result SubscriptionRenameOperationResponse, err error) {
+	req, err := c.preparerForSubscriptionRename(ctx, id, input)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "subscriptions.SubscriptionsClient", "SubscriptionRename", nil, "Failure preparing request")
+		return
+	}
+
+	result.HttpResponse, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "subscriptions.SubscriptionsClient", "SubscriptionRename", result.HttpResponse, "Failure sending request")
+		return
+	}
+
+	result, err = c.responderForSubscriptionRename(result.HttpResponse)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "subscriptions.SubscriptionsClient", "SubscriptionRename", result.HttpResponse, "Failure responding to request")
+		return
+	}
+
+	return
+}

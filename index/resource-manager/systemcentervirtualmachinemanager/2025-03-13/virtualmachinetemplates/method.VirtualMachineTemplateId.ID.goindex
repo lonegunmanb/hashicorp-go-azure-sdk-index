@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/systemcentervirtualmachinemanager/2025-03-13/virtualmachinetemplates
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id VirtualMachineTemplateId) ID() string {
+	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.ScVmm/virtualMachineTemplates/%s"
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.VirtualMachineTemplateName)
+}

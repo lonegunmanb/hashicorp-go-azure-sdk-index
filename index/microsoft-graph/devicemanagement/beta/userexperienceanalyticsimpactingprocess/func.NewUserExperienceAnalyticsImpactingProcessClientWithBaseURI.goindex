@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/userexperienceanalyticsimpactingprocess
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewUserExperienceAnalyticsImpactingProcessClientWithBaseURI(sdkApi sdkEnv.Api) (*UserExperienceAnalyticsImpactingProcessClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "userexperienceanalyticsimpactingprocess", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating UserExperienceAnalyticsImpactingProcessClient: %+v", err)
+	}
+
+	return &UserExperienceAnalyticsImpactingProcessClient{
+		Client: client,
+	}, nil
+}

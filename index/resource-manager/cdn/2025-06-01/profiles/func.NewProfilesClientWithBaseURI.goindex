@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/profiles
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewProfilesClientWithBaseURI(sdkApi sdkEnv.Api) (*ProfilesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "profiles", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ProfilesClient: %+v", err)
+	}
+
+	return &ProfilesClient{
+		Client: client,
+	}, nil
+}

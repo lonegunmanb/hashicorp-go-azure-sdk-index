@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/servers
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMinimalTlsVersion(input string) (*MinimalTlsVersion, error) {
+	vals := map[string]MinimalTlsVersion{
+		"none": MinimalTlsVersionNone,
+		"1.1":  MinimalTlsVersionOnePointOne,
+		"1.3":  MinimalTlsVersionOnePointThree,
+		"1.2":  MinimalTlsVersionOnePointTwo,
+		"1.0":  MinimalTlsVersionOnePointZero,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MinimalTlsVersion(input)
+	return &out, nil
+}

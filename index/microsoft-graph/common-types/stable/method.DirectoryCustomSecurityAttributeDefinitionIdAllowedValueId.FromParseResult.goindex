@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *DirectoryCustomSecurityAttributeDefinitionIdAllowedValueId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.CustomSecurityAttributeDefinitionId, ok = input.Parsed["customSecurityAttributeDefinitionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "customSecurityAttributeDefinitionId", input)
+	}
+
+	if id.AllowedValueId, ok = input.Parsed["allowedValueId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "allowedValueId", input)
+	}
+
+	return nil
+}

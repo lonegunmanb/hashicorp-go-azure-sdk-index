@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-11-01/checkdnsavailabilities
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewCheckDnsAvailabilitiesClientWithBaseURI(sdkApi sdkEnv.Api) (*CheckDnsAvailabilitiesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "checkdnsavailabilities", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating CheckDnsAvailabilitiesClient: %+v", err)
+	}
+
+	return &CheckDnsAvailabilitiesClient{
+		Client: client,
+	}, nil
+}

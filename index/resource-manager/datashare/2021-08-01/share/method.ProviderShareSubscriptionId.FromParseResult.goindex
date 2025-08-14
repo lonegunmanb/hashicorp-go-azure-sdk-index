@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2021-08-01/share
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *ProviderShareSubscriptionId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.AccountName, ok = input.Parsed["accountName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "accountName", input)
+	}
+
+	if id.ShareName, ok = input.Parsed["shareName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "shareName", input)
+	}
+
+	if id.ProviderShareSubscriptionId, ok = input.Parsed["providerShareSubscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "providerShareSubscriptionId", input)
+	}
+
+	return nil
+}

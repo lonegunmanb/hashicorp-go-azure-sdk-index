@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/teamworkinstalledappchat
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTeamworkInstalledAppChatClientWithBaseURI(sdkApi sdkEnv.Api) (*TeamworkInstalledAppChatClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "teamworkinstalledappchat", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TeamworkInstalledAppChatClient: %+v", err)
+	}
+
+	return &TeamworkInstalledAppChatClient{
+		Client: client,
+	}, nil
+}

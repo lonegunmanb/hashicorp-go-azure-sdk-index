@@ -1,0 +1,68 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *Notebook) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		IsDefault            nullable.Type[bool]   `json:"isDefault,omitempty"`
+		IsShared             nullable.Type[bool]   `json:"isShared,omitempty"`
+		Links                *NotebookLinks        `json:"links,omitempty"`
+		SectionGroups        *[]SectionGroup       `json:"sectionGroups,omitempty"`
+		SectionGroupsUrl     nullable.Type[string] `json:"sectionGroupsUrl,omitempty"`
+		Sections             *[]OnenoteSection     `json:"sections,omitempty"`
+		SectionsUrl          nullable.Type[string] `json:"sectionsUrl,omitempty"`
+		UserRole             *OnenoteUserRole      `json:"userRole,omitempty"`
+		DisplayName          nullable.Type[string] `json:"displayName,omitempty"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		CreatedDateTime      nullable.Type[string] `json:"createdDateTime,omitempty"`
+		Self                 nullable.Type[string] `json:"self,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.IsDefault = decoded.IsDefault
+	s.IsShared = decoded.IsShared
+	s.Links = decoded.Links
+	s.SectionGroups = decoded.SectionGroups
+	s.SectionGroupsUrl = decoded.SectionGroupsUrl
+	s.Sections = decoded.Sections
+	s.SectionsUrl = decoded.SectionsUrl
+	s.UserRole = decoded.UserRole
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.DisplayName = decoded.DisplayName
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.Self = decoded.Self
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling Notebook into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["createdBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'CreatedBy' for 'Notebook': %+v", err)
+		}
+		s.CreatedBy = impl
+	}
+
+	if v, ok := temp["lastModifiedBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'LastModifiedBy' for 'Notebook': %+v", err)
+		}
+		s.LastModifiedBy = impl
+	}
+
+	return nil
+}

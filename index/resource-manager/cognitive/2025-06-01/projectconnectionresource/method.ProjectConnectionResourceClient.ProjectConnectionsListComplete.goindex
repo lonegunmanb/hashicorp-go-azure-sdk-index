@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cognitive/2025-06-01/projectconnectionresource
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ProjectConnectionResourceClient) ProjectConnectionsListComplete(ctx context.Context, id ProjectId, options ProjectConnectionsListOperationOptions) (ProjectConnectionsListCompleteResult, error) {
+	return c.ProjectConnectionsListCompleteMatchingPredicate(ctx, id, options, ConnectionPropertiesV2BasicResourceOperationPredicate{})
+}

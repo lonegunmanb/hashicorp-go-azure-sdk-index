@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/healthcareapis/2024-03-31/workspaceprivateendpointconnections
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewWorkspacePrivateEndpointConnectionsClientWithBaseURI(sdkApi sdkEnv.Api) (*WorkspacePrivateEndpointConnectionsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "workspaceprivateendpointconnections", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating WorkspacePrivateEndpointConnectionsClient: %+v", err)
+	}
+
+	return &WorkspacePrivateEndpointConnectionsClient{
+		Client: client,
+	}, nil
+}

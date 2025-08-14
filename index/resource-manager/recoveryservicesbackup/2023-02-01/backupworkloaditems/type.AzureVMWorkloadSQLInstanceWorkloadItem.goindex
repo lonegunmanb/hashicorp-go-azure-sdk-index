@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2023-02-01/backupworkloaditems
+import (
+	"encoding/json"
+	"fmt"
+)
+type AzureVMWorkloadSQLInstanceWorkloadItem struct {
+	DataDirectoryPaths   *[]SQLDataDirectory `json:"dataDirectoryPaths,omitempty"`
+	IsAutoProtectable    *bool               `json:"isAutoProtectable,omitempty"`
+	ParentName           *string             `json:"parentName,omitempty"`
+	ServerName           *string             `json:"serverName,omitempty"`
+	SubWorkloadItemCount *int64              `json:"subWorkloadItemCount,omitempty"`
+	Subinquireditemcount *int64              `json:"subinquireditemcount,omitempty"`
+
+	// Fields inherited from WorkloadItem
+
+	BackupManagementType *string           `json:"backupManagementType,omitempty"`
+	FriendlyName         *string           `json:"friendlyName,omitempty"`
+	ProtectionState      *ProtectionStatus `json:"protectionState,omitempty"`
+	WorkloadItemType     string            `json:"workloadItemType"`
+	WorkloadType         *string           `json:"workloadType,omitempty"`
+}

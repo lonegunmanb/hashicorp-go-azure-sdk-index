@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mobilenetwork/2022-11-01/service
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePreemptionCapability(input string) (*PreemptionCapability, error) {
+	vals := map[string]PreemptionCapability{
+		"maypreempt": PreemptionCapabilityMayPreempt,
+		"notpreempt": PreemptionCapabilityNotPreempt,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PreemptionCapability(input)
+	return &out, nil
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseGroupIdThreadIdPostIdAttachmentID(input string) (*GroupIdThreadIdPostIdAttachmentId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&GroupIdThreadIdPostIdAttachmentId{})
+	parsed, err := parser.Parse(input, false)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := GroupIdThreadIdPostIdAttachmentId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

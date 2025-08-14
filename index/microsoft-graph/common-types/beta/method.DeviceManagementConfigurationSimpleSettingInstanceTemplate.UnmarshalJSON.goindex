@@ -1,0 +1,38 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s *DeviceManagementConfigurationSimpleSettingInstanceTemplate) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		IsRequired                *bool   `json:"isRequired,omitempty"`
+		ODataId                   *string `json:"@odata.id,omitempty"`
+		ODataType                 *string `json:"@odata.type,omitempty"`
+		SettingDefinitionId       *string `json:"settingDefinitionId,omitempty"`
+		SettingInstanceTemplateId *string `json:"settingInstanceTemplateId,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.IsRequired = decoded.IsRequired
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.SettingDefinitionId = decoded.SettingDefinitionId
+	s.SettingInstanceTemplateId = decoded.SettingInstanceTemplateId
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling DeviceManagementConfigurationSimpleSettingInstanceTemplate into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["simpleSettingValueTemplate"]; ok {
+		impl, err := UnmarshalDeviceManagementConfigurationSimpleSettingValueTemplateImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'SimpleSettingValueTemplate' for 'DeviceManagementConfigurationSimpleSettingInstanceTemplate': %+v", err)
+		}
+		s.SimpleSettingValueTemplate = impl
+	}
+
+	return nil
+}

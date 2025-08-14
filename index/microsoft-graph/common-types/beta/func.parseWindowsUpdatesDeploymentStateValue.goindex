@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWindowsUpdatesDeploymentStateValue(input string) (*WindowsUpdatesDeploymentStateValue, error) {
+	vals := map[string]WindowsUpdatesDeploymentStateValue{
+		"archived":  WindowsUpdatesDeploymentStateValue_Archived,
+		"faulted":   WindowsUpdatesDeploymentStateValue_Faulted,
+		"offering":  WindowsUpdatesDeploymentStateValue_Offering,
+		"paused":    WindowsUpdatesDeploymentStateValue_Paused,
+		"scheduled": WindowsUpdatesDeploymentStateValue_Scheduled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsUpdatesDeploymentStateValue(input)
+	return &out, nil
+}

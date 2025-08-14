@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2022-08-01/productsbytag
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewProductsByTagClientWithBaseURI(sdkApi sdkEnv.Api) (*ProductsByTagClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "productsbytag", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ProductsByTagClient: %+v", err)
+	}
+
+	return &ProductsByTagClient{
+		Client: client,
+	}, nil
+}

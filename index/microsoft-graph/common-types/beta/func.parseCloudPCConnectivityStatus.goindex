@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCloudPCConnectivityStatus(input string) (*CloudPCConnectivityStatus, error) {
+	vals := map[string]CloudPCConnectivityStatus{
+		"available":            CloudPCConnectivityStatus_Available,
+		"availablewithwarning": CloudPCConnectivityStatus_AvailableWithWarning,
+		"unavailable":          CloudPCConnectivityStatus_Unavailable,
+		"unknown":              CloudPCConnectivityStatus_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CloudPCConnectivityStatus(input)
+	return &out, nil
+}

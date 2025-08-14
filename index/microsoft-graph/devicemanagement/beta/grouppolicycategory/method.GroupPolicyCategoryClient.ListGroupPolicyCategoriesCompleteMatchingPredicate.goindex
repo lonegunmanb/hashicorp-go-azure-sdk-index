@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/grouppolicycategory
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c GroupPolicyCategoryClient) ListGroupPolicyCategoriesCompleteMatchingPredicate(ctx context.Context, options ListGroupPolicyCategoriesOperationOptions, predicate GroupPolicyCategoryOperationPredicate) (result ListGroupPolicyCategoriesCompleteResult, err error) {
+	items := make([]beta.GroupPolicyCategory, 0)
+
+	resp, err := c.ListGroupPolicyCategories(ctx, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListGroupPolicyCategoriesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

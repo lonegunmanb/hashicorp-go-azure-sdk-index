@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/virtualwans
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c VirtualWANsClient) VirtualHubsListCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate VirtualHubOperationPredicate) (result VirtualHubsListCompleteResult, err error) {
+	items := make([]VirtualHub, 0)
+
+	resp, err := c.VirtualHubsList(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = VirtualHubsListCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

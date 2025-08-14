@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/authorization/2020-10-01/roleassignmentscheduleinstances
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *ScopedRoleAssignmentScheduleInstanceId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.Scope, ok = input.Parsed["scope"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "scope", input)
+	}
+
+	if id.RoleAssignmentScheduleInstanceName, ok = input.Parsed["roleAssignmentScheduleInstanceName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "roleAssignmentScheduleInstanceName", input)
+	}
+
+	return nil
+}

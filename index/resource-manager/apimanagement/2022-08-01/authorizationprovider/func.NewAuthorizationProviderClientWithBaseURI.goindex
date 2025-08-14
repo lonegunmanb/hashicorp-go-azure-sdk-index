@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2022-08-01/authorizationprovider
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAuthorizationProviderClientWithBaseURI(sdkApi sdkEnv.Api) (*AuthorizationProviderClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "authorizationprovider", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AuthorizationProviderClient: %+v", err)
+	}
+
+	return &AuthorizationProviderClient{
+		Client: client,
+	}, nil
+}

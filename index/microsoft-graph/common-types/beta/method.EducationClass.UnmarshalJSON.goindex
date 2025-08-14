@@ -1,0 +1,76 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *EducationClass) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AssignmentCategories *[]EducationCategory         `json:"assignmentCategories,omitempty"`
+		AssignmentDefaults   *EducationAssignmentDefaults `json:"assignmentDefaults,omitempty"`
+		AssignmentSettings   *EducationAssignmentSettings `json:"assignmentSettings,omitempty"`
+		Assignments          *[]EducationAssignment       `json:"assignments,omitempty"`
+		ClassCode            nullable.Type[string]        `json:"classCode,omitempty"`
+		Course               *EducationCourse             `json:"course,omitempty"`
+		Description          nullable.Type[string]        `json:"description,omitempty"`
+		DisplayName          *string                      `json:"displayName,omitempty"`
+		ExternalId           nullable.Type[string]        `json:"externalId,omitempty"`
+		ExternalName         nullable.Type[string]        `json:"externalName,omitempty"`
+		ExternalSource       *EducationExternalSource     `json:"externalSource,omitempty"`
+		ExternalSourceDetail nullable.Type[string]        `json:"externalSourceDetail,omitempty"`
+		Grade                nullable.Type[string]        `json:"grade,omitempty"`
+		Group                *Group                       `json:"group,omitempty"`
+		MailNickname         *string                      `json:"mailNickname,omitempty"`
+		Members              *[]EducationUser             `json:"members,omitempty"`
+		Modules              *[]EducationModule           `json:"modules,omitempty"`
+		Schools              *[]EducationSchool           `json:"schools,omitempty"`
+		Teachers             *[]EducationUser             `json:"teachers,omitempty"`
+		Term                 *EducationTerm               `json:"term,omitempty"`
+		Id                   *string                      `json:"id,omitempty"`
+		ODataId              *string                      `json:"@odata.id,omitempty"`
+		ODataType            *string                      `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AssignmentCategories = decoded.AssignmentCategories
+	s.AssignmentDefaults = decoded.AssignmentDefaults
+	s.AssignmentSettings = decoded.AssignmentSettings
+	s.Assignments = decoded.Assignments
+	s.ClassCode = decoded.ClassCode
+	s.Course = decoded.Course
+	s.Description = decoded.Description
+	s.DisplayName = decoded.DisplayName
+	s.ExternalId = decoded.ExternalId
+	s.ExternalName = decoded.ExternalName
+	s.ExternalSource = decoded.ExternalSource
+	s.ExternalSourceDetail = decoded.ExternalSourceDetail
+	s.Grade = decoded.Grade
+	s.Group = decoded.Group
+	s.MailNickname = decoded.MailNickname
+	s.Members = decoded.Members
+	s.Modules = decoded.Modules
+	s.Schools = decoded.Schools
+	s.Teachers = decoded.Teachers
+	s.Term = decoded.Term
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling EducationClass into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["createdBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'CreatedBy' for 'EducationClass': %+v", err)
+		}
+		s.CreatedBy = impl
+	}
+
+	return nil
+}

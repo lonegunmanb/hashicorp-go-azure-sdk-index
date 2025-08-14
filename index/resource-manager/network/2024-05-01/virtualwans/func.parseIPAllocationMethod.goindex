@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-05-01/virtualwans
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseIPAllocationMethod(input string) (*IPAllocationMethod, error) {
+	vals := map[string]IPAllocationMethod{
+		"dynamic": IPAllocationMethodDynamic,
+		"static":  IPAllocationMethodStatic,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IPAllocationMethod(input)
+	return &out, nil
+}

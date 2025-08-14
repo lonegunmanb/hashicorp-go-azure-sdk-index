@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/apidiagnostic
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSamplingType(input string) (*SamplingType, error) {
+	vals := map[string]SamplingType{
+		"fixed": SamplingTypeFixed,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SamplingType(input)
+	return &out, nil
+}

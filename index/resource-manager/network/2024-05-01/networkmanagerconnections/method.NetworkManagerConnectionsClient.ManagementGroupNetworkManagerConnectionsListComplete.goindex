@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-05-01/networkmanagerconnections
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c NetworkManagerConnectionsClient) ManagementGroupNetworkManagerConnectionsListComplete(ctx context.Context, id commonids.ManagementGroupId, options ManagementGroupNetworkManagerConnectionsListOperationOptions) (ManagementGroupNetworkManagerConnectionsListCompleteResult, error) {
+	return c.ManagementGroupNetworkManagerConnectionsListCompleteMatchingPredicate(ctx, id, options, NetworkManagerConnectionOperationPredicate{})
+}

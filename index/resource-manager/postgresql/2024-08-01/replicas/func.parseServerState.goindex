@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2024-08-01/replicas
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseServerState(input string) (*ServerState, error) {
+	vals := map[string]ServerState{
+		"disabled": ServerStateDisabled,
+		"dropping": ServerStateDropping,
+		"ready":    ServerStateReady,
+		"starting": ServerStateStarting,
+		"stopped":  ServerStateStopped,
+		"stopping": ServerStateStopping,
+		"updating": ServerStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ServerState(input)
+	return &out, nil
+}

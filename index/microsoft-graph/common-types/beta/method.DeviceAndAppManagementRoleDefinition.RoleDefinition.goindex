@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s DeviceAndAppManagementRoleDefinition) RoleDefinition() BaseRoleDefinitionImpl {
+	return BaseRoleDefinitionImpl{
+		Description:             s.Description,
+		DisplayName:             s.DisplayName,
+		IsBuiltIn:               s.IsBuiltIn,
+		IsBuiltInRoleDefinition: s.IsBuiltInRoleDefinition,
+		Permissions:             s.Permissions,
+		RoleAssignments:         s.RoleAssignments,
+		RolePermissions:         s.RolePermissions,
+		RoleScopeTagIds:         s.RoleScopeTagIds,
+		Id:                      s.Id,
+		ODataId:                 s.ODataId,
+		ODataType:               s.ODataType,
+	}
+}

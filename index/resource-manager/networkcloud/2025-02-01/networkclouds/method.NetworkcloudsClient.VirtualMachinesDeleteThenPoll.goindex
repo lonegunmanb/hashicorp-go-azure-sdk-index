@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/networkcloud/2025-02-01/networkclouds
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c NetworkcloudsClient) VirtualMachinesDeleteThenPoll(ctx context.Context, id VirtualMachineId, options VirtualMachinesDeleteOperationOptions) error {
+	result, err := c.VirtualMachinesDelete(ctx, id, options)
+	if err != nil {
+		return fmt.Errorf("performing VirtualMachinesDelete: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after VirtualMachinesDelete: %+v", err)
+	}
+
+	return nil
+}

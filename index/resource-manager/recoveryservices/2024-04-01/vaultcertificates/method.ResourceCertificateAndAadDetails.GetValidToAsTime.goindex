@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservices/2024-04-01/vaultcertificates
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *ResourceCertificateAndAadDetails) GetValidToAsTime() (*time.Time, error) {
+	if o.ValidTo == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.ValidTo, "2006-01-02T15:04:05Z07:00")
+}

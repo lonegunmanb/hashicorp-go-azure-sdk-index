@@ -1,0 +1,76 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *TrainingCampaign) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		CampaignSchedule     *CampaignSchedule       `json:"campaignSchedule,omitempty"`
+		CreatedBy            *EmailIdentity          `json:"createdBy,omitempty"`
+		CreatedDateTime      nullable.Type[string]   `json:"createdDateTime,omitempty"`
+		Description          nullable.Type[string]   `json:"description,omitempty"`
+		DisplayName          *string                 `json:"displayName,omitempty"`
+		LastModifiedBy       *EmailIdentity          `json:"lastModifiedBy,omitempty"`
+		LastModifiedDateTime nullable.Type[string]   `json:"lastModifiedDateTime,omitempty"`
+		Report               *TrainingCampaignReport `json:"report,omitempty"`
+		Id                   *string                 `json:"id,omitempty"`
+		ODataId              *string                 `json:"@odata.id,omitempty"`
+		ODataType            *string                 `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.CampaignSchedule = decoded.CampaignSchedule
+	s.CreatedBy = decoded.CreatedBy
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Description = decoded.Description
+	s.DisplayName = decoded.DisplayName
+	s.LastModifiedBy = decoded.LastModifiedBy
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.Report = decoded.Report
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling TrainingCampaign into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["endUserNotificationSetting"]; ok {
+		impl, err := UnmarshalEndUserNotificationSettingImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'EndUserNotificationSetting' for 'TrainingCampaign': %+v", err)
+		}
+		s.EndUserNotificationSetting = impl
+	}
+
+	if v, ok := temp["excludedAccountTarget"]; ok {
+		impl, err := UnmarshalAccountTargetContentImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'ExcludedAccountTarget' for 'TrainingCampaign': %+v", err)
+		}
+		s.ExcludedAccountTarget = impl
+	}
+
+	if v, ok := temp["includedAccountTarget"]; ok {
+		impl, err := UnmarshalAccountTargetContentImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'IncludedAccountTarget' for 'TrainingCampaign': %+v", err)
+		}
+		s.IncludedAccountTarget = impl
+	}
+
+	if v, ok := temp["trainingSetting"]; ok {
+		impl, err := UnmarshalTrainingSettingImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'TrainingSetting' for 'TrainingCampaign': %+v", err)
+		}
+		s.TrainingSetting = impl
+	}
+
+	return nil
+}

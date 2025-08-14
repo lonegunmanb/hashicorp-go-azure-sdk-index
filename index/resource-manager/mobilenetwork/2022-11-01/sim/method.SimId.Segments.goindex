@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mobilenetwork/2022-11-01/sim
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id SimId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.StaticSegment("staticSubscriptions", "subscriptions", "subscriptions"),
+		resourceids.SubscriptionIdSegment("subscriptionId", "12345678-1234-9876-4563-123456789012"),
+		resourceids.StaticSegment("staticResourceGroups", "resourceGroups", "resourceGroups"),
+		resourceids.ResourceGroupSegment("resourceGroupName", "example-resource-group"),
+		resourceids.StaticSegment("staticProviders", "providers", "providers"),
+		resourceids.ResourceProviderSegment("staticMicrosoftMobileNetwork", "Microsoft.MobileNetwork", "Microsoft.MobileNetwork"),
+		resourceids.StaticSegment("staticSimGroups", "simGroups", "simGroups"),
+		resourceids.UserSpecifiedSegment("simGroupName", "simGroupName"),
+		resourceids.StaticSegment("staticSims", "sims", "sims"),
+		resourceids.UserSpecifiedSegment("simName", "simName"),
+	}
+}

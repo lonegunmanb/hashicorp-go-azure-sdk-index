@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-11-01/expressrouteports
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ExpressRoutePortId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Express Route Port Name: %q", id.ExpressRoutePortName),
+	}
+	return fmt.Sprintf("Express Route Port (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/virtualnetworkgateways
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o GetFailoverAllTestDetailsOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.FetchLatest != nil {
+		out.Append("fetchLatest", fmt.Sprintf("%v", *o.FetchLatest))
+	}
+	if o.Type != nil {
+		out.Append("type", fmt.Sprintf("%v", *o.Type))
+	}
+	return &out
+}

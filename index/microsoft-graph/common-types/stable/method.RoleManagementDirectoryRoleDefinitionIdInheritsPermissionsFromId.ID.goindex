@@ -1,0 +1,11 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id RoleManagementDirectoryRoleDefinitionIdInheritsPermissionsFromId) ID() string {
+	fmtString := "/roleManagement/directory/roleDefinitions/%s/inheritsPermissionsFrom/%s"
+	return fmt.Sprintf(fmtString, id.UnifiedRoleDefinitionId, id.UnifiedRoleDefinitionId1)
+}

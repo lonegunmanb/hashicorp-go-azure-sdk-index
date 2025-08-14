@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2024-10-01/restores
+import (
+	"encoding/json"
+	"fmt"
+)
+type AzureWorkloadSQLPointInTimeRestoreWithRehydrateRequest struct {
+	AlternateDirectoryPaths            *[]SQLDataDirectoryMapping          `json:"alternateDirectoryPaths,omitempty"`
+	IsNonRecoverable                   *bool                               `json:"isNonRecoverable,omitempty"`
+	PointInTime                        *string                             `json:"pointInTime,omitempty"`
+	PropertyBag                        *map[string]string                  `json:"propertyBag,omitempty"`
+	RecoveryMode                       *RecoveryMode                       `json:"recoveryMode,omitempty"`
+	RecoveryPointRehydrationInfo       *RecoveryPointRehydrationInfo       `json:"recoveryPointRehydrationInfo,omitempty"`
+	RecoveryType                       *RecoveryType                       `json:"recoveryType,omitempty"`
+	ShouldUseAlternateTargetLocation   *bool                               `json:"shouldUseAlternateTargetLocation,omitempty"`
+	SnapshotRestoreParameters          *SnapshotRestoreParameters          `json:"snapshotRestoreParameters,omitempty"`
+	SourceResourceId                   *string                             `json:"sourceResourceId,omitempty"`
+	TargetInfo                         *TargetRestoreInfo                  `json:"targetInfo,omitempty"`
+	TargetResourceGroupName            *string                             `json:"targetResourceGroupName,omitempty"`
+	TargetVirtualMachineId             *string                             `json:"targetVirtualMachineId,omitempty"`
+	UserAssignedManagedIdentityDetails *UserAssignedManagedIdentityDetails `json:"userAssignedManagedIdentityDetails,omitempty"`
+
+	// Fields inherited from RestoreRequest
+
+	ObjectType                     string    `json:"objectType"`
+	ResourceGuardOperationRequests *[]string `json:"resourceGuardOperationRequests,omitempty"`
+}

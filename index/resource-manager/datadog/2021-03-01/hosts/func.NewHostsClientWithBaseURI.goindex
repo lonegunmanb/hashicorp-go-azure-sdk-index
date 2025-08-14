@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datadog/2021-03-01/hosts
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewHostsClientWithBaseURI(sdkApi sdkEnv.Api) (*HostsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "hosts", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating HostsClient: %+v", err)
+	}
+
+	return &HostsClient{
+		Client: client,
+	}, nil
+}

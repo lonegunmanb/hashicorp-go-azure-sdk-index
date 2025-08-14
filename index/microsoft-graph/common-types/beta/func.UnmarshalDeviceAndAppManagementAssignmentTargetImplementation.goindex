@@ -1,0 +1,75 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalDeviceAndAppManagementAssignmentTargetImplementation(input []byte) (DeviceAndAppManagementAssignmentTarget, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling DeviceAndAppManagementAssignmentTarget into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.allDevicesAssignmentTarget") {
+		var out AllDevicesAssignmentTarget
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AllDevicesAssignmentTarget: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.allLicensedUsersAssignmentTarget") {
+		var out AllLicensedUsersAssignmentTarget
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AllLicensedUsersAssignmentTarget: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.androidFotaDeploymentAssignmentTarget") {
+		var out AndroidFotaDeploymentAssignmentTarget
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AndroidFotaDeploymentAssignmentTarget: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.configurationManagerCollectionAssignmentTarget") {
+		var out ConfigurationManagerCollectionAssignmentTarget
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ConfigurationManagerCollectionAssignmentTarget: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.groupAssignmentTarget") {
+		var out GroupAssignmentTarget
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into GroupAssignmentTarget: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseDeviceAndAppManagementAssignmentTargetImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseDeviceAndAppManagementAssignmentTargetImpl: %+v", err)
+	}
+
+	return RawDeviceAndAppManagementAssignmentTargetImpl{
+		deviceAndAppManagementAssignmentTarget: parent,
+		Type:                                   value,
+		Values:                                 temp,
+	}, nil
+
+}

@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mongocluster/2024-07-01/mongoclusters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMongoClusterStatus(input string) (*MongoClusterStatus, error) {
+	vals := map[string]MongoClusterStatus{
+		"dropping":     MongoClusterStatusDropping,
+		"provisioning": MongoClusterStatusProvisioning,
+		"ready":        MongoClusterStatusReady,
+		"starting":     MongoClusterStatusStarting,
+		"stopped":      MongoClusterStatusStopped,
+		"stopping":     MongoClusterStatusStopping,
+		"updating":     MongoClusterStatusUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MongoClusterStatus(input)
+	return &out, nil
+}

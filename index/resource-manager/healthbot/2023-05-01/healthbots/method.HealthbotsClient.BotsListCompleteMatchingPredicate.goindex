@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/healthbot/2023-05-01/healthbots
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c HealthbotsClient) BotsListCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, predicate HealthBotOperationPredicate) (result BotsListCompleteResult, err error) {
+	items := make([]HealthBot, 0)
+
+	resp, err := c.BotsList(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = BotsListCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

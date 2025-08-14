@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/aadb2c/2021-04-01-preview/tenants
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSkuName(input string) (*SkuName, error) {
+	vals := map[string]SkuName{
+		"premiump1": SkuNamePremiumP1,
+		"premiump2": SkuNamePremiumP2,
+		"standard":  SkuNameStandard,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SkuName(input)
+	return &out, nil
+}

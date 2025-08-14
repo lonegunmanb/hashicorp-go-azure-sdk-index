@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type BaseEducationOrganizationImpl struct {
+	// Organization description.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// Organization display name.
+	DisplayName *string `json:"displayName,omitempty"`
+
+	// Source where this organization was created from. Possible values are: sis, manual.
+	ExternalSource *EducationExternalSource `json:"externalSource,omitempty"`
+
+	// The name of the external source this resource was generated from.
+	ExternalSourceDetail nullable.Type[string] `json:"externalSourceDetail,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

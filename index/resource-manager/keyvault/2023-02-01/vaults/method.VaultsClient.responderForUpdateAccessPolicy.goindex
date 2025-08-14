@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2023-02-01/vaults
+import (
+	"context"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+)
+func (c VaultsClient) responderForUpdateAccessPolicy(resp *http.Response) (result UpdateAccessPolicyOperationResponse, err error) {
+	err = autorest.Respond(
+		resp,
+		azure.WithErrorUnlessStatusCode(http.StatusCreated, http.StatusOK),
+		autorest.ByUnmarshallingJSON(&result.Model),
+		autorest.ByClosing())
+	result.HttpResponse = resp
+
+	return
+}

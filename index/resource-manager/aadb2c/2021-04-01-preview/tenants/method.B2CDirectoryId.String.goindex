@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/aadb2c/2021-04-01-preview/tenants
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id B2CDirectoryId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group: %q", id.ResourceGroup),
+		fmt.Sprintf("Directory Name: %q", id.DirectoryName),
+	}
+	return fmt.Sprintf("B 2 C Directory (%s)", strings.Join(components, "\n"))
+}

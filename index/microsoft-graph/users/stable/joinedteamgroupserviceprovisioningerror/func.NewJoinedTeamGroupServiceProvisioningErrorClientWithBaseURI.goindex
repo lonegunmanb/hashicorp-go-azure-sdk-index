@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamgroupserviceprovisioningerror
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewJoinedTeamGroupServiceProvisioningErrorClientWithBaseURI(sdkApi sdkEnv.Api) (*JoinedTeamGroupServiceProvisioningErrorClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "joinedteamgroupserviceprovisioningerror", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating JoinedTeamGroupServiceProvisioningErrorClient: %+v", err)
+	}
+
+	return &JoinedTeamGroupServiceProvisioningErrorClient{
+		Client: client,
+	}, nil
+}

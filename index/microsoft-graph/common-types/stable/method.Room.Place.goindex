@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s Room) Place() BasePlaceImpl {
+	return BasePlaceImpl{
+		Address:        s.Address,
+		DisplayName:    s.DisplayName,
+		GeoCoordinates: s.GeoCoordinates,
+		Phone:          s.Phone,
+		Id:             s.Id,
+		ODataId:        s.ODataId,
+		ODataType:      s.ODataType,
+	}
+}

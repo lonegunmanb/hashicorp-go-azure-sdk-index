@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type TypedEmailAddress struct {
+	// To specify a custom type of email address, set type to other, and assign otherLabel to a custom string. For example,
+	// you may use a specific email address for your volunteer activities. Set type to other, and set otherLabel to a custom
+	// string such as Volunteer work.
+	OtherLabel nullable.Type[string] `json:"otherLabel,omitempty"`
+
+	// The type of email address. Possible values are: unknown, work, personal, main, other. The default value is unknown,
+	// which means address has not been set as a specific type.
+	Type *EmailType `json:"type,omitempty"`
+
+	// Fields inherited from EmailAddress
+
+	// The email address of an entity instance.
+	Address nullable.Type[string] `json:"address,omitempty"`
+
+	// The display name of an entity instance.
+	Name nullable.Type[string] `json:"name,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

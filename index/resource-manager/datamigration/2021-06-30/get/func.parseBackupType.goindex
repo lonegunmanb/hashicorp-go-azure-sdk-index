@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/get
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseBackupType(input string) (*BackupType, error) {
+	vals := map[string]BackupType{
+		"database":             BackupTypeDatabase,
+		"differentialdatabase": BackupTypeDifferentialDatabase,
+		"differentialfile":     BackupTypeDifferentialFile,
+		"differentialpartial":  BackupTypeDifferentialPartial,
+		"file":                 BackupTypeFile,
+		"partial":              BackupTypePartial,
+		"transactionlog":       BackupTypeTransactionLog,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := BackupType(input)
+	return &out, nil
+}

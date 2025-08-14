@@ -1,0 +1,91 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalPolicyBaseImplementation(input []byte) (PolicyBase, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling PolicyBase into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.appManagementPolicy") {
+		var out AppManagementPolicy
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AppManagementPolicy: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.authorizationPolicy") {
+		var out AuthorizationPolicy
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AuthorizationPolicy: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.crossTenantAccessPolicy") {
+		var out CrossTenantAccessPolicy
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into CrossTenantAccessPolicy: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.identitySecurityDefaultsEnforcementPolicy") {
+		var out IdentitySecurityDefaultsEnforcementPolicy
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into IdentitySecurityDefaultsEnforcementPolicy: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.permissionGrantPolicy") {
+		var out PermissionGrantPolicy
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into PermissionGrantPolicy: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.stsPolicy") {
+		var out StsPolicy
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into StsPolicy: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.tenantAppManagementPolicy") {
+		var out TenantAppManagementPolicy
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into TenantAppManagementPolicy: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BasePolicyBaseImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BasePolicyBaseImpl: %+v", err)
+	}
+
+	return RawPolicyBaseImpl{
+		policyBase: parent,
+		Type:       value,
+		Values:     temp,
+	}, nil
+
+}

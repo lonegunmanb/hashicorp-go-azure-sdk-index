@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id IdentityGovernanceLifecycleWorkflowTaskDefinitionId) String() string {
+	components := []string{
+		fmt.Sprintf("Task Definition: %q", id.TaskDefinitionId),
+	}
+	return fmt.Sprintf("Identity Governance Lifecycle Workflow Task Definition (%s)", strings.Join(components, "\n"))
+}

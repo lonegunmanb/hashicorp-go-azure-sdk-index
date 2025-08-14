@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingroleassignment
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id CustomerBillingRoleAssignmentId) String() string {
+	components := []string{
+		fmt.Sprintf("Billing Account Name: %q", id.BillingAccountName),
+		fmt.Sprintf("Billing Profile Name: %q", id.BillingProfileName),
+		fmt.Sprintf("Customer Name: %q", id.CustomerName),
+		fmt.Sprintf("Billing Role Assignment Name: %q", id.BillingRoleAssignmentName),
+	}
+	return fmt.Sprintf("Customer Billing Role Assignment (%s)", strings.Join(components, "\n"))
+}

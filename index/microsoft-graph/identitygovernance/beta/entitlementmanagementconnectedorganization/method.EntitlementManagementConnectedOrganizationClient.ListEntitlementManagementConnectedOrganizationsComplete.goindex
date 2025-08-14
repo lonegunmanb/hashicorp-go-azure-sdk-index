@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/entitlementmanagementconnectedorganization
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c EntitlementManagementConnectedOrganizationClient) ListEntitlementManagementConnectedOrganizationsComplete(ctx context.Context, options ListEntitlementManagementConnectedOrganizationsOperationOptions) (ListEntitlementManagementConnectedOrganizationsCompleteResult, error) {
+	return c.ListEntitlementManagementConnectedOrganizationsCompleteMatchingPredicate(ctx, options, ConnectedOrganizationOperationPredicate{})
+}

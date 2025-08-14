@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/workloadclassifiers
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id WorkloadClassifierId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.StaticSegment("staticSubscriptions", "subscriptions", "subscriptions"),
+		resourceids.SubscriptionIdSegment("subscriptionId", "12345678-1234-9876-4563-123456789012"),
+		resourceids.StaticSegment("staticResourceGroups", "resourceGroups", "resourceGroups"),
+		resourceids.ResourceGroupSegment("resourceGroupName", "example-resource-group"),
+		resourceids.StaticSegment("staticProviders", "providers", "providers"),
+		resourceids.ResourceProviderSegment("staticMicrosoftSql", "Microsoft.Sql", "Microsoft.Sql"),
+		resourceids.StaticSegment("staticServers", "servers", "servers"),
+		resourceids.UserSpecifiedSegment("serverName", "serverName"),
+		resourceids.StaticSegment("staticDatabases", "databases", "databases"),
+		resourceids.UserSpecifiedSegment("databaseName", "databaseName"),
+		resourceids.StaticSegment("staticWorkloadGroups", "workloadGroups", "workloadGroups"),
+		resourceids.UserSpecifiedSegment("workloadGroupName", "workloadGroupName"),
+		resourceids.StaticSegment("staticWorkloadClassifiers", "workloadClassifiers", "workloadClassifiers"),
+		resourceids.UserSpecifiedSegment("workloadClassifierName", "workloadClassifierName"),
+	}
+}

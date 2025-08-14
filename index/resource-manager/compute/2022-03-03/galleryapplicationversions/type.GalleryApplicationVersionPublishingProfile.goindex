@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2022-03-03/galleryapplicationversions
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type GalleryApplicationVersionPublishingProfile struct {
+	AdvancedSettings        *map[string]string                `json:"advancedSettings,omitempty"`
+	CustomActions           *[]GalleryApplicationCustomAction `json:"customActions,omitempty"`
+	EnableHealthCheck       *bool                             `json:"enableHealthCheck,omitempty"`
+	EndOfLifeDate           *string                           `json:"endOfLifeDate,omitempty"`
+	ExcludeFromLatest       *bool                             `json:"excludeFromLatest,omitempty"`
+	ManageActions           *UserArtifactManage               `json:"manageActions,omitempty"`
+	PublishedDate           *string                           `json:"publishedDate,omitempty"`
+	ReplicaCount            *int64                            `json:"replicaCount,omitempty"`
+	ReplicationMode         *ReplicationMode                  `json:"replicationMode,omitempty"`
+	Settings                *UserArtifactSettings             `json:"settings,omitempty"`
+	Source                  UserArtifactSource                `json:"source"`
+	StorageAccountType      *StorageAccountType               `json:"storageAccountType,omitempty"`
+	TargetExtendedLocations *[]GalleryTargetExtendedLocation  `json:"targetExtendedLocations,omitempty"`
+	TargetRegions           *[]TargetRegion                   `json:"targetRegions,omitempty"`
+}

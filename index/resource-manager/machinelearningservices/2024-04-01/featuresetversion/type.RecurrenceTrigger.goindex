@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/featuresetversion
+import (
+	"encoding/json"
+	"fmt"
+)
+type RecurrenceTrigger struct {
+	Frequency RecurrenceFrequency `json:"frequency"`
+	Interval  int64               `json:"interval"`
+	Schedule  *RecurrenceSchedule `json:"schedule,omitempty"`
+
+	// Fields inherited from TriggerBase
+
+	EndTime     *string     `json:"endTime,omitempty"`
+	StartTime   *string     `json:"startTime,omitempty"`
+	TimeZone    *string     `json:"timeZone,omitempty"`
+	TriggerType TriggerType `json:"triggerType"`
+}

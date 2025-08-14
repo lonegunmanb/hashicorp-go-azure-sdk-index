@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/blueprints/2018-11-01-preview/artifact
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ScopedBlueprintId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.ScopeSegment("resourceScope", "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group"),
+		resourceids.StaticSegment("staticProviders", "providers", "providers"),
+		resourceids.ResourceProviderSegment("staticMicrosoftBlueprint", "Microsoft.Blueprint", "Microsoft.Blueprint"),
+		resourceids.StaticSegment("staticBlueprints", "blueprints", "blueprints"),
+		resourceids.UserSpecifiedSegment("blueprintName", "blueprintName"),
+	}
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseProvisionState(input string) (*ProvisionState, error) {
+	vals := map[string]ProvisionState{
+		"notprovisioned":         ProvisionState_NotProvisioned,
+		"provisioningcompleted":  ProvisionState_ProvisioningCompleted,
+		"provisioningfailed":     ProvisionState_ProvisioningFailed,
+		"provisioninginprogress": ProvisionState_ProvisioningInProgress,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ProvisionState(input)
+	return &out, nil
+}

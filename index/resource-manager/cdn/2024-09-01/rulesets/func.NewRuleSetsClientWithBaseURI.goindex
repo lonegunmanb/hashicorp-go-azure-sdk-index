@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2024-09-01/rulesets
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewRuleSetsClientWithBaseURI(sdkApi sdkEnv.Api) (*RuleSetsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "rulesets", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating RuleSetsClient: %+v", err)
+	}
+
+	return &RuleSetsClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hardwaresecuritymodules/2025-03-31/privateendpointconnections
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c PrivateEndpointConnectionsClient) ListByCloudHsmClusterCompleteMatchingPredicate(ctx context.Context, id CloudHsmClusterId, predicate PrivateEndpointConnectionOperationPredicate) (result ListByCloudHsmClusterCompleteResult, err error) {
+	items := make([]PrivateEndpointConnection, 0)
+
+	resp, err := c.ListByCloudHsmCluster(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByCloudHsmClusterCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

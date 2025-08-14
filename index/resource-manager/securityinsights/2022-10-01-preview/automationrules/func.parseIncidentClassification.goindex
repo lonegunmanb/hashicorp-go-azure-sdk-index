@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/automationrules
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseIncidentClassification(input string) (*IncidentClassification, error) {
+	vals := map[string]IncidentClassification{
+		"benignpositive": IncidentClassificationBenignPositive,
+		"falsepositive":  IncidentClassificationFalsePositive,
+		"truepositive":   IncidentClassificationTruePositive,
+		"undetermined":   IncidentClassificationUndetermined,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IncidentClassification(input)
+	return &out, nil
+}

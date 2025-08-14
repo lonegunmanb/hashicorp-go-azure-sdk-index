@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *UserIdAuthenticationWindowsHelloForBusinessMethodId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.UserId, ok = input.Parsed["userId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "userId", input)
+	}
+
+	if id.WindowsHelloForBusinessAuthenticationMethodId, ok = input.Parsed["windowsHelloForBusinessAuthenticationMethodId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "windowsHelloForBusinessAuthenticationMethodId", input)
+	}
+
+	return nil
+}

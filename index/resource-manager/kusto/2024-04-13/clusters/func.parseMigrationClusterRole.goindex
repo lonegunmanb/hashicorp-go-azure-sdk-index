@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/kusto/2024-04-13/clusters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMigrationClusterRole(input string) (*MigrationClusterRole, error) {
+	vals := map[string]MigrationClusterRole{
+		"destination": MigrationClusterRoleDestination,
+		"source":      MigrationClusterRoleSource,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MigrationClusterRole(input)
+	return &out, nil
+}

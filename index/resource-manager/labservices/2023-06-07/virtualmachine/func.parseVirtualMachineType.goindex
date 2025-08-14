@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/labservices/2023-06-07/virtualmachine
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVirtualMachineType(input string) (*VirtualMachineType, error) {
+	vals := map[string]VirtualMachineType{
+		"template": VirtualMachineTypeTemplate,
+		"user":     VirtualMachineTypeUser,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VirtualMachineType(input)
+	return &out, nil
+}

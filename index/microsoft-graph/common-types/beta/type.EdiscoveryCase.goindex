@@ -1,0 +1,76 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type EdiscoveryCase struct {
+	// The user who closed the case.
+	ClosedBy IdentitySet `json:"closedBy"`
+
+	// The date and time when the case was closed. The Timestamp type represents date and time information using ISO 8601
+	// format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+	ClosedDateTime nullable.Type[string] `json:"closedDateTime,omitempty"`
+
+	// The date and time when the entity was created. The Timestamp type represents date and time information using ISO 8601
+	// format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// Returns a list of case custodian objects for this case. Nullable.
+	Custodians *[]EdiscoveryCustodian `json:"custodians,omitempty"`
+
+	// The case description.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// The case name.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// The external case number for customer reference.
+	ExternalId nullable.Type[string] `json:"externalId,omitempty"`
+
+	// The last user who modified the entity.
+	LastModifiedBy IdentitySet `json:"lastModifiedBy"`
+
+	// The latest date and time when the case was modified. The Timestamp type represents date and time information using
+	// ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+	LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+
+	// Returns a list of case legalHold objects for this case. Nullable.
+	LegalHolds *[]EdiscoveryLegalHold `json:"legalHolds,omitempty"`
+
+	// Returns a list of case noncustodialDataSource objects for this case. Nullable.
+	NoncustodialDataSources *[]EdiscoveryNoncustodialDataSource `json:"noncustodialDataSources,omitempty"`
+
+	// Returns a list of case operation objects for this case. Nullable.
+	Operations *[]EdiscoveryCaseOperation `json:"operations,omitempty"`
+
+	// Returns a list of reviewSet objects in the case. Read-only. Nullable.
+	ReviewSets *[]EdiscoveryReviewSet `json:"reviewSets,omitempty"`
+
+	Settings *EdiscoveryCaseSettings `json:"settings,omitempty"`
+
+	// Returns a list of sourceCollection objects associated with this case.
+	SourceCollections *[]EdiscoverySourceCollection `json:"sourceCollections,omitempty"`
+
+	// The case status. Possible values are unknown, active, pendingDelete, closing, closed, and closedWithError. For
+	// details, see the following table.
+	Status *EdiscoveryCaseStatus `json:"status,omitempty"`
+
+	// Returns a list of tag objects associated to this case.
+	Tags *[]EdiscoveryTag `json:"tags,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

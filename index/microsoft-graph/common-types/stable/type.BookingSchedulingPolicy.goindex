@@ -1,0 +1,39 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type BookingSchedulingPolicy struct {
+	// True to allow customers to choose a specific person for the booking.
+	AllowStaffSelection *bool `json:"allowStaffSelection,omitempty"`
+
+	// Custom availability of the service in a given time frame.
+	CustomAvailabilities *[]BookingsAvailabilityWindow `json:"customAvailabilities,omitempty"`
+
+	// General availability of the service defined by the scheduling policy.
+	GeneralAvailability BookingsAvailability `json:"generalAvailability"`
+
+	// Indicates whether the meeting invite is sent to the customers. The default value is false.
+	IsMeetingInviteToCustomersEnabled nullable.Type[bool] `json:"isMeetingInviteToCustomersEnabled,omitempty"`
+
+	// Maximum number of days in advance that a booking can be made. It follows the ISO 8601 format.
+	MaximumAdvance *string `json:"maximumAdvance,omitempty"`
+
+	// The minimum amount of time before which bookings and cancellations must be made. It follows the ISO 8601 format.
+	MinimumLeadTime *string `json:"minimumLeadTime,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// True to notify the business via email when a booking is created or changed. Use the email address specified in the
+	// email property of the bookingBusiness entity for the business.
+	SendConfirmationsToOwner *bool `json:"sendConfirmationsToOwner,omitempty"`
+
+	// Duration of each time slot, denoted in ISO 8601 format.
+	TimeSlotInterval *string `json:"timeSlotInterval,omitempty"`
+}

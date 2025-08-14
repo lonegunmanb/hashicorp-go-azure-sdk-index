@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/projectcatalogs
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewProjectCatalogsClientWithBaseURI(sdkApi sdkEnv.Api) (*ProjectCatalogsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "projectcatalogs", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ProjectCatalogsClient: %+v", err)
+	}
+
+	return &ProjectCatalogsClient{
+		Client: client,
+	}, nil
+}

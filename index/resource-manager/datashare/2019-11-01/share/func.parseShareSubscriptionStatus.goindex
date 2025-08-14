@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2019-11-01/share
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseShareSubscriptionStatus(input string) (*ShareSubscriptionStatus, error) {
+	vals := map[string]ShareSubscriptionStatus{
+		"active":        ShareSubscriptionStatusActive,
+		"revoked":       ShareSubscriptionStatusRevoked,
+		"revoking":      ShareSubscriptionStatusRevoking,
+		"sourcedeleted": ShareSubscriptionStatusSourceDeleted,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ShareSubscriptionStatus(input)
+	return &out, nil
+}

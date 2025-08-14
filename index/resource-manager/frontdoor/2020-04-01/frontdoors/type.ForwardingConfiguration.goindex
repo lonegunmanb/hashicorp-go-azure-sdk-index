@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/frontdoor/2020-04-01/frontdoors
+import (
+	"encoding/json"
+	"fmt"
+)
+type ForwardingConfiguration struct {
+	BackendPool          *SubResource                 `json:"backendPool,omitempty"`
+	CacheConfiguration   *CacheConfiguration          `json:"cacheConfiguration,omitempty"`
+	CustomForwardingPath *string                      `json:"customForwardingPath,omitempty"`
+	ForwardingProtocol   *FrontDoorForwardingProtocol `json:"forwardingProtocol,omitempty"`
+
+	// Fields inherited from RouteConfiguration
+
+	OdataType string `json:"@odata.type"`
+}

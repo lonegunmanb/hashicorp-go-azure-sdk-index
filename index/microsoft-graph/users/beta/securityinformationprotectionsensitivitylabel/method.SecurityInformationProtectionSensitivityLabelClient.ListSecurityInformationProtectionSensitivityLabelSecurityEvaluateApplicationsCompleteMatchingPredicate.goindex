@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/securityinformationprotectionsensitivitylabel
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SecurityInformationProtectionSensitivityLabelClient) ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateApplicationsCompleteMatchingPredicate(ctx context.Context, id beta.UserId, input ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateApplicationsRequest, options ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateApplicationsOperationOptions, predicate SecurityInformationProtectionActionOperationPredicate) (result ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateApplicationsCompleteResult, err error) {
+	items := make([]beta.SecurityInformationProtectionAction, 0)
+
+	resp, err := c.ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateApplications(ctx, id, input, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateApplicationsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

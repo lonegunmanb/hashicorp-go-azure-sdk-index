@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/kusto/2024-04-13/dataconnections
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDataConnectionKind(input string) (*DataConnectionKind, error) {
+	vals := map[string]DataConnectionKind{
+		"cosmosdb":  DataConnectionKindCosmosDb,
+		"eventgrid": DataConnectionKindEventGrid,
+		"eventhub":  DataConnectionKindEventHub,
+		"iothub":    DataConnectionKindIotHub,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DataConnectionKind(input)
+	return &out, nil
+}

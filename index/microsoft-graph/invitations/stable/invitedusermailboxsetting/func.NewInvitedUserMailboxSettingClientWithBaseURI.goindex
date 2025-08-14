@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/invitations/stable/invitedusermailboxsetting
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewInvitedUserMailboxSettingClientWithBaseURI(sdkApi sdkEnv.Api) (*InvitedUserMailboxSettingClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "invitedusermailboxsetting", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating InvitedUserMailboxSettingClient: %+v", err)
+	}
+
+	return &InvitedUserMailboxSettingClient{
+		Client: client,
+	}, nil
+}

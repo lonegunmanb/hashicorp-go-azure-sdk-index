@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/azurestackhci/2024-01-01/edgedevices
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ScopedEdgeDeviceId) String() string {
+	components := []string{
+		fmt.Sprintf("Resource Uri: %q", id.ResourceUri),
+		fmt.Sprintf("Edge Device Name: %q", id.EdgeDeviceName),
+	}
+	return fmt.Sprintf("Scoped Edge Device (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2024-10-01/backupprotectableitems
+import (
+	"encoding/json"
+	"fmt"
+)
+type AzureVMWorkloadSAPAseSystemProtectableItem struct {
+	IsAutoProtectable       *bool                `json:"isAutoProtectable,omitempty"`
+	IsAutoProtected         *bool                `json:"isAutoProtected,omitempty"`
+	IsProtectable           *bool                `json:"isProtectable,omitempty"`
+	ParentName              *string              `json:"parentName,omitempty"`
+	ParentUniqueName        *string              `json:"parentUniqueName,omitempty"`
+	Prebackupvalidation     *PreBackupValidation `json:"prebackupvalidation,omitempty"`
+	ServerName              *string              `json:"serverName,omitempty"`
+	Subinquireditemcount    *int64               `json:"subinquireditemcount,omitempty"`
+	Subprotectableitemcount *int64               `json:"subprotectableitemcount,omitempty"`
+
+	// Fields inherited from WorkloadProtectableItem
+
+	BackupManagementType *string           `json:"backupManagementType,omitempty"`
+	FriendlyName         *string           `json:"friendlyName,omitempty"`
+	ProtectableItemType  string            `json:"protectableItemType"`
+	ProtectionState      *ProtectionStatus `json:"protectionState,omitempty"`
+	WorkloadType         *string           `json:"workloadType,omitempty"`
+}

@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/exadbvmclusters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseExadbVMClusterLifecycleState(input string) (*ExadbVMClusterLifecycleState, error) {
+	vals := map[string]ExadbVMClusterLifecycleState{
+		"available":             ExadbVMClusterLifecycleStateAvailable,
+		"failed":                ExadbVMClusterLifecycleStateFailed,
+		"maintenanceinprogress": ExadbVMClusterLifecycleStateMaintenanceInProgress,
+		"provisioning":          ExadbVMClusterLifecycleStateProvisioning,
+		"terminated":            ExadbVMClusterLifecycleStateTerminated,
+		"terminating":           ExadbVMClusterLifecycleStateTerminating,
+		"updating":              ExadbVMClusterLifecycleStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ExadbVMClusterLifecycleState(input)
+	return &out, nil
+}

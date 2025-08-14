@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2021-07-01/subscriptionfeatureregistrations
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSubscriptionFeatureRegistrationState(input string) (*SubscriptionFeatureRegistrationState, error) {
+	vals := map[string]SubscriptionFeatureRegistrationState{
+		"notregistered": SubscriptionFeatureRegistrationStateNotRegistered,
+		"notspecified":  SubscriptionFeatureRegistrationStateNotSpecified,
+		"pending":       SubscriptionFeatureRegistrationStatePending,
+		"registered":    SubscriptionFeatureRegistrationStateRegistered,
+		"registering":   SubscriptionFeatureRegistrationStateRegistering,
+		"unregistered":  SubscriptionFeatureRegistrationStateUnregistered,
+		"unregistering": SubscriptionFeatureRegistrationStateUnregistering,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SubscriptionFeatureRegistrationState(input)
+	return &out, nil
+}

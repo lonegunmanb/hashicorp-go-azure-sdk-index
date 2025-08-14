@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/managedinstanceoperations
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseStatus(input string) (*Status, error) {
+	vals := map[string]Status{
+		"canceled":   StatusCanceled,
+		"completed":  StatusCompleted,
+		"failed":     StatusFailed,
+		"inprogress": StatusInProgress,
+		"notstarted": StatusNotStarted,
+		"sloweddown": StatusSlowedDown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Status(input)
+	return &out, nil
+}

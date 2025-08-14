@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-01-01/volumes
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCoolAccessRetrievalPolicy(input string) (*CoolAccessRetrievalPolicy, error) {
+	vals := map[string]CoolAccessRetrievalPolicy{
+		"default": CoolAccessRetrievalPolicyDefault,
+		"never":   CoolAccessRetrievalPolicyNever,
+		"onread":  CoolAccessRetrievalPolicyOnRead,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CoolAccessRetrievalPolicy(input)
+	return &out, nil
+}

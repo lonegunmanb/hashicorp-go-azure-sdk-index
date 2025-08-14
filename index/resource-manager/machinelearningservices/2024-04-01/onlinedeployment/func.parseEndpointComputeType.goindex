@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/onlinedeployment
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEndpointComputeType(input string) (*EndpointComputeType, error) {
+	vals := map[string]EndpointComputeType{
+		"azuremlcompute": EndpointComputeTypeAzureMLCompute,
+		"kubernetes":     EndpointComputeTypeKubernetes,
+		"managed":        EndpointComputeTypeManaged,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EndpointComputeType(input)
+	return &out, nil
+}

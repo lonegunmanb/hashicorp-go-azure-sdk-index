@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWindowsArchitecture(input string) (*WindowsArchitecture, error) {
+	vals := map[string]WindowsArchitecture{
+		"arm":     WindowsArchitecture_Arm,
+		"neutral": WindowsArchitecture_Neutral,
+		"none":    WindowsArchitecture_None,
+		"x64":     WindowsArchitecture_X64,
+		"x86":     WindowsArchitecture_X86,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsArchitecture(input)
+	return &out, nil
+}

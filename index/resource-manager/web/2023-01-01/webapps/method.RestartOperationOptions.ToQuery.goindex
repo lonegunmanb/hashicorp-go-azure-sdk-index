@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/webapps
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o RestartOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.SoftRestart != nil {
+		out.Append("softRestart", fmt.Sprintf("%v", *o.SoftRestart))
+	}
+	if o.Synchronous != nil {
+		out.Append("synchronous", fmt.Sprintf("%v", *o.Synchronous))
+	}
+	return &out
+}

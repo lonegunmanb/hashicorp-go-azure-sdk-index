@@ -1,0 +1,100 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type DeviceManagementConfigurationSimpleSettingCollectionDefinition struct {
+	// Maximum number of simple settings in the collection. Valid values 1 to 100
+	MaximumCount *int64 `json:"maximumCount,omitempty"`
+
+	// Minimum number of simple settings in the collection. Valid values 1 to 100
+	MinimumCount *int64 `json:"minimumCount,omitempty"`
+
+	// Fields inherited from DeviceManagementConfigurationSimpleSettingDefinition
+
+	// Default setting value for this setting
+	DefaultValue DeviceManagementConfigurationSettingValue `json:"defaultValue"`
+
+	// list of child settings that depend on this setting
+	DependedOnBy *[]DeviceManagementConfigurationSettingDependedOnBy `json:"dependedOnBy,omitempty"`
+
+	// list of parent settings this setting is dependent on
+	DependentOn *[]DeviceManagementConfigurationDependentOn `json:"dependentOn,omitempty"`
+
+	// Definition of the value for this setting
+	ValueDefinition DeviceManagementConfigurationSettingValueDefinition `json:"valueDefinition"`
+
+	// Fields inherited from DeviceManagementConfigurationSettingDefinition
+
+	AccessTypes *DeviceManagementConfigurationSettingAccessTypes `json:"accessTypes,omitempty"`
+
+	// Details which device setting is applicable on. Supports: $filters.
+	Applicability DeviceManagementConfigurationSettingApplicability `json:"applicability"`
+
+	// Base CSP Path
+	BaseUri nullable.Type[string] `json:"baseUri,omitempty"`
+
+	// Specify category in which the setting is under. Support $filters.
+	CategoryId nullable.Type[string] `json:"categoryId,omitempty"`
+
+	// Description of the setting.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// Name of the setting. For example: Allow Toast.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// Help text of the setting. Give more details of the setting.
+	HelpText nullable.Type[string] `json:"helpText,omitempty"`
+
+	// List of links more info for the setting can be found at.
+	InfoUrls *[]string `json:"infoUrls,omitempty"`
+
+	// Tokens which to search settings on
+	Keywords *[]string `json:"keywords,omitempty"`
+
+	// Name of the item
+	Name nullable.Type[string] `json:"name,omitempty"`
+
+	// Indicates whether the setting is required or not
+	Occurrence *DeviceManagementConfigurationSettingOccurrence `json:"occurrence,omitempty"`
+
+	// Offset CSP Path from Base
+	OffsetUri nullable.Type[string] `json:"offsetUri,omitempty"`
+
+	// List of referred setting information.
+	ReferredSettingInformationList *[]DeviceManagementConfigurationReferredSettingInformation `json:"referredSettingInformationList,omitempty"`
+
+	// Setting RiskLevel
+	RiskLevel *DeviceManagementConfigurationSettingRiskLevel `json:"riskLevel,omitempty"`
+
+	// Root setting definition id if the setting is a child setting.
+	RootDefinitionId nullable.Type[string] `json:"rootDefinitionId,omitempty"`
+
+	// Supported setting types
+	SettingUsage *DeviceManagementConfigurationSettingUsage `json:"settingUsage,omitempty"`
+
+	// Setting control type representation in the UX
+	UxBehavior *DeviceManagementConfigurationControlType `json:"uxBehavior,omitempty"`
+
+	// Item Version
+	Version nullable.Type[string] `json:"version,omitempty"`
+
+	// Supported setting types
+	Visibility *DeviceManagementConfigurationSettingVisibility `json:"visibility,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

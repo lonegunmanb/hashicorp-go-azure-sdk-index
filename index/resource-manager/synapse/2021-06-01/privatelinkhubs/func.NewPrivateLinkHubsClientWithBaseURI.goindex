@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/privatelinkhubs
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPrivateLinkHubsClientWithBaseURI(sdkApi sdkEnv.Api) (*PrivateLinkHubsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "privatelinkhubs", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PrivateLinkHubsClient: %+v", err)
+	}
+
+	return &PrivateLinkHubsClient{
+		Client: client,
+	}, nil
+}

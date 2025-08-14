@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2022-09-01/tags
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c TagsClient) UpdateAtScopeThenPoll(ctx context.Context, id commonids.ScopeId, input TagsPatchResource) error {
+	result, err := c.UpdateAtScope(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing UpdateAtScope: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after UpdateAtScope: %+v", err)
+	}
+
+	return nil
+}

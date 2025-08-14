@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cosmosdb/2025-04-15/sqldedicatedgateway
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSqlDedicatedGatewayClientWithBaseURI(sdkApi sdkEnv.Api) (*SqlDedicatedGatewayClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "sqldedicatedgateway", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SqlDedicatedGatewayClient: %+v", err)
+	}
+
+	return &SqlDedicatedGatewayClient{
+		Client: client,
+	}, nil
+}

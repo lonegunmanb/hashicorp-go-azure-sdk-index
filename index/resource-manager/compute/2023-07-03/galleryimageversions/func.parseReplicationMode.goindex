@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2023-07-03/galleryimageversions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseReplicationMode(input string) (*ReplicationMode, error) {
+	vals := map[string]ReplicationMode{
+		"full":    ReplicationModeFull,
+		"shallow": ReplicationModeShallow,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ReplicationMode(input)
+	return &out, nil
+}

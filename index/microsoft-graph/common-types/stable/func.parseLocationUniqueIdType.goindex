@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseLocationUniqueIdType(input string) (*LocationUniqueIdType, error) {
+	vals := map[string]LocationUniqueIdType{
+		"bing":          LocationUniqueIdType_Bing,
+		"directory":     LocationUniqueIdType_Directory,
+		"locationstore": LocationUniqueIdType_LocationStore,
+		"private":       LocationUniqueIdType_Private,
+		"unknown":       LocationUniqueIdType_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := LocationUniqueIdType(input)
+	return &out, nil
+}

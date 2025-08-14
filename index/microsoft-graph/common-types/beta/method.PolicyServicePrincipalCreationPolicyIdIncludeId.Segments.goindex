@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id PolicyServicePrincipalCreationPolicyIdIncludeId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.StaticSegment("policies", "policies", "policies"),
+		resourceids.StaticSegment("servicePrincipalCreationPolicies", "servicePrincipalCreationPolicies", "servicePrincipalCreationPolicies"),
+		resourceids.UserSpecifiedSegment("servicePrincipalCreationPolicyId", "servicePrincipalCreationPolicyId"),
+		resourceids.StaticSegment("includes", "includes", "includes"),
+		resourceids.UserSpecifiedSegment("servicePrincipalCreationConditionSetId", "servicePrincipalCreationConditionSetId"),
+	}
+}

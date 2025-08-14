@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/siteonenoteresource
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SiteOnenoteResourceClient) ListSiteOnenoteResourcesComplete(ctx context.Context, id beta.GroupIdSiteId, options ListSiteOnenoteResourcesOperationOptions) (ListSiteOnenoteResourcesCompleteResult, error) {
+	return c.ListSiteOnenoteResourcesCompleteMatchingPredicate(ctx, id, options, OnenoteResourceOperationPredicate{})
+}

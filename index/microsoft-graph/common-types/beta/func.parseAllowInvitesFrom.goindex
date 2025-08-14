@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAllowInvitesFrom(input string) (*AllowInvitesFrom, error) {
+	vals := map[string]AllowInvitesFrom{
+		"adminsandguestinviters":           AllowInvitesFrom_AdminsAndGuestInviters,
+		"adminsguestinvitersandallmembers": AllowInvitesFrom_AdminsGuestInvitersAndAllMembers,
+		"everyone":                         AllowInvitesFrom_Everyone,
+		"none":                             AllowInvitesFrom_None,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AllowInvitesFrom(input)
+	return &out, nil
+}

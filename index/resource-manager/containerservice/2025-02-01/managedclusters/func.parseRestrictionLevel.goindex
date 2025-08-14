@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerservice/2025-02-01/managedclusters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRestrictionLevel(input string) (*RestrictionLevel, error) {
+	vals := map[string]RestrictionLevel{
+		"readonly":     RestrictionLevelReadOnly,
+		"unrestricted": RestrictionLevelUnrestricted,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RestrictionLevel(input)
+	return &out, nil
+}

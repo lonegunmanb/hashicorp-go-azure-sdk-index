@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2024-04-01/replicationnetworkmappings
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s VMmToVMmNetworkMappingSettings) MarshalJSON() ([]byte, error) {
+	type wrapper VMmToVMmNetworkMappingSettings
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling VMmToVMmNetworkMappingSettings: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling VMmToVMmNetworkMappingSettings: %+v", err)
+	}
+
+	decoded["instanceType"] = "VmmToVmm"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling VMmToVMmNetworkMappingSettings: %+v", err)
+	}
+
+	return encoded, nil
+}

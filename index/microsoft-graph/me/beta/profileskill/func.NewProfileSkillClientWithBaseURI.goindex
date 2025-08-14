@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/profileskill
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewProfileSkillClientWithBaseURI(sdkApi sdkEnv.Api) (*ProfileSkillClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "profileskill", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ProfileSkillClient: %+v", err)
+	}
+
+	return &ProfileSkillClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2025-02-15/clients
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseClientState(input string) (*ClientState, error) {
+	vals := map[string]ClientState{
+		"disabled": ClientStateDisabled,
+		"enabled":  ClientStateEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ClientState(input)
+	return &out, nil
+}

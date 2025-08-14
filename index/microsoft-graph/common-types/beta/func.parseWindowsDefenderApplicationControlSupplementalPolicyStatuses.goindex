@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWindowsDefenderApplicationControlSupplementalPolicyStatuses(input string) (*WindowsDefenderApplicationControlSupplementalPolicyStatuses, error) {
+	vals := map[string]WindowsDefenderApplicationControlSupplementalPolicyStatuses{
+		"notauthorizedbytoken": WindowsDefenderApplicationControlSupplementalPolicyStatuses_NotAuthorizedByToken,
+		"policynotfound":       WindowsDefenderApplicationControlSupplementalPolicyStatuses_PolicyNotFound,
+		"success":              WindowsDefenderApplicationControlSupplementalPolicyStatuses_Success,
+		"tokenerror":           WindowsDefenderApplicationControlSupplementalPolicyStatuses_TokenError,
+		"unknown":              WindowsDefenderApplicationControlSupplementalPolicyStatuses_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsDefenderApplicationControlSupplementalPolicyStatuses(input)
+	return &out, nil
+}

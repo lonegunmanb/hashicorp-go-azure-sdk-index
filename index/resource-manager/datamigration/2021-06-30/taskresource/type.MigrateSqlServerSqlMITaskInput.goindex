@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/taskresource
+
+type MigrateSqlServerSqlMITaskInput struct {
+	AadDomainName        *string                              `json:"aadDomainName,omitempty"`
+	BackupBlobShare      BlobShare                            `json:"backupBlobShare"`
+	BackupFileShare      *FileShare                           `json:"backupFileShare,omitempty"`
+	BackupMode           *BackupMode                          `json:"backupMode,omitempty"`
+	SelectedAgentJobs    *[]string                            `json:"selectedAgentJobs,omitempty"`
+	SelectedDatabases    []MigrateSqlServerSqlMIDatabaseInput `json:"selectedDatabases"`
+	SelectedLogins       *[]string                            `json:"selectedLogins,omitempty"`
+	SourceConnectionInfo SqlConnectionInfo                    `json:"sourceConnectionInfo"`
+	TargetConnectionInfo SqlConnectionInfo                    `json:"targetConnectionInfo"`
+}

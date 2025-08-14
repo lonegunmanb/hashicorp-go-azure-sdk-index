@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id RoleManagementEntitlementManagementResourceNamespaceIdResourceActionId) String() string {
+	components := []string{
+		fmt.Sprintf("Unified Rbac Resource Namespace: %q", id.UnifiedRbacResourceNamespaceId),
+		fmt.Sprintf("Unified Rbac Resource Action: %q", id.UnifiedRbacResourceActionId),
+	}
+	return fmt.Sprintf("Role Management Entitlement Management Resource Namespace Id Resource Action (%s)", strings.Join(components, "\n"))
+}

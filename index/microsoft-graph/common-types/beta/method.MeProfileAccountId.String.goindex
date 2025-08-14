@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id MeProfileAccountId) String() string {
+	components := []string{
+		fmt.Sprintf("User Account Information: %q", id.UserAccountInformationId),
+	}
+	return fmt.Sprintf("Me Profile Account (%s)", strings.Join(components, "\n"))
+}

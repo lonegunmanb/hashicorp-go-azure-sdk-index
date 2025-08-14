@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotepagecontent
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewOnenotePageContentClientWithBaseURI(sdkApi sdkEnv.Api) (*OnenotePageContentClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "onenotepagecontent", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating OnenotePageContentClient: %+v", err)
+	}
+
+	return &OnenotePageContentClient{
+		Client: client,
+	}, nil
+}

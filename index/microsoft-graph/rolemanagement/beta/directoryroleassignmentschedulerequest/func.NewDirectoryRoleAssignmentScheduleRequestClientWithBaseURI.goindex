@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/directoryroleassignmentschedulerequest
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDirectoryRoleAssignmentScheduleRequestClientWithBaseURI(sdkApi sdkEnv.Api) (*DirectoryRoleAssignmentScheduleRequestClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "directoryroleassignmentschedulerequest", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DirectoryRoleAssignmentScheduleRequestClient: %+v", err)
+	}
+
+	return &DirectoryRoleAssignmentScheduleRequestClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/operationalinsights/2023-09-01/tables
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseColumnTypeEnum(input string) (*ColumnTypeEnum, error) {
+	vals := map[string]ColumnTypeEnum{
+		"boolean":  ColumnTypeEnumBoolean,
+		"datetime": ColumnTypeEnumDateTime,
+		"dynamic":  ColumnTypeEnumDynamic,
+		"guid":     ColumnTypeEnumGuid,
+		"int":      ColumnTypeEnumInt,
+		"long":     ColumnTypeEnumLong,
+		"real":     ColumnTypeEnumReal,
+		"string":   ColumnTypeEnumString,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ColumnTypeEnum(input)
+	return &out, nil
+}

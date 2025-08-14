@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMacOSSoftwareUpdateBehavior(input string) (*MacOSSoftwareUpdateBehavior, error) {
+	vals := map[string]MacOSSoftwareUpdateBehavior{
+		"default":       MacOSSoftwareUpdateBehavior_Default,
+		"downloadonly":  MacOSSoftwareUpdateBehavior_DownloadOnly,
+		"installasap":   MacOSSoftwareUpdateBehavior_InstallASAP,
+		"installlater":  MacOSSoftwareUpdateBehavior_InstallLater,
+		"notconfigured": MacOSSoftwareUpdateBehavior_NotConfigured,
+		"notifyonly":    MacOSSoftwareUpdateBehavior_NotifyOnly,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MacOSSoftwareUpdateBehavior(input)
+	return &out, nil
+}

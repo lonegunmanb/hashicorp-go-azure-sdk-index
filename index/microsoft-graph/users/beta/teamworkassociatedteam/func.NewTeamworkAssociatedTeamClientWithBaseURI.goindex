@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/teamworkassociatedteam
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTeamworkAssociatedTeamClientWithBaseURI(sdkApi sdkEnv.Api) (*TeamworkAssociatedTeamClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "teamworkassociatedteam", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TeamworkAssociatedTeamClient: %+v", err)
+	}
+
+	return &TeamworkAssociatedTeamClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,67 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalDeviceManagementResourceAccessProfileBaseImplementation(input []byte) (DeviceManagementResourceAccessProfileBase, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling DeviceManagementResourceAccessProfileBase into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.windows10XCertificateProfile") {
+		var out Windows10XCertificateProfile
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into Windows10XCertificateProfile: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.windows10XTrustedRootCertificate") {
+		var out Windows10XTrustedRootCertificate
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into Windows10XTrustedRootCertificate: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.windows10XVpnConfiguration") {
+		var out Windows10XVpnConfiguration
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into Windows10XVpnConfiguration: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.windows10XWifiConfiguration") {
+		var out Windows10XWifiConfiguration
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into Windows10XWifiConfiguration: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseDeviceManagementResourceAccessProfileBaseImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseDeviceManagementResourceAccessProfileBaseImpl: %+v", err)
+	}
+
+	return RawDeviceManagementResourceAccessProfileBaseImpl{
+		deviceManagementResourceAccessProfileBase: parent,
+		Type:   value,
+		Values: temp,
+	}, nil
+
+}

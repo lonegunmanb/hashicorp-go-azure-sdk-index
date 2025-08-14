@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dashboard/2024-10-01/grafanaresource
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseStartTLSPolicy(input string) (*StartTLSPolicy, error) {
+	vals := map[string]StartTLSPolicy{
+		"mandatorystarttls":     StartTLSPolicyMandatoryStartTLS,
+		"nostarttls":            StartTLSPolicyNoStartTLS,
+		"opportunisticstarttls": StartTLSPolicyOpportunisticStartTLS,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := StartTLSPolicy(input)
+	return &out, nil
+}

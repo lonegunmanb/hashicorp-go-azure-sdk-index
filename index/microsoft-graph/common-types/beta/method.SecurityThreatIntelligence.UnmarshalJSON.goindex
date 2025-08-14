@@ -1,0 +1,75 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s *SecurityThreatIntelligence) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		ArticleIndicators             *[]SecurityArticleIndicator             `json:"articleIndicators,omitempty"`
+		Articles                      *[]SecurityArticle                      `json:"articles,omitempty"`
+		HostComponents                *[]SecurityHostComponent                `json:"hostComponents,omitempty"`
+		HostCookies                   *[]SecurityHostCookie                   `json:"hostCookies,omitempty"`
+		HostPairs                     *[]SecurityHostPair                     `json:"hostPairs,omitempty"`
+		HostPorts                     *[]SecurityHostPort                     `json:"hostPorts,omitempty"`
+		HostSslCertificates           *[]SecurityHostSslCertificate           `json:"hostSslCertificates,omitempty"`
+		HostTrackers                  *[]SecurityHostTracker                  `json:"hostTrackers,omitempty"`
+		IntelProfiles                 *[]SecurityIntelligenceProfile          `json:"intelProfiles,omitempty"`
+		IntelligenceProfileIndicators *[]SecurityIntelligenceProfileIndicator `json:"intelligenceProfileIndicators,omitempty"`
+		PassiveDnsRecords             *[]SecurityPassiveDnsRecord             `json:"passiveDnsRecords,omitempty"`
+		SslCertificates               *[]SecuritySslCertificate               `json:"sslCertificates,omitempty"`
+		Subdomains                    *[]SecuritySubdomain                    `json:"subdomains,omitempty"`
+		Vulnerabilities               *[]SecurityVulnerability                `json:"vulnerabilities,omitempty"`
+		WhoisHistoryRecords           *[]SecurityWhoisHistoryRecord           `json:"whoisHistoryRecords,omitempty"`
+		WhoisRecords                  *[]SecurityWhoisRecord                  `json:"whoisRecords,omitempty"`
+		Id                            *string                                 `json:"id,omitempty"`
+		ODataId                       *string                                 `json:"@odata.id,omitempty"`
+		ODataType                     *string                                 `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.ArticleIndicators = decoded.ArticleIndicators
+	s.Articles = decoded.Articles
+	s.HostComponents = decoded.HostComponents
+	s.HostCookies = decoded.HostCookies
+	s.HostPairs = decoded.HostPairs
+	s.HostPorts = decoded.HostPorts
+	s.HostSslCertificates = decoded.HostSslCertificates
+	s.HostTrackers = decoded.HostTrackers
+	s.IntelProfiles = decoded.IntelProfiles
+	s.IntelligenceProfileIndicators = decoded.IntelligenceProfileIndicators
+	s.PassiveDnsRecords = decoded.PassiveDnsRecords
+	s.SslCertificates = decoded.SslCertificates
+	s.Subdomains = decoded.Subdomains
+	s.Vulnerabilities = decoded.Vulnerabilities
+	s.WhoisHistoryRecords = decoded.WhoisHistoryRecords
+	s.WhoisRecords = decoded.WhoisRecords
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling SecurityThreatIntelligence into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["hosts"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling Hosts into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]SecurityHost, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalSecurityHostImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'Hosts' for 'SecurityThreatIntelligence': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.Hosts = &output
+	}
+
+	return nil
+}

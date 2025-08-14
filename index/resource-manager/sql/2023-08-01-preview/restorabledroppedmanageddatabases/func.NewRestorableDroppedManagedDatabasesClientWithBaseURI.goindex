@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/restorabledroppedmanageddatabases
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewRestorableDroppedManagedDatabasesClientWithBaseURI(sdkApi sdkEnv.Api) (*RestorableDroppedManagedDatabasesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "restorabledroppedmanageddatabases", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating RestorableDroppedManagedDatabasesClient: %+v", err)
+	}
+
+	return &RestorableDroppedManagedDatabasesClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type CustomExtensionCalloutResponse struct {
+	// Contains the data the external system provides to the custom extension endpoint.
+	Data CustomExtensionData `json:"data"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Identifies the external system or event context related to the response.
+	Source nullable.Type[string] `json:"source,omitempty"`
+
+	// Describes the type of event related to the response.
+	Type nullable.Type[string] `json:"type,omitempty"`
+}

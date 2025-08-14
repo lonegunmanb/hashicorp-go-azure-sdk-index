@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseIncomingTokenType(input string) (*IncomingTokenType, error) {
+	vals := map[string]IncomingTokenType{
+		"none":                IncomingTokenType_None,
+		"primaryrefreshtoken": IncomingTokenType_PrimaryRefreshToken,
+		"refreshtoken":        IncomingTokenType_RefreshToken,
+		"remotedesktoptoken":  IncomingTokenType_RemoteDesktopToken,
+		"saml11":              IncomingTokenType_Saml11,
+		"saml20":              IncomingTokenType_Saml20,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IncomingTokenType(input)
+	return &out, nil
+}

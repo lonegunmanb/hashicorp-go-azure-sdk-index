@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/deviceenrollmentconfigurationassignment
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DeviceEnrollmentConfigurationAssignmentClient) ListDeviceEnrollmentConfigurationAssignmentsComplete(ctx context.Context, id beta.DeviceManagementDeviceEnrollmentConfigurationId, options ListDeviceEnrollmentConfigurationAssignmentsOperationOptions) (ListDeviceEnrollmentConfigurationAssignmentsCompleteResult, error) {
+	return c.ListDeviceEnrollmentConfigurationAssignmentsCompleteMatchingPredicate(ctx, id, options, EnrollmentConfigurationAssignmentOperationPredicate{})
+}

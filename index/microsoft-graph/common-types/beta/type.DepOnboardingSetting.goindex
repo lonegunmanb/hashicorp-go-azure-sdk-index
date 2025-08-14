@@ -1,0 +1,75 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type DepOnboardingSetting struct {
+	// The Apple ID used to obtain the current token.
+	AppleIdentifier nullable.Type[string] `json:"appleIdentifier,omitempty"`
+
+	// Consent granted for data sharing with Apple Dep Service
+	DataSharingConsentGranted *bool `json:"dataSharingConsentGranted,omitempty"`
+
+	// Default iOS Enrollment Profile
+	DefaultIosEnrollmentProfile *DepIOSEnrollmentProfile `json:"defaultIosEnrollmentProfile,omitempty"`
+
+	// Default MacOs Enrollment Profile
+	DefaultMacOsEnrollmentProfile *DepMacOSEnrollmentProfile `json:"defaultMacOsEnrollmentProfile,omitempty"`
+
+	// Default TvOS Enrollment Profile
+	DefaultTvOSEnrollmentProfile *DepTvOSEnrollmentProfile `json:"defaultTvOSEnrollmentProfile,omitempty"`
+
+	// Default VisionOS Enrollment Profile
+	DefaultVisionOSEnrollmentProfile *DepVisionOSEnrollmentProfile `json:"defaultVisionOSEnrollmentProfile,omitempty"`
+
+	// The enrollment profiles.
+	EnrollmentProfiles *[]EnrollmentProfile `json:"enrollmentProfiles,omitempty"`
+
+	// The imported Apple device identities.
+	ImportedAppleDeviceIdentities *[]ImportedAppleDeviceIdentity `json:"importedAppleDeviceIdentities,omitempty"`
+
+	// When the service was onboarded.
+	LastModifiedDateTime *string `json:"lastModifiedDateTime,omitempty"`
+
+	// When the service last syned with Intune
+	LastSuccessfulSyncDateTime *string `json:"lastSuccessfulSyncDateTime,omitempty"`
+
+	// Error code reported by Apple during last dep sync.
+	LastSyncErrorCode *int64 `json:"lastSyncErrorCode,omitempty"`
+
+	// When Intune last requested a sync.
+	LastSyncTriggeredDateTime *string `json:"lastSyncTriggeredDateTime,omitempty"`
+
+	// List of Scope Tags for this Entity instance.
+	RoleScopeTagIds *[]string `json:"roleScopeTagIds,omitempty"`
+
+	// Whether or not the Dep token sharing is enabled with the School Data Sync service.
+	ShareTokenWithSchoolDataSyncService *bool `json:"shareTokenWithSchoolDataSyncService,omitempty"`
+
+	// Gets synced device count
+	SyncedDeviceCount *int64 `json:"syncedDeviceCount,omitempty"`
+
+	// When the token will expire.
+	TokenExpirationDateTime *string `json:"tokenExpirationDateTime,omitempty"`
+
+	// Friendly Name for Dep Token
+	TokenName nullable.Type[string] `json:"tokenName,omitempty"`
+
+	TokenType *DepTokenType `json:"tokenType,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

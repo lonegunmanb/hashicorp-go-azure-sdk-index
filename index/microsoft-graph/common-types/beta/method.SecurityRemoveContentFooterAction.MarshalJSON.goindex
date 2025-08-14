@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s SecurityRemoveContentFooterAction) MarshalJSON() ([]byte, error) {
+	type wrapper SecurityRemoveContentFooterAction
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling SecurityRemoveContentFooterAction: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling SecurityRemoveContentFooterAction: %+v", err)
+	}
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.security.removeContentFooterAction"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling SecurityRemoveContentFooterAction: %+v", err)
+	}
+
+	return encoded, nil
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/azurestackhci/2024-01-01/edgedevices
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *ScopedEdgeDeviceId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.ResourceUri, ok = input.Parsed["resourceUri"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceUri", input)
+	}
+
+	if id.EdgeDeviceName, ok = input.Parsed["edgeDeviceName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "edgeDeviceName", input)
+	}
+
+	return nil
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseHealthMonitoringScenario(input string) (*HealthMonitoringScenario, error) {
+	vals := map[string]HealthMonitoringScenario{
+		"conditionalaccess": HealthMonitoringScenario_ConditionalAccess,
+		"devices":           HealthMonitoringScenario_Devices,
+		"mfa":               HealthMonitoringScenario_Mfa,
+		"unknown":           HealthMonitoringScenario_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := HealthMonitoringScenario(input)
+	return &out, nil
+}

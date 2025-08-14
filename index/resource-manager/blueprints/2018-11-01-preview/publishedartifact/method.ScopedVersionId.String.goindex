@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/blueprints/2018-11-01-preview/publishedartifact
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ScopedVersionId) String() string {
+	components := []string{
+		fmt.Sprintf("Resource Scope: %q", id.ResourceScope),
+		fmt.Sprintf("Blueprint Name: %q", id.BlueprintName),
+		fmt.Sprintf("Version: %q", id.VersionId),
+	}
+	return fmt.Sprintf("Scoped Version (%s)", strings.Join(components, "\n"))
+}

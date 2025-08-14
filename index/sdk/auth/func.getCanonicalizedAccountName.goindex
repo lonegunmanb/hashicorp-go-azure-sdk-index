@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"bytes"
+	"context"
+	"crypto/hmac"
+	"crypto/sha256"
+	"encoding/base64"
+	"fmt"
+	"net/http"
+	"net/url"
+	"sort"
+	"strconv"
+	"strings"
+	"time"
+
+	"golang.org/x/oauth2"
+)
+func getCanonicalizedAccountName(accountName string) string {
+	// since we may be trying to access a secondary storage account, we need to
+	// remove the -secondary part of the storage name
+	return strings.TrimSuffix(accountName, "-secondary")
+}

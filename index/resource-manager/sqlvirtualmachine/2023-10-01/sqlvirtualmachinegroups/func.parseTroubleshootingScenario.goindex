@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sqlvirtualmachine/2023-10-01/sqlvirtualmachinegroups
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTroubleshootingScenario(input string) (*TroubleshootingScenario, error) {
+	vals := map[string]TroubleshootingScenario{
+		"unhealthyreplica": TroubleshootingScenarioUnhealthyReplica,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TroubleshootingScenario(input)
+	return &out, nil
+}

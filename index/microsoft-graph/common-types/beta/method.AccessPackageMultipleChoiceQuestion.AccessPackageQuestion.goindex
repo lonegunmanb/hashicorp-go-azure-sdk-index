@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s AccessPackageMultipleChoiceQuestion) AccessPackageQuestion() BaseAccessPackageQuestionImpl {
+	return BaseAccessPackageQuestionImpl{
+		Id:               s.Id,
+		IsAnswerEditable: s.IsAnswerEditable,
+		IsRequired:       s.IsRequired,
+		ODataId:          s.ODataId,
+		ODataType:        s.ODataType,
+		Sequence:         s.Sequence,
+		Text:             s.Text,
+	}
+}

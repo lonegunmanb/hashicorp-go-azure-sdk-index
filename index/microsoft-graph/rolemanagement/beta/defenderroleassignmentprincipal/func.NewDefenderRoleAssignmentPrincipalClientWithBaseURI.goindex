@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/defenderroleassignmentprincipal
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDefenderRoleAssignmentPrincipalClientWithBaseURI(sdkApi sdkEnv.Api) (*DefenderRoleAssignmentPrincipalClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "defenderroleassignmentprincipal", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DefenderRoleAssignmentPrincipalClient: %+v", err)
+	}
+
+	return &DefenderRoleAssignmentPrincipalClient{
+		Client: client,
+	}, nil
+}

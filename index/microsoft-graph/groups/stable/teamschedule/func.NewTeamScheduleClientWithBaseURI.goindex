@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/teamschedule
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTeamScheduleClientWithBaseURI(sdkApi sdkEnv.Api) (*TeamScheduleClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "teamschedule", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TeamScheduleClient: %+v", err)
+	}
+
+	return &TeamScheduleClient{
+		Client: client,
+	}, nil
+}

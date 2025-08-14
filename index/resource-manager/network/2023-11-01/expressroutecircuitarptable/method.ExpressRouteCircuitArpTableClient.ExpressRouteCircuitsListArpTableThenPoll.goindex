@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-11-01/expressroutecircuitarptable
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ExpressRouteCircuitArpTableClient) ExpressRouteCircuitsListArpTableThenPoll(ctx context.Context, id ArpTableId) error {
+	result, err := c.ExpressRouteCircuitsListArpTable(ctx, id)
+	if err != nil {
+		return fmt.Errorf("performing ExpressRouteCircuitsListArpTable: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after ExpressRouteCircuitsListArpTable: %+v", err)
+	}
+
+	return nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2021-11-01/namespaces
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewNamespacesClientWithBaseURI(sdkApi sdkEnv.Api) (*NamespacesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "namespaces", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating NamespacesClient: %+v", err)
+	}
+
+	return &NamespacesClient{
+		Client: client,
+	}, nil
+}

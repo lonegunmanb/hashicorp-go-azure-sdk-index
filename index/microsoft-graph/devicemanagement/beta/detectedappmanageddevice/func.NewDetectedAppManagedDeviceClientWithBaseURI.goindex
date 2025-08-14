@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/detectedappmanageddevice
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDetectedAppManagedDeviceClientWithBaseURI(sdkApi sdkEnv.Api) (*DetectedAppManagedDeviceClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "detectedappmanageddevice", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DetectedAppManagedDeviceClient: %+v", err)
+	}
+
+	return &DetectedAppManagedDeviceClient{
+		Client: client,
+	}, nil
+}

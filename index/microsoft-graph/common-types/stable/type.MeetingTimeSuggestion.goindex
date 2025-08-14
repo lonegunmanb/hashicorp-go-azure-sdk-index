@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type MeetingTimeSuggestion struct {
+	// An array that shows the availability status of each attendee for this meeting suggestion.
+	AttendeeAvailability *[]AttendeeAvailability `json:"attendeeAvailability,omitempty"`
+
+	// An array that specifies the name and geographic location of each meeting location for this meeting suggestion.
+	Locations *[]Location `json:"locations,omitempty"`
+
+	// A time period suggested for the meeting.
+	MeetingTimeSlot *TimeSlot `json:"meetingTimeSlot,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Order of meeting time suggestions sorted by their computed confidence value from high to low, then by chronology if
+	// there are suggestions with the same confidence.
+	Order nullable.Type[int64] `json:"order,omitempty"`
+
+	// Availability of the meeting organizer for this meeting suggestion. The possible values are: free, tentative, busy,
+	// oof, workingElsewhere, unknown.
+	OrganizerAvailability *FreeBusyStatus `json:"organizerAvailability,omitempty"`
+
+	// Reason for suggesting the meeting time.
+	SuggestionReason nullable.Type[string] `json:"suggestionReason,omitempty"`
+}

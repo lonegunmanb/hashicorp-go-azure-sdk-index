@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/digitaltwins/2023-01-31/endpoints
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type EventGrid struct {
+	AccessKey1    string  `json:"accessKey1"`
+	AccessKey2    *string `json:"accessKey2,omitempty"`
+	TopicEndpoint string  `json:"TopicEndpoint"`
+
+	// Fields inherited from DigitalTwinsEndpointResourceProperties
+
+	AuthenticationType *AuthenticationType        `json:"authenticationType,omitempty"`
+	CreatedTime        *string                    `json:"createdTime,omitempty"`
+	DeadLetterSecret   *string                    `json:"deadLetterSecret,omitempty"`
+	DeadLetterUri      *string                    `json:"deadLetterUri,omitempty"`
+	EndpointType       EndpointType               `json:"endpointType"`
+	Identity           *ManagedIdentityReference  `json:"identity,omitempty"`
+	ProvisioningState  *EndpointProvisioningState `json:"provisioningState,omitempty"`
+}

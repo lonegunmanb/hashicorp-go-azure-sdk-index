@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/orders
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseOrderState(input string) (*OrderState, error) {
+	vals := map[string]OrderState{
+		"arriving":               OrderStateArriving,
+		"awaitingdrop":           OrderStateAwaitingDrop,
+		"awaitingfulfillment":    OrderStateAwaitingFulfillment,
+		"awaitingpickup":         OrderStateAwaitingPickup,
+		"awaitingpreparation":    OrderStateAwaitingPreparation,
+		"awaitingreturnshipment": OrderStateAwaitingReturnShipment,
+		"awaitingshipment":       OrderStateAwaitingShipment,
+		"collectedatmicrosoft":   OrderStateCollectedAtMicrosoft,
+		"declined":               OrderStateDeclined,
+		"delivered":              OrderStateDelivered,
+		"lostdevice":             OrderStateLostDevice,
+		"pickupcompleted":        OrderStatePickupCompleted,
+		"replacementrequested":   OrderStateReplacementRequested,
+		"returninitiated":        OrderStateReturnInitiated,
+		"shipped":                OrderStateShipped,
+		"shippedback":            OrderStateShippedBack,
+		"untracked":              OrderStateUntracked,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := OrderState(input)
+	return &out, nil
+}

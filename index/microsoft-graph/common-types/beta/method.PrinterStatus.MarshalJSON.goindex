@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s PrinterStatus) MarshalJSON() ([]byte, error) {
+	type wrapper PrinterStatus
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling PrinterStatus: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling PrinterStatus: %+v", err)
+	}
+
+	delete(decoded, "description")
+	delete(decoded, "details")
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling PrinterStatus: %+v", err)
+	}
+
+	return encoded, nil
+}

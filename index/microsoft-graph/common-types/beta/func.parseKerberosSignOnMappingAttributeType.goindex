@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseKerberosSignOnMappingAttributeType(input string) (*KerberosSignOnMappingAttributeType, error) {
+	vals := map[string]KerberosSignOnMappingAttributeType{
+		"onpremisessamaccountname":        KerberosSignOnMappingAttributeType_OnPremisesSAMAccountName,
+		"onpremisesuserprincipalname":     KerberosSignOnMappingAttributeType_OnPremisesUserPrincipalName,
+		"onpremisesuserprincipalusername": KerberosSignOnMappingAttributeType_OnPremisesUserPrincipalUsername,
+		"userprincipalname":               KerberosSignOnMappingAttributeType_UserPrincipalName,
+		"userprincipalusername":           KerberosSignOnMappingAttributeType_UserPrincipalUsername,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := KerberosSignOnMappingAttributeType(input)
+	return &out, nil
+}

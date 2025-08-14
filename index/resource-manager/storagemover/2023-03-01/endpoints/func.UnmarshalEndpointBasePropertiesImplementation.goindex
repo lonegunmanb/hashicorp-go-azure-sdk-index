@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagemover/2023-03-01/endpoints
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalEndpointBasePropertiesImplementation(input []byte) (EndpointBaseProperties, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling EndpointBaseProperties into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["endpointType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "AzureStorageBlobContainer") {
+		var out AzureStorageBlobContainerEndpointProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureStorageBlobContainerEndpointProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "NfsMount") {
+		var out NfsMountEndpointProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into NfsMountEndpointProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseEndpointBasePropertiesImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseEndpointBasePropertiesImpl: %+v", err)
+	}
+
+	return RawEndpointBasePropertiesImpl{
+		endpointBaseProperties: parent,
+		Type:                   value,
+		Values:                 temp,
+	}, nil
+
+}

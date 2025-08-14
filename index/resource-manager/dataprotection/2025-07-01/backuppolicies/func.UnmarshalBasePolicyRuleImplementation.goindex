@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2025-07-01/backuppolicies
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalBasePolicyRuleImplementation(input []byte) (BasePolicyRule, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling BasePolicyRule into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["objectType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "AzureBackupRule") {
+		var out AzureBackupRule
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureBackupRule: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "AzureRetentionRule") {
+		var out AzureRetentionRule
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureRetentionRule: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseBasePolicyRuleImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseBasePolicyRuleImpl: %+v", err)
+	}
+
+	return RawBasePolicyRuleImpl{
+		basePolicyRule: parent,
+		Type:           value,
+		Values:         temp,
+	}, nil
+
+}

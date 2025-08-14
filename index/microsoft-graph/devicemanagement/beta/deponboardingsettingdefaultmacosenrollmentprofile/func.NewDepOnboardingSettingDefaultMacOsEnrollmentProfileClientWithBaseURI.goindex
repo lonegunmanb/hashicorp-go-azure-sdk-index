@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/deponboardingsettingdefaultmacosenrollmentprofile
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDepOnboardingSettingDefaultMacOsEnrollmentProfileClientWithBaseURI(sdkApi sdkEnv.Api) (*DepOnboardingSettingDefaultMacOsEnrollmentProfileClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "deponboardingsettingdefaultmacosenrollmentprofile", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DepOnboardingSettingDefaultMacOsEnrollmentProfileClient: %+v", err)
+	}
+
+	return &DepOnboardingSettingDefaultMacOsEnrollmentProfileClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type UserExperienceAnalyticsInsight struct {
+	// The unique identifier of the user experience analytics insight.
+	InsightId nullable.Type[string] `json:"insightId,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Indicates severity of insights. Possible values are: None, Informational, Warning, Error.
+	Severity *UserExperienceAnalyticsInsightSeverity `json:"severity,omitempty"`
+
+	// The unique identifier of the user experience analytics metric.
+	UserExperienceAnalyticsMetricId nullable.Type[string] `json:"userExperienceAnalyticsMetricId,omitempty"`
+
+	// The value of the user experience analytics insight.
+	Values *[]UserExperienceAnalyticsInsightValue `json:"values,omitempty"`
+}

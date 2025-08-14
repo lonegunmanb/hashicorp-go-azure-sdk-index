@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id IdentityGovernanceEntitlementManagementAccessPackageCatalogIdAccessPackageResourceIdAccessPackageResourceScopeId) String() string {
+	components := []string{
+		fmt.Sprintf("Access Package Catalog: %q", id.AccessPackageCatalogId),
+		fmt.Sprintf("Access Package Resource: %q", id.AccessPackageResourceId),
+		fmt.Sprintf("Access Package Resource Scope: %q", id.AccessPackageResourceScopeId),
+	}
+	return fmt.Sprintf("Identity Governance Entitlement Management Access Package Catalog Id Access Package Resource Id Access Package Resource Scope (%s)", strings.Join(components, "\n"))
+}

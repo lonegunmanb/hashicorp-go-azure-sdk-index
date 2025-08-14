@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/servicetaskresource
+import (
+	"encoding/json"
+	"fmt"
+)
+type MigrateSqlServerSqlMITaskOutputDatabaseLevel struct {
+	DatabaseName          *string                 `json:"databaseName,omitempty"`
+	EndedOn               *string                 `json:"endedOn,omitempty"`
+	ExceptionsAndWarnings *[]ReportableException  `json:"exceptionsAndWarnings,omitempty"`
+	Message               *string                 `json:"message,omitempty"`
+	SizeMB                *float64                `json:"sizeMB,omitempty"`
+	Stage                 *DatabaseMigrationStage `json:"stage,omitempty"`
+	StartedOn             *string                 `json:"startedOn,omitempty"`
+	State                 *MigrationState         `json:"state,omitempty"`
+
+	// Fields inherited from MigrateSqlServerSqlMITaskOutput
+
+	Id         *string `json:"id,omitempty"`
+	ResultType string  `json:"resultType"`
+}

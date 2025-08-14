@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/manageddevicedevicehealthscriptstate
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ManagedDeviceDeviceHealthScriptStateClient) ListManagedDeviceHealthScriptStatesCompleteMatchingPredicate(ctx context.Context, id beta.MeManagedDeviceId, options ListManagedDeviceHealthScriptStatesOperationOptions, predicate DeviceHealthScriptPolicyStateOperationPredicate) (result ListManagedDeviceHealthScriptStatesCompleteResult, err error) {
+	items := make([]beta.DeviceHealthScriptPolicyState, 0)
+
+	resp, err := c.ListManagedDeviceHealthScriptStates(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListManagedDeviceHealthScriptStatesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

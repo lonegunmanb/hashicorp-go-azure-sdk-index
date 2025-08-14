@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id UserIdManagedDeviceIdAssignmentFilterEvaluationStatusDetailId) String() string {
+	components := []string{
+		fmt.Sprintf("User: %q", id.UserId),
+		fmt.Sprintf("Managed Device: %q", id.ManagedDeviceId),
+		fmt.Sprintf("Assignment Filter Evaluation Status Details: %q", id.AssignmentFilterEvaluationStatusDetailsId),
+	}
+	return fmt.Sprintf("User Id Managed Device Id Assignment Filter Evaluation Status Detail (%s)", strings.Join(components, "\n"))
+}

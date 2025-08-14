@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s DeviceManagementTroubleshootingEventCollectionResponse) MarshalJSON() ([]byte, error) {
+	type wrapper DeviceManagementTroubleshootingEventCollectionResponse
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling DeviceManagementTroubleshootingEventCollectionResponse: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling DeviceManagementTroubleshootingEventCollectionResponse: %+v", err)
+	}
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.deviceManagementTroubleshootingEventCollectionResponse"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling DeviceManagementTroubleshootingEventCollectionResponse: %+v", err)
+	}
+
+	return encoded, nil
+}

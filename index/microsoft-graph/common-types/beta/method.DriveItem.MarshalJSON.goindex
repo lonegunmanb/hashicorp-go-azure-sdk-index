@@ -1,0 +1,59 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s DriveItem) MarshalJSON() ([]byte, error) {
+	type wrapper DriveItem
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling DriveItem: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling DriveItem: %+v", err)
+	}
+
+	delete(decoded, "audio")
+	delete(decoded, "bundle")
+	delete(decoded, "cTag")
+	delete(decoded, "children")
+	delete(decoded, "deleted")
+	delete(decoded, "file")
+	delete(decoded, "folder")
+	delete(decoded, "image")
+	delete(decoded, "listItem")
+	delete(decoded, "location")
+	delete(decoded, "malware")
+	delete(decoded, "package")
+	delete(decoded, "pendingOperations")
+	delete(decoded, "permissions")
+	delete(decoded, "photo")
+	delete(decoded, "publication")
+	delete(decoded, "remoteItem")
+	delete(decoded, "searchResult")
+	delete(decoded, "shared")
+	delete(decoded, "sharepointIds")
+	delete(decoded, "size")
+	delete(decoded, "source")
+	delete(decoded, "specialFolder")
+	delete(decoded, "thumbnails")
+	delete(decoded, "versions")
+	delete(decoded, "video")
+	delete(decoded, "viewpoint")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.driveItem"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling DriveItem: %+v", err)
+	}
+
+	return encoded, nil
+}

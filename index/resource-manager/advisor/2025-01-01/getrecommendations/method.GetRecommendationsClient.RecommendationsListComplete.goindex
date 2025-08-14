@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/advisor/2025-01-01/getrecommendations
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c GetRecommendationsClient) RecommendationsListComplete(ctx context.Context, id commonids.SubscriptionId, options RecommendationsListOperationOptions) (RecommendationsListCompleteResult, error) {
+	return c.RecommendationsListCompleteMatchingPredicate(ctx, id, options, ResourceRecommendationBaseOperationPredicate{})
+}

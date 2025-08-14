@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2023-06-01/rules
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c RulesClient) TagRulesListComplete(ctx context.Context, id MonitorId) (TagRulesListCompleteResult, error) {
+	return c.TagRulesListCompleteMatchingPredicate(ctx, id, MonitoringTagRulesOperationPredicate{})
+}

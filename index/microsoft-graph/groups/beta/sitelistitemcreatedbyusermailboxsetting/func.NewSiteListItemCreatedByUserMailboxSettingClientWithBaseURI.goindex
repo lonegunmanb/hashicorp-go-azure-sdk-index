@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitelistitemcreatedbyusermailboxsetting
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSiteListItemCreatedByUserMailboxSettingClientWithBaseURI(sdkApi sdkEnv.Api) (*SiteListItemCreatedByUserMailboxSettingClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "sitelistitemcreatedbyusermailboxsetting", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SiteListItemCreatedByUserMailboxSettingClient: %+v", err)
+	}
+
+	return &SiteListItemCreatedByUserMailboxSettingClient{
+		Client: client,
+	}, nil
+}

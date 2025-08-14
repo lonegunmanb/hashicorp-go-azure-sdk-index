@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWindowsAutopilotDeviceRemediationState(input string) (*WindowsAutopilotDeviceRemediationState, error) {
+	vals := map[string]WindowsAutopilotDeviceRemediationState{
+		"automaticremediationrequired": WindowsAutopilotDeviceRemediationState_AutomaticRemediationRequired,
+		"manualremediationrequired":    WindowsAutopilotDeviceRemediationState_ManualRemediationRequired,
+		"noremediationrequired":        WindowsAutopilotDeviceRemediationState_NoRemediationRequired,
+		"unknown":                      WindowsAutopilotDeviceRemediationState_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsAutopilotDeviceRemediationState(input)
+	return &out, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dashboard/2023-09-01/grafanaresource
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewGrafanaResourceClientWithBaseURI(sdkApi sdkEnv.Api) (*GrafanaResourceClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "grafanaresource", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating GrafanaResourceClient: %+v", err)
+	}
+
+	return &GrafanaResourceClient{
+		Client: client,
+	}, nil
+}

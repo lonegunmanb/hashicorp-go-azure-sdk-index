@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/lifecycleworkflowworkflowuserprocessingresulttaskprocessingresult
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c LifecycleWorkflowWorkflowUserProcessingResultTaskProcessingResultClient) ListLifecycleWorkflowUserProcessingResultTaskProcessingResults(ctx context.Context, id beta.IdentityGovernanceLifecycleWorkflowWorkflowIdUserProcessingResultId, options ListLifecycleWorkflowUserProcessingResultTaskProcessingResultsOperationOptions) (result ListLifecycleWorkflowUserProcessingResultTaskProcessingResultsOperationResponse, err error) {
+	opts := client.RequestOptions{
+		ContentType: "application/json; charset=utf-8",
+		ExpectedStatusCodes: []int{
+			http.StatusOK,
+		},
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Pager:         &ListLifecycleWorkflowUserProcessingResultTaskProcessingResultsCustomPager{},
+		Path:          fmt.Sprintf("%s/taskProcessingResults", id.ID()),
+		RetryFunc:     options.RetryFunc,
+	}
+
+	req, err := c.Client.NewRequest(ctx, opts)
+	if err != nil {
+		return
+	}
+
+	var resp *client.Response
+	resp, err = req.ExecutePaged(ctx)
+	if resp != nil {
+		result.OData = resp.OData
+		result.HttpResponse = resp.Response
+	}
+	if err != nil {
+		return
+	}
+
+	var values struct {
+		Values *[]beta.IdentityGovernanceTaskProcessingResult `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
+		return
+	}
+
+	result.Model = values.Values
+
+	return
+}

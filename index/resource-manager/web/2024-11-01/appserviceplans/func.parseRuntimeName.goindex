@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-11-01/appserviceplans
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRuntimeName(input string) (*RuntimeName, error) {
+	vals := map[string]RuntimeName{
+		"custom":          RuntimeNameCustom,
+		"dotnet-isolated": RuntimeNameDotnetNegativeisolated,
+		"java":            RuntimeNameJava,
+		"node":            RuntimeNameNode,
+		"powershell":      RuntimeNamePowershell,
+		"python":          RuntimeNamePython,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RuntimeName(input)
+	return &out, nil
+}

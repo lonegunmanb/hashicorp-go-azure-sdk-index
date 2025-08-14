@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagetemplatecanvaslayoutverticalsection
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSitePageTemplateCanvasLayoutVerticalSectionClientWithBaseURI(sdkApi sdkEnv.Api) (*SitePageTemplateCanvasLayoutVerticalSectionClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "sitepagetemplatecanvaslayoutverticalsection", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SitePageTemplateCanvasLayoutVerticalSectionClient: %+v", err)
+	}
+
+	return &SitePageTemplateCanvasLayoutVerticalSectionClient{
+		Client: client,
+	}, nil
+}

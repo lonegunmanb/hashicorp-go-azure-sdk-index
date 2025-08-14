@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/sqlpoolsmaintenancewindows
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSqlPoolsMaintenanceWindowsClientWithBaseURI(sdkApi sdkEnv.Api) (*SqlPoolsMaintenanceWindowsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "sqlpoolsmaintenancewindows", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SqlPoolsMaintenanceWindowsClient: %+v", err)
+	}
+
+	return &SqlPoolsMaintenanceWindowsClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,522 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *User) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AboutMe                         nullable.Type[string]              `json:"aboutMe,omitempty"`
+		AccountEnabled                  nullable.Type[bool]                `json:"accountEnabled,omitempty"`
+		Activities                      *[]UserActivity                    `json:"activities,omitempty"`
+		AgeGroup                        nullable.Type[string]              `json:"ageGroup,omitempty"`
+		AgreementAcceptances            *[]AgreementAcceptance             `json:"agreementAcceptances,omitempty"`
+		AppRoleAssignments              *[]AppRoleAssignment               `json:"appRoleAssignments,omitempty"`
+		AssignedLicenses                *[]AssignedLicense                 `json:"assignedLicenses,omitempty"`
+		AssignedPlans                   *[]AssignedPlan                    `json:"assignedPlans,omitempty"`
+		Authentication                  *Authentication                    `json:"authentication,omitempty"`
+		AuthorizationInfo               *AuthorizationInfo                 `json:"authorizationInfo,omitempty"`
+		Birthday                        *string                            `json:"birthday,omitempty"`
+		BusinessPhones                  *[]string                          `json:"businessPhones,omitempty"`
+		Calendar                        *Calendar                          `json:"calendar,omitempty"`
+		CalendarGroups                  *[]CalendarGroup                   `json:"calendarGroups,omitempty"`
+		CalendarView                    *[]Event                           `json:"calendarView,omitempty"`
+		Calendars                       *[]Calendar                        `json:"calendars,omitempty"`
+		Chats                           *[]Chat                            `json:"chats,omitempty"`
+		City                            nullable.Type[string]              `json:"city,omitempty"`
+		CloudClipboard                  *CloudClipboardRoot                `json:"cloudClipboard,omitempty"`
+		CompanyName                     nullable.Type[string]              `json:"companyName,omitempty"`
+		ConsentProvidedForMinor         nullable.Type[string]              `json:"consentProvidedForMinor,omitempty"`
+		ContactFolders                  *[]ContactFolder                   `json:"contactFolders,omitempty"`
+		Contacts                        *[]Contact                         `json:"contacts,omitempty"`
+		Country                         nullable.Type[string]              `json:"country,omitempty"`
+		CreatedDateTime                 nullable.Type[string]              `json:"createdDateTime,omitempty"`
+		CreatedObjects_ODataBind        *[]string                          `json:"createdObjects@odata.bind,omitempty"`
+		CreationType                    nullable.Type[string]              `json:"creationType,omitempty"`
+		CustomSecurityAttributes        *CustomSecurityAttributeValue      `json:"customSecurityAttributes,omitempty"`
+		Department                      nullable.Type[string]              `json:"department,omitempty"`
+		DeviceEnrollmentLimit           *int64                             `json:"deviceEnrollmentLimit,omitempty"`
+		DirectReports_ODataBind         *[]string                          `json:"directReports@odata.bind,omitempty"`
+		DisplayName                     nullable.Type[string]              `json:"displayName,omitempty"`
+		Drive                           *Drive                             `json:"drive,omitempty"`
+		Drives                          *[]Drive                           `json:"drives,omitempty"`
+		EmployeeExperience              *EmployeeExperienceUser            `json:"employeeExperience,omitempty"`
+		EmployeeHireDate                nullable.Type[string]              `json:"employeeHireDate,omitempty"`
+		EmployeeId                      nullable.Type[string]              `json:"employeeId,omitempty"`
+		EmployeeLeaveDateTime           nullable.Type[string]              `json:"employeeLeaveDateTime,omitempty"`
+		EmployeeOrgData                 *EmployeeOrgData                   `json:"employeeOrgData,omitempty"`
+		EmployeeType                    nullable.Type[string]              `json:"employeeType,omitempty"`
+		Events                          *[]Event                           `json:"events,omitempty"`
+		ExternalUserState               nullable.Type[string]              `json:"externalUserState,omitempty"`
+		ExternalUserStateChangeDateTime nullable.Type[string]              `json:"externalUserStateChangeDateTime,omitempty"`
+		FaxNumber                       nullable.Type[string]              `json:"faxNumber,omitempty"`
+		FollowedSites                   *[]Site                            `json:"followedSites,omitempty"`
+		GivenName                       nullable.Type[string]              `json:"givenName,omitempty"`
+		HireDate                        *string                            `json:"hireDate,omitempty"`
+		Identities                      *[]ObjectIdentity                  `json:"identities,omitempty"`
+		ImAddresses                     *[]string                          `json:"imAddresses,omitempty"`
+		InferenceClassification         *InferenceClassification           `json:"inferenceClassification,omitempty"`
+		Insights                        *ItemInsights                      `json:"insights,omitempty"`
+		Interests                       *[]string                          `json:"interests,omitempty"`
+		IsManagementRestricted          nullable.Type[bool]                `json:"isManagementRestricted,omitempty"`
+		IsResourceAccount               nullable.Type[bool]                `json:"isResourceAccount,omitempty"`
+		JobTitle                        nullable.Type[string]              `json:"jobTitle,omitempty"`
+		JoinedTeams                     *[]Team                            `json:"joinedTeams,omitempty"`
+		LastPasswordChangeDateTime      nullable.Type[string]              `json:"lastPasswordChangeDateTime,omitempty"`
+		LegalAgeGroupClassification     nullable.Type[string]              `json:"legalAgeGroupClassification,omitempty"`
+		LicenseAssignmentStates         *[]LicenseAssignmentState          `json:"licenseAssignmentStates,omitempty"`
+		LicenseDetails                  *[]LicenseDetails                  `json:"licenseDetails,omitempty"`
+		Mail                            nullable.Type[string]              `json:"mail,omitempty"`
+		MailNickname                    nullable.Type[string]              `json:"mailNickname,omitempty"`
+		MailboxSettings                 *MailboxSettings                   `json:"mailboxSettings,omitempty"`
+		ManagedDevices                  *[]ManagedDevice                   `json:"managedDevices,omitempty"`
+		Manager_ODataBind               *string                            `json:"manager@odata.bind,omitempty"`
+		MemberOf_ODataBind              *[]string                          `json:"memberOf@odata.bind,omitempty"`
+		MobilePhone                     nullable.Type[string]              `json:"mobilePhone,omitempty"`
+		MySite                          nullable.Type[string]              `json:"mySite,omitempty"`
+		OAuth2PermissionGrants          *[]OAuth2PermissionGrant           `json:"oauth2PermissionGrants,omitempty"`
+		OfficeLocation                  nullable.Type[string]              `json:"officeLocation,omitempty"`
+		OnPremisesDistinguishedName     nullable.Type[string]              `json:"onPremisesDistinguishedName,omitempty"`
+		OnPremisesDomainName            nullable.Type[string]              `json:"onPremisesDomainName,omitempty"`
+		OnPremisesExtensionAttributes   *OnPremisesExtensionAttributes     `json:"onPremisesExtensionAttributes,omitempty"`
+		OnPremisesImmutableId           nullable.Type[string]              `json:"onPremisesImmutableId,omitempty"`
+		OnPremisesLastSyncDateTime      nullable.Type[string]              `json:"onPremisesLastSyncDateTime,omitempty"`
+		OnPremisesProvisioningErrors    *[]OnPremisesProvisioningError     `json:"onPremisesProvisioningErrors,omitempty"`
+		OnPremisesSamAccountName        nullable.Type[string]              `json:"onPremisesSamAccountName,omitempty"`
+		OnPremisesSecurityIdentifier    nullable.Type[string]              `json:"onPremisesSecurityIdentifier,omitempty"`
+		OnPremisesSyncEnabled           nullable.Type[bool]                `json:"onPremisesSyncEnabled,omitempty"`
+		OnPremisesUserPrincipalName     nullable.Type[string]              `json:"onPremisesUserPrincipalName,omitempty"`
+		Onenote                         *Onenote                           `json:"onenote,omitempty"`
+		OnlineMeetings                  *[]OnlineMeeting                   `json:"onlineMeetings,omitempty"`
+		OtherMails                      *[]string                          `json:"otherMails,omitempty"`
+		Outlook                         *OutlookUser                       `json:"outlook,omitempty"`
+		OwnedDevices_ODataBind          *[]string                          `json:"ownedDevices@odata.bind,omitempty"`
+		OwnedObjects_ODataBind          *[]string                          `json:"ownedObjects@odata.bind,omitempty"`
+		PasswordPolicies                nullable.Type[string]              `json:"passwordPolicies,omitempty"`
+		PasswordProfile                 *PasswordProfile                   `json:"passwordProfile,omitempty"`
+		PastProjects                    *[]string                          `json:"pastProjects,omitempty"`
+		People                          *[]Person                          `json:"people,omitempty"`
+		PermissionGrants                *[]ResourceSpecificPermissionGrant `json:"permissionGrants,omitempty"`
+		Photo                           *ProfilePhoto                      `json:"photo,omitempty"`
+		Photos                          *[]ProfilePhoto                    `json:"photos,omitempty"`
+		Planner                         *PlannerUser                       `json:"planner,omitempty"`
+		PostalCode                      nullable.Type[string]              `json:"postalCode,omitempty"`
+		PreferredDataLocation           nullable.Type[string]              `json:"preferredDataLocation,omitempty"`
+		PreferredLanguage               nullable.Type[string]              `json:"preferredLanguage,omitempty"`
+		PreferredName                   nullable.Type[string]              `json:"preferredName,omitempty"`
+		Presence                        *Presence                          `json:"presence,omitempty"`
+		Print                           *UserPrint                         `json:"print,omitempty"`
+		ProvisionedPlans                *[]ProvisionedPlan                 `json:"provisionedPlans,omitempty"`
+		ProxyAddresses                  *[]string                          `json:"proxyAddresses,omitempty"`
+		RegisteredDevices_ODataBind     *[]string                          `json:"registeredDevices@odata.bind,omitempty"`
+		Responsibilities                *[]string                          `json:"responsibilities,omitempty"`
+		Schools                         *[]string                          `json:"schools,omitempty"`
+		ScopedRoleMemberOf              *[]ScopedRoleMembership            `json:"scopedRoleMemberOf,omitempty"`
+		SecurityIdentifier              nullable.Type[string]              `json:"securityIdentifier,omitempty"`
+		Settings                        *UserSettings                      `json:"settings,omitempty"`
+		ShowInAddressList               nullable.Type[bool]                `json:"showInAddressList,omitempty"`
+		SignInActivity                  *SignInActivity                    `json:"signInActivity,omitempty"`
+		SignInSessionsValidFromDateTime nullable.Type[string]              `json:"signInSessionsValidFromDateTime,omitempty"`
+		Skills                          *[]string                          `json:"skills,omitempty"`
+		Solutions                       *UserSolutionRoot                  `json:"solutions,omitempty"`
+		Sponsors_ODataBind              *[]string                          `json:"sponsors@odata.bind,omitempty"`
+		State                           nullable.Type[string]              `json:"state,omitempty"`
+		StreetAddress                   nullable.Type[string]              `json:"streetAddress,omitempty"`
+		Surname                         nullable.Type[string]              `json:"surname,omitempty"`
+		Teamwork                        *UserTeamwork                      `json:"teamwork,omitempty"`
+		Todo                            *Todo                              `json:"todo,omitempty"`
+		TransitiveMemberOf_ODataBind    *[]string                          `json:"transitiveMemberOf@odata.bind,omitempty"`
+		UsageLocation                   nullable.Type[string]              `json:"usageLocation,omitempty"`
+		UserPrincipalName               nullable.Type[string]              `json:"userPrincipalName,omitempty"`
+		UserType                        nullable.Type[string]              `json:"userType,omitempty"`
+		DeletedDateTime                 nullable.Type[string]              `json:"deletedDateTime,omitempty"`
+		Id                              *string                            `json:"id,omitempty"`
+		ODataId                         *string                            `json:"@odata.id,omitempty"`
+		ODataType                       *string                            `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AboutMe = decoded.AboutMe
+	s.AccountEnabled = decoded.AccountEnabled
+	s.Activities = decoded.Activities
+	s.AgeGroup = decoded.AgeGroup
+	s.AgreementAcceptances = decoded.AgreementAcceptances
+	s.AppRoleAssignments = decoded.AppRoleAssignments
+	s.AssignedLicenses = decoded.AssignedLicenses
+	s.AssignedPlans = decoded.AssignedPlans
+	s.Authentication = decoded.Authentication
+	s.AuthorizationInfo = decoded.AuthorizationInfo
+	s.Birthday = decoded.Birthday
+	s.BusinessPhones = decoded.BusinessPhones
+	s.Calendar = decoded.Calendar
+	s.CalendarGroups = decoded.CalendarGroups
+	s.CalendarView = decoded.CalendarView
+	s.Calendars = decoded.Calendars
+	s.Chats = decoded.Chats
+	s.City = decoded.City
+	s.CloudClipboard = decoded.CloudClipboard
+	s.CompanyName = decoded.CompanyName
+	s.ConsentProvidedForMinor = decoded.ConsentProvidedForMinor
+	s.ContactFolders = decoded.ContactFolders
+	s.Contacts = decoded.Contacts
+	s.Country = decoded.Country
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.CreatedObjects_ODataBind = decoded.CreatedObjects_ODataBind
+	s.CreationType = decoded.CreationType
+	s.CustomSecurityAttributes = decoded.CustomSecurityAttributes
+	s.Department = decoded.Department
+	s.DeviceEnrollmentLimit = decoded.DeviceEnrollmentLimit
+	s.DirectReports_ODataBind = decoded.DirectReports_ODataBind
+	s.DisplayName = decoded.DisplayName
+	s.Drive = decoded.Drive
+	s.Drives = decoded.Drives
+	s.EmployeeExperience = decoded.EmployeeExperience
+	s.EmployeeHireDate = decoded.EmployeeHireDate
+	s.EmployeeId = decoded.EmployeeId
+	s.EmployeeLeaveDateTime = decoded.EmployeeLeaveDateTime
+	s.EmployeeOrgData = decoded.EmployeeOrgData
+	s.EmployeeType = decoded.EmployeeType
+	s.Events = decoded.Events
+	s.ExternalUserState = decoded.ExternalUserState
+	s.ExternalUserStateChangeDateTime = decoded.ExternalUserStateChangeDateTime
+	s.FaxNumber = decoded.FaxNumber
+	s.FollowedSites = decoded.FollowedSites
+	s.GivenName = decoded.GivenName
+	s.HireDate = decoded.HireDate
+	s.Identities = decoded.Identities
+	s.ImAddresses = decoded.ImAddresses
+	s.InferenceClassification = decoded.InferenceClassification
+	s.Insights = decoded.Insights
+	s.Interests = decoded.Interests
+	s.IsManagementRestricted = decoded.IsManagementRestricted
+	s.IsResourceAccount = decoded.IsResourceAccount
+	s.JobTitle = decoded.JobTitle
+	s.JoinedTeams = decoded.JoinedTeams
+	s.LastPasswordChangeDateTime = decoded.LastPasswordChangeDateTime
+	s.LegalAgeGroupClassification = decoded.LegalAgeGroupClassification
+	s.LicenseAssignmentStates = decoded.LicenseAssignmentStates
+	s.LicenseDetails = decoded.LicenseDetails
+	s.Mail = decoded.Mail
+	s.MailNickname = decoded.MailNickname
+	s.MailboxSettings = decoded.MailboxSettings
+	s.ManagedDevices = decoded.ManagedDevices
+	s.Manager_ODataBind = decoded.Manager_ODataBind
+	s.MemberOf_ODataBind = decoded.MemberOf_ODataBind
+	s.MobilePhone = decoded.MobilePhone
+	s.MySite = decoded.MySite
+	s.OAuth2PermissionGrants = decoded.OAuth2PermissionGrants
+	s.OfficeLocation = decoded.OfficeLocation
+	s.OnPremisesDistinguishedName = decoded.OnPremisesDistinguishedName
+	s.OnPremisesDomainName = decoded.OnPremisesDomainName
+	s.OnPremisesExtensionAttributes = decoded.OnPremisesExtensionAttributes
+	s.OnPremisesImmutableId = decoded.OnPremisesImmutableId
+	s.OnPremisesLastSyncDateTime = decoded.OnPremisesLastSyncDateTime
+	s.OnPremisesProvisioningErrors = decoded.OnPremisesProvisioningErrors
+	s.OnPremisesSamAccountName = decoded.OnPremisesSamAccountName
+	s.OnPremisesSecurityIdentifier = decoded.OnPremisesSecurityIdentifier
+	s.OnPremisesSyncEnabled = decoded.OnPremisesSyncEnabled
+	s.OnPremisesUserPrincipalName = decoded.OnPremisesUserPrincipalName
+	s.Onenote = decoded.Onenote
+	s.OnlineMeetings = decoded.OnlineMeetings
+	s.OtherMails = decoded.OtherMails
+	s.Outlook = decoded.Outlook
+	s.OwnedDevices_ODataBind = decoded.OwnedDevices_ODataBind
+	s.OwnedObjects_ODataBind = decoded.OwnedObjects_ODataBind
+	s.PasswordPolicies = decoded.PasswordPolicies
+	s.PasswordProfile = decoded.PasswordProfile
+	s.PastProjects = decoded.PastProjects
+	s.People = decoded.People
+	s.PermissionGrants = decoded.PermissionGrants
+	s.Photo = decoded.Photo
+	s.Photos = decoded.Photos
+	s.Planner = decoded.Planner
+	s.PostalCode = decoded.PostalCode
+	s.PreferredDataLocation = decoded.PreferredDataLocation
+	s.PreferredLanguage = decoded.PreferredLanguage
+	s.PreferredName = decoded.PreferredName
+	s.Presence = decoded.Presence
+	s.Print = decoded.Print
+	s.ProvisionedPlans = decoded.ProvisionedPlans
+	s.ProxyAddresses = decoded.ProxyAddresses
+	s.RegisteredDevices_ODataBind = decoded.RegisteredDevices_ODataBind
+	s.Responsibilities = decoded.Responsibilities
+	s.Schools = decoded.Schools
+	s.ScopedRoleMemberOf = decoded.ScopedRoleMemberOf
+	s.SecurityIdentifier = decoded.SecurityIdentifier
+	s.Settings = decoded.Settings
+	s.ShowInAddressList = decoded.ShowInAddressList
+	s.SignInActivity = decoded.SignInActivity
+	s.SignInSessionsValidFromDateTime = decoded.SignInSessionsValidFromDateTime
+	s.Skills = decoded.Skills
+	s.Solutions = decoded.Solutions
+	s.Sponsors_ODataBind = decoded.Sponsors_ODataBind
+	s.State = decoded.State
+	s.StreetAddress = decoded.StreetAddress
+	s.Surname = decoded.Surname
+	s.Teamwork = decoded.Teamwork
+	s.Todo = decoded.Todo
+	s.TransitiveMemberOf_ODataBind = decoded.TransitiveMemberOf_ODataBind
+	s.UsageLocation = decoded.UsageLocation
+	s.UserPrincipalName = decoded.UserPrincipalName
+	s.UserType = decoded.UserType
+	s.DeletedDateTime = decoded.DeletedDateTime
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling User into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["createdObjects"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling CreatedObjects into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]DirectoryObject, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalDirectoryObjectImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'CreatedObjects' for 'User': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.CreatedObjects = &output
+	}
+
+	if v, ok := temp["deviceManagementTroubleshootingEvents"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling DeviceManagementTroubleshootingEvents into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]DeviceManagementTroubleshootingEvent, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalDeviceManagementTroubleshootingEventImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'DeviceManagementTroubleshootingEvents' for 'User': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.DeviceManagementTroubleshootingEvents = &output
+	}
+
+	if v, ok := temp["directReports"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling DirectReports into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]DirectoryObject, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalDirectoryObjectImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'DirectReports' for 'User': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.DirectReports = &output
+	}
+
+	if v, ok := temp["extensions"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling Extensions into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]Extension, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalExtensionImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'Extensions' for 'User': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.Extensions = &output
+	}
+
+	if v, ok := temp["mailFolders"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling MailFolders into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]MailFolder, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalMailFolderImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'MailFolders' for 'User': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.MailFolders = &output
+	}
+
+	if v, ok := temp["managedAppRegistrations"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling ManagedAppRegistrations into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]ManagedAppRegistration, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalManagedAppRegistrationImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'ManagedAppRegistrations' for 'User': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.ManagedAppRegistrations = &output
+	}
+
+	if v, ok := temp["manager"]; ok {
+		impl, err := UnmarshalDirectoryObjectImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Manager' for 'User': %+v", err)
+		}
+		s.Manager = &impl
+	}
+
+	if v, ok := temp["memberOf"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling MemberOf into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]DirectoryObject, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalDirectoryObjectImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'MemberOf' for 'User': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.MemberOf = &output
+	}
+
+	if v, ok := temp["messages"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling Messages into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]Message, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalMessageImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'Messages' for 'User': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.Messages = &output
+	}
+
+	if v, ok := temp["ownedDevices"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling OwnedDevices into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]DirectoryObject, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalDirectoryObjectImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'OwnedDevices' for 'User': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.OwnedDevices = &output
+	}
+
+	if v, ok := temp["ownedObjects"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling OwnedObjects into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]DirectoryObject, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalDirectoryObjectImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'OwnedObjects' for 'User': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.OwnedObjects = &output
+	}
+
+	if v, ok := temp["registeredDevices"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling RegisteredDevices into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]DirectoryObject, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalDirectoryObjectImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'RegisteredDevices' for 'User': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.RegisteredDevices = &output
+	}
+
+	if v, ok := temp["serviceProvisioningErrors"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling ServiceProvisioningErrors into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]ServiceProvisioningError, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalServiceProvisioningErrorImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'ServiceProvisioningErrors' for 'User': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.ServiceProvisioningErrors = &output
+	}
+
+	if v, ok := temp["sponsors"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling Sponsors into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]DirectoryObject, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalDirectoryObjectImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'Sponsors' for 'User': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.Sponsors = &output
+	}
+
+	if v, ok := temp["transitiveMemberOf"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling TransitiveMemberOf into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]DirectoryObject, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalDirectoryObjectImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'TransitiveMemberOf' for 'User': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.TransitiveMemberOf = &output
+	}
+
+	return nil
+}

@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type EnumeratedDeviceRegistrationMembership struct {
+	// List of groups that this policy applies to.
+	Groups *[]string `json:"groups,omitempty"`
+
+	// List of users that this policy applies to.
+	Users *[]string `json:"users,omitempty"`
+
+	// Fields inherited from DeviceRegistrationMembership
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

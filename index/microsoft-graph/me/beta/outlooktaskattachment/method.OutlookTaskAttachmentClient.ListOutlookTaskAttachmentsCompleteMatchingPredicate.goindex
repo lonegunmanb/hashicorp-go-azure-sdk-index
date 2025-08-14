@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/outlooktaskattachment
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c OutlookTaskAttachmentClient) ListOutlookTaskAttachmentsCompleteMatchingPredicate(ctx context.Context, id beta.MeOutlookTaskId, options ListOutlookTaskAttachmentsOperationOptions, predicate AttachmentOperationPredicate) (result ListOutlookTaskAttachmentsCompleteResult, err error) {
+	items := make([]beta.Attachment, 0)
+
+	resp, err := c.ListOutlookTaskAttachments(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListOutlookTaskAttachmentsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

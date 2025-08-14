@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/aadb2c/2021-04-01-preview/tenants
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTenantsClientWithBaseURI(sdkApi sdkEnv.Api) (*TenantsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "tenants", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TenantsClient: %+v", err)
+	}
+
+	return &TenantsClient{
+		Client: client,
+	}, nil
+}

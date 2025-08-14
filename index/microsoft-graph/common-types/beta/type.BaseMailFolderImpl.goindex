@@ -1,0 +1,66 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type BaseMailFolderImpl struct {
+	// The number of immediate child mailFolders in the current mailFolder.
+	ChildFolderCount nullable.Type[int64] `json:"childFolderCount,omitempty"`
+
+	// The collection of child folders in the mailFolder.
+	ChildFolders *[]MailFolder `json:"childFolders,omitempty"`
+
+	// The mailFolder's display name.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// Indicates whether the mailFolder is hidden. This property can be set only when creating the folder. Find more
+	// information in Hidden mail folders.
+	IsHidden nullable.Type[bool] `json:"isHidden,omitempty"`
+
+	// The collection of rules that apply to the user's Inbox folder.
+	MessageRules *[]MessageRule `json:"messageRules,omitempty"`
+
+	// The collection of messages in the mailFolder.
+	Messages *[]Message `json:"messages,omitempty"`
+
+	// The collection of multi-value extended properties defined for the mailFolder. Read-only. Nullable.
+	MultiValueExtendedProperties *[]MultiValueLegacyExtendedProperty `json:"multiValueExtendedProperties,omitempty"`
+
+	// The collection of long-running operations in the mailFolder.
+	Operations *[]MailFolderOperation `json:"operations,omitempty"`
+
+	// The unique identifier for the mailFolder's parent mailFolder.
+	ParentFolderId nullable.Type[string] `json:"parentFolderId,omitempty"`
+
+	// The collection of single-value extended properties defined for the mailFolder. Read-only. Nullable.
+	SingleValueExtendedProperties *[]SingleValueLegacyExtendedProperty `json:"singleValueExtendedProperties,omitempty"`
+
+	// The number of items in the mailFolder.
+	TotalItemCount nullable.Type[int64] `json:"totalItemCount,omitempty"`
+
+	// The number of items in the mailFolder marked as unread.
+	UnreadItemCount nullable.Type[int64] `json:"unreadItemCount,omitempty"`
+
+	UserConfigurations *[]UserConfiguration `json:"userConfigurations,omitempty"`
+
+	// The well-known folder name for the folder. The possible values are listed above. This property is only set for
+	// default folders created by Outlook. For other folders, this property is null.
+	WellKnownName nullable.Type[string] `json:"wellKnownName,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

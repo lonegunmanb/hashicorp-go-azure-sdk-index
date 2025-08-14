@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/webapps
+
+func (p PerfMonResponseOperationPredicate) Matches(input PerfMonResponse) bool {
+
+	if p.Code != nil && (input.Code == nil || *p.Code != *input.Code) {
+		return false
+	}
+
+	if p.Message != nil && (input.Message == nil || *p.Message != *input.Message) {
+		return false
+	}
+
+	return true
+}

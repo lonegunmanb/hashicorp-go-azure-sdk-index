@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamscheduledaynote
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c TeamScheduleDayNoteClient) ListTeamScheduleDayNotesComplete(ctx context.Context, id beta.GroupId, options ListTeamScheduleDayNotesOperationOptions) (ListTeamScheduleDayNotesCompleteResult, error) {
+	return c.ListTeamScheduleDayNotesCompleteMatchingPredicate(ctx, id, options, DayNoteOperationPredicate{})
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hybridkubernetes/2024-01-01/connectedclusters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePrivateLinkState(input string) (*PrivateLinkState, error) {
+	vals := map[string]PrivateLinkState{
+		"disabled": PrivateLinkStateDisabled,
+		"enabled":  PrivateLinkStateEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PrivateLinkState(input)
+	return &out, nil
+}

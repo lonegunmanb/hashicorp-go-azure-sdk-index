@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/sitelistitemlastmodifiedbyuser
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSiteListItemLastModifiedByUserClientWithBaseURI(sdkApi sdkEnv.Api) (*SiteListItemLastModifiedByUserClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "sitelistitemlastmodifiedbyuser", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SiteListItemLastModifiedByUserClient: %+v", err)
+	}
+
+	return &SiteListItemLastModifiedByUserClient{
+		Client: client,
+	}, nil
+}

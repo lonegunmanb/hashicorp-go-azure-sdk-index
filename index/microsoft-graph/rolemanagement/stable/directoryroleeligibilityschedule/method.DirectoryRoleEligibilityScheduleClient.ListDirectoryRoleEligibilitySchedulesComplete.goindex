@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/stable/directoryroleeligibilityschedule
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DirectoryRoleEligibilityScheduleClient) ListDirectoryRoleEligibilitySchedulesComplete(ctx context.Context, options ListDirectoryRoleEligibilitySchedulesOperationOptions) (ListDirectoryRoleEligibilitySchedulesCompleteResult, error) {
+	return c.ListDirectoryRoleEligibilitySchedulesCompleteMatchingPredicate(ctx, options, UnifiedRoleEligibilityScheduleOperationPredicate{})
+}

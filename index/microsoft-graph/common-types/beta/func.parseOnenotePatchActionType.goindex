@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseOnenotePatchActionType(input string) (*OnenotePatchActionType, error) {
+	vals := map[string]OnenotePatchActionType{
+		"append":  OnenotePatchActionType_Append,
+		"delete":  OnenotePatchActionType_Delete,
+		"insert":  OnenotePatchActionType_Insert,
+		"prepend": OnenotePatchActionType_Prepend,
+		"replace": OnenotePatchActionType_Replace,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := OnenotePatchActionType(input)
+	return &out, nil
+}

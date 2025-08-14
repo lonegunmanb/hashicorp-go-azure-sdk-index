@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationprotecteditems
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDiskReplicationProgressHealth(input string) (*DiskReplicationProgressHealth, error) {
+	vals := map[string]DiskReplicationProgressHealth{
+		"inprogress":   DiskReplicationProgressHealthInProgress,
+		"noprogress":   DiskReplicationProgressHealthNoProgress,
+		"none":         DiskReplicationProgressHealthNone,
+		"queued":       DiskReplicationProgressHealthQueued,
+		"slowprogress": DiskReplicationProgressHealthSlowProgress,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DiskReplicationProgressHealth(input)
+	return &out, nil
+}

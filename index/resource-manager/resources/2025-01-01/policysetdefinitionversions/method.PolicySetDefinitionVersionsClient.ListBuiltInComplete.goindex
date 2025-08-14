@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2025-01-01/policysetdefinitionversions
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c PolicySetDefinitionVersionsClient) ListBuiltInComplete(ctx context.Context, id PolicySetDefinitionId, options ListBuiltInOperationOptions) (ListBuiltInCompleteResult, error) {
+	return c.ListBuiltInCompleteMatchingPredicate(ctx, id, options, PolicySetDefinitionVersionOperationPredicate{})
+}

@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+type BaseBookingsAvailabilityImpl struct {
+	AvailabilityType *BookingsServiceAvailabilityType `json:"availabilityType,omitempty"`
+
+	// The hours of operation in a week. The business hours value is set to null if the availability type isn't
+	// customWeeklyHours.
+	BusinessHours *[]BookingWorkHours `json:"businessHours,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

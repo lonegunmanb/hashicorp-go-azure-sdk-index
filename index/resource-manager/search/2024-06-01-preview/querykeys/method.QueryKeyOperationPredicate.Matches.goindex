@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/search/2024-06-01-preview/querykeys
+
+func (p QueryKeyOperationPredicate) Matches(input QueryKey) bool {
+
+	if p.Key != nil && (input.Key == nil || *p.Key != *input.Key) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/databaserecommendedactions
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type RecommendedActionProperties struct {
+	Details                    *map[string]string                   `json:"details,omitempty"`
+	ErrorDetails               *RecommendedActionErrorInfo          `json:"errorDetails,omitempty"`
+	EstimatedImpact            *[]RecommendedActionImpactRecord     `json:"estimatedImpact,omitempty"`
+	ExecuteActionDuration      *string                              `json:"executeActionDuration,omitempty"`
+	ExecuteActionInitiatedBy   *RecommendedActionInitiatedBy        `json:"executeActionInitiatedBy,omitempty"`
+	ExecuteActionInitiatedTime *string                              `json:"executeActionInitiatedTime,omitempty"`
+	ExecuteActionStartTime     *string                              `json:"executeActionStartTime,omitempty"`
+	ImplementationDetails      *RecommendedActionImplementationInfo `json:"implementationDetails,omitempty"`
+	IsArchivedAction           *bool                                `json:"isArchivedAction,omitempty"`
+	IsExecutableAction         *bool                                `json:"isExecutableAction,omitempty"`
+	IsRevertableAction         *bool                                `json:"isRevertableAction,omitempty"`
+	LastRefresh                *string                              `json:"lastRefresh,omitempty"`
+	LinkedObjects              *[]string                            `json:"linkedObjects,omitempty"`
+	ObservedImpact             *[]RecommendedActionImpactRecord     `json:"observedImpact,omitempty"`
+	RecommendationReason       *string                              `json:"recommendationReason,omitempty"`
+	RevertActionDuration       *string                              `json:"revertActionDuration,omitempty"`
+	RevertActionInitiatedBy    *RecommendedActionInitiatedBy        `json:"revertActionInitiatedBy,omitempty"`
+	RevertActionInitiatedTime  *string                              `json:"revertActionInitiatedTime,omitempty"`
+	RevertActionStartTime      *string                              `json:"revertActionStartTime,omitempty"`
+	Score                      *int64                               `json:"score,omitempty"`
+	State                      RecommendedActionStateInfo           `json:"state"`
+	TimeSeries                 *[]RecommendedActionMetricInfo       `json:"timeSeries,omitempty"`
+	ValidSince                 *string                              `json:"validSince,omitempty"`
+}

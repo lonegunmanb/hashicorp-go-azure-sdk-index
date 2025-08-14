@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/devicecustomattributeshellscriptrunsummary
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDeviceCustomAttributeShellScriptRunSummaryClientWithBaseURI(sdkApi sdkEnv.Api) (*DeviceCustomAttributeShellScriptRunSummaryClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "devicecustomattributeshellscriptrunsummary", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DeviceCustomAttributeShellScriptRunSummaryClient: %+v", err)
+	}
+
+	return &DeviceCustomAttributeShellScriptRunSummaryClient{
+		Client: client,
+	}, nil
+}

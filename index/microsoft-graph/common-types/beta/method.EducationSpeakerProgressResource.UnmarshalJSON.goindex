@@ -1,0 +1,66 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *EducationSpeakerProgressResource) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AiFeedbackCriteria                            *EducationAiFeedbackCriteria   `json:"aiFeedbackCriteria,omitempty"`
+		IsAiFeedbackEnabled                           *bool                          `json:"isAiFeedbackEnabled,omitempty"`
+		IsVideoRequired                               *bool                          `json:"isVideoRequired,omitempty"`
+		MaxRecordingAttempts                          *int64                         `json:"maxRecordingAttempts,omitempty"`
+		PresentationTitle                             *string                        `json:"presentationTitle,omitempty"`
+		RecordingTimeLimitInMinutes                   *int64                         `json:"recordingTimeLimitInMinutes,omitempty"`
+		ShowRehearsalReportToStudentBeforeMediaUpload *bool                          `json:"showRehearsalReportToStudentBeforeMediaUpload,omitempty"`
+		SpeakerCoachSettings                          *EducationSpeakerCoachSettings `json:"speakerCoachSettings,omitempty"`
+		SpokenLanguageLocale                          *string                        `json:"spokenLanguageLocale,omitempty"`
+		CreatedDateTime                               nullable.Type[string]          `json:"createdDateTime,omitempty"`
+		DisplayName                                   nullable.Type[string]          `json:"displayName,omitempty"`
+		LastModifiedDateTime                          nullable.Type[string]          `json:"lastModifiedDateTime,omitempty"`
+		ODataId                                       *string                        `json:"@odata.id,omitempty"`
+		ODataType                                     *string                        `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AiFeedbackCriteria = decoded.AiFeedbackCriteria
+	s.IsAiFeedbackEnabled = decoded.IsAiFeedbackEnabled
+	s.IsVideoRequired = decoded.IsVideoRequired
+	s.MaxRecordingAttempts = decoded.MaxRecordingAttempts
+	s.PresentationTitle = decoded.PresentationTitle
+	s.RecordingTimeLimitInMinutes = decoded.RecordingTimeLimitInMinutes
+	s.ShowRehearsalReportToStudentBeforeMediaUpload = decoded.ShowRehearsalReportToStudentBeforeMediaUpload
+	s.SpeakerCoachSettings = decoded.SpeakerCoachSettings
+	s.SpokenLanguageLocale = decoded.SpokenLanguageLocale
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.DisplayName = decoded.DisplayName
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling EducationSpeakerProgressResource into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["createdBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'CreatedBy' for 'EducationSpeakerProgressResource': %+v", err)
+		}
+		s.CreatedBy = &impl
+	}
+
+	if v, ok := temp["lastModifiedBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'LastModifiedBy' for 'EducationSpeakerProgressResource': %+v", err)
+		}
+		s.LastModifiedBy = &impl
+	}
+
+	return nil
+}

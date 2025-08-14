@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/azurestackhci/2024-01-01/arcsettings
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseProvisioningState(input string) (*ProvisioningState, error) {
+	vals := map[string]ProvisioningState{
+		"accepted":           ProvisioningStateAccepted,
+		"canceled":           ProvisioningStateCanceled,
+		"connected":          ProvisioningStateConnected,
+		"creating":           ProvisioningStateCreating,
+		"deleted":            ProvisioningStateDeleted,
+		"deleting":           ProvisioningStateDeleting,
+		"disableinprogress":  ProvisioningStateDisableInProgress,
+		"disconnected":       ProvisioningStateDisconnected,
+		"error":              ProvisioningStateError,
+		"failed":             ProvisioningStateFailed,
+		"inprogress":         ProvisioningStateInProgress,
+		"moving":             ProvisioningStateMoving,
+		"notspecified":       ProvisioningStateNotSpecified,
+		"partiallyconnected": ProvisioningStatePartiallyConnected,
+		"partiallysucceeded": ProvisioningStatePartiallySucceeded,
+		"provisioning":       ProvisioningStateProvisioning,
+		"succeeded":          ProvisioningStateSucceeded,
+		"updating":           ProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ProvisioningState(input)
+	return &out, nil
+}

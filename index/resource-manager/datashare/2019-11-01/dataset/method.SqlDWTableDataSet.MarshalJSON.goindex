@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2019-11-01/dataset
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s SqlDWTableDataSet) MarshalJSON() ([]byte, error) {
+	type wrapper SqlDWTableDataSet
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling SqlDWTableDataSet: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling SqlDWTableDataSet: %+v", err)
+	}
+
+	decoded["kind"] = "SqlDWTable"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling SqlDWTableDataSet: %+v", err)
+	}
+
+	return encoded, nil
+}

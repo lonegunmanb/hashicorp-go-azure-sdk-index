@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func (s BaseEntityImpl) MarshalJSON() ([]byte, error) {
+	type wrapper BaseEntityImpl
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling BaseEntityImpl: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling BaseEntityImpl: %+v", err)
+	}
+
+	delete(decoded, "id")
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling BaseEntityImpl: %+v", err)
+	}
+
+	return encoded, nil
+}

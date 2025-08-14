@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEdgeTelemetryMode(input string) (*EdgeTelemetryMode, error) {
+	vals := map[string]EdgeTelemetryMode{
+		"internet":            EdgeTelemetryMode_Internet,
+		"intranet":            EdgeTelemetryMode_Intranet,
+		"intranetandinternet": EdgeTelemetryMode_IntranetAndInternet,
+		"notconfigured":       EdgeTelemetryMode_NotConfigured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EdgeTelemetryMode(input)
+	return &out, nil
+}

@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityVerdictCategory(input string) (*SecurityVerdictCategory, error) {
+	vals := map[string]SecurityVerdictCategory{
+		"decryptionfailed":     SecurityVerdictCategory_DecryptionFailed,
+		"malware":              SecurityVerdictCategory_Malware,
+		"none":                 SecurityVerdictCategory_None,
+		"phish":                SecurityVerdictCategory_Phish,
+		"siteunavailable":      SecurityVerdictCategory_SiteUnavailable,
+		"spam":                 SecurityVerdictCategory_Spam,
+		"undefined":            SecurityVerdictCategory_Undefined,
+		"unsupportedfiletype":  SecurityVerdictCategory_UnsupportedFileType,
+		"unsupportedurischeme": SecurityVerdictCategory_UnsupportedUriScheme,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityVerdictCategory(input)
+	return &out, nil
+}

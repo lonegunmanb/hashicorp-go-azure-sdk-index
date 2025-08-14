@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/patch
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (s MongoDbCollectionProgress) MarshalJSON() ([]byte, error) {
+	type wrapper MongoDbCollectionProgress
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling MongoDbCollectionProgress: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling MongoDbCollectionProgress: %+v", err)
+	}
+
+	decoded["resultType"] = "Collection"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling MongoDbCollectionProgress: %+v", err)
+	}
+
+	return encoded, nil
+}

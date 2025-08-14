@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2022-03-01/devices
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNetworkAdapterStatus(input string) (*NetworkAdapterStatus, error) {
+	vals := map[string]NetworkAdapterStatus{
+		"active":   NetworkAdapterStatusActive,
+		"inactive": NetworkAdapterStatusInactive,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NetworkAdapterStatus(input)
+	return &out, nil
+}

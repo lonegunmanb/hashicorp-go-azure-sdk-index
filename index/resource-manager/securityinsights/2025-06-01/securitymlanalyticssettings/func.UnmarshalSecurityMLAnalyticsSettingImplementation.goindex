@@ -1,0 +1,43 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2025-06-01/securitymlanalyticssettings
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+)
+func UnmarshalSecurityMLAnalyticsSettingImplementation(input []byte) (SecurityMLAnalyticsSetting, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling SecurityMLAnalyticsSetting into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["kind"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "Anomaly") {
+		var out AnomalySecurityMLAnalyticsSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AnomalySecurityMLAnalyticsSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseSecurityMLAnalyticsSettingImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseSecurityMLAnalyticsSettingImpl: %+v", err)
+	}
+
+	return RawSecurityMLAnalyticsSettingImpl{
+		securityMLAnalyticsSetting: parent,
+		Type:                       value,
+		Values:                     temp,
+	}, nil
+
+}

@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hdinsight/2021-06-01/applications
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePrivateLinkConfigurationProvisioningState(input string) (*PrivateLinkConfigurationProvisioningState, error) {
+	vals := map[string]PrivateLinkConfigurationProvisioningState{
+		"canceled":   PrivateLinkConfigurationProvisioningStateCanceled,
+		"deleting":   PrivateLinkConfigurationProvisioningStateDeleting,
+		"failed":     PrivateLinkConfigurationProvisioningStateFailed,
+		"inprogress": PrivateLinkConfigurationProvisioningStateInProgress,
+		"succeeded":  PrivateLinkConfigurationProvisioningStateSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PrivateLinkConfigurationProvisioningState(input)
+	return &out, nil
+}

@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicefabricmanagedcluster/2024-04-01/services
+import (
+	"encoding/json"
+	"fmt"
+)
+type StatelessServiceProperties struct {
+	InstanceCount         int64  `json:"instanceCount"`
+	MinInstanceCount      *int64 `json:"minInstanceCount,omitempty"`
+	MinInstancePercentage *int64 `json:"minInstancePercentage,omitempty"`
+
+	// Fields inherited from ServiceResourceProperties
+
+	CorrelationScheme            *[]ServiceCorrelation         `json:"correlationScheme,omitempty"`
+	DefaultMoveCost              *MoveCost                     `json:"defaultMoveCost,omitempty"`
+	PartitionDescription         Partition                     `json:"partitionDescription"`
+	PlacementConstraints         *string                       `json:"placementConstraints,omitempty"`
+	ProvisioningState            *string                       `json:"provisioningState,omitempty"`
+	ScalingPolicies              *[]ScalingPolicy              `json:"scalingPolicies,omitempty"`
+	ServiceDnsName               *string                       `json:"serviceDnsName,omitempty"`
+	ServiceKind                  ServiceKind                   `json:"serviceKind"`
+	ServiceLoadMetrics           *[]ServiceLoadMetric          `json:"serviceLoadMetrics,omitempty"`
+	ServicePackageActivationMode *ServicePackageActivationMode `json:"servicePackageActivationMode,omitempty"`
+	ServicePlacementPolicies     *[]ServicePlacementPolicy     `json:"servicePlacementPolicies,omitempty"`
+	ServiceTypeName              string                        `json:"serviceTypeName"`
+}

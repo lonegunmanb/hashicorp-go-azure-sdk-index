@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-03-01/subvolumes
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SubVolumesClient) ListByVolumeComplete(ctx context.Context, id VolumeId) (ListByVolumeCompleteResult, error) {
+	return c.ListByVolumeCompleteMatchingPredicate(ctx, id, SubvolumeInfoOperationPredicate{})
+}

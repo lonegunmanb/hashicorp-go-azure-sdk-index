@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseArtifactRestoreStatus(input string) (*ArtifactRestoreStatus, error) {
+	vals := map[string]ArtifactRestoreStatus{
+		"added":      ArtifactRestoreStatus_Added,
+		"failed":     ArtifactRestoreStatus_Failed,
+		"inprogress": ArtifactRestoreStatus_InProgress,
+		"scheduled":  ArtifactRestoreStatus_Scheduled,
+		"scheduling": ArtifactRestoreStatus_Scheduling,
+		"succeeded":  ArtifactRestoreStatus_Succeeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ArtifactRestoreStatus(input)
+	return &out, nil
+}

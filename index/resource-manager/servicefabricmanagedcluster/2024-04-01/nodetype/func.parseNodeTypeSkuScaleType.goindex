@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicefabricmanagedcluster/2024-04-01/nodetype
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNodeTypeSkuScaleType(input string) (*NodeTypeSkuScaleType, error) {
+	vals := map[string]NodeTypeSkuScaleType{
+		"automatic": NodeTypeSkuScaleTypeAutomatic,
+		"manual":    NodeTypeSkuScaleTypeManual,
+		"none":      NodeTypeSkuScaleTypeNone,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NodeTypeSkuScaleType(input)
+	return &out, nil
+}

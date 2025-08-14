@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s PolicyUserScope) PolicyScopeBase() BasePolicyScopeBaseImpl {
+	return BasePolicyScopeBaseImpl{
+		Activities:    s.Activities,
+		ExecutionMode: s.ExecutionMode,
+		Locations:     s.Locations,
+		ODataId:       s.ODataId,
+		ODataType:     s.ODataType,
+		PolicyActions: s.PolicyActions,
+	}
+}

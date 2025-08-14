@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/defenderroleassignmentappscope
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDefenderRoleAssignmentAppScopeClientWithBaseURI(sdkApi sdkEnv.Api) (*DefenderRoleAssignmentAppScopeClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "defenderroleassignmentappscope", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DefenderRoleAssignmentAppScopeClient: %+v", err)
+	}
+
+	return &DefenderRoleAssignmentAppScopeClient{
+		Client: client,
+	}, nil
+}

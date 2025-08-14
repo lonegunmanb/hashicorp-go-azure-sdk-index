@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-09-01/networkinterfaces
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNatGatewaySkuName(input string) (*NatGatewaySkuName, error) {
+	vals := map[string]NatGatewaySkuName{
+		"standard": NatGatewaySkuNameStandard,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NatGatewaySkuName(input)
+	return &out, nil
+}

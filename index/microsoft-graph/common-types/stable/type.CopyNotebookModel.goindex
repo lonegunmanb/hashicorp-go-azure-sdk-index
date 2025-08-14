@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type CopyNotebookModel struct {
+	CreatedBy              nullable.Type[string] `json:"createdBy,omitempty"`
+	CreatedByIdentity      IdentitySet           `json:"createdByIdentity"`
+	CreatedTime            nullable.Type[string] `json:"createdTime,omitempty"`
+	Id                     nullable.Type[string] `json:"id,omitempty"`
+	IsDefault              nullable.Type[bool]   `json:"isDefault,omitempty"`
+	IsShared               nullable.Type[bool]   `json:"isShared,omitempty"`
+	LastModifiedBy         nullable.Type[string] `json:"lastModifiedBy,omitempty"`
+	LastModifiedByIdentity IdentitySet           `json:"lastModifiedByIdentity"`
+	LastModifiedTime       nullable.Type[string] `json:"lastModifiedTime,omitempty"`
+	Links                  *NotebookLinks        `json:"links,omitempty"`
+	Name                   nullable.Type[string] `json:"name,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	SectionGroupsUrl nullable.Type[string] `json:"sectionGroupsUrl,omitempty"`
+	SectionsUrl      nullable.Type[string] `json:"sectionsUrl,omitempty"`
+	Self             nullable.Type[string] `json:"self,omitempty"`
+	UserRole         *OnenoteUserRole      `json:"userRole,omitempty"`
+}

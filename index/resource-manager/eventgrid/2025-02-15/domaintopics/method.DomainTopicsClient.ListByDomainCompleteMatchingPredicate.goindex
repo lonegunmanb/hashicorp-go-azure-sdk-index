@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2025-02-15/domaintopics
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DomainTopicsClient) ListByDomainCompleteMatchingPredicate(ctx context.Context, id DomainId, options ListByDomainOperationOptions, predicate DomainTopicOperationPredicate) (result ListByDomainCompleteResult, err error) {
+	items := make([]DomainTopic, 0)
+
+	resp, err := c.ListByDomain(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByDomainCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

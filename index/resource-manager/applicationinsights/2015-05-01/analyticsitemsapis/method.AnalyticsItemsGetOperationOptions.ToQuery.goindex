@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/applicationinsights/2015-05-01/analyticsitemsapis
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o AnalyticsItemsGetOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.Id != nil {
+		out.Append("id", fmt.Sprintf("%v", *o.Id))
+	}
+	if o.Name != nil {
+		out.Append("name", fmt.Sprintf("%v", *o.Name))
+	}
+	return &out
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *DirectoryOutboundSharedUserProfileIdTenantId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.OutboundSharedUserProfileUserId, ok = input.Parsed["outboundSharedUserProfileUserId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "outboundSharedUserProfileUserId", input)
+	}
+
+	if id.TenantReferenceTenantId, ok = input.Parsed["tenantReferenceTenantId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "tenantReferenceTenantId", input)
+	}
+
+	return nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-09-01/applicationsecuritygroups
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewApplicationSecurityGroupsClientWithBaseURI(sdkApi sdkEnv.Api) (*ApplicationSecurityGroupsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "applicationsecuritygroups", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ApplicationSecurityGroupsClient: %+v", err)
+	}
+
+	return &ApplicationSecurityGroupsClient{
+		Client: client,
+	}, nil
+}

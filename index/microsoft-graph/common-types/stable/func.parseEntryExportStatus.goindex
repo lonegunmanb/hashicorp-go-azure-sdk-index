@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEntryExportStatus(input string) (*EntryExportStatus, error) {
+	vals := map[string]EntryExportStatus{
+		"error":          EntryExportStatus_Error,
+		"noop":           EntryExportStatus_Noop,
+		"permanenterror": EntryExportStatus_PermanentError,
+		"retryableerror": EntryExportStatus_RetryableError,
+		"success":        EntryExportStatus_Success,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EntryExportStatus(input)
+	return &out, nil
+}

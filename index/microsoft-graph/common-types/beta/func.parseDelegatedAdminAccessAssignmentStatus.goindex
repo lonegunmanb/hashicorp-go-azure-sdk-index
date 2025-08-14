@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDelegatedAdminAccessAssignmentStatus(input string) (*DelegatedAdminAccessAssignmentStatus, error) {
+	vals := map[string]DelegatedAdminAccessAssignmentStatus{
+		"active":   DelegatedAdminAccessAssignmentStatus_Active,
+		"deleted":  DelegatedAdminAccessAssignmentStatus_Deleted,
+		"deleting": DelegatedAdminAccessAssignmentStatus_Deleting,
+		"error":    DelegatedAdminAccessAssignmentStatus_Error,
+		"pending":  DelegatedAdminAccessAssignmentStatus_Pending,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DelegatedAdminAccessAssignmentStatus(input)
+	return &out, nil
+}

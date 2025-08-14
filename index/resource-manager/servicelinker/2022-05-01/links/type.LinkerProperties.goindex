@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicelinker/2022-05-01/links
+import (
+	"encoding/json"
+	"fmt"
+)
+type LinkerProperties struct {
+	AuthInfo          AuthInfoBase      `json:"authInfo"`
+	ClientType        *ClientType       `json:"clientType,omitempty"`
+	ProvisioningState *string           `json:"provisioningState,omitempty"`
+	Scope             *string           `json:"scope,omitempty"`
+	SecretStore       *SecretStore      `json:"secretStore,omitempty"`
+	TargetService     TargetServiceBase `json:"targetService"`
+	VNetSolution      *VNetSolution     `json:"vNetSolution,omitempty"`
+}

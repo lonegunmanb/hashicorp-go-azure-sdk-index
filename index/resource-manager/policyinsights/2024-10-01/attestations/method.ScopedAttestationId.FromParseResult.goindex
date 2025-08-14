@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/policyinsights/2024-10-01/attestations
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *ScopedAttestationId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.ResourceId, ok = input.Parsed["resourceId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceId", input)
+	}
+
+	if id.AttestationName, ok = input.Parsed["attestationName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "attestationName", input)
+	}
+
+	return nil
+}

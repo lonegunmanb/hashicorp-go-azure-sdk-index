@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automanage/2022-05-04/reports
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id Providers2ConfigurationProfileAssignmentReportId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Virtual Machine Name: %q", id.VirtualMachineName),
+		fmt.Sprintf("Configuration Profile Assignment Name: %q", id.ConfigurationProfileAssignmentName),
+		fmt.Sprintf("Report Name: %q", id.ReportName),
+	}
+	return fmt.Sprintf("Providers 2 Configuration Profile Assignment Report (%s)", strings.Join(components, "\n"))
+}

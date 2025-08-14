@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/applicationinsights/2020-11-20/workbooktemplatesapis
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewWorkbookTemplatesAPIsClientWithBaseURI(sdkApi sdkEnv.Api) (*WorkbookTemplatesAPIsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "workbooktemplatesapis", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating WorkbookTemplatesAPIsClient: %+v", err)
+	}
+
+	return &WorkbookTemplatesAPIsClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/appserviceenvironments
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAzureStorageProtocol(input string) (*AzureStorageProtocol, error) {
+	vals := map[string]AzureStorageProtocol{
+		"http": AzureStorageProtocolHTTP,
+		"nfs":  AzureStorageProtocolNfs,
+		"smb":  AzureStorageProtocolSmb,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AzureStorageProtocol(input)
+	return &out, nil
+}

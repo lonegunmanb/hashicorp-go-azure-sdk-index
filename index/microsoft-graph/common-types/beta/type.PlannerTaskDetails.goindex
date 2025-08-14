@@ -1,0 +1,51 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type PlannerTaskDetails struct {
+	// Detailed information about the approval that is attached to the task.
+	ApprovalAttachment PlannerBaseApprovalAttachment `json:"approvalAttachment"`
+
+	// The collection of checklist items on the task.
+	Checklist *PlannerChecklistItems `json:"checklist,omitempty"`
+
+	// Contains detailed information about requirements on the task.
+	CompletionRequirements *PlannerTaskCompletionRequirementDetails `json:"completionRequirements,omitempty"`
+
+	// Description of the task.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// Read-only. Represents a dictionary of data about the forms associated with a task. Each entry in the dictionary is a
+	// key-value pair, and the value is a plannerFormReference object.
+	Forms *PlannerFormsDictionary `json:"forms,omitempty"`
+
+	// Rich text description of the task. To be used by HTML-aware clients. For backwards compatibility, a plain-text
+	// version of the HTML description will be synced to the 'description' field. If this field hasn't previously been set
+	// but 'description' has been, the existing description is synchronized to 'notes' with minimal whitespace-preserving
+	// HTML markup. Setting both 'description' and 'notes' is an error and will result in an exception.
+	Notes *ItemBody `json:"notes,omitempty"`
+
+	// This sets the type of preview that shows up on the task. Possible values are: automatic, noPreview, checklist,
+	// description, reference. When set to automatic the displayed preview is chosen by the app viewing the task.
+	PreviewType *PlannerPreviewType `json:"previewType,omitempty"`
+
+	// The collection of references on the task.
+	References *PlannerExternalReferences `json:"references,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

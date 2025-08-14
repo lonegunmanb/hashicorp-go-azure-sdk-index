@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerinstance/2023-05-01/containerinstance
+
+func (p CachedImagesOperationPredicate) Matches(input CachedImages) bool {
+
+	if p.Image != nil && *p.Image != input.Image {
+		return false
+	}
+
+	if p.OsType != nil && *p.OsType != input.OsType {
+		return false
+	}
+
+	return true
+}

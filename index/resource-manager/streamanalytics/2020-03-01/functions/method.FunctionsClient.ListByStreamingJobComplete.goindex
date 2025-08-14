@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/streamanalytics/2020-03-01/functions
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c FunctionsClient) ListByStreamingJobComplete(ctx context.Context, id StreamingJobId, options ListByStreamingJobOperationOptions) (ListByStreamingJobCompleteResult, error) {
+	return c.ListByStreamingJobCompleteMatchingPredicate(ctx, id, options, FunctionOperationPredicate{})
+}

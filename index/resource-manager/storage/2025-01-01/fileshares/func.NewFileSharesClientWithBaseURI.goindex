@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-01-01/fileshares
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewFileSharesClientWithBaseURI(sdkApi sdkEnv.Api) (*FileSharesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "fileshares", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating FileSharesClient: %+v", err)
+	}
+
+	return &FileSharesClient{
+		Client: client,
+	}, nil
+}

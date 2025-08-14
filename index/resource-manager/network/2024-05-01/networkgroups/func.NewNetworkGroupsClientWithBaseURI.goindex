@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-05-01/networkgroups
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewNetworkGroupsClientWithBaseURI(sdkApi sdkEnv.Api) (*NetworkGroupsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "networkgroups", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating NetworkGroupsClient: %+v", err)
+	}
+
+	return &NetworkGroupsClient{
+		Client: client,
+	}, nil
+}

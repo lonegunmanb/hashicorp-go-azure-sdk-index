@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeviceManagementConfigurationStringFormat(input string) (*DeviceManagementConfigurationStringFormat, error) {
+	vals := map[string]DeviceManagementConfigurationStringFormat{
+		"base64":     DeviceManagementConfigurationStringFormat_Base64,
+		"bashscript": DeviceManagementConfigurationStringFormat_BashScript,
+		"binary":     DeviceManagementConfigurationStringFormat_Binary,
+		"date":       DeviceManagementConfigurationStringFormat_Date,
+		"datetime":   DeviceManagementConfigurationStringFormat_DateTime,
+		"email":      DeviceManagementConfigurationStringFormat_Email,
+		"guid":       DeviceManagementConfigurationStringFormat_Guid,
+		"ip":         DeviceManagementConfigurationStringFormat_Ip,
+		"json":       DeviceManagementConfigurationStringFormat_Json,
+		"none":       DeviceManagementConfigurationStringFormat_None,
+		"regex":      DeviceManagementConfigurationStringFormat_RegEx,
+		"surfacehub": DeviceManagementConfigurationStringFormat_SurfaceHub,
+		"time":       DeviceManagementConfigurationStringFormat_Time,
+		"url":        DeviceManagementConfigurationStringFormat_Url,
+		"version":    DeviceManagementConfigurationStringFormat_Version,
+		"xml":        DeviceManagementConfigurationStringFormat_Xml,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceManagementConfigurationStringFormat(input)
+	return &out, nil
+}

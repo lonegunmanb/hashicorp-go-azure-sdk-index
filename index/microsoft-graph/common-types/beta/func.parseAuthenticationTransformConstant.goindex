@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAuthenticationTransformConstant(input string) (*AuthenticationTransformConstant, error) {
+	vals := map[string]AuthenticationTransformConstant{
+		"aes128gcm":   AuthenticationTransformConstant_Aes128Gcm,
+		"aes192gcm":   AuthenticationTransformConstant_Aes192Gcm,
+		"aes256gcm":   AuthenticationTransformConstant_Aes256Gcm,
+		"md5_96":      AuthenticationTransformConstant_Md596,
+		"sha1_96":     AuthenticationTransformConstant_Sha196,
+		"sha_256_128": AuthenticationTransformConstant_Sha256128,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AuthenticationTransformConstant(input)
+	return &out, nil
+}

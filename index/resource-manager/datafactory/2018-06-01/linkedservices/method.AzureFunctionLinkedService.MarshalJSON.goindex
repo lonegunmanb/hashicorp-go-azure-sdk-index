@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/linkedservices
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s AzureFunctionLinkedService) MarshalJSON() ([]byte, error) {
+	type wrapper AzureFunctionLinkedService
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AzureFunctionLinkedService: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AzureFunctionLinkedService: %+v", err)
+	}
+
+	decoded["type"] = "AzureFunction"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AzureFunctionLinkedService: %+v", err)
+	}
+
+	return encoded, nil
+}

@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWeekIndex(input string) (*WeekIndex, error) {
+	vals := map[string]WeekIndex{
+		"first":  WeekIndex_First,
+		"fourth": WeekIndex_Fourth,
+		"last":   WeekIndex_Last,
+		"second": WeekIndex_Second,
+		"third":  WeekIndex_Third,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WeekIndex(input)
+	return &out, nil
+}

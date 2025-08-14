@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/sqlpoolssecurityalertpolicies
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSqlPoolsSecurityAlertPoliciesClientWithBaseURI(sdkApi sdkEnv.Api) (*SqlPoolsSecurityAlertPoliciesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "sqlpoolssecurityalertpolicies", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SqlPoolsSecurityAlertPoliciesClient: %+v", err)
+	}
+
+	return &SqlPoolsSecurityAlertPoliciesClient{
+		Client: client,
+	}, nil
+}

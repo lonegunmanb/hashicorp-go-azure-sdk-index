@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2019-11-01/emailregistration
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *LocationId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.LocationName, ok = input.Parsed["locationName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "locationName", input)
+	}
+
+	return nil
+}

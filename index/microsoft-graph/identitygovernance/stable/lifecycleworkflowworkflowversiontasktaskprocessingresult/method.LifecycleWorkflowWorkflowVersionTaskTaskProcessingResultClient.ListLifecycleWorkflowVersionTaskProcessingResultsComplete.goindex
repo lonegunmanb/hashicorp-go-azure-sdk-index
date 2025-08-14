@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/lifecycleworkflowworkflowversiontasktaskprocessingresult
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c LifecycleWorkflowWorkflowVersionTaskTaskProcessingResultClient) ListLifecycleWorkflowVersionTaskProcessingResultsComplete(ctx context.Context, id stable.IdentityGovernanceLifecycleWorkflowWorkflowIdVersionIdTaskId, options ListLifecycleWorkflowVersionTaskProcessingResultsOperationOptions) (ListLifecycleWorkflowVersionTaskProcessingResultsCompleteResult, error) {
+	return c.ListLifecycleWorkflowVersionTaskProcessingResultsCompleteMatchingPredicate(ctx, id, options, IdentityGovernanceTaskProcessingResultOperationPredicate{})
+}

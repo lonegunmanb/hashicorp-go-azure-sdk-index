@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id MeProfileAnniversaryId) String() string {
+	components := []string{
+		fmt.Sprintf("Person Annual Event: %q", id.PersonAnnualEventId),
+	}
+	return fmt.Sprintf("Me Profile Anniversary (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/giminorversions
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ListByParentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.ShapeFamily != nil {
+		out.Append("shapeFamily", fmt.Sprintf("%v", *o.ShapeFamily))
+	}
+	if o.Zone != nil {
+		out.Append("zone", fmt.Sprintf("%v", *o.Zone))
+	}
+	return &out
+}

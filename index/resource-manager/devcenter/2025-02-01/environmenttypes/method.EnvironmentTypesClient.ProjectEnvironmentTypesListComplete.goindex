@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/environmenttypes
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c EnvironmentTypesClient) ProjectEnvironmentTypesListComplete(ctx context.Context, id ProjectId, options ProjectEnvironmentTypesListOperationOptions) (ProjectEnvironmentTypesListCompleteResult, error) {
+	return c.ProjectEnvironmentTypesListCompleteMatchingPredicate(ctx, id, options, ProjectEnvironmentTypeOperationPredicate{})
+}

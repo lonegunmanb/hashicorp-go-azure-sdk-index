@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/sitelistitem
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SiteListItemClient) ListSiteListItemsComplete(ctx context.Context, id stable.GroupIdSiteIdListId, options ListSiteListItemsOperationOptions) (ListSiteListItemsCompleteResult, error) {
+	return c.ListSiteListItemsCompleteMatchingPredicate(ctx, id, options, ListItemOperationPredicate{})
+}

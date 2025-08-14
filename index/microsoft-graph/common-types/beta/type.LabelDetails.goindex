@@ -1,0 +1,43 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type LabelDetails struct {
+
+	// Fields inherited from ParentLabelDetails
+
+	// The color that the user interface should display for the label, if configured.
+	Color nullable.Type[string] `json:"color,omitempty"`
+
+	// The admin-defined description for the label.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// The label ID is a globally unique identifier (GUID).
+	Id nullable.Type[string] `json:"id,omitempty"`
+
+	// Indicates whether the label is active or not. Active labels should be hidden or disabled in user interfaces.
+	IsActive *bool `json:"isActive,omitempty"`
+
+	// The plaintext name of the label.
+	Name nullable.Type[string] `json:"name,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	Parent ParentLabelDetails `json:"parent"`
+
+	// The sensitivity value of the label, where lower is less sensitive.
+	Sensitivity *int64 `json:"sensitivity,omitempty"`
+
+	// The tooltip that should be displayed for the label in a user interface.
+	Tooltip nullable.Type[string] `json:"tooltip,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

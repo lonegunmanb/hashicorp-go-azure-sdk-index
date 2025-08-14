@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNetworkaccessAggregationFilter(input string) (*NetworkaccessAggregationFilter, error) {
+	vals := map[string]NetworkaccessAggregationFilter{
+		"bytesreceived": NetworkaccessAggregationFilter_BytesReceived,
+		"bytessent":     NetworkaccessAggregationFilter_BytesSent,
+		"devices":       NetworkaccessAggregationFilter_Devices,
+		"totalbytes":    NetworkaccessAggregationFilter_TotalBytes,
+		"transactions":  NetworkaccessAggregationFilter_Transactions,
+		"users":         NetworkaccessAggregationFilter_Users,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NetworkaccessAggregationFilter(input)
+	return &out, nil
+}

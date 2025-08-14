@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/applicationinsights/2015-05-01/favoritesapis
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o FavoritesListOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.CanFetchContent != nil {
+		out.Append("canFetchContent", fmt.Sprintf("%v", *o.CanFetchContent))
+	}
+	if o.FavoriteType != nil {
+		out.Append("favoriteType", fmt.Sprintf("%v", *o.FavoriteType))
+	}
+	if o.SourceType != nil {
+		out.Append("sourceType", fmt.Sprintf("%v", *o.SourceType))
+	}
+	if o.Tags != nil {
+		out.Append("tags", fmt.Sprintf("%v", *o.Tags))
+	}
+	return &out
+}

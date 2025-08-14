@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2024-04-01/migrationrecoverypoints
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c MigrationRecoveryPointsClient) ListByReplicationMigrationItemsCompleteMatchingPredicate(ctx context.Context, id ReplicationMigrationItemId, predicate MigrationRecoveryPointOperationPredicate) (result ListByReplicationMigrationItemsCompleteResult, err error) {
+	items := make([]MigrationRecoveryPoint, 0)
+
+	resp, err := c.ListByReplicationMigrationItems(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByReplicationMigrationItemsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

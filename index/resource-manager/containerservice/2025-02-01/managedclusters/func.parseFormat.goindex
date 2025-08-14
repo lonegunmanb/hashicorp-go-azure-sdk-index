@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerservice/2025-02-01/managedclusters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseFormat(input string) (*Format, error) {
+	vals := map[string]Format{
+		"azure": FormatAzure,
+		"exec":  FormatExec,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Format(input)
+	return &out, nil
+}

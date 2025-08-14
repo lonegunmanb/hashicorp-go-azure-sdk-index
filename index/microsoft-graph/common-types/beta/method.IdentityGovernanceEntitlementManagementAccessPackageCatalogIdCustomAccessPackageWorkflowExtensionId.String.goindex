@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id IdentityGovernanceEntitlementManagementAccessPackageCatalogIdCustomAccessPackageWorkflowExtensionId) String() string {
+	components := []string{
+		fmt.Sprintf("Access Package Catalog: %q", id.AccessPackageCatalogId),
+		fmt.Sprintf("Custom Access Package Workflow Extension: %q", id.CustomAccessPackageWorkflowExtensionId),
+	}
+	return fmt.Sprintf("Identity Governance Entitlement Management Access Package Catalog Id Custom Access Package Workflow Extension (%s)", strings.Join(components, "\n"))
+}

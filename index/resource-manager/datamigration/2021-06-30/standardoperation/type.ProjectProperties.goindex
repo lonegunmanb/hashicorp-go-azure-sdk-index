@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/standardoperation
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type ProjectProperties struct {
+	CreationTime         *string                   `json:"creationTime,omitempty"`
+	DatabasesInfo        *[]DatabaseInfo           `json:"databasesInfo,omitempty"`
+	ProvisioningState    *ProjectProvisioningState `json:"provisioningState,omitempty"`
+	SourceConnectionInfo ConnectionInfo            `json:"sourceConnectionInfo"`
+	SourcePlatform       ProjectSourcePlatform     `json:"sourcePlatform"`
+	TargetConnectionInfo ConnectionInfo            `json:"targetConnectionInfo"`
+	TargetPlatform       ProjectTargetPlatform     `json:"targetPlatform"`
+}

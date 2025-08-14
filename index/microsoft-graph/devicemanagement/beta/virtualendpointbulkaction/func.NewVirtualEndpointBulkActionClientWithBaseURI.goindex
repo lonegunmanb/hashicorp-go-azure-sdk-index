@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/virtualendpointbulkaction
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewVirtualEndpointBulkActionClientWithBaseURI(sdkApi sdkEnv.Api) (*VirtualEndpointBulkActionClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "virtualendpointbulkaction", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating VirtualEndpointBulkActionClient: %+v", err)
+	}
+
+	return &VirtualEndpointBulkActionClient{
+		Client: client,
+	}, nil
+}

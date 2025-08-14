@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/subscription/v2021_10_01
+import (
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/subscription/2021-10-01/subscriptions"
+)
+func NewClientWithBaseURI(endpoint string, configureAuthFunc func(c *autorest.Client)) Client {
+
+	subscriptionsClient := subscriptions.NewSubscriptionsClientWithBaseURI(endpoint)
+	configureAuthFunc(&subscriptionsClient.Client)
+
+	return Client{
+		Subscriptions: &subscriptionsClient,
+	}
+}

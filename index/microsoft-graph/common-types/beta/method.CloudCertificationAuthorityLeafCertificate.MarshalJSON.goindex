@@ -1,0 +1,50 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s CloudCertificationAuthorityLeafCertificate) MarshalJSON() ([]byte, error) {
+	type wrapper CloudCertificationAuthorityLeafCertificate
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling CloudCertificationAuthorityLeafCertificate: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling CloudCertificationAuthorityLeafCertificate: %+v", err)
+	}
+
+	delete(decoded, "certificationAuthorityIssuerUri")
+	delete(decoded, "crlDistributionPointUrl")
+	delete(decoded, "deviceId")
+	delete(decoded, "deviceName")
+	delete(decoded, "devicePlatform")
+	delete(decoded, "extendedKeyUsages")
+	delete(decoded, "issuerId")
+	delete(decoded, "issuerName")
+	delete(decoded, "keyUsages")
+	delete(decoded, "ocspResponderUri")
+	delete(decoded, "revocationDateTime")
+	delete(decoded, "serialNumber")
+	delete(decoded, "subjectName")
+	delete(decoded, "thumbprint")
+	delete(decoded, "userId")
+	delete(decoded, "userPrincipalName")
+	delete(decoded, "validityEndDateTime")
+	delete(decoded, "validityStartDateTime")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.cloudCertificationAuthorityLeafCertificate"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling CloudCertificationAuthorityLeafCertificate: %+v", err)
+	}
+
+	return encoded, nil
+}

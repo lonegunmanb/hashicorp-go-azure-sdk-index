@@ -1,0 +1,65 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalPrivilegeEscalationFindingImplementation(input []byte) (PrivilegeEscalationFinding, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling PrivilegeEscalationFinding into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.privilegeEscalationAwsResourceFinding") {
+		var out PrivilegeEscalationAwsResourceFinding
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into PrivilegeEscalationAwsResourceFinding: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.privilegeEscalationAwsRoleFinding") {
+		var out PrivilegeEscalationAwsRoleFinding
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into PrivilegeEscalationAwsRoleFinding: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.privilegeEscalationGcpServiceAccountFinding") {
+		var out PrivilegeEscalationGcpServiceAccountFinding
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into PrivilegeEscalationGcpServiceAccountFinding: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.privilegeEscalationUserFinding") {
+		var out PrivilegeEscalationUserFinding
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into PrivilegeEscalationUserFinding: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BasePrivilegeEscalationFindingImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BasePrivilegeEscalationFindingImpl: %+v", err)
+	}
+
+	return RawPrivilegeEscalationFindingImpl{
+		privilegeEscalationFinding: parent,
+		Type:                       value,
+		Values:                     temp,
+	}, nil
+
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/redhatopenshift/2023-09-04/syncidentityproviders
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSyncIdentityProvidersClientWithBaseURI(sdkApi sdkEnv.Api) (*SyncIdentityProvidersClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "syncidentityproviders", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SyncIdentityProvidersClient: %+v", err)
+	}
+
+	return &SyncIdentityProvidersClient{
+		Client: client,
+	}, nil
+}

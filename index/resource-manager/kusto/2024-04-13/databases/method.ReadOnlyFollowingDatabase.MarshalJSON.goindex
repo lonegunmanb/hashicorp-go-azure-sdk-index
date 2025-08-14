@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/kusto/2024-04-13/databases
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s ReadOnlyFollowingDatabase) MarshalJSON() ([]byte, error) {
+	type wrapper ReadOnlyFollowingDatabase
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ReadOnlyFollowingDatabase: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ReadOnlyFollowingDatabase: %+v", err)
+	}
+
+	decoded["kind"] = "ReadOnlyFollowing"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ReadOnlyFollowingDatabase: %+v", err)
+	}
+
+	return encoded, nil
+}

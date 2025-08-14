@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/directoryroleeligibilityschedulerequestprincipal
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDirectoryRoleEligibilityScheduleRequestPrincipalClientWithBaseURI(sdkApi sdkEnv.Api) (*DirectoryRoleEligibilityScheduleRequestPrincipalClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "directoryroleeligibilityschedulerequestprincipal", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DirectoryRoleEligibilityScheduleRequestPrincipalClient: %+v", err)
+	}
+
+	return &DirectoryRoleEligibilityScheduleRequestPrincipalClient{
+		Client: client,
+	}, nil
+}

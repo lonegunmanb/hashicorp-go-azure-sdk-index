@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id PolicyAuthorizationPolicyIdDefaultUserRoleOverrideId) String() string {
+	components := []string{
+		fmt.Sprintf("Authorization Policy: %q", id.AuthorizationPolicyId),
+		fmt.Sprintf("Default User Role Override: %q", id.DefaultUserRoleOverrideId),
+	}
+	return fmt.Sprintf("Policy Authorization Policy Id Default User Role Override (%s)", strings.Join(components, "\n"))
+}

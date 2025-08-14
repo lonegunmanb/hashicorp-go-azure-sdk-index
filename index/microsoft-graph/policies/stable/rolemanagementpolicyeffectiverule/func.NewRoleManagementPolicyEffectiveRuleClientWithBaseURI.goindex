@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/stable/rolemanagementpolicyeffectiverule
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewRoleManagementPolicyEffectiveRuleClientWithBaseURI(sdkApi sdkEnv.Api) (*RoleManagementPolicyEffectiveRuleClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "rolemanagementpolicyeffectiverule", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating RoleManagementPolicyEffectiveRuleClient: %+v", err)
+	}
+
+	return &RoleManagementPolicyEffectiveRuleClient{
+		Client: client,
+	}, nil
+}

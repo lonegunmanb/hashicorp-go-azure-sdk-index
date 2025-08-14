@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerinstance/2023-05-01/containerinstance
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ContainersListLogsOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.Tail != nil {
+		out.Append("tail", fmt.Sprintf("%v", *o.Tail))
+	}
+	if o.Timestamps != nil {
+		out.Append("timestamps", fmt.Sprintf("%v", *o.Timestamps))
+	}
+	return &out
+}

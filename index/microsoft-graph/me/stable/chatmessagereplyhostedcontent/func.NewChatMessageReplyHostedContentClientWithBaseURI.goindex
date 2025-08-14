@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/chatmessagereplyhostedcontent
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewChatMessageReplyHostedContentClientWithBaseURI(sdkApi sdkEnv.Api) (*ChatMessageReplyHostedContentClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "chatmessagereplyhostedcontent", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ChatMessageReplyHostedContentClient: %+v", err)
+	}
+
+	return &ChatMessageReplyHostedContentClient{
+		Client: client,
+	}, nil
+}

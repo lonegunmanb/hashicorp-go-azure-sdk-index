@@ -1,0 +1,44 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s ManagedTenantsCloudPCDevice) MarshalJSON() ([]byte, error) {
+	type wrapper ManagedTenantsCloudPCDevice
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ManagedTenantsCloudPCDevice: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ManagedTenantsCloudPCDevice: %+v", err)
+	}
+
+	delete(decoded, "cloudPcStatus")
+	delete(decoded, "deviceSpecification")
+	delete(decoded, "displayName")
+	delete(decoded, "lastRefreshedDateTime")
+	delete(decoded, "managedDeviceId")
+	delete(decoded, "managedDeviceName")
+	delete(decoded, "provisioningPolicyId")
+	delete(decoded, "servicePlanName")
+	delete(decoded, "servicePlanType")
+	delete(decoded, "tenantDisplayName")
+	delete(decoded, "tenantId")
+	delete(decoded, "userPrincipalName")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.managedTenants.cloudPcDevice"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ManagedTenantsCloudPCDevice: %+v", err)
+	}
+
+	return encoded, nil
+}

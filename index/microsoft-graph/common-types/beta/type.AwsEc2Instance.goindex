@@ -1,0 +1,39 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type AwsEc2Instance struct {
+	// Represents the resources in an authorization system.
+	Resource *AwsAuthorizationSystemResource `json:"resource,omitempty"`
+
+	// Fields inherited from AuthorizationSystemIdentity
+
+	// Navigation to the authorizationSystem object
+	AuthorizationSystem *AuthorizationSystem `json:"authorizationSystem,omitempty"`
+
+	// The name of the identity. Read-only. Supports $filter and (eq,contains).
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// Unique ID of the identity within the external system. Read-only.
+	ExternalId *string `json:"externalId,omitempty"`
+
+	// Represents details of the source of the identity.
+	Source AuthorizationSystemIdentitySource `json:"source"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

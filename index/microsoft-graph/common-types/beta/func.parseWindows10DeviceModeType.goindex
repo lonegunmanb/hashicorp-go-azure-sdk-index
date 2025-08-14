@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWindows10DeviceModeType(input string) (*Windows10DeviceModeType, error) {
+	vals := map[string]Windows10DeviceModeType{
+		"smodeconfiguration":    Windows10DeviceModeType_SModeConfiguration,
+		"standardconfiguration": Windows10DeviceModeType_StandardConfiguration,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10DeviceModeType(input)
+	return &out, nil
+}

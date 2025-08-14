@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeviceManagementConfigurationTechnologies(input string) (*DeviceManagementConfigurationTechnologies, error) {
+	vals := map[string]DeviceManagementConfigurationTechnologies{
+		"android":                     DeviceManagementConfigurationTechnologies_Android,
+		"appleremotemanagement":       DeviceManagementConfigurationTechnologies_AppleRemoteManagement,
+		"configmanager":               DeviceManagementConfigurationTechnologies_ConfigManager,
+		"documentgateway":             DeviceManagementConfigurationTechnologies_DocumentGateway,
+		"endpointprivilegemanagement": DeviceManagementConfigurationTechnologies_EndpointPrivilegeManagement,
+		"enrollment":                  DeviceManagementConfigurationTechnologies_Enrollment,
+		"exchangeonline":              DeviceManagementConfigurationTechnologies_ExchangeOnline,
+		"intunemanagementextension":   DeviceManagementConfigurationTechnologies_IntuneManagementExtension,
+		"linuxmdm":                    DeviceManagementConfigurationTechnologies_LinuxMdm,
+		"mdm":                         DeviceManagementConfigurationTechnologies_Mdm,
+		"microsoftsense":              DeviceManagementConfigurationTechnologies_MicrosoftSense,
+		"mobileapplicationmanagement": DeviceManagementConfigurationTechnologies_MobileApplicationManagement,
+		"none":                        DeviceManagementConfigurationTechnologies_None,
+		"thirdparty":                  DeviceManagementConfigurationTechnologies_ThirdParty,
+		"windows10xmanagement":        DeviceManagementConfigurationTechnologies_Windows10XManagement,
+		"windowsosrecovery":           DeviceManagementConfigurationTechnologies_WindowsOsRecovery,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceManagementConfigurationTechnologies(input)
+	return &out, nil
+}

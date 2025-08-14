@@ -1,0 +1,53 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseConditionalAccessRule(input string) (*ConditionalAccessRule, error) {
+	vals := map[string]ConditionalAccessRule{
+		"acr":                               ConditionalAccessRule_Acr,
+		"allapps":                           ConditionalAccessRule_AllApps,
+		"alldeviceplatforms":                ConditionalAccessRule_AllDevicePlatforms,
+		"alldevicestates":                   ConditionalAccessRule_AllDeviceStates,
+		"alldevices":                        ConditionalAccessRule_AllDevices,
+		"alllocations":                      ConditionalAccessRule_AllLocations,
+		"alltrustedlocations":               ConditionalAccessRule_AllTrustedLocations,
+		"allusers":                          ConditionalAccessRule_AllUsers,
+		"anonymizedipaddress":               ConditionalAccessRule_AnonymizedIPAddress,
+		"appfilter":                         ConditionalAccessRule_AppFilter,
+		"appid":                             ConditionalAccessRule_AppId,
+		"authenticationtransfer":            ConditionalAccessRule_AuthenticationTransfer,
+		"b2bcollaborationguest":             ConditionalAccessRule_B2bCollaborationGuest,
+		"b2bcollaborationmember":            ConditionalAccessRule_B2bCollaborationMember,
+		"b2bdirectconnectuser":              ConditionalAccessRule_B2bDirectConnectUser,
+		"devicecodeflow":                    ConditionalAccessRule_DeviceCodeFlow,
+		"devicefilter":                      ConditionalAccessRule_DeviceFilter,
+		"devicefilterincluderulenotmatched": ConditionalAccessRule_DeviceFilterIncludeRuleNotMatched,
+		"deviceplatform":                    ConditionalAccessRule_DevicePlatform,
+		"devicestate":                       ConditionalAccessRule_DeviceState,
+		"firstpartyapps":                    ConditionalAccessRule_FirstPartyApps,
+		"groupid":                           ConditionalAccessRule_GroupId,
+		"guest":                             ConditionalAccessRule_Guest,
+		"insidecorpnet":                     ConditionalAccessRule_InsideCorpnet,
+		"insiderrisk":                       ConditionalAccessRule_InsiderRisk,
+		"internalguest":                     ConditionalAccessRule_InternalGuest,
+		"locationid":                        ConditionalAccessRule_LocationId,
+		"microsoftadminportals":             ConditionalAccessRule_MicrosoftAdminPortals,
+		"nationstateipaddress":              ConditionalAccessRule_NationStateIPAddress,
+		"office365":                         ConditionalAccessRule_Office365,
+		"otherexternaluser":                 ConditionalAccessRule_OtherExternalUser,
+		"realtimethreatintelligence":        ConditionalAccessRule_RealTimeThreatIntelligence,
+		"roleid":                            ConditionalAccessRule_RoleId,
+		"serviceprovider":                   ConditionalAccessRule_ServiceProvider,
+		"unfamiliarfeatures":                ConditionalAccessRule_UnfamiliarFeatures,
+		"userid":                            ConditionalAccessRule_UserId,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ConditionalAccessRule(input)
+	return &out, nil
+}

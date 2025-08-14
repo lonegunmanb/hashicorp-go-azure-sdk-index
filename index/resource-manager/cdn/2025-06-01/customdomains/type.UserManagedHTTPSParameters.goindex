@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/customdomains
+import (
+	"encoding/json"
+	"fmt"
+)
+type UserManagedHTTPSParameters struct {
+	CertificateSourceParameters KeyVaultCertificateSourceParameters `json:"certificateSourceParameters"`
+
+	// Fields inherited from CustomDomainHTTPSParameters
+
+	CertificateSource CertificateSource  `json:"certificateSource"`
+	MinimumTlsVersion *MinimumTlsVersion `json:"minimumTlsVersion,omitempty"`
+	ProtocolType      ProtocolType       `json:"protocolType"`
+}

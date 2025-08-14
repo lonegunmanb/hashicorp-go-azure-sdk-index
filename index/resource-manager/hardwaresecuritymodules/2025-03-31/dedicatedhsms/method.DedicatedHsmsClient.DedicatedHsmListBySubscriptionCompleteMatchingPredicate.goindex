@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hardwaresecuritymodules/2025-03-31/dedicatedhsms
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DedicatedHsmsClient) DedicatedHsmListBySubscriptionCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, options DedicatedHsmListBySubscriptionOperationOptions, predicate DedicatedHsmOperationPredicate) (result DedicatedHsmListBySubscriptionCompleteResult, err error) {
+	items := make([]DedicatedHsm, 0)
+
+	resp, err := c.DedicatedHsmListBySubscription(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = DedicatedHsmListBySubscriptionCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

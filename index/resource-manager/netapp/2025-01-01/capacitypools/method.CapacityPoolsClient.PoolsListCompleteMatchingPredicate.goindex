@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-01-01/capacitypools
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c CapacityPoolsClient) PoolsListCompleteMatchingPredicate(ctx context.Context, id NetAppAccountId, predicate CapacityPoolOperationPredicate) (result PoolsListCompleteResult, err error) {
+	items := make([]CapacityPool, 0)
+
+	resp, err := c.PoolsList(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = PoolsListCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

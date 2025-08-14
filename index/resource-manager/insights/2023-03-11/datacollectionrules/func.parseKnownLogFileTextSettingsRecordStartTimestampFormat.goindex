@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2023-03-11/datacollectionrules
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseKnownLogFileTextSettingsRecordStartTimestampFormat(input string) (*KnownLogFileTextSettingsRecordStartTimestampFormat, error) {
+	vals := map[string]KnownLogFileTextSettingsRecordStartTimestampFormat{
+		"dd/mmm/yyyy:hh:mm:ss zzz": KnownLogFileTextSettingsRecordStartTimestampFormatDdMMMYyyyHHMmSsZzz,
+		"ddmmyy hh:mm:ss":          KnownLogFileTextSettingsRecordStartTimestampFormatDdMMyyHHMmSs,
+		"iso 8601":                 KnownLogFileTextSettingsRecordStartTimestampFormatISOEightSixZeroOne,
+		"m/d/yyyy hh:mm:ss am/pm":  KnownLogFileTextSettingsRecordStartTimestampFormatMDYYYYHHMMSSAMPM,
+		"mmm d hh:mm:ss":           KnownLogFileTextSettingsRecordStartTimestampFormatMMMDHhMmSs,
+		"mon dd, yyyy hh:mm:ss":    KnownLogFileTextSettingsRecordStartTimestampFormatMonDDYYYYHHMMSS,
+		"yyyy-mm-dd hh:mm:ss":      KnownLogFileTextSettingsRecordStartTimestampFormatYYYYNegativeMMNegativeDDHHMMSS,
+		"yymmdd hh:mm:ss":          KnownLogFileTextSettingsRecordStartTimestampFormatYyMMddHHMmSs,
+		"yyyy-mm-ddthh:mm:ssk":     KnownLogFileTextSettingsRecordStartTimestampFormatYyyyNegativeMMNegativeddTHHMmSsK,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := KnownLogFileTextSettingsRecordStartTimestampFormat(input)
+	return &out, nil
+}

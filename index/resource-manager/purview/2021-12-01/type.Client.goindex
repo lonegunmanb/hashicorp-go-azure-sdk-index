@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/purview/v2021_12_01
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/purview/2021-12-01/account"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/purview/2021-12-01/defaultaccount"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/purview/2021-12-01/feature"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/purview/2021-12-01/kafkaconfiguration"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/purview/2021-12-01/privateendpointconnection"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/purview/2021-12-01/privatelinkresource"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/purview/2021-12-01/provider"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/purview/2021-12-01/usages"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	Account                   *account.AccountClient
+	DefaultAccount            *defaultaccount.DefaultAccountClient
+	Feature                   *feature.FeatureClient
+	KafkaConfiguration        *kafkaconfiguration.KafkaConfigurationClient
+	PrivateEndpointConnection *privateendpointconnection.PrivateEndpointConnectionClient
+	PrivateLinkResource       *privatelinkresource.PrivateLinkResourceClient
+	Provider                  *provider.ProviderClient
+	Usages                    *usages.UsagesClient
+}

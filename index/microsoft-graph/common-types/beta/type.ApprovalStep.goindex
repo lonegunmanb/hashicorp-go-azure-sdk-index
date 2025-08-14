@@ -1,0 +1,45 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ApprovalStep struct {
+	// Indicates whether the step is assigned to the calling user to review. Read-only.
+	AssignedToMe nullable.Type[bool] `json:"assignedToMe,omitempty"`
+
+	// The label provided by the policy creator to identify an approval step. Read-only.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// The justification associated with the approval step decision.
+	Justification nullable.Type[string] `json:"justification,omitempty"`
+
+	// The result of this approval record. Possible values include: NotReviewed, Approved, Denied.
+	ReviewResult nullable.Type[string] `json:"reviewResult,omitempty"`
+
+	// The identifier of the reviewer. 00000000-0000-0000-0000-000000000000 if the assigned reviewer hasn't reviewed.
+	// Read-only.
+	ReviewedBy *Identity `json:"reviewedBy,omitempty"`
+
+	// The date and time when a decision was recorded. The date and time information uses ISO 8601 format and is always in
+	// UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
+	ReviewedDateTime nullable.Type[string] `json:"reviewedDateTime,omitempty"`
+
+	// The step status. Possible values: InProgress, Initializing, Completed, Expired. Read-only.
+	Status nullable.Type[string] `json:"status,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

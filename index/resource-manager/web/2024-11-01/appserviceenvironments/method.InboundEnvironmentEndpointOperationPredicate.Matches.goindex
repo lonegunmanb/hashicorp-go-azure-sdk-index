@@ -1,0 +1,10 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-11-01/appserviceenvironments
+
+func (p InboundEnvironmentEndpointOperationPredicate) Matches(input InboundEnvironmentEndpoint) bool {
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	return true
+}

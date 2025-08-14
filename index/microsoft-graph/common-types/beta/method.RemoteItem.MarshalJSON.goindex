@@ -1,0 +1,45 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s RemoteItem) MarshalJSON() ([]byte, error) {
+	type wrapper RemoteItem
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling RemoteItem: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling RemoteItem: %+v", err)
+	}
+
+	delete(decoded, "createdBy")
+	delete(decoded, "createdDateTime")
+	delete(decoded, "file")
+	delete(decoded, "fileSystemInfo")
+	delete(decoded, "folder")
+	delete(decoded, "id")
+	delete(decoded, "image")
+	delete(decoded, "lastModifiedBy")
+	delete(decoded, "lastModifiedDateTime")
+	delete(decoded, "name")
+	delete(decoded, "package")
+	delete(decoded, "parentReference")
+	delete(decoded, "shared")
+	delete(decoded, "sharepointIds")
+	delete(decoded, "size")
+	delete(decoded, "video")
+	delete(decoded, "webUrl")
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling RemoteItem: %+v", err)
+	}
+
+	return encoded, nil
+}

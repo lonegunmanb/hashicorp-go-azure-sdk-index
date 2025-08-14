@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/security
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSecurityClientWithBaseURI(sdkApi sdkEnv.Api) (*SecurityClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "security", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SecurityClient: %+v", err)
+	}
+
+	return &SecurityClient{
+		Client: client,
+	}, nil
+}

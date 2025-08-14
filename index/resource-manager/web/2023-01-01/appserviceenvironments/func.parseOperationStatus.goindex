@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/appserviceenvironments
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseOperationStatus(input string) (*OperationStatus, error) {
+	vals := map[string]OperationStatus{
+		"created":    OperationStatusCreated,
+		"failed":     OperationStatusFailed,
+		"inprogress": OperationStatusInProgress,
+		"succeeded":  OperationStatusSucceeded,
+		"timedout":   OperationStatusTimedOut,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := OperationStatus(input)
+	return &out, nil
+}

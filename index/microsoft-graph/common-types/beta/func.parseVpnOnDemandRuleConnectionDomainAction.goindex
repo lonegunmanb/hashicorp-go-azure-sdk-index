@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVpnOnDemandRuleConnectionDomainAction(input string) (*VpnOnDemandRuleConnectionDomainAction, error) {
+	vals := map[string]VpnOnDemandRuleConnectionDomainAction{
+		"connectifneeded": VpnOnDemandRuleConnectionDomainAction_ConnectIfNeeded,
+		"neverconnect":    VpnOnDemandRuleConnectionDomainAction_NeverConnect,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VpnOnDemandRuleConnectionDomainAction(input)
+	return &out, nil
+}

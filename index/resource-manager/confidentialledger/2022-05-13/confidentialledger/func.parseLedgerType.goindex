@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/confidentialledger/2022-05-13/confidentialledger
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseLedgerType(input string) (*LedgerType, error) {
+	vals := map[string]LedgerType{
+		"private": LedgerTypePrivate,
+		"public":  LedgerTypePublic,
+		"unknown": LedgerTypeUnknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := LedgerType(input)
+	return &out, nil
+}

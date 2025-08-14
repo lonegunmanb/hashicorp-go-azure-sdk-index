@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/databricks/2022-04-01-preview/workspaces
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEncryptionKeySource(input string) (*EncryptionKeySource, error) {
+	vals := map[string]EncryptionKeySource{
+		"microsoft.keyvault": EncryptionKeySourceMicrosoftPointKeyvault,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EncryptionKeySource(input)
+	return &out, nil
+}

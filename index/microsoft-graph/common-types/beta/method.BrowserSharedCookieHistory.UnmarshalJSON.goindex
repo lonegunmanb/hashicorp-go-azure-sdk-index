@@ -1,0 +1,48 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *BrowserSharedCookieHistory) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		Comment           nullable.Type[string]                 `json:"comment,omitempty"`
+		DisplayName       *string                               `json:"displayName,omitempty"`
+		HostOnly          *bool                                 `json:"hostOnly,omitempty"`
+		HostOrDomain      nullable.Type[string]                 `json:"hostOrDomain,omitempty"`
+		ODataId           *string                               `json:"@odata.id,omitempty"`
+		ODataType         *string                               `json:"@odata.type,omitempty"`
+		Path              nullable.Type[string]                 `json:"path,omitempty"`
+		PublishedDateTime *string                               `json:"publishedDateTime,omitempty"`
+		SourceEnvironment *BrowserSharedCookieSourceEnvironment `json:"sourceEnvironment,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.Comment = decoded.Comment
+	s.DisplayName = decoded.DisplayName
+	s.HostOnly = decoded.HostOnly
+	s.HostOrDomain = decoded.HostOrDomain
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.Path = decoded.Path
+	s.PublishedDateTime = decoded.PublishedDateTime
+	s.SourceEnvironment = decoded.SourceEnvironment
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling BrowserSharedCookieHistory into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["lastModifiedBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'LastModifiedBy' for 'BrowserSharedCookieHistory': %+v", err)
+		}
+		s.LastModifiedBy = impl
+	}
+
+	return nil
+}

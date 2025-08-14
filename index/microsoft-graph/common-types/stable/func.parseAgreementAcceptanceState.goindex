@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAgreementAcceptanceState(input string) (*AgreementAcceptanceState, error) {
+	vals := map[string]AgreementAcceptanceState{
+		"accepted": AgreementAcceptanceState_Accepted,
+		"declined": AgreementAcceptanceState_Declined,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AgreementAcceptanceState(input)
+	return &out, nil
+}

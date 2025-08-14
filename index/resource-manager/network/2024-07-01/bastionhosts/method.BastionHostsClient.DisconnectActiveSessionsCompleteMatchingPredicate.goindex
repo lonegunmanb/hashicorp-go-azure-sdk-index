@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/bastionhosts
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c BastionHostsClient) DisconnectActiveSessionsCompleteMatchingPredicate(ctx context.Context, id BastionHostId, input SessionIds, predicate BastionSessionStateOperationPredicate) (result DisconnectActiveSessionsCompleteResult, err error) {
+	items := make([]BastionSessionState, 0)
+
+	resp, err := c.DisconnectActiveSessions(ctx, id, input)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = DisconnectActiveSessionsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

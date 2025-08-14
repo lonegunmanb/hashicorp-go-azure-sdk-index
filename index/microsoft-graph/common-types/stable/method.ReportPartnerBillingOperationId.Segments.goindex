@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ReportPartnerBillingOperationId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.StaticSegment("reports", "reports", "reports"),
+		resourceids.StaticSegment("partners", "partners", "partners"),
+		resourceids.StaticSegment("billing", "billing", "billing"),
+		resourceids.StaticSegment("operations", "operations", "operations"),
+		resourceids.UserSpecifiedSegment("operationId", "operationId"),
+	}
+}

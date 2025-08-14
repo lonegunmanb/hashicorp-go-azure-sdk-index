@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-01-01/netappaccounts
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c NetAppAccountsClient) AccountsListComplete(ctx context.Context, id commonids.ResourceGroupId) (AccountsListCompleteResult, error) {
+	return c.AccountsListCompleteMatchingPredicate(ctx, id, NetAppAccountOperationPredicate{})
+}

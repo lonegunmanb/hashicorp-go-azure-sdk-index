@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/driverootlistitemcreatedbyusermailboxsetting
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDriveRootListItemCreatedByUserMailboxSettingClientWithBaseURI(sdkApi sdkEnv.Api) (*DriveRootListItemCreatedByUserMailboxSettingClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "driverootlistitemcreatedbyusermailboxsetting", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DriveRootListItemCreatedByUserMailboxSettingClient: %+v", err)
+	}
+
+	return &DriveRootListItemCreatedByUserMailboxSettingClient{
+		Client: client,
+	}, nil
+}

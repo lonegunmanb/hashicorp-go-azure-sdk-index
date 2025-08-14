@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/securitypartnerproviders
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityPartnerProviderConnectionStatus(input string) (*SecurityPartnerProviderConnectionStatus, error) {
+	vals := map[string]SecurityPartnerProviderConnectionStatus{
+		"connected":          SecurityPartnerProviderConnectionStatusConnected,
+		"notconnected":       SecurityPartnerProviderConnectionStatusNotConnected,
+		"partiallyconnected": SecurityPartnerProviderConnectionStatusPartiallyConnected,
+		"unknown":            SecurityPartnerProviderConnectionStatusUnknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityPartnerProviderConnectionStatus(input)
+	return &out, nil
+}

@@ -1,0 +1,73 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityLogDataProvider(input string) (*SecurityLogDataProvider, error) {
+	vals := map[string]SecurityLogDataProvider{
+		"barracuda":                     SecurityLogDataProvider_Barracuda,
+		"barracudanextgenfw":            SecurityLogDataProvider_BarracudaNextGenFw,
+		"barracudanextgenfwweblog":      SecurityLogDataProvider_BarracudaNextGenFwWeblog,
+		"bluecoat":                      SecurityLogDataProvider_Bluecoat,
+		"checkpoint":                    SecurityLogDataProvider_Checkpoint,
+		"checkpointcef":                 SecurityLogDataProvider_CheckpointCef,
+		"checkpointsmartviewtracker":    SecurityLogDataProvider_CheckpointSmartViewTracker,
+		"checkpointxml":                 SecurityLogDataProvider_CheckpointXml,
+		"ciscoasa":                      SecurityLogDataProvider_CiscoAsa,
+		"ciscoasafirepower":             SecurityLogDataProvider_CiscoAsaFirepower,
+		"ciscofirepowerv6":              SecurityLogDataProvider_CiscoFirepowerV6,
+		"ciscofwsm":                     SecurityLogDataProvider_CiscoFwsm,
+		"ciscoironportproxy":            SecurityLogDataProvider_CiscoIronportProxy,
+		"ciscoironportwsaii":            SecurityLogDataProvider_CiscoIronportWsaIi,
+		"ciscoironportwsaiii":           SecurityLogDataProvider_CiscoIronportWsaIii,
+		"ciscoscansafe":                 SecurityLogDataProvider_CiscoScanSafe,
+		"clavister":                     SecurityLogDataProvider_Clavister,
+		"contentkeeper":                 SecurityLogDataProvider_Contentkeeper,
+		"corrata":                       SecurityLogDataProvider_Corrata,
+		"customparser":                  SecurityLogDataProvider_CustomParser,
+		"forcepoint":                    SecurityLogDataProvider_Forcepoint,
+		"forcepointleef":                SecurityLogDataProvider_ForcepointLeef,
+		"fortigate":                     SecurityLogDataProvider_Fortigate,
+		"fortios":                       SecurityLogDataProvider_Fortios,
+		"genericcef":                    SecurityLogDataProvider_GenericCef,
+		"genericleef":                   SecurityLogDataProvider_GenericLeef,
+		"genericw3c":                    SecurityLogDataProvider_GenericW3C,
+		"ifilter":                       SecurityLogDataProvider_IFilter,
+		"iboss":                         SecurityLogDataProvider_Iboss,
+		"junipersrx":                    SecurityLogDataProvider_JuniperSrx,
+		"junipersrxsd":                  SecurityLogDataProvider_JuniperSrxSd,
+		"junipersrxwelf":                SecurityLogDataProvider_JuniperSrxWelf,
+		"juniperssg":                    SecurityLogDataProvider_JuniperSsg,
+		"machinezonemeraki":             SecurityLogDataProvider_MachineZoneMeraki,
+		"mcafeeswg":                     SecurityLogDataProvider_McafeeSwg,
+		"menlosecuritycef":              SecurityLogDataProvider_MenloSecurityCef,
+		"microsoftconditionalappaccess": SecurityLogDataProvider_MicrosoftConditionalAppAccess,
+		"microsoftdefenderforendpoint":  SecurityLogDataProvider_MicrosoftDefenderForEndpoint,
+		"microsoftisaw3c":               SecurityLogDataProvider_MicrosoftIsaW3C,
+		"opensystemssecurewebgateway":   SecurityLogDataProvider_OpenSystemsSecureWebGateway,
+		"paloalto":                      SecurityLogDataProvider_PaloAlto,
+		"paloaltoleef":                  SecurityLogDataProvider_PaloAltoLeef,
+		"sonicwall":                     SecurityLogDataProvider_Sonicwall,
+		"sophoscyberoam":                SecurityLogDataProvider_SophosCyberoam,
+		"sophossg":                      SecurityLogDataProvider_SophosSg,
+		"sophosxg":                      SecurityLogDataProvider_SophosXg,
+		"squid":                         SecurityLogDataProvider_Squid,
+		"squidnative":                   SecurityLogDataProvider_SquidNative,
+		"stormshield":                   SecurityLogDataProvider_Stormshield,
+		"wandera":                       SecurityLogDataProvider_Wandera,
+		"watchguardxtm":                 SecurityLogDataProvider_WatchguardXtm,
+		"websensesiemcef":               SecurityLogDataProvider_WebsenseSiemCef,
+		"websensev75":                   SecurityLogDataProvider_WebsenseV75,
+		"zscaler":                       SecurityLogDataProvider_Zscaler,
+		"zscalercef":                    SecurityLogDataProvider_ZscalerCef,
+		"zscalerqradar":                 SecurityLogDataProvider_ZscalerQradar,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityLogDataProvider(input)
+	return &out, nil
+}

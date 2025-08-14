@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type IndustryDataIndustryDataRunStatistics struct {
+	// The collection of statistics for each activity included in this run.
+	ActivityStatistics *[]IndustryDataIndustryDataActivityStatistics `json:"activityStatistics,omitempty"`
+
+	// The aggregate statistics for all inbound flows.
+	InboundTotals *IndustryDataAggregatedInboundStatistics `json:"inboundTotals,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The ID of the underlying run for the statistics.
+	RunId *string `json:"runId,omitempty"`
+
+	Status *IndustryDataIndustryDataRunStatus `json:"status,omitempty"`
+}

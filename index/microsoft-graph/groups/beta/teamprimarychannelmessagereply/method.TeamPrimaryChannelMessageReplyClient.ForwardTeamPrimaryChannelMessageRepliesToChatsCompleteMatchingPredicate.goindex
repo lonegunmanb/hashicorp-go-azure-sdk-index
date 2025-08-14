@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelmessagereply
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c TeamPrimaryChannelMessageReplyClient) ForwardTeamPrimaryChannelMessageRepliesToChatsCompleteMatchingPredicate(ctx context.Context, id beta.GroupIdTeamPrimaryChannelMessageId, input ForwardTeamPrimaryChannelMessageRepliesToChatsRequest, options ForwardTeamPrimaryChannelMessageRepliesToChatsOperationOptions, predicate ActionResultPartOperationPredicate) (result ForwardTeamPrimaryChannelMessageRepliesToChatsCompleteResult, err error) {
+	items := make([]beta.ActionResultPart, 0)
+
+	resp, err := c.ForwardTeamPrimaryChannelMessageRepliesToChats(ctx, id, input, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ForwardTeamPrimaryChannelMessageRepliesToChatsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

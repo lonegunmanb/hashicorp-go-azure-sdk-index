@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/autonomousdatabases
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseConsumerGroup(input string) (*ConsumerGroup, error) {
+	vals := map[string]ConsumerGroup{
+		"high":     ConsumerGroupHigh,
+		"low":      ConsumerGroupLow,
+		"medium":   ConsumerGroupMedium,
+		"tp":       ConsumerGroupTp,
+		"tpurgent": ConsumerGroupTpurgent,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ConsumerGroup(input)
+	return &out, nil
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"context"
+	"fmt"
+	"net/http"
+	"sync"
+	"time"
+
+	"golang.org/x/oauth2"
+)
+func (c *CachedAuthorizer) InvalidateCachedTokens() error {
+	if c.token == nil {
+		return nil
+	}
+	c.token.Expiry = time.Now()
+	for i := range c.auxTokens {
+		c.auxTokens[i].Expiry = time.Now()
+	}
+	return nil
+}

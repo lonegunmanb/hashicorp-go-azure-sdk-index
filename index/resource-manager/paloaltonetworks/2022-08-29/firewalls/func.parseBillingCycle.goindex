@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2022-08-29/firewalls
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseBillingCycle(input string) (*BillingCycle, error) {
+	vals := map[string]BillingCycle{
+		"monthly": BillingCycleMONTHLY,
+		"weekly":  BillingCycleWEEKLY,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := BillingCycle(input)
+	return &out, nil
+}

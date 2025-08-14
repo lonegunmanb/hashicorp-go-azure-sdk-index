@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNetworkaccessUserType(input string) (*NetworkaccessUserType, error) {
+	vals := map[string]NetworkaccessUserType{
+		"guest":  NetworkaccessUserType_Guest,
+		"member": NetworkaccessUserType_Member,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NetworkaccessUserType(input)
+	return &out, nil
+}

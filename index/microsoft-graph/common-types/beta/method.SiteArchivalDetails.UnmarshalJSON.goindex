@@ -1,0 +1,38 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *SiteArchivalDetails) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		ArchiveStatus    *SiteArchiveStatus    `json:"archiveStatus,omitempty"`
+		ArchivedDateTime nullable.Type[string] `json:"archivedDateTime,omitempty"`
+		ODataId          *string               `json:"@odata.id,omitempty"`
+		ODataType        *string               `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.ArchiveStatus = decoded.ArchiveStatus
+	s.ArchivedDateTime = decoded.ArchivedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling SiteArchivalDetails into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["archivedBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'ArchivedBy' for 'SiteArchivalDetails': %+v", err)
+		}
+		s.ArchivedBy = impl
+	}
+
+	return nil
+}

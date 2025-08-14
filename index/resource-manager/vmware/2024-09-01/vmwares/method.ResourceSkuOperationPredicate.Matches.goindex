@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2024-09-01/vmwares
+
+func (p ResourceSkuOperationPredicate) Matches(input ResourceSku) bool {
+
+	if p.Family != nil && (input.Family == nil || *p.Family != *input.Family) {
+		return false
+	}
+
+	if p.Name != nil && *p.Name != input.Name {
+		return false
+	}
+
+	if p.Size != nil && (input.Size == nil || *p.Size != *input.Size) {
+		return false
+	}
+
+	if p.Tier != nil && (input.Tier == nil || *p.Tier != *input.Tier) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,11 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id UserIdMailFolderIdMessageRuleId) ID() string {
+	fmtString := "/users/%s/mailFolders/%s/messageRules/%s"
+	return fmt.Sprintf(fmtString, id.UserId, id.MailFolderId, id.MessageRuleId)
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/desktopvirtualization/2024-04-03/privatelink
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPrivateLinkClientWithBaseURI(sdkApi sdkEnv.Api) (*PrivateLinkClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "privatelink", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PrivateLinkClient: %+v", err)
+	}
+
+	return &PrivateLinkClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendareventattachment
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewCalendarEventAttachmentClientWithBaseURI(sdkApi sdkEnv.Api) (*CalendarEventAttachmentClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "calendareventattachment", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating CalendarEventAttachmentClient: %+v", err)
+	}
+
+	return &CalendarEventAttachmentClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mariadb/2018-06-01/topquerystatistics
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c TopQueryStatisticsClient) ListByServerCompleteMatchingPredicate(ctx context.Context, id ServerId, input TopQueryStatisticsInput, predicate QueryStatisticOperationPredicate) (result ListByServerCompleteResult, err error) {
+	items := make([]QueryStatistic, 0)
+
+	resp, err := c.ListByServer(ctx, id, input)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByServerCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

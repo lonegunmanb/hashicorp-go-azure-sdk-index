@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s AndroidDeviceOwnerKioskModeWeblink) MarshalJSON() ([]byte, error) {
+	type wrapper AndroidDeviceOwnerKioskModeWeblink
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AndroidDeviceOwnerKioskModeWeblink: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AndroidDeviceOwnerKioskModeWeblink: %+v", err)
+	}
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.androidDeviceOwnerKioskModeWeblink"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AndroidDeviceOwnerKioskModeWeblink: %+v", err)
+	}
+
+	return encoded, nil
+}

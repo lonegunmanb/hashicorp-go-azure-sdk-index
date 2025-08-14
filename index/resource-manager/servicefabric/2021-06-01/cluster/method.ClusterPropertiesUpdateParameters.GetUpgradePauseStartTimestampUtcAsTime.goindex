@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicefabric/2021-06-01/cluster
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *ClusterPropertiesUpdateParameters) GetUpgradePauseStartTimestampUtcAsTime() (*time.Time, error) {
+	if o.UpgradePauseStartTimestampUtc == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.UpgradePauseStartTimestampUtc, "2006-01-02T15:04:05Z07:00")
+}

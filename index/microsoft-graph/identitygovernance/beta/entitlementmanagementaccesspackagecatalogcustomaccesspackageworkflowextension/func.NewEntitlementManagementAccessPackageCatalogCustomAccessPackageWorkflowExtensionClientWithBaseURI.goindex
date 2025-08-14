@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/entitlementmanagementaccesspackagecatalogcustomaccesspackageworkflowextension
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewEntitlementManagementAccessPackageCatalogCustomAccessPackageWorkflowExtensionClientWithBaseURI(sdkApi sdkEnv.Api) (*EntitlementManagementAccessPackageCatalogCustomAccessPackageWorkflowExtensionClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "entitlementmanagementaccesspackagecatalogcustomaccesspackageworkflowextension", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating EntitlementManagementAccessPackageCatalogCustomAccessPackageWorkflowExtensionClient: %+v", err)
+	}
+
+	return &EntitlementManagementAccessPackageCatalogCustomAccessPackageWorkflowExtensionClient{
+		Client: client,
+	}, nil
+}

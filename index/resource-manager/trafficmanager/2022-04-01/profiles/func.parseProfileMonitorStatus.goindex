@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/trafficmanager/2022-04-01/profiles
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseProfileMonitorStatus(input string) (*ProfileMonitorStatus, error) {
+	vals := map[string]ProfileMonitorStatus{
+		"checkingendpoints": ProfileMonitorStatusCheckingEndpoints,
+		"degraded":          ProfileMonitorStatusDegraded,
+		"disabled":          ProfileMonitorStatusDisabled,
+		"inactive":          ProfileMonitorStatusInactive,
+		"online":            ProfileMonitorStatusOnline,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ProfileMonitorStatus(input)
+	return &out, nil
+}

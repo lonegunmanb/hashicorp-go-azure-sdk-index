@@ -1,0 +1,45 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *DeviceManagementConfigurationChoiceSettingValueConstantDefaultTemplate) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		SettingDefinitionOptionId nullable.Type[string] `json:"settingDefinitionOptionId,omitempty"`
+		ODataId                   *string               `json:"@odata.id,omitempty"`
+		ODataType                 *string               `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.SettingDefinitionOptionId = decoded.SettingDefinitionOptionId
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling DeviceManagementConfigurationChoiceSettingValueConstantDefaultTemplate into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["children"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling Children into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]DeviceManagementConfigurationSettingInstanceTemplate, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalDeviceManagementConfigurationSettingInstanceTemplateImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'Children' for 'DeviceManagementConfigurationChoiceSettingValueConstantDefaultTemplate': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.Children = &output
+	}
+
+	return nil
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservices/2025-02-01/getoperationresult
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecureScoreLevel(input string) (*SecureScoreLevel, error) {
+	vals := map[string]SecureScoreLevel{
+		"adequate": SecureScoreLevelAdequate,
+		"maximum":  SecureScoreLevelMaximum,
+		"minimum":  SecureScoreLevelMinimum,
+		"none":     SecureScoreLevelNone,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecureScoreLevel(input)
+	return &out, nil
+}

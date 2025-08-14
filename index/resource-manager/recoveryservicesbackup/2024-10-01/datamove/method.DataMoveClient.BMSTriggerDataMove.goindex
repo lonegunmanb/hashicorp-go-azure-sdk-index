@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2024-10-01/datamove
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/polling"
+)
+func (c DataMoveClient) BMSTriggerDataMove(ctx context.Context, id VaultId, input TriggerDataMoveRequest) (result BMSTriggerDataMoveOperationResponse, err error) {
+	req, err := c.preparerForBMSTriggerDataMove(ctx, id, input)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "datamove.DataMoveClient", "BMSTriggerDataMove", nil, "Failure preparing request")
+		return
+	}
+
+	result, err = c.senderForBMSTriggerDataMove(ctx, req)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "datamove.DataMoveClient", "BMSTriggerDataMove", result.HttpResponse, "Failure sending request")
+		return
+	}
+
+	return
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/privilegedaccessgroupassignmentapprovalstep
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPrivilegedAccessGroupAssignmentApprovalStepClientWithBaseURI(sdkApi sdkEnv.Api) (*PrivilegedAccessGroupAssignmentApprovalStepClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "privilegedaccessgroupassignmentapprovalstep", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PrivilegedAccessGroupAssignmentApprovalStepClient: %+v", err)
+	}
+
+	return &PrivilegedAccessGroupAssignmentApprovalStepClient{
+		Client: client,
+	}, nil
+}

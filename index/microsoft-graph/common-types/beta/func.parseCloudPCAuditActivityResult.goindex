@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCloudPCAuditActivityResult(input string) (*CloudPCAuditActivityResult, error) {
+	vals := map[string]CloudPCAuditActivityResult{
+		"clienterror": CloudPCAuditActivityResult_ClientError,
+		"failure":     CloudPCAuditActivityResult_Failure,
+		"success":     CloudPCAuditActivityResult_Success,
+		"timeout":     CloudPCAuditActivityResult_Timeout,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CloudPCAuditActivityResult(input)
+	return &out, nil
+}

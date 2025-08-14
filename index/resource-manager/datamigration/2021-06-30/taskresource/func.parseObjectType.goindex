@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/taskresource
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseObjectType(input string) (*ObjectType, error) {
+	vals := map[string]ObjectType{
+		"function":         ObjectTypeFunction,
+		"storedprocedures": ObjectTypeStoredProcedures,
+		"table":            ObjectTypeTable,
+		"user":             ObjectTypeUser,
+		"view":             ObjectTypeView,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ObjectType(input)
+	return &out, nil
+}

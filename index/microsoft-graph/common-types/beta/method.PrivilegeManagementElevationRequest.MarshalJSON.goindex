@@ -1,0 +1,44 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s PrivilegeManagementElevationRequest) MarshalJSON() ([]byte, error) {
+	type wrapper PrivilegeManagementElevationRequest
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling PrivilegeManagementElevationRequest: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling PrivilegeManagementElevationRequest: %+v", err)
+	}
+
+	delete(decoded, "applicationDetail")
+	delete(decoded, "deviceName")
+	delete(decoded, "requestCreatedDateTime")
+	delete(decoded, "requestExpiryDateTime")
+	delete(decoded, "requestJustification")
+	delete(decoded, "requestLastModifiedDateTime")
+	delete(decoded, "requestedByUserId")
+	delete(decoded, "requestedByUserPrincipalName")
+	delete(decoded, "requestedOnDeviceId")
+	delete(decoded, "reviewCompletedByUserId")
+	delete(decoded, "reviewCompletedByUserPrincipalName")
+	delete(decoded, "reviewCompletedDateTime")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.privilegeManagementElevationRequest"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling PrivilegeManagementElevationRequest: %+v", err)
+	}
+
+	return encoded, nil
+}

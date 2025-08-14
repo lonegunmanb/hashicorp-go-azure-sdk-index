@@ -1,0 +1,82 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *AccessReviewScheduleSettings) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AutoApplyDecisionsEnabled            *bool                 `json:"autoApplyDecisionsEnabled,omitempty"`
+		DecisionHistoriesForReviewersEnabled nullable.Type[bool]   `json:"decisionHistoriesForReviewersEnabled,omitempty"`
+		DefaultDecision                      nullable.Type[string] `json:"defaultDecision,omitempty"`
+		DefaultDecisionEnabled               *bool                 `json:"defaultDecisionEnabled,omitempty"`
+		InstanceDurationInDays               *int64                `json:"instanceDurationInDays,omitempty"`
+		JustificationRequiredOnApproval      *bool                 `json:"justificationRequiredOnApproval,omitempty"`
+		MailNotificationsEnabled             *bool                 `json:"mailNotificationsEnabled,omitempty"`
+		ODataId                              *string               `json:"@odata.id,omitempty"`
+		ODataType                            *string               `json:"@odata.type,omitempty"`
+		RecommendationLookBackDuration       nullable.Type[string] `json:"recommendationLookBackDuration,omitempty"`
+		RecommendationsEnabled               *bool                 `json:"recommendationsEnabled,omitempty"`
+		Recurrence                           *PatternedRecurrence  `json:"recurrence,omitempty"`
+		ReminderNotificationsEnabled         *bool                 `json:"reminderNotificationsEnabled,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AutoApplyDecisionsEnabled = decoded.AutoApplyDecisionsEnabled
+	s.DecisionHistoriesForReviewersEnabled = decoded.DecisionHistoriesForReviewersEnabled
+	s.DefaultDecision = decoded.DefaultDecision
+	s.DefaultDecisionEnabled = decoded.DefaultDecisionEnabled
+	s.InstanceDurationInDays = decoded.InstanceDurationInDays
+	s.JustificationRequiredOnApproval = decoded.JustificationRequiredOnApproval
+	s.MailNotificationsEnabled = decoded.MailNotificationsEnabled
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.RecommendationLookBackDuration = decoded.RecommendationLookBackDuration
+	s.RecommendationsEnabled = decoded.RecommendationsEnabled
+	s.Recurrence = decoded.Recurrence
+	s.ReminderNotificationsEnabled = decoded.ReminderNotificationsEnabled
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling AccessReviewScheduleSettings into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["applyActions"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling ApplyActions into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]AccessReviewApplyAction, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalAccessReviewApplyActionImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'ApplyActions' for 'AccessReviewScheduleSettings': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.ApplyActions = &output
+	}
+
+	if v, ok := temp["recommendationInsightSettings"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling RecommendationInsightSettings into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]AccessReviewRecommendationInsightSetting, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalAccessReviewRecommendationInsightSettingImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'RecommendationInsightSettings' for 'AccessReviewScheduleSettings': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.RecommendationInsightSettings = &output
+	}
+
+	return nil
+}

@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/sdk/internal/test
+import (
+	"os"
+	"strings"
+)
+func anyOfEnvVar(vs ...string) string {
+	for _, v := range vs {
+		if vv := os.Getenv(v); vv != "" {
+			return vv
+		}
+	}
+	return ""
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/purview/2021-12-01/kafkaconfiguration
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEventStreamingState(input string) (*EventStreamingState, error) {
+	vals := map[string]EventStreamingState{
+		"disabled": EventStreamingStateDisabled,
+		"enabled":  EventStreamingStateEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EventStreamingState(input)
+	return &out, nil
+}

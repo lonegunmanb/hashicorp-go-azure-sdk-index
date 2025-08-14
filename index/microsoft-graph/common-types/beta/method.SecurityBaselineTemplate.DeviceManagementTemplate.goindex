@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s SecurityBaselineTemplate) DeviceManagementTemplate() BaseDeviceManagementTemplateImpl {
+	return BaseDeviceManagementTemplateImpl{
+		Categories:        s.Categories,
+		Description:       s.Description,
+		DisplayName:       s.DisplayName,
+		IntentCount:       s.IntentCount,
+		IsDeprecated:      s.IsDeprecated,
+		MigratableTo:      s.MigratableTo,
+		PlatformType:      s.PlatformType,
+		PublishedDateTime: s.PublishedDateTime,
+		Settings:          s.Settings,
+		TemplateSubtype:   s.TemplateSubtype,
+		TemplateType:      s.TemplateType,
+		VersionInfo:       s.VersionInfo,
+		Id:                s.Id,
+		ODataId:           s.ODataId,
+		ODataType:         s.ODataType,
+	}
+}

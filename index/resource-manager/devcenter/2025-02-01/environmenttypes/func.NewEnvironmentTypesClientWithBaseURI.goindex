@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/environmenttypes
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewEnvironmentTypesClientWithBaseURI(sdkApi sdkEnv.Api) (*EnvironmentTypesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "environmenttypes", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating EnvironmentTypesClient: %+v", err)
+	}
+
+	return &EnvironmentTypesClient{
+		Client: client,
+	}, nil
+}

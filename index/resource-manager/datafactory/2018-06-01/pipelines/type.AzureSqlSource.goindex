@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/pipelines
+import (
+	"encoding/json"
+	"fmt"
+)
+type AzureSqlSource struct {
+	AdditionalColumns            *interface{}          `json:"additionalColumns,omitempty"`
+	IsolationLevel               *interface{}          `json:"isolationLevel,omitempty"`
+	PartitionOption              *interface{}          `json:"partitionOption,omitempty"`
+	PartitionSettings            *SqlPartitionSettings `json:"partitionSettings,omitempty"`
+	ProduceAdditionalTypes       *interface{}          `json:"produceAdditionalTypes,omitempty"`
+	QueryTimeout                 *interface{}          `json:"queryTimeout,omitempty"`
+	SqlReaderQuery               *interface{}          `json:"sqlReaderQuery,omitempty"`
+	SqlReaderStoredProcedureName *interface{}          `json:"sqlReaderStoredProcedureName,omitempty"`
+	StoredProcedureParameters    *interface{}          `json:"storedProcedureParameters,omitempty"`
+
+	// Fields inherited from CopySource
+
+	DisableMetricsCollection *bool        `json:"disableMetricsCollection,omitempty"`
+	MaxConcurrentConnections *int64       `json:"maxConcurrentConnections,omitempty"`
+	SourceRetryCount         *int64       `json:"sourceRetryCount,omitempty"`
+	SourceRetryWait          *interface{} `json:"sourceRetryWait,omitempty"`
+	Type                     string       `json:"type"`
+}

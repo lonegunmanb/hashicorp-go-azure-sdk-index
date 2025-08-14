@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/eventextension
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewEventExtensionClientWithBaseURI(sdkApi sdkEnv.Api) (*EventExtensionClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "eventextension", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating EventExtensionClient: %+v", err)
+	}
+
+	return &EventExtensionClient{
+		Client: client,
+	}, nil
+}

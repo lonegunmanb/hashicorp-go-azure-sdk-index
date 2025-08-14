@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseBrowserSharedCookieStatus(input string) (*BrowserSharedCookieStatus, error) {
+	vals := map[string]BrowserSharedCookieStatus{
+		"pendingadd":    BrowserSharedCookieStatus_PendingAdd,
+		"pendingdelete": BrowserSharedCookieStatus_PendingDelete,
+		"pendingedit":   BrowserSharedCookieStatus_PendingEdit,
+		"published":     BrowserSharedCookieStatus_Published,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := BrowserSharedCookieStatus(input)
+	return &out, nil
+}

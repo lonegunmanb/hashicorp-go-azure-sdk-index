@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/userexperienceanalyticsbatteryhealthdeviceruntimehistory
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewUserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryClientWithBaseURI(sdkApi sdkEnv.Api) (*UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "userexperienceanalyticsbatteryhealthdeviceruntimehistory", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryClient: %+v", err)
+	}
+
+	return &UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ValidationResult struct {
+	// The string containing the reason for why the rule passed or not. Read-only. Not nullable.
+	Message nullable.Type[string] `json:"message,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The string containing the name of the password validation rule that the action was validated against. Read-only. Not
+	// nullable.
+	RuleName nullable.Type[string] `json:"ruleName,omitempty"`
+
+	// Whether the password passed or failed the validation rule. Read-only. Not nullable.
+	ValidationPassed nullable.Type[bool] `json:"validationPassed,omitempty"`
+}

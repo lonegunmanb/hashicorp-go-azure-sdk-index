@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mixedreality/2021-01-01/key
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewKeyClientWithBaseURI(sdkApi sdkEnv.Api) (*KeyClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "key", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating KeyClient: %+v", err)
+	}
+
+	return &KeyClient{
+		Client: client,
+	}, nil
+}

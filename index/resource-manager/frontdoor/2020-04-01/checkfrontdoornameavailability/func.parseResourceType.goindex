@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/frontdoor/2020-04-01/checkfrontdoornameavailability
+import (
+	"strings"
+)
+func parseResourceType(input string) (*ResourceType, error) {
+	vals := map[string]ResourceType{
+		"microsoft.network/frontdoors":                   ResourceTypeMicrosoftPointNetworkFrontDoors,
+		"microsoft.network/frontdoors/frontendendpoints": ResourceTypeMicrosoftPointNetworkFrontDoorsFrontendEndpoints,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ResourceType(input)
+	return &out, nil
+}

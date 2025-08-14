@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerapps/2025-01-01/javacomponents
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseManagedEnvironmentIDInsensitively(input string) (*ManagedEnvironmentId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&ManagedEnvironmentId{})
+	parsed, err := parser.Parse(input, true)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := ManagedEnvironmentId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

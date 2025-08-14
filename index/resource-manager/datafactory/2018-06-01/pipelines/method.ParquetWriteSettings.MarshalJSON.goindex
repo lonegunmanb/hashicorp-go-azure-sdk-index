@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/pipelines
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s ParquetWriteSettings) MarshalJSON() ([]byte, error) {
+	type wrapper ParquetWriteSettings
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ParquetWriteSettings: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ParquetWriteSettings: %+v", err)
+	}
+
+	decoded["type"] = "ParquetWriteSettings"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ParquetWriteSettings: %+v", err)
+	}
+
+	return encoded, nil
+}

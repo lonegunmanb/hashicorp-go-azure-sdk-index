@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/job
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s Classification) MarshalJSON() ([]byte, error) {
+	type wrapper Classification
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling Classification: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling Classification: %+v", err)
+	}
+
+	decoded["taskType"] = "Classification"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling Classification: %+v", err)
+	}
+
+	return encoded, nil
+}

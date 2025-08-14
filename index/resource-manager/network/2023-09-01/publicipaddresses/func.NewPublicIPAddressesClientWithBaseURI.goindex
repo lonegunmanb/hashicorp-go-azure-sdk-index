@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-09-01/publicipaddresses
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPublicIPAddressesClientWithBaseURI(sdkApi sdkEnv.Api) (*PublicIPAddressesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "publicipaddresses", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PublicIPAddressesClient: %+v", err)
+	}
+
+	return &PublicIPAddressesClient{
+		Client: client,
+	}, nil
+}

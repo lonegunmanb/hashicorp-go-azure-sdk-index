@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/integrationruntimenodes
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewIntegrationRuntimeNodesClientWithBaseURI(sdkApi sdkEnv.Api) (*IntegrationRuntimeNodesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "integrationruntimenodes", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating IntegrationRuntimeNodesClient: %+v", err)
+	}
+
+	return &IntegrationRuntimeNodesClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-05-01/firewallpolicies
+import (
+	"encoding/json"
+	"fmt"
+)
+type ApplicationRule struct {
+	DestinationAddresses *[]string                                `json:"destinationAddresses,omitempty"`
+	FqdnTags             *[]string                                `json:"fqdnTags,omitempty"`
+	HTTPHeadersToInsert  *[]FirewallPolicyHTTPHeaderToInsert      `json:"httpHeadersToInsert,omitempty"`
+	Protocols            *[]FirewallPolicyRuleApplicationProtocol `json:"protocols,omitempty"`
+	SourceAddresses      *[]string                                `json:"sourceAddresses,omitempty"`
+	SourceIPGroups       *[]string                                `json:"sourceIpGroups,omitempty"`
+	TargetFqdns          *[]string                                `json:"targetFqdns,omitempty"`
+	TargetURLs           *[]string                                `json:"targetUrls,omitempty"`
+	TerminateTLS         *bool                                    `json:"terminateTLS,omitempty"`
+	WebCategories        *[]string                                `json:"webCategories,omitempty"`
+
+	// Fields inherited from FirewallPolicyRule
+
+	Description *string                `json:"description,omitempty"`
+	Name        *string                `json:"name,omitempty"`
+	RuleType    FirewallPolicyRuleType `json:"ruleType"`
+}

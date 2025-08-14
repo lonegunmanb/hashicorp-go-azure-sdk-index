@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2024-02-01/afdorigingroups
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c AFDOriginGroupsClient) ListByProfileComplete(ctx context.Context, id ProfileId) (ListByProfileCompleteResult, error) {
+	return c.ListByProfileCompleteMatchingPredicate(ctx, id, AFDOriginGroupOperationPredicate{})
+}

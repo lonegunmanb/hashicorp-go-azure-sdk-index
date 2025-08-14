@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationrecoveryplans
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRecoveryPlanGroupType(input string) (*RecoveryPlanGroupType, error) {
+	vals := map[string]RecoveryPlanGroupType{
+		"boot":     RecoveryPlanGroupTypeBoot,
+		"failover": RecoveryPlanGroupTypeFailover,
+		"shutdown": RecoveryPlanGroupTypeShutdown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RecoveryPlanGroupType(input)
+	return &out, nil
+}

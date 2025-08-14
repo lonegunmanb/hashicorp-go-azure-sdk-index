@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/plannertaskassignedtotaskboardformat
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPlannerTaskAssignedToTaskBoardFormatClientWithBaseURI(sdkApi sdkEnv.Api) (*PlannerTaskAssignedToTaskBoardFormatClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "plannertaskassignedtotaskboardformat", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PlannerTaskAssignedToTaskBoardFormatClient: %+v", err)
+	}
+
+	return &PlannerTaskAssignedToTaskBoardFormatClient{
+		Client: client,
+	}, nil
+}

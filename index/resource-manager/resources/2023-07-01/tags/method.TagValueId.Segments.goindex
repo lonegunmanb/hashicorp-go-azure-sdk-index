@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2023-07-01/tags
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id TagValueId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.StaticSegment("staticSubscriptions", "subscriptions", "subscriptions"),
+		resourceids.SubscriptionIdSegment("subscriptionId", "12345678-1234-9876-4563-123456789012"),
+		resourceids.StaticSegment("staticTagNames", "tagNames", "tagNames"),
+		resourceids.UserSpecifiedSegment("tagName", "tagName"),
+		resourceids.StaticSegment("staticTagValues", "tagValues", "tagValues"),
+		resourceids.UserSpecifiedSegment("tagValueName", "tagValueName"),
+	}
+}

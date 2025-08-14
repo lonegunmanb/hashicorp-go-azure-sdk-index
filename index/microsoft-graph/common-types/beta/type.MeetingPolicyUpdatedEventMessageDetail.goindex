@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type MeetingPolicyUpdatedEventMessageDetail struct {
+	// Initiator of the event.
+	Initiator IdentitySet `json:"initiator"`
+
+	// Represents whether the meeting chat is enabled or not.
+	MeetingChatEnabled nullable.Type[bool] `json:"meetingChatEnabled,omitempty"`
+
+	// Unique identifier of the meeting chat.
+	MeetingChatId nullable.Type[string] `json:"meetingChatId,omitempty"`
+
+	// Fields inherited from EventMessageDetail
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

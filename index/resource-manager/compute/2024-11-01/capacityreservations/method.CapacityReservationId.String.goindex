@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/capacityreservations
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id CapacityReservationId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Capacity Reservation Group Name: %q", id.CapacityReservationGroupName),
+		fmt.Sprintf("Capacity Reservation Name: %q", id.CapacityReservationName),
+	}
+	return fmt.Sprintf("Capacity Reservation (%s)", strings.Join(components, "\n"))
+}

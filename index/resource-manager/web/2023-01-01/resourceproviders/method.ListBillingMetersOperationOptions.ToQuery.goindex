@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/resourceproviders
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ListBillingMetersOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.BillingLocation != nil {
+		out.Append("billingLocation", fmt.Sprintf("%v", *o.BillingLocation))
+	}
+	if o.OsType != nil {
+		out.Append("osType", fmt.Sprintf("%v", *o.OsType))
+	}
+	return &out
+}

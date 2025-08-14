@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2024-04-01/dppjob
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DppJobClient) FetchCrossRegionRestoreJobsListComplete(ctx context.Context, id ProviderLocationId, input CrossRegionRestoreJobsRequest, options FetchCrossRegionRestoreJobsListOperationOptions) (FetchCrossRegionRestoreJobsListCompleteResult, error) {
+	return c.FetchCrossRegionRestoreJobsListCompleteMatchingPredicate(ctx, id, input, options, AzureBackupJobResourceOperationPredicate{})
+}

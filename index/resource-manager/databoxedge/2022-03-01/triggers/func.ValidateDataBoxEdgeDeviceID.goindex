@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2022-03-01/triggers
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ValidateDataBoxEdgeDeviceID(input interface{}, key string) (warnings []string, errors []error) {
+	v, ok := input.(string)
+	if !ok {
+		errors = append(errors, fmt.Errorf("expected %q to be a string", key))
+		return
+	}
+
+	if _, err := ParseDataBoxEdgeDeviceID(v); err != nil {
+		errors = append(errors, err)
+	}
+
+	return
+}

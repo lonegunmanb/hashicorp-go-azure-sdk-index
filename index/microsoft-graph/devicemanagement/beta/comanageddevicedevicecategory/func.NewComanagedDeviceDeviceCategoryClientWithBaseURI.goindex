@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/comanageddevicedevicecategory
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewComanagedDeviceDeviceCategoryClientWithBaseURI(sdkApi sdkEnv.Api) (*ComanagedDeviceDeviceCategoryClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "comanageddevicedevicecategory", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ComanagedDeviceDeviceCategoryClient: %+v", err)
+	}
+
+	return &ComanagedDeviceDeviceCategoryClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-11-01/virtualnetworkgateways
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVirtualNetworkGatewayConnectionStatus(input string) (*VirtualNetworkGatewayConnectionStatus, error) {
+	vals := map[string]VirtualNetworkGatewayConnectionStatus{
+		"connected":    VirtualNetworkGatewayConnectionStatusConnected,
+		"connecting":   VirtualNetworkGatewayConnectionStatusConnecting,
+		"notconnected": VirtualNetworkGatewayConnectionStatusNotConnected,
+		"unknown":      VirtualNetworkGatewayConnectionStatusUnknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VirtualNetworkGatewayConnectionStatus(input)
+	return &out, nil
+}

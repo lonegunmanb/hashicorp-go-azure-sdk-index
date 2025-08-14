@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/managedledgerdigestuploads
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewManagedLedgerDigestUploadsClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedLedgerDigestUploadsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "managedledgerdigestuploads", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ManagedLedgerDigestUploadsClient: %+v", err)
+	}
+
+	return &ManagedLedgerDigestUploadsClient{
+		Client: client,
+	}, nil
+}

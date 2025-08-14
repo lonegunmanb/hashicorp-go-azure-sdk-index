@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-03-01/snapshotpolicylistvolumes
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNetworkFeatures(input string) (*NetworkFeatures, error) {
+	vals := map[string]NetworkFeatures{
+		"basic":          NetworkFeaturesBasic,
+		"basic_standard": NetworkFeaturesBasicStandard,
+		"standard":       NetworkFeaturesStandard,
+		"standard_basic": NetworkFeaturesStandardBasic,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NetworkFeatures(input)
+	return &out, nil
+}

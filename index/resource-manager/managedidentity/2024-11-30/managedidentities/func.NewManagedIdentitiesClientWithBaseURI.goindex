@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/managedidentity/2024-11-30/managedidentities
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewManagedIdentitiesClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedIdentitiesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "managedidentities", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ManagedIdentitiesClient: %+v", err)
+	}
+
+	return &ManagedIdentitiesClient{
+		Client: client,
+	}, nil
+}

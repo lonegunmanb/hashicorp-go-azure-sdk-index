@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/informationprotectionbitlockerrecoverykey
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewInformationProtectionBitlockerRecoveryKeyClientWithBaseURI(sdkApi sdkEnv.Api) (*InformationProtectionBitlockerRecoveryKeyClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "informationprotectionbitlockerrecoverykey", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating InformationProtectionBitlockerRecoveryKeyClient: %+v", err)
+	}
+
+	return &InformationProtectionBitlockerRecoveryKeyClient{
+		Client: client,
+	}, nil
+}

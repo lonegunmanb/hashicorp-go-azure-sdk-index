@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/devices
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseUpdateStatus(input string) (*UpdateStatus, error) {
+	vals := map[string]UpdateStatus{
+		"downloadcompleted": UpdateStatusDownloadCompleted,
+		"downloadpending":   UpdateStatusDownloadPending,
+		"downloadstarted":   UpdateStatusDownloadStarted,
+		"installcompleted":  UpdateStatusInstallCompleted,
+		"installstarted":    UpdateStatusInstallStarted,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UpdateStatus(input)
+	return &out, nil
+}

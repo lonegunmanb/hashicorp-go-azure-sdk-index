@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/cloudvmclusters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDiskRedundancy(input string) (*DiskRedundancy, error) {
+	vals := map[string]DiskRedundancy{
+		"high":   DiskRedundancyHigh,
+		"normal": DiskRedundancyNormal,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DiskRedundancy(input)
+	return &out, nil
+}

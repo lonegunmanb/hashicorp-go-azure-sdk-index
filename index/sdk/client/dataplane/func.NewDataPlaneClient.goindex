@@ -1,0 +1,11 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client/dataplane
+import (
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+)
+func NewDataPlaneClient(baseUri string, serviceName, apiVersion string) *Client {
+	client := &Client{
+		Client:     client.NewClient(baseUri, serviceName, apiVersion),
+		ApiVersion: apiVersion,
+	}
+	return client
+}

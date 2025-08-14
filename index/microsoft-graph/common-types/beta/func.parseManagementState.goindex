@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseManagementState(input string) (*ManagementState, error) {
+	vals := map[string]ManagementState{
+		"deletepending":  ManagementState_DeletePending,
+		"discovered":     ManagementState_Discovered,
+		"managed":        ManagementState_Managed,
+		"retirecanceled": ManagementState_RetireCanceled,
+		"retirefailed":   ManagementState_RetireFailed,
+		"retireissued":   ManagementState_RetireIssued,
+		"retirepending":  ManagementState_RetirePending,
+		"unhealthy":      ManagementState_Unhealthy,
+		"wipecanceled":   ManagementState_WipeCanceled,
+		"wipefailed":     ManagementState_WipeFailed,
+		"wipeissued":     ManagementState_WipeIssued,
+		"wipepending":    ManagementState_WipePending,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagementState(input)
+	return &out, nil
+}

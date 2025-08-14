@@ -1,0 +1,47 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/v2024_01_01
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2024-01-01/applicationgroup"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2024-01-01/authorizationrulesdisasterrecoveryconfigs"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2024-01-01/authorizationruleseventhubs"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2024-01-01/authorizationrulesnamespaces"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2024-01-01/checknameavailabilitydisasterrecoveryconfigs"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2024-01-01/checknameavailabilitynamespaces"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2024-01-01/consumergroups"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2024-01-01/disasterrecoveryconfigs"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2024-01-01/eventhubs"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2024-01-01/eventhubsclusters"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2024-01-01/eventhubsclustersavailableclusterregions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2024-01-01/eventhubsclustersconfiguration"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2024-01-01/eventhubsclustersnamespace"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2024-01-01/namespaces"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2024-01-01/namespacesnetworksecurityperimeterconfigurations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2024-01-01/namespacesprivateendpointconnections"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2024-01-01/namespacesprivatelinkresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2024-01-01/networkrulesets"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2024-01-01/schemaregistry"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	ApplicationGroup                                 *applicationgroup.ApplicationGroupClient
+	AuthorizationRulesDisasterRecoveryConfigs        *authorizationrulesdisasterrecoveryconfigs.AuthorizationRulesDisasterRecoveryConfigsClient
+	AuthorizationRulesEventHubs                      *authorizationruleseventhubs.AuthorizationRulesEventHubsClient
+	AuthorizationRulesNamespaces                     *authorizationrulesnamespaces.AuthorizationRulesNamespacesClient
+	CheckNameAvailabilityDisasterRecoveryConfigs     *checknameavailabilitydisasterrecoveryconfigs.CheckNameAvailabilityDisasterRecoveryConfigsClient
+	CheckNameAvailabilityNamespaces                  *checknameavailabilitynamespaces.CheckNameAvailabilityNamespacesClient
+	ConsumerGroups                                   *consumergroups.ConsumerGroupsClient
+	DisasterRecoveryConfigs                          *disasterrecoveryconfigs.DisasterRecoveryConfigsClient
+	EventHubs                                        *eventhubs.EventHubsClient
+	EventHubsClusters                                *eventhubsclusters.EventHubsClustersClient
+	EventHubsClustersAvailableClusterRegions         *eventhubsclustersavailableclusterregions.EventHubsClustersAvailableClusterRegionsClient
+	EventHubsClustersConfiguration                   *eventhubsclustersconfiguration.EventHubsClustersConfigurationClient
+	EventHubsClustersNamespace                       *eventhubsclustersnamespace.EventHubsClustersNamespaceClient
+	Namespaces                                       *namespaces.NamespacesClient
+	NamespacesNetworkSecurityPerimeterConfigurations *namespacesnetworksecurityperimeterconfigurations.NamespacesNetworkSecurityPerimeterConfigurationsClient
+	NamespacesPrivateEndpointConnections             *namespacesprivateendpointconnections.NamespacesPrivateEndpointConnectionsClient
+	NamespacesPrivateLinkResources                   *namespacesprivatelinkresources.NamespacesPrivateLinkResourcesClient
+	NetworkRuleSets                                  *networkrulesets.NetworkRuleSetsClient
+	SchemaRegistry                                   *schemaregistry.SchemaRegistryClient
+}

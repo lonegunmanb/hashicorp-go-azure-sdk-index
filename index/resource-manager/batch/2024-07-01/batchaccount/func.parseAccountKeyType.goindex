@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/batchaccount
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAccountKeyType(input string) (*AccountKeyType, error) {
+	vals := map[string]AccountKeyType{
+		"primary":   AccountKeyTypePrimary,
+		"secondary": AccountKeyTypeSecondary,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AccountKeyType(input)
+	return &out, nil
+}

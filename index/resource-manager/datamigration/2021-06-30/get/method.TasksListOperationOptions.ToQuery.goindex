@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/get
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o TasksListOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.TaskType != nil {
+		out.Append("taskType", fmt.Sprintf("%v", *o.TaskType))
+	}
+	return &out
+}

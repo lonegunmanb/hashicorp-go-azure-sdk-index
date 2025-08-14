@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2018-04-16/scheduledqueryrules
+import (
+	"encoding/json"
+	"fmt"
+)
+type AlertingAction struct {
+	AznsAction      *AzNsActionGroup `json:"aznsAction,omitempty"`
+	Severity        AlertSeverity    `json:"severity"`
+	ThrottlingInMin *int64           `json:"throttlingInMin,omitempty"`
+	Trigger         TriggerCondition `json:"trigger"`
+
+	// Fields inherited from Action
+
+	OdataType string `json:"odata.type"`
+}

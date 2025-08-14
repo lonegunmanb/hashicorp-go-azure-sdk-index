@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devopsinfrastructure/2025-01-21/pools
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseStorageAccountType(input string) (*StorageAccountType, error) {
+	vals := map[string]StorageAccountType{
+		"premium_lrs":     StorageAccountTypePremiumLRS,
+		"premium_zrs":     StorageAccountTypePremiumZRS,
+		"standard_lrs":    StorageAccountTypeStandardLRS,
+		"standardssd_lrs": StorageAccountTypeStandardSSDLRS,
+		"standardssd_zrs": StorageAccountTypeStandardSSDZRS,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := StorageAccountType(input)
+	return &out, nil
+}

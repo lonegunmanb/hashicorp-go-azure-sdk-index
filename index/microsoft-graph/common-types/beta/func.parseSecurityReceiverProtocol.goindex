@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityReceiverProtocol(input string) (*SecurityReceiverProtocol, error) {
+	vals := map[string]SecurityReceiverProtocol{
+		"ftp":       SecurityReceiverProtocol_Ftp,
+		"ftps":      SecurityReceiverProtocol_Ftps,
+		"syslogtcp": SecurityReceiverProtocol_SyslogTcp,
+		"syslogtls": SecurityReceiverProtocol_SyslogTls,
+		"syslogudp": SecurityReceiverProtocol_SyslogUdp,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityReceiverProtocol(input)
+	return &out, nil
+}

@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/factories
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s FactoryGitHubConfiguration) FactoryRepoConfiguration() BaseFactoryRepoConfigurationImpl {
+	return BaseFactoryRepoConfigurationImpl{
+		AccountName:         s.AccountName,
+		CollaborationBranch: s.CollaborationBranch,
+		DisablePublish:      s.DisablePublish,
+		LastCommitId:        s.LastCommitId,
+		RepositoryName:      s.RepositoryName,
+		RootFolder:          s.RootFolder,
+		Type:                s.Type,
+	}
+}

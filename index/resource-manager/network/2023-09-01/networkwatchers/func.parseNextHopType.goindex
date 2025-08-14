@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-09-01/networkwatchers
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNextHopType(input string) (*NextHopType, error) {
+	vals := map[string]NextHopType{
+		"hypernetgateway":       NextHopTypeHyperNetGateway,
+		"internet":              NextHopTypeInternet,
+		"none":                  NextHopTypeNone,
+		"virtualappliance":      NextHopTypeVirtualAppliance,
+		"virtualnetworkgateway": NextHopTypeVirtualNetworkGateway,
+		"vnetlocal":             NextHopTypeVnetLocal,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NextHopType(input)
+	return &out, nil
+}

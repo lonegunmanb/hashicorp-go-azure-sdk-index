@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id IdentityB2xUserFlowIdLanguageIdOverridesPageId) String() string {
+	components := []string{
+		fmt.Sprintf("B 2x Identity User Flow: %q", id.B2xIdentityUserFlowId),
+		fmt.Sprintf("User Flow Language Configuration: %q", id.UserFlowLanguageConfigurationId),
+		fmt.Sprintf("User Flow Language Page: %q", id.UserFlowLanguagePageId),
+	}
+	return fmt.Sprintf("Identity B 2x User Flow Id Language Id Overrides Page (%s)", strings.Join(components, "\n"))
+}

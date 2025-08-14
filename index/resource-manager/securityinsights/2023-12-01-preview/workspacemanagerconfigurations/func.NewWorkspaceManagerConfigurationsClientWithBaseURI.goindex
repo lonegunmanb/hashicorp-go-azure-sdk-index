@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-12-01-preview/workspacemanagerconfigurations
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewWorkspaceManagerConfigurationsClientWithBaseURI(sdkApi sdkEnv.Api) (*WorkspaceManagerConfigurationsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "workspacemanagerconfigurations", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating WorkspaceManagerConfigurationsClient: %+v", err)
+	}
+
+	return &WorkspaceManagerConfigurationsClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type WindowsKioskProfile struct {
+	// The app base class used to identify the application info for the kiosk configuration
+	AppConfiguration WindowsKioskAppConfiguration `json:"appConfiguration"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Key of the entity.
+	ProfileId *string `json:"profileId,omitempty"`
+
+	// This is a friendly name used to identify a group of applications, the layout of these apps on the start menu and the
+	// users to whom this kiosk configuration is assigned.
+	ProfileName *string `json:"profileName,omitempty"`
+
+	// The user accounts that will be locked to this kiosk configuration. This collection can contain a maximum of 100
+	// elements.
+	UserAccountsConfiguration *[]WindowsKioskUser `json:"userAccountsConfiguration,omitempty"`
+}

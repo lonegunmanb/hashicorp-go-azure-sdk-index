@@ -1,0 +1,40 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s BaseAndroidManagedStoreAppImpl) MarshalJSON() ([]byte, error) {
+	type wrapper BaseAndroidManagedStoreAppImpl
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling BaseAndroidManagedStoreAppImpl: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling BaseAndroidManagedStoreAppImpl: %+v", err)
+	}
+
+	delete(decoded, "appStoreUrl")
+	delete(decoded, "appTracks")
+	delete(decoded, "isPrivate")
+	delete(decoded, "packageId")
+	delete(decoded, "supportsOemConfig")
+	delete(decoded, "totalLicenseCount")
+	delete(decoded, "usedLicenseCount")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.androidManagedStoreApp"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling BaseAndroidManagedStoreAppImpl: %+v", err)
+	}
+
+	return encoded, nil
+}

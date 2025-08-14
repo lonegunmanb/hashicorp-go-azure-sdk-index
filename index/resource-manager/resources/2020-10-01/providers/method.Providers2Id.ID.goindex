@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-10-01/providers
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id Providers2Id) ID() string {
+	fmtString := "/providers/Microsoft.Management/managementGroups/%s/providers/%s"
+	return fmt.Sprintf(fmtString, id.GroupId, id.ProviderName)
+}

@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/postgresqlhsc/2022-11-08/clusteroperations
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ClusterOperationsClient) ClustersStopThenPoll(ctx context.Context, id ServerGroupsv2Id) error {
+	result, err := c.ClustersStop(ctx, id)
+	if err != nil {
+		return fmt.Errorf("performing ClustersStop: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after ClustersStop: %+v", err)
+	}
+
+	return nil
+}

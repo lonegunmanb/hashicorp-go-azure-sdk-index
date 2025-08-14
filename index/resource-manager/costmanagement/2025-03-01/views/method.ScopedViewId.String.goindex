@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2025-03-01/views
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ScopedViewId) String() string {
+	components := []string{
+		fmt.Sprintf("Scope: %q", id.Scope),
+		fmt.Sprintf("View Name: %q", id.ViewName),
+	}
+	return fmt.Sprintf("Scoped View (%s)", strings.Join(components, "\n"))
+}

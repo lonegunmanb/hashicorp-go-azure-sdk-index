@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/workspacemanagedsqlserverblobauditing
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewWorkspaceManagedSqlServerBlobAuditingClientWithBaseURI(sdkApi sdkEnv.Api) (*WorkspaceManagedSqlServerBlobAuditingClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "workspacemanagedsqlserverblobauditing", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating WorkspaceManagedSqlServerBlobAuditingClient: %+v", err)
+	}
+
+	return &WorkspaceManagedSqlServerBlobAuditingClient{
+		Client: client,
+	}, nil
+}

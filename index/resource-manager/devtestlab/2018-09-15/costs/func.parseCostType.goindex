@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/costs
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCostType(input string) (*CostType, error) {
+	vals := map[string]CostType{
+		"projected":   CostTypeProjected,
+		"reported":    CostTypeReported,
+		"unavailable": CostTypeUnavailable,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CostType(input)
+	return &out, nil
+}

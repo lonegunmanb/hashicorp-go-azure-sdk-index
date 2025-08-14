@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerservice/2025-02-01/managedclusters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNetworkDataplane(input string) (*NetworkDataplane, error) {
+	vals := map[string]NetworkDataplane{
+		"azure":  NetworkDataplaneAzure,
+		"cilium": NetworkDataplaneCilium,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NetworkDataplane(input)
+	return &out, nil
+}

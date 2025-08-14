@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationrecoveryservicesproviders
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAgentVersionStatus(input string) (*AgentVersionStatus, error) {
+	vals := map[string]AgentVersionStatus{
+		"deprecated":             AgentVersionStatusDeprecated,
+		"notsupported":           AgentVersionStatusNotSupported,
+		"securityupdaterequired": AgentVersionStatusSecurityUpdateRequired,
+		"supported":              AgentVersionStatusSupported,
+		"updaterequired":         AgentVersionStatusUpdateRequired,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AgentVersionStatus(input)
+	return &out, nil
+}

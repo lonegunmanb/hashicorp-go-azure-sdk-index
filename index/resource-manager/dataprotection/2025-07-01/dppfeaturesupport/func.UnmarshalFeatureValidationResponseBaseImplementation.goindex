@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2025-07-01/dppfeaturesupport
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalFeatureValidationResponseBaseImplementation(input []byte) (FeatureValidationResponseBase, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling FeatureValidationResponseBase into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["objectType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "FeatureValidationResponse") {
+		var out FeatureValidationResponse
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into FeatureValidationResponse: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseFeatureValidationResponseBaseImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseFeatureValidationResponseBaseImpl: %+v", err)
+	}
+
+	return RawFeatureValidationResponseBaseImpl{
+		featureValidationResponseBase: parent,
+		Type:                          value,
+		Values:                        temp,
+	}, nil
+
+}

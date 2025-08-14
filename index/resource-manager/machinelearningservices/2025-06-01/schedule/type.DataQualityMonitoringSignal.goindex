@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2025-06-01/schedule
+import (
+	"encoding/json"
+	"fmt"
+)
+type DataQualityMonitoringSignal struct {
+	FeatureDataTypeOverride   *map[string]MonitoringFeatureDataType `json:"featureDataTypeOverride,omitempty"`
+	FeatureImportanceSettings *FeatureImportanceSettings            `json:"featureImportanceSettings,omitempty"`
+	Features                  MonitoringFeatureFilterBase           `json:"features"`
+	MetricThresholds          []DataQualityMetricThresholdBase      `json:"metricThresholds"`
+	ProductionData            MonitoringInputDataBase               `json:"productionData"`
+	ReferenceData             MonitoringInputDataBase               `json:"referenceData"`
+
+	// Fields inherited from MonitoringSignalBase
+
+	NotificationTypes *[]MonitoringNotificationType `json:"notificationTypes,omitempty"`
+	Properties        *map[string]string            `json:"properties,omitempty"`
+	SignalType        MonitoringSignalType          `json:"signalType"`
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/privateendpointconnections
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id PrivateEndpointConnectionId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Server Name: %q", id.ServerName),
+		fmt.Sprintf("Private Endpoint Connection Name: %q", id.PrivateEndpointConnectionName),
+	}
+	return fmt.Sprintf("Private Endpoint Connection (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,37 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type MachineLearningDetectedSensitiveContent struct {
+	MatchTolerance *MlClassificationMatchTolerance `json:"matchTolerance,omitempty"`
+	ModelVersion   nullable.Type[string]           `json:"modelVersion,omitempty"`
+
+	// Fields inherited from DetectedSensitiveContent
+
+	ClassificationAttributes *[]ClassificationAttribute  `json:"classificationAttributes,omitempty"`
+	ClassificationMethod     *ClassificationMethod       `json:"classificationMethod,omitempty"`
+	Matches                  *[]SensitiveContentLocation `json:"matches,omitempty"`
+	Scope                    *SensitiveTypeScope         `json:"scope,omitempty"`
+	SensitiveTypeSource      *SensitiveTypeSource        `json:"sensitiveTypeSource,omitempty"`
+
+	// Fields inherited from DetectedSensitiveContentBase
+
+	Confidence  nullable.Type[int64]  `json:"confidence,omitempty"`
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+	Id          nullable.Type[string] `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	RecommendedConfidence nullable.Type[int64] `json:"recommendedConfidence,omitempty"`
+	UniqueCount           nullable.Type[int64] `json:"uniqueCount,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

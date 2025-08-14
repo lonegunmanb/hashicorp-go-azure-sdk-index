@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s MailboxProtectionRule) ProtectionRuleBase() BaseProtectionRuleBaseImpl {
+	return BaseProtectionRuleBaseImpl{
+		CreatedBy:            s.CreatedBy,
+		CreatedDateTime:      s.CreatedDateTime,
+		Error:                s.Error,
+		IsAutoApplyEnabled:   s.IsAutoApplyEnabled,
+		LastModifiedBy:       s.LastModifiedBy,
+		LastModifiedDateTime: s.LastModifiedDateTime,
+		Status:               s.Status,
+		Id:                   s.Id,
+		ODataId:              s.ODataId,
+		ODataType:            s.ODataType,
+	}
+}

@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hdinsight/2021-06-01/extensions
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ExtensionsClient) EnableAzureMonitorThenPoll(ctx context.Context, id commonids.HDInsightClusterId, input AzureMonitorRequest) error {
+	result, err := c.EnableAzureMonitor(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing EnableAzureMonitor: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after EnableAzureMonitor: %+v", err)
+	}
+
+	return nil
+}

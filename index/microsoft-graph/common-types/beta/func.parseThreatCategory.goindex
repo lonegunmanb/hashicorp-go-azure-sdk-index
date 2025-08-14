@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseThreatCategory(input string) (*ThreatCategory, error) {
+	vals := map[string]ThreatCategory{
+		"malware":   ThreatCategory_Malware,
+		"phishing":  ThreatCategory_Phishing,
+		"spam":      ThreatCategory_Spam,
+		"undefined": ThreatCategory_Undefined,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ThreatCategory(input)
+	return &out, nil
+}

@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/security/2019-01-01-preview/automations
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseOperator(input string) (*Operator, error) {
+	vals := map[string]Operator{
+		"contains":             OperatorContains,
+		"endswith":             OperatorEndsWith,
+		"equals":               OperatorEquals,
+		"greaterthan":          OperatorGreaterThan,
+		"greaterthanorequalto": OperatorGreaterThanOrEqualTo,
+		"lesserthan":           OperatorLesserThan,
+		"lesserthanorequalto":  OperatorLesserThanOrEqualTo,
+		"notequals":            OperatorNotEquals,
+		"startswith":           OperatorStartsWith,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Operator(input)
+	return &out, nil
+}

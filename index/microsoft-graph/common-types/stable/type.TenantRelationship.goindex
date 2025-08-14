@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+)
+type TenantRelationship struct {
+	// The customer who has a delegated admin relationship with a Microsoft partner.
+	DelegatedAdminCustomers *[]DelegatedAdminCustomer `json:"delegatedAdminCustomers,omitempty"`
+
+	// The details of the delegated administrative privileges that a Microsoft partner has in a customer tenant.
+	DelegatedAdminRelationships *[]DelegatedAdminRelationship `json:"delegatedAdminRelationships,omitempty"`
+
+	// Defines an organization with more than one instance of Microsoft Entra ID.
+	MultiTenantOrganization *MultiTenantOrganization `json:"multiTenantOrganization,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+}

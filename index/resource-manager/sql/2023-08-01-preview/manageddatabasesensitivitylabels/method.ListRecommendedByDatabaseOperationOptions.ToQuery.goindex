@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/manageddatabasesensitivitylabels
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ListRecommendedByDatabaseOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.Filter != nil {
+		out.Append("$filter", fmt.Sprintf("%v", *o.Filter))
+	}
+	if o.IncludeDisabledRecommendations != nil {
+		out.Append("includeDisabledRecommendations", fmt.Sprintf("%v", *o.IncludeDisabledRecommendations))
+	}
+	return &out
+}

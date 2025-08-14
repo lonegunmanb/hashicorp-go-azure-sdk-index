@@ -1,0 +1,51 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalAndroidWorkProfileCertificateProfileBaseImplementation(input []byte) (AndroidWorkProfileCertificateProfileBase, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling AndroidWorkProfileCertificateProfileBase into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.androidWorkProfilePkcsCertificateProfile") {
+		var out AndroidWorkProfilePkcsCertificateProfile
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AndroidWorkProfilePkcsCertificateProfile: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.androidWorkProfileScepCertificateProfile") {
+		var out AndroidWorkProfileScepCertificateProfile
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AndroidWorkProfileScepCertificateProfile: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseAndroidWorkProfileCertificateProfileBaseImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseAndroidWorkProfileCertificateProfileBaseImpl: %+v", err)
+	}
+
+	return RawAndroidWorkProfileCertificateProfileBaseImpl{
+		androidWorkProfileCertificateProfileBase: parent,
+		Type:                                     value,
+		Values:                                   temp,
+	}, nil
+
+}

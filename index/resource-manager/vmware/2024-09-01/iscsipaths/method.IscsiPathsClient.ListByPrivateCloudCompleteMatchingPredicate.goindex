@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2024-09-01/iscsipaths
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c IscsiPathsClient) ListByPrivateCloudCompleteMatchingPredicate(ctx context.Context, id PrivateCloudId, predicate IscsiPathOperationPredicate) (result ListByPrivateCloudCompleteResult, err error) {
+	items := make([]IscsiPath, 0)
+
+	resp, err := c.ListByPrivateCloud(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByPrivateCloudCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

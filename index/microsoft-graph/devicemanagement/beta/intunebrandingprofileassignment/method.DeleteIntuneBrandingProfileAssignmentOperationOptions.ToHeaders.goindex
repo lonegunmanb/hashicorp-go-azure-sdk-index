@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/intunebrandingprofileassignment
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o DeleteIntuneBrandingProfileAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+	if o.IfMatch != nil {
+		out.Append("If-Match", fmt.Sprintf("%v", *o.IfMatch))
+	}
+	return &out
+}

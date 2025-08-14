@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2023-02-01/validateoperation
+import (
+	"encoding/json"
+	"fmt"
+)
+type AzureFileShareRestoreRequest struct {
+	CopyOptions        *CopyOptions          `json:"copyOptions,omitempty"`
+	RecoveryType       *RecoveryType         `json:"recoveryType,omitempty"`
+	RestoreFileSpecs   *[]RestoreFileSpecs   `json:"restoreFileSpecs,omitempty"`
+	RestoreRequestType *RestoreRequestType   `json:"restoreRequestType,omitempty"`
+	SourceResourceId   *string               `json:"sourceResourceId,omitempty"`
+	TargetDetails      *TargetAFSRestoreInfo `json:"targetDetails,omitempty"`
+
+	// Fields inherited from RestoreRequest
+
+	ObjectType string `json:"objectType"`
+}

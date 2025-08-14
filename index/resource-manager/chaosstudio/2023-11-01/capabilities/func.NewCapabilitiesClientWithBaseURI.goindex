@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2023-11-01/capabilities
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewCapabilitiesClientWithBaseURI(sdkApi sdkEnv.Api) (*CapabilitiesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "capabilities", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating CapabilitiesClient: %+v", err)
+	}
+
+	return &CapabilitiesClient{
+		Client: client,
+	}, nil
+}

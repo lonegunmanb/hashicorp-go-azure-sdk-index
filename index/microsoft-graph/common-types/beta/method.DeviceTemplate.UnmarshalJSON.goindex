@@ -1,0 +1,63 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *DeviceTemplate) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		DeviceAuthority                     nullable.Type[string] `json:"deviceAuthority,omitempty"`
+		DeviceInstances                     *[]Device             `json:"deviceInstances,omitempty"`
+		Manufacturer                        nullable.Type[string] `json:"manufacturer,omitempty"`
+		Model                               nullable.Type[string] `json:"model,omitempty"`
+		MutualTlsOauthConfigurationId       nullable.Type[string] `json:"mutualTlsOauthConfigurationId,omitempty"`
+		MutualTlsOauthConfigurationTenantId nullable.Type[string] `json:"mutualTlsOauthConfigurationTenantId,omitempty"`
+		OperatingSystem                     nullable.Type[string] `json:"operatingSystem,omitempty"`
+		Owners_ODataBind                    *[]string             `json:"owners@odata.bind,omitempty"`
+		DeletedDateTime                     nullable.Type[string] `json:"deletedDateTime,omitempty"`
+		Id                                  *string               `json:"id,omitempty"`
+		ODataId                             *string               `json:"@odata.id,omitempty"`
+		ODataType                           *string               `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.DeviceAuthority = decoded.DeviceAuthority
+	s.DeviceInstances = decoded.DeviceInstances
+	s.Manufacturer = decoded.Manufacturer
+	s.Model = decoded.Model
+	s.MutualTlsOauthConfigurationId = decoded.MutualTlsOauthConfigurationId
+	s.MutualTlsOauthConfigurationTenantId = decoded.MutualTlsOauthConfigurationTenantId
+	s.OperatingSystem = decoded.OperatingSystem
+	s.Owners_ODataBind = decoded.Owners_ODataBind
+	s.DeletedDateTime = decoded.DeletedDateTime
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling DeviceTemplate into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["owners"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling Owners into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]DirectoryObject, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalDirectoryObjectImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'Owners' for 'DeviceTemplate': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.Owners = &output
+	}
+
+	return nil
+}

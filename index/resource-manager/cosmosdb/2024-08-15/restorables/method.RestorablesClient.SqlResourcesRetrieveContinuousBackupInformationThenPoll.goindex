@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cosmosdb/2024-08-15/restorables
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c RestorablesClient) SqlResourcesRetrieveContinuousBackupInformationThenPoll(ctx context.Context, id ContainerId, input ContinuousBackupRestoreLocation) error {
+	result, err := c.SqlResourcesRetrieveContinuousBackupInformation(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing SqlResourcesRetrieveContinuousBackupInformation: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after SqlResourcesRetrieveContinuousBackupInformation: %+v", err)
+	}
+
+	return nil
+}

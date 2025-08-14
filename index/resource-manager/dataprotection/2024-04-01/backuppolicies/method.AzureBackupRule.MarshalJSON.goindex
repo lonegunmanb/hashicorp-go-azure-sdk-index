@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2024-04-01/backuppolicies
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s AzureBackupRule) MarshalJSON() ([]byte, error) {
+	type wrapper AzureBackupRule
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AzureBackupRule: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AzureBackupRule: %+v", err)
+	}
+
+	decoded["objectType"] = "AzureBackupRule"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AzureBackupRule: %+v", err)
+	}
+
+	return encoded, nil
+}

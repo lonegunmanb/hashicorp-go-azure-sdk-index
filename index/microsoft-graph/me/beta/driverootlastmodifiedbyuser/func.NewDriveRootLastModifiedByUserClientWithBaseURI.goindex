@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/driverootlastmodifiedbyuser
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDriveRootLastModifiedByUserClientWithBaseURI(sdkApi sdkEnv.Api) (*DriveRootLastModifiedByUserClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "driverootlastmodifiedbyuser", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DriveRootLastModifiedByUserClient: %+v", err)
+	}
+
+	return &DriveRootLastModifiedByUserClient{
+		Client: client,
+	}, nil
+}

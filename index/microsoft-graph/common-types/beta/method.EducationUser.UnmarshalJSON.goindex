@@ -1,0 +1,110 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *EducationUser) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AccountEnabled                 nullable.Type[bool]      `json:"accountEnabled,omitempty"`
+		AssignedLicenses               *[]AssignedLicense       `json:"assignedLicenses,omitempty"`
+		AssignedPlans                  *[]AssignedPlan          `json:"assignedPlans,omitempty"`
+		Assignments                    *[]EducationAssignment   `json:"assignments,omitempty"`
+		BusinessPhones                 *[]string                `json:"businessPhones,omitempty"`
+		Classes                        *[]EducationClass        `json:"classes,omitempty"`
+		Department                     nullable.Type[string]    `json:"department,omitempty"`
+		DisplayName                    nullable.Type[string]    `json:"displayName,omitempty"`
+		ExternalSource                 *EducationExternalSource `json:"externalSource,omitempty"`
+		ExternalSourceDetail           nullable.Type[string]    `json:"externalSourceDetail,omitempty"`
+		GivenName                      nullable.Type[string]    `json:"givenName,omitempty"`
+		Mail                           nullable.Type[string]    `json:"mail,omitempty"`
+		MailNickname                   nullable.Type[string]    `json:"mailNickname,omitempty"`
+		MailingAddress                 *PhysicalAddress         `json:"mailingAddress,omitempty"`
+		MiddleName                     nullable.Type[string]    `json:"middleName,omitempty"`
+		MobilePhone                    nullable.Type[string]    `json:"mobilePhone,omitempty"`
+		OfficeLocation                 nullable.Type[string]    `json:"officeLocation,omitempty"`
+		OnPremisesInfo                 *EducationOnPremisesInfo `json:"onPremisesInfo,omitempty"`
+		PasswordPolicies               nullable.Type[string]    `json:"passwordPolicies,omitempty"`
+		PasswordProfile                *PasswordProfile         `json:"passwordProfile,omitempty"`
+		PreferredLanguage              nullable.Type[string]    `json:"preferredLanguage,omitempty"`
+		PrimaryRole                    *EducationUserRole       `json:"primaryRole,omitempty"`
+		ProvisionedPlans               *[]ProvisionedPlan       `json:"provisionedPlans,omitempty"`
+		RefreshTokensValidFromDateTime nullable.Type[string]    `json:"refreshTokensValidFromDateTime,omitempty"`
+		RelatedContacts                *[]RelatedContact        `json:"relatedContacts,omitempty"`
+		ResidenceAddress               *PhysicalAddress         `json:"residenceAddress,omitempty"`
+		Rubrics                        *[]EducationRubric       `json:"rubrics,omitempty"`
+		Schools                        *[]EducationSchool       `json:"schools,omitempty"`
+		ShowInAddressList              nullable.Type[bool]      `json:"showInAddressList,omitempty"`
+		Student                        *EducationStudent        `json:"student,omitempty"`
+		Surname                        nullable.Type[string]    `json:"surname,omitempty"`
+		TaughtClasses                  *[]EducationClass        `json:"taughtClasses,omitempty"`
+		Teacher                        *EducationTeacher        `json:"teacher,omitempty"`
+		UsageLocation                  nullable.Type[string]    `json:"usageLocation,omitempty"`
+		User                           *User                    `json:"user,omitempty"`
+		UserPrincipalName              nullable.Type[string]    `json:"userPrincipalName,omitempty"`
+		UserType                       nullable.Type[string]    `json:"userType,omitempty"`
+		Id                             *string                  `json:"id,omitempty"`
+		ODataId                        *string                  `json:"@odata.id,omitempty"`
+		ODataType                      *string                  `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AccountEnabled = decoded.AccountEnabled
+	s.AssignedLicenses = decoded.AssignedLicenses
+	s.AssignedPlans = decoded.AssignedPlans
+	s.Assignments = decoded.Assignments
+	s.BusinessPhones = decoded.BusinessPhones
+	s.Classes = decoded.Classes
+	s.Department = decoded.Department
+	s.DisplayName = decoded.DisplayName
+	s.ExternalSource = decoded.ExternalSource
+	s.ExternalSourceDetail = decoded.ExternalSourceDetail
+	s.GivenName = decoded.GivenName
+	s.Mail = decoded.Mail
+	s.MailNickname = decoded.MailNickname
+	s.MailingAddress = decoded.MailingAddress
+	s.MiddleName = decoded.MiddleName
+	s.MobilePhone = decoded.MobilePhone
+	s.OfficeLocation = decoded.OfficeLocation
+	s.OnPremisesInfo = decoded.OnPremisesInfo
+	s.PasswordPolicies = decoded.PasswordPolicies
+	s.PasswordProfile = decoded.PasswordProfile
+	s.PreferredLanguage = decoded.PreferredLanguage
+	s.PrimaryRole = decoded.PrimaryRole
+	s.ProvisionedPlans = decoded.ProvisionedPlans
+	s.RefreshTokensValidFromDateTime = decoded.RefreshTokensValidFromDateTime
+	s.RelatedContacts = decoded.RelatedContacts
+	s.ResidenceAddress = decoded.ResidenceAddress
+	s.Rubrics = decoded.Rubrics
+	s.Schools = decoded.Schools
+	s.ShowInAddressList = decoded.ShowInAddressList
+	s.Student = decoded.Student
+	s.Surname = decoded.Surname
+	s.TaughtClasses = decoded.TaughtClasses
+	s.Teacher = decoded.Teacher
+	s.UsageLocation = decoded.UsageLocation
+	s.User = decoded.User
+	s.UserPrincipalName = decoded.UserPrincipalName
+	s.UserType = decoded.UserType
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling EducationUser into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["createdBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'CreatedBy' for 'EducationUser': %+v", err)
+		}
+		s.CreatedBy = impl
+	}
+
+	return nil
+}

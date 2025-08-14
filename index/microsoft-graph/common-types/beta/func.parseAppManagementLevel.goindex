@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAppManagementLevel(input string) (*AppManagementLevel, error) {
+	vals := map[string]AppManagementLevel{
+		"androidenterprise": AppManagementLevel_AndroidEnterprise,
+		"androidenterprisededicateddeviceswithazureadsharedmode": AppManagementLevel_AndroidEnterpriseDedicatedDevicesWithAzureAdSharedMode,
+		"androidopensourceprojectuserassociated":                 AppManagementLevel_AndroidOpenSourceProjectUserAssociated,
+		"androidopensourceprojectuserless":                       AppManagementLevel_AndroidOpenSourceProjectUserless,
+		"mdm":                                                    AppManagementLevel_Mdm,
+		"unmanaged":                                              AppManagementLevel_Unmanaged,
+		"unspecified":                                            AppManagementLevel_Unspecified,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AppManagementLevel(input)
+	return &out, nil
+}

@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-12-01-preview/entities
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRegistryHive(input string) (*RegistryHive, error) {
+	vals := map[string]RegistryHive{
+		"hkey_a":                           RegistryHiveHKEYA,
+		"hkey_classes_root":                RegistryHiveHKEYCLASSESROOT,
+		"hkey_current_config":              RegistryHiveHKEYCURRENTCONFIG,
+		"hkey_current_user":                RegistryHiveHKEYCURRENTUSER,
+		"hkey_current_user_local_settings": RegistryHiveHKEYCURRENTUSERLOCALSETTINGS,
+		"hkey_local_machine":               RegistryHiveHKEYLOCALMACHINE,
+		"hkey_performance_data":            RegistryHiveHKEYPERFORMANCEDATA,
+		"hkey_performance_nlstext":         RegistryHiveHKEYPERFORMANCENLSTEXT,
+		"hkey_performance_text":            RegistryHiveHKEYPERFORMANCETEXT,
+		"hkey_users":                       RegistryHiveHKEYUSERS,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RegistryHive(input)
+	return &out, nil
+}

@@ -1,0 +1,36 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type NetworkaccessPrivateAccessForwardingRule struct {
+
+	// Fields inherited from NetworkaccessForwardingRule
+
+	Action *NetworkaccessForwardingRuleAction `json:"action,omitempty"`
+
+	// Destinations maintain a list of potential destinations and destination types that the user may access within the
+	// context of a network filtering policy. This includes IP addresses and fully qualified domain names (FQDNs)/URLs.
+	Destinations *[]NetworkaccessRuleDestination `json:"destinations,omitempty"`
+
+	RuleType *NetworkaccessNetworkDestinationType `json:"ruleType,omitempty"`
+
+	// Fields inherited from NetworkaccessPolicyRule
+
+	// Name.
+	Name *string `json:"name,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

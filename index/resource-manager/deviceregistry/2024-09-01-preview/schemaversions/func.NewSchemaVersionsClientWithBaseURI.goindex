@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/deviceregistry/2024-09-01-preview/schemaversions
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSchemaVersionsClientWithBaseURI(sdkApi sdkEnv.Api) (*SchemaVersionsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "schemaversions", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SchemaVersionsClient: %+v", err)
+	}
+
+	return &SchemaVersionsClient{
+		Client: client,
+	}, nil
+}

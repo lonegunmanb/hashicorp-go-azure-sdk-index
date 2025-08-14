@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2019-06-01/softwareupdateconfiguration
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type SoftwareUpdateConfigurationProperties struct {
+	CreatedBy           *string                           `json:"createdBy,omitempty"`
+	CreationTime        *string                           `json:"creationTime,omitempty"`
+	Error               *ErrorResponse                    `json:"error,omitempty"`
+	LastModifiedBy      *string                           `json:"lastModifiedBy,omitempty"`
+	LastModifiedTime    *string                           `json:"lastModifiedTime,omitempty"`
+	ProvisioningState   *string                           `json:"provisioningState,omitempty"`
+	ScheduleInfo        SUCScheduleProperties             `json:"scheduleInfo"`
+	Tasks               *SoftwareUpdateConfigurationTasks `json:"tasks,omitempty"`
+	UpdateConfiguration UpdateConfiguration               `json:"updateConfiguration"`
+}

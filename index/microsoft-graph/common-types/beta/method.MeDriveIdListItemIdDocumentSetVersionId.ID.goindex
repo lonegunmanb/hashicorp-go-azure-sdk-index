@@ -1,0 +1,11 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id MeDriveIdListItemIdDocumentSetVersionId) ID() string {
+	fmtString := "/me/drives/%s/list/items/%s/documentSetVersions/%s"
+	return fmt.Sprintf(fmtString, id.DriveId, id.ListItemId, id.DocumentSetVersionId)
+}

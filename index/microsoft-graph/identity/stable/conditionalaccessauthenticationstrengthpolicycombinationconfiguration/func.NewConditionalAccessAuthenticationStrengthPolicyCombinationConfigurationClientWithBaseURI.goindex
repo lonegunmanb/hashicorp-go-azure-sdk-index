@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/conditionalaccessauthenticationstrengthpolicycombinationconfiguration
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewConditionalAccessAuthenticationStrengthPolicyCombinationConfigurationClientWithBaseURI(sdkApi sdkEnv.Api) (*ConditionalAccessAuthenticationStrengthPolicyCombinationConfigurationClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "conditionalaccessauthenticationstrengthpolicycombinationconfiguration", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ConditionalAccessAuthenticationStrengthPolicyCombinationConfigurationClient: %+v", err)
+	}
+
+	return &ConditionalAccessAuthenticationStrengthPolicyCombinationConfigurationClient{
+		Client: client,
+	}, nil
+}

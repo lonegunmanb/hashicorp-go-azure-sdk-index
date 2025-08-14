@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/policy
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMarketplacePurchasesPolicy(input string) (*MarketplacePurchasesPolicy, error) {
+	vals := map[string]MarketplacePurchasesPolicy{
+		"allallowed":      MarketplacePurchasesPolicyAllAllowed,
+		"disabled":        MarketplacePurchasesPolicyDisabled,
+		"notallowed":      MarketplacePurchasesPolicyNotAllowed,
+		"onlyfreeallowed": MarketplacePurchasesPolicyOnlyFreeAllowed,
+		"other":           MarketplacePurchasesPolicyOther,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MarketplacePurchasesPolicy(input)
+	return &out, nil
+}

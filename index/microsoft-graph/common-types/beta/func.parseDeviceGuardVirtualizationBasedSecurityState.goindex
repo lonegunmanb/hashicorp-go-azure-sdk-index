@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeviceGuardVirtualizationBasedSecurityState(input string) (*DeviceGuardVirtualizationBasedSecurityState, error) {
+	vals := map[string]DeviceGuardVirtualizationBasedSecurityState{
+		"doesnotmeethardwarerequirements": DeviceGuardVirtualizationBasedSecurityState_DoesNotMeetHardwareRequirements,
+		"notconfigured":                   DeviceGuardVirtualizationBasedSecurityState_NotConfigured,
+		"notlicensed":                     DeviceGuardVirtualizationBasedSecurityState_NotLicensed,
+		"other":                           DeviceGuardVirtualizationBasedSecurityState_Other,
+		"rebootrequired":                  DeviceGuardVirtualizationBasedSecurityState_RebootRequired,
+		"require64bitarchitecture":        DeviceGuardVirtualizationBasedSecurityState_Require64BitArchitecture,
+		"running":                         DeviceGuardVirtualizationBasedSecurityState_Running,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceGuardVirtualizationBasedSecurityState(input)
+	return &out, nil
+}

@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *DeviceManagementImportedWindowsAutopilotDeviceIdentityId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.ImportedWindowsAutopilotDeviceIdentityId, ok = input.Parsed["importedWindowsAutopilotDeviceIdentityId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "importedWindowsAutopilotDeviceIdentityId", input)
+	}
+
+	return nil
+}

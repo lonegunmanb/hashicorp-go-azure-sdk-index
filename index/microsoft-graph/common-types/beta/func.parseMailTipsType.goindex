@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMailTipsType(input string) (*MailTipsType, error) {
+	vals := map[string]MailTipsType{
+		"automaticreplies":     MailTipsType_AutomaticReplies,
+		"custommailtip":        MailTipsType_CustomMailTip,
+		"deliveryrestriction":  MailTipsType_DeliveryRestriction,
+		"externalmembercount":  MailTipsType_ExternalMemberCount,
+		"mailboxfullstatus":    MailTipsType_MailboxFullStatus,
+		"maxmessagesize":       MailTipsType_MaxMessageSize,
+		"moderationstatus":     MailTipsType_ModerationStatus,
+		"recipientscope":       MailTipsType_RecipientScope,
+		"recipientsuggestions": MailTipsType_RecipientSuggestions,
+		"totalmembercount":     MailTipsType_TotalMemberCount,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MailTipsType(input)
+	return &out, nil
+}

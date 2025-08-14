@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/virtualnetworks
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseUsagePermissionType(input string) (*UsagePermissionType, error) {
+	vals := map[string]UsagePermissionType{
+		"allow":   UsagePermissionTypeAllow,
+		"default": UsagePermissionTypeDefault,
+		"deny":    UsagePermissionTypeDeny,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UsagePermissionType(input)
+	return &out, nil
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseIdentityGovernanceLifecycleWorkflowWorkflowIdTaskReportIdTaskProcessingResultID(input string) (*IdentityGovernanceLifecycleWorkflowWorkflowIdTaskReportIdTaskProcessingResultId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&IdentityGovernanceLifecycleWorkflowWorkflowIdTaskReportIdTaskProcessingResultId{})
+	parsed, err := parser.Parse(input, false)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := IdentityGovernanceLifecycleWorkflowWorkflowIdTaskReportIdTaskProcessingResultId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

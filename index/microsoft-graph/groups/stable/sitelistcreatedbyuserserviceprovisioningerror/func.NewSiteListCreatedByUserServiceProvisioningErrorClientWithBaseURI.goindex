@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/sitelistcreatedbyuserserviceprovisioningerror
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSiteListCreatedByUserServiceProvisioningErrorClientWithBaseURI(sdkApi sdkEnv.Api) (*SiteListCreatedByUserServiceProvisioningErrorClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "sitelistcreatedbyuserserviceprovisioningerror", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SiteListCreatedByUserServiceProvisioningErrorClient: %+v", err)
+	}
+
+	return &SiteListCreatedByUserServiceProvisioningErrorClient{
+		Client: client,
+	}, nil
+}

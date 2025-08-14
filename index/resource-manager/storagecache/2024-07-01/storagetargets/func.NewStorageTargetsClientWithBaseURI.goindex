@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagecache/2024-07-01/storagetargets
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewStorageTargetsClientWithBaseURI(sdkApi sdkEnv.Api) (*StorageTargetsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "storagetargets", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating StorageTargetsClient: %+v", err)
+	}
+
+	return &StorageTargetsClient{
+		Client: client,
+	}, nil
+}

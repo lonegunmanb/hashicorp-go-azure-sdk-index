@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseProtectionRuleStatus(input string) (*ProtectionRuleStatus, error) {
+	vals := map[string]ProtectionRuleStatus{
+		"active":              ProtectionRuleStatus_Active,
+		"completed":           ProtectionRuleStatus_Completed,
+		"completedwitherrors": ProtectionRuleStatus_CompletedWithErrors,
+		"deleterequested":     ProtectionRuleStatus_DeleteRequested,
+		"draft":               ProtectionRuleStatus_Draft,
+		"updaterequested":     ProtectionRuleStatus_UpdateRequested,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ProtectionRuleStatus(input)
+	return &out, nil
+}

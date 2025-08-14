@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id MeActivityIdHistoryItemId) String() string {
+	components := []string{
+		fmt.Sprintf("User Activity: %q", id.UserActivityId),
+		fmt.Sprintf("Activity History Item: %q", id.ActivityHistoryItemId),
+	}
+	return fmt.Sprintf("Me Activity Id History Item (%s)", strings.Join(components, "\n"))
+}

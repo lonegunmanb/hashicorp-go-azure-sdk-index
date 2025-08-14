@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2025-03-01/alerts
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAlertType(input string) (*AlertType, error) {
+	vals := map[string]AlertType{
+		"budget":         AlertTypeBudget,
+		"budgetforecast": AlertTypeBudgetForecast,
+		"credit":         AlertTypeCredit,
+		"general":        AlertTypeGeneral,
+		"invoice":        AlertTypeInvoice,
+		"quota":          AlertTypeQuota,
+		"xcloud":         AlertTypeXCloud,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AlertType(input)
+	return &out, nil
+}

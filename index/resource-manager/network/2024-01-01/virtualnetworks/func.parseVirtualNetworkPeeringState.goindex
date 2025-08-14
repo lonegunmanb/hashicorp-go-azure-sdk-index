@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-01-01/virtualnetworks
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVirtualNetworkPeeringState(input string) (*VirtualNetworkPeeringState, error) {
+	vals := map[string]VirtualNetworkPeeringState{
+		"connected":    VirtualNetworkPeeringStateConnected,
+		"disconnected": VirtualNetworkPeeringStateDisconnected,
+		"initiated":    VirtualNetworkPeeringStateInitiated,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VirtualNetworkPeeringState(input)
+	return &out, nil
+}

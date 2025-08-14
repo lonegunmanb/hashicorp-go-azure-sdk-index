@@ -1,0 +1,83 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *GroupPolicyDefinition) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		Category                  *GroupPolicyCategory            `json:"category,omitempty"`
+		CategoryPath              nullable.Type[string]           `json:"categoryPath,omitempty"`
+		ClassType                 *GroupPolicyDefinitionClassType `json:"classType,omitempty"`
+		DisplayName               nullable.Type[string]           `json:"displayName,omitempty"`
+		ExplainText               nullable.Type[string]           `json:"explainText,omitempty"`
+		GroupPolicyCategoryId     *string                         `json:"groupPolicyCategoryId,omitempty"`
+		HasRelatedDefinitions     *bool                           `json:"hasRelatedDefinitions,omitempty"`
+		LastModifiedDateTime      *string                         `json:"lastModifiedDateTime,omitempty"`
+		MinDeviceCspVersion       nullable.Type[string]           `json:"minDeviceCspVersion,omitempty"`
+		MinUserCspVersion         nullable.Type[string]           `json:"minUserCspVersion,omitempty"`
+		NextVersionDefinition     *GroupPolicyDefinition          `json:"nextVersionDefinition,omitempty"`
+		PolicyType                *GroupPolicyType                `json:"policyType,omitempty"`
+		PreviousVersionDefinition *GroupPolicyDefinition          `json:"previousVersionDefinition,omitempty"`
+		SupportedOn               nullable.Type[string]           `json:"supportedOn,omitempty"`
+		Version                   nullable.Type[string]           `json:"version,omitempty"`
+		Id                        *string                         `json:"id,omitempty"`
+		ODataId                   *string                         `json:"@odata.id,omitempty"`
+		ODataType                 *string                         `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.Category = decoded.Category
+	s.CategoryPath = decoded.CategoryPath
+	s.ClassType = decoded.ClassType
+	s.DisplayName = decoded.DisplayName
+	s.ExplainText = decoded.ExplainText
+	s.GroupPolicyCategoryId = decoded.GroupPolicyCategoryId
+	s.HasRelatedDefinitions = decoded.HasRelatedDefinitions
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.MinDeviceCspVersion = decoded.MinDeviceCspVersion
+	s.MinUserCspVersion = decoded.MinUserCspVersion
+	s.NextVersionDefinition = decoded.NextVersionDefinition
+	s.PolicyType = decoded.PolicyType
+	s.PreviousVersionDefinition = decoded.PreviousVersionDefinition
+	s.SupportedOn = decoded.SupportedOn
+	s.Version = decoded.Version
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling GroupPolicyDefinition into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["definitionFile"]; ok {
+		impl, err := UnmarshalGroupPolicyDefinitionFileImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'DefinitionFile' for 'GroupPolicyDefinition': %+v", err)
+		}
+		s.DefinitionFile = &impl
+	}
+
+	if v, ok := temp["presentations"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling Presentations into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]GroupPolicyPresentation, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalGroupPolicyPresentationImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'Presentations' for 'GroupPolicyDefinition': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.Presentations = &output
+	}
+
+	return nil
+}

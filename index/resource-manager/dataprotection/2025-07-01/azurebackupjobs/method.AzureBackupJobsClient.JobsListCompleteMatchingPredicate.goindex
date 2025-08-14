@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2025-07-01/azurebackupjobs
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c AzureBackupJobsClient) JobsListCompleteMatchingPredicate(ctx context.Context, id BackupVaultId, predicate AzureBackupJobResourceOperationPredicate) (result JobsListCompleteResult, err error) {
+	items := make([]AzureBackupJobResource, 0)
+
+	resp, err := c.JobsList(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = JobsListCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

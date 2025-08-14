@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/virtualmachineschedules
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewVirtualMachineSchedulesClientWithBaseURI(sdkApi sdkEnv.Api) (*VirtualMachineSchedulesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "virtualmachineschedules", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating VirtualMachineSchedulesClient: %+v", err)
+	}
+
+	return &VirtualMachineSchedulesClient{
+		Client: client,
+	}, nil
+}

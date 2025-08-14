@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-05-01/virtualnetworkpeerings
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVirtualNetworkPeeringLevel(input string) (*VirtualNetworkPeeringLevel, error) {
+	vals := map[string]VirtualNetworkPeeringLevel{
+		"fullyinsync":             VirtualNetworkPeeringLevelFullyInSync,
+		"localandremotenotinsync": VirtualNetworkPeeringLevelLocalAndRemoteNotInSync,
+		"localnotinsync":          VirtualNetworkPeeringLevelLocalNotInSync,
+		"remotenotinsync":         VirtualNetworkPeeringLevelRemoteNotInSync,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VirtualNetworkPeeringLevel(input)
+	return &out, nil
+}

@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/giminorversions
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *GiMinorVersionId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.LocationName, ok = input.Parsed["locationName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "locationName", input)
+	}
+
+	if id.GiVersionName, ok = input.Parsed["giVersionName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "giVersionName", input)
+	}
+
+	if id.GiMinorVersionName, ok = input.Parsed["giMinorVersionName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "giMinorVersionName", input)
+	}
+
+	return nil
+}

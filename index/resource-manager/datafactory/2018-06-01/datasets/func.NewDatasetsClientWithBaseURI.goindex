@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/datasets
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDatasetsClientWithBaseURI(sdkApi sdkEnv.Api) (*DatasetsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "datasets", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DatasetsClient: %+v", err)
+	}
+
+	return &DatasetsClient{
+		Client: client,
+	}, nil
+}

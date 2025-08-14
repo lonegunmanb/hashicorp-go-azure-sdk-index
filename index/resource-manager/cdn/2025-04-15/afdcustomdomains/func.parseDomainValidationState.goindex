@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-04-15/afdcustomdomains
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDomainValidationState(input string) (*DomainValidationState, error) {
+	vals := map[string]DomainValidationState{
+		"approved":                  DomainValidationStateApproved,
+		"internalerror":             DomainValidationStateInternalError,
+		"pending":                   DomainValidationStatePending,
+		"pendingrevalidation":       DomainValidationStatePendingRevalidation,
+		"refreshingvalidationtoken": DomainValidationStateRefreshingValidationToken,
+		"rejected":                  DomainValidationStateRejected,
+		"submitting":                DomainValidationStateSubmitting,
+		"timedout":                  DomainValidationStateTimedOut,
+		"unknown":                   DomainValidationStateUnknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DomainValidationState(input)
+	return &out, nil
+}

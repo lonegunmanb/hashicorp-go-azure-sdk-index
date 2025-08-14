@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/integrationruntimes
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseManagedIntegrationRuntimeNodeStatus(input string) (*ManagedIntegrationRuntimeNodeStatus, error) {
+	vals := map[string]ManagedIntegrationRuntimeNodeStatus{
+		"available":   ManagedIntegrationRuntimeNodeStatusAvailable,
+		"recycling":   ManagedIntegrationRuntimeNodeStatusRecycling,
+		"starting":    ManagedIntegrationRuntimeNodeStatusStarting,
+		"unavailable": ManagedIntegrationRuntimeNodeStatusUnavailable,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagedIntegrationRuntimeNodeStatus(input)
+	return &out, nil
+}

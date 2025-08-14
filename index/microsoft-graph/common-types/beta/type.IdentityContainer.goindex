@@ -1,0 +1,43 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type IdentityContainer struct {
+	// Represents entry point for API connectors.
+	ApiConnectors *[]IdentityApiConnector `json:"apiConnectors,omitempty"`
+
+	AuthenticationEventListeners *[]AuthenticationEventListener `json:"authenticationEventListeners,omitempty"`
+
+	// Represents the entry point for self-service sign-up and sign-in user flows in both Microsoft Entra workforce and
+	// external tenants.
+	AuthenticationEventsFlows *[]AuthenticationEventsFlow `json:"authenticationEventsFlows,omitempty"`
+
+	// Represents entry point for B2C identity userflows.
+	B2cUserFlows *[]B2cIdentityUserFlow `json:"b2cUserFlows,omitempty"`
+
+	// Represents entry point for B2X and self-service sign-up identity userflows.
+	B2xUserFlows *[]B2xIdentityUserFlow `json:"b2xUserFlows,omitempty"`
+
+	// the entry point for the Conditional Access (CA) object model.
+	ConditionalAccess *ConditionalAccessRoot `json:"conditionalAccess,omitempty"`
+
+	// Represents entry point for continuous access evaluation policy.
+	ContinuousAccessEvaluationPolicy *ContinuousAccessEvaluationPolicy `json:"continuousAccessEvaluationPolicy,omitempty"`
+
+	CustomAuthenticationExtensions *[]CustomAuthenticationExtension `json:"customAuthenticationExtensions,omitempty"`
+
+	// Represents entry point for identity provider base.
+	IdentityProviders *[]IdentityProviderBase `json:"identityProviders,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Represents entry point for identity userflow attributes.
+	UserFlowAttributes *[]IdentityUserFlowAttribute `json:"userFlowAttributes,omitempty"`
+
+	UserFlows *[]IdentityUserFlow `json:"userFlows,omitempty"`
+}

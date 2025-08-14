@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/connectedvmware/2023-12-01/inventoryitems
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id InventoryItemId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("V Center Name: %q", id.VCenterName),
+		fmt.Sprintf("Inventory Item Name: %q", id.InventoryItemName),
+	}
+	return fmt.Sprintf("Inventory Item (%s)", strings.Join(components, "\n"))
+}

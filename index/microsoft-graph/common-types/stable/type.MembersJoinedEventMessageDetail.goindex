@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+)
+type MembersJoinedEventMessageDetail struct {
+	// Initiator of the event.
+	Initiator IdentitySet `json:"initiator"`
+
+	// List of members who joined the chat.
+	Members *[]TeamworkUserIdentity `json:"members,omitempty"`
+
+	// Fields inherited from EventMessageDetail
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

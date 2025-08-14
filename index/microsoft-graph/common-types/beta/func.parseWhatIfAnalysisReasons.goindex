@@ -1,0 +1,37 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWhatIfAnalysisReasons(input string) (*WhatIfAnalysisReasons, error) {
+	vals := map[string]WhatIfAnalysisReasons{
+		"application":           WhatIfAnalysisReasons_Application,
+		"authenticationcontext": WhatIfAnalysisReasons_AuthenticationContext,
+		"authenticationflow":    WhatIfAnalysisReasons_AuthenticationFlow,
+		"clientapps":            WhatIfAnalysisReasons_ClientApps,
+		"deviceplatform":        WhatIfAnalysisReasons_DevicePlatform,
+		"devices":               WhatIfAnalysisReasons_Devices,
+		"emptypolicy":           WhatIfAnalysisReasons_EmptyPolicy,
+		"insiderrisk":           WhatIfAnalysisReasons_InsiderRisk,
+		"invalidcondition":      WhatIfAnalysisReasons_InvalidCondition,
+		"invalidpolicy":         WhatIfAnalysisReasons_InvalidPolicy,
+		"location":              WhatIfAnalysisReasons_Location,
+		"notenoughinformation":  WhatIfAnalysisReasons_NotEnoughInformation,
+		"notset":                WhatIfAnalysisReasons_NotSet,
+		"policynotenabled":      WhatIfAnalysisReasons_PolicyNotEnabled,
+		"signinrisk":            WhatIfAnalysisReasons_SignInRisk,
+		"time":                  WhatIfAnalysisReasons_Time,
+		"useractions":           WhatIfAnalysisReasons_UserActions,
+		"userrisk":              WhatIfAnalysisReasons_UserRisk,
+		"users":                 WhatIfAnalysisReasons_Users,
+		"workloadidentities":    WhatIfAnalysisReasons_WorkloadIdentities,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WhatIfAnalysisReasons(input)
+	return &out, nil
+}

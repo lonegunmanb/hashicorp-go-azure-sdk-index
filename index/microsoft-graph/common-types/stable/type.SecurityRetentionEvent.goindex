@@ -1,0 +1,60 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type SecurityRetentionEvent struct {
+	// The user who created the retentionEvent.
+	CreatedBy IdentitySet `json:"createdBy"`
+
+	// The date time when the retentionEvent was created.
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// Optional information about the event.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// Name of the event.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// Represents the success status of a created event and additional information.
+	EventPropagationResults *[]SecurityEventPropagationResult `json:"eventPropagationResults,omitempty"`
+
+	// Represents the workload (SharePoint Online, OneDrive for Business, Exchange Online) and identification information
+	// associated with a retention event.
+	EventQueries *[]SecurityEventQuery `json:"eventQueries,omitempty"`
+
+	// Status of event propogation to the scoped locations after the event has been created.
+	EventStatus *SecurityRetentionEventStatus `json:"eventStatus,omitempty"`
+
+	// Optional time when the event should be triggered.
+	EventTriggerDateTime nullable.Type[string] `json:"eventTriggerDateTime,omitempty"`
+
+	// The user who last modified the retentionEvent.
+	LastModifiedBy IdentitySet `json:"lastModifiedBy"`
+
+	// The latest date time when the retentionEvent was modified.
+	LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+
+	// Last time the status of the event was updated.
+	LastStatusUpdateDateTime nullable.Type[string] `json:"lastStatusUpdateDateTime,omitempty"`
+
+	// Specifies the event that will start the retention period for labels that use this event type when an event is
+	// created.
+	RetentionEventType *SecurityRetentionEventType `json:"retentionEventType,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

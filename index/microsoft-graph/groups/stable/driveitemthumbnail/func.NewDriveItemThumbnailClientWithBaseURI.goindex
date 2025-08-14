@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/driveitemthumbnail
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDriveItemThumbnailClientWithBaseURI(sdkApi sdkEnv.Api) (*DriveItemThumbnailClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "driveitemthumbnail", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DriveItemThumbnailClient: %+v", err)
+	}
+
+	return &DriveItemThumbnailClient{
+		Client: client,
+	}, nil
+}

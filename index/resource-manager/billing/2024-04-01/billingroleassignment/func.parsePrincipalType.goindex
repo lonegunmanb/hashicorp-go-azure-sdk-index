@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingroleassignment
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePrincipalType(input string) (*PrincipalType, error) {
+	vals := map[string]PrincipalType{
+		"directoryrole":    PrincipalTypeDirectoryRole,
+		"everyone":         PrincipalTypeEveryone,
+		"group":            PrincipalTypeGroup,
+		"none":             PrincipalTypeNone,
+		"serviceprincipal": PrincipalTypeServicePrincipal,
+		"unknown":          PrincipalTypeUnknown,
+		"user":             PrincipalTypeUser,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PrincipalType(input)
+	return &out, nil
+}

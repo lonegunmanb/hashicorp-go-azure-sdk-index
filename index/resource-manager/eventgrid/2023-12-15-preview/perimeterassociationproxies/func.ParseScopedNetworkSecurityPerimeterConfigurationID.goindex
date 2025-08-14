@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2023-12-15-preview/perimeterassociationproxies
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseScopedNetworkSecurityPerimeterConfigurationID(input string) (*ScopedNetworkSecurityPerimeterConfigurationId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&ScopedNetworkSecurityPerimeterConfigurationId{})
+	parsed, err := parser.Parse(input, false)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := ScopedNetworkSecurityPerimeterConfigurationId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

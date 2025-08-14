@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/mailfoldermessageextension
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewMailFolderMessageExtensionClientWithBaseURI(sdkApi sdkEnv.Api) (*MailFolderMessageExtensionClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "mailfoldermessageextension", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating MailFolderMessageExtensionClient: %+v", err)
+	}
+
+	return &MailFolderMessageExtensionClient{
+		Client: client,
+	}, nil
+}

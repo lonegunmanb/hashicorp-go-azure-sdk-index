@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationaccountagreements
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseHashingAlgorithm(input string) (*HashingAlgorithm, error) {
+	vals := map[string]HashingAlgorithm{
+		"md5":          HashingAlgorithmMDFive,
+		"none":         HashingAlgorithmNone,
+		"notspecified": HashingAlgorithmNotSpecified,
+		"sha1":         HashingAlgorithmSHAOne,
+		"sha2512":      HashingAlgorithmSHATwoFiveOneTwo,
+		"sha2384":      HashingAlgorithmSHATwoThreeEightFour,
+		"sha2256":      HashingAlgorithmSHATwoTwoFiveSix,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := HashingAlgorithm(input)
+	return &out, nil
+}

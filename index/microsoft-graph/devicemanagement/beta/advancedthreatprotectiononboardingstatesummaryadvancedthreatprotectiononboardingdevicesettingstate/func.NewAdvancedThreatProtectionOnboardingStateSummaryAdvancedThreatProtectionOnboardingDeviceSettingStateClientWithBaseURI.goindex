@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/advancedthreatprotectiononboardingstatesummaryadvancedthreatprotectiononboardingdevicesettingstate
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAdvancedThreatProtectionOnboardingStateSummaryAdvancedThreatProtectionOnboardingDeviceSettingStateClientWithBaseURI(sdkApi sdkEnv.Api) (*AdvancedThreatProtectionOnboardingStateSummaryAdvancedThreatProtectionOnboardingDeviceSettingStateClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "advancedthreatprotectiononboardingstatesummaryadvancedthreatprotectiononboardingdevicesettingstate", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AdvancedThreatProtectionOnboardingStateSummaryAdvancedThreatProtectionOnboardingDeviceSettingStateClient: %+v", err)
+	}
+
+	return &AdvancedThreatProtectionOnboardingStateSummaryAdvancedThreatProtectionOnboardingDeviceSettingStateClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,57 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/pipelines
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalCompressionReadSettingsImplementation(input []byte) (CompressionReadSettings, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling CompressionReadSettings into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "TarGZipReadSettings") {
+		var out TarGZipReadSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into TarGZipReadSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "TarReadSettings") {
+		var out TarReadSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into TarReadSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "ZipDeflateReadSettings") {
+		var out ZipDeflateReadSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ZipDeflateReadSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseCompressionReadSettingsImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseCompressionReadSettingsImpl: %+v", err)
+	}
+
+	return RawCompressionReadSettingsImpl{
+		compressionReadSettings: parent,
+		Type:                    value,
+		Values:                  temp,
+	}, nil
+
+}

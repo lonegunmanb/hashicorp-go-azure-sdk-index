@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamscheduleschedulinggroup
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewJoinedTeamScheduleSchedulingGroupClientWithBaseURI(sdkApi sdkEnv.Api) (*JoinedTeamScheduleSchedulingGroupClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "joinedteamscheduleschedulinggroup", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating JoinedTeamScheduleSchedulingGroupClient: %+v", err)
+	}
+
+	return &JoinedTeamScheduleSchedulingGroupClient{
+		Client: client,
+	}, nil
+}

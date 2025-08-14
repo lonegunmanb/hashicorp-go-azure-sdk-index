@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/teampermissiongrant
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTeamPermissionGrantClientWithBaseURI(sdkApi sdkEnv.Api) (*TeamPermissionGrantClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "teampermissiongrant", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TeamPermissionGrantClient: %+v", err)
+	}
+
+	return &TeamPermissionGrantClient{
+		Client: client,
+	}, nil
+}

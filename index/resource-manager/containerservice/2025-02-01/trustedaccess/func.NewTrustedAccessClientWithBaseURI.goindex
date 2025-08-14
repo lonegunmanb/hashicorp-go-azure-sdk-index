@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerservice/2025-02-01/trustedaccess
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTrustedAccessClientWithBaseURI(sdkApi sdkEnv.Api) (*TrustedAccessClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "trustedaccess", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TrustedAccessClient: %+v", err)
+	}
+
+	return &TrustedAccessClient{
+		Client: client,
+	}, nil
+}

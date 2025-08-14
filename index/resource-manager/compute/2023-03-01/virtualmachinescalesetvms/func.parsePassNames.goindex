@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2023-03-01/virtualmachinescalesetvms
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePassNames(input string) (*PassNames, error) {
+	vals := map[string]PassNames{
+		"oobesystem": PassNamesOobeSystem,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PassNames(input)
+	return &out, nil
+}

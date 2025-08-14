@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s SecurityConfigurationTask) DeviceAppManagementTask() BaseDeviceAppManagementTaskImpl {
+	return BaseDeviceAppManagementTaskImpl{
+		AssignedTo:      s.AssignedTo,
+		Category:        s.Category,
+		CreatedDateTime: s.CreatedDateTime,
+		Creator:         s.Creator,
+		CreatorNotes:    s.CreatorNotes,
+		Description:     s.Description,
+		DisplayName:     s.DisplayName,
+		DueDateTime:     s.DueDateTime,
+		Priority:        s.Priority,
+		Status:          s.Status,
+		Id:              s.Id,
+		ODataId:         s.ODataId,
+		ODataType:       s.ODataType,
+	}
+}

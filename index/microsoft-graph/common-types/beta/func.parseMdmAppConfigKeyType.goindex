@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMdmAppConfigKeyType(input string) (*MdmAppConfigKeyType, error) {
+	vals := map[string]MdmAppConfigKeyType{
+		"booleantype": MdmAppConfigKeyType_BooleanType,
+		"integertype": MdmAppConfigKeyType_IntegerType,
+		"realtype":    MdmAppConfigKeyType_RealType,
+		"stringtype":  MdmAppConfigKeyType_StringType,
+		"tokentype":   MdmAppConfigKeyType_TokenType,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MdmAppConfigKeyType(input)
+	return &out, nil
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/kusto/2024-04-13/scripts
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseScriptLevel(input string) (*ScriptLevel, error) {
+	vals := map[string]ScriptLevel{
+		"cluster":  ScriptLevelCluster,
+		"database": ScriptLevelDatabase,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ScriptLevel(input)
+	return &out, nil
+}

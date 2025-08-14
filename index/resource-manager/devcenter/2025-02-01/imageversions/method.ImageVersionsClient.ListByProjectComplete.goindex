@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/imageversions
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ImageVersionsClient) ListByProjectComplete(ctx context.Context, id ImageId) (ListByProjectCompleteResult, error) {
+	return c.ListByProjectCompleteMatchingPredicate(ctx, id, ImageVersionOperationPredicate{})
+}

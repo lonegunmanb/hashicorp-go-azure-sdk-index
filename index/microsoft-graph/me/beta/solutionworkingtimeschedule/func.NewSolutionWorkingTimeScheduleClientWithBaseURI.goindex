@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/solutionworkingtimeschedule
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSolutionWorkingTimeScheduleClientWithBaseURI(sdkApi sdkEnv.Api) (*SolutionWorkingTimeScheduleClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "solutionworkingtimeschedule", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SolutionWorkingTimeScheduleClient: %+v", err)
+	}
+
+	return &SolutionWorkingTimeScheduleClient{
+		Client: client,
+	}, nil
+}

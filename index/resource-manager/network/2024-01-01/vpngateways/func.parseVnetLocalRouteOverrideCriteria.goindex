@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-01-01/vpngateways
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVnetLocalRouteOverrideCriteria(input string) (*VnetLocalRouteOverrideCriteria, error) {
+	vals := map[string]VnetLocalRouteOverrideCriteria{
+		"contains": VnetLocalRouteOverrideCriteriaContains,
+		"equal":    VnetLocalRouteOverrideCriteriaEqual,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VnetLocalRouteOverrideCriteria(input)
+	return &out, nil
+}

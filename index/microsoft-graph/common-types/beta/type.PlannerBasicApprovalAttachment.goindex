@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type PlannerBasicApprovalAttachment struct {
+	// Read-only. The identifier of the approval in the approval service.
+	ApprovalId nullable.Type[string] `json:"approvalId,omitempty"`
+
+	// Fields inherited from PlannerBaseApprovalAttachment
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Status of the approval. The possible values are: requested, approved, rejected, cancelled, unknownFutureValue.
+	// Read-only.
+	Status *PlannerApprovalStatus `json:"status,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

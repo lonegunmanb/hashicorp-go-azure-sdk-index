@@ -1,0 +1,75 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalLongRunningOperationImplementation(input []byte) (LongRunningOperation, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling LongRunningOperation into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.attackSimulationOperation") {
+		var out AttackSimulationOperation
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AttackSimulationOperation: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.engagementAsyncOperation") {
+		var out EngagementAsyncOperation
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into EngagementAsyncOperation: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.goalsExportJob") {
+		var out GoalsExportJob
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into GoalsExportJob: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.industryData.validateOperation") {
+		var out IndustryDataValidateOperation
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into IndustryDataValidateOperation: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.richLongRunningOperation") {
+		var out RichLongRunningOperation
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into RichLongRunningOperation: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseLongRunningOperationImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseLongRunningOperationImpl: %+v", err)
+	}
+
+	return RawLongRunningOperationImpl{
+		longRunningOperation: parent,
+		Type:                 value,
+		Values:               temp,
+	}, nil
+
+}

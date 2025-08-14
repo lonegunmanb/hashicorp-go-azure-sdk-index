@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/automationrules
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAutomationRulePropertyChangedConditionSupportedPropertyType(input string) (*AutomationRulePropertyChangedConditionSupportedPropertyType, error) {
+	vals := map[string]AutomationRulePropertyChangedConditionSupportedPropertyType{
+		"incidentowner":    AutomationRulePropertyChangedConditionSupportedPropertyTypeIncidentOwner,
+		"incidentseverity": AutomationRulePropertyChangedConditionSupportedPropertyTypeIncidentSeverity,
+		"incidentstatus":   AutomationRulePropertyChangedConditionSupportedPropertyTypeIncidentStatus,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AutomationRulePropertyChangedConditionSupportedPropertyType(input)
+	return &out, nil
+}

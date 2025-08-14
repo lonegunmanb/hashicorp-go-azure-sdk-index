@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-09-01/connectivityconfigurations
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewConnectivityConfigurationsClientWithBaseURI(sdkApi sdkEnv.Api) (*ConnectivityConfigurationsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "connectivityconfigurations", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ConnectivityConfigurationsClient: %+v", err)
+	}
+
+	return &ConnectivityConfigurationsClient{
+		Client: client,
+	}, nil
+}

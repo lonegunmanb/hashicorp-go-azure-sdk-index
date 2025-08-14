@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/datasecurityandgovernanceactivity
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDataSecurityAndGovernanceActivityClientWithBaseURI(sdkApi sdkEnv.Api) (*DataSecurityAndGovernanceActivityClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "datasecurityandgovernanceactivity", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DataSecurityAndGovernanceActivityClient: %+v", err)
+	}
+
+	return &DataSecurityAndGovernanceActivityClient{
+		Client: client,
+	}, nil
+}

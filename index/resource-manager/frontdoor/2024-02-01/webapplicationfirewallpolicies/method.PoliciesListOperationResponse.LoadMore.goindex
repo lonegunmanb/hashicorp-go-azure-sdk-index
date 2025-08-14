@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/frontdoor/2024-02-01/webapplicationfirewallpolicies
+import (
+	"context"
+	"fmt"
+	"net/http"
+	"net/url"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+)
+func (r PoliciesListOperationResponse) LoadMore(ctx context.Context) (resp PoliciesListOperationResponse, err error) {
+	if !r.HasMore() {
+		err = fmt.Errorf("no more pages returned")
+		return
+	}
+	return r.nextPageFunc(ctx, *r.nextLink)
+}

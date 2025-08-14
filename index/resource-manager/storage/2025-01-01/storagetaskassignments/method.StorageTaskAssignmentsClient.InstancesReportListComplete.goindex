@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-01-01/storagetaskassignments
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c StorageTaskAssignmentsClient) InstancesReportListComplete(ctx context.Context, id commonids.StorageAccountId, options InstancesReportListOperationOptions) (InstancesReportListCompleteResult, error) {
+	return c.InstancesReportListCompleteMatchingPredicate(ctx, id, options, StorageTaskReportInstanceOperationPredicate{})
+}

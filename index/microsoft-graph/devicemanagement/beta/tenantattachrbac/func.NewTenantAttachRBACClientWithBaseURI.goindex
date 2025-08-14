@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/tenantattachrbac
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTenantAttachRBACClientWithBaseURI(sdkApi sdkEnv.Api) (*TenantAttachRBACClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "tenantattachrbac", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TenantAttachRBACClient: %+v", err)
+	}
+
+	return &TenantAttachRBACClient{
+		Client: client,
+	}, nil
+}

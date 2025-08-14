@@ -1,0 +1,40 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type AccessPackageTextInputQuestion struct {
+	// Indicates whether the answer will be in single or multiple line format.
+	IsSingleLineQuestion nullable.Type[bool] `json:"isSingleLineQuestion,omitempty"`
+
+	// The regex pattern that the corresponding text answer must follow.
+	RegexPattern nullable.Type[string] `json:"regexPattern,omitempty"`
+
+	// Fields inherited from AccessPackageQuestion
+
+	// ID of the question.
+	Id nullable.Type[string] `json:"id,omitempty"`
+
+	// Specifies whether the requestor is allowed to edit answers to questions.
+	IsAnswerEditable nullable.Type[bool] `json:"isAnswerEditable,omitempty"`
+
+	// Whether the requestor is required to supply an answer or not.
+	IsRequired nullable.Type[bool] `json:"isRequired,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Relative position of this question when displaying a list of questions to the requestor.
+	Sequence nullable.Type[int64] `json:"sequence,omitempty"`
+
+	// The text of the question to show to the requestor.
+	Text *AccessPackageLocalizedContent `json:"text,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

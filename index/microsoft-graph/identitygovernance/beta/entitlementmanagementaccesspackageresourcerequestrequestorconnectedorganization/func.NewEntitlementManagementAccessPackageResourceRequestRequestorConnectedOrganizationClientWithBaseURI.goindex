@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/entitlementmanagementaccesspackageresourcerequestrequestorconnectedorganization
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewEntitlementManagementAccessPackageResourceRequestRequestorConnectedOrganizationClientWithBaseURI(sdkApi sdkEnv.Api) (*EntitlementManagementAccessPackageResourceRequestRequestorConnectedOrganizationClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "entitlementmanagementaccesspackageresourcerequestrequestorconnectedorganization", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating EntitlementManagementAccessPackageResourceRequestRequestorConnectedOrganizationClient: %+v", err)
+	}
+
+	return &EntitlementManagementAccessPackageResourceRequestRequestorConnectedOrganizationClient{
+		Client: client,
+	}, nil
+}

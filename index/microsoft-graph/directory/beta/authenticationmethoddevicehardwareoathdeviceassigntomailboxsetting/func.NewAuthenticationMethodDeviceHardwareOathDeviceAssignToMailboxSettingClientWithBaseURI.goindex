@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/authenticationmethoddevicehardwareoathdeviceassigntomailboxsetting
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAuthenticationMethodDeviceHardwareOathDeviceAssignToMailboxSettingClientWithBaseURI(sdkApi sdkEnv.Api) (*AuthenticationMethodDeviceHardwareOathDeviceAssignToMailboxSettingClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "authenticationmethoddevicehardwareoathdeviceassigntomailboxsetting", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AuthenticationMethodDeviceHardwareOathDeviceAssignToMailboxSettingClient: %+v", err)
+	}
+
+	return &AuthenticationMethodDeviceHardwareOathDeviceAssignToMailboxSettingClient{
+		Client: client,
+	}, nil
+}

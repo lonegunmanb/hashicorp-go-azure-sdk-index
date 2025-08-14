@@ -1,0 +1,52 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *CallTranscript) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		CallId               nullable.Type[string] `json:"callId,omitempty"`
+		Content              nullable.Type[string] `json:"content,omitempty"`
+		ContentCorrelationId nullable.Type[string] `json:"contentCorrelationId,omitempty"`
+		CreatedDateTime      nullable.Type[string] `json:"createdDateTime,omitempty"`
+		EndDateTime          nullable.Type[string] `json:"endDateTime,omitempty"`
+		MeetingId            nullable.Type[string] `json:"meetingId,omitempty"`
+		MetadataContent      nullable.Type[string] `json:"metadataContent,omitempty"`
+		TranscriptContentUrl nullable.Type[string] `json:"transcriptContentUrl,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.CallId = decoded.CallId
+	s.Content = decoded.Content
+	s.ContentCorrelationId = decoded.ContentCorrelationId
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.EndDateTime = decoded.EndDateTime
+	s.MeetingId = decoded.MeetingId
+	s.MetadataContent = decoded.MetadataContent
+	s.TranscriptContentUrl = decoded.TranscriptContentUrl
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling CallTranscript into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["meetingOrganizer"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'MeetingOrganizer' for 'CallTranscript': %+v", err)
+		}
+		s.MeetingOrganizer = &impl
+	}
+
+	return nil
+}

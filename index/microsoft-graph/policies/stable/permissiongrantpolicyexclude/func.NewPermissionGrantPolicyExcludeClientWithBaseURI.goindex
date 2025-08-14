@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/stable/permissiongrantpolicyexclude
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPermissionGrantPolicyExcludeClientWithBaseURI(sdkApi sdkEnv.Api) (*PermissionGrantPolicyExcludeClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "permissiongrantpolicyexclude", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PermissionGrantPolicyExcludeClient: %+v", err)
+	}
+
+	return &PermissionGrantPolicyExcludeClient{
+		Client: client,
+	}, nil
+}

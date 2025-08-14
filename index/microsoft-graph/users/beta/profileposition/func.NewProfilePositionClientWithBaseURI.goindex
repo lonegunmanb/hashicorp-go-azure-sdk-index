@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/profileposition
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewProfilePositionClientWithBaseURI(sdkApi sdkEnv.Api) (*ProfilePositionClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "profileposition", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ProfilePositionClient: %+v", err)
+	}
+
+	return &ProfilePositionClient{
+		Client: client,
+	}, nil
+}

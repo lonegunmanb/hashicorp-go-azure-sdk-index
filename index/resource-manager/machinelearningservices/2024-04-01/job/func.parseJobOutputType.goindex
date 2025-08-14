@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/job
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseJobOutputType(input string) (*JobOutputType, error) {
+	vals := map[string]JobOutputType{
+		"custom_model": JobOutputTypeCustomModel,
+		"mlflow_model": JobOutputTypeMlflowModel,
+		"mltable":      JobOutputTypeMltable,
+		"triton_model": JobOutputTypeTritonModel,
+		"uri_file":     JobOutputTypeUriFile,
+		"uri_folder":   JobOutputTypeUriFolder,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := JobOutputType(input)
+	return &out, nil
+}

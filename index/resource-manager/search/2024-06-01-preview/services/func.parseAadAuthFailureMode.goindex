@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/search/2024-06-01-preview/services
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAadAuthFailureMode(input string) (*AadAuthFailureMode, error) {
+	vals := map[string]AadAuthFailureMode{
+		"http401withbearerchallenge": AadAuthFailureModeHTTPFourZeroOneWithBearerChallenge,
+		"http403":                    AadAuthFailureModeHTTPFourZeroThree,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AadAuthFailureMode(input)
+	return &out, nil
+}

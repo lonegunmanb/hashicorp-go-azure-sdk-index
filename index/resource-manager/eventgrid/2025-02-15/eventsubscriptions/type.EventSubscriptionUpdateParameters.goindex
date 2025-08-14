@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2025-02-15/eventsubscriptions
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type EventSubscriptionUpdateParameters struct {
+	DeadLetterDestination          DeadLetterDestination           `json:"deadLetterDestination"`
+	DeadLetterWithResourceIdentity *DeadLetterWithResourceIdentity `json:"deadLetterWithResourceIdentity,omitempty"`
+	DeliveryWithResourceIdentity   *DeliveryWithResourceIdentity   `json:"deliveryWithResourceIdentity,omitempty"`
+	Destination                    EventSubscriptionDestination    `json:"destination"`
+	EventDeliverySchema            *EventDeliverySchema            `json:"eventDeliverySchema,omitempty"`
+	ExpirationTimeUtc              *string                         `json:"expirationTimeUtc,omitempty"`
+	Filter                         *EventSubscriptionFilter        `json:"filter,omitempty"`
+	Labels                         *[]string                       `json:"labels,omitempty"`
+	RetryPolicy                    *RetryPolicy                    `json:"retryPolicy,omitempty"`
+}

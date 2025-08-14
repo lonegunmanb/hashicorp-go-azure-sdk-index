@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/dataflowdebugsession
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s SapEccLinkedService) MarshalJSON() ([]byte, error) {
+	type wrapper SapEccLinkedService
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling SapEccLinkedService: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling SapEccLinkedService: %+v", err)
+	}
+
+	decoded["type"] = "SapEcc"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling SapEccLinkedService: %+v", err)
+	}
+
+	return encoded, nil
+}

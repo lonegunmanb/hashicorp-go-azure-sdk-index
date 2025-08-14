@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWindowsUpdatesMonitoringAction(input string) (*WindowsUpdatesMonitoringAction, error) {
+	vals := map[string]WindowsUpdatesMonitoringAction{
+		"alerterror":      WindowsUpdatesMonitoringAction_AlertError,
+		"offerfallback":   WindowsUpdatesMonitoringAction_OfferFallback,
+		"pausedeployment": WindowsUpdatesMonitoringAction_PauseDeployment,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsUpdatesMonitoringAction(input)
+	return &out, nil
+}

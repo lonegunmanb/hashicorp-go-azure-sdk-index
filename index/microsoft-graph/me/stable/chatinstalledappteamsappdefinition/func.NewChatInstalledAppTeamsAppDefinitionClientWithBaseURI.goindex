@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/chatinstalledappteamsappdefinition
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewChatInstalledAppTeamsAppDefinitionClientWithBaseURI(sdkApi sdkEnv.Api) (*ChatInstalledAppTeamsAppDefinitionClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "chatinstalledappteamsappdefinition", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ChatInstalledAppTeamsAppDefinitionClient: %+v", err)
+	}
+
+	return &ChatInstalledAppTeamsAppDefinitionClient{
+		Client: client,
+	}, nil
+}

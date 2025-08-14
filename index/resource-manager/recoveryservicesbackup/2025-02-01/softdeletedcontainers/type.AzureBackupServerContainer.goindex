@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/softdeletedcontainers
+import (
+	"encoding/json"
+	"fmt"
+)
+type AzureBackupServerContainer struct {
+	CanReRegister      *bool                     `json:"canReRegister,omitempty"`
+	ContainerId        *string                   `json:"containerId,omitempty"`
+	DpmAgentVersion    *string                   `json:"dpmAgentVersion,omitempty"`
+	DpmServers         *[]string                 `json:"dpmServers,omitempty"`
+	ExtendedInfo       *DPMContainerExtendedInfo `json:"extendedInfo,omitempty"`
+	ProtectedItemCount *int64                    `json:"protectedItemCount,omitempty"`
+	ProtectionStatus   *string                   `json:"protectionStatus,omitempty"`
+	UpgradeAvailable   *bool                     `json:"upgradeAvailable,omitempty"`
+
+	// Fields inherited from ProtectionContainer
+
+	BackupManagementType  *BackupManagementType    `json:"backupManagementType,omitempty"`
+	ContainerType         ProtectableContainerType `json:"containerType"`
+	FriendlyName          *string                  `json:"friendlyName,omitempty"`
+	HealthStatus          *string                  `json:"healthStatus,omitempty"`
+	ProtectableObjectType *string                  `json:"protectableObjectType,omitempty"`
+	RegistrationStatus    *string                  `json:"registrationStatus,omitempty"`
+}

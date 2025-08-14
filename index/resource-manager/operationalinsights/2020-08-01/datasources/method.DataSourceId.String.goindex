@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/operationalinsights/2020-08-01/datasources
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DataSourceId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Workspace Name: %q", id.WorkspaceName),
+		fmt.Sprintf("Data Source Name: %q", id.DataSourceName),
+	}
+	return fmt.Sprintf("Data Source (%s)", strings.Join(components, "\n"))
+}

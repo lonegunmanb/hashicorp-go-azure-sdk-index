@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWindows10AppType(input string) (*Windows10AppType, error) {
+	vals := map[string]Windows10AppType{
+		"desktop":   Windows10AppType_Desktop,
+		"universal": Windows10AppType_Universal,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10AppType(input)
+	return &out, nil
+}

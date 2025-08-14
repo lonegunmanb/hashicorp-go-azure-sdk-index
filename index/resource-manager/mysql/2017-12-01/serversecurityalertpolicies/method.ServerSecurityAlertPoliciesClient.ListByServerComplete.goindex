@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mysql/2017-12-01/serversecurityalertpolicies
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ServerSecurityAlertPoliciesClient) ListByServerComplete(ctx context.Context, id ServerId) (ListByServerCompleteResult, error) {
+	return c.ListByServerCompleteMatchingPredicate(ctx, id, ServerSecurityAlertPolicyOperationPredicate{})
+}

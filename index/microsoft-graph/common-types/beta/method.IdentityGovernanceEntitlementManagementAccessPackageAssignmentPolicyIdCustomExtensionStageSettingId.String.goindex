@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id IdentityGovernanceEntitlementManagementAccessPackageAssignmentPolicyIdCustomExtensionStageSettingId) String() string {
+	components := []string{
+		fmt.Sprintf("Access Package Assignment Policy: %q", id.AccessPackageAssignmentPolicyId),
+		fmt.Sprintf("Custom Extension Stage Setting: %q", id.CustomExtensionStageSettingId),
+	}
+	return fmt.Sprintf("Identity Governance Entitlement Management Access Package Assignment Policy Id Custom Extension Stage Setting (%s)", strings.Join(components, "\n"))
+}

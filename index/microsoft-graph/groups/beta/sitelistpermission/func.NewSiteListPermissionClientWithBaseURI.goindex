@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitelistpermission
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSiteListPermissionClientWithBaseURI(sdkApi sdkEnv.Api) (*SiteListPermissionClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "sitelistpermission", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SiteListPermissionClient: %+v", err)
+	}
+
+	return &SiteListPermissionClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWindows10AppsUpdateRecurrence(input string) (*Windows10AppsUpdateRecurrence, error) {
+	vals := map[string]Windows10AppsUpdateRecurrence{
+		"daily":   Windows10AppsUpdateRecurrence_Daily,
+		"monthly": Windows10AppsUpdateRecurrence_Monthly,
+		"none":    Windows10AppsUpdateRecurrence_None,
+		"weekly":  Windows10AppsUpdateRecurrence_Weekly,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10AppsUpdateRecurrence(input)
+	return &out, nil
+}

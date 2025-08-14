@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mysql/2023-12-30/backupsv2
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c BackupsV2Client) LongRunningBackupsListComplete(ctx context.Context, id FlexibleServerId) (LongRunningBackupsListCompleteResult, error) {
+	return c.LongRunningBackupsListCompleteMatchingPredicate(ctx, id, ServerBackupV2OperationPredicate{})
+}

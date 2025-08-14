@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/relay/2024-01-01/hybridconnections
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c HybridConnectionsClient) ListAuthorizationRulesCompleteMatchingPredicate(ctx context.Context, id HybridConnectionId, predicate AuthorizationRuleOperationPredicate) (result ListAuthorizationRulesCompleteResult, err error) {
+	items := make([]AuthorizationRule, 0)
+
+	resp, err := c.ListAuthorizationRules(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListAuthorizationRulesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/postgresqlhsc/2022-11-08/firewallrules
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id FirewallRuleId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Server Groupsv 2 Name: %q", id.ServerGroupsv2Name),
+		fmt.Sprintf("Firewall Rule Name: %q", id.FirewallRuleName),
+	}
+	return fmt.Sprintf("Firewall Rule (%s)", strings.Join(components, "\n"))
+}

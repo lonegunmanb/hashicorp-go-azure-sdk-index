@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/serverendpointresource
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseServerEndpointSyncMode(input string) (*ServerEndpointSyncMode, error) {
+	vals := map[string]ServerEndpointSyncMode{
+		"initialfulldownload": ServerEndpointSyncModeInitialFullDownload,
+		"initialupload":       ServerEndpointSyncModeInitialUpload,
+		"namespacedownload":   ServerEndpointSyncModeNamespaceDownload,
+		"regular":             ServerEndpointSyncModeRegular,
+		"snapshotupload":      ServerEndpointSyncModeSnapshotUpload,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ServerEndpointSyncMode(input)
+	return &out, nil
+}

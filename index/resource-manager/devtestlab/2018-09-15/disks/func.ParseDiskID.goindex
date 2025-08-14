@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/disks
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseDiskID(input string) (*DiskId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&DiskId{})
+	parsed, err := parser.Parse(input, false)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := DiskId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseErrorCode(input string) (*ErrorCode, error) {
+	vals := map[string]ErrorCode{
+		"deleted":      ErrorCode_Deleted,
+		"noerror":      ErrorCode_NoError,
+		"notfound":     ErrorCode_NotFound,
+		"unauthorized": ErrorCode_Unauthorized,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ErrorCode(input)
+	return &out, nil
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/customdomains
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseProtocolType(input string) (*ProtocolType, error) {
+	vals := map[string]ProtocolType{
+		"ipbased":              ProtocolTypeIPBased,
+		"servernameindication": ProtocolTypeServerNameIndication,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ProtocolType(input)
+	return &out, nil
+}

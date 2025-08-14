@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/startstopmanagedinstanceschedules
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewStartStopManagedInstanceSchedulesClientWithBaseURI(sdkApi sdkEnv.Api) (*StartStopManagedInstanceSchedulesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "startstopmanagedinstanceschedules", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating StartStopManagedInstanceSchedulesClient: %+v", err)
+	}
+
+	return &StartStopManagedInstanceSchedulesClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,54 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+)
+type Authentication struct {
+	// The email address registered to a user for authentication.
+	EmailMethods *[]EmailAuthenticationMethod `json:"emailMethods,omitempty"`
+
+	// Represents the FIDO2 security keys registered to a user for authentication.
+	Fido2Methods *[]Fido2AuthenticationMethod `json:"fido2Methods,omitempty"`
+
+	// Represents all authentication methods registered to a user.
+	Methods *[]AuthenticationMethod `json:"methods,omitempty"`
+
+	// The details of the Microsoft Authenticator app registered to a user for authentication.
+	MicrosoftAuthenticatorMethods *[]MicrosoftAuthenticatorAuthenticationMethod `json:"microsoftAuthenticatorMethods,omitempty"`
+
+	// Represents the status of a long-running operation, such as a password reset operation.
+	Operations *[]LongRunningOperation `json:"operations,omitempty"`
+
+	// Represents the password registered to a user for authentication. For security, the password itself is never returned
+	// in the object, but action can be taken to reset a password.
+	PasswordMethods *[]PasswordAuthenticationMethod `json:"passwordMethods,omitempty"`
+
+	// The phone numbers registered to a user for authentication.
+	PhoneMethods *[]PhoneAuthenticationMethod `json:"phoneMethods,omitempty"`
+
+	// Represents a platform credential instance registered to a user on Mac OS.
+	PlatformCredentialMethods *[]PlatformCredentialAuthenticationMethod `json:"platformCredentialMethods,omitempty"`
+
+	// The software OATH time-based one-time password (TOTP) applications registered to a user for authentication.
+	SoftwareOathMethods *[]SoftwareOathAuthenticationMethod `json:"softwareOathMethods,omitempty"`
+
+	// Represents a Temporary Access Pass registered to a user for authentication through time-limited passcodes.
+	TemporaryAccessPassMethods *[]TemporaryAccessPassAuthenticationMethod `json:"temporaryAccessPassMethods,omitempty"`
+
+	// Represents the Windows Hello for Business authentication method registered to a user for authentication.
+	WindowsHelloForBusinessMethods *[]WindowsHelloForBusinessAuthenticationMethod `json:"windowsHelloForBusinessMethods,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type SecurityMetadataAction struct {
+	// A collection of key-value pairs that should be added to the file.
+	MetadataToAdd *[]SecurityKeyValuePair `json:"metadataToAdd,omitempty"`
+
+	// A collection of strings that indicate which keys to remove from the file metadata.
+	MetadataToRemove *[]string `json:"metadataToRemove,omitempty"`
+
+	// Fields inherited from SecurityInformationProtectionAction
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

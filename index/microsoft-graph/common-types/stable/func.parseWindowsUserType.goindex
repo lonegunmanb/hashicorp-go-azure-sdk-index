@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWindowsUserType(input string) (*WindowsUserType, error) {
+	vals := map[string]WindowsUserType{
+		"administrator": WindowsUserType_Administrator,
+		"standard":      WindowsUserType_Standard,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsUserType(input)
+	return &out, nil
+}

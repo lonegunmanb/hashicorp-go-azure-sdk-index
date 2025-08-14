@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2025-03-01/costallocationrules
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCostAllocationResourceType(input string) (*CostAllocationResourceType, error) {
+	vals := map[string]CostAllocationResourceType{
+		"dimension": CostAllocationResourceTypeDimension,
+		"tag":       CostAllocationResourceTypeTag,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CostAllocationResourceType(input)
+	return &out, nil
+}

@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerapps/2025-01-01/managedenvironments
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseManagedEnvironmentDetectorIDInsensitively(input string) (*ManagedEnvironmentDetectorId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&ManagedEnvironmentDetectorId{})
+	parsed, err := parser.Parse(input, true)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := ManagedEnvironmentDetectorId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

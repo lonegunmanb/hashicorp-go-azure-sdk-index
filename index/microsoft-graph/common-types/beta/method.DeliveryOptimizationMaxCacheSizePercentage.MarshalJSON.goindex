@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s DeliveryOptimizationMaxCacheSizePercentage) MarshalJSON() ([]byte, error) {
+	type wrapper DeliveryOptimizationMaxCacheSizePercentage
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling DeliveryOptimizationMaxCacheSizePercentage: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling DeliveryOptimizationMaxCacheSizePercentage: %+v", err)
+	}
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.deliveryOptimizationMaxCacheSizePercentage"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling DeliveryOptimizationMaxCacheSizePercentage: %+v", err)
+	}
+
+	return encoded, nil
+}

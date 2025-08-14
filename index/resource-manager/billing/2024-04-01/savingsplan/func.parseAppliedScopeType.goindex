@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/savingsplan
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAppliedScopeType(input string) (*AppliedScopeType, error) {
+	vals := map[string]AppliedScopeType{
+		"managementgroup": AppliedScopeTypeManagementGroup,
+		"shared":          AppliedScopeTypeShared,
+		"single":          AppliedScopeTypeSingle,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AppliedScopeType(input)
+	return &out, nil
+}

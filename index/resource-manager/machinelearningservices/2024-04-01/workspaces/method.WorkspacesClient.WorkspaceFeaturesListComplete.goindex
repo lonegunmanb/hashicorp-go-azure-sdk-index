@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/workspaces
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c WorkspacesClient) WorkspaceFeaturesListComplete(ctx context.Context, id WorkspaceId) (WorkspaceFeaturesListCompleteResult, error) {
+	return c.WorkspaceFeaturesListCompleteMatchingPredicate(ctx, id, AmlUserFeatureOperationPredicate{})
+}

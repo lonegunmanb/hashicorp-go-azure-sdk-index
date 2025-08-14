@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func (s BaseIndustryDataIndustryDataRunActivityImpl) MarshalJSON() ([]byte, error) {
+	type wrapper BaseIndustryDataIndustryDataRunActivityImpl
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling BaseIndustryDataIndustryDataRunActivityImpl: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling BaseIndustryDataIndustryDataRunActivityImpl: %+v", err)
+	}
+
+	delete(decoded, "blockingError")
+	delete(decoded, "displayName")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.industryData.industryDataRunActivity"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling BaseIndustryDataIndustryDataRunActivityImpl: %+v", err)
+	}
+
+	return encoded, nil
+}

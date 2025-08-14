@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/invitations/stable/inviteduser
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewInvitedUserClientWithBaseURI(sdkApi sdkEnv.Api) (*InvitedUserClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "inviteduser", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating InvitedUserClient: %+v", err)
+	}
+
+	return &InvitedUserClient{
+		Client: client,
+	}, nil
+}

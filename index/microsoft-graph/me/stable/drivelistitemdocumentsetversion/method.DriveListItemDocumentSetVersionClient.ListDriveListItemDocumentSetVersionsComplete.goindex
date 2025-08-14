@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistitemdocumentsetversion
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DriveListItemDocumentSetVersionClient) ListDriveListItemDocumentSetVersionsComplete(ctx context.Context, id stable.MeDriveIdListItemId, options ListDriveListItemDocumentSetVersionsOperationOptions) (ListDriveListItemDocumentSetVersionsCompleteResult, error) {
+	return c.ListDriveListItemDocumentSetVersionsCompleteMatchingPredicate(ctx, id, options, DocumentSetVersionOperationPredicate{})
+}

@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-08-01/alerts
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAlertOperator(input string) (*AlertOperator, error) {
+	vals := map[string]AlertOperator{
+		"equalto":              AlertOperatorEqualTo,
+		"greaterthan":          AlertOperatorGreaterThan,
+		"greaterthanorequalto": AlertOperatorGreaterThanOrEqualTo,
+		"lessthan":             AlertOperatorLessThan,
+		"lessthanorequalto":    AlertOperatorLessThanOrEqualTo,
+		"none":                 AlertOperatorNone,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AlertOperator(input)
+	return &out, nil
+}

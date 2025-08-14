@@ -1,0 +1,51 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2022-03-01/triggers
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+)
+func UnmarshalTriggerImplementation(input []byte) (Trigger, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling Trigger into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["kind"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "FileEvent") {
+		var out FileEventTrigger
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into FileEventTrigger: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "PeriodicTimerEvent") {
+		var out PeriodicTimerEventTrigger
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into PeriodicTimerEventTrigger: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseTriggerImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseTriggerImpl: %+v", err)
+	}
+
+	return RawTriggerImpl{
+		trigger: parent,
+		Type:    value,
+		Values:  temp,
+	}, nil
+
+}

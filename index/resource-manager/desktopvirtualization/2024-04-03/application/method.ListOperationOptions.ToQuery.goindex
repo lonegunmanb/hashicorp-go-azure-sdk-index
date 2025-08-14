@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/desktopvirtualization/2024-04-03/application
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ListOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.InitialSkip != nil {
+		out.Append("initialSkip", fmt.Sprintf("%v", *o.InitialSkip))
+	}
+	if o.IsDescending != nil {
+		out.Append("isDescending", fmt.Sprintf("%v", *o.IsDescending))
+	}
+	if o.PageSize != nil {
+		out.Append("pageSize", fmt.Sprintf("%v", *o.PageSize))
+	}
+	return &out
+}

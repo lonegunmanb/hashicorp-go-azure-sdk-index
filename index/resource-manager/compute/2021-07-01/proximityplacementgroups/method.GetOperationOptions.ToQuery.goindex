@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2021-07-01/proximityplacementgroups
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o GetOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.IncludeColocationStatus != nil {
+		out.Append("includeColocationStatus", fmt.Sprintf("%v", *o.IncludeColocationStatus))
+	}
+	return &out
+}

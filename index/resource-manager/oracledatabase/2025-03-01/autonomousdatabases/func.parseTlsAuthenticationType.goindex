@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/autonomousdatabases
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTlsAuthenticationType(input string) (*TlsAuthenticationType, error) {
+	vals := map[string]TlsAuthenticationType{
+		"mutual": TlsAuthenticationTypeMutual,
+		"server": TlsAuthenticationTypeServer,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TlsAuthenticationType(input)
+	return &out, nil
+}

@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *MeProfileSkillId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SkillProficiencyId, ok = input.Parsed["skillProficiencyId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "skillProficiencyId", input)
+	}
+
+	return nil
+}

@@ -1,0 +1,37 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/v2022_09_01
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/actions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/backuprestore"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/changedetection"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/cloudendpointresource"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/operationstatus"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/privateendpointconnectionresource"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/privateendpointconnections"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/privatelinkresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/registeredserverresource"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/serverendpointresource"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/storagesyncservice"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/storagesyncservicesresource"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/syncgroupresource"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/workflowresource"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	Actions                           *actions.ActionsClient
+	BackupRestore                     *backuprestore.BackupRestoreClient
+	ChangeDetection                   *changedetection.ChangeDetectionClient
+	CloudEndpointResource             *cloudendpointresource.CloudEndpointResourceClient
+	OperationStatus                   *operationstatus.OperationStatusClient
+	PrivateEndpointConnectionResource *privateendpointconnectionresource.PrivateEndpointConnectionResourceClient
+	PrivateEndpointConnections        *privateendpointconnections.PrivateEndpointConnectionsClient
+	PrivateLinkResources              *privatelinkresources.PrivateLinkResourcesClient
+	RegisteredServerResource          *registeredserverresource.RegisteredServerResourceClient
+	ServerEndpointResource            *serverendpointresource.ServerEndpointResourceClient
+	StorageSyncService                *storagesyncservice.StorageSyncServiceClient
+	StorageSyncServicesResource       *storagesyncservicesresource.StorageSyncServicesResourceClient
+	SyncGroupResource                 *syncgroupresource.SyncGroupResourceClient
+	WorkflowResource                  *workflowresource.WorkflowResourceClient
+}

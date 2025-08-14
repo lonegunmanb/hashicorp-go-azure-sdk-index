@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/chatinstalledapp
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewChatInstalledAppClientWithBaseURI(sdkApi sdkEnv.Api) (*ChatInstalledAppClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "chatinstalledapp", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ChatInstalledAppClient: %+v", err)
+	}
+
+	return &ChatInstalledAppClient{
+		Client: client,
+	}, nil
+}

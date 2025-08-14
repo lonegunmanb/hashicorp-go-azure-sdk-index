@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseContactRelationship(input string) (*ContactRelationship, error) {
+	vals := map[string]ContactRelationship{
+		"aide":     ContactRelationship_Aide,
+		"child":    ContactRelationship_Child,
+		"doctor":   ContactRelationship_Doctor,
+		"guardian": ContactRelationship_Guardian,
+		"other":    ContactRelationship_Other,
+		"parent":   ContactRelationship_Parent,
+		"relative": ContactRelationship_Relative,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ContactRelationship(input)
+	return &out, nil
+}

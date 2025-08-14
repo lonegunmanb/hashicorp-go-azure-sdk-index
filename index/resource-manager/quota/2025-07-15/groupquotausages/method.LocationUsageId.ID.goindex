@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-07-15/groupquotausages
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id LocationUsageId) ID() string {
+	fmtString := "/providers/Microsoft.Management/managementGroups/%s/providers/Microsoft.Quota/groupQuotas/%s/resourceProviders/%s/locationUsages/%s"
+	return fmt.Sprintf(fmtString, id.ManagementGroupId, id.GroupQuotaName, id.ResourceProviderName, id.LocationUsageName)
+}

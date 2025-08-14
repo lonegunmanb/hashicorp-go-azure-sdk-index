@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mobilenetwork/2024-04-01/extendedueinformation
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewExtendedUeInformationClientWithBaseURI(sdkApi sdkEnv.Api) (*ExtendedUeInformationClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "extendedueinformation", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ExtendedUeInformationClient: %+v", err)
+	}
+
+	return &ExtendedUeInformationClient{
+		Client: client,
+	}, nil
+}

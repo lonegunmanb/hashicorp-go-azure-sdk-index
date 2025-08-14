@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationaccounts
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseIntegrationAccountSkuName(input string) (*IntegrationAccountSkuName, error) {
+	vals := map[string]IntegrationAccountSkuName{
+		"basic":        IntegrationAccountSkuNameBasic,
+		"free":         IntegrationAccountSkuNameFree,
+		"notspecified": IntegrationAccountSkuNameNotSpecified,
+		"standard":     IntegrationAccountSkuNameStandard,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IntegrationAccountSkuName(input)
+	return &out, nil
+}

@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mongocluster/2024-07-01/replicas
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id MongoClusterId) ID() string {
+	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.DocumentDB/mongoClusters/%s"
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.MongoClusterName)
+}

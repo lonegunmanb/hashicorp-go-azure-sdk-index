@@ -1,0 +1,55 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *BaseProtectionUnitsBulkJobBaseImpl) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		CreatedDateTime      nullable.Type[string]         `json:"createdDateTime,omitempty"`
+		DisplayName          nullable.Type[string]         `json:"displayName,omitempty"`
+		Error                *PublicError                  `json:"error,omitempty"`
+		LastModifiedDateTime nullable.Type[string]         `json:"lastModifiedDateTime,omitempty"`
+		Status               *ProtectionUnitsBulkJobStatus `json:"status,omitempty"`
+		Id                   *string                       `json:"id,omitempty"`
+		ODataId              *string                       `json:"@odata.id,omitempty"`
+		ODataType            *string                       `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.DisplayName = decoded.DisplayName
+	s.Error = decoded.Error
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.Status = decoded.Status
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling BaseProtectionUnitsBulkJobBaseImpl into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["createdBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'CreatedBy' for 'BaseProtectionUnitsBulkJobBaseImpl': %+v", err)
+		}
+		s.CreatedBy = impl
+	}
+
+	if v, ok := temp["lastModifiedBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'LastModifiedBy' for 'BaseProtectionUnitsBulkJobBaseImpl': %+v", err)
+		}
+		s.LastModifiedBy = impl
+	}
+
+	return nil
+}

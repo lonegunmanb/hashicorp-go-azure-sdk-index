@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-10-01/deploymentoperations
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseProvisioningOperation(input string) (*ProvisioningOperation, error) {
+	vals := map[string]ProvisioningOperation{
+		"action":                     ProvisioningOperationAction,
+		"azureasyncoperationwaiting": ProvisioningOperationAzureAsyncOperationWaiting,
+		"create":                     ProvisioningOperationCreate,
+		"delete":                     ProvisioningOperationDelete,
+		"deploymentcleanup":          ProvisioningOperationDeploymentCleanup,
+		"evaluatedeploymentoutput":   ProvisioningOperationEvaluateDeploymentOutput,
+		"notspecified":               ProvisioningOperationNotSpecified,
+		"read":                       ProvisioningOperationRead,
+		"resourcecachewaiting":       ProvisioningOperationResourceCacheWaiting,
+		"waiting":                    ProvisioningOperationWaiting,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ProvisioningOperation(input)
+	return &out, nil
+}

@@ -1,0 +1,65 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/streamanalytics/2021-10-01-preview/subscriptions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalReferenceInputDataSourceImplementation(input []byte) (ReferenceInputDataSource, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling ReferenceInputDataSource into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "Microsoft.Sql/Server/Database") {
+		var out AzureSqlReferenceInputDataSource
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureSqlReferenceInputDataSource: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "Microsoft.Storage/Blob") {
+		var out BlobReferenceInputDataSource
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into BlobReferenceInputDataSource: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "File") {
+		var out FileReferenceInputDataSource
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into FileReferenceInputDataSource: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "Raw") {
+		var out RawReferenceInputDataSource
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into RawReferenceInputDataSource: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseReferenceInputDataSourceImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseReferenceInputDataSourceImpl: %+v", err)
+	}
+
+	return RawReferenceInputDataSourceImpl{
+		referenceInputDataSource: parent,
+		Type:                     value,
+		Values:                   temp,
+	}, nil
+
+}

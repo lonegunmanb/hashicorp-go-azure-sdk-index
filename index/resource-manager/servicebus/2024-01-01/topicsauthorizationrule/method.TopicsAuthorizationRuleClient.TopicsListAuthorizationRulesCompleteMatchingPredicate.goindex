@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicebus/2024-01-01/topicsauthorizationrule
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c TopicsAuthorizationRuleClient) TopicsListAuthorizationRulesCompleteMatchingPredicate(ctx context.Context, id TopicId, predicate SBAuthorizationRuleOperationPredicate) (result TopicsListAuthorizationRulesCompleteResult, err error) {
+	items := make([]SBAuthorizationRule, 0)
+
+	resp, err := c.TopicsListAuthorizationRules(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = TopicsListAuthorizationRulesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

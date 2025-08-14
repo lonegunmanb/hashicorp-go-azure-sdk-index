@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2023-02-01/protectioncontainers
+import (
+	"context"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+)
+func (c ProtectionContainersClient) responderForUnregister(resp *http.Response) (result UnregisterOperationResponse, err error) {
+	err = autorest.Respond(
+		resp,
+		azure.WithErrorUnlessStatusCode(http.StatusAccepted, http.StatusNoContent, http.StatusOK),
+		autorest.ByClosing())
+	result.HttpResponse = resp
+
+	return
+}

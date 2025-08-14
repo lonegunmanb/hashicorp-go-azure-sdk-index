@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dynatrace/2024-04-24/monitoredsubscriptions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSubscriptionListOperation(input string) (*SubscriptionListOperation, error) {
+	vals := map[string]SubscriptionListOperation{
+		"active":         SubscriptionListOperationActive,
+		"addbegin":       SubscriptionListOperationAddBegin,
+		"addcomplete":    SubscriptionListOperationAddComplete,
+		"deletebegin":    SubscriptionListOperationDeleteBegin,
+		"deletecomplete": SubscriptionListOperationDeleteComplete,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SubscriptionListOperation(input)
+	return &out, nil
+}

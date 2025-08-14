@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *DeviceManagementNotificationMessageTemplateIdLocalizedNotificationMessageId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.NotificationMessageTemplateId, ok = input.Parsed["notificationMessageTemplateId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "notificationMessageTemplateId", input)
+	}
+
+	if id.LocalizedNotificationMessageId, ok = input.Parsed["localizedNotificationMessageId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "localizedNotificationMessageId", input)
+	}
+
+	return nil
+}

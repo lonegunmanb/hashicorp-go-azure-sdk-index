@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/directorytransitiveroleassignmentappscope
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDirectoryTransitiveRoleAssignmentAppScopeClientWithBaseURI(sdkApi sdkEnv.Api) (*DirectoryTransitiveRoleAssignmentAppScopeClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "directorytransitiveroleassignmentappscope", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DirectoryTransitiveRoleAssignmentAppScopeClient: %+v", err)
+	}
+
+	return &DirectoryTransitiveRoleAssignmentAppScopeClient{
+		Client: client,
+	}, nil
+}

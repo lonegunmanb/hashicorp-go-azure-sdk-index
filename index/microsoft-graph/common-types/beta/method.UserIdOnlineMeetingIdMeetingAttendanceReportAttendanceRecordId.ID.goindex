@@ -1,0 +1,11 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id UserIdOnlineMeetingIdMeetingAttendanceReportAttendanceRecordId) ID() string {
+	fmtString := "/users/%s/onlineMeetings/%s/meetingAttendanceReport/attendanceRecords/%s"
+	return fmt.Sprintf(fmtString, id.UserId, id.OnlineMeetingId, id.AttendanceRecordId)
+}

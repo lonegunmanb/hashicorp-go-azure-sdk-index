@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client/msgraph
+import (
+	"context"
+	"fmt"
+	"net/url"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewMsGraphClient(api environments.Api, serviceName string, apiVersion ApiVersion) (*Client, error) {
+	return NewClient(api, serviceName, apiVersion)
+}

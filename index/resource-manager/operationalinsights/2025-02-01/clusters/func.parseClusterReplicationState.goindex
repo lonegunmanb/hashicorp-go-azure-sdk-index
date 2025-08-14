@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/operationalinsights/2025-02-01/clusters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseClusterReplicationState(input string) (*ClusterReplicationState, error) {
+	vals := map[string]ClusterReplicationState{
+		"canceled":          ClusterReplicationStateCanceled,
+		"disablerequested":  ClusterReplicationStateDisableRequested,
+		"disabling":         ClusterReplicationStateDisabling,
+		"enablerequested":   ClusterReplicationStateEnableRequested,
+		"enabling":          ClusterReplicationStateEnabling,
+		"failed":            ClusterReplicationStateFailed,
+		"rollbackrequested": ClusterReplicationStateRollbackRequested,
+		"rollingback":       ClusterReplicationStateRollingBack,
+		"succeeded":         ClusterReplicationStateSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ClusterReplicationState(input)
+	return &out, nil
+}

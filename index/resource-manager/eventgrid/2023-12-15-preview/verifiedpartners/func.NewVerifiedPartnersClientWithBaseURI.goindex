@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2023-12-15-preview/verifiedpartners
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewVerifiedPartnersClientWithBaseURI(sdkApi sdkEnv.Api) (*VerifiedPartnersClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "verifiedpartners", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating VerifiedPartnersClient: %+v", err)
+	}
+
+	return &VerifiedPartnersClient{
+		Client: client,
+	}, nil
+}

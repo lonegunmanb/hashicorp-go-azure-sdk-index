@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/policyinsights/2024-10-01/attestations
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c AttestationsClient) CreateOrUpdateAtSubscriptionThenPoll(ctx context.Context, id AttestationId, input Attestation) error {
+	result, err := c.CreateOrUpdateAtSubscription(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing CreateOrUpdateAtSubscription: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after CreateOrUpdateAtSubscription: %+v", err)
+	}
+
+	return nil
+}

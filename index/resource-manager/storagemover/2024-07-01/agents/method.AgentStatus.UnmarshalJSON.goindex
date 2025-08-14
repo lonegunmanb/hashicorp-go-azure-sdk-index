@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagemover/2024-07-01/agents
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func (s *AgentStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseAgentStatus(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}

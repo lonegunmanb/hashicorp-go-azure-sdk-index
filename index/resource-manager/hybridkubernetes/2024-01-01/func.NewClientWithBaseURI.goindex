@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hybridkubernetes/v2024_01_01
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/hybridkubernetes/2024-01-01/connectedclusters"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	connectedClustersClient, err := connectedclusters.NewConnectedClustersClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ConnectedClusters client: %+v", err)
+	}
+	configureFunc(connectedClustersClient.Client)
+
+	return &Client{
+		ConnectedClusters: connectedClustersClient,
+	}, nil
+}

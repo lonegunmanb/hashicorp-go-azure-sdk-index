@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/datasets
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s SapHanaTableDataset) MarshalJSON() ([]byte, error) {
+	type wrapper SapHanaTableDataset
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling SapHanaTableDataset: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling SapHanaTableDataset: %+v", err)
+	}
+
+	decoded["type"] = "SapHanaTable"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling SapHanaTableDataset: %+v", err)
+	}
+
+	return encoded, nil
+}

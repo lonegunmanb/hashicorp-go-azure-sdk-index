@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2024-10-01/protectablecontainers
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s AzureStorageProtectableContainer) ProtectableContainer() BaseProtectableContainerImpl {
+	return BaseProtectableContainerImpl{
+		BackupManagementType:     s.BackupManagementType,
+		ContainerId:              s.ContainerId,
+		FriendlyName:             s.FriendlyName,
+		HealthStatus:             s.HealthStatus,
+		ProtectableContainerType: s.ProtectableContainerType,
+	}
+}

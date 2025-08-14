@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/streamanalytics/2021-10-01-preview/transformations
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTransformationsClientWithBaseURI(sdkApi sdkEnv.Api) (*TransformationsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "transformations", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TransformationsClient: %+v", err)
+	}
+
+	return &TransformationsClient{
+		Client: client,
+	}, nil
+}

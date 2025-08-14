@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/origins
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseOriginResourceState(input string) (*OriginResourceState, error) {
+	vals := map[string]OriginResourceState{
+		"active":   OriginResourceStateActive,
+		"creating": OriginResourceStateCreating,
+		"deleting": OriginResourceStateDeleting,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := OriginResourceState(input)
+	return &out, nil
+}

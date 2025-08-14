@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/outlooktaskgrouptaskfoldertaskattachment
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c OutlookTaskGroupTaskFolderTaskAttachmentClient) ListOutlookTaskGroupTaskFolderTaskAttachmentsComplete(ctx context.Context, id beta.UserIdOutlookTaskGroupIdTaskFolderIdTaskId, options ListOutlookTaskGroupTaskFolderTaskAttachmentsOperationOptions) (ListOutlookTaskGroupTaskFolderTaskAttachmentsCompleteResult, error) {
+	return c.ListOutlookTaskGroupTaskFolderTaskAttachmentsCompleteMatchingPredicate(ctx, id, options, AttachmentOperationPredicate{})
+}

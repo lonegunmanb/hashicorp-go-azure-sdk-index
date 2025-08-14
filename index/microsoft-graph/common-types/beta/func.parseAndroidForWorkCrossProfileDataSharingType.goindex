@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAndroidForWorkCrossProfileDataSharingType(input string) (*AndroidForWorkCrossProfileDataSharingType, error) {
+	vals := map[string]AndroidForWorkCrossProfileDataSharingType{
+		"allowpersonaltowork": AndroidForWorkCrossProfileDataSharingType_AllowPersonalToWork,
+		"devicedefault":       AndroidForWorkCrossProfileDataSharingType_DeviceDefault,
+		"norestrictions":      AndroidForWorkCrossProfileDataSharingType_NoRestrictions,
+		"preventany":          AndroidForWorkCrossProfileDataSharingType_PreventAny,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AndroidForWorkCrossProfileDataSharingType(input)
+	return &out, nil
+}

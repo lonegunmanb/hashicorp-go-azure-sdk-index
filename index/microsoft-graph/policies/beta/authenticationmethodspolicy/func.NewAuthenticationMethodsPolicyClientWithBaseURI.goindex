@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/authenticationmethodspolicy
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAuthenticationMethodsPolicyClientWithBaseURI(sdkApi sdkEnv.Api) (*AuthenticationMethodsPolicyClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "authenticationmethodspolicy", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AuthenticationMethodsPolicyClient: %+v", err)
+	}
+
+	return &AuthenticationMethodsPolicyClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2016-06-01/managedapis
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewManagedAPIsClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedAPIsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "managedapis", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ManagedAPIsClient: %+v", err)
+	}
+
+	return &ManagedAPIsClient{
+		Client: client,
+	}, nil
+}

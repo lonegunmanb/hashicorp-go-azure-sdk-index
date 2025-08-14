@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/fetchtieringcost
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/polling"
+)
+func (c FetchTieringCostClient) PostThenPoll(ctx context.Context, id VaultId, input FetchTieringCostInfoRequest) error {
+	result, err := c.Post(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing Post: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(); err != nil {
+		return fmt.Errorf("polling after Post: %+v", err)
+	}
+
+	return nil
+}

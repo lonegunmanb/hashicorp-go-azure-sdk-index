@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementcatalogaccesspackage
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c EntitlementManagementCatalogAccessPackageClient) ListEntitlementManagementCatalogAccessPackagesComplete(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogId, options ListEntitlementManagementCatalogAccessPackagesOperationOptions) (ListEntitlementManagementCatalogAccessPackagesCompleteResult, error) {
+	return c.ListEntitlementManagementCatalogAccessPackagesCompleteMatchingPredicate(ctx, id, options, AccessPackageOperationPredicate{})
+}

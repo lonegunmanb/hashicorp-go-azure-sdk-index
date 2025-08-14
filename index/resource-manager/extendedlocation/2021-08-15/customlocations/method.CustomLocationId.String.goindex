@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/extendedlocation/2021-08-15/customlocations
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id CustomLocationId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Custom Location Name: %q", id.CustomLocationName),
+	}
+	return fmt.Sprintf("Custom Location (%s)", strings.Join(components, "\n"))
+}

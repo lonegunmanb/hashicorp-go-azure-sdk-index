@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/resourceproviders
+
+func (p CsmUsageQuotaOperationPredicate) Matches(input CsmUsageQuota) bool {
+
+	if p.CurrentValue != nil && (input.CurrentValue == nil || *p.CurrentValue != *input.CurrentValue) {
+		return false
+	}
+
+	if p.Limit != nil && (input.Limit == nil || *p.Limit != *input.Limit) {
+		return false
+	}
+
+	if p.NextResetTime != nil && (input.NextResetTime == nil || *p.NextResetTime != *input.NextResetTime) {
+		return false
+	}
+
+	if p.Unit != nil && (input.Unit == nil || *p.Unit != *input.Unit) {
+		return false
+	}
+
+	return true
+}

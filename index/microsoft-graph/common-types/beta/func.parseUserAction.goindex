@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseUserAction(input string) (*UserAction, error) {
+	vals := map[string]UserAction{
+		"registerorjoindevices":       UserAction_RegisterOrJoinDevices,
+		"registersecurityinformation": UserAction_RegisterSecurityInformation,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UserAction(input)
+	return &out, nil
+}

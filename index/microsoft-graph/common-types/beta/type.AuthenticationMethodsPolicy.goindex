@@ -1,0 +1,62 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type AuthenticationMethodsPolicy struct {
+	// Represents the settings for each authentication method. Automatically expanded on GET
+	// /policies/authenticationMethodsPolicy.
+	AuthenticationMethodConfigurations *[]AuthenticationMethodConfiguration `json:"authenticationMethodConfigurations,omitempty"`
+
+	// A description of the policy.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// The name of the policy.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// The date and time of the last update to the policy.
+	LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+
+	MicrosoftAuthenticatorPlatformSettings *MicrosoftAuthenticatorPlatformSettings `json:"microsoftAuthenticatorPlatformSettings,omitempty"`
+
+	// The state of migration of the authentication methods policy from the legacy multifactor authentication and
+	// self-service password reset (SSPR) policies. The possible values are: premigration - means the authentication methods
+	// policy is used for authentication only, legacy policies are respected. migrationInProgress - means the authentication
+	// methods policy is used for both authentication and SSPR, legacy policies are respected. migrationComplete - means the
+	// authentication methods policy is used for authentication and SSPR, legacy policies are ignored. unknownFutureValue -
+	// Evolvable enumeration sentinel value. Don't use.
+	PolicyMigrationState *AuthenticationMethodsPolicyMigrationState `json:"policyMigrationState,omitempty"`
+
+	// The version of the policy in use.
+	PolicyVersion nullable.Type[string] `json:"policyVersion,omitempty"`
+
+	// Days before the user will be asked to reconfirm their method.
+	ReconfirmationInDays nullable.Type[int64] `json:"reconfirmationInDays,omitempty"`
+
+	// Enforce registration at sign-in time. This property can be used to remind users to set up targeted authentication
+	// methods.
+	RegistrationEnforcement *RegistrationEnforcement `json:"registrationEnforcement,omitempty"`
+
+	// Enable users to report unexpected voice call or phone app notification multi-factor authentication prompts as
+	// suspicious.
+	ReportSuspiciousActivitySettings *ReportSuspiciousActivitySettings `json:"reportSuspiciousActivitySettings,omitempty"`
+
+	// Prompt users with their most-preferred credential for multifactor authentication.
+	SystemCredentialPreferences *SystemCredentialPreferences `json:"systemCredentialPreferences,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

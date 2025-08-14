@@ -1,0 +1,69 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type VirtualEndpoint struct {
+	// Cloud PC audit event.
+	AuditEvents *[]CloudPCAuditEvent `json:"auditEvents,omitempty"`
+
+	// Bulk actions applied to a Cloud PC.
+	BulkActions *[]CloudPCBulkAction `json:"bulkActions,omitempty"`
+
+	// Cloud managed virtual desktops.
+	CloudPCs *[]CloudPC `json:"cloudPCs,omitempty"`
+
+	// Cloud PC organization mapping between public and US Government Community Cloud (GCC) organizations.
+	CrossCloudGovernmentOrganizationMapping *CloudPCCrossCloudGovernmentOrganizationMapping `json:"crossCloudGovernmentOrganizationMapping,omitempty"`
+
+	// The image resource on Cloud PC.
+	DeviceImages *[]CloudPCDeviceImage `json:"deviceImages,omitempty"`
+
+	// The external partner settings on a Cloud PC.
+	ExternalPartnerSettings *[]CloudPCExternalPartnerSetting `json:"externalPartnerSettings,omitempty"`
+
+	// Front-line service plans for a Cloud PC.
+	FrontLineServicePlans *[]CloudPCFrontLineServicePlan `json:"frontLineServicePlans,omitempty"`
+
+	// The gallery image resource on Cloud PC.
+	GalleryImages *[]CloudPCGalleryImage `json:"galleryImages,omitempty"`
+
+	// A defined collection of Azure resource information that can be used to establish on-premises network connectivity for
+	// Cloud PCs.
+	OnPremisesConnections *[]CloudPCOnPremisesConnection `json:"onPremisesConnections,omitempty"`
+
+	// The Cloud PC organization settings for a tenant.
+	OrganizationSettings *CloudPCOrganizationSettings `json:"organizationSettings,omitempty"`
+
+	// Cloud PC provisioning policy.
+	ProvisioningPolicies *[]CloudPCProvisioningPolicy `json:"provisioningPolicies,omitempty"`
+
+	// Cloud PC related reports.
+	Reports *CloudPCReports `json:"reports,omitempty"`
+
+	// Cloud PC service plans.
+	ServicePlans *[]CloudPCServicePlan `json:"servicePlans,omitempty"`
+
+	// Cloud PC snapshots.
+	Snapshots *[]CloudPCSnapshot `json:"snapshots,omitempty"`
+
+	// Cloud PC supported regions.
+	SupportedRegions *[]CloudPCSupportedRegion `json:"supportedRegions,omitempty"`
+
+	// Cloud PC user settings.
+	UserSettings *[]CloudPCUserSetting `json:"userSettings,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerregistry/2019-06-01-preview/tasks
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseBaseImageTriggerType(input string) (*BaseImageTriggerType, error) {
+	vals := map[string]BaseImageTriggerType{
+		"all":     BaseImageTriggerTypeAll,
+		"runtime": BaseImageTriggerTypeRuntime,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := BaseImageTriggerType(input)
+	return &out, nil
+}

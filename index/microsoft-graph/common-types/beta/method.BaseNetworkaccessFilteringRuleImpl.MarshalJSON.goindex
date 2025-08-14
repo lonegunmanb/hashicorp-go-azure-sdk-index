@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func (s BaseNetworkaccessFilteringRuleImpl) MarshalJSON() ([]byte, error) {
+	type wrapper BaseNetworkaccessFilteringRuleImpl
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling BaseNetworkaccessFilteringRuleImpl: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling BaseNetworkaccessFilteringRuleImpl: %+v", err)
+	}
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.networkaccess.filteringRule"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling BaseNetworkaccessFilteringRuleImpl: %+v", err)
+	}
+
+	return encoded, nil
+}

@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2022-03-03/sharedgalleries
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ListOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.SharedTo != nil {
+		out.Append("sharedTo", fmt.Sprintf("%v", *o.SharedTo))
+	}
+	return &out
+}

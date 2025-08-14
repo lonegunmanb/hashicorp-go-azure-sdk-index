@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id MeJoinedTeamIdScheduleSchedulingGroupId) String() string {
+	components := []string{
+		fmt.Sprintf("Team: %q", id.TeamId),
+		fmt.Sprintf("Scheduling Group: %q", id.SchedulingGroupId),
+	}
+	return fmt.Sprintf("Me Joined Team Id Schedule Scheduling Group (%s)", strings.Join(components, "\n"))
+}

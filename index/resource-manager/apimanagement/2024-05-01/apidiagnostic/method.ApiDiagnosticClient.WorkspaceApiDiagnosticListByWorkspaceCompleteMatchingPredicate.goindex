@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/apidiagnostic
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ApiDiagnosticClient) WorkspaceApiDiagnosticListByWorkspaceCompleteMatchingPredicate(ctx context.Context, id WorkspaceApiId, options WorkspaceApiDiagnosticListByWorkspaceOperationOptions, predicate DiagnosticContractOperationPredicate) (result WorkspaceApiDiagnosticListByWorkspaceCompleteResult, err error) {
+	items := make([]DiagnosticContract, 0)
+
+	resp, err := c.WorkspaceApiDiagnosticListByWorkspace(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = WorkspaceApiDiagnosticListByWorkspaceCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

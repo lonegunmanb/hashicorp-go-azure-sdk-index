@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/changedatacapture
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseFrequencyType(input string) (*FrequencyType, error) {
+	vals := map[string]FrequencyType{
+		"hour":   FrequencyTypeHour,
+		"minute": FrequencyTypeMinute,
+		"second": FrequencyTypeSecond,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FrequencyType(input)
+	return &out, nil
+}

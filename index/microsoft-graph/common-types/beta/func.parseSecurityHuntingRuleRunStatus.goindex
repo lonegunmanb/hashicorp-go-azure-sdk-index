@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityHuntingRuleRunStatus(input string) (*SecurityHuntingRuleRunStatus, error) {
+	vals := map[string]SecurityHuntingRuleRunStatus{
+		"completed":       SecurityHuntingRuleRunStatus_Completed,
+		"failed":          SecurityHuntingRuleRunStatus_Failed,
+		"partiallyfailed": SecurityHuntingRuleRunStatus_PartiallyFailed,
+		"running":         SecurityHuntingRuleRunStatus_Running,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityHuntingRuleRunStatus(input)
+	return &out, nil
+}

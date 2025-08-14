@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWindowsDriverUpdateProfileInventorySyncState(input string) (*WindowsDriverUpdateProfileInventorySyncState, error) {
+	vals := map[string]WindowsDriverUpdateProfileInventorySyncState{
+		"failure": WindowsDriverUpdateProfileInventorySyncState_Failure,
+		"pending": WindowsDriverUpdateProfileInventorySyncState_Pending,
+		"success": WindowsDriverUpdateProfileInventorySyncState_Success,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsDriverUpdateProfileInventorySyncState(input)
+	return &out, nil
+}

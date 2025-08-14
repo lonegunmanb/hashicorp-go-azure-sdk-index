@@ -1,0 +1,59 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalCallRecordsCallLogRowImplementation(input []byte) (CallRecordsCallLogRow, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling CallRecordsCallLogRow into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.callRecords.directRoutingLogRow") {
+		var out CallRecordsDirectRoutingLogRow
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into CallRecordsDirectRoutingLogRow: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.callRecords.pstnCallLogRow") {
+		var out CallRecordsPstnCallLogRow
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into CallRecordsPstnCallLogRow: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.callRecords.smsLogRow") {
+		var out CallRecordsSmsLogRow
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into CallRecordsSmsLogRow: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseCallRecordsCallLogRowImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseCallRecordsCallLogRowImpl: %+v", err)
+	}
+
+	return RawCallRecordsCallLogRowImpl{
+		callRecordsCallLogRow: parent,
+		Type:                  value,
+		Values:                temp,
+	}, nil
+
+}

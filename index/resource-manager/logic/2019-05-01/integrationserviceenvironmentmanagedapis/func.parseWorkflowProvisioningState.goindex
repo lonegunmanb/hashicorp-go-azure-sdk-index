@@ -1,0 +1,39 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationserviceenvironmentmanagedapis
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWorkflowProvisioningState(input string) (*WorkflowProvisioningState, error) {
+	vals := map[string]WorkflowProvisioningState{
+		"accepted":      WorkflowProvisioningStateAccepted,
+		"canceled":      WorkflowProvisioningStateCanceled,
+		"completed":     WorkflowProvisioningStateCompleted,
+		"created":       WorkflowProvisioningStateCreated,
+		"creating":      WorkflowProvisioningStateCreating,
+		"deleted":       WorkflowProvisioningStateDeleted,
+		"deleting":      WorkflowProvisioningStateDeleting,
+		"failed":        WorkflowProvisioningStateFailed,
+		"inprogress":    WorkflowProvisioningStateInProgress,
+		"moving":        WorkflowProvisioningStateMoving,
+		"notspecified":  WorkflowProvisioningStateNotSpecified,
+		"pending":       WorkflowProvisioningStatePending,
+		"ready":         WorkflowProvisioningStateReady,
+		"registered":    WorkflowProvisioningStateRegistered,
+		"registering":   WorkflowProvisioningStateRegistering,
+		"renewing":      WorkflowProvisioningStateRenewing,
+		"running":       WorkflowProvisioningStateRunning,
+		"succeeded":     WorkflowProvisioningStateSucceeded,
+		"unregistered":  WorkflowProvisioningStateUnregistered,
+		"unregistering": WorkflowProvisioningStateUnregistering,
+		"updating":      WorkflowProvisioningStateUpdating,
+		"waiting":       WorkflowProvisioningStateWaiting,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WorkflowProvisioningState(input)
+	return &out, nil
+}

@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/policy
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o GetOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.Format != nil {
+		out.Append("format", fmt.Sprintf("%v", *o.Format))
+	}
+	return &out
+}

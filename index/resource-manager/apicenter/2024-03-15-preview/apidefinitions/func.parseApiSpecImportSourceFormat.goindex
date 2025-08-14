@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apicenter/2024-03-15-preview/apidefinitions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseApiSpecImportSourceFormat(input string) (*ApiSpecImportSourceFormat, error) {
+	vals := map[string]ApiSpecImportSourceFormat{
+		"inline": ApiSpecImportSourceFormatInline,
+		"link":   ApiSpecImportSourceFormatLink,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ApiSpecImportSourceFormat(input)
+	return &out, nil
+}

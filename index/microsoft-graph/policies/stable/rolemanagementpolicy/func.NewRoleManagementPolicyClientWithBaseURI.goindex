@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/stable/rolemanagementpolicy
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewRoleManagementPolicyClientWithBaseURI(sdkApi sdkEnv.Api) (*RoleManagementPolicyClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "rolemanagementpolicy", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating RoleManagementPolicyClient: %+v", err)
+	}
+
+	return &RoleManagementPolicyClient{
+		Client: client,
+	}, nil
+}

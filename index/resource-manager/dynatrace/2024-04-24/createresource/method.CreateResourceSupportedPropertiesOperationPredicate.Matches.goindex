@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dynatrace/2024-04-24/createresource
+
+func (p CreateResourceSupportedPropertiesOperationPredicate) Matches(input CreateResourceSupportedProperties) bool {
+
+	if p.CreationSupported != nil && (input.CreationSupported == nil || *p.CreationSupported != *input.CreationSupported) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	return true
+}

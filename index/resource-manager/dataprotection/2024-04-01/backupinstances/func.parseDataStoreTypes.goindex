@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2024-04-01/backupinstances
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDataStoreTypes(input string) (*DataStoreTypes, error) {
+	vals := map[string]DataStoreTypes{
+		"archivestore":     DataStoreTypesArchiveStore,
+		"operationalstore": DataStoreTypesOperationalStore,
+		"vaultstore":       DataStoreTypesVaultStore,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DataStoreTypes(input)
+	return &out, nil
+}

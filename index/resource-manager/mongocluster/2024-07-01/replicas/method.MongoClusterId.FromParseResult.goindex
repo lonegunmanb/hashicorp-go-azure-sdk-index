@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mongocluster/2024-07-01/replicas
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *MongoClusterId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.MongoClusterName, ok = input.Parsed["mongoClusterName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "mongoClusterName", input)
+	}
+
+	return nil
+}

@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/blueprints/2018-11-01-preview/assignmentoperations
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ScopedBlueprintAssignmentId) String() string {
+	components := []string{
+		fmt.Sprintf("Resource Scope: %q", id.ResourceScope),
+		fmt.Sprintf("Blueprint Assignment Name: %q", id.BlueprintAssignmentName),
+	}
+	return fmt.Sprintf("Scoped Blueprint Assignment (%s)", strings.Join(components, "\n"))
+}

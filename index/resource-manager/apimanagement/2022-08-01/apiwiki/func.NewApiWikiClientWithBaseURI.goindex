@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2022-08-01/apiwiki
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewApiWikiClientWithBaseURI(sdkApi sdkEnv.Api) (*ApiWikiClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "apiwiki", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ApiWikiClient: %+v", err)
+	}
+
+	return &ApiWikiClient{
+		Client: client,
+	}, nil
+}

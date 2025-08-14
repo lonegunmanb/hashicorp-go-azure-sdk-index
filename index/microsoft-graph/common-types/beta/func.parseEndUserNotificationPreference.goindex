@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEndUserNotificationPreference(input string) (*EndUserNotificationPreference, error) {
+	vals := map[string]EndUserNotificationPreference{
+		"custom":    EndUserNotificationPreference_Custom,
+		"microsoft": EndUserNotificationPreference_Microsoft,
+		"unknown":   EndUserNotificationPreference_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EndUserNotificationPreference(input)
+	return &out, nil
+}

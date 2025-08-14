@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/virtualendpointprovisioningpolicy
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c VirtualEndpointProvisioningPolicyClient) ListVirtualEndpointProvisioningPoliciesCompleteMatchingPredicate(ctx context.Context, options ListVirtualEndpointProvisioningPoliciesOperationOptions, predicate CloudPCProvisioningPolicyOperationPredicate) (result ListVirtualEndpointProvisioningPoliciesCompleteResult, err error) {
+	items := make([]stable.CloudPCProvisioningPolicy, 0)
+
+	resp, err := c.ListVirtualEndpointProvisioningPolicies(ctx, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListVirtualEndpointProvisioningPoliciesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

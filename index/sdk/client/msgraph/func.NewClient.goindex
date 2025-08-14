@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client/msgraph
+import (
+	"context"
+	"fmt"
+	"net/url"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewClient(api environments.Api, serviceName string, apiVersion ApiVersion) (*Client, error) {
+	endpoint, ok := api.Endpoint()
+	if !ok {
+		return nil, fmt.Errorf("no `endpoint` was returned for this environment")
+	}
+	baseUri := fmt.Sprintf("%s/%s", *endpoint, apiVersion)
+	baseClient := client.NewClient(baseUri, fmt.Sprintf("MicrosoftGraph-%s", serviceName), string(apiVersion))
+	return &Client{
+		Client:        baseClient,
+		EnableRetries: true,
+		apiVersion:    apiVersion,
+	}, nil
+}

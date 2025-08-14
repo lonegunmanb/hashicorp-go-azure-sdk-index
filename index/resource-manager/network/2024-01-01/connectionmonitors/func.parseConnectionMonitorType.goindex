@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-01-01/connectionmonitors
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseConnectionMonitorType(input string) (*ConnectionMonitorType, error) {
+	vals := map[string]ConnectionMonitorType{
+		"multiendpoint":           ConnectionMonitorTypeMultiEndpoint,
+		"singlesourcedestination": ConnectionMonitorTypeSingleSourceDestination,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ConnectionMonitorType(input)
+	return &out, nil
+}

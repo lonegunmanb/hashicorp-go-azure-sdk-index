@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/appplatform/2024-05-01-preview/appplatform
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseConfigServerEnabledState(input string) (*ConfigServerEnabledState, error) {
+	vals := map[string]ConfigServerEnabledState{
+		"disabled": ConfigServerEnabledStateDisabled,
+		"enabled":  ConfigServerEnabledStateEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ConfigServerEnabledState(input)
+	return &out, nil
+}

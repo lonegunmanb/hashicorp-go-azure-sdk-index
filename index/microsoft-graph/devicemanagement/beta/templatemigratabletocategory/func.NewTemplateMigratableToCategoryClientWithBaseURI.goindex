@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/templatemigratabletocategory
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTemplateMigratableToCategoryClientWithBaseURI(sdkApi sdkEnv.Api) (*TemplateMigratableToCategoryClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "templatemigratabletocategory", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TemplateMigratableToCategoryClient: %+v", err)
+	}
+
+	return &TemplateMigratableToCategoryClient{
+		Client: client,
+	}, nil
+}

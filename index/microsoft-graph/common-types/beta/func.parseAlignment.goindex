@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAlignment(input string) (*Alignment, error) {
+	vals := map[string]Alignment{
+		"center": Alignment_Center,
+		"left":   Alignment_Left,
+		"right":  Alignment_Right,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Alignment(input)
+	return &out, nil
+}

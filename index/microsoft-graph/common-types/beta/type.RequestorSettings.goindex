@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type RequestorSettings struct {
+	// Indicates whether new requests are accepted on this policy.
+	AcceptRequests nullable.Type[bool] `json:"acceptRequests,omitempty"`
+
+	// The users who are allowed to request on this policy, which can be singleUser, groupMembers, and
+	// connectedOrganizationMembers.
+	AllowedRequestors *[]UserSet `json:"allowedRequestors,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Who can request. One of NoSubjects, SpecificDirectorySubjects, SpecificConnectedOrganizationSubjects,
+	// AllConfiguredConnectedOrganizationSubjects, AllExistingConnectedOrganizationSubjects,
+	// AllExistingDirectoryMemberUsers, AllExistingDirectorySubjects or AllExternalSubjects.
+	ScopeType nullable.Type[string] `json:"scopeType,omitempty"`
+}

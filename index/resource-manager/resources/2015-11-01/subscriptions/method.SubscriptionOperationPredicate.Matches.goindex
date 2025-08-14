@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2015-11-01/subscriptions
+
+func (p SubscriptionOperationPredicate) Matches(input Subscription) bool {
+
+	if p.DisplayName != nil && (input.DisplayName == nil || *p.DisplayName != *input.DisplayName) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.State != nil && (input.State == nil || *p.State != *input.State) {
+		return false
+	}
+
+	if p.SubscriptionId != nil && (input.SubscriptionId == nil || *p.SubscriptionId != *input.SubscriptionId) {
+		return false
+	}
+
+	return true
+}

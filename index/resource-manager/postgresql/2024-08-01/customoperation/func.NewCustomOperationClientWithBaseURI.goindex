@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2024-08-01/customoperation
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewCustomOperationClientWithBaseURI(sdkApi sdkEnv.Api) (*CustomOperationClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "customoperation", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating CustomOperationClient: %+v", err)
+	}
+
+	return &CustomOperationClient{
+		Client: client,
+	}, nil
+}

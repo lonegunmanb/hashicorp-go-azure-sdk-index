@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCallRecordsMediaStreamDirection(input string) (*CallRecordsMediaStreamDirection, error) {
+	vals := map[string]CallRecordsMediaStreamDirection{
+		"calleetocaller": CallRecordsMediaStreamDirection_CalleeToCaller,
+		"callertocallee": CallRecordsMediaStreamDirection_CallerToCallee,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CallRecordsMediaStreamDirection(input)
+	return &out, nil
+}

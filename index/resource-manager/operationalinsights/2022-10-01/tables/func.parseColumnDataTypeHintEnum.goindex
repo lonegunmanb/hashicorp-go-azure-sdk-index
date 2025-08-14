@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/operationalinsights/2022-10-01/tables
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseColumnDataTypeHintEnum(input string) (*ColumnDataTypeHintEnum, error) {
+	vals := map[string]ColumnDataTypeHintEnum{
+		"armpath": ColumnDataTypeHintEnumArmPath,
+		"guid":    ColumnDataTypeHintEnumGuid,
+		"ip":      ColumnDataTypeHintEnumIP,
+		"uri":     ColumnDataTypeHintEnumUri,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ColumnDataTypeHintEnum(input)
+	return &out, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/sqlpoolsworkloadgroups
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSqlPoolsWorkloadGroupsClientWithBaseURI(sdkApi sdkEnv.Api) (*SqlPoolsWorkloadGroupsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "sqlpoolsworkloadgroups", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SqlPoolsWorkloadGroupsClient: %+v", err)
+	}
+
+	return &SqlPoolsWorkloadGroupsClient{
+		Client: client,
+	}, nil
+}

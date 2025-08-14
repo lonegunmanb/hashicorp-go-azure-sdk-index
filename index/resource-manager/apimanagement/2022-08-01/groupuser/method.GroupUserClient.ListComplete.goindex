@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2022-08-01/groupuser
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c GroupUserClient) ListComplete(ctx context.Context, id GroupId, options ListOperationOptions) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, options, UserContractOperationPredicate{})
+}

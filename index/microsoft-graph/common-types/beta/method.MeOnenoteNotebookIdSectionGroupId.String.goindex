@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id MeOnenoteNotebookIdSectionGroupId) String() string {
+	components := []string{
+		fmt.Sprintf("Notebook: %q", id.NotebookId),
+		fmt.Sprintf("Section Group: %q", id.SectionGroupId),
+	}
+	return fmt.Sprintf("Me Onenote Notebook Id Section Group (%s)", strings.Join(components, "\n"))
+}

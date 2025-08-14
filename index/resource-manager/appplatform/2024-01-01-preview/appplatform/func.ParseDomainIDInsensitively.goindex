@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/appplatform/2024-01-01-preview/appplatform
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseDomainIDInsensitively(input string) (*DomainId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&DomainId{})
+	parsed, err := parser.Parse(input, true)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := DomainId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

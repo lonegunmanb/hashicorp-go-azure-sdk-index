@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/sdk/claims
+import (
+	"encoding/base64"
+	"encoding/json"
+	"errors"
+	"strings"
+
+	"golang.org/x/oauth2"
+)
+type Claims struct {
+	Audience          string   `json:"aud"`
+	Expires           int64    `json:"exp"`
+	IssuedAt          int64    `json:"iat"`
+	Issuer            string   `json:"iss"`
+	IdentityProvider  string   `json:"idp"`
+	ObjectId          string   `json:"oid"`
+	Roles             []string `json:"roles"`
+	Scopes            string   `json:"scp"`
+	Subject           string   `json:"sub"`
+	TenantRegionScope string   `json:"tenant_region_scope"`
+	TenantId          string   `json:"tid"`
+	Version           string   `json:"ver"`
+
+	AppDisplayName string `json:"app_displayname,omitempty"`
+	AppId          string `json:"appid,omitempty"`
+	IdType         string `json:"idtyp,omitempty"`
+}

@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/transaction
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c TransactionClient) ListByInvoiceComplete(ctx context.Context, id BillingAccountInvoiceId, options ListByInvoiceOperationOptions) (ListByInvoiceCompleteResult, error) {
+	return c.ListByInvoiceCompleteMatchingPredicate(ctx, id, options, TransactionOperationPredicate{})
+}

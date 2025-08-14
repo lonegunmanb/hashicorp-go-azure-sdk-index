@@ -1,0 +1,75 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalActivityStatisticsImplementation(input []byte) (ActivityStatistics, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling ActivityStatistics into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.callActivityStatistics") {
+		var out CallActivityStatistics
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into CallActivityStatistics: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.chatActivityStatistics") {
+		var out ChatActivityStatistics
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ChatActivityStatistics: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.emailActivityStatistics") {
+		var out EmailActivityStatistics
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into EmailActivityStatistics: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.focusActivityStatistics") {
+		var out FocusActivityStatistics
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into FocusActivityStatistics: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.meetingActivityStatistics") {
+		var out MeetingActivityStatistics
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into MeetingActivityStatistics: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseActivityStatisticsImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseActivityStatisticsImpl: %+v", err)
+	}
+
+	return RawActivityStatisticsImpl{
+		activityStatistics: parent,
+		Type:               value,
+		Values:             temp,
+	}, nil
+
+}

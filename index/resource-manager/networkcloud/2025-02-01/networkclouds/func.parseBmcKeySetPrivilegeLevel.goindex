@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/networkcloud/2025-02-01/networkclouds
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseBmcKeySetPrivilegeLevel(input string) (*BmcKeySetPrivilegeLevel, error) {
+	vals := map[string]BmcKeySetPrivilegeLevel{
+		"administrator": BmcKeySetPrivilegeLevelAdministrator,
+		"readonly":      BmcKeySetPrivilegeLevelReadOnly,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := BmcKeySetPrivilegeLevel(input)
+	return &out, nil
+}

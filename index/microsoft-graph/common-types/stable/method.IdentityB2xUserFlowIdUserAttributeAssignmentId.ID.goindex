@@ -1,0 +1,11 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id IdentityB2xUserFlowIdUserAttributeAssignmentId) ID() string {
+	fmtString := "/identity/b2xUserFlows/%s/userAttributeAssignments/%s"
+	return fmt.Sprintf(fmtString, id.B2xIdentityUserFlowId, id.IdentityUserFlowAttributeAssignmentId)
+}

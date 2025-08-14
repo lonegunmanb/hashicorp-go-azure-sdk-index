@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+)
+type UserExperienceAnalyticsAutopilotDevicesSummary struct {
+	// The count of intune devices that are not autopilot registerd. Read-only.
+	DevicesNotAutopilotRegistered *int64 `json:"devicesNotAutopilotRegistered,omitempty"`
+
+	// The count of intune devices not autopilot profile assigned. Read-only.
+	DevicesWithoutAutopilotProfileAssigned *int64 `json:"devicesWithoutAutopilotProfileAssigned,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The count of windows 10 devices that are Intune and co-managed. Read-only.
+	TotalWindows10DevicesWithoutTenantAttached *int64 `json:"totalWindows10DevicesWithoutTenantAttached,omitempty"`
+}

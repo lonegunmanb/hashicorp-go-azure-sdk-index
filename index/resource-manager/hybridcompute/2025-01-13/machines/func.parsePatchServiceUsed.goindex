@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2025-01-13/machines
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePatchServiceUsed(input string) (*PatchServiceUsed, error) {
+	vals := map[string]PatchServiceUsed{
+		"apt":     PatchServiceUsedAPT,
+		"unknown": PatchServiceUsedUnknown,
+		"wu":      PatchServiceUsedWU,
+		"wu_wsus": PatchServiceUsedWUWSUS,
+		"yum":     PatchServiceUsedYUM,
+		"zypper":  PatchServiceUsedZypper,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PatchServiceUsed(input)
+	return &out, nil
+}

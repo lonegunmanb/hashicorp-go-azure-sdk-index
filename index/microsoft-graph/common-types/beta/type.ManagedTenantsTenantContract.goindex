@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ManagedTenantsTenantContract struct {
+	// The type of relationship that exists between the managing entity and tenant. Optional. Read-only.
+	ContractType nullable.Type[int64] `json:"contractType,omitempty"`
+
+	// The default domain name for the tenant. Required. Read-only.
+	DefaultDomainName nullable.Type[string] `json:"defaultDomainName,omitempty"`
+
+	// The display name for the tenant. Optional. Read-only.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+}

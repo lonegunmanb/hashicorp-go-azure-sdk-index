@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s WorkbookWorksheetProtection) MarshalJSON() ([]byte, error) {
+	type wrapper WorkbookWorksheetProtection
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling WorkbookWorksheetProtection: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling WorkbookWorksheetProtection: %+v", err)
+	}
+
+	delete(decoded, "options")
+	delete(decoded, "protected")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.workbookWorksheetProtection"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling WorkbookWorksheetProtection: %+v", err)
+	}
+
+	return encoded, nil
+}

@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/repositories
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c RepositoriesClient) SourceControllistRepositoriesCompleteMatchingPredicate(ctx context.Context, id WorkspaceId, input RepoType, predicate RepoOperationPredicate) (result SourceControllistRepositoriesCompleteResult, err error) {
+	items := make([]Repo, 0)
+
+	resp, err := c.SourceControllistRepositories(ctx, id, input)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = SourceControllistRepositoriesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/subscription/2021-10-01/subscriptions
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+)
+func (c SubscriptionsClient) responderForSubscriptionAcceptOwnershipStatus(resp *http.Response) (result SubscriptionAcceptOwnershipStatusOperationResponse, err error) {
+	err = autorest.Respond(
+		resp,
+		azure.WithErrorUnlessStatusCode(http.StatusOK),
+		autorest.ByUnmarshallingJSON(&result.Model),
+		autorest.ByClosing())
+	result.HttpResponse = resp
+
+	return
+}

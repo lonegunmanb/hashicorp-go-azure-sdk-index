@@ -1,0 +1,47 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type BaseOnenoteEntityHierarchyModelImpl struct {
+	// Identity of the user, device, and application that created the item. Read-only.
+	CreatedBy *IdentitySet `json:"createdBy,omitempty"`
+
+	// The name of the notebook.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// Identity of the user, device, and application that created the item. Read-only.
+	LastModifiedBy *IdentitySet `json:"lastModifiedBy,omitempty"`
+
+	// The date and time when the notebook was last modified. The timestamp represents date and time information using ISO
+	// 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
+	LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+
+	// Fields inherited from OnenoteEntitySchemaObjectModel
+
+	// The date and time when the page was created. The timestamp represents date and time information using ISO 8601 format
+	// and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// Fields inherited from OnenoteEntityBaseModel
+
+	// The endpoint where you can get details about the page. Read-only.
+	Self nullable.Type[string] `json:"self,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

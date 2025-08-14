@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/taskresource
+import (
+	"encoding/json"
+	"fmt"
+)
+type MigrateSqlServerSqlMISyncTaskOutputDatabaseLevel struct {
+	ActiveBackupSets          *[]BackupSetInfo        `json:"activeBackupSets,omitempty"`
+	ContainerName             *string                 `json:"containerName,omitempty"`
+	EndedOn                   *string                 `json:"endedOn,omitempty"`
+	ErrorPrefix               *string                 `json:"errorPrefix,omitempty"`
+	ExceptionsAndWarnings     *[]ReportableException  `json:"exceptionsAndWarnings,omitempty"`
+	FullBackupSetInfo         *BackupSetInfo          `json:"fullBackupSetInfo,omitempty"`
+	IsFullBackupRestored      *bool                   `json:"isFullBackupRestored,omitempty"`
+	LastRestoredBackupSetInfo *BackupSetInfo          `json:"lastRestoredBackupSetInfo,omitempty"`
+	MigrationState            *DatabaseMigrationState `json:"migrationState,omitempty"`
+	SourceDatabaseName        *string                 `json:"sourceDatabaseName,omitempty"`
+	StartedOn                 *string                 `json:"startedOn,omitempty"`
+
+	// Fields inherited from MigrateSqlServerSqlMISyncTaskOutput
+
+	Id         *string `json:"id,omitempty"`
+	ResultType string  `json:"resultType"`
+}

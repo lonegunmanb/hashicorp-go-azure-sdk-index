@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cosmosdb/2023-04-15/cosmosdb
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c CosmosDBClient) CassandraResourcesCreateUpdateCassandraKeyspaceThenPoll(ctx context.Context, id CassandraKeyspaceId, input CassandraKeyspaceCreateUpdateParameters) error {
+	result, err := c.CassandraResourcesCreateUpdateCassandraKeyspace(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing CassandraResourcesCreateUpdateCassandraKeyspace: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after CassandraResourcesCreateUpdateCassandraKeyspace: %+v", err)
+	}
+
+	return nil
+}

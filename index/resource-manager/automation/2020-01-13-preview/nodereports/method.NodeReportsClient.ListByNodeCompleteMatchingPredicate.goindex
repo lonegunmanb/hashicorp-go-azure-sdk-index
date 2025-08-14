@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/nodereports
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c NodeReportsClient) ListByNodeCompleteMatchingPredicate(ctx context.Context, id NodeId, options ListByNodeOperationOptions, predicate DscNodeReportOperationPredicate) (result ListByNodeCompleteResult, err error) {
+	items := make([]DscNodeReport, 0)
+
+	resp, err := c.ListByNode(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByNodeCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

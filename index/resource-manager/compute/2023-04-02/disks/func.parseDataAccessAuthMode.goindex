@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2023-04-02/disks
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDataAccessAuthMode(input string) (*DataAccessAuthMode, error) {
+	vals := map[string]DataAccessAuthMode{
+		"azureactivedirectory": DataAccessAuthModeAzureActiveDirectory,
+		"none":                 DataAccessAuthModeNone,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DataAccessAuthMode(input)
+	return &out, nil
+}

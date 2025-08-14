@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseOwnerType(input string) (*OwnerType, error) {
+	vals := map[string]OwnerType{
+		"company":  OwnerType_Company,
+		"personal": OwnerType_Personal,
+		"unknown":  OwnerType_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := OwnerType(input)
+	return &out, nil
+}

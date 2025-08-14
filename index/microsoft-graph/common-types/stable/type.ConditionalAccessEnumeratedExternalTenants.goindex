@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+)
+type ConditionalAccessEnumeratedExternalTenants struct {
+
+	// Fields inherited from ConditionalAccessExternalTenants
+
+	Members *[]string `json:"members,omitempty"`
+
+	// The membership kind. Possible values are: all, enumerated, unknownFutureValue. The enumerated member references an
+	// conditionalAccessEnumeratedExternalTenants object.
+	MembershipKind *ConditionalAccessExternalTenantsMembershipKind `json:"membershipKind,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

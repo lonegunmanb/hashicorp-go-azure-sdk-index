@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/grouppolicydefinitionnextversiondefinitioncategory
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewGroupPolicyDefinitionNextVersionDefinitionCategoryClientWithBaseURI(sdkApi sdkEnv.Api) (*GroupPolicyDefinitionNextVersionDefinitionCategoryClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "grouppolicydefinitionnextversiondefinitioncategory", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating GroupPolicyDefinitionNextVersionDefinitionCategoryClient: %+v", err)
+	}
+
+	return &GroupPolicyDefinitionNextVersionDefinitionCategoryClient{
+		Client: client,
+	}, nil
+}

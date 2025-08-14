@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/networkcloud/2025-02-01/networkclouds
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTrunkedNetworkProvisioningState(input string) (*TrunkedNetworkProvisioningState, error) {
+	vals := map[string]TrunkedNetworkProvisioningState{
+		"accepted":     TrunkedNetworkProvisioningStateAccepted,
+		"canceled":     TrunkedNetworkProvisioningStateCanceled,
+		"failed":       TrunkedNetworkProvisioningStateFailed,
+		"provisioning": TrunkedNetworkProvisioningStateProvisioning,
+		"succeeded":    TrunkedNetworkProvisioningStateSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TrunkedNetworkProvisioningState(input)
+	return &out, nil
+}

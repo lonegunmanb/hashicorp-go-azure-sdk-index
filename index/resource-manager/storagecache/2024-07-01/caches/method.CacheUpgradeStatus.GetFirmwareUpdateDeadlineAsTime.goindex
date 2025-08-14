@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagecache/2024-07-01/caches
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *CacheUpgradeStatus) GetFirmwareUpdateDeadlineAsTime() (*time.Time, error) {
+	if o.FirmwareUpdateDeadline == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.FirmwareUpdateDeadline, "2006-01-02T15:04:05Z07:00")
+}

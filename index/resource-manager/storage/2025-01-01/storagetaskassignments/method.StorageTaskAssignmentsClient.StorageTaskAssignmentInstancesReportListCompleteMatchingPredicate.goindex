@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-01-01/storagetaskassignments
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c StorageTaskAssignmentsClient) StorageTaskAssignmentInstancesReportListCompleteMatchingPredicate(ctx context.Context, id StorageTaskAssignmentId, options StorageTaskAssignmentInstancesReportListOperationOptions, predicate StorageTaskReportInstanceOperationPredicate) (result StorageTaskAssignmentInstancesReportListCompleteResult, err error) {
+	items := make([]StorageTaskReportInstance, 0)
+
+	resp, err := c.StorageTaskAssignmentInstancesReportList(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = StorageTaskAssignmentInstancesReportListCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

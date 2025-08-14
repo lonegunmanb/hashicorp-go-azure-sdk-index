@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/embeddedsimactivationcodepool
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c EmbeddedSIMActivationCodePoolClient) AssignEmbeddedSIMActivationCodePoolsComplete(ctx context.Context, id beta.DeviceManagementEmbeddedSIMActivationCodePoolId, input AssignEmbeddedSIMActivationCodePoolsRequest, options AssignEmbeddedSIMActivationCodePoolsOperationOptions) (AssignEmbeddedSIMActivationCodePoolsCompleteResult, error) {
+	return c.AssignEmbeddedSIMActivationCodePoolsCompleteMatchingPredicate(ctx, id, input, options, EmbeddedSIMActivationCodePoolAssignmentOperationPredicate{})
+}

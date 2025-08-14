@@ -1,0 +1,9 @@
+package github.com/hashicorp/go-azure-sdk/sdk/nullable
+import (
+	"bytes"
+	"encoding/json"
+)
+func (t Type[T]) IsNull() bool {
+	_, foundNull := t[false]
+	return foundNull
+}

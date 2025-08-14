@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2025-01-13/settings
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ScopedSettingId) ID() string {
+	fmtString := "/%s/providers/Microsoft.HybridCompute/settings/%s"
+	return fmt.Sprintf(fmtString, strings.TrimPrefix(id.Scope, "/"), id.SettingName)
+}

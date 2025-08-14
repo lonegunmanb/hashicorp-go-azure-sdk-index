@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeviceComplianceScriptRulesValidationError(input string) (*DeviceComplianceScriptRulesValidationError, error) {
+	vals := map[string]DeviceComplianceScriptRulesValidationError{
+		"datatypemissing":                         DeviceComplianceScriptRulesValidationError_DatatypeMissing,
+		"datatypenotsupported":                    DeviceComplianceScriptRulesValidationError_DatatypeNotSupported,
+		"descriptioninvalid":                      DeviceComplianceScriptRulesValidationError_DescriptionInvalid,
+		"descriptionmissing":                      DeviceComplianceScriptRulesValidationError_DescriptionMissing,
+		"descriptiontoolarge":                     DeviceComplianceScriptRulesValidationError_DescriptionTooLarge,
+		"duplicatelocales":                        DeviceComplianceScriptRulesValidationError_DuplicateLocales,
+		"duplicaterules":                          DeviceComplianceScriptRulesValidationError_DuplicateRules,
+		"englishlocalemissing":                    DeviceComplianceScriptRulesValidationError_EnglishLocaleMissing,
+		"jsonfileinvalid":                         DeviceComplianceScriptRulesValidationError_JsonFileInvalid,
+		"jsonfilemissing":                         DeviceComplianceScriptRulesValidationError_JsonFileMissing,
+		"jsonfiletoolarge":                        DeviceComplianceScriptRulesValidationError_JsonFileTooLarge,
+		"moreinfouriinvalid":                      DeviceComplianceScriptRulesValidationError_MoreInfoUriInvalid,
+		"moreinfourimissing":                      DeviceComplianceScriptRulesValidationError_MoreInfoUriMissing,
+		"moreinfouritoolarge":                     DeviceComplianceScriptRulesValidationError_MoreInfoUriTooLarge,
+		"none":                                    DeviceComplianceScriptRulesValidationError_None,
+		"operandinvalid":                          DeviceComplianceScriptRulesValidationError_OperandInvalid,
+		"operandmissing":                          DeviceComplianceScriptRulesValidationError_OperandMissing,
+		"operandtoolarge":                         DeviceComplianceScriptRulesValidationError_OperandTooLarge,
+		"operatordatatypecombinationnotsupported": DeviceComplianceScriptRulesValidationError_OperatorDataTypeCombinationNotSupported,
+		"operatormissing":                         DeviceComplianceScriptRulesValidationError_OperatorMissing,
+		"operatornotsupported":                    DeviceComplianceScriptRulesValidationError_OperatorNotSupported,
+		"remediationstringsmissing":               DeviceComplianceScriptRulesValidationError_RemediationStringsMissing,
+		"rulesmissing":                            DeviceComplianceScriptRulesValidationError_RulesMissing,
+		"settingnameinvalid":                      DeviceComplianceScriptRulesValidationError_SettingNameInvalid,
+		"settingnamemissing":                      DeviceComplianceScriptRulesValidationError_SettingNameMissing,
+		"settingnametoolarge":                     DeviceComplianceScriptRulesValidationError_SettingNameTooLarge,
+		"titleinvalid":                            DeviceComplianceScriptRulesValidationError_TitleInvalid,
+		"titlemissing":                            DeviceComplianceScriptRulesValidationError_TitleMissing,
+		"titletoolarge":                           DeviceComplianceScriptRulesValidationError_TitleTooLarge,
+		"toomanyrulesspecified":                   DeviceComplianceScriptRulesValidationError_TooManyRulesSpecified,
+		"unknown":                                 DeviceComplianceScriptRulesValidationError_Unknown,
+		"unrecognizedlocale":                      DeviceComplianceScriptRulesValidationError_UnrecognizedLocale,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceComplianceScriptRulesValidationError(input)
+	return &out, nil
+}

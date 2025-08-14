@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sqlvirtualmachine/2023-10-01/sqlvirtualmachinegroups
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSqlVirtualMachineGroupsClientWithBaseURI(sdkApi sdkEnv.Api) (*SqlVirtualMachineGroupsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "sqlvirtualmachinegroups", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SqlVirtualMachineGroupsClient: %+v", err)
+	}
+
+	return &SqlVirtualMachineGroupsClient{
+		Client: client,
+	}, nil
+}

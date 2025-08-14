@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2021-05-01-preview/managementgroupdiagnosticsettings
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id Providers2DiagnosticSettingId) String() string {
+	components := []string{
+		fmt.Sprintf("Management Group: %q", id.ManagementGroupId),
+		fmt.Sprintf("Diagnostic Setting Name: %q", id.DiagnosticSettingName),
+	}
+	return fmt.Sprintf("Providers 2 Diagnostic Setting (%s)", strings.Join(components, "\n"))
+}

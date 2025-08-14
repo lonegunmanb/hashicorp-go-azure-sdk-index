@@ -1,0 +1,77 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type PrivilegedAccessGroupAssignmentSchedule struct {
+	// The identifier of the membership or ownership assignment to the group that is governed by PIM. Required. The possible
+	// values are: owner, member, unknownFutureValue. Supports $filter (eq).
+	AccessId PrivilegedAccessGroupRelationships `json:"accessId"`
+
+	// When the request activates an ownership or membership assignment in PIM for groups, this object represents the
+	// eligibility relationship. Otherwise, it's null. Supports $expand.
+	ActivatedUsing *PrivilegedAccessGroupEligibilitySchedule `json:"activatedUsing,omitempty"`
+
+	// Indicates whether the membership or ownership assignment for the principal is granted through activation or direct
+	// assignment. Required. The possible values are: assigned, activated, unknownFutureValue. Supports $filter (eq).
+	AssignmentType PrivilegedAccessGroupAssignmentType `json:"assignmentType"`
+
+	// References the group that is the scope of the membership or ownership assignment through PIM for groups. Supports
+	// $expand and $select nested in $expand for select properties like id, displayName, and mail.
+	Group *Group `json:"group,omitempty"`
+
+	// The identifier of the group representing the scope of the membership or ownership assignment through PIM for groups.
+	// Required. Supports $filter (eq).
+	GroupId nullable.Type[string] `json:"groupId,omitempty"`
+
+	// Indicates whether the assignment is derived from a direct group assignment or through a transitive assignment. The
+	// possible values are: direct, group, unknownFutureValue. Supports $filter (eq).
+	MemberType *PrivilegedAccessGroupMemberType `json:"memberType,omitempty"`
+
+	// References the principal that's in the scope of this membership or ownership assignment request to the group that's
+	// governed by PIM. Supports $expand and $select nested in $expand for id only.
+	Principal *DirectoryObject `json:"principal,omitempty"`
+
+	// The identifier of the principal whose membership or ownership assignment is granted through PIM for groups. Required.
+	// Supports $filter (eq).
+	PrincipalId nullable.Type[string] `json:"principalId,omitempty"`
+
+	// OData ID for `Principal` to bind to this entity
+	Principal_ODataBind *string `json:"principal@odata.bind,omitempty"`
+
+	// Fields inherited from PrivilegedAccessSchedule
+
+	// When the schedule was created. Optional.
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// The identifier of the access assignment or eligibility request that created this schedule. Optional.
+	CreatedUsing nullable.Type[string] `json:"createdUsing,omitempty"`
+
+	// When the schedule was last modified. Optional.
+	ModifiedDateTime nullable.Type[string] `json:"modifiedDateTime,omitempty"`
+
+	// Represents the period of the access assignment or eligibility. The scheduleInfo can represent a single occurrence or
+	// multiple recurring instances. Required.
+	ScheduleInfo RequestSchedule `json:"scheduleInfo"`
+
+	// The status of the access assignment or eligibility request. The possible values are: Canceled, Denied, Failed,
+	// Granted, PendingAdminDecision, PendingApproval, PendingProvisioning, PendingScheduleCreation, Provisioned, Revoked,
+	// and ScheduleCreated. Not nullable. Optional.
+	Status nullable.Type[string] `json:"status,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

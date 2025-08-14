@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseGroupType(input string) (*GroupType, error) {
+	vals := map[string]GroupType{
+		"azuread":       GroupType_AzureAD,
+		"unifiedgroups": GroupType_UnifiedGroups,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := GroupType(input)
+	return &out, nil
+}

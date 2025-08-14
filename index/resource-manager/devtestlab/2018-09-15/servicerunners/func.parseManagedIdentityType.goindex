@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/servicerunners
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseManagedIdentityType(input string) (*ManagedIdentityType, error) {
+	vals := map[string]ManagedIdentityType{
+		"none":                        ManagedIdentityTypeNone,
+		"systemassigned":              ManagedIdentityTypeSystemAssigned,
+		"systemassigned,userassigned": ManagedIdentityTypeSystemAssignedUserAssigned,
+		"userassigned":                ManagedIdentityTypeUserAssigned,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagedIdentityType(input)
+	return &out, nil
+}

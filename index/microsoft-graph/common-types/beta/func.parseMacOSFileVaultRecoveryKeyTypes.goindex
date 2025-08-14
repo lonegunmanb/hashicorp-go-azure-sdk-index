@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMacOSFileVaultRecoveryKeyTypes(input string) (*MacOSFileVaultRecoveryKeyTypes, error) {
+	vals := map[string]MacOSFileVaultRecoveryKeyTypes{
+		"institutionalrecoverykey": MacOSFileVaultRecoveryKeyTypes_InstitutionalRecoveryKey,
+		"notconfigured":            MacOSFileVaultRecoveryKeyTypes_NotConfigured,
+		"personalrecoverykey":      MacOSFileVaultRecoveryKeyTypes_PersonalRecoveryKey,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MacOSFileVaultRecoveryKeyTypes(input)
+	return &out, nil
+}

@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/accountmigrations
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c AccountMigrationsClient) StorageAccountsCustomerInitiatedMigrationThenPoll(ctx context.Context, id commonids.StorageAccountId, input StorageAccountMigration) error {
+	result, err := c.StorageAccountsCustomerInitiatedMigration(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing StorageAccountsCustomerInitiatedMigration: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after StorageAccountsCustomerInitiatedMigration: %+v", err)
+	}
+
+	return nil
+}

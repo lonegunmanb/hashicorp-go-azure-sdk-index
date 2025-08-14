@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/applicationtemplates/stable/applicationtemplate
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewApplicationTemplateClientWithBaseURI(sdkApi sdkEnv.Api) (*ApplicationTemplateClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "applicationtemplate", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ApplicationTemplateClient: %+v", err)
+	}
+
+	return &ApplicationTemplateClient{
+		Client: client,
+	}, nil
+}

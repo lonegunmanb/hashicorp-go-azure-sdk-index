@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2023-02-01/managedhsmkeys
+import (
+	"context"
+	"fmt"
+	"net/http"
+	"net/url"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+)
+func (c ManagedHsmKeysClient) ListComplete(ctx context.Context, id ManagedHSMId) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, ManagedHsmKeyOperationPredicate{})
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/fileimports
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type FileImportProperties struct {
+	ContentType             FileImportContentType `json:"contentType"`
+	CreatedTimeUTC          *string               `json:"createdTimeUTC,omitempty"`
+	ErrorFile               *FileMetadata         `json:"errorFile,omitempty"`
+	ErrorsPreview           *[]ValidationError    `json:"errorsPreview,omitempty"`
+	FilesValidUntilTimeUTC  *string               `json:"filesValidUntilTimeUTC,omitempty"`
+	ImportFile              FileMetadata          `json:"importFile"`
+	ImportValidUntilTimeUTC *string               `json:"importValidUntilTimeUTC,omitempty"`
+	IngestedRecordCount     *int64                `json:"ingestedRecordCount,omitempty"`
+	IngestionMode           IngestionMode         `json:"ingestionMode"`
+	Source                  string                `json:"source"`
+	State                   *FileImportState      `json:"state,omitempty"`
+	TotalRecordCount        *int64                `json:"totalRecordCount,omitempty"`
+	ValidRecordCount        *int64                `json:"validRecordCount,omitempty"`
+}

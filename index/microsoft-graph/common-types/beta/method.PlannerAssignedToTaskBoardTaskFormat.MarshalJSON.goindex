@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s PlannerAssignedToTaskBoardTaskFormat) MarshalJSON() ([]byte, error) {
+	type wrapper PlannerAssignedToTaskBoardTaskFormat
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling PlannerAssignedToTaskBoardTaskFormat: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling PlannerAssignedToTaskBoardTaskFormat: %+v", err)
+	}
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.plannerAssignedToTaskBoardTaskFormat"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling PlannerAssignedToTaskBoardTaskFormat: %+v", err)
+	}
+
+	return encoded, nil
+}

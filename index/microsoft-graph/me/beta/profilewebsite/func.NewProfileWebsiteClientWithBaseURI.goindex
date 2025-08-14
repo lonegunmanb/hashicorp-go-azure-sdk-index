@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/profilewebsite
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewProfileWebsiteClientWithBaseURI(sdkApi sdkEnv.Api) (*ProfileWebsiteClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "profilewebsite", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ProfileWebsiteClient: %+v", err)
+	}
+
+	return &ProfileWebsiteClient{
+		Client: client,
+	}, nil
+}

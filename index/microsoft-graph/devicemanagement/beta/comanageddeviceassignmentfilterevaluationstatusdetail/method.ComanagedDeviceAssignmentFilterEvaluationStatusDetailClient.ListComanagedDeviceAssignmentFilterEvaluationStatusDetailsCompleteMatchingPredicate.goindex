@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/comanageddeviceassignmentfilterevaluationstatusdetail
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ComanagedDeviceAssignmentFilterEvaluationStatusDetailClient) ListComanagedDeviceAssignmentFilterEvaluationStatusDetailsCompleteMatchingPredicate(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, options ListComanagedDeviceAssignmentFilterEvaluationStatusDetailsOperationOptions, predicate AssignmentFilterEvaluationStatusDetailsOperationPredicate) (result ListComanagedDeviceAssignmentFilterEvaluationStatusDetailsCompleteResult, err error) {
+	items := make([]beta.AssignmentFilterEvaluationStatusDetails, 0)
+
+	resp, err := c.ListComanagedDeviceAssignmentFilterEvaluationStatusDetails(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListComanagedDeviceAssignmentFilterEvaluationStatusDetailsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

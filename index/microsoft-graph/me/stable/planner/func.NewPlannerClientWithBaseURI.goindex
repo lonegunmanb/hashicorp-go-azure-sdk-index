@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/planner
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPlannerClientWithBaseURI(sdkApi sdkEnv.Api) (*PlannerClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "planner", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PlannerClient: %+v", err)
+	}
+
+	return &PlannerClient{
+		Client: client,
+	}, nil
+}

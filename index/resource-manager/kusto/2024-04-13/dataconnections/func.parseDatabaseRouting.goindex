@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/kusto/2024-04-13/dataconnections
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDatabaseRouting(input string) (*DatabaseRouting, error) {
+	vals := map[string]DatabaseRouting{
+		"multi":  DatabaseRoutingMulti,
+		"single": DatabaseRoutingSingle,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DatabaseRouting(input)
+	return &out, nil
+}

@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type Hashes struct {
+	// The CRC32 value of the file (if available). Read-only.
+	Crc32Hash nullable.Type[string] `json:"crc32Hash,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// A proprietary hash of the file that can be used to determine if the contents of the file change (if available).
+	// Read-only.
+	QuickXorHash nullable.Type[string] `json:"quickXorHash,omitempty"`
+
+	// SHA1 hash for the contents of the file (if available). Read-only.
+	Sha1Hash nullable.Type[string] `json:"sha1Hash,omitempty"`
+
+	// This property isn't supported. Don't use.
+	Sha256Hash nullable.Type[string] `json:"sha256Hash,omitempty"`
+}

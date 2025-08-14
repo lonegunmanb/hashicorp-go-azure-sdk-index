@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/windowsinformationprotectiondeviceregistration
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewWindowsInformationProtectionDeviceRegistrationClientWithBaseURI(sdkApi sdkEnv.Api) (*WindowsInformationProtectionDeviceRegistrationClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "windowsinformationprotectiondeviceregistration", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating WindowsInformationProtectionDeviceRegistrationClient: %+v", err)
+	}
+
+	return &WindowsInformationProtectionDeviceRegistrationClient{
+		Client: client,
+	}, nil
+}

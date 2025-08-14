@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/rolemanagementalertalertalertconfiguration
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewRoleManagementAlertAlertAlertConfigurationClientWithBaseURI(sdkApi sdkEnv.Api) (*RoleManagementAlertAlertAlertConfigurationClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "rolemanagementalertalertalertconfiguration", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating RoleManagementAlertAlertAlertConfigurationClient: %+v", err)
+	}
+
+	return &RoleManagementAlertAlertAlertConfigurationClient{
+		Client: client,
+	}, nil
+}

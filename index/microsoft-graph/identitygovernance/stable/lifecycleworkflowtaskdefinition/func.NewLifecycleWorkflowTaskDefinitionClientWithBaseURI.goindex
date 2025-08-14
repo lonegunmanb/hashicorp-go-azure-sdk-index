@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/lifecycleworkflowtaskdefinition
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewLifecycleWorkflowTaskDefinitionClientWithBaseURI(sdkApi sdkEnv.Api) (*LifecycleWorkflowTaskDefinitionClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "lifecycleworkflowtaskdefinition", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating LifecycleWorkflowTaskDefinitionClient: %+v", err)
+	}
+
+	return &LifecycleWorkflowTaskDefinitionClient{
+		Client: client,
+	}, nil
+}

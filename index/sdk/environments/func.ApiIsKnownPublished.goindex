@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/sdk/environments
+import (
+	"strings"
+)
+func ApiIsKnownPublished(api Api, apiName string) bool {
+	appId, ok := api.AppId()
+	if !ok || appId == nil {
+		return false
+	}
+	knownApiAppId, ok := PublishedApis[apiName]
+	if !ok {
+		return false
+	}
+	if !strings.EqualFold(*appId, knownApiAppId) {
+		return false
+	}
+	return true
+}

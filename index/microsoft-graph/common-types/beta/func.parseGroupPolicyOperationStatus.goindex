@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseGroupPolicyOperationStatus(input string) (*GroupPolicyOperationStatus, error) {
+	vals := map[string]GroupPolicyOperationStatus{
+		"failed":     GroupPolicyOperationStatus_Failed,
+		"inprogress": GroupPolicyOperationStatus_InProgress,
+		"success":    GroupPolicyOperationStatus_Success,
+		"unknown":    GroupPolicyOperationStatus_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := GroupPolicyOperationStatus(input)
+	return &out, nil
+}

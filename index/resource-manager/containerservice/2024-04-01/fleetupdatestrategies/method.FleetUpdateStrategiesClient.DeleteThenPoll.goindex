@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerservice/2024-04-01/fleetupdatestrategies
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c FleetUpdateStrategiesClient) DeleteThenPoll(ctx context.Context, id UpdateStrategyId, options DeleteOperationOptions) error {
+	result, err := c.Delete(ctx, id, options)
+	if err != nil {
+		return fmt.Errorf("performing Delete: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after Delete: %+v", err)
+	}
+
+	return nil
+}

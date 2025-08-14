@@ -1,0 +1,71 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/v2015_10_31
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/activity"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/agentregistrationinformation"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/automationaccount"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/certificate"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/connection"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/connectiontype"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/credential"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/dsccompilationjob"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/dscconfiguration"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/dscnode"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/dscnodeconfiguration"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/hybridrunbookworkergroup"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/job"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/jobschedule"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/jobstream"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/linkedworkspace"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/listkeys"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/module"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/nodereports"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/objectdatatypes"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/runbook"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/runbookdraft"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/schedule"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/statistics"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/testjob"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/testjobstream"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/typefields"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/usages"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/variable"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/watcher"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/webhook"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	Activity                     *activity.ActivityClient
+	AgentRegistrationInformation *agentregistrationinformation.AgentRegistrationInformationClient
+	AutomationAccount            *automationaccount.AutomationAccountClient
+	Certificate                  *certificate.CertificateClient
+	Connection                   *connection.ConnectionClient
+	ConnectionType               *connectiontype.ConnectionTypeClient
+	Credential                   *credential.CredentialClient
+	DscCompilationJob            *dsccompilationjob.DscCompilationJobClient
+	DscConfiguration             *dscconfiguration.DscConfigurationClient
+	DscNode                      *dscnode.DscNodeClient
+	DscNodeConfiguration         *dscnodeconfiguration.DscNodeConfigurationClient
+	HybridRunbookWorkerGroup     *hybridrunbookworkergroup.HybridRunbookWorkerGroupClient
+	Job                          *job.JobClient
+	JobSchedule                  *jobschedule.JobScheduleClient
+	JobStream                    *jobstream.JobStreamClient
+	LinkedWorkspace              *linkedworkspace.LinkedWorkspaceClient
+	ListKeys                     *listkeys.ListKeysClient
+	Module                       *module.ModuleClient
+	NodeReports                  *nodereports.NodeReportsClient
+	ObjectDataTypes              *objectdatatypes.ObjectDataTypesClient
+	Runbook                      *runbook.RunbookClient
+	RunbookDraft                 *runbookdraft.RunbookDraftClient
+	Schedule                     *schedule.ScheduleClient
+	Statistics                   *statistics.StatisticsClient
+	TestJob                      *testjob.TestJobClient
+	TestJobStream                *testjobstream.TestJobStreamClient
+	TypeFields                   *typefields.TypeFieldsClient
+	Usages                       *usages.UsagesClient
+	Variable                     *variable.VariableClient
+	Watcher                      *watcher.WatcherClient
+	Webhook                      *webhook.WebhookClient
+}

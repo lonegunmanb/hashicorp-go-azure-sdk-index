@@ -1,0 +1,47 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type IndustryDataIndustryDataRoot struct {
+	// Set of connectors for importing data from source systems.
+	DataConnectors *[]IndustryDataIndustryDataConnector `json:"dataConnectors,omitempty"`
+
+	// Set of data import flow activities to bring data into the canonical store via a connector.
+	InboundFlows *[]IndustryDataInboundFlow `json:"inboundFlows,omitempty"`
+
+	// Set of ephemeral operations that the system runs currently. Read-only.
+	Operations *[]LongRunningOperation `json:"operations,omitempty"`
+
+	OutboundProvisioningFlowSets *[]IndustryDataOutboundProvisioningFlowSet `json:"outboundProvisioningFlowSets,omitempty"`
+
+	// Set of user modifiable system picker types.
+	ReferenceDefinitions *[]IndustryDataReferenceDefinition `json:"referenceDefinitions,omitempty"`
+
+	// Set of groups of individual roles that makes role-based admin simpler.
+	RoleGroups *[]IndustryDataRoleGroup `json:"roleGroups,omitempty"`
+
+	// Set of ephemeral runs which present the point-in-time that diagnostic state of activities performed by the system.
+	// Read-only.
+	Runs *[]IndustryDataIndustryDataRun `json:"runs,omitempty"`
+
+	// Set of source definitions that represents real-world external systems.
+	SourceSystems *[]IndustryDataSourceSystemDefinition `json:"sourceSystems,omitempty"`
+
+	// Set of years represented in the system.
+	Years *[]IndustryDataYearTimePeriodDefinition `json:"years,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

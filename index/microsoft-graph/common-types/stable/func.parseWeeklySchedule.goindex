@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWeeklySchedule(input string) (*WeeklySchedule, error) {
+	vals := map[string]WeeklySchedule{
+		"everyday":    WeeklySchedule_Everyday,
+		"friday":      WeeklySchedule_Friday,
+		"monday":      WeeklySchedule_Monday,
+		"saturday":    WeeklySchedule_Saturday,
+		"sunday":      WeeklySchedule_Sunday,
+		"thursday":    WeeklySchedule_Thursday,
+		"tuesday":     WeeklySchedule_Tuesday,
+		"userdefined": WeeklySchedule_UserDefined,
+		"wednesday":   WeeklySchedule_Wednesday,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WeeklySchedule(input)
+	return &out, nil
+}

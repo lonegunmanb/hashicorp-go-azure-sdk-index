@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/streamanalytics/2020-03-01/clusters
+
+func (p ClusterJobOperationPredicate) Matches(input ClusterJob) bool {
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.StreamingUnits != nil && (input.StreamingUnits == nil || *p.StreamingUnits != *input.StreamingUnits) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,36 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s OnlineMeeting) MarshalJSON() ([]byte, error) {
+	type wrapper OnlineMeeting
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling OnlineMeeting: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling OnlineMeeting: %+v", err)
+	}
+
+	delete(decoded, "attendeeReport")
+	delete(decoded, "creationDateTime")
+	delete(decoded, "recordings")
+	delete(decoded, "transcripts")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.onlineMeeting"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling OnlineMeeting: %+v", err)
+	}
+
+	return encoded, nil
+}

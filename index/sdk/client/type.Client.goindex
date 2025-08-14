@@ -1,0 +1,54 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client
+import (
+	"bytes"
+	"context"
+	"crypto/tls"
+	"encoding/json"
+	"encoding/xml"
+	"errors"
+	"fmt"
+	"io"
+	"log"
+	"math"
+	"net"
+	"net/http"
+	"net/url"
+	"regexp"
+	"runtime"
+	"strconv"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/auth"
+	"github.com/hashicorp/go-azure-sdk/sdk/internal/accept"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+	"github.com/hashicorp/go-retryablehttp"
+)
+type Client struct {
+	// BaseUri is the base endpoint for this API.
+	BaseUri string
+
+	// UserAgent is the HTTP user agent string to send in requests.
+	UserAgent string
+
+	// CorrelationId is a custom correlation ID which can be added to requests for tracing purposes
+	CorrelationId string
+
+	// Authorizer is anything that can provide an access token with which to authorize requests.
+	Authorizer auth.Authorizer
+
+	// AuthorizeRequest is an optional function to decorate a Request for authorization prior to being sent.
+	// When nil, a standard Authorization header will be added using a bearer token as returned by the Token method
+	// of the configured Authorizer. Define this function in order to customize the request authorization.
+	AuthorizeRequest func(context.Context, *http.Request, auth.Authorizer) error
+
+	// DisableRetries prevents the client from reattempting failed requests (which it does to work around eventual consistency issues).
+	// This does not impact handling of retries related to rate limiting, which are always performed.
+	DisableRetries bool
+
+	// RequestMiddlewares is a slice of functions that are called in order before a request is sent
+	RequestMiddlewares *[]RequestMiddleware
+
+	// ResponseMiddlewares is a slice of functions that are called in order before a response is parsed and returned
+	ResponseMiddlewares *[]ResponseMiddleware
+}

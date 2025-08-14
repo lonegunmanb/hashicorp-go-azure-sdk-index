@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/resourceguardproxy
+import (
+	"context"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+)
+func (c ResourceGuardProxyClient) responderForGet(resp *http.Response) (result GetOperationResponse, err error) {
+	err = autorest.Respond(
+		resp,
+		azure.WithErrorUnlessStatusCode(http.StatusOK),
+		autorest.ByUnmarshallingJSON(&result.Model),
+		autorest.ByClosing())
+	result.HttpResponse = resp
+
+	return
+}

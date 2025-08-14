@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/userexperienceanalyticsworkfromanywheremetricmetricdevice
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewUserExperienceAnalyticsWorkFromAnywhereMetricMetricDeviceClientWithBaseURI(sdkApi sdkEnv.Api) (*UserExperienceAnalyticsWorkFromAnywhereMetricMetricDeviceClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "userexperienceanalyticsworkfromanywheremetricmetricdevice", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating UserExperienceAnalyticsWorkFromAnywhereMetricMetricDeviceClient: %+v", err)
+	}
+
+	return &UserExperienceAnalyticsWorkFromAnywhereMetricMetricDeviceClient{
+		Client: client,
+	}, nil
+}

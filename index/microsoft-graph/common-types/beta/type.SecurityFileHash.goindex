@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type SecurityFileHash struct {
+	Algorithm *SecurityFileHashAlgorithm `json:"algorithm,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The hash value.
+	Value nullable.Type[string] `json:"value,omitempty"`
+}

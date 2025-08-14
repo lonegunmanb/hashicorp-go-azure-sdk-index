@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/backend
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseBackendProtocol(input string) (*BackendProtocol, error) {
+	vals := map[string]BackendProtocol{
+		"http": BackendProtocolHTTP,
+		"soap": BackendProtocolSoap,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := BackendProtocol(input)
+	return &out, nil
+}

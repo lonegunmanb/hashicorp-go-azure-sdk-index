@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/endpoints
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSocketAddrOperator(input string) (*SocketAddrOperator, error) {
+	vals := map[string]SocketAddrOperator{
+		"any":     SocketAddrOperatorAny,
+		"ipmatch": SocketAddrOperatorIPMatch,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SocketAddrOperator(input)
+	return &out, nil
+}

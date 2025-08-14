@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/authenticationtemporaryaccesspassmethod
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAuthenticationTemporaryAccessPassMethodClientWithBaseURI(sdkApi sdkEnv.Api) (*AuthenticationTemporaryAccessPassMethodClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "authenticationtemporaryaccesspassmethod", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AuthenticationTemporaryAccessPassMethodClient: %+v", err)
+	}
+
+	return &AuthenticationTemporaryAccessPassMethodClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/windowsupdatecatalogitem
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewWindowsUpdateCatalogItemClientWithBaseURI(sdkApi sdkEnv.Api) (*WindowsUpdateCatalogItemClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "windowsupdatecatalogitem", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating WindowsUpdateCatalogItemClient: %+v", err)
+	}
+
+	return &WindowsUpdateCatalogItemClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2024-09-01/vmwares
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWorkloadNetworkDhcpProvisioningState(input string) (*WorkloadNetworkDhcpProvisioningState, error) {
+	vals := map[string]WorkloadNetworkDhcpProvisioningState{
+		"building":  WorkloadNetworkDhcpProvisioningStateBuilding,
+		"canceled":  WorkloadNetworkDhcpProvisioningStateCanceled,
+		"deleting":  WorkloadNetworkDhcpProvisioningStateDeleting,
+		"failed":    WorkloadNetworkDhcpProvisioningStateFailed,
+		"succeeded": WorkloadNetworkDhcpProvisioningStateSucceeded,
+		"updating":  WorkloadNetworkDhcpProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WorkloadNetworkDhcpProvisioningState(input)
+	return &out, nil
+}

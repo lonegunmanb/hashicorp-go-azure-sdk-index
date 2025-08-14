@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/zebrafotadeployment
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewZebraFotaDeploymentClientWithBaseURI(sdkApi sdkEnv.Api) (*ZebraFotaDeploymentClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "zebrafotadeployment", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ZebraFotaDeploymentClient: %+v", err)
+	}
+
+	return &ZebraFotaDeploymentClient{
+		Client: client,
+	}, nil
+}

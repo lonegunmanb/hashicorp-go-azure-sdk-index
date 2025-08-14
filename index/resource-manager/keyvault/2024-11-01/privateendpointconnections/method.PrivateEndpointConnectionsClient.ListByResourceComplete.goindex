@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2024-11-01/privateendpointconnections
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c PrivateEndpointConnectionsClient) ListByResourceComplete(ctx context.Context, id commonids.KeyVaultId) (ListByResourceCompleteResult, error) {
+	return c.ListByResourceCompleteMatchingPredicate(ctx, id, PrivateEndpointConnectionOperationPredicate{})
+}

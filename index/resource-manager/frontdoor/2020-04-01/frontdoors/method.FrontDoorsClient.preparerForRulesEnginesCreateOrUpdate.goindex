@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/frontdoor/2020-04-01/frontdoors
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/polling"
+)
+func (c FrontDoorsClient) preparerForRulesEnginesCreateOrUpdate(ctx context.Context, id RulesEngineId, input RulesEngine) (*http.Request, error) {
+	queryParameters := map[string]interface{}{
+		"api-version": defaultApiVersion,
+	}
+
+	preparer := autorest.CreatePreparer(
+		autorest.AsContentType("application/json; charset=utf-8"),
+		autorest.AsPut(),
+		autorest.WithBaseURL(c.baseUri),
+		autorest.WithPath(id.ID()),
+		autorest.WithJSON(input),
+		autorest.WithQueryParameters(queryParameters))
+	return preparer.Prepare((&http.Request{}).WithContext(ctx))
+}

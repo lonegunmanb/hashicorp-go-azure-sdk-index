@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s UserExperienceAnalyticsAppHealthDevicePerformance) MarshalJSON() ([]byte, error) {
+	type wrapper UserExperienceAnalyticsAppHealthDevicePerformance
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling UserExperienceAnalyticsAppHealthDevicePerformance: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling UserExperienceAnalyticsAppHealthDevicePerformance: %+v", err)
+	}
+
+	delete(decoded, "appCrashCount")
+	delete(decoded, "appHangCount")
+	delete(decoded, "crashedAppCount")
+	delete(decoded, "deviceDisplayName")
+	delete(decoded, "deviceId")
+	delete(decoded, "deviceManufacturer")
+	delete(decoded, "deviceModel")
+	delete(decoded, "meanTimeToFailureInMinutes")
+	delete(decoded, "processedDateTime")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.userExperienceAnalyticsAppHealthDevicePerformance"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling UserExperienceAnalyticsAppHealthDevicePerformance: %+v", err)
+	}
+
+	return encoded, nil
+}

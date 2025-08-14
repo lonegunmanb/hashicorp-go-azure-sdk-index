@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/invoicesection
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeleteInvoiceSectionEligibilityCode(input string) (*DeleteInvoiceSectionEligibilityCode, error) {
+	vals := map[string]DeleteInvoiceSectionEligibilityCode{
+		"activeazureplans":           DeleteInvoiceSectionEligibilityCodeActiveAzurePlans,
+		"activebillingsubscriptions": DeleteInvoiceSectionEligibilityCodeActiveBillingSubscriptions,
+		"lastinvoicesection":         DeleteInvoiceSectionEligibilityCodeLastInvoiceSection,
+		"other":                      DeleteInvoiceSectionEligibilityCodeOther,
+		"reservedinstances":          DeleteInvoiceSectionEligibilityCodeReservedInstances,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeleteInvoiceSectionEligibilityCode(input)
+	return &out, nil
+}

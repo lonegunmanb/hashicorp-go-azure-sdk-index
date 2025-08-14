@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/syncmembers
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSyncMemberDbType(input string) (*SyncMemberDbType, error) {
+	vals := map[string]SyncMemberDbType{
+		"azuresqldatabase":  SyncMemberDbTypeAzureSqlDatabase,
+		"sqlserverdatabase": SyncMemberDbTypeSqlServerDatabase,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SyncMemberDbType(input)
+	return &out, nil
+}

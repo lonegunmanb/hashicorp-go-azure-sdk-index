@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCloudPCStatus(input string) (*CloudPCStatus, error) {
+	vals := map[string]CloudPCStatus{
+		"deprovisioning":          CloudPCStatus_Deprovisioning,
+		"failed":                  CloudPCStatus_Failed,
+		"ingraceperiod":           CloudPCStatus_InGracePeriod,
+		"modifyingsinglesignon":   CloudPCStatus_ModifyingSingleSignOn,
+		"movingregion":            CloudPCStatus_MovingRegion,
+		"notprovisioned":          CloudPCStatus_NotProvisioned,
+		"pendingprovision":        CloudPCStatus_PendingProvision,
+		"preparing":               CloudPCStatus_Preparing,
+		"provisioned":             CloudPCStatus_Provisioned,
+		"provisionedwithwarnings": CloudPCStatus_ProvisionedWithWarnings,
+		"provisioning":            CloudPCStatus_Provisioning,
+		"resizependinglicense":    CloudPCStatus_ResizePendingLicense,
+		"resizing":                CloudPCStatus_Resizing,
+		"restoring":               CloudPCStatus_Restoring,
+		"updatingsinglesignon":    CloudPCStatus_UpdatingSingleSignOn,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CloudPCStatus(input)
+	return &out, nil
+}

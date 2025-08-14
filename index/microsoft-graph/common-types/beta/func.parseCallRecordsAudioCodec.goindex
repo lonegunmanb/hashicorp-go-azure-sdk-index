@@ -1,0 +1,39 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCallRecordsAudioCodec(input string) (*CallRecordsAudioCodec, error) {
+	vals := map[string]CallRecordsAudioCodec{
+		"amrwide":           CallRecordsAudioCodec_AmrWide,
+		"cn":                CallRecordsAudioCodec_Cn,
+		"g722":              CallRecordsAudioCodec_G722,
+		"g7221":             CallRecordsAudioCodec_G7221,
+		"g7221c":            CallRecordsAudioCodec_G7221c,
+		"g729":              CallRecordsAudioCodec_G729,
+		"invalid":           CallRecordsAudioCodec_Invalid,
+		"muchv2":            CallRecordsAudioCodec_Muchv2,
+		"multichannelaudio": CallRecordsAudioCodec_MultiChannelAudio,
+		"opus":              CallRecordsAudioCodec_Opus,
+		"pcma":              CallRecordsAudioCodec_Pcma,
+		"pcmu":              CallRecordsAudioCodec_Pcmu,
+		"rtaudio16":         CallRecordsAudioCodec_RtAudio16,
+		"rtaudio8":          CallRecordsAudioCodec_RtAudio8,
+		"satin":             CallRecordsAudioCodec_Satin,
+		"satinfullband":     CallRecordsAudioCodec_SatinFullband,
+		"silk":              CallRecordsAudioCodec_Silk,
+		"silknarrow":        CallRecordsAudioCodec_SilkNarrow,
+		"silkwide":          CallRecordsAudioCodec_SilkWide,
+		"siren":             CallRecordsAudioCodec_Siren,
+		"unknown":           CallRecordsAudioCodec_Unknown,
+		"xmsrta":            CallRecordsAudioCodec_XmsRta,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CallRecordsAudioCodec(input)
+	return &out, nil
+}

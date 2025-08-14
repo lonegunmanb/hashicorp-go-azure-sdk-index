@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s CloudPCOnPremisesConnectionHealthCheck) MarshalJSON() ([]byte, error) {
+	type wrapper CloudPCOnPremisesConnectionHealthCheck
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling CloudPCOnPremisesConnectionHealthCheck: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling CloudPCOnPremisesConnectionHealthCheck: %+v", err)
+	}
+
+	delete(decoded, "additionalDetail")
+	delete(decoded, "endDateTime")
+	delete(decoded, "startDateTime")
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling CloudPCOnPremisesConnectionHealthCheck: %+v", err)
+	}
+
+	return encoded, nil
+}

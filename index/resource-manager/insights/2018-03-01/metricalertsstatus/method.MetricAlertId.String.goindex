@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2018-03-01/metricalertsstatus
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id MetricAlertId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Metric Alert Name: %q", id.MetricAlertName),
+	}
+	return fmt.Sprintf("Metric Alert (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dashboard/2023-09-01/grafanaresource
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMarketplaceAutoRenew(input string) (*MarketplaceAutoRenew, error) {
+	vals := map[string]MarketplaceAutoRenew{
+		"disabled": MarketplaceAutoRenewDisabled,
+		"enabled":  MarketplaceAutoRenewEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MarketplaceAutoRenew(input)
+	return &out, nil
+}

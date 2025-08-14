@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/registrymanagement
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEndpointServiceConnectionStatus(input string) (*EndpointServiceConnectionStatus, error) {
+	vals := map[string]EndpointServiceConnectionStatus{
+		"approved":     EndpointServiceConnectionStatusApproved,
+		"disconnected": EndpointServiceConnectionStatusDisconnected,
+		"pending":      EndpointServiceConnectionStatusPending,
+		"rejected":     EndpointServiceConnectionStatusRejected,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EndpointServiceConnectionStatus(input)
+	return &out, nil
+}

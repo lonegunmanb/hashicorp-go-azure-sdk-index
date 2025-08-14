@@ -1,0 +1,71 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/v2025_02_01
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/clusterrecoverypoint"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/clusterrecoverypoints"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/migrationrecoverypoints"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/operations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/recoverypoints"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationalertsettings"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationappliances"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationeligibilityresults"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationevents"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationfabrics"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationjobs"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationlogicalnetworks"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationmigrationitems"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationnetworkmappings"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationnetworks"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationpolicies"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationprotectableitems"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationprotecteditems"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationprotectionclusters"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationprotectioncontainermappings"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationprotectioncontainers"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationprotectionintents"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationrecoveryplans"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationrecoveryservicesproviders"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationstorageclassificationmappings"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationstorageclassifications"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationvaulthealth"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationvaultsetting"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationvcenters"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/supportedoperatingsystems"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/targetcomputesizes"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	ClusterRecoveryPoint                     *clusterrecoverypoint.ClusterRecoveryPointClient
+	ClusterRecoveryPoints                    *clusterrecoverypoints.ClusterRecoveryPointsClient
+	MigrationRecoveryPoints                  *migrationrecoverypoints.MigrationRecoveryPointsClient
+	Operations                               *operations.OperationsClient
+	RecoveryPoints                           *recoverypoints.RecoveryPointsClient
+	ReplicationAlertSettings                 *replicationalertsettings.ReplicationAlertSettingsClient
+	ReplicationAppliances                    *replicationappliances.ReplicationAppliancesClient
+	ReplicationEligibilityResults            *replicationeligibilityresults.ReplicationEligibilityResultsClient
+	ReplicationEvents                        *replicationevents.ReplicationEventsClient
+	ReplicationFabrics                       *replicationfabrics.ReplicationFabricsClient
+	ReplicationJobs                          *replicationjobs.ReplicationJobsClient
+	ReplicationLogicalNetworks               *replicationlogicalnetworks.ReplicationLogicalNetworksClient
+	ReplicationMigrationItems                *replicationmigrationitems.ReplicationMigrationItemsClient
+	ReplicationNetworkMappings               *replicationnetworkmappings.ReplicationNetworkMappingsClient
+	ReplicationNetworks                      *replicationnetworks.ReplicationNetworksClient
+	ReplicationPolicies                      *replicationpolicies.ReplicationPoliciesClient
+	ReplicationProtectableItems              *replicationprotectableitems.ReplicationProtectableItemsClient
+	ReplicationProtectedItems                *replicationprotecteditems.ReplicationProtectedItemsClient
+	ReplicationProtectionClusters            *replicationprotectionclusters.ReplicationProtectionClustersClient
+	ReplicationProtectionContainerMappings   *replicationprotectioncontainermappings.ReplicationProtectionContainerMappingsClient
+	ReplicationProtectionContainers          *replicationprotectioncontainers.ReplicationProtectionContainersClient
+	ReplicationProtectionIntents             *replicationprotectionintents.ReplicationProtectionIntentsClient
+	ReplicationRecoveryPlans                 *replicationrecoveryplans.ReplicationRecoveryPlansClient
+	ReplicationRecoveryServicesProviders     *replicationrecoveryservicesproviders.ReplicationRecoveryServicesProvidersClient
+	ReplicationStorageClassificationMappings *replicationstorageclassificationmappings.ReplicationStorageClassificationMappingsClient
+	ReplicationStorageClassifications        *replicationstorageclassifications.ReplicationStorageClassificationsClient
+	ReplicationVaultHealth                   *replicationvaulthealth.ReplicationVaultHealthClient
+	ReplicationVaultSetting                  *replicationvaultsetting.ReplicationVaultSettingClient
+	ReplicationvCenters                      *replicationvcenters.ReplicationvCentersClient
+	SupportedOperatingSystems                *supportedoperatingsystems.SupportedOperatingSystemsClient
+	TargetComputeSizes                       *targetcomputesizes.TargetComputeSizesClient
+}

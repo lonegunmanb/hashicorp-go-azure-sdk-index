@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseConfigurationManagerClientState(input string) (*ConfigurationManagerClientState, error) {
+	vals := map[string]ConfigurationManagerClientState{
+		"communicationerror": ConfigurationManagerClientState_CommunicationError,
+		"healthy":            ConfigurationManagerClientState_Healthy,
+		"installfailed":      ConfigurationManagerClientState_InstallFailed,
+		"installed":          ConfigurationManagerClientState_Installed,
+		"unknown":            ConfigurationManagerClientState_Unknown,
+		"updatefailed":       ConfigurationManagerClientState_UpdateFailed,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ConfigurationManagerClientState(input)
+	return &out, nil
+}

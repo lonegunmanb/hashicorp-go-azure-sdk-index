@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchannelplannerplanbucket
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c TeamChannelPlannerPlanBucketClient) ListTeamChannelPlannerPlanBucketsCompleteMatchingPredicate(ctx context.Context, id beta.GroupIdTeamChannelIdPlannerPlanId, options ListTeamChannelPlannerPlanBucketsOperationOptions, predicate PlannerBucketOperationPredicate) (result ListTeamChannelPlannerPlanBucketsCompleteResult, err error) {
+	items := make([]beta.PlannerBucket, 0)
+
+	resp, err := c.ListTeamChannelPlannerPlanBuckets(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListTeamChannelPlannerPlanBucketsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

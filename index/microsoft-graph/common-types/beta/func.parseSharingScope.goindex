@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSharingScope(input string) (*SharingScope, error) {
+	vals := map[string]SharingScope{
+		"anonymous":      SharingScope_Anonymous,
+		"anyone":         SharingScope_Anyone,
+		"organization":   SharingScope_Organization,
+		"specificpeople": SharingScope_SpecificPeople,
+		"users":          SharingScope_Users,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SharingScope(input)
+	return &out, nil
+}

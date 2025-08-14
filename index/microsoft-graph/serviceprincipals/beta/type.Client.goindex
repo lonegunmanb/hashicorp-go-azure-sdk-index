@@ -1,0 +1,73 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/appmanagementpolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/approleassignedto"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/approleassignment"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/claimsmappingpolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/claimspolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/createdobject"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/delegatedpermissionclassification"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/endpoint"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/federatedidentitycredential"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/homerealmdiscoverypolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/licensedetail"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/memberof"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/oauth2permissiongrant"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/ownedobject"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/owner"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/permissiongrantpreapprovalpolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/remotedesktopsecurityconfiguration"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/remotedesktopsecurityconfigurationapprovedclientapp"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/remotedesktopsecurityconfigurationtargetdevicegroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/serviceprincipal"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/synchronization"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/synchronizationjob"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/synchronizationjobbulkupload"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/synchronizationjobschema"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/synchronizationjobschemadirectory"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/synchronizationsecret"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/synchronizationtemplate"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/synchronizationtemplateschema"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/synchronizationtemplateschemadirectory"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/tokenissuancepolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/tokenlifetimepolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/transitivememberof"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	AppManagementPolicy                                 *appmanagementpolicy.AppManagementPolicyClient
+	AppRoleAssignedTo                                   *approleassignedto.AppRoleAssignedToClient
+	AppRoleAssignment                                   *approleassignment.AppRoleAssignmentClient
+	ClaimsMappingPolicy                                 *claimsmappingpolicy.ClaimsMappingPolicyClient
+	ClaimsPolicy                                        *claimspolicy.ClaimsPolicyClient
+	CreatedObject                                       *createdobject.CreatedObjectClient
+	DelegatedPermissionClassification                   *delegatedpermissionclassification.DelegatedPermissionClassificationClient
+	Endpoint                                            *endpoint.EndpointClient
+	FederatedIdentityCredential                         *federatedidentitycredential.FederatedIdentityCredentialClient
+	HomeRealmDiscoveryPolicy                            *homerealmdiscoverypolicy.HomeRealmDiscoveryPolicyClient
+	LicenseDetail                                       *licensedetail.LicenseDetailClient
+	MemberOf                                            *memberof.MemberOfClient
+	OAuth2PermissionGrant                               *oauth2permissiongrant.OAuth2PermissionGrantClient
+	OwnedObject                                         *ownedobject.OwnedObjectClient
+	Owner                                               *owner.OwnerClient
+	PermissionGrantPreApprovalPolicy                    *permissiongrantpreapprovalpolicy.PermissionGrantPreApprovalPolicyClient
+	RemoteDesktopSecurityConfiguration                  *remotedesktopsecurityconfiguration.RemoteDesktopSecurityConfigurationClient
+	RemoteDesktopSecurityConfigurationApprovedClientApp *remotedesktopsecurityconfigurationapprovedclientapp.RemoteDesktopSecurityConfigurationApprovedClientAppClient
+	RemoteDesktopSecurityConfigurationTargetDeviceGroup *remotedesktopsecurityconfigurationtargetdevicegroup.RemoteDesktopSecurityConfigurationTargetDeviceGroupClient
+	ServicePrincipal                                    *serviceprincipal.ServicePrincipalClient
+	Synchronization                                     *synchronization.SynchronizationClient
+	SynchronizationJob                                  *synchronizationjob.SynchronizationJobClient
+	SynchronizationJobBulkUpload                        *synchronizationjobbulkupload.SynchronizationJobBulkUploadClient
+	SynchronizationJobSchema                            *synchronizationjobschema.SynchronizationJobSchemaClient
+	SynchronizationJobSchemaDirectory                   *synchronizationjobschemadirectory.SynchronizationJobSchemaDirectoryClient
+	SynchronizationSecret                               *synchronizationsecret.SynchronizationSecretClient
+	SynchronizationTemplate                             *synchronizationtemplate.SynchronizationTemplateClient
+	SynchronizationTemplateSchema                       *synchronizationtemplateschema.SynchronizationTemplateSchemaClient
+	SynchronizationTemplateSchemaDirectory              *synchronizationtemplateschemadirectory.SynchronizationTemplateSchemaDirectoryClient
+	TokenIssuancePolicy                                 *tokenissuancepolicy.TokenIssuancePolicyClient
+	TokenLifetimePolicy                                 *tokenlifetimepolicy.TokenLifetimePolicyClient
+	TransitiveMemberOf                                  *transitivememberof.TransitiveMemberOfClient
+}

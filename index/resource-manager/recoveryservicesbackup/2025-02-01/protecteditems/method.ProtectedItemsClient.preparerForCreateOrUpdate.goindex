@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/protecteditems
+import (
+	"context"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+)
+func (c ProtectedItemsClient) preparerForCreateOrUpdate(ctx context.Context, id ProtectedItemId, input ProtectedItemResource, options CreateOrUpdateOperationOptions) (*http.Request, error) {
+	queryParameters := map[string]interface{}{
+		"api-version": defaultApiVersion,
+	}
+
+	for k, v := range options.toQueryString() {
+		queryParameters[k] = autorest.Encode("query", v)
+	}
+
+	preparer := autorest.CreatePreparer(
+		autorest.AsContentType("application/json; charset=utf-8"),
+		autorest.AsPut(),
+		autorest.WithBaseURL(c.baseUri),
+		autorest.WithHeaders(options.toHeaders()),
+		autorest.WithPath(id.ID()),
+		autorest.WithJSON(input),
+		autorest.WithQueryParameters(queryParameters))
+	return preparer.Prepare((&http.Request{}).WithContext(ctx))
+}

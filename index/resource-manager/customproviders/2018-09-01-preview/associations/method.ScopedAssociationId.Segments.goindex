@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/customproviders/2018-09-01-preview/associations
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ScopedAssociationId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.ScopeSegment("scope", "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group"),
+		resourceids.StaticSegment("staticProviders", "providers", "providers"),
+		resourceids.ResourceProviderSegment("staticMicrosoftCustomProviders", "Microsoft.CustomProviders", "Microsoft.CustomProviders"),
+		resourceids.StaticSegment("staticAssociations", "associations", "associations"),
+		resourceids.UserSpecifiedSegment("associationName", "associationName"),
+	}
+}

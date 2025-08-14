@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2022-08-08/hybridrunbookworker
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWorkerType(input string) (*WorkerType, error) {
+	vals := map[string]WorkerType{
+		"hybridv1": WorkerTypeHybridVOne,
+		"hybridv2": WorkerTypeHybridVTwo,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WorkerType(input)
+	return &out, nil
+}

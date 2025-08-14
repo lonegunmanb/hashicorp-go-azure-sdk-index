@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/deviceupdate/2023-07-01/privatelinkresources
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseGroupIdProvisioningState(input string) (*GroupIdProvisioningState, error) {
+	vals := map[string]GroupIdProvisioningState{
+		"canceled":  GroupIdProvisioningStateCanceled,
+		"failed":    GroupIdProvisioningStateFailed,
+		"succeeded": GroupIdProvisioningStateSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := GroupIdProvisioningState(input)
+	return &out, nil
+}

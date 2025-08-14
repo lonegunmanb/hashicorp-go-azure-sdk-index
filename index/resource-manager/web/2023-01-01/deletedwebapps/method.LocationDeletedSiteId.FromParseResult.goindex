@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/deletedwebapps
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *LocationDeletedSiteId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.LocationName, ok = input.Parsed["locationName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "locationName", input)
+	}
+
+	if id.DeletedSiteId, ok = input.Parsed["deletedSiteId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "deletedSiteId", input)
+	}
+
+	return nil
+}

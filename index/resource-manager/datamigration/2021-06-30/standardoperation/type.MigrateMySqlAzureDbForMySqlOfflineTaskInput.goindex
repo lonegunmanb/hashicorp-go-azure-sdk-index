@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/standardoperation
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type MigrateMySqlAzureDbForMySqlOfflineTaskInput struct {
+	MakeSourceServerReadOnly *bool                                             `json:"makeSourceServerReadOnly,omitempty"`
+	OptionalAgentSettings    *map[string]string                                `json:"optionalAgentSettings,omitempty"`
+	SelectedDatabases        []MigrateMySqlAzureDbForMySqlOfflineDatabaseInput `json:"selectedDatabases"`
+	SourceConnectionInfo     MySqlConnectionInfo                               `json:"sourceConnectionInfo"`
+	StartedOn                *string                                           `json:"startedOn,omitempty"`
+	TargetConnectionInfo     MySqlConnectionInfo                               `json:"targetConnectionInfo"`
+}

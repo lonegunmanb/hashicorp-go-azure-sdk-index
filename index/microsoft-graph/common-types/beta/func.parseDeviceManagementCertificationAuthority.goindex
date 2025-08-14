@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeviceManagementCertificationAuthority(input string) (*DeviceManagementCertificationAuthority, error) {
+	vals := map[string]DeviceManagementCertificationAuthority{
+		"digicert":      DeviceManagementCertificationAuthority_DigiCert,
+		"microsoft":     DeviceManagementCertificationAuthority_Microsoft,
+		"notconfigured": DeviceManagementCertificationAuthority_NotConfigured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceManagementCertificationAuthority(input)
+	return &out, nil
+}

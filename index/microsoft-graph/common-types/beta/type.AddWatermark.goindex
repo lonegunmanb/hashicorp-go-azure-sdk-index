@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type AddWatermark struct {
+	Orientation *PageOrientation `json:"orientation,omitempty"`
+
+	// Fields inherited from MarkContent
+
+	FontColor nullable.Type[string] `json:"fontColor,omitempty"`
+	FontSize  nullable.Type[int64]  `json:"fontSize,omitempty"`
+	Text      nullable.Type[string] `json:"text,omitempty"`
+
+	// Fields inherited from LabelActionBase
+
+	// The name of the action (for example, 'Encrypt', 'AddHeader').
+	Name nullable.Type[string] `json:"name,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

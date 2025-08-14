@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type MacOSAzureAdSingleSignOnExtension struct {
+	// An optional list of additional bundle IDs allowed to use the AAD extension for single sign-on.
+	BundleIdAccessControlList *[]string `json:"bundleIdAccessControlList,omitempty"`
+
+	// Gets or sets a list of typed key-value pairs used to configure Credential-type profiles. This collection can contain
+	// a maximum of 500 elements.
+	Configurations *[]KeyTypedValuePair `json:"configurations,omitempty"`
+
+	// Enables or disables shared device mode.
+	EnableSharedDeviceMode *bool `json:"enableSharedDeviceMode,omitempty"`
+
+	// Fields inherited from SingleSignOnExtension
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

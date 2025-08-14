@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/certificateordersdiagnostics
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o GetAppServiceCertificateOrderDetectorResponseOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.EndTime != nil {
+		out.Append("endTime", fmt.Sprintf("%v", *o.EndTime))
+	}
+	if o.StartTime != nil {
+		out.Append("startTime", fmt.Sprintf("%v", *o.StartTime))
+	}
+	if o.TimeGrain != nil {
+		out.Append("timeGrain", fmt.Sprintf("%v", *o.TimeGrain))
+	}
+	return &out
+}

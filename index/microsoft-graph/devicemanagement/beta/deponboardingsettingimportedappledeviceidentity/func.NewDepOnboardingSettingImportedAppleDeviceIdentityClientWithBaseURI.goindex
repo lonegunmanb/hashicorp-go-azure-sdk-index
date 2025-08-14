@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/deponboardingsettingimportedappledeviceidentity
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDepOnboardingSettingImportedAppleDeviceIdentityClientWithBaseURI(sdkApi sdkEnv.Api) (*DepOnboardingSettingImportedAppleDeviceIdentityClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "deponboardingsettingimportedappledeviceidentity", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DepOnboardingSettingImportedAppleDeviceIdentityClient: %+v", err)
+	}
+
+	return &DepOnboardingSettingImportedAppleDeviceIdentityClient{
+		Client: client,
+	}, nil
+}

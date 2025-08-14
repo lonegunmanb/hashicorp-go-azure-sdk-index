@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/b2xuserflowuserattributeassignment
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c B2xUserFlowUserAttributeAssignmentClient) ListB2xUserFlowUserAttributeAssignmentsCompleteMatchingPredicate(ctx context.Context, id stable.IdentityB2xUserFlowId, options ListB2xUserFlowUserAttributeAssignmentsOperationOptions, predicate IdentityUserFlowAttributeAssignmentOperationPredicate) (result ListB2xUserFlowUserAttributeAssignmentsCompleteResult, err error) {
+	items := make([]stable.IdentityUserFlowAttributeAssignment, 0)
+
+	resp, err := c.ListB2xUserFlowUserAttributeAssignments(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListB2xUserFlowUserAttributeAssignmentsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type DeviceManagementPartner struct {
+	// Partner display name
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// User groups that specifies whether enrollment is through partner.
+	GroupsRequiringPartnerEnrollment *[]DeviceManagementPartnerAssignment `json:"groupsRequiringPartnerEnrollment,omitempty"`
+
+	// Whether device management partner is configured or not
+	IsConfigured *bool `json:"isConfigured,omitempty"`
+
+	// Timestamp of last heartbeat after admin enabled option Connect to Device management Partner
+	LastHeartbeatDateTime *string `json:"lastHeartbeatDateTime,omitempty"`
+
+	// Partner App Type.
+	PartnerAppType *DeviceManagementPartnerAppType `json:"partnerAppType,omitempty"`
+
+	// Partner state of this tenant.
+	PartnerState *DeviceManagementPartnerTenantState `json:"partnerState,omitempty"`
+
+	// Partner Single tenant App id
+	SingleTenantAppId nullable.Type[string] `json:"singleTenantAppId,omitempty"`
+
+	// DateTime in UTC when PartnerDevices will be marked as NonCompliant
+	WhenPartnerDevicesWillBeMarkedAsNonCompliantDateTime nullable.Type[string] `json:"whenPartnerDevicesWillBeMarkedAsNonCompliantDateTime,omitempty"`
+
+	// DateTime in UTC when PartnerDevices will be removed
+	WhenPartnerDevicesWillBeRemovedDateTime nullable.Type[string] `json:"whenPartnerDevicesWillBeRemovedDateTime,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

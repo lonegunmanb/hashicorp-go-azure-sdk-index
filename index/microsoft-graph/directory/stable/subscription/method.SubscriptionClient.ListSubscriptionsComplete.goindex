@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable/subscription
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SubscriptionClient) ListSubscriptionsComplete(ctx context.Context, options ListSubscriptionsOperationOptions) (ListSubscriptionsCompleteResult, error) {
+	return c.ListSubscriptionsCompleteMatchingPredicate(ctx, options, CompanySubscriptionOperationPredicate{})
+}

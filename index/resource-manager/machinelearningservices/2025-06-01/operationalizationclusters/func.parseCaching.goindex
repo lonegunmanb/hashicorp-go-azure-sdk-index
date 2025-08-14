@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2025-06-01/operationalizationclusters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCaching(input string) (*Caching, error) {
+	vals := map[string]Caching{
+		"none":      CachingNone,
+		"readonly":  CachingReadOnly,
+		"readwrite": CachingReadWrite,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Caching(input)
+	return &out, nil
+}

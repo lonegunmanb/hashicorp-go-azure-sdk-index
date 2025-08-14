@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+type BaseInvitationRedemptionIdentityProviderConfigurationImpl struct {
+	// The fallback identity provider to be used in case no primary identity provider can be used for guest invitation
+	// redemption. Possible values are: defaultConfiguredIdp, emailOneTimePasscode, or microsoftAccount.
+	FallbackIdentityProvider *B2bIdentityProvidersType `json:"fallbackIdentityProvider,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Collection of identity providers in priority order of preference to be used for guest invitation redemption. Possible
+	// values are: azureActiveDirectory, externalFederation, or socialIdentityProviders.
+	PrimaryIdentityProviderPrecedenceOrder *[]B2bIdentityProvidersType `json:"primaryIdentityProviderPrecedenceOrder,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

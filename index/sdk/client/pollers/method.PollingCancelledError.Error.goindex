@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client/pollers
+import (
+	"context"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+)
+func (e PollingCancelledError) Error() string {
+	if e.Message != "" {
+		return fmt.Sprintf("polling was cancelled: %+v", e.Message)
+	}
+
+	return "polling was cancelled"
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mobilenetwork/2024-04-01/sim
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSIMClientWithBaseURI(sdkApi sdkEnv.Api) (*SIMClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "sim", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SIMClient: %+v", err)
+	}
+
+	return &SIMClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,37 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type AwsExternalSystemAccessFinding struct {
+	AccessMethods    *ExternalSystemAccessMethods `json:"accessMethods,omitempty"`
+	AffectedSystem   *AuthorizationSystem         `json:"affectedSystem,omitempty"`
+	SystemWithAccess *AuthorizationSystemInfo     `json:"systemWithAccess,omitempty"`
+
+	// The number of identities in the external system that are trusted, if not all. Supports $orderby.
+	TrustedIdentityCount nullable.Type[int64] `json:"trustedIdentityCount,omitempty"`
+
+	// Flag that determines if all identities in the external system are trusted, or only a subset.
+	TrustsAllIdentities *bool `json:"trustsAllIdentities,omitempty"`
+
+	// Fields inherited from Finding
+
+	// Defines when the finding was created.
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

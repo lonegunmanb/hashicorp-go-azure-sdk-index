@@ -1,0 +1,52 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNetworkaccessRegion(input string) (*NetworkaccessRegion, error) {
+	vals := map[string]NetworkaccessRegion{
+		"australiaeast":      NetworkaccessRegion_AustraliaEast,
+		"australiasoutheast": NetworkaccessRegion_AustraliaSouthEast,
+		"brazilsouth":        NetworkaccessRegion_BrazilSouth,
+		"canadacentral":      NetworkaccessRegion_CanadaCentral,
+		"canadaeast":         NetworkaccessRegion_CanadaEast,
+		"centralindia":       NetworkaccessRegion_CentralIndia,
+		"centralus":          NetworkaccessRegion_CentralUS,
+		"eastus":             NetworkaccessRegion_EastUS,
+		"eastus2":            NetworkaccessRegion_EastUS2,
+		"francecentral":      NetworkaccessRegion_FranceCentral,
+		"francesouth":        NetworkaccessRegion_FranceSouth,
+		"germanywestcentral": NetworkaccessRegion_GermanyWestCentral,
+		"israelcentral":      NetworkaccessRegion_IsraelCentral,
+		"italynorth":         NetworkaccessRegion_ItalyNorth,
+		"japaneast":          NetworkaccessRegion_JapanEast,
+		"japanwest":          NetworkaccessRegion_JapanWest,
+		"koreacentral":       NetworkaccessRegion_KoreaCentral,
+		"koreasouth":         NetworkaccessRegion_KoreaSouth,
+		"northcentralus":     NetworkaccessRegion_NorthCentralUS,
+		"northeurope":        NetworkaccessRegion_NorthEurope,
+		"polandcentral":      NetworkaccessRegion_PolandCentral,
+		"southafricanorth":   NetworkaccessRegion_SouthAfricaNorth,
+		"southafricawest":    NetworkaccessRegion_SouthAfricaWest,
+		"southcentralus":     NetworkaccessRegion_SouthCentralUS,
+		"southeastasia":      NetworkaccessRegion_SouthEastAsia,
+		"southindia":         NetworkaccessRegion_SouthIndia,
+		"swedencentral":      NetworkaccessRegion_SwedenCentral,
+		"switzerlandnorth":   NetworkaccessRegion_SwitzerlandNorth,
+		"uaenorth":           NetworkaccessRegion_UaeNorth,
+		"uksouth":            NetworkaccessRegion_UkSouth,
+		"westcentralus":      NetworkaccessRegion_WestCentralUS,
+		"westeurope":         NetworkaccessRegion_WestEurope,
+		"westus":             NetworkaccessRegion_WestUS,
+		"westus2":            NetworkaccessRegion_WestUS2,
+		"westus3":            NetworkaccessRegion_WestUS3,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NetworkaccessRegion(input)
+	return &out, nil
+}

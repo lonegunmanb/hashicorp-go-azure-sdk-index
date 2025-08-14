@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ChatRenamedEventMessageDetail struct {
+	// The updated name of the chat.
+	ChatDisplayName nullable.Type[string] `json:"chatDisplayName,omitempty"`
+
+	// Unique identifier of the chat.
+	ChatId nullable.Type[string] `json:"chatId,omitempty"`
+
+	// Initiator of the event.
+	Initiator IdentitySet `json:"initiator"`
+
+	// Fields inherited from EventMessageDetail
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

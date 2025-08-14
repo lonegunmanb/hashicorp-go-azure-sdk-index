@@ -1,0 +1,70 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"io"
+	"log"
+	"net/http"
+	"net/url"
+	"strconv"
+	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	"golang.org/x/oauth2"
+)
+func (a *ManagedIdentityAuthorizer) Token(ctx context.Context, _ *http.Request) (*oauth2.Token, error) {
+	if a.conf == nil {
+		return nil, fmt.Errorf("could not request token: conf is nil")
+	}
+
+	query := url.Values{
+		"api-version": []string{a.conf.MsiApiVersion},
+		"resource":    []string{a.conf.Resource},
+	}
+
+	if a.conf.ClientID != "" {
+		query["client_id"] = []string{a.conf.ClientID}
+	}
+
+	u := fmt.Sprintf("%s?%s", a.conf.MsiEndpoint, query.Encode())
+
+	body, err := azureMetadata(ctx, u)
+	if err != nil {
+		return nil, fmt.Errorf("ManagedIdentityAuthorizer: failed to request token from metadata endpoint: %v", err)
+	}
+
+	var tokenRes struct {
+		AccessToken  string      `json:"access_token"`
+		ClientID     string      `json:"client_id"`
+		Resource     string      `json:"resource"`
+		TokenType    string      `json:"token_type"`
+		ExpiresIn    interface{} `json:"expires_in"`     // relative seconds from now
+		ExpiresOn    interface{} `json:"expires_on"`     // timestamp
+		ExtExpiresIn interface{} `json:"ext_expires_in"` // relative seconds from now
+	}
+	if err := json.Unmarshal(body, &tokenRes); err != nil {
+		return nil, fmt.Errorf("ManagedIdentityAuthorizer: failed to unmarshal token: %v", err)
+	}
+
+	token := &oauth2.Token{
+		AccessToken: tokenRes.AccessToken,
+		TokenType:   tokenRes.TokenType,
+	}
+
+	var secs time.Duration
+	if exp, ok := tokenRes.ExpiresIn.(string); ok && exp != "" {
+		if v, err := strconv.Atoi(exp); err == nil {
+			secs = time.Duration(v)
+		}
+	} else if exp, ok := tokenRes.ExpiresIn.(int64); ok {
+		secs = time.Duration(exp)
+	} else if exp, ok := tokenRes.ExpiresIn.(float64); ok {
+		secs = time.Duration(exp)
+	}
+	if secs > 0 {
+		token.Expiry = time.Now().Add(secs * time.Second)
+	}
+
+	return token, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/newrelic/2024-03-01/monitoredsubscriptions
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewMonitoredSubscriptionsClientWithBaseURI(sdkApi sdkEnv.Api) (*MonitoredSubscriptionsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "monitoredsubscriptions", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating MonitoredSubscriptionsClient: %+v", err)
+	}
+
+	return &MonitoredSubscriptionsClient{
+		Client: client,
+	}, nil
+}

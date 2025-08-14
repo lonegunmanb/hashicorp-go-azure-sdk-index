@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/deviceconfigurationconflictsummary
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DeviceConfigurationConflictSummaryClient) ListDeviceConfigurationConflictSummariesComplete(ctx context.Context, options ListDeviceConfigurationConflictSummariesOperationOptions) (ListDeviceConfigurationConflictSummariesCompleteResult, error) {
+	return c.ListDeviceConfigurationConflictSummariesCompleteMatchingPredicate(ctx, options, DeviceConfigurationConflictSummaryOperationPredicate{})
+}

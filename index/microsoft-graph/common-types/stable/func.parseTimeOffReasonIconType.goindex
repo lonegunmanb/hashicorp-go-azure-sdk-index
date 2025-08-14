@@ -1,0 +1,38 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTimeOffReasonIconType(input string) (*TimeOffReasonIconType, error) {
+	vals := map[string]TimeOffReasonIconType{
+		"cake":        TimeOffReasonIconType_Cake,
+		"calendar":    TimeOffReasonIconType_Calendar,
+		"car":         TimeOffReasonIconType_Car,
+		"clock":       TimeOffReasonIconType_Clock,
+		"cup":         TimeOffReasonIconType_Cup,
+		"doctor":      TimeOffReasonIconType_Doctor,
+		"dog":         TimeOffReasonIconType_Dog,
+		"firstaid":    TimeOffReasonIconType_FirstAid,
+		"globe":       TimeOffReasonIconType_Globe,
+		"juryduty":    TimeOffReasonIconType_JuryDuty,
+		"none":        TimeOffReasonIconType_None,
+		"notworking":  TimeOffReasonIconType_NotWorking,
+		"phone":       TimeOffReasonIconType_Phone,
+		"piggybank":   TimeOffReasonIconType_PiggyBank,
+		"pin":         TimeOffReasonIconType_Pin,
+		"plane":       TimeOffReasonIconType_Plane,
+		"running":     TimeOffReasonIconType_Running,
+		"sunny":       TimeOffReasonIconType_Sunny,
+		"trafficcone": TimeOffReasonIconType_TrafficCone,
+		"umbrella":    TimeOffReasonIconType_Umbrella,
+		"weather":     TimeOffReasonIconType_Weather,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TimeOffReasonIconType(input)
+	return &out, nil
+}

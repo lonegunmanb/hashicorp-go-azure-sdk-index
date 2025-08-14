@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/homerealmdiscoverypolicy
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewHomeRealmDiscoveryPolicyClientWithBaseURI(sdkApi sdkEnv.Api) (*HomeRealmDiscoveryPolicyClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "homerealmdiscoverypolicy", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating HomeRealmDiscoveryPolicyClient: %+v", err)
+	}
+
+	return &HomeRealmDiscoveryPolicyClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2024-09-01/hosts
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+type Host struct {
+	Id         *string                `json:"id,omitempty"`
+	Name       *string                `json:"name,omitempty"`
+	Properties HostProperties         `json:"properties"`
+	Sku        *Sku                   `json:"sku,omitempty"`
+	SystemData *systemdata.SystemData `json:"systemData,omitempty"`
+	Type       *string                `json:"type,omitempty"`
+	Zones      *zones.Schema          `json:"zones,omitempty"`
+}

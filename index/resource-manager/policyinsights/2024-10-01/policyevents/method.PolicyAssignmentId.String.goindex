@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/policyinsights/2024-10-01/policyevents
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id PolicyAssignmentId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Policy Assignment Name: %q", id.PolicyAssignmentName),
+	}
+	return fmt.Sprintf("Policy Assignment (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-09-01/customipprefixes
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCommissionedState(input string) (*CommissionedState, error) {
+	vals := map[string]CommissionedState{
+		"commissioned":                    CommissionedStateCommissioned,
+		"commissionednointernetadvertise": CommissionedStateCommissionedNoInternetAdvertise,
+		"commissioning":                   CommissionedStateCommissioning,
+		"decommissioning":                 CommissionedStateDecommissioning,
+		"deprovisioned":                   CommissionedStateDeprovisioned,
+		"deprovisioning":                  CommissionedStateDeprovisioning,
+		"provisioned":                     CommissionedStateProvisioned,
+		"provisioning":                    CommissionedStateProvisioning,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CommissionedState(input)
+	return &out, nil
+}

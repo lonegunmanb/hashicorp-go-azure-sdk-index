@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/attachednetworkconnections
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c AttachedNetworkConnectionsClient) AttachedNetworksListByDevCenterCompleteMatchingPredicate(ctx context.Context, id DevCenterId, options AttachedNetworksListByDevCenterOperationOptions, predicate AttachedNetworkConnectionOperationPredicate) (result AttachedNetworksListByDevCenterCompleteResult, err error) {
+	items := make([]AttachedNetworkConnection, 0)
+
+	resp, err := c.AttachedNetworksListByDevCenter(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = AttachedNetworksListByDevCenterCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

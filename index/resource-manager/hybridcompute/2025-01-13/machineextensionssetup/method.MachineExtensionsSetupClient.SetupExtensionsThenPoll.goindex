@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2025-01-13/machineextensionssetup
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c MachineExtensionsSetupClient) SetupExtensionsThenPoll(ctx context.Context, id MachineId, input SetupExtensionRequest) error {
+	result, err := c.SetupExtensions(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing SetupExtensions: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after SetupExtensions: %+v", err)
+	}
+
+	return nil
+}

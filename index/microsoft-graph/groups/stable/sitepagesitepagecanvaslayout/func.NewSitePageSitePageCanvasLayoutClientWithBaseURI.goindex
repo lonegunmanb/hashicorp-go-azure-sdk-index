@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/sitepagesitepagecanvaslayout
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSitePageSitePageCanvasLayoutClientWithBaseURI(sdkApi sdkEnv.Api) (*SitePageSitePageCanvasLayoutClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "sitepagesitepagecanvaslayout", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SitePageSitePageCanvasLayoutClient: %+v", err)
+	}
+
+	return &SitePageSitePageCanvasLayoutClient{
+		Client: client,
+	}, nil
+}

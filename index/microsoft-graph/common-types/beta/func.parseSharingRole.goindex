@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSharingRole(input string) (*SharingRole, error) {
+	vals := map[string]SharingRole{
+		"edit":           SharingRole_Edit,
+		"managelist":     SharingRole_ManageList,
+		"none":           SharingRole_None,
+		"restrictedview": SharingRole_RestrictedView,
+		"review":         SharingRole_Review,
+		"submitonly":     SharingRole_SubmitOnly,
+		"view":           SharingRole_View,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SharingRole(input)
+	return &out, nil
+}

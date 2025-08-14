@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/standardoperation
+import (
+	"encoding/json"
+	"fmt"
+)
+type GetTdeCertificatesSqlTaskProperties struct {
+	Input  *GetTdeCertificatesSqlTaskInput    `json:"input,omitempty"`
+	Output *[]GetTdeCertificatesSqlTaskOutput `json:"output,omitempty"`
+
+	// Fields inherited from ProjectTaskProperties
+
+	ClientData *map[string]string   `json:"clientData,omitempty"`
+	Commands   *[]CommandProperties `json:"commands,omitempty"`
+	Errors     *[]ODataError        `json:"errors,omitempty"`
+	State      *TaskState           `json:"state,omitempty"`
+	TaskType   string               `json:"taskType"`
+}

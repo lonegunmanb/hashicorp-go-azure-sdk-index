@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mongocluster/2024-07-01/firewallrules
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewFirewallRulesClientWithBaseURI(sdkApi sdkEnv.Api) (*FirewallRulesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "firewallrules", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating FirewallRulesClient: %+v", err)
+	}
+
+	return &FirewallRulesClient{
+		Client: client,
+	}, nil
+}

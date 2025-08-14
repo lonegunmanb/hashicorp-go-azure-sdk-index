@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/operationsmanagement/2015-11-01-preview/managementassociation
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewManagementAssociationClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagementAssociationClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "managementassociation", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ManagementAssociationClient: %+v", err)
+	}
+
+	return &ManagementAssociationClient{
+		Client: client,
+	}, nil
+}

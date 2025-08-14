@@ -1,0 +1,76 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *Calendar) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AllowedOnlineMeetingProviders *[]OnlineMeetingProviderType         `json:"allowedOnlineMeetingProviders,omitempty"`
+		CalendarGroupId               nullable.Type[string]                `json:"calendarGroupId,omitempty"`
+		CalendarPermissions           *[]CalendarPermission                `json:"calendarPermissions,omitempty"`
+		CalendarView                  *[]Event                             `json:"calendarView,omitempty"`
+		CanEdit                       nullable.Type[bool]                  `json:"canEdit,omitempty"`
+		CanShare                      nullable.Type[bool]                  `json:"canShare,omitempty"`
+		CanViewPrivateItems           nullable.Type[bool]                  `json:"canViewPrivateItems,omitempty"`
+		ChangeKey                     nullable.Type[string]                `json:"changeKey,omitempty"`
+		Color                         *CalendarColor                       `json:"color,omitempty"`
+		DefaultOnlineMeetingProvider  *OnlineMeetingProviderType           `json:"defaultOnlineMeetingProvider,omitempty"`
+		Events                        *[]Event                             `json:"events,omitempty"`
+		HexColor                      nullable.Type[string]                `json:"hexColor,omitempty"`
+		IsDefaultCalendar             nullable.Type[bool]                  `json:"isDefaultCalendar,omitempty"`
+		IsRemovable                   nullable.Type[bool]                  `json:"isRemovable,omitempty"`
+		IsShared                      nullable.Type[bool]                  `json:"isShared,omitempty"`
+		IsSharedWithMe                nullable.Type[bool]                  `json:"isSharedWithMe,omitempty"`
+		IsTallyingResponses           nullable.Type[bool]                  `json:"isTallyingResponses,omitempty"`
+		MultiValueExtendedProperties  *[]MultiValueLegacyExtendedProperty  `json:"multiValueExtendedProperties,omitempty"`
+		Name                          nullable.Type[string]                `json:"name,omitempty"`
+		SingleValueExtendedProperties *[]SingleValueLegacyExtendedProperty `json:"singleValueExtendedProperties,omitempty"`
+		Id                            *string                              `json:"id,omitempty"`
+		ODataId                       *string                              `json:"@odata.id,omitempty"`
+		ODataType                     *string                              `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AllowedOnlineMeetingProviders = decoded.AllowedOnlineMeetingProviders
+	s.CalendarGroupId = decoded.CalendarGroupId
+	s.CalendarPermissions = decoded.CalendarPermissions
+	s.CalendarView = decoded.CalendarView
+	s.CanEdit = decoded.CanEdit
+	s.CanShare = decoded.CanShare
+	s.CanViewPrivateItems = decoded.CanViewPrivateItems
+	s.ChangeKey = decoded.ChangeKey
+	s.Color = decoded.Color
+	s.DefaultOnlineMeetingProvider = decoded.DefaultOnlineMeetingProvider
+	s.Events = decoded.Events
+	s.HexColor = decoded.HexColor
+	s.IsDefaultCalendar = decoded.IsDefaultCalendar
+	s.IsRemovable = decoded.IsRemovable
+	s.IsShared = decoded.IsShared
+	s.IsSharedWithMe = decoded.IsSharedWithMe
+	s.IsTallyingResponses = decoded.IsTallyingResponses
+	s.MultiValueExtendedProperties = decoded.MultiValueExtendedProperties
+	s.Name = decoded.Name
+	s.SingleValueExtendedProperties = decoded.SingleValueExtendedProperties
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling Calendar into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["owner"]; ok {
+		impl, err := UnmarshalEmailAddressImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Owner' for 'Calendar': %+v", err)
+		}
+		s.Owner = &impl
+	}
+
+	return nil
+}

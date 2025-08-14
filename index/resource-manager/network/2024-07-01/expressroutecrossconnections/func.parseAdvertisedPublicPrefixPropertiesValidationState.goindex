@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/expressroutecrossconnections
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAdvertisedPublicPrefixPropertiesValidationState(input string) (*AdvertisedPublicPrefixPropertiesValidationState, error) {
+	vals := map[string]AdvertisedPublicPrefixPropertiesValidationState{
+		"asnvalidationfailed":                 AdvertisedPublicPrefixPropertiesValidationStateAsnValidationFailed,
+		"certificatemissinginroutingregistry": AdvertisedPublicPrefixPropertiesValidationStateCertificateMissingInRoutingRegistry,
+		"configured":                          AdvertisedPublicPrefixPropertiesValidationStateConfigured,
+		"configuring":                         AdvertisedPublicPrefixPropertiesValidationStateConfiguring,
+		"invalidsignatureencoding":            AdvertisedPublicPrefixPropertiesValidationStateInvalidSignatureEncoding,
+		"manualvalidationneeded":              AdvertisedPublicPrefixPropertiesValidationStateManualValidationNeeded,
+		"notconfigured":                       AdvertisedPublicPrefixPropertiesValidationStateNotConfigured,
+		"signatureverificationfailed":         AdvertisedPublicPrefixPropertiesValidationStateSignatureVerificationFailed,
+		"validationfailed":                    AdvertisedPublicPrefixPropertiesValidationStateValidationFailed,
+		"validationneeded":                    AdvertisedPublicPrefixPropertiesValidationStateValidationNeeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AdvertisedPublicPrefixPropertiesValidationState(input)
+	return &out, nil
+}

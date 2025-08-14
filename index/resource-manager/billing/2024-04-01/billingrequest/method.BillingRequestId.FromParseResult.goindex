@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingrequest
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *BillingRequestId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.BillingRequestName, ok = input.Parsed["billingRequestName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "billingRequestName", input)
+	}
+
+	return nil
+}

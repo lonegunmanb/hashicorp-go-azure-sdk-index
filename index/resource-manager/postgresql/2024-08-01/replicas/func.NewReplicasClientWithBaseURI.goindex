@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2024-08-01/replicas
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewReplicasClientWithBaseURI(sdkApi sdkEnv.Api) (*ReplicasClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "replicas", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ReplicasClient: %+v", err)
+	}
+
+	return &ReplicasClient{
+		Client: client,
+	}, nil
+}

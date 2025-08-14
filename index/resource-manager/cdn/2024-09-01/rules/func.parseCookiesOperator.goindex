@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2024-09-01/rules
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCookiesOperator(input string) (*CookiesOperator, error) {
+	vals := map[string]CookiesOperator{
+		"any":                CookiesOperatorAny,
+		"beginswith":         CookiesOperatorBeginsWith,
+		"contains":           CookiesOperatorContains,
+		"endswith":           CookiesOperatorEndsWith,
+		"equal":              CookiesOperatorEqual,
+		"greaterthan":        CookiesOperatorGreaterThan,
+		"greaterthanorequal": CookiesOperatorGreaterThanOrEqual,
+		"lessthan":           CookiesOperatorLessThan,
+		"lessthanorequal":    CookiesOperatorLessThanOrEqual,
+		"regex":              CookiesOperatorRegEx,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CookiesOperator(input)
+	return &out, nil
+}

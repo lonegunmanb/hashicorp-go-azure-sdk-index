@@ -1,0 +1,43 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalManagedAppConfigurationImplementation(input []byte) (ManagedAppConfiguration, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling ManagedAppConfiguration into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.targetedManagedAppConfiguration") {
+		var out TargetedManagedAppConfiguration
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into TargetedManagedAppConfiguration: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseManagedAppConfigurationImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseManagedAppConfigurationImpl: %+v", err)
+	}
+
+	return RawManagedAppConfigurationImpl{
+		managedAppConfiguration: parent,
+		Type:                    value,
+		Values:                  temp,
+	}, nil
+
+}

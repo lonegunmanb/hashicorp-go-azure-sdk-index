@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sqlvirtualmachine/2023-10-01/sqlvirtualmachinegroups
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAdditionalVMPatch(input string) (*AdditionalVMPatch, error) {
+	vals := map[string]AdditionalVMPatch{
+		"microsoftupdate": AdditionalVMPatchMicrosoftUpdate,
+		"notset":          AdditionalVMPatchNotSet,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AdditionalVMPatch(input)
+	return &out, nil
+}

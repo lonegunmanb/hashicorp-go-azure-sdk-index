@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/appplatform/2024-01-01-preview/appplatform
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c AppPlatformClient) ConfigServersUpdatePutThenPoll(ctx context.Context, id commonids.SpringCloudServiceId, input ConfigServerResource) error {
+	result, err := c.ConfigServersUpdatePut(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing ConfigServersUpdatePut: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after ConfigServersUpdatePut: %+v", err)
+	}
+
+	return nil
+}

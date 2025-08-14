@@ -1,0 +1,37 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type PrintDocument struct {
+	// The document's content (MIME) type. Read-only.
+	ContentType nullable.Type[string] `json:"contentType,omitempty"`
+
+	// The document's name. Read-only.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// The time the document was downloaded. Read-only
+	DownloadedDateTime nullable.Type[string] `json:"downloadedDateTime,omitempty"`
+
+	// The document's size in bytes. Read-only.
+	Size *int64 `json:"size,omitempty"`
+
+	// The time the document was uploaded. Read-only
+	UploadedDateTime nullable.Type[string] `json:"uploadedDateTime,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

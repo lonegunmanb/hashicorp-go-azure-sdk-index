@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mysql/2023-12-30/backupsv2
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewBackupsV2ClientWithBaseURI(sdkApi sdkEnv.Api) (*BackupsV2Client, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "backupsv2", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating BackupsV2Client: %+v", err)
+	}
+
+	return &BackupsV2Client{
+		Client: client,
+	}, nil
+}

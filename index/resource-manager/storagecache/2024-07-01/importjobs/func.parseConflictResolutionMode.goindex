@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagecache/2024-07-01/importjobs
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseConflictResolutionMode(input string) (*ConflictResolutionMode, error) {
+	vals := map[string]ConflictResolutionMode{
+		"fail":             ConflictResolutionModeFail,
+		"overwritealways":  ConflictResolutionModeOverwriteAlways,
+		"overwriteifdirty": ConflictResolutionModeOverwriteIfDirty,
+		"skip":             ConflictResolutionModeSkip,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ConflictResolutionMode(input)
+	return &out, nil
+}

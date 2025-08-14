@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cognitive/2025-06-01/modelcapacities
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ListOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.ModelFormat != nil {
+		out.Append("modelFormat", fmt.Sprintf("%v", *o.ModelFormat))
+	}
+	if o.ModelName != nil {
+		out.Append("modelName", fmt.Sprintf("%v", *o.ModelName))
+	}
+	if o.ModelVersion != nil {
+		out.Append("modelVersion", fmt.Sprintf("%v", *o.ModelVersion))
+	}
+	return &out
+}

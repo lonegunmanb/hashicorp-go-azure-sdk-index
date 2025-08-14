@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalOidcClientAuthenticationImplementation(input []byte) (OidcClientAuthentication, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling OidcClientAuthentication into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.oidcClientSecretAuthentication") {
+		var out OidcClientSecretAuthentication
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into OidcClientSecretAuthentication: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.oidcPrivateJwtKeyClientAuthentication") {
+		var out OidcPrivateJwtKeyClientAuthentication
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into OidcPrivateJwtKeyClientAuthentication: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseOidcClientAuthenticationImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseOidcClientAuthenticationImpl: %+v", err)
+	}
+
+	return RawOidcClientAuthenticationImpl{
+		oidcClientAuthentication: parent,
+		Type:                     value,
+		Values:                   temp,
+	}, nil
+
+}

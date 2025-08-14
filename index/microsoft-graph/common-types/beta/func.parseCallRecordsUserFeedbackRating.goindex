@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCallRecordsUserFeedbackRating(input string) (*CallRecordsUserFeedbackRating, error) {
+	vals := map[string]CallRecordsUserFeedbackRating{
+		"bad":       CallRecordsUserFeedbackRating_Bad,
+		"excellent": CallRecordsUserFeedbackRating_Excellent,
+		"fair":      CallRecordsUserFeedbackRating_Fair,
+		"good":      CallRecordsUserFeedbackRating_Good,
+		"notrated":  CallRecordsUserFeedbackRating_NotRated,
+		"poor":      CallRecordsUserFeedbackRating_Poor,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CallRecordsUserFeedbackRating(input)
+	return &out, nil
+}

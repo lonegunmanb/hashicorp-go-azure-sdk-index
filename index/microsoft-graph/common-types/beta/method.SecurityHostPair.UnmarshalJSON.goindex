@@ -1,0 +1,50 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *SecurityHostPair) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		FirstSeenDateTime nullable.Type[string] `json:"firstSeenDateTime,omitempty"`
+		LastSeenDateTime  nullable.Type[string] `json:"lastSeenDateTime,omitempty"`
+		LinkKind          nullable.Type[string] `json:"linkKind,omitempty"`
+		Id                *string               `json:"id,omitempty"`
+		ODataId           *string               `json:"@odata.id,omitempty"`
+		ODataType         *string               `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.FirstSeenDateTime = decoded.FirstSeenDateTime
+	s.LastSeenDateTime = decoded.LastSeenDateTime
+	s.LinkKind = decoded.LinkKind
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling SecurityHostPair into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["childHost"]; ok {
+		impl, err := UnmarshalSecurityHostImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'ChildHost' for 'SecurityHostPair': %+v", err)
+		}
+		s.ChildHost = &impl
+	}
+
+	if v, ok := temp["parentHost"]; ok {
+		impl, err := UnmarshalSecurityHostImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'ParentHost' for 'SecurityHostPair': %+v", err)
+		}
+		s.ParentHost = &impl
+	}
+
+	return nil
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2021-08-01/trigger
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTriggerStatus(input string) (*TriggerStatus, error) {
+	vals := map[string]TriggerStatus{
+		"active":                              TriggerStatusActive,
+		"inactive":                            TriggerStatusInactive,
+		"sourcesynchronizationsettingdeleted": TriggerStatusSourceSynchronizationSettingDeleted,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TriggerStatus(input)
+	return &out, nil
+}

@@ -1,0 +1,76 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type AccessPackageAssignmentPolicy struct {
+	// Access package containing this policy. Read-only. Supports $expand.
+	AccessPackage *AccessPackage `json:"accessPackage,omitempty"`
+
+	// Principals that can be assigned the access package through this policy. The possible values are: notSpecified,
+	// specificDirectoryUsers, specificConnectedOrganizationUsers, specificDirectoryServicePrincipals, allMemberUsers,
+	// allDirectoryUsers, allDirectoryServicePrincipals, allConfiguredConnectedOrganizationUsers, allExternalUsers,
+	// unknownFutureValue.
+	AllowedTargetScope *AllowedTargetScope `json:"allowedTargetScope,omitempty"`
+
+	// This property is only present for an auto assignment policy; if absent, this is a request-based policy.
+	AutomaticRequestSettings *AccessPackageAutomaticRequestSettings `json:"automaticRequestSettings,omitempty"`
+
+	// Catalog of the access package containing this policy. Read-only.
+	Catalog *AccessPackageCatalog `json:"catalog,omitempty"`
+
+	// The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example,
+	// midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// The collection of stages when to execute one or more custom access package workflow extensions. Supports $expand.
+	CustomExtensionStageSettings *[]CustomExtensionStageSetting `json:"customExtensionStageSettings,omitempty"`
+
+	// The description of the policy.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// The display name of the policy.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// The expiration date for assignments created in this policy.
+	Expiration *ExpirationPattern `json:"expiration,omitempty"`
+
+	// The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example,
+	// midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+	ModifiedDateTime nullable.Type[string] `json:"modifiedDateTime,omitempty"`
+
+	NotificationSettings *AccessPackageNotificationSettings `json:"notificationSettings,omitempty"`
+
+	// Questions that are posed to the requestor.
+	Questions *[]AccessPackageQuestion `json:"questions,omitempty"`
+
+	// Specifies the settings for approval of requests for an access package assignment through this policy. For example, if
+	// approval is required for new requests.
+	RequestApprovalSettings *AccessPackageAssignmentApprovalSettings `json:"requestApprovalSettings,omitempty"`
+
+	// Provides additional settings to select who can create a request for an access package assignment through this policy,
+	// and what they can include in their request.
+	RequestorSettings *AccessPackageAssignmentRequestorSettings `json:"requestorSettings,omitempty"`
+
+	// Settings for access reviews of assignments through this policy.
+	ReviewSettings *AccessPackageAssignmentReviewSettings `json:"reviewSettings,omitempty"`
+
+	// The principals that can be assigned access from an access package through this policy.
+	SpecificAllowedTargets *[]SubjectSet `json:"specificAllowedTargets,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

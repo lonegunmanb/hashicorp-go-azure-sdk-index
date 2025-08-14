@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseIosSoftwareUpdateScheduleType(input string) (*IosSoftwareUpdateScheduleType, error) {
+	vals := map[string]IosSoftwareUpdateScheduleType{
+		"alwaysupdate":               IosSoftwareUpdateScheduleType_AlwaysUpdate,
+		"updateduringtimewindows":    IosSoftwareUpdateScheduleType_UpdateDuringTimeWindows,
+		"updateoutsideofactivehours": IosSoftwareUpdateScheduleType_UpdateOutsideOfActiveHours,
+		"updateoutsideoftimewindows": IosSoftwareUpdateScheduleType_UpdateOutsideOfTimeWindows,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IosSoftwareUpdateScheduleType(input)
+	return &out, nil
+}

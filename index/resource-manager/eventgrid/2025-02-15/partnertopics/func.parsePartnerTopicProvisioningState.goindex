@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2025-02-15/partnertopics
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePartnerTopicProvisioningState(input string) (*PartnerTopicProvisioningState, error) {
+	vals := map[string]PartnerTopicProvisioningState{
+		"canceled": PartnerTopicProvisioningStateCanceled,
+		"creating": PartnerTopicProvisioningStateCreating,
+		"deleting": PartnerTopicProvisioningStateDeleting,
+		"failed":   PartnerTopicProvisioningStateFailed,
+		"idleduetomirroredchannelresourcedeletion": PartnerTopicProvisioningStateIdleDueToMirroredChannelResourceDeletion,
+		"succeeded": PartnerTopicProvisioningStateSucceeded,
+		"updating":  PartnerTopicProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PartnerTopicProvisioningState(input)
+	return &out, nil
+}

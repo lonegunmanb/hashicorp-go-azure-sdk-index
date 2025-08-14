@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2024-02-01/wafloganalytics
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWafMetricsGranularity(input string) (*WafMetricsGranularity, error) {
+	vals := map[string]WafMetricsGranularity{
+		"p1d":  WafMetricsGranularityPOneD,
+		"pt5m": WafMetricsGranularityPTFiveM,
+		"pt1h": WafMetricsGranularityPTOneH,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WafMetricsGranularity(input)
+	return &out, nil
+}

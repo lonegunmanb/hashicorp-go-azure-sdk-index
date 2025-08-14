@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/customimages
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id CustomImageId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Lab Name: %q", id.LabName),
+		fmt.Sprintf("Custom Image Name: %q", id.CustomImageName),
+	}
+	return fmt.Sprintf("Custom Image (%s)", strings.Join(components, "\n"))
+}

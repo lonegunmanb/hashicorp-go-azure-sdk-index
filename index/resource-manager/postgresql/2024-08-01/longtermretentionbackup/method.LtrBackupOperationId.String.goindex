@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2024-08-01/longtermretentionbackup
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id LtrBackupOperationId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Flexible Server Name: %q", id.FlexibleServerName),
+		fmt.Sprintf("Ltr Backup Operation Name: %q", id.LtrBackupOperationName),
+	}
+	return fmt.Sprintf("Ltr Backup Operation (%s)", strings.Join(components, "\n"))
+}

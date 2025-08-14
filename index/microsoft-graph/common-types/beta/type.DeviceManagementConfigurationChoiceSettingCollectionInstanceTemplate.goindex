@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type DeviceManagementConfigurationChoiceSettingCollectionInstanceTemplate struct {
+	// Linked policy may append values which are not present in the template.
+	AllowUnmanagedValues *bool `json:"allowUnmanagedValues,omitempty"`
+
+	// Choice Setting Collection Value Template
+	ChoiceSettingCollectionValueTemplate *[]DeviceManagementConfigurationChoiceSettingValueTemplate `json:"choiceSettingCollectionValueTemplate,omitempty"`
+
+	// Fields inherited from DeviceManagementConfigurationSettingInstanceTemplate
+
+	// Indicates if a policy must specify this setting.
+	IsRequired *bool `json:"isRequired,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Setting Definition Id
+	SettingDefinitionId *string `json:"settingDefinitionId,omitempty"`
+
+	// Setting Instance Template Id
+	SettingInstanceTemplateId *string `json:"settingInstanceTemplateId,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

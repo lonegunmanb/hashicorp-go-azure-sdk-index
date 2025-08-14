@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerservice/2025-02-01/managedclusters
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *CommandResultProperties) GetFinishedAtAsTime() (*time.Time, error) {
+	if o.FinishedAt == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.FinishedAt, "2006-01-02T15:04:05Z07:00")
+}

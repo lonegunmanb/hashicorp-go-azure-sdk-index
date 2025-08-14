@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseExternalConnectorsRuleOperation(input string) (*ExternalConnectorsRuleOperation, error) {
+	vals := map[string]ExternalConnectorsRuleOperation{
+		"contains":    ExternalConnectorsRuleOperation_Contains,
+		"equals":      ExternalConnectorsRuleOperation_Equals,
+		"greaterthan": ExternalConnectorsRuleOperation_GreaterThan,
+		"lessthan":    ExternalConnectorsRuleOperation_LessThan,
+		"notcontains": ExternalConnectorsRuleOperation_NotContains,
+		"notequals":   ExternalConnectorsRuleOperation_NotEquals,
+		"null":        ExternalConnectorsRuleOperation_Null,
+		"startswith":  ExternalConnectorsRuleOperation_StartsWith,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ExternalConnectorsRuleOperation(input)
+	return &out, nil
+}

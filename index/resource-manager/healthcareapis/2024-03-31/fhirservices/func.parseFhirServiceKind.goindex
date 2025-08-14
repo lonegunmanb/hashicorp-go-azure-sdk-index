@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/healthcareapis/2024-03-31/fhirservices
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseFhirServiceKind(input string) (*FhirServiceKind, error) {
+	vals := map[string]FhirServiceKind{
+		"fhir-r4":   FhirServiceKindFhirNegativeRFour,
+		"fhir-stu3": FhirServiceKindFhirNegativeStuThree,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FhirServiceKind(input)
+	return &out, nil
+}

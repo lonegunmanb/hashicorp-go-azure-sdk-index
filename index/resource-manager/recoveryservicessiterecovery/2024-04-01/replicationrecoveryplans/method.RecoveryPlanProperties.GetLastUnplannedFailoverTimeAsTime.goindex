@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2024-04-01/replicationrecoveryplans
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *RecoveryPlanProperties) GetLastUnplannedFailoverTimeAsTime() (*time.Time, error) {
+	if o.LastUnplannedFailoverTime == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.LastUnplannedFailoverTime, "2006-01-02T15:04:05Z07:00")
+}

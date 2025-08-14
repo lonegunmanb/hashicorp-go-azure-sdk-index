@@ -1,0 +1,37 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/deviceprovisioningservices/2022-02-05/dpscertificate
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o GenerateVerificationCodeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.CertificateCreated != nil {
+		out.Append("certificate.created", fmt.Sprintf("%v", *o.CertificateCreated))
+	}
+	if o.CertificateHasPrivateKey != nil {
+		out.Append("certificate.hasPrivateKey", fmt.Sprintf("%v", *o.CertificateHasPrivateKey))
+	}
+	if o.CertificateIsVerified != nil {
+		out.Append("certificate.isVerified", fmt.Sprintf("%v", *o.CertificateIsVerified))
+	}
+	if o.CertificateLastUpdated != nil {
+		out.Append("certificate.lastUpdated", fmt.Sprintf("%v", *o.CertificateLastUpdated))
+	}
+	if o.CertificateName != nil {
+		out.Append("certificate.name", fmt.Sprintf("%v", *o.CertificateName))
+	}
+	if o.CertificateNonce != nil {
+		out.Append("certificate.nonce", fmt.Sprintf("%v", *o.CertificateNonce))
+	}
+	if o.CertificatePurpose != nil {
+		out.Append("certificate.purpose", fmt.Sprintf("%v", *o.CertificatePurpose))
+	}
+	if o.CertificateRawBytes != nil {
+		out.Append("certificate.rawBytes", fmt.Sprintf("%v", *o.CertificateRawBytes))
+	}
+	return &out
+}

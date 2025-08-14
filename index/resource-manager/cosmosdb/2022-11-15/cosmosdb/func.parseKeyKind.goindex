@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cosmosdb/2022-11-15/cosmosdb
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseKeyKind(input string) (*KeyKind, error) {
+	vals := map[string]KeyKind{
+		"primary":           KeyKindPrimary,
+		"primaryreadonly":   KeyKindPrimaryReadonly,
+		"secondary":         KeyKindSecondary,
+		"secondaryreadonly": KeyKindSecondaryReadonly,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := KeyKind(input)
+	return &out, nil
+}

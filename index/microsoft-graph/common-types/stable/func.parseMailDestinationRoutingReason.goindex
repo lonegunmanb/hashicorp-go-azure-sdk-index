@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMailDestinationRoutingReason(input string) (*MailDestinationRoutingReason, error) {
+	vals := map[string]MailDestinationRoutingReason{
+		"advancedspamfiltering": MailDestinationRoutingReason_AdvancedSpamFiltering,
+		"autopurgetodeleted":    MailDestinationRoutingReason_AutoPurgeToDeleted,
+		"autopurgetoinbox":      MailDestinationRoutingReason_AutoPurgeToInbox,
+		"autopurgetojunk":       MailDestinationRoutingReason_AutoPurgeToJunk,
+		"blockedsender":         MailDestinationRoutingReason_BlockedSender,
+		"domainallowlist":       MailDestinationRoutingReason_DomainAllowList,
+		"domainblocklist":       MailDestinationRoutingReason_DomainBlockList,
+		"firsttimesender":       MailDestinationRoutingReason_FirstTimeSender,
+		"junk":                  MailDestinationRoutingReason_Junk,
+		"mailflowrule":          MailDestinationRoutingReason_MailFlowRule,
+		"none":                  MailDestinationRoutingReason_None,
+		"notinaddressbook":      MailDestinationRoutingReason_NotInAddressBook,
+		"notjunk":               MailDestinationRoutingReason_NotJunk,
+		"outbound":              MailDestinationRoutingReason_Outbound,
+		"safesender":            MailDestinationRoutingReason_SafeSender,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MailDestinationRoutingReason(input)
+	return &out, nil
+}

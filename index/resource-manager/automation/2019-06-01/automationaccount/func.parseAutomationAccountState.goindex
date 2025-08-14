@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2019-06-01/automationaccount
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAutomationAccountState(input string) (*AutomationAccountState, error) {
+	vals := map[string]AutomationAccountState{
+		"ok":          AutomationAccountStateOk,
+		"suspended":   AutomationAccountStateSuspended,
+		"unavailable": AutomationAccountStateUnavailable,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AutomationAccountState(input)
+	return &out, nil
+}

@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s MobileAppSupersedence) MobileAppRelationship() BaseMobileAppRelationshipImpl {
+	return BaseMobileAppRelationshipImpl{
+		SourceDisplayName:          s.SourceDisplayName,
+		SourceDisplayVersion:       s.SourceDisplayVersion,
+		SourceId:                   s.SourceId,
+		SourcePublisherDisplayName: s.SourcePublisherDisplayName,
+		TargetDisplayName:          s.TargetDisplayName,
+		TargetDisplayVersion:       s.TargetDisplayVersion,
+		TargetId:                   s.TargetId,
+		TargetPublisher:            s.TargetPublisher,
+		TargetPublisherDisplayName: s.TargetPublisherDisplayName,
+		TargetType:                 s.TargetType,
+		Id:                         s.Id,
+		ODataId:                    s.ODataId,
+		ODataType:                  s.ODataType,
+	}
+}

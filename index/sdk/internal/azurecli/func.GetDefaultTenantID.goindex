@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/sdk/internal/azurecli
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"log"
+	"os/exec"
+	"regexp"
+	"strings"
+
+	"github.com/hashicorp/go-version"
+)
+func GetDefaultTenantID() (*string, error) {
+	account, err := getAzAccount()
+	if err != nil {
+		return nil, fmt.Errorf("obtaining tenant ID: %s", err)
+	}
+	return account.TenantId, nil
+}

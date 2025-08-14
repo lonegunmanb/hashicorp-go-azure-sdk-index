@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-11-01/firewallpolicies
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseFirewallPolicyIntrusionDetectionProfileType(input string) (*FirewallPolicyIntrusionDetectionProfileType, error) {
+	vals := map[string]FirewallPolicyIntrusionDetectionProfileType{
+		"advanced": FirewallPolicyIntrusionDetectionProfileTypeAdvanced,
+		"basic":    FirewallPolicyIntrusionDetectionProfileTypeBasic,
+		"extended": FirewallPolicyIntrusionDetectionProfileTypeExtended,
+		"standard": FirewallPolicyIntrusionDetectionProfileTypeStandard,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FirewallPolicyIntrusionDetectionProfileType(input)
+	return &out, nil
+}

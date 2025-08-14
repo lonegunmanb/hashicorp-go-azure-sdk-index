@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s SecurityComplianceDlpSharePointAuditRecord) MarshalJSON() ([]byte, error) {
+	type wrapper SecurityComplianceDlpSharePointAuditRecord
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling SecurityComplianceDlpSharePointAuditRecord: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling SecurityComplianceDlpSharePointAuditRecord: %+v", err)
+	}
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.security.complianceDlpSharePointAuditRecord"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling SecurityComplianceDlpSharePointAuditRecord: %+v", err)
+	}
+
+	return encoded, nil
+}

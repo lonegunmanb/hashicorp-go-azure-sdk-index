@@ -1,0 +1,57 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerapps/2025-01-01/javacomponents
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalJavaComponentPropertiesImplementation(input []byte) (JavaComponentProperties, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling JavaComponentProperties into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["componentType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "SpringBootAdmin") {
+		var out SpringBootAdminComponent
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SpringBootAdminComponent: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "SpringCloudConfig") {
+		var out SpringCloudConfigComponent
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SpringCloudConfigComponent: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "SpringCloudEureka") {
+		var out SpringCloudEurekaComponent
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SpringCloudEurekaComponent: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseJavaComponentPropertiesImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseJavaComponentPropertiesImpl: %+v", err)
+	}
+
+	return RawJavaComponentPropertiesImpl{
+		javaComponentProperties: parent,
+		Type:                    value,
+		Values:                  temp,
+	}, nil
+
+}

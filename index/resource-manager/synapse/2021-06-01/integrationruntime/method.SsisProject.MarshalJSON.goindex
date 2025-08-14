@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/integrationruntime
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s SsisProject) MarshalJSON() ([]byte, error) {
+	type wrapper SsisProject
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling SsisProject: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling SsisProject: %+v", err)
+	}
+
+	decoded["type"] = "Project"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling SsisProject: %+v", err)
+	}
+
+	return encoded, nil
+}

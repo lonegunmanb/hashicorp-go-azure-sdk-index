@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2023-07-01/providers
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ProvidersClient) ListAtTenantScopeCompleteMatchingPredicate(ctx context.Context, options ListAtTenantScopeOperationOptions, predicate ProviderOperationPredicate) (result ListAtTenantScopeCompleteResult, err error) {
+	items := make([]Provider, 0)
+
+	resp, err := c.ListAtTenantScope(ctx, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListAtTenantScopeCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

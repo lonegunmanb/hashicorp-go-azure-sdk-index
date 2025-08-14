@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/virtualmachines
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c VirtualMachinesClient) ConvertToManagedDisksThenPoll(ctx context.Context, id VirtualMachineId) error {
+	result, err := c.ConvertToManagedDisks(ctx, id)
+	if err != nil {
+		return fmt.Errorf("performing ConvertToManagedDisks: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after ConvertToManagedDisks: %+v", err)
+	}
+
+	return nil
+}

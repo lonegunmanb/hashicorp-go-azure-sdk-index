@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservices/2025-02-01/openapis
+
+func (p ReplicationUsageOperationPredicate) Matches(input ReplicationUsage) bool {
+
+	if p.ProtectedItemCount != nil && (input.ProtectedItemCount == nil || *p.ProtectedItemCount != *input.ProtectedItemCount) {
+		return false
+	}
+
+	if p.RecoveryPlanCount != nil && (input.RecoveryPlanCount == nil || *p.RecoveryPlanCount != *input.RecoveryPlanCount) {
+		return false
+	}
+
+	if p.RecoveryServicesProviderAuthType != nil && (input.RecoveryServicesProviderAuthType == nil || *p.RecoveryServicesProviderAuthType != *input.RecoveryServicesProviderAuthType) {
+		return false
+	}
+
+	if p.RegisteredServersCount != nil && (input.RegisteredServersCount == nil || *p.RegisteredServersCount != *input.RegisteredServersCount) {
+		return false
+	}
+
+	return true
+}

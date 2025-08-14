@@ -1,0 +1,75 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalStsPolicyImplementation(input []byte) (StsPolicy, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling StsPolicy into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.activityBasedTimeoutPolicy") {
+		var out ActivityBasedTimeoutPolicy
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ActivityBasedTimeoutPolicy: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.claimsMappingPolicy") {
+		var out ClaimsMappingPolicy
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ClaimsMappingPolicy: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.homeRealmDiscoveryPolicy") {
+		var out HomeRealmDiscoveryPolicy
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into HomeRealmDiscoveryPolicy: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.tokenIssuancePolicy") {
+		var out TokenIssuancePolicy
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into TokenIssuancePolicy: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.tokenLifetimePolicy") {
+		var out TokenLifetimePolicy
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into TokenLifetimePolicy: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseStsPolicyImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseStsPolicyImpl: %+v", err)
+	}
+
+	return RawStsPolicyImpl{
+		stsPolicy: parent,
+		Type:      value,
+		Values:    temp,
+	}, nil
+
+}

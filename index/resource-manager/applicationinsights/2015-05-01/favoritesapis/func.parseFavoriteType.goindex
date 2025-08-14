@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/applicationinsights/2015-05-01/favoritesapis
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseFavoriteType(input string) (*FavoriteType, error) {
+	vals := map[string]FavoriteType{
+		"shared": FavoriteTypeShared,
+		"user":   FavoriteTypeUser,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FavoriteType(input)
+	return &out, nil
+}

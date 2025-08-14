@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-07-15/quotainformation
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ScopedQuotaId) String() string {
+	components := []string{
+		fmt.Sprintf("Scope: %q", id.Scope),
+		fmt.Sprintf("Quota Name: %q", id.QuotaName),
+	}
+	return fmt.Sprintf("Scoped Quota (%s)", strings.Join(components, "\n"))
+}

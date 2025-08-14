@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-08-01/benefitrecommendations
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *SharedScopeBenefitRecommendationProperties) GetLastConsumptionDateAsTime() (*time.Time, error) {
+	if o.LastConsumptionDate == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.LastConsumptionDate, "2006-01-02T15:04:05Z07:00")
+}

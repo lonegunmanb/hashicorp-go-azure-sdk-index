@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/teamscheduledaynote
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTeamScheduleDayNoteClientWithBaseURI(sdkApi sdkEnv.Api) (*TeamScheduleDayNoteClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "teamscheduledaynote", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TeamScheduleDayNoteClient: %+v", err)
+	}
+
+	return &TeamScheduleDayNoteClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/reservations
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewReservationsClientWithBaseURI(sdkApi sdkEnv.Api) (*ReservationsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "reservations", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ReservationsClient: %+v", err)
+	}
+
+	return &ReservationsClient{
+		Client: client,
+	}, nil
+}

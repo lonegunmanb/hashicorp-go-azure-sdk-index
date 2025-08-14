@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type DeviceManagementSettingProfileConstraint struct {
+	// The source of the entity
+	Source nullable.Type[string] `json:"source,omitempty"`
+
+	// A collection of types this entity carries
+	Types *[]string `json:"types,omitempty"`
+
+	// Fields inherited from DeviceManagementConstraint
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

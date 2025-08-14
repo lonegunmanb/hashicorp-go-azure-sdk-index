@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DeviceManagementConfigurationPolicyTemplateIdSettingTemplateIdSettingDefinitionId) String() string {
+	components := []string{
+		fmt.Sprintf("Device Management Configuration Policy Template: %q", id.DeviceManagementConfigurationPolicyTemplateId),
+		fmt.Sprintf("Device Management Configuration Setting Template: %q", id.DeviceManagementConfigurationSettingTemplateId),
+		fmt.Sprintf("Device Management Configuration Setting Definition: %q", id.DeviceManagementConfigurationSettingDefinitionId),
+	}
+	return fmt.Sprintf("Device Management Configuration Policy Template Id Setting Template Id Setting Definition (%s)", strings.Join(components, "\n"))
+}

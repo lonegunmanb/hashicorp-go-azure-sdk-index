@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-11-01/alertrules
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+)
+func (s ScheduledAlertRule) AlertRule() BaseAlertRuleImpl {
+	return BaseAlertRuleImpl{
+		Etag:       s.Etag,
+		Id:         s.Id,
+		Kind:       s.Kind,
+		Name:       s.Name,
+		SystemData: s.SystemData,
+		Type:       s.Type,
+	}
+}

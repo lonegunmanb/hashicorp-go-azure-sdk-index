@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/applicationinsights/2022-06-15/webtestsapis
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWebTestKind(input string) (*WebTestKind, error) {
+	vals := map[string]WebTestKind{
+		"multistep": WebTestKindMultistep,
+		"ping":      WebTestKindPing,
+		"standard":  WebTestKindStandard,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WebTestKind(input)
+	return &out, nil
+}

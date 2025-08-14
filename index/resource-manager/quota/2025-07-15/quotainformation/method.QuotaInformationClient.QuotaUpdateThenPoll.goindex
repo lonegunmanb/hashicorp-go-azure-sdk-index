@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-07-15/quotainformation
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c QuotaInformationClient) QuotaUpdateThenPoll(ctx context.Context, id ScopedQuotaId, input CurrentQuotaLimitBase) error {
+	result, err := c.QuotaUpdate(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing QuotaUpdate: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after QuotaUpdate: %+v", err)
+	}
+
+	return nil
+}

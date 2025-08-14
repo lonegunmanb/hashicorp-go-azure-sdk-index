@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/flexcomponents
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSystemShapes(input string) (*SystemShapes, error) {
+	vals := map[string]SystemShapes{
+		"exadbxs":      SystemShapesExaDbXS,
+		"exadata.x9m":  SystemShapesExadataPointXNineM,
+		"exadata.x11m": SystemShapesExadataPointXOneOneM,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SystemShapes(input)
+	return &out, nil
+}

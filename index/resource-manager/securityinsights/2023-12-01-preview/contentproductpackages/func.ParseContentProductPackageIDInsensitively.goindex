@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-12-01-preview/contentproductpackages
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseContentProductPackageIDInsensitively(input string) (*ContentProductPackageId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&ContentProductPackageId{})
+	parsed, err := parser.Parse(input, true)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := ContentProductPackageId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

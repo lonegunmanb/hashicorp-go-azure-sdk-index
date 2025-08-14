@@ -1,0 +1,36 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s *InferenceClassificationOverride) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		ClassifyAs *InferenceClassificationType `json:"classifyAs,omitempty"`
+		Id         *string                      `json:"id,omitempty"`
+		ODataId    *string                      `json:"@odata.id,omitempty"`
+		ODataType  *string                      `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.ClassifyAs = decoded.ClassifyAs
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling InferenceClassificationOverride into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["senderEmailAddress"]; ok {
+		impl, err := UnmarshalEmailAddressImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'SenderEmailAddress' for 'InferenceClassificationOverride': %+v", err)
+		}
+		s.SenderEmailAddress = impl
+	}
+
+	return nil
+}

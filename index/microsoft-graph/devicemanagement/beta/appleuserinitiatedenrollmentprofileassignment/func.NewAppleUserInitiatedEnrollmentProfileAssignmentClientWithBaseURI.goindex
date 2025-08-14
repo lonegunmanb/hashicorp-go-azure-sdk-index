@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/appleuserinitiatedenrollmentprofileassignment
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAppleUserInitiatedEnrollmentProfileAssignmentClientWithBaseURI(sdkApi sdkEnv.Api) (*AppleUserInitiatedEnrollmentProfileAssignmentClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "appleuserinitiatedenrollmentprofileassignment", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AppleUserInitiatedEnrollmentProfileAssignmentClient: %+v", err)
+	}
+
+	return &AppleUserInitiatedEnrollmentProfileAssignmentClient{
+		Client: client,
+	}, nil
+}

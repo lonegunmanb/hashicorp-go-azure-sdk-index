@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type PlannerTaskRoleBasedRule struct {
+	// Default rule that applies when a property or action-specific rule is not provided. Possible values are: Allow, Block
+	DefaultRule nullable.Type[string] `json:"defaultRule,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Rules for specific properties and actions.
+	PropertyRule *PlannerTaskPropertyRule `json:"propertyRule,omitempty"`
+
+	// The role these rules apply to.
+	Role PlannerTaskConfigurationRoleBase `json:"role"`
+}

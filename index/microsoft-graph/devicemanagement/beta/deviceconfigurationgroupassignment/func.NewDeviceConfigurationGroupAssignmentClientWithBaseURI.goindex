@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/deviceconfigurationgroupassignment
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDeviceConfigurationGroupAssignmentClientWithBaseURI(sdkApi sdkEnv.Api) (*DeviceConfigurationGroupAssignmentClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "deviceconfigurationgroupassignment", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DeviceConfigurationGroupAssignmentClient: %+v", err)
+	}
+
+	return &DeviceConfigurationGroupAssignmentClient{
+		Client: client,
+	}, nil
+}

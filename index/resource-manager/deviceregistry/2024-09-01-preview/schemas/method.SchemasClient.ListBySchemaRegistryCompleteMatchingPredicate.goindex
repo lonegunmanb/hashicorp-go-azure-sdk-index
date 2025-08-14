@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/deviceregistry/2024-09-01-preview/schemas
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SchemasClient) ListBySchemaRegistryCompleteMatchingPredicate(ctx context.Context, id SchemaRegistryId, predicate SchemaOperationPredicate) (result ListBySchemaRegistryCompleteResult, err error) {
+	items := make([]Schema, 0)
+
+	resp, err := c.ListBySchemaRegistry(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListBySchemaRegistryCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client/pollers
+import (
+	"context"
+	"fmt"
+	"sync"
+	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+)
+func (p *Poller) LatestStatus() PollingStatus {
+	if p.latestError != nil {
+		if _, ok := p.latestError.(PollingCancelledError); ok {
+			return PollingStatusCancelled
+		}
+		if _, ok := p.latestError.(PollingDroppedConnectionError); ok {
+			// we could look to expose a status for this, but we likely wouldn't handle this any differently
+			// to it being unknown, so I (@tombuildsstuff) think this is reasonable for now?
+			return PollingStatusUnknown
+		}
+		if _, ok := p.latestError.(PollingFailedError); ok {
+			return PollingStatusFailed
+		}
+		if p.latestError == context.DeadlineExceeded {
+			return PollingStatusUnknown
+		}
+	}
+
+	if p.latestResponse == nil {
+		return PollingStatusUnknown
+	}
+
+	return p.latestResponse.Status
+}

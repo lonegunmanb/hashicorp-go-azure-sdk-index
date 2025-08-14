@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/voiceservices/2023-04-03/testlines
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id TestLineId) ID() string {
+	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.VoiceServices/communicationsGateways/%s/testLines/%s"
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.CommunicationsGatewayName, id.TestLineName)
+}

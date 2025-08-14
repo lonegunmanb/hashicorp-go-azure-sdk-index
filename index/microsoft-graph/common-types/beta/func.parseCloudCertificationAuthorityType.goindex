@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCloudCertificationAuthorityType(input string) (*CloudCertificationAuthorityType, error) {
+	vals := map[string]CloudCertificationAuthorityType{
+		"issuingcertificationauthority":                 CloudCertificationAuthorityType_IssuingCertificationAuthority,
+		"issuingcertificationauthoritywithexternalroot": CloudCertificationAuthorityType_IssuingCertificationAuthorityWithExternalRoot,
+		"rootcertificationauthority":                    CloudCertificationAuthorityType_RootCertificationAuthority,
+		"unknown":                                       CloudCertificationAuthorityType_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CloudCertificationAuthorityType(input)
+	return &out, nil
+}

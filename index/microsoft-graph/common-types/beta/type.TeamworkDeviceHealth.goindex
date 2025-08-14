@@ -1,0 +1,48 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type TeamworkDeviceHealth struct {
+	Connection *TeamworkConnection `json:"connection,omitempty"`
+
+	// Identity of the user who created the device health document.
+	CreatedBy IdentitySet `json:"createdBy"`
+
+	// The UTC date and time when the device health document was created.
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// Health details about the device hardware.
+	HardwareHealth *TeamworkHardwareHealth `json:"hardwareHealth,omitempty"`
+
+	// Identity of the user who last modified the device health details.
+	LastModifiedBy IdentitySet `json:"lastModifiedBy"`
+
+	// The UTC date and time when the device health detail was last modified.
+	LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+
+	// The login status of Microsoft Teams, Skype for Business, and Exchange.
+	LoginStatus *TeamworkLoginStatus `json:"loginStatus,omitempty"`
+
+	// Health details about all peripherals (for example, speaker and microphone) attached to a device.
+	PeripheralsHealth *TeamworkPeripheralsHealth `json:"peripheralsHealth,omitempty"`
+
+	// Software updates available for the device.
+	SoftwareUpdateHealth *TeamworkSoftwareUpdateHealth `json:"softwareUpdateHealth,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

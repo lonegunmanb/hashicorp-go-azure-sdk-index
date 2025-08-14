@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/search/2025-05-01/networksecurityperimeterconfigurations
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseIssueType(input string) (*IssueType, error) {
+	vals := map[string]IssueType{
+		"configurationpropagationfailure": IssueTypeConfigurationPropagationFailure,
+		"missingidentityconfiguration":    IssueTypeMissingIdentityConfiguration,
+		"missingperimeterconfiguration":   IssueTypeMissingPerimeterConfiguration,
+		"unknown":                         IssueTypeUnknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IssueType(input)
+	return &out, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/manageddeviceuser
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewManagedDeviceUserClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedDeviceUserClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "manageddeviceuser", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ManagedDeviceUserClient: %+v", err)
+	}
+
+	return &ManagedDeviceUserClient{
+		Client: client,
+	}, nil
+}

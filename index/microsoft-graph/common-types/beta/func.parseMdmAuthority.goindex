@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMdmAuthority(input string) (*MdmAuthority, error) {
+	vals := map[string]MdmAuthority{
+		"intune":    MdmAuthority_Intune,
+		"office365": MdmAuthority_Office365,
+		"sccm":      MdmAuthority_Sccm,
+		"unknown":   MdmAuthority_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MdmAuthority(input)
+	return &out, nil
+}

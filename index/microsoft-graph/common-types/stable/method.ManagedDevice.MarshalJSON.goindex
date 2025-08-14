@@ -1,0 +1,76 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s ManagedDevice) MarshalJSON() ([]byte, error) {
+	type wrapper ManagedDevice
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ManagedDevice: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ManagedDevice: %+v", err)
+	}
+
+	delete(decoded, "activationLockBypassCode")
+	delete(decoded, "androidSecurityPatchLevel")
+	delete(decoded, "azureADDeviceId")
+	delete(decoded, "azureADRegistered")
+	delete(decoded, "complianceGracePeriodExpirationDateTime")
+	delete(decoded, "configurationManagerClientEnabledFeatures")
+	delete(decoded, "deviceActionResults")
+	delete(decoded, "deviceCategoryDisplayName")
+	delete(decoded, "deviceHealthAttestationState")
+	delete(decoded, "deviceName")
+	delete(decoded, "easActivated")
+	delete(decoded, "easActivationDateTime")
+	delete(decoded, "easDeviceId")
+	delete(decoded, "emailAddress")
+	delete(decoded, "enrolledDateTime")
+	delete(decoded, "enrollmentProfileName")
+	delete(decoded, "ethernetMacAddress")
+	delete(decoded, "exchangeLastSuccessfulSyncDateTime")
+	delete(decoded, "freeStorageSpaceInBytes")
+	delete(decoded, "iccid")
+	delete(decoded, "imei")
+	delete(decoded, "isEncrypted")
+	delete(decoded, "isSupervised")
+	delete(decoded, "jailBroken")
+	delete(decoded, "lastSyncDateTime")
+	delete(decoded, "managementCertificateExpirationDate")
+	delete(decoded, "manufacturer")
+	delete(decoded, "meid")
+	delete(decoded, "model")
+	delete(decoded, "operatingSystem")
+	delete(decoded, "osVersion")
+	delete(decoded, "phoneNumber")
+	delete(decoded, "physicalMemoryInBytes")
+	delete(decoded, "remoteAssistanceSessionErrorDetails")
+	delete(decoded, "remoteAssistanceSessionUrl")
+	delete(decoded, "requireUserEnrollmentApproval")
+	delete(decoded, "serialNumber")
+	delete(decoded, "subscriberCarrier")
+	delete(decoded, "totalStorageSpaceInBytes")
+	delete(decoded, "udid")
+	delete(decoded, "userDisplayName")
+	delete(decoded, "userId")
+	delete(decoded, "userPrincipalName")
+	delete(decoded, "wiFiMacAddress")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.managedDevice"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ManagedDevice: %+v", err)
+	}
+
+	return encoded, nil
+}

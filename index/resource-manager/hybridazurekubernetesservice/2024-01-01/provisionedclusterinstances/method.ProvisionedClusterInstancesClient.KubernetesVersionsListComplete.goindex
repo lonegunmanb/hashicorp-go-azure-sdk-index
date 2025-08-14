@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hybridazurekubernetesservice/2024-01-01/provisionedclusterinstances
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ProvisionedClusterInstancesClient) KubernetesVersionsListComplete(ctx context.Context, id commonids.ScopeId) (KubernetesVersionsListCompleteResult, error) {
+	return c.KubernetesVersionsListCompleteMatchingPredicate(ctx, id, KubernetesVersionProfileOperationPredicate{})
+}

@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type DeviceHealthScriptAssignment struct {
+	// Determine whether we want to run detection script only or run both detection script and remediation script
+	RunRemediationScript *bool `json:"runRemediationScript,omitempty"`
+
+	// Script run schedule for the target group
+	RunSchedule DeviceHealthScriptRunSchedule `json:"runSchedule"`
+
+	// The Azure Active Directory group we are targeting the script to
+	Target DeviceAndAppManagementAssignmentTarget `json:"target"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeviceManagementConfigurationSettingUsage(input string) (*DeviceManagementConfigurationSettingUsage, error) {
+	vals := map[string]DeviceManagementConfigurationSettingUsage{
+		"compliance":      DeviceManagementConfigurationSettingUsage_Compliance,
+		"configuration":   DeviceManagementConfigurationSettingUsage_Configuration,
+		"none":            DeviceManagementConfigurationSettingUsage_None,
+		"reusablesetting": DeviceManagementConfigurationSettingUsage_ReusableSetting,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceManagementConfigurationSettingUsage(input)
+	return &out, nil
+}

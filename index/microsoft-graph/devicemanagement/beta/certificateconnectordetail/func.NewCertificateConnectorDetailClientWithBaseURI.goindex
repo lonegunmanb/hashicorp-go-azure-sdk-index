@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/certificateconnectordetail
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewCertificateConnectorDetailClientWithBaseURI(sdkApi sdkEnv.Api) (*CertificateConnectorDetailClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "certificateconnectordetail", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating CertificateConnectorDetailClient: %+v", err)
+	}
+
+	return &CertificateConnectorDetailClient{
+		Client: client,
+	}, nil
+}

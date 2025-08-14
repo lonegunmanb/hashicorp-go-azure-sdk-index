@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/outlookmastercategory
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c OutlookMasterCategoryClient) ListOutlookMasterCategoriesCompleteMatchingPredicate(ctx context.Context, id stable.UserId, options ListOutlookMasterCategoriesOperationOptions, predicate OutlookCategoryOperationPredicate) (result ListOutlookMasterCategoriesCompleteResult, err error) {
+	items := make([]stable.OutlookCategory, 0)
+
+	resp, err := c.ListOutlookMasterCategories(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListOutlookMasterCategoriesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

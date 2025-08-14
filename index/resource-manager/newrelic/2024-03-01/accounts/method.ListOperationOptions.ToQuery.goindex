@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/newrelic/2024-03-01/accounts
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ListOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.Location != nil {
+		out.Append("location", fmt.Sprintf("%v", *o.Location))
+	}
+	if o.UserEmail != nil {
+		out.Append("userEmail", fmt.Sprintf("%v", *o.UserEmail))
+	}
+	return &out
+}

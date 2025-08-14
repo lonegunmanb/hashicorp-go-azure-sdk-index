@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/schedules
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseScheduleID(input string) (*ScheduleId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&ScheduleId{})
+	parsed, err := parser.Parse(input, false)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := ScheduleId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

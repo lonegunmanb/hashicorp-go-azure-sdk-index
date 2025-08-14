@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/appplatform/2024-05-01-preview/appplatform
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseGatewayCertificateVerification(input string) (*GatewayCertificateVerification, error) {
+	vals := map[string]GatewayCertificateVerification{
+		"disabled": GatewayCertificateVerificationDisabled,
+		"enabled":  GatewayCertificateVerificationEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := GatewayCertificateVerification(input)
+	return &out, nil
+}

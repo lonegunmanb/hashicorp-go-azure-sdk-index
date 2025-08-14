@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAndroidDeviceOwnerKioskModeIconSize(input string) (*AndroidDeviceOwnerKioskModeIconSize, error) {
+	vals := map[string]AndroidDeviceOwnerKioskModeIconSize{
+		"large":         AndroidDeviceOwnerKioskModeIconSize_Large,
+		"largest":       AndroidDeviceOwnerKioskModeIconSize_Largest,
+		"notconfigured": AndroidDeviceOwnerKioskModeIconSize_NotConfigured,
+		"regular":       AndroidDeviceOwnerKioskModeIconSize_Regular,
+		"small":         AndroidDeviceOwnerKioskModeIconSize_Small,
+		"smallest":      AndroidDeviceOwnerKioskModeIconSize_Smallest,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AndroidDeviceOwnerKioskModeIconSize(input)
+	return &out, nil
+}

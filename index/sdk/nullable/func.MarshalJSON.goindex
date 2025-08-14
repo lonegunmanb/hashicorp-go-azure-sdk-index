@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/sdk/nullable
+import (
+	"bytes"
+	"encoding/json"
+)
+func (t Type[T]) MarshalJSON() ([]byte, error) {
+	// note: if value was unspecified, and `omitempty` is set on the field tags, `json.Marshal` will omit this field
+	// if value was specified, and `null`, marshal it
+	if t.IsNull() {
+		return []byte("null"), nil
+	}
+	// otherwise, we have a value, so marshal it
+	return json.Marshal(t[true])
+}

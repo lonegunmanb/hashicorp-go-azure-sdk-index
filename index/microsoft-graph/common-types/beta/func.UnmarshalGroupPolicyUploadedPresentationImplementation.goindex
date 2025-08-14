@@ -1,0 +1,107 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalGroupPolicyUploadedPresentationImplementation(input []byte) (GroupPolicyUploadedPresentation, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling GroupPolicyUploadedPresentation into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.groupPolicyPresentationCheckBox") {
+		var out GroupPolicyPresentationCheckBox
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into GroupPolicyPresentationCheckBox: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.groupPolicyPresentationComboBox") {
+		var out GroupPolicyPresentationComboBox
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into GroupPolicyPresentationComboBox: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.groupPolicyPresentationDecimalTextBox") {
+		var out GroupPolicyPresentationDecimalTextBox
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into GroupPolicyPresentationDecimalTextBox: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.groupPolicyPresentationDropdownList") {
+		var out GroupPolicyPresentationDropdownList
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into GroupPolicyPresentationDropdownList: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.groupPolicyPresentationListBox") {
+		var out GroupPolicyPresentationListBox
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into GroupPolicyPresentationListBox: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.groupPolicyPresentationLongDecimalTextBox") {
+		var out GroupPolicyPresentationLongDecimalTextBox
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into GroupPolicyPresentationLongDecimalTextBox: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.groupPolicyPresentationMultiTextBox") {
+		var out GroupPolicyPresentationMultiTextBox
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into GroupPolicyPresentationMultiTextBox: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.groupPolicyPresentationText") {
+		var out GroupPolicyPresentationText
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into GroupPolicyPresentationText: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.groupPolicyPresentationTextBox") {
+		var out GroupPolicyPresentationTextBox
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into GroupPolicyPresentationTextBox: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseGroupPolicyUploadedPresentationImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseGroupPolicyUploadedPresentationImpl: %+v", err)
+	}
+
+	return RawGroupPolicyUploadedPresentationImpl{
+		groupPolicyUploadedPresentation: parent,
+		Type:                            value,
+		Values:                          temp,
+	}, nil
+
+}

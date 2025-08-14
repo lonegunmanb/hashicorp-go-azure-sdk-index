@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type PolicyBinding struct {
+	// Specifies the users or groups to be explicitly excluded from this policy scope. Can be null or empty.
+	Exclusions *[]ScopeBase `json:"exclusions,omitempty"`
+
+	// Specifies the users or groups to be included in this policy scope. Often set to tenantScope for 'All users'.
+	Inclusions *[]ScopeBase `json:"inclusions,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+}

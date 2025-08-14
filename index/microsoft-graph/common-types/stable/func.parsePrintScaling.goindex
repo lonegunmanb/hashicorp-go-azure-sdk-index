@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePrintScaling(input string) (*PrintScaling, error) {
+	vals := map[string]PrintScaling{
+		"auto":        PrintScaling_Auto,
+		"fill":        PrintScaling_Fill,
+		"fit":         PrintScaling_Fit,
+		"none":        PrintScaling_None,
+		"shrinktofit": PrintScaling_ShrinkToFit,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PrintScaling(input)
+	return &out, nil
+}

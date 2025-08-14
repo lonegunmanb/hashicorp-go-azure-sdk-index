@@ -1,0 +1,37 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type PermissionsRequestChange struct {
+	// The status of the active occurence of the schedule if one exists. The possible values are: grantingFailed, granted,
+	// granting, revoked, revoking, revokingFailed, unknownFutureValue.
+	ActiveOccurrenceStatus *PermissionsRequestOccurrenceStatus `json:"activeOccurrenceStatus,omitempty"`
+
+	// Time when the change occurred.
+	ModificationDateTime *string `json:"modificationDateTime,omitempty"`
+
+	// The ID of the scheduledPermissionsRequest object.
+	PermissionsRequestId *string `json:"permissionsRequestId,omitempty"`
+
+	StatusDetail *StatusDetail `json:"statusDetail,omitempty"`
+
+	// Represents the ticketing system identifier.
+	TicketId nullable.Type[string] `json:"ticketId,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

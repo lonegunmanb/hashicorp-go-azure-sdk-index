@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id UserIdTodoListIdTaskIdLinkedResourceId) String() string {
+	components := []string{
+		fmt.Sprintf("User: %q", id.UserId),
+		fmt.Sprintf("Todo Task List: %q", id.TodoTaskListId),
+		fmt.Sprintf("Todo Task: %q", id.TodoTaskId),
+		fmt.Sprintf("Linked Resource: %q", id.LinkedResourceId),
+	}
+	return fmt.Sprintf("User Id Todo List Id Task Id Linked Resource (%s)", strings.Join(components, "\n"))
+}

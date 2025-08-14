@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTeamworkUserIdentityType(input string) (*TeamworkUserIdentityType, error) {
+	vals := map[string]TeamworkUserIdentityType{
+		"aaduser":                      TeamworkUserIdentityType_AadUser,
+		"anonymousguest":               TeamworkUserIdentityType_AnonymousGuest,
+		"emailuser":                    TeamworkUserIdentityType_EmailUser,
+		"federateduser":                TeamworkUserIdentityType_FederatedUser,
+		"onpremiseaaduser":             TeamworkUserIdentityType_OnPremiseAadUser,
+		"personalmicrosoftaccountuser": TeamworkUserIdentityType_PersonalMicrosoftAccountUser,
+		"phoneuser":                    TeamworkUserIdentityType_PhoneUser,
+		"skypeuser":                    TeamworkUserIdentityType_SkypeUser,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TeamworkUserIdentityType(input)
+	return &out, nil
+}

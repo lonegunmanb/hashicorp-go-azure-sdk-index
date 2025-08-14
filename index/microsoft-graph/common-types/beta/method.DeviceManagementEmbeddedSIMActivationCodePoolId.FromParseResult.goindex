@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *DeviceManagementEmbeddedSIMActivationCodePoolId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.EmbeddedSIMActivationCodePoolId, ok = input.Parsed["embeddedSIMActivationCodePoolId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "embeddedSIMActivationCodePoolId", input)
+	}
+
+	return nil
+}

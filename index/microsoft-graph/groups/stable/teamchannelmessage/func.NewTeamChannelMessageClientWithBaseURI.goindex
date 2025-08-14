@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/teamchannelmessage
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTeamChannelMessageClientWithBaseURI(sdkApi sdkEnv.Api) (*TeamChannelMessageClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "teamchannelmessage", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TeamChannelMessageClient: %+v", err)
+	}
+
+	return &TeamChannelMessageClient{
+		Client: client,
+	}, nil
+}

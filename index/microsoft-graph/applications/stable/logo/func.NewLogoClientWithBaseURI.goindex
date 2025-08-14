@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/stable/logo
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewLogoClientWithBaseURI(sdkApi sdkEnv.Api) (*LogoClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "logo", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating LogoClient: %+v", err)
+	}
+
+	return &LogoClient{
+		Client: client,
+	}, nil
+}

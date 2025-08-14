@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/graphqlapiresolverpolicy
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c GraphQLApiResolverPolicyClient) ListByResolverComplete(ctx context.Context, id ResolverId) (ListByResolverCompleteResult, error) {
+	return c.ListByResolverCompleteMatchingPredicate(ctx, id, PolicyContractOperationPredicate{})
+}

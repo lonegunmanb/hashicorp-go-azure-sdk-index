@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2025-01-13/networksecurityperimeterconfiguration
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c NetworkSecurityPerimeterConfigurationClient) ReconcileForPrivateLinkScopeThenPoll(ctx context.Context, id NetworkSecurityPerimeterConfigurationId) error {
+	result, err := c.ReconcileForPrivateLinkScope(ctx, id)
+	if err != nil {
+		return fmt.Errorf("performing ReconcileForPrivateLinkScope: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after ReconcileForPrivateLinkScope: %+v", err)
+	}
+
+	return nil
+}

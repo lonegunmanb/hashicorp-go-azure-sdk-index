@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/api
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVersioningScheme(input string) (*VersioningScheme, error) {
+	vals := map[string]VersioningScheme{
+		"header":  VersioningSchemeHeader,
+		"query":   VersioningSchemeQuery,
+		"segment": VersioningSchemeSegment,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VersioningScheme(input)
+	return &out, nil
+}

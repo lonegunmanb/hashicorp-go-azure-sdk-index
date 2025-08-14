@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/networkmanageractiveconfigurations
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewNetworkManagerActiveConfigurationsClientWithBaseURI(sdkApi sdkEnv.Api) (*NetworkManagerActiveConfigurationsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "networkmanageractiveconfigurations", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating NetworkManagerActiveConfigurationsClient: %+v", err)
+	}
+
+	return &NetworkManagerActiveConfigurationsClient{
+		Client: client,
+	}, nil
+}

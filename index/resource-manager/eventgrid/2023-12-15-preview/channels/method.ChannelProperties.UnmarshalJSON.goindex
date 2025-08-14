@@ -1,0 +1,43 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2023-12-15-preview/channels
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (s *ChannelProperties) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		ChannelType                     *ChannelType              `json:"channelType,omitempty"`
+		ExpirationTimeIfNotActivatedUtc *string                   `json:"expirationTimeIfNotActivatedUtc,omitempty"`
+		MessageForActivation            *string                   `json:"messageForActivation,omitempty"`
+		PartnerTopicInfo                *PartnerTopicInfo         `json:"partnerTopicInfo,omitempty"`
+		ProvisioningState               *ChannelProvisioningState `json:"provisioningState,omitempty"`
+		ReadinessState                  *ReadinessState           `json:"readinessState,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.ChannelType = decoded.ChannelType
+	s.ExpirationTimeIfNotActivatedUtc = decoded.ExpirationTimeIfNotActivatedUtc
+	s.MessageForActivation = decoded.MessageForActivation
+	s.PartnerTopicInfo = decoded.PartnerTopicInfo
+	s.ProvisioningState = decoded.ProvisioningState
+	s.ReadinessState = decoded.ReadinessState
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling ChannelProperties into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["partnerDestinationInfo"]; ok {
+		impl, err := UnmarshalPartnerDestinationInfoImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'PartnerDestinationInfo' for 'ChannelProperties': %+v", err)
+		}
+		s.PartnerDestinationInfo = impl
+	}
+
+	return nil
+}

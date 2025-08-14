@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/workloads/2024-09-01/sapvirtualinstances
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s DiscoveryConfiguration) MarshalJSON() ([]byte, error) {
+	type wrapper DiscoveryConfiguration
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling DiscoveryConfiguration: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling DiscoveryConfiguration: %+v", err)
+	}
+
+	decoded["configurationType"] = "Discovery"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling DiscoveryConfiguration: %+v", err)
+	}
+
+	return encoded, nil
+}

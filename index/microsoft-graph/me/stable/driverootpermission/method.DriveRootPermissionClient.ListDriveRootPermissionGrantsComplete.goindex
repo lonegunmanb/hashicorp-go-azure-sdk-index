@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootpermission
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DriveRootPermissionClient) ListDriveRootPermissionGrantsComplete(ctx context.Context, id stable.MeDriveIdRootPermissionId, input ListDriveRootPermissionGrantsRequest, options ListDriveRootPermissionGrantsOperationOptions) (ListDriveRootPermissionGrantsCompleteResult, error) {
+	return c.ListDriveRootPermissionGrantsCompleteMatchingPredicate(ctx, id, input, options, PermissionOperationPredicate{})
+}

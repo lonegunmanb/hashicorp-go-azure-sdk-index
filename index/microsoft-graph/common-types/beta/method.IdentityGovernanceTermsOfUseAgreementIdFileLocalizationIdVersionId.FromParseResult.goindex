@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *IdentityGovernanceTermsOfUseAgreementIdFileLocalizationIdVersionId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.AgreementId, ok = input.Parsed["agreementId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "agreementId", input)
+	}
+
+	if id.AgreementFileLocalizationId, ok = input.Parsed["agreementFileLocalizationId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "agreementFileLocalizationId", input)
+	}
+
+	if id.AgreementFileVersionId, ok = input.Parsed["agreementFileVersionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "agreementFileVersionId", input)
+	}
+
+	return nil
+}

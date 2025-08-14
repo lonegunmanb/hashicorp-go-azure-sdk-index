@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/onlinemeetingbroadcastrecording
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewOnlineMeetingBroadcastRecordingClientWithBaseURI(sdkApi sdkEnv.Api) (*OnlineMeetingBroadcastRecordingClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "onlinemeetingbroadcastrecording", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating OnlineMeetingBroadcastRecordingClient: %+v", err)
+	}
+
+	return &OnlineMeetingBroadcastRecordingClient{
+		Client: client,
+	}, nil
+}

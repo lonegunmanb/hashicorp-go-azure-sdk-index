@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s LabelDetails) ParentLabelDetails() BaseParentLabelDetailsImpl {
+	return BaseParentLabelDetailsImpl{
+		Color:       s.Color,
+		Description: s.Description,
+		Id:          s.Id,
+		IsActive:    s.IsActive,
+		Name:        s.Name,
+		ODataId:     s.ODataId,
+		ODataType:   s.ODataType,
+		Parent:      s.Parent,
+		Sensitivity: s.Sensitivity,
+		Tooltip:     s.Tooltip,
+	}
+}

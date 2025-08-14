@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type PermissionGrantPolicy struct {
+	// Condition sets that are excluded in this permission grant policy. Automatically expanded on GET.
+	Excludes *[]PermissionGrantConditionSet `json:"excludes,omitempty"`
+
+	// Set to true to create all pre-approval policies in the tenant. Set to false to disable all pre-approval policies in
+	// the tenant. The default is false.
+	IncludeAllPreApprovedApplications nullable.Type[bool] `json:"includeAllPreApprovedApplications,omitempty"`
+
+	// Condition sets that are included in this permission grant policy. Automatically expanded on GET.
+	Includes *[]PermissionGrantConditionSet `json:"includes,omitempty"`
+
+	// The resource type the pre-approval policy applies to. Possible values: team for groups and teams, chat for chats,
+	// tenant for all supported resources in the tenant. Required.
+	ResourceScopeType ResourceScopeType `json:"resourceScopeType"`
+
+	// Fields inherited from PolicyBase
+
+	// Description for this policy. Required.
+	Description string `json:"description"`
+
+	// Display name for this policy. Required.
+	DisplayName string `json:"displayName"`
+
+	// Fields inherited from DirectoryObject
+
+	// Date and time when this object was deleted. Always null when the object hasn't been deleted.
+	DeletedDateTime nullable.Type[string] `json:"deletedDateTime,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

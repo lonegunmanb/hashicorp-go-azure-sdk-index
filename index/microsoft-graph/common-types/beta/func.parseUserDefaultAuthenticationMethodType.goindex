@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseUserDefaultAuthenticationMethodType(input string) (*UserDefaultAuthenticationMethodType, error) {
+	vals := map[string]UserDefaultAuthenticationMethodType{
+		"oath":                 UserDefaultAuthenticationMethodType_Oath,
+		"push":                 UserDefaultAuthenticationMethodType_Push,
+		"sms":                  UserDefaultAuthenticationMethodType_Sms,
+		"voicealternatemobile": UserDefaultAuthenticationMethodType_VoiceAlternateMobile,
+		"voicemobile":          UserDefaultAuthenticationMethodType_VoiceMobile,
+		"voiceoffice":          UserDefaultAuthenticationMethodType_VoiceOffice,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UserDefaultAuthenticationMethodType(input)
+	return &out, nil
+}

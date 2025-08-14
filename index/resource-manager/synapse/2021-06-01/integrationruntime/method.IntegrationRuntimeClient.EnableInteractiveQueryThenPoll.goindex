@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/integrationruntime
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c IntegrationRuntimeClient) EnableInteractiveQueryThenPoll(ctx context.Context, id IntegrationRuntimeId) error {
+	result, err := c.EnableInteractiveQuery(ctx, id)
+	if err != nil {
+		return fmt.Errorf("performing EnableInteractiveQuery: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after EnableInteractiveQuery: %+v", err)
+	}
+
+	return nil
+}

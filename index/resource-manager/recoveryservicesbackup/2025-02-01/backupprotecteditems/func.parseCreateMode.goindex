@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/backupprotecteditems
+import (
+	"strings"
+)
+func parseCreateMode(input string) (*CreateMode, error) {
+	vals := map[string]CreateMode{
+		"default": CreateModeDefault,
+		"invalid": CreateModeInvalid,
+		"recover": CreateModeRecover,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CreateMode(input)
+	return &out, nil
+}

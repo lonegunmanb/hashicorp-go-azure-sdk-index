@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/b2xuserflowuserattributeassignmentuserattribute
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewB2xUserFlowUserAttributeAssignmentUserAttributeClientWithBaseURI(sdkApi sdkEnv.Api) (*B2xUserFlowUserAttributeAssignmentUserAttributeClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "b2xuserflowuserattributeassignmentuserattribute", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating B2xUserFlowUserAttributeAssignmentUserAttributeClient: %+v", err)
+	}
+
+	return &B2xUserFlowUserAttributeAssignmentUserAttributeClient{
+		Client: client,
+	}, nil
+}

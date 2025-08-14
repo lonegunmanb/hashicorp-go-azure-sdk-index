@@ -1,0 +1,43 @@
+package github.com/hashicorp/go-azure-sdk/sdk/internal/azurecli
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"log"
+	"os/exec"
+	"regexp"
+	"strings"
+
+	"github.com/hashicorp/go-version"
+)
+func CheckAzVersion() error {
+	currentVersion, err := getAzVersion()
+	if err != nil {
+		return err
+	}
+
+	actual, err := version.NewVersion(*currentVersion)
+	if err != nil {
+		return fmt.Errorf("could not parse detected Azure CLI version %q: %+v", *currentVersion, err)
+	}
+
+	supported, err := version.NewVersion(MinimumVersion)
+	if err != nil {
+		return fmt.Errorf("could not parse supported Azure CLI version: %+v", err)
+	}
+
+	nextMajor, err := version.NewVersion(NextMajorVersion)
+	if err != nil {
+		return fmt.Errorf("could not parse next major Azure CLI version: %+v", err)
+	}
+
+	if nextMajor.LessThanOrEqual(actual) {
+		return fmt.Errorf("unsupported Azure CLI version %q detected, please install a version newer than %s but older than %s", actual, supported, nextMajor)
+	}
+
+	if actual.LessThan(supported) {
+		return fmt.Errorf("unsupported Azure CLI version %q detected, please install version %s or newer and ensure the `az` command is in your path", actual, supported)
+	}
+
+	return nil
+}

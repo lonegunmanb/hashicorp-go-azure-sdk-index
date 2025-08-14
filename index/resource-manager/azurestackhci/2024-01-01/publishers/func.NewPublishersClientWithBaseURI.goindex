@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/azurestackhci/2024-01-01/publishers
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPublishersClientWithBaseURI(sdkApi sdkEnv.Api) (*PublishersClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "publishers", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PublishersClient: %+v", err)
+	}
+
+	return &PublishersClient{
+		Client: client,
+	}, nil
+}

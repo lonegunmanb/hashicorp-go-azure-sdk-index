@@ -1,0 +1,80 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type DeviceAppManagement struct {
+	// Android managed app policies.
+	AndroidManagedAppProtections *[]AndroidManagedAppProtection `json:"androidManagedAppProtections,omitempty"`
+
+	// Default managed app policies.
+	DefaultManagedAppProtections *[]DefaultManagedAppProtection `json:"defaultManagedAppProtections,omitempty"`
+
+	// iOS managed app policies.
+	IosManagedAppProtections *[]IosManagedAppProtection `json:"iosManagedAppProtections,omitempty"`
+
+	// Whether the account is enabled for syncing applications from the Microsoft Store for Business.
+	IsEnabledForMicrosoftStoreForBusiness *bool `json:"isEnabledForMicrosoftStoreForBusiness,omitempty"`
+
+	// Managed app policies.
+	ManagedAppPolicies *[]ManagedAppPolicy `json:"managedAppPolicies,omitempty"`
+
+	// The managed app registrations.
+	ManagedAppRegistrations *[]ManagedAppRegistration `json:"managedAppRegistrations,omitempty"`
+
+	// The managed app statuses.
+	ManagedAppStatuses *[]ManagedAppStatus `json:"managedAppStatuses,omitempty"`
+
+	// The Managed eBook.
+	ManagedEBooks *[]ManagedEBook `json:"managedEBooks,omitempty"`
+
+	// Windows information protection for apps running on devices which are MDM enrolled.
+	MdmWindowsInformationProtectionPolicies *[]MdmWindowsInformationProtectionPolicy `json:"mdmWindowsInformationProtectionPolicies,omitempty"`
+
+	// The locale information used to sync applications from the Microsoft Store for Business. Cultures that are specific to
+	// a country/region. The names of these cultures follow RFC 4646 (Windows Vista and later). The format is
+	// -<country/regioncode2>, where is a lowercase two-letter code derived from ISO 639-1 and <country/regioncode2> is an
+	// uppercase two-letter code derived from ISO 3166. For example, en-US for English (United States) is a specific
+	// culture.
+	MicrosoftStoreForBusinessLanguage nullable.Type[string] `json:"microsoftStoreForBusinessLanguage,omitempty"`
+
+	// The last time an application sync from the Microsoft Store for Business was completed.
+	MicrosoftStoreForBusinessLastCompletedApplicationSyncTime *string `json:"microsoftStoreForBusinessLastCompletedApplicationSyncTime,omitempty"`
+
+	// The last time the apps from the Microsoft Store for Business were synced successfully for the account.
+	MicrosoftStoreForBusinessLastSuccessfulSyncDateTime *string `json:"microsoftStoreForBusinessLastSuccessfulSyncDateTime,omitempty"`
+
+	// The mobile app categories.
+	MobileAppCategories *[]MobileAppCategory `json:"mobileAppCategories,omitempty"`
+
+	// The Managed Device Mobile Application Configurations.
+	MobileAppConfigurations *[]ManagedDeviceMobileAppConfiguration `json:"mobileAppConfigurations,omitempty"`
+
+	// The mobile apps.
+	MobileApps *[]MobileApp `json:"mobileApps,omitempty"`
+
+	// Targeted managed app configurations.
+	TargetedManagedAppConfigurations *[]TargetedManagedAppConfiguration `json:"targetedManagedAppConfigurations,omitempty"`
+
+	// List of Vpp tokens for this organization.
+	VppTokens *[]VppToken `json:"vppTokens,omitempty"`
+
+	// Windows information protection for apps running on devices which are not MDM enrolled.
+	WindowsInformationProtectionPolicies *[]WindowsInformationProtectionPolicy `json:"windowsInformationProtectionPolicies,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

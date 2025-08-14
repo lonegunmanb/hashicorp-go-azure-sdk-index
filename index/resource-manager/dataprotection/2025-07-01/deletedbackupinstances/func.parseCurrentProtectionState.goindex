@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2025-07-01/deletedbackupinstances
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCurrentProtectionState(input string) (*CurrentProtectionState, error) {
+	vals := map[string]CurrentProtectionState{
+		"backupschedulessuspended":    CurrentProtectionStateBackupSchedulesSuspended,
+		"configuringprotection":       CurrentProtectionStateConfiguringProtection,
+		"configuringprotectionfailed": CurrentProtectionStateConfiguringProtectionFailed,
+		"invalid":                     CurrentProtectionStateInvalid,
+		"notprotected":                CurrentProtectionStateNotProtected,
+		"protectionconfigured":        CurrentProtectionStateProtectionConfigured,
+		"protectionerror":             CurrentProtectionStateProtectionError,
+		"protectionstopped":           CurrentProtectionStateProtectionStopped,
+		"retentionschedulessuspended": CurrentProtectionStateRetentionSchedulesSuspended,
+		"softdeleted":                 CurrentProtectionStateSoftDeleted,
+		"softdeleting":                CurrentProtectionStateSoftDeleting,
+		"updatingprotection":          CurrentProtectionStateUpdatingProtection,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CurrentProtectionState(input)
+	return &out, nil
+}

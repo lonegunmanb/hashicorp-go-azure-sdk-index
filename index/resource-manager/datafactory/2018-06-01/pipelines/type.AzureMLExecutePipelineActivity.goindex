@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/pipelines
+import (
+	"encoding/json"
+	"fmt"
+)
+type AzureMLExecutePipelineActivity struct {
+	LinkedServiceName *LinkedServiceReference                      `json:"linkedServiceName,omitempty"`
+	Policy            *ActivityPolicy                              `json:"policy,omitempty"`
+	TypeProperties    AzureMLExecutePipelineActivityTypeProperties `json:"typeProperties"`
+
+	// Fields inherited from Activity
+
+	DependsOn        *[]ActivityDependency     `json:"dependsOn,omitempty"`
+	Description      *string                   `json:"description,omitempty"`
+	Name             string                    `json:"name"`
+	OnInactiveMarkAs *ActivityOnInactiveMarkAs `json:"onInactiveMarkAs,omitempty"`
+	State            *ActivityState            `json:"state,omitempty"`
+	Type             string                    `json:"type"`
+	UserProperties   *[]UserProperty           `json:"userProperties,omitempty"`
+}

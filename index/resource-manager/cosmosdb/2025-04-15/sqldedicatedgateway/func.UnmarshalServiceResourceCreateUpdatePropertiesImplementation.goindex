@@ -1,0 +1,65 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cosmosdb/2025-04-15/sqldedicatedgateway
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalServiceResourceCreateUpdatePropertiesImplementation(input []byte) (ServiceResourceCreateUpdateProperties, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling ServiceResourceCreateUpdateProperties into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["serviceType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "DataTransfer") {
+		var out DataTransferServiceResourceCreateUpdateProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DataTransferServiceResourceCreateUpdateProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "GraphAPICompute") {
+		var out GraphAPIComputeServiceResourceCreateUpdateProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into GraphAPIComputeServiceResourceCreateUpdateProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "MaterializedViewsBuilder") {
+		var out MaterializedViewsBuilderServiceResourceCreateUpdateProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into MaterializedViewsBuilderServiceResourceCreateUpdateProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "SqlDedicatedGateway") {
+		var out SqlDedicatedGatewayServiceResourceCreateUpdateProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SqlDedicatedGatewayServiceResourceCreateUpdateProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseServiceResourceCreateUpdatePropertiesImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseServiceResourceCreateUpdatePropertiesImpl: %+v", err)
+	}
+
+	return RawServiceResourceCreateUpdatePropertiesImpl{
+		serviceResourceCreateUpdateProperties: parent,
+		Type:                                  value,
+		Values:                                temp,
+	}, nil
+
+}

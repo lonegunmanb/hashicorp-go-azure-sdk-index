@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/sdk/internal/azurecli
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"log"
+	"os/exec"
+	"regexp"
+	"strings"
+
+	"github.com/hashicorp/go-version"
+)
+func getAzVersion() (*string, error) {
+	var cliVersion azVersion
+
+	if err := JSONUnmarshalAzCmd(true, &cliVersion, "version"); err != nil {
+		return nil, fmt.Errorf("could not parse Azure CLI version: %v", err)
+	}
+
+	if cliVersion.AzureCli == nil {
+		return nil, fmt.Errorf("could not detect Azure CLI version")
+	}
+
+	return cliVersion.AzureCli, nil
+}

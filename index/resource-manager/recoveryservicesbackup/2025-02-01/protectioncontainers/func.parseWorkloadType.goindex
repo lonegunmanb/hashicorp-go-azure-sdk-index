@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/protectioncontainers
+import (
+	"strings"
+)
+func parseWorkloadType(input string) (*WorkloadType, error) {
+	vals := map[string]WorkloadType{
+		"azurefileshare":    WorkloadTypeAzureFileShare,
+		"azuresqldb":        WorkloadTypeAzureSqlDb,
+		"client":            WorkloadTypeClient,
+		"exchange":          WorkloadTypeExchange,
+		"filefolder":        WorkloadTypeFileFolder,
+		"genericdatasource": WorkloadTypeGenericDataSource,
+		"invalid":           WorkloadTypeInvalid,
+		"sapasedatabase":    WorkloadTypeSAPAseDatabase,
+		"saphanadbinstance": WorkloadTypeSAPHanaDBInstance,
+		"saphanadatabase":   WorkloadTypeSAPHanaDatabase,
+		"sqldb":             WorkloadTypeSQLDB,
+		"sqldatabase":       WorkloadTypeSQLDataBase,
+		"sharepoint":        WorkloadTypeSharepoint,
+		"systemstate":       WorkloadTypeSystemState,
+		"vm":                WorkloadTypeVM,
+		"vmwarevm":          WorkloadTypeVMwareVM,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WorkloadType(input)
+	return &out, nil
+}

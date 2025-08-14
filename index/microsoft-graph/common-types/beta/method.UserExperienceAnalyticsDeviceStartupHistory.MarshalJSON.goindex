@@ -1,0 +1,47 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s UserExperienceAnalyticsDeviceStartupHistory) MarshalJSON() ([]byte, error) {
+	type wrapper UserExperienceAnalyticsDeviceStartupHistory
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling UserExperienceAnalyticsDeviceStartupHistory: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling UserExperienceAnalyticsDeviceStartupHistory: %+v", err)
+	}
+
+	delete(decoded, "coreBootTimeInMs")
+	delete(decoded, "coreLoginTimeInMs")
+	delete(decoded, "deviceId")
+	delete(decoded, "featureUpdateBootTimeInMs")
+	delete(decoded, "groupPolicyBootTimeInMs")
+	delete(decoded, "groupPolicyLoginTimeInMs")
+	delete(decoded, "isFeatureUpdate")
+	delete(decoded, "isFirstLogin")
+	delete(decoded, "operatingSystemVersion")
+	delete(decoded, "responsiveDesktopTimeInMs")
+	delete(decoded, "restartFaultBucket")
+	delete(decoded, "restartStopCode")
+	delete(decoded, "startTime")
+	delete(decoded, "totalBootTimeInMs")
+	delete(decoded, "totalLoginTimeInMs")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.userExperienceAnalyticsDeviceStartupHistory"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling UserExperienceAnalyticsDeviceStartupHistory: %+v", err)
+	}
+
+	return encoded, nil
+}

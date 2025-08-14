@@ -1,0 +1,39 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/streamanalytics/2020-03-01/streamingjobs
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func (s *BaseInputPropertiesImpl) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		Compression  *Compression `json:"compression,omitempty"`
+		Diagnostics  *Diagnostics `json:"diagnostics,omitempty"`
+		Etag         *string      `json:"etag,omitempty"`
+		PartitionKey *string      `json:"partitionKey,omitempty"`
+		Type         string       `json:"type"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.Compression = decoded.Compression
+	s.Diagnostics = decoded.Diagnostics
+	s.Etag = decoded.Etag
+	s.PartitionKey = decoded.PartitionKey
+	s.Type = decoded.Type
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling BaseInputPropertiesImpl into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["serialization"]; ok {
+		impl, err := UnmarshalSerializationImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Serialization' for 'BaseInputPropertiesImpl': %+v", err)
+		}
+		s.Serialization = impl
+	}
+
+	return nil
+}

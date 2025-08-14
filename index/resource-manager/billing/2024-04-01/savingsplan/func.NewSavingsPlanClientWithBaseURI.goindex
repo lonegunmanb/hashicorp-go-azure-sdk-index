@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/savingsplan
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSavingsPlanClientWithBaseURI(sdkApi sdkEnv.Api) (*SavingsPlanClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "savingsplan", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SavingsPlanClient: %+v", err)
+	}
+
+	return &SavingsPlanClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,121 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2024-09-01/dataconnectors
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalCcpAuthConfigImplementation(input []byte) (CcpAuthConfig, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling CcpAuthConfig into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "AWS") {
+		var out AWSAuthModel
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AWSAuthModel: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "APIKey") {
+		var out ApiKeyAuthModel
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ApiKeyAuthModel: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "Basic") {
+		var out BasicAuthModel
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into BasicAuthModel: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "GCP") {
+		var out GCPAuthModel
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into GCPAuthModel: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "ServiceBus") {
+		var out GenericBlobSbsAuthModel
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into GenericBlobSbsAuthModel: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "GitHub") {
+		var out GitHubAuthModel
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into GitHubAuthModel: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "JwtToken") {
+		var out JwtAuthModel
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into JwtAuthModel: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "None") {
+		var out NoneAuthModel
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into NoneAuthModel: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "OAuth2") {
+		var out OAuthModel
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into OAuthModel: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "Oracle") {
+		var out OracleAuthModel
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into OracleAuthModel: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "Session") {
+		var out SessionAuthModel
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SessionAuthModel: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseCcpAuthConfigImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseCcpAuthConfigImpl: %+v", err)
+	}
+
+	return RawCcpAuthConfigImpl{
+		ccpAuthConfig: parent,
+		Type:          value,
+		Values:        temp,
+	}, nil
+
+}

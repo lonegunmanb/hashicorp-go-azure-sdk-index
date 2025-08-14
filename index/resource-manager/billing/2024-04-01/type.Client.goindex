@@ -1,0 +1,65 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/v2024_04_01
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/agreement"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/associatedtenant"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/availablebalance"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingaccount"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingpermission"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingprofile"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingproperty"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingrequest"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingroleassignment"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingroledefinition"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingsubscription"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/customer"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/department"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/enrollmentaccount"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/invoice"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/invoicesection"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/paymentmethods"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/policy"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/product"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/recipienttransfers"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/reservation"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/reservationorder"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/reservationorders"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/reservations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/savingsplan"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/savingsplanorder"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/transaction"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/transfers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	Agreement             *agreement.AgreementClient
+	AssociatedTenant      *associatedtenant.AssociatedTenantClient
+	AvailableBalance      *availablebalance.AvailableBalanceClient
+	BillingAccount        *billingaccount.BillingAccountClient
+	BillingPermission     *billingpermission.BillingPermissionClient
+	BillingProfile        *billingprofile.BillingProfileClient
+	BillingProperty       *billingproperty.BillingPropertyClient
+	BillingRequest        *billingrequest.BillingRequestClient
+	BillingRoleAssignment *billingroleassignment.BillingRoleAssignmentClient
+	BillingRoleDefinition *billingroledefinition.BillingRoleDefinitionClient
+	BillingSubscription   *billingsubscription.BillingSubscriptionClient
+	Customer              *customer.CustomerClient
+	Department            *department.DepartmentClient
+	EnrollmentAccount     *enrollmentaccount.EnrollmentAccountClient
+	Invoice               *invoice.InvoiceClient
+	InvoiceSection        *invoicesection.InvoiceSectionClient
+	PaymentMethods        *paymentmethods.PaymentMethodsClient
+	Policy                *policy.PolicyClient
+	Product               *product.ProductClient
+	RecipientTransfers    *recipienttransfers.RecipientTransfersClient
+	Reservation           *reservation.ReservationClient
+	ReservationOrder      *reservationorder.ReservationOrderClient
+	ReservationOrders     *reservationorders.ReservationOrdersClient
+	Reservations          *reservations.ReservationsClient
+	SavingsPlan           *savingsplan.SavingsPlanClient
+	SavingsPlanOrder      *savingsplanorder.SavingsPlanOrderClient
+	Transaction           *transaction.TransactionClient
+	Transfers             *transfers.TransfersClient
+}

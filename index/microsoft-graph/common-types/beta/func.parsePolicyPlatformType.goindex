@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePolicyPlatformType(input string) (*PolicyPlatformType, error) {
+	vals := map[string]PolicyPlatformType{
+		"all":                PolicyPlatformType_All,
+		"android":            PolicyPlatformType_Android,
+		"androidaosp":        PolicyPlatformType_AndroidAOSP,
+		"androidforwork":     PolicyPlatformType_AndroidForWork,
+		"androidworkprofile": PolicyPlatformType_AndroidWorkProfile,
+		"ios":                PolicyPlatformType_IOS,
+		"macos":              PolicyPlatformType_MacOS,
+		"windows10andlater":  PolicyPlatformType_Windows10AndLater,
+		"windows10xprofile":  PolicyPlatformType_Windows10XProfile,
+		"windows81andlater":  PolicyPlatformType_Windows81AndLater,
+		"windowsphone81":     PolicyPlatformType_WindowsPhone81,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PolicyPlatformType(input)
+	return &out, nil
+}

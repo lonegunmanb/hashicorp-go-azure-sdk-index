@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type BookingsAvailabilityWindow struct {
+	// End date of the availability window.
+	EndDate nullable.Type[string] `json:"endDate,omitempty"`
+
+	// Start date of the availability window.
+	StartDate nullable.Type[string] `json:"startDate,omitempty"`
+
+	// Fields inherited from BookingsAvailability
+
+	AvailabilityType *BookingsServiceAvailabilityType `json:"availabilityType,omitempty"`
+
+	// The hours of operation in a week. The business hours value is set to null if the availability type isn't
+	// customWeeklyHours.
+	BusinessHours *[]BookingWorkHours `json:"businessHours,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

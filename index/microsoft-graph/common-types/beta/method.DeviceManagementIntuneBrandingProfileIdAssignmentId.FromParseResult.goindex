@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *DeviceManagementIntuneBrandingProfileIdAssignmentId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.IntuneBrandingProfileId, ok = input.Parsed["intuneBrandingProfileId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "intuneBrandingProfileId", input)
+	}
+
+	if id.IntuneBrandingProfileAssignmentId, ok = input.Parsed["intuneBrandingProfileAssignmentId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "intuneBrandingProfileAssignmentId", input)
+	}
+
+	return nil
+}

@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-08-01/alerts
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAlertCriteria(input string) (*AlertCriteria, error) {
+	vals := map[string]AlertCriteria{
+		"costthresholdexceeded":          AlertCriteriaCostThresholdExceeded,
+		"creditthresholdapproaching":     AlertCriteriaCreditThresholdApproaching,
+		"creditthresholdreached":         AlertCriteriaCreditThresholdReached,
+		"crosscloudcollectionerror":      AlertCriteriaCrossCloudCollectionError,
+		"crosscloudnewdataavailable":     AlertCriteriaCrossCloudNewDataAvailable,
+		"forecastcostthresholdexceeded":  AlertCriteriaForecastCostThresholdExceeded,
+		"forecastusagethresholdexceeded": AlertCriteriaForecastUsageThresholdExceeded,
+		"generalthresholderror":          AlertCriteriaGeneralThresholdError,
+		"invoiceduedateapproaching":      AlertCriteriaInvoiceDueDateApproaching,
+		"invoiceduedatereached":          AlertCriteriaInvoiceDueDateReached,
+		"multicurrency":                  AlertCriteriaMultiCurrency,
+		"quotathresholdapproaching":      AlertCriteriaQuotaThresholdApproaching,
+		"quotathresholdreached":          AlertCriteriaQuotaThresholdReached,
+		"usagethresholdexceeded":         AlertCriteriaUsageThresholdExceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AlertCriteria(input)
+	return &out, nil
+}

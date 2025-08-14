@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/sdk/odata
+import (
+	"fmt"
+	"net/http"
+	"net/url"
+	"strconv"
+	"strings"
+)
+func (o OrderBy) String() (val string) {
+	val = o.Field
+	if val != "" && o.Direction != "" {
+		val = fmt.Sprintf("%s %s", val, o.Direction)
+	}
+	return
+}

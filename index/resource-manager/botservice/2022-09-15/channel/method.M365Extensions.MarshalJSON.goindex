@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/botservice/2022-09-15/channel
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s M365Extensions) MarshalJSON() ([]byte, error) {
+	type wrapper M365Extensions
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling M365Extensions: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling M365Extensions: %+v", err)
+	}
+
+	decoded["channelName"] = "M365Extensions"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling M365Extensions: %+v", err)
+	}
+
+	return encoded, nil
+}

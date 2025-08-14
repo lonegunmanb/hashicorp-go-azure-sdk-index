@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseExecutionMode(input string) (*ExecutionMode, error) {
+	vals := map[string]ExecutionMode{
+		"evaluateinline":  ExecutionMode_EvaluateInline,
+		"evaluateoffline": ExecutionMode_EvaluateOffline,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ExecutionMode(input)
+	return &out, nil
+}

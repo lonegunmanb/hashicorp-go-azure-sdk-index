@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2023-02-01/managedhsms
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/polling"
+)
+func (c ManagedHsmsClient) Delete(ctx context.Context, id ManagedHSMId) (result DeleteOperationResponse, err error) {
+	req, err := c.preparerForDelete(ctx, id)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "managedhsms.ManagedHsmsClient", "Delete", nil, "Failure preparing request")
+		return
+	}
+
+	result, err = c.senderForDelete(ctx, req)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "managedhsms.ManagedHsmsClient", "Delete", result.HttpResponse, "Failure sending request")
+		return
+	}
+
+	return
+}

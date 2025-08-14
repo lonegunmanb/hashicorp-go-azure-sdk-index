@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-01-01/networkmanagereffectivesecurityadminrules
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s EffectiveDefaultSecurityAdminRule) MarshalJSON() ([]byte, error) {
+	type wrapper EffectiveDefaultSecurityAdminRule
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling EffectiveDefaultSecurityAdminRule: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling EffectiveDefaultSecurityAdminRule: %+v", err)
+	}
+
+	decoded["kind"] = "Default"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling EffectiveDefaultSecurityAdminRule: %+v", err)
+	}
+
+	return encoded, nil
+}

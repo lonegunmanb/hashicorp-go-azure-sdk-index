@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/newrelic/2024-03-01/monitors
+
+func (p AppServiceInfoOperationPredicate) Matches(input AppServiceInfo) bool {
+
+	if p.AgentStatus != nil && (input.AgentStatus == nil || *p.AgentStatus != *input.AgentStatus) {
+		return false
+	}
+
+	if p.AgentVersion != nil && (input.AgentVersion == nil || *p.AgentVersion != *input.AgentVersion) {
+		return false
+	}
+
+	if p.AzureResourceId != nil && (input.AzureResourceId == nil || *p.AzureResourceId != *input.AzureResourceId) {
+		return false
+	}
+
+	return true
+}

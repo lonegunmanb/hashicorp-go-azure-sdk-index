@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerregistry/2025-04-01/webhooks
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c WebHooksClient) ListEventsComplete(ctx context.Context, id WebHookId) (ListEventsCompleteResult, error) {
+	return c.ListEventsCompleteMatchingPredicate(ctx, id, EventOperationPredicate{})
+}

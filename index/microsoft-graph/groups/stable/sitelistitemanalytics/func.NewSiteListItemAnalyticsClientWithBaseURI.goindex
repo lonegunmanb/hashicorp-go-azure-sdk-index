@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/sitelistitemanalytics
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSiteListItemAnalyticsClientWithBaseURI(sdkApi sdkEnv.Api) (*SiteListItemAnalyticsClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "sitelistitemanalytics", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SiteListItemAnalyticsClient: %+v", err)
+	}
+
+	return &SiteListItemAnalyticsClient{
+		Client: client,
+	}, nil
+}

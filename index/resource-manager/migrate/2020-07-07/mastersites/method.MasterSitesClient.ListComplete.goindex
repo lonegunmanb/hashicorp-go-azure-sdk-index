@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-07-07/mastersites
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c MasterSitesClient) ListComplete(ctx context.Context, id commonids.ResourceGroupId) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, MasterSiteOperationPredicate{})
+}

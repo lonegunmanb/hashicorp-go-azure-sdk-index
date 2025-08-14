@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/python2package
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id Python2PackageId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Automation Account Name: %q", id.AutomationAccountName),
+		fmt.Sprintf("Python 2 Package Name: %q", id.Python2PackageName),
+	}
+	return fmt.Sprintf("Python 2 Package (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/cloudexadatainfrastructures
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id CloudExadataInfrastructureId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Cloud Exadata Infrastructure Name: %q", id.CloudExadataInfrastructureName),
+	}
+	return fmt.Sprintf("Cloud Exadata Infrastructure (%s)", strings.Join(components, "\n"))
+}

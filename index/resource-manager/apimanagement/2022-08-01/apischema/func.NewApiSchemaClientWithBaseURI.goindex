@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2022-08-01/apischema
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewApiSchemaClientWithBaseURI(sdkApi sdkEnv.Api) (*ApiSchemaClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "apischema", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ApiSchemaClient: %+v", err)
+	}
+
+	return &ApiSchemaClient{
+		Client: client,
+	}, nil
+}

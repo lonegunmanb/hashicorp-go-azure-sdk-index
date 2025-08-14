@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEmailSyncDuration(input string) (*EmailSyncDuration, error) {
+	vals := map[string]EmailSyncDuration{
+		"oneday":      EmailSyncDuration_OneDay,
+		"onemonth":    EmailSyncDuration_OneMonth,
+		"oneweek":     EmailSyncDuration_OneWeek,
+		"threedays":   EmailSyncDuration_ThreeDays,
+		"twoweeks":    EmailSyncDuration_TwoWeeks,
+		"unlimited":   EmailSyncDuration_Unlimited,
+		"userdefined": EmailSyncDuration_UserDefined,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EmailSyncDuration(input)
+	return &out, nil
+}

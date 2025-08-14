@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2022-03-03/sharedgalleryimageversions
+
+func (p SharedGalleryImageVersionOperationPredicate) Matches(input SharedGalleryImageVersion) bool {
+
+	if p.Location != nil && (input.Location == nil || *p.Location != *input.Location) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	return true
+}

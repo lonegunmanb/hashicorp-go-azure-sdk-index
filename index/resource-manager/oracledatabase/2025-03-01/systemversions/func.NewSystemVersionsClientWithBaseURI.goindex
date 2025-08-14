@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/systemversions
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSystemVersionsClientWithBaseURI(sdkApi sdkEnv.Api) (*SystemVersionsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "systemversions", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SystemVersionsClient: %+v", err)
+	}
+
+	return &SystemVersionsClient{
+		Client: client,
+	}, nil
+}

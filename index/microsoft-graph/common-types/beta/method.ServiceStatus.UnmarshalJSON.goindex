@@ -1,0 +1,46 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *ServiceStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		BackupServiceConsumer      *BackupServiceConsumer `json:"backupServiceConsumer,omitempty"`
+		DisableReason              *DisableReason         `json:"disableReason,omitempty"`
+		GracePeriodDateTime        nullable.Type[string]  `json:"gracePeriodDateTime,omitempty"`
+		LastModifiedDateTime       nullable.Type[string]  `json:"lastModifiedDateTime,omitempty"`
+		ODataId                    *string                `json:"@odata.id,omitempty"`
+		ODataType                  *string                `json:"@odata.type,omitempty"`
+		RestoreAllowedTillDateTime nullable.Type[string]  `json:"restoreAllowedTillDateTime,omitempty"`
+		Status                     *BackupServiceStatus   `json:"status,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.BackupServiceConsumer = decoded.BackupServiceConsumer
+	s.DisableReason = decoded.DisableReason
+	s.GracePeriodDateTime = decoded.GracePeriodDateTime
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.RestoreAllowedTillDateTime = decoded.RestoreAllowedTillDateTime
+	s.Status = decoded.Status
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling ServiceStatus into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["lastModifiedBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'LastModifiedBy' for 'ServiceStatus': %+v", err)
+		}
+		s.LastModifiedBy = impl
+	}
+
+	return nil
+}

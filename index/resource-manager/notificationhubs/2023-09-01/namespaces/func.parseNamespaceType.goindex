@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/notificationhubs/2023-09-01/namespaces
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNamespaceType(input string) (*NamespaceType, error) {
+	vals := map[string]NamespaceType{
+		"messaging":       NamespaceTypeMessaging,
+		"notificationhub": NamespaceTypeNotificationHub,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NamespaceType(input)
+	return &out, nil
+}

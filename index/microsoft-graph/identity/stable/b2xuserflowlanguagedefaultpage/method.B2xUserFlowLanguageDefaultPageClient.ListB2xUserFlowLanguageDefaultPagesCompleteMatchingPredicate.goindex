@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/b2xuserflowlanguagedefaultpage
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c B2xUserFlowLanguageDefaultPageClient) ListB2xUserFlowLanguageDefaultPagesCompleteMatchingPredicate(ctx context.Context, id stable.IdentityB2xUserFlowIdLanguageId, options ListB2xUserFlowLanguageDefaultPagesOperationOptions, predicate UserFlowLanguagePageOperationPredicate) (result ListB2xUserFlowLanguageDefaultPagesCompleteResult, err error) {
+	items := make([]stable.UserFlowLanguagePage, 0)
+
+	resp, err := c.ListB2xUserFlowLanguageDefaultPages(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListB2xUserFlowLanguageDefaultPagesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

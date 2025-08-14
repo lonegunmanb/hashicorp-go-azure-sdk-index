@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/get
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s ConnectToSourceSqlServerTaskOutputTaskLevel) MarshalJSON() ([]byte, error) {
+	type wrapper ConnectToSourceSqlServerTaskOutputTaskLevel
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ConnectToSourceSqlServerTaskOutputTaskLevel: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ConnectToSourceSqlServerTaskOutputTaskLevel: %+v", err)
+	}
+
+	decoded["resultType"] = "TaskLevelOutput"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ConnectToSourceSqlServerTaskOutputTaskLevel: %+v", err)
+	}
+
+	return encoded, nil
+}

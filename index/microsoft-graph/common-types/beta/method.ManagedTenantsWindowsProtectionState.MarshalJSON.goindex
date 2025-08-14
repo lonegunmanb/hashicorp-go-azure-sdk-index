@@ -1,0 +1,57 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s ManagedTenantsWindowsProtectionState) MarshalJSON() ([]byte, error) {
+	type wrapper ManagedTenantsWindowsProtectionState
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ManagedTenantsWindowsProtectionState: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ManagedTenantsWindowsProtectionState: %+v", err)
+	}
+
+	delete(decoded, "antiMalwareVersion")
+	delete(decoded, "attentionRequired")
+	delete(decoded, "deviceDeleted")
+	delete(decoded, "devicePropertyRefreshDateTime")
+	delete(decoded, "engineVersion")
+	delete(decoded, "fullScanOverdue")
+	delete(decoded, "fullScanRequired")
+	delete(decoded, "lastFullScanDateTime")
+	delete(decoded, "lastFullScanSignatureVersion")
+	delete(decoded, "lastQuickScanDateTime")
+	delete(decoded, "lastQuickScanSignatureVersion")
+	delete(decoded, "lastRefreshedDateTime")
+	delete(decoded, "lastReportedDateTime")
+	delete(decoded, "malwareProtectionEnabled")
+	delete(decoded, "managedDeviceHealthState")
+	delete(decoded, "managedDeviceId")
+	delete(decoded, "managedDeviceName")
+	delete(decoded, "networkInspectionSystemEnabled")
+	delete(decoded, "quickScanOverdue")
+	delete(decoded, "realTimeProtectionEnabled")
+	delete(decoded, "rebootRequired")
+	delete(decoded, "signatureUpdateOverdue")
+	delete(decoded, "signatureVersion")
+	delete(decoded, "tenantDisplayName")
+	delete(decoded, "tenantId")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.managedTenants.windowsProtectionState"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ManagedTenantsWindowsProtectionState: %+v", err)
+	}
+
+	return encoded, nil
+}

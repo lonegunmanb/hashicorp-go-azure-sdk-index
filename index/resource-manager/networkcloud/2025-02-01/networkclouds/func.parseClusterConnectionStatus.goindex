@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/networkcloud/2025-02-01/networkclouds
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseClusterConnectionStatus(input string) (*ClusterConnectionStatus, error) {
+	vals := map[string]ClusterConnectionStatus{
+		"connected":    ClusterConnectionStatusConnected,
+		"disconnected": ClusterConnectionStatusDisconnected,
+		"timeout":      ClusterConnectionStatusTimeout,
+		"undefined":    ClusterConnectionStatusUndefined,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ClusterConnectionStatus(input)
+	return &out, nil
+}

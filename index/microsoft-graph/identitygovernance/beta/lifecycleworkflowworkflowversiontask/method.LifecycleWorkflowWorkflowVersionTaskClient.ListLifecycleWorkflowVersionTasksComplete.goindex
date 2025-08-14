@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/lifecycleworkflowworkflowversiontask
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c LifecycleWorkflowWorkflowVersionTaskClient) ListLifecycleWorkflowVersionTasksComplete(ctx context.Context, id beta.IdentityGovernanceLifecycleWorkflowWorkflowIdVersionId, options ListLifecycleWorkflowVersionTasksOperationOptions) (ListLifecycleWorkflowVersionTasksCompleteResult, error) {
+	return c.ListLifecycleWorkflowVersionTasksCompleteMatchingPredicate(ctx, id, options, IdentityGovernanceTaskOperationPredicate{})
+}

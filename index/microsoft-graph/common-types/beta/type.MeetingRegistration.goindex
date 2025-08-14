@@ -1,0 +1,54 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type MeetingRegistration struct {
+	// Custom registration questions.
+	CustomQuestions *[]MeetingRegistrationQuestion `json:"customQuestions,omitempty"`
+
+	// The description of the meeting.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// The meeting end time in UTC.
+	EndDateTime nullable.Type[string] `json:"endDateTime,omitempty"`
+
+	// The number of times the registration page has been visited. Read-only.
+	RegistrationPageViewCount nullable.Type[int64] `json:"registrationPageViewCount,omitempty"`
+
+	// The URL of the registration page. Read-only.
+	RegistrationPageWebUrl nullable.Type[string] `json:"registrationPageWebUrl,omitempty"`
+
+	// The meeting speaker's information.
+	Speakers *[]MeetingSpeaker `json:"speakers,omitempty"`
+
+	// The meeting start time in UTC.
+	StartDateTime nullable.Type[string] `json:"startDateTime,omitempty"`
+
+	// The subject of the meeting.
+	Subject nullable.Type[string] `json:"subject,omitempty"`
+
+	// Fields inherited from MeetingRegistrationBase
+
+	// Specifies who can register for the meeting.
+	AllowedRegistrant *MeetingAudience `json:"allowedRegistrant,omitempty"`
+
+	// Registrants of the online meeting.
+	Registrants *[]MeetingRegistrantBase `json:"registrants,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

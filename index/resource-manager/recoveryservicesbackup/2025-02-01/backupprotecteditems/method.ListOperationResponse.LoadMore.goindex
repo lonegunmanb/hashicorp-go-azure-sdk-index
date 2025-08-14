@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/backupprotecteditems
+import (
+	"context"
+	"fmt"
+	"net/http"
+	"net/url"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+)
+func (r ListOperationResponse) LoadMore(ctx context.Context) (resp ListOperationResponse, err error) {
+	if !r.HasMore() {
+		err = fmt.Errorf("no more pages returned")
+		return
+	}
+	return r.nextPageFunc(ctx, *r.nextLink)
+}

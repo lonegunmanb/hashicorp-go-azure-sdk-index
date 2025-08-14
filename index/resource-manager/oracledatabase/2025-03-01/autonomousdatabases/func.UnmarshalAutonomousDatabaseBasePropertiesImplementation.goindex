@@ -1,0 +1,65 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/autonomousdatabases
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalAutonomousDatabaseBasePropertiesImplementation(input []byte) (AutonomousDatabaseBaseProperties, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling AutonomousDatabaseBaseProperties into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["dataBaseType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "Clone") {
+		var out AutonomousDatabaseCloneProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AutonomousDatabaseCloneProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "CrossRegionDisasterRecovery") {
+		var out AutonomousDatabaseCrossRegionDisasterRecoveryProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AutonomousDatabaseCrossRegionDisasterRecoveryProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "CloneFromBackupTimestamp") {
+		var out AutonomousDatabaseFromBackupTimestampProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AutonomousDatabaseFromBackupTimestampProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "Regular") {
+		var out AutonomousDatabaseProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AutonomousDatabaseProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseAutonomousDatabaseBasePropertiesImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseAutonomousDatabaseBasePropertiesImpl: %+v", err)
+	}
+
+	return RawAutonomousDatabaseBasePropertiesImpl{
+		autonomousDatabaseBaseProperties: parent,
+		Type:                             value,
+		Values:                           temp,
+	}, nil
+
+}

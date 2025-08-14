@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/exchangetransitiveroleassignmentappscope
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewExchangeTransitiveRoleAssignmentAppScopeClientWithBaseURI(sdkApi sdkEnv.Api) (*ExchangeTransitiveRoleAssignmentAppScopeClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "exchangetransitiveroleassignmentappscope", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ExchangeTransitiveRoleAssignmentAppScopeClient: %+v", err)
+	}
+
+	return &ExchangeTransitiveRoleAssignmentAppScopeClient{
+		Client: client,
+	}, nil
+}

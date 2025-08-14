@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-11-01/kubeenvironments
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewKubeEnvironmentsClientWithBaseURI(sdkApi sdkEnv.Api) (*KubeEnvironmentsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "kubeenvironments", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating KubeEnvironmentsClient: %+v", err)
+	}
+
+	return &KubeEnvironmentsClient{
+		Client: client,
+	}, nil
+}

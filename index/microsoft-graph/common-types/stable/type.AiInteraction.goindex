@@ -1,0 +1,62 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type AiInteraction struct {
+	// The data source for Copilot data. For example, IPM.SkypeTeams.Message.Copilot.Excel or
+	// IPM.SkypeTeams.Message.Copilot.Loop.
+	AppClass *string `json:"appClass,omitempty"`
+
+	// The collection of documents attached to the interaction, such as cards and images.
+	Attachments *[]AiInteractionAttachment `json:"attachments,omitempty"`
+
+	// The body of the message, including the text of the body and its body type.
+	Body *ItemBody `json:"body,omitempty"`
+
+	// The identifer that maps to all contexts associated with an interaction.
+	Contexts *[]AiInteractionContext `json:"contexts,omitempty"`
+
+	// The type of the conversation. For example, appchat or bizchat.
+	ConversationType nullable.Type[string] `json:"conversationType,omitempty"`
+
+	// The time when the interaction was created.
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// The timestamp of when the interaction was last modified.
+	Etag nullable.Type[string] `json:"etag,omitempty"`
+
+	From            IdentitySet        `json:"from"`
+	InteractionType *AiInteractionType `json:"interactionType,omitempty"`
+
+	// The collection of links that appear in the interaction.
+	Links *[]AiInteractionLink `json:"links,omitempty"`
+
+	// The locale of the sender.
+	Locale *string `json:"locale,omitempty"`
+
+	// The collection of the entities that were mentioned in the interaction, including users, bots, and so on.
+	Mentions *[]AiInteractionMention `json:"mentions,omitempty"`
+
+	// The identifier that groups a user prompt with its Copilot response.
+	RequestId *string `json:"requestId,omitempty"`
+
+	// The thread ID or conversation identifier that maps to all Copilot sessions for the user.
+	SessionId *string `json:"sessionId,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

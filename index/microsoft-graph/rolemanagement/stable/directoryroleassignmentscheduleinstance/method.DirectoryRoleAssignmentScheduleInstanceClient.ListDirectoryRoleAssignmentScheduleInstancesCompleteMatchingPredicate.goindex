@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/stable/directoryroleassignmentscheduleinstance
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DirectoryRoleAssignmentScheduleInstanceClient) ListDirectoryRoleAssignmentScheduleInstancesCompleteMatchingPredicate(ctx context.Context, options ListDirectoryRoleAssignmentScheduleInstancesOperationOptions, predicate UnifiedRoleAssignmentScheduleInstanceOperationPredicate) (result ListDirectoryRoleAssignmentScheduleInstancesCompleteResult, err error) {
+	items := make([]stable.UnifiedRoleAssignmentScheduleInstance, 0)
+
+	resp, err := c.ListDirectoryRoleAssignmentScheduleInstances(ctx, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListDirectoryRoleAssignmentScheduleInstancesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

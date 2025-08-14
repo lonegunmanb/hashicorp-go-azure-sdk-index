@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mysql/2017-12-01/servers
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s ServerPropertiesForReplica) MarshalJSON() ([]byte, error) {
+	type wrapper ServerPropertiesForReplica
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ServerPropertiesForReplica: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ServerPropertiesForReplica: %+v", err)
+	}
+
+	decoded["createMode"] = "Replica"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ServerPropertiesForReplica: %+v", err)
+	}
+
+	return encoded, nil
+}

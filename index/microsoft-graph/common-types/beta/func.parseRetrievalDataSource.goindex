@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRetrievalDataSource(input string) (*RetrievalDataSource, error) {
+	vals := map[string]RetrievalDataSource{
+		"calendar":           RetrievalDataSource_Calendar,
+		"externalitems":      RetrievalDataSource_ExternalItems,
+		"mail":               RetrievalDataSource_Mail,
+		"onedrivebusiness":   RetrievalDataSource_OneDriveBusiness,
+		"people":             RetrievalDataSource_People,
+		"sharepoint":         RetrievalDataSource_SharePoint,
+		"sharepointembedded": RetrievalDataSource_SharePointEmbedded,
+		"teams":              RetrievalDataSource_Teams,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RetrievalDataSource(input)
+	return &out, nil
+}

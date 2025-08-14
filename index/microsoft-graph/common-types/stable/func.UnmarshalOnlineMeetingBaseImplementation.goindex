@@ -1,0 +1,51 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalOnlineMeetingBaseImplementation(input []byte) (OnlineMeetingBase, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling OnlineMeetingBase into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.onlineMeeting") {
+		var out OnlineMeeting
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into OnlineMeeting: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.virtualEventSession") {
+		var out VirtualEventSession
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into VirtualEventSession: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseOnlineMeetingBaseImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseOnlineMeetingBaseImpl: %+v", err)
+	}
+
+	return RawOnlineMeetingBaseImpl{
+		onlineMeetingBase: parent,
+		Type:              value,
+		Values:            temp,
+	}, nil
+
+}

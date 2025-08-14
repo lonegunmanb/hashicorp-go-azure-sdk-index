@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/person
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPersonClientWithBaseURI(sdkApi sdkEnv.Api) (*PersonClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "person", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PersonClient: %+v", err)
+	}
+
+	return &PersonClient{
+		Client: client,
+	}, nil
+}

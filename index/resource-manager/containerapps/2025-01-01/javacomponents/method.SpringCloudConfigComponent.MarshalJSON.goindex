@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerapps/2025-01-01/javacomponents
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s SpringCloudConfigComponent) MarshalJSON() ([]byte, error) {
+	type wrapper SpringCloudConfigComponent
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling SpringCloudConfigComponent: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling SpringCloudConfigComponent: %+v", err)
+	}
+
+	decoded["componentType"] = "SpringCloudConfig"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling SpringCloudConfigComponent: %+v", err)
+	}
+
+	return encoded, nil
+}

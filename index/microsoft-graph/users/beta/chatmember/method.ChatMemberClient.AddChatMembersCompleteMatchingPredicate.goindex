@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/chatmember
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ChatMemberClient) AddChatMembersCompleteMatchingPredicate(ctx context.Context, id beta.UserIdChatId, input AddChatMembersRequest, options AddChatMembersOperationOptions, predicate ActionResultPartOperationPredicate) (result AddChatMembersCompleteResult, err error) {
+	items := make([]beta.ActionResultPart, 0)
+
+	resp, err := c.AddChatMembers(ctx, id, input, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = AddChatMembersCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

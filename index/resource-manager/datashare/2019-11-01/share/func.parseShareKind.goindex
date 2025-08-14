@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2019-11-01/share
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseShareKind(input string) (*ShareKind, error) {
+	vals := map[string]ShareKind{
+		"copybased": ShareKindCopyBased,
+		"inplace":   ShareKindInPlace,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ShareKind(input)
+	return &out, nil
+}

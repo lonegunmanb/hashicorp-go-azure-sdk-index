@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-11-01/incidentalerts
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+)
+func (s URLEntity) MarshalJSON() ([]byte, error) {
+	type wrapper URLEntity
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling URLEntity: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling URLEntity: %+v", err)
+	}
+
+	decoded["kind"] = "Url"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling URLEntity: %+v", err)
+	}
+
+	return encoded, nil
+}

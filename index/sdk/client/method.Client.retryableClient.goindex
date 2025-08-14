@@ -1,0 +1,100 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client
+import (
+	"bytes"
+	"context"
+	"crypto/tls"
+	"encoding/json"
+	"encoding/xml"
+	"errors"
+	"fmt"
+	"io"
+	"log"
+	"math"
+	"net"
+	"net/http"
+	"net/url"
+	"regexp"
+	"runtime"
+	"strconv"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/auth"
+	"github.com/hashicorp/go-azure-sdk/sdk/internal/accept"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+	"github.com/hashicorp/go-retryablehttp"
+)
+func (c *Client) retryableClient(ctx context.Context, checkRetry retryablehttp.CheckRetry) (r *retryablehttp.Client) {
+	r = retryablehttp.NewClient()
+
+	r.Backoff = func(min, max time.Duration, attemptNum int, resp *http.Response) time.Duration {
+		if resp != nil {
+			// Always look for Retry-After header
+			if s, ok := resp.Header["Retry-After"]; ok {
+				if sleep, err := strconv.ParseInt(s[0], 10, 64); err == nil {
+					return time.Second * time.Duration(sleep)
+				}
+			}
+		}
+
+		// Default exponential backoff
+		mult := math.Pow(2, float64(attemptNum)) * float64(min)
+		sleep := time.Duration(mult)
+		if float64(sleep) != mult || sleep > max {
+			sleep = max
+		}
+		return sleep
+	}
+
+	r.CheckRetry = checkRetry
+	r.ErrorHandler = RetryableErrorHandler
+	r.Logger = log.Default()
+	r.RetryWaitMin = 1 * time.Second
+	r.RetryWaitMax = 61 * time.Second
+
+	// The default backoff results into the following formula T(n):
+	// ("t" repr. total time in sec, "n" repr. total retry count):
+	// - t = 2**(n+1) - 1 				(0<=n<6)
+	// - t = (1+2+4+8+16+32) + 61*(n-6) (n>6)
+	// This results into the following N(t) (by guaranteeing T(n) <= t):
+	// - n = floor(log(t+1)) - 1 		(0<=t<=63)
+	// - n = (t - 63)/61 + 6 			(t > 63)
+	var safeRetryNumber = func(t time.Duration) int {
+		sec := t.Seconds()
+		if sec <= 63 {
+			return int(math.Floor(math.Log2(sec+1))) - 1
+		}
+		return (int(sec)-63)/61 + 6
+	}
+
+	// Default RetryMax of 16 takes approx 10 minutes to iterate
+	r.RetryMax = 16
+
+	// In case the context has deadline defined, adjust the retry count to a value
+	// that the total time spent for retrying is right before the deadline exceeded.
+	if deadline, ok := ctx.Deadline(); ok {
+		r.RetryMax = safeRetryNumber(time.Until(deadline))
+	}
+
+	tlsConfig := tls.Config{
+		MinVersion: tls.VersionTLS12,
+	}
+	r.HTTPClient = &http.Client{
+		Transport: &http.Transport{
+			Proxy: http.ProxyFromEnvironment,
+			DialContext: func(ctx context.Context, network, addr string) (net.Conn, error) {
+				d := &net.Dialer{Resolver: &net.Resolver{}}
+				return d.DialContext(ctx, network, addr)
+			},
+			TLSClientConfig:       &tlsConfig,
+			MaxIdleConns:          100,
+			IdleConnTimeout:       90 * time.Second,
+			TLSHandshakeTimeout:   10 * time.Second,
+			ExpectContinueTimeout: 1 * time.Second,
+			ForceAttemptHTTP2:     true,
+			MaxIdleConnsPerHost:   runtime.GOMAXPROCS(0) + 1,
+		},
+	}
+
+	return
+}

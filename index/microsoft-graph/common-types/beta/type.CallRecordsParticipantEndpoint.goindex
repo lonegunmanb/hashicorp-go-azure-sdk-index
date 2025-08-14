@@ -1,0 +1,44 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type CallRecordsParticipantEndpoint struct {
+	// Identity associated with the endpoint.
+	AssociatedIdentity Identity `json:"associatedIdentity"`
+
+	// CPU number of cores used by the media endpoint.
+	CpuCoresCount nullable.Type[int64] `json:"cpuCoresCount,omitempty"`
+
+	// CPU name used by the media endpoint.
+	CpuName nullable.Type[string] `json:"cpuName,omitempty"`
+
+	// CPU processor speed used by the media endpoint.
+	CpuProcessorSpeedInMhz nullable.Type[int64] `json:"cpuProcessorSpeedInMhz,omitempty"`
+
+	// The feedback provided by the user of this endpoint about the quality of the session.
+	Feedback *CallRecordsUserFeedback `json:"feedback,omitempty"`
+
+	// Identity associated with the endpoint. The identity property is deprecated and will stop returning data on June 30,
+	// 2026. Going forward, use the associatedIdentity property.
+	Identity IdentitySet `json:"identity"`
+
+	// Name of the device used by the media endpoint.
+	Name nullable.Type[string] `json:"name,omitempty"`
+
+	// Fields inherited from CallRecordsEndpoint
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// User-agent reported by this endpoint.
+	UserAgent CallRecordsUserAgent `json:"userAgent"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

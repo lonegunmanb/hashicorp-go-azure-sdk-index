@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/appconsent
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAppConsentClientWithBaseURI(sdkApi sdkEnv.Api) (*AppConsentClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "appconsent", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AppConsentClient: %+v", err)
+	}
+
+	return &AppConsentClient{
+		Client: client,
+	}, nil
+}

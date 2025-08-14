@@ -1,0 +1,58 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type TrainingCampaign struct {
+	// Details about the schedule and current status for a training campaign
+	CampaignSchedule *CampaignSchedule `json:"campaignSchedule,omitempty"`
+
+	// Identity of the user who created the training campaign
+	CreatedBy *EmailIdentity `json:"createdBy,omitempty"`
+
+	// Date and time of creation of the training campaign.
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// Description of the training campaign.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// Display name of the training campaign. Supports $filter and $orderby.
+	DisplayName *string `json:"displayName,omitempty"`
+
+	// Details about the end user notification setting.
+	EndUserNotificationSetting EndUserNotificationSetting `json:"endUserNotificationSetting"`
+
+	// Users excluded from the training campaign.
+	ExcludedAccountTarget AccountTargetContent `json:"excludedAccountTarget"`
+
+	// Users targeted in the training campaign.
+	IncludedAccountTarget AccountTargetContent `json:"includedAccountTarget"`
+
+	// Identity of the user who most recently modified the training campaign.
+	LastModifiedBy *EmailIdentity `json:"lastModifiedBy,omitempty"`
+
+	// Date and time of the most recent modification of the training campaign.
+	LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+
+	// Report of the training campaign.
+	Report *TrainingCampaignReport `json:"report,omitempty"`
+
+	// Details about the training settings for a training campaign.
+	TrainingSetting TrainingSetting `json:"trainingSetting"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

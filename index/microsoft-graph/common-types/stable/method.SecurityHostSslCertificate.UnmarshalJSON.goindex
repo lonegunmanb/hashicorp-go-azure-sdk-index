@@ -1,0 +1,44 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *SecurityHostSslCertificate) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		FirstSeenDateTime nullable.Type[string]             `json:"firstSeenDateTime,omitempty"`
+		LastSeenDateTime  nullable.Type[string]             `json:"lastSeenDateTime,omitempty"`
+		Ports             *[]SecurityHostSslCertificatePort `json:"ports,omitempty"`
+		SslCertificate    *SecuritySslCertificate           `json:"sslCertificate,omitempty"`
+		Id                *string                           `json:"id,omitempty"`
+		ODataId           *string                           `json:"@odata.id,omitempty"`
+		ODataType         *string                           `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.FirstSeenDateTime = decoded.FirstSeenDateTime
+	s.LastSeenDateTime = decoded.LastSeenDateTime
+	s.Ports = decoded.Ports
+	s.SslCertificate = decoded.SslCertificate
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling SecurityHostSslCertificate into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["host"]; ok {
+		impl, err := UnmarshalSecurityHostImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Host' for 'SecurityHostSslCertificate': %+v", err)
+		}
+		s.Host = &impl
+	}
+
+	return nil
+}

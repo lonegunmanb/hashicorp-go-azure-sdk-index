@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/activityhistoryitem
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ActivityHistoryItemClient) ListActivityHistoryItemsCompleteMatchingPredicate(ctx context.Context, id stable.MeActivityId, options ListActivityHistoryItemsOperationOptions, predicate ActivityHistoryItemOperationPredicate) (result ListActivityHistoryItemsCompleteResult, err error) {
+	items := make([]stable.ActivityHistoryItem, 0)
+
+	resp, err := c.ListActivityHistoryItems(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListActivityHistoryItemsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

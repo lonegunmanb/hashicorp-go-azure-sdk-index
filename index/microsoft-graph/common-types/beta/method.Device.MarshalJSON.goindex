@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s Device) MarshalJSON() ([]byte, error) {
+	type wrapper Device
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling Device: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling Device: %+v", err)
+	}
+
+	delete(decoded, "approximateLastSignInDateTime")
+	delete(decoded, "complianceExpirationDateTime")
+	delete(decoded, "deviceTemplate")
+	delete(decoded, "extensions")
+	delete(decoded, "isCompliant")
+	delete(decoded, "isManagementRestricted")
+	delete(decoded, "manufacturer")
+	delete(decoded, "mdmAppId")
+	delete(decoded, "memberOf")
+	delete(decoded, "model")
+	delete(decoded, "onPremisesLastSyncDateTime")
+	delete(decoded, "onPremisesSecurityIdentifier")
+	delete(decoded, "onPremisesSyncEnabled")
+	delete(decoded, "registeredOwners")
+	delete(decoded, "registeredUsers")
+	delete(decoded, "registrationDateTime")
+	delete(decoded, "trustType")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.device"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling Device: %+v", err)
+	}
+
+	return encoded, nil
+}

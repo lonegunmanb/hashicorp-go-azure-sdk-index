@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/put
+import (
+	"encoding/json"
+	"fmt"
+)
+type ConnectToTargetAzureDbForPostgreSqlSyncTaskProperties struct {
+	Input  *ConnectToTargetAzureDbForPostgreSqlSyncTaskInput    `json:"input,omitempty"`
+	Output *[]ConnectToTargetAzureDbForPostgreSqlSyncTaskOutput `json:"output,omitempty"`
+
+	// Fields inherited from ProjectTaskProperties
+
+	ClientData *map[string]string   `json:"clientData,omitempty"`
+	Commands   *[]CommandProperties `json:"commands,omitempty"`
+	Errors     *[]ODataError        `json:"errors,omitempty"`
+	State      *TaskState           `json:"state,omitempty"`
+	TaskType   string               `json:"taskType"`
+}

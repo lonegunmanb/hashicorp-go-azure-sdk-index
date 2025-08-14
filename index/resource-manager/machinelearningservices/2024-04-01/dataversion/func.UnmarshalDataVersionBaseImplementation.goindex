@@ -1,0 +1,57 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/dataversion
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalDataVersionBaseImplementation(input []byte) (DataVersionBase, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling DataVersionBase into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["dataType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "mltable") {
+		var out MLTableData
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into MLTableData: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "uri_file") {
+		var out UriFileDataVersion
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into UriFileDataVersion: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "uri_folder") {
+		var out UriFolderDataVersion
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into UriFolderDataVersion: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseDataVersionBaseImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseDataVersionBaseImpl: %+v", err)
+	}
+
+	return RawDataVersionBaseImpl{
+		dataVersionBase: parent,
+		Type:            value,
+		Values:          temp,
+	}, nil
+
+}

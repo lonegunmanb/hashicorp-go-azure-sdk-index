@@ -1,0 +1,61 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type MobileAppContentFile struct {
+	// Indicates the Azure Storage URI that the file is uploaded to. Created by the service upon receiving a valid
+	// mobileAppContentFile. Read-only. This property is read-only.
+	AzureStorageUri nullable.Type[string] `json:"azureStorageUri,omitempty"`
+
+	// Indicates the date and time when the Azure storage URI expires, in ISO 8601 format. For example, midnight UTC on Jan
+	// 1, 2014 would look like this: '2014-01-01T00:00:00Z'. Read-only. This property is read-only.
+	AzureStorageUriExpirationDateTime nullable.Type[string] `json:"azureStorageUriExpirationDateTime,omitempty"`
+
+	// Indicates created date and time associated with app content file, in ISO 8601 format. For example, midnight UTC on
+	// Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'. Read-only. This property is read-only.
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+
+	// A value indicating whether the file is committed. A committed app content file has been fully uploaded and validated
+	// by the Intune service. TRUE means that app content file is committed, FALSE means that app content file is not
+	// committed. Defaults to FALSE. Read-only. This property is read-only.
+	IsCommitted *bool `json:"isCommitted,omitempty"`
+
+	// Indicates whether this content file is a dependency for the main content file. TRUE means that the content file is a
+	// dependency, FALSE means that the content file is not a dependency and is the main content file. Defaults to FALSE.
+	IsDependency *bool `json:"isDependency,omitempty"`
+
+	// A value indicating whether the file is a framework file. To be deprecated.
+	IsFrameworkFile *bool `json:"isFrameworkFile,omitempty"`
+
+	// Indicates the manifest information, containing file metadata.
+	Manifest nullable.Type[string] `json:"manifest,omitempty"`
+
+	// Indicates the name of the file.
+	Name nullable.Type[string] `json:"name,omitempty"`
+
+	// Indicates the original size of the file, in bytes.
+	Size *int64 `json:"size,omitempty"`
+
+	// Indicates the size of the file after encryption, in bytes.
+	SizeEncrypted *int64 `json:"sizeEncrypted,omitempty"`
+
+	// Contains properties for upload request states.
+	UploadState *MobileAppContentFileUploadState `json:"uploadState,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

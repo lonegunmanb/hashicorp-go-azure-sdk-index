@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/recoverypoints
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s AzureWorkloadPointInTimeRecoveryPoint) MarshalJSON() ([]byte, error) {
+	type wrapper AzureWorkloadPointInTimeRecoveryPoint
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AzureWorkloadPointInTimeRecoveryPoint: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AzureWorkloadPointInTimeRecoveryPoint: %+v", err)
+	}
+
+	decoded["objectType"] = "AzureWorkloadPointInTimeRecoveryPoint"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AzureWorkloadPointInTimeRecoveryPoint: %+v", err)
+	}
+
+	return encoded, nil
+}

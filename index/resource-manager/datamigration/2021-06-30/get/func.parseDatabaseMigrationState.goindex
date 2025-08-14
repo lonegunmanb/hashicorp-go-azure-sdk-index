@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/get
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDatabaseMigrationState(input string) (*DatabaseMigrationState, error) {
+	vals := map[string]DatabaseMigrationState{
+		"cancelled":                DatabaseMigrationStateCANCELLED,
+		"completed":                DatabaseMigrationStateCOMPLETED,
+		"cutover_start":            DatabaseMigrationStateCUTOVERSTART,
+		"failed":                   DatabaseMigrationStateFAILED,
+		"full_backup_upload_start": DatabaseMigrationStateFULLBACKUPUPLOADSTART,
+		"initial":                  DatabaseMigrationStateINITIAL,
+		"log_shipping_start":       DatabaseMigrationStateLOGSHIPPINGSTART,
+		"post_cutover_complete":    DatabaseMigrationStatePOSTCUTOVERCOMPLETE,
+		"undefined":                DatabaseMigrationStateUNDEFINED,
+		"upload_log_files_start":   DatabaseMigrationStateUPLOADLOGFILESSTART,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DatabaseMigrationState(input)
+	return &out, nil
+}

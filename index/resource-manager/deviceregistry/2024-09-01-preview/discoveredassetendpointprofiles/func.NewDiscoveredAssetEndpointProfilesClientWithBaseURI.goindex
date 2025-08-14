@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/deviceregistry/2024-09-01-preview/discoveredassetendpointprofiles
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDiscoveredAssetEndpointProfilesClientWithBaseURI(sdkApi sdkEnv.Api) (*DiscoveredAssetEndpointProfilesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "discoveredassetendpointprofiles", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DiscoveredAssetEndpointProfilesClient: %+v", err)
+	}
+
+	return &DiscoveredAssetEndpointProfilesClient{
+		Client: client,
+	}, nil
+}

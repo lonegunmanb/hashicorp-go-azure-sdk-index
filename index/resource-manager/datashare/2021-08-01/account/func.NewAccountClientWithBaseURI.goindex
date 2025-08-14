@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2021-08-01/account
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAccountClientWithBaseURI(sdkApi sdkEnv.Api) (*AccountClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "account", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AccountClient: %+v", err)
+	}
+
+	return &AccountClient{
+		Client: client,
+	}, nil
+}

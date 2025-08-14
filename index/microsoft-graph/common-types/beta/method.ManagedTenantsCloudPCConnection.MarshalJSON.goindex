@@ -1,0 +1,37 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s ManagedTenantsCloudPCConnection) MarshalJSON() ([]byte, error) {
+	type wrapper ManagedTenantsCloudPCConnection
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ManagedTenantsCloudPCConnection: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ManagedTenantsCloudPCConnection: %+v", err)
+	}
+
+	delete(decoded, "displayName")
+	delete(decoded, "healthCheckStatus")
+	delete(decoded, "lastRefreshedDateTime")
+	delete(decoded, "tenantDisplayName")
+	delete(decoded, "tenantId")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.managedTenants.cloudPcConnection"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ManagedTenantsCloudPCConnection: %+v", err)
+	}
+
+	return encoded, nil
+}

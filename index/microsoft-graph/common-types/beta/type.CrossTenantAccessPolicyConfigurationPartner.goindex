@@ -1,0 +1,56 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type CrossTenantAccessPolicyConfigurationPartner struct {
+	// Determines the partner-specific configuration for automatic user consent settings. Unless configured, the
+	// inboundAllowed and outboundAllowed properties are null and inherit from the default settings, which is always false.
+	AutomaticUserConsentSettings *InboundOutboundPolicyConfiguration `json:"automaticUserConsentSettings,omitempty"`
+
+	// Defines your partner-specific configuration for users from other organizations accessing your resources via Microsoft
+	// Entra B2B collaboration.
+	B2bCollaborationInbound CrossTenantAccessPolicyB2BSetting `json:"b2bCollaborationInbound"`
+
+	// Defines your partner-specific configuration for users in your organization going outbound to access resources in
+	// another organization via Microsoft Entra B2B collaboration.
+	B2bCollaborationOutbound CrossTenantAccessPolicyB2BSetting `json:"b2bCollaborationOutbound"`
+
+	// Defines your partner-specific configuration for users from other organizations accessing your resources via Azure B2B
+	// direct connect.
+	B2bDirectConnectInbound CrossTenantAccessPolicyB2BSetting `json:"b2bDirectConnectInbound"`
+
+	// Defines your partner-specific configuration for users in your organization going outbound to access resources in
+	// another organization via Microsoft Entra B2B direct connect.
+	B2bDirectConnectOutbound CrossTenantAccessPolicyB2BSetting `json:"b2bDirectConnectOutbound"`
+
+	// Defines the cross-tenant policy for the synchronization of users from a partner tenant. Use this user synchronization
+	// policy to streamline collaboration between users in a multitenant organization by automating the creation, update,
+	// and deletion of users from one tenant to another.
+	IdentitySynchronization *CrossTenantIdentitySyncPolicyPartner `json:"identitySynchronization,omitempty"`
+
+	// Determines the partner-specific configuration for trusting other Conditional Access claims from external Microsoft
+	// Entra organizations.
+	InboundTrust *CrossTenantAccessPolicyInboundTrust `json:"inboundTrust,omitempty"`
+
+	// Identifies whether a tenant is a member of a multitenant organization.
+	IsInMultiTenantOrganization nullable.Type[bool] `json:"isInMultiTenantOrganization,omitempty"`
+
+	// Identifies whether the partner-specific configuration is a Cloud Service Provider for your organization.
+	IsServiceProvider nullable.Type[bool] `json:"isServiceProvider,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The tenant identifier for the partner Microsoft Entra organization. Read-only. Key.
+	TenantId *string `json:"tenantId,omitempty"`
+
+	// Defines the partner-specific tenant restrictions configuration for users in your organization who access a partner
+	// organization using partner supplied identities on your network or devices.
+	TenantRestrictions *CrossTenantAccessPolicyTenantRestrictions `json:"tenantRestrictions,omitempty"`
+}

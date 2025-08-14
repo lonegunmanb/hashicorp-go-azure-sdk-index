@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/appplatform/2024-01-01-preview/appplatform
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c AppPlatformClient) BuildServiceBuilderListCompleteMatchingPredicate(ctx context.Context, id BuildServiceId, predicate BuilderResourceOperationPredicate) (result BuildServiceBuilderListCompleteResult, err error) {
+	items := make([]BuilderResource, 0)
+
+	resp, err := c.BuildServiceBuilderList(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = BuildServiceBuilderListCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

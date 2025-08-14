@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/intentassignment
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c IntentAssignmentClient) ListIntentAssignmentsCompleteMatchingPredicate(ctx context.Context, id beta.DeviceManagementIntentId, options ListIntentAssignmentsOperationOptions, predicate DeviceManagementIntentAssignmentOperationPredicate) (result ListIntentAssignmentsCompleteResult, err error) {
+	items := make([]beta.DeviceManagementIntentAssignment, 0)
+
+	resp, err := c.ListIntentAssignments(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListIntentAssignmentsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

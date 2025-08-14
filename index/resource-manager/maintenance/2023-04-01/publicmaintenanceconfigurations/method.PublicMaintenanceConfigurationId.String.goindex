@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/maintenance/2023-04-01/publicmaintenanceconfigurations
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id PublicMaintenanceConfigurationId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Public Maintenance Configuration Name: %q", id.PublicMaintenanceConfigurationName),
+	}
+	return fmt.Sprintf("Public Maintenance Configuration (%s)", strings.Join(components, "\n"))
+}

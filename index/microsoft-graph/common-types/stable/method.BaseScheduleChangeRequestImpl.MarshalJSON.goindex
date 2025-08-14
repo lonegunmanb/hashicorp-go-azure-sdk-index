@@ -1,0 +1,37 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s BaseScheduleChangeRequestImpl) MarshalJSON() ([]byte, error) {
+	type wrapper BaseScheduleChangeRequestImpl
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling BaseScheduleChangeRequestImpl: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling BaseScheduleChangeRequestImpl: %+v", err)
+	}
+
+	delete(decoded, "managerActionDateTime")
+	delete(decoded, "managerUserId")
+	delete(decoded, "senderDateTime")
+	delete(decoded, "senderUserId")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.scheduleChangeRequest"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling BaseScheduleChangeRequestImpl: %+v", err)
+	}
+
+	return encoded, nil
+}

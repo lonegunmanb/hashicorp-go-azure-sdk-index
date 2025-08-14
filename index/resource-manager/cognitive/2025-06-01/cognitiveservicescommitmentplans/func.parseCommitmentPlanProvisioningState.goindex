@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cognitive/2025-06-01/cognitiveservicescommitmentplans
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCommitmentPlanProvisioningState(input string) (*CommitmentPlanProvisioningState, error) {
+	vals := map[string]CommitmentPlanProvisioningState{
+		"accepted":  CommitmentPlanProvisioningStateAccepted,
+		"canceled":  CommitmentPlanProvisioningStateCanceled,
+		"creating":  CommitmentPlanProvisioningStateCreating,
+		"deleting":  CommitmentPlanProvisioningStateDeleting,
+		"failed":    CommitmentPlanProvisioningStateFailed,
+		"moving":    CommitmentPlanProvisioningStateMoving,
+		"succeeded": CommitmentPlanProvisioningStateSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CommitmentPlanProvisioningState(input)
+	return &out, nil
+}

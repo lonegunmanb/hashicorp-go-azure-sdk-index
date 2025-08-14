@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/applicationinsights/2015-05-01/favoritesapis
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseFavoriteSourceType(input string) (*FavoriteSourceType, error) {
+	vals := map[string]FavoriteSourceType{
+		"events":       FavoriteSourceTypeEvents,
+		"funnel":       FavoriteSourceTypeFunnel,
+		"impact":       FavoriteSourceTypeImpact,
+		"notebook":     FavoriteSourceTypeNotebook,
+		"retention":    FavoriteSourceTypeRetention,
+		"segmentation": FavoriteSourceTypeSegmentation,
+		"sessions":     FavoriteSourceTypeSessions,
+		"userflows":    FavoriteSourceTypeUserflows,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FavoriteSourceType(input)
+	return &out, nil
+}

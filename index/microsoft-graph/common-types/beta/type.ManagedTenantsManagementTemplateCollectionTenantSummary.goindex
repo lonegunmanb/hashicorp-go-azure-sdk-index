@@ -1,0 +1,42 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ManagedTenantsManagementTemplateCollectionTenantSummary struct {
+	CompleteStepsCount                      nullable.Type[int64]  `json:"completeStepsCount,omitempty"`
+	CompleteUsersCount                      nullable.Type[int64]  `json:"completeUsersCount,omitempty"`
+	CreatedByUserId                         nullable.Type[string] `json:"createdByUserId,omitempty"`
+	CreatedDateTime                         nullable.Type[string] `json:"createdDateTime,omitempty"`
+	DismissedStepsCount                     nullable.Type[int64]  `json:"dismissedStepsCount,omitempty"`
+	ExcludedUsersCount                      nullable.Type[int64]  `json:"excludedUsersCount,omitempty"`
+	ExcludedUsersDistinctCount              nullable.Type[int64]  `json:"excludedUsersDistinctCount,omitempty"`
+	IncompleteStepsCount                    nullable.Type[int64]  `json:"incompleteStepsCount,omitempty"`
+	IncompleteUsersCount                    nullable.Type[int64]  `json:"incompleteUsersCount,omitempty"`
+	IneligibleStepsCount                    nullable.Type[int64]  `json:"ineligibleStepsCount,omitempty"`
+	IsComplete                              nullable.Type[bool]   `json:"isComplete,omitempty"`
+	LastActionByUserId                      nullable.Type[string] `json:"lastActionByUserId,omitempty"`
+	LastActionDateTime                      nullable.Type[string] `json:"lastActionDateTime,omitempty"`
+	ManagementTemplateCollectionDisplayName nullable.Type[string] `json:"managementTemplateCollectionDisplayName,omitempty"`
+	ManagementTemplateCollectionId          nullable.Type[string] `json:"managementTemplateCollectionId,omitempty"`
+	RegressedStepsCount                     nullable.Type[int64]  `json:"regressedStepsCount,omitempty"`
+	RegressedUsersCount                     nullable.Type[int64]  `json:"regressedUsersCount,omitempty"`
+	TenantId                                nullable.Type[string] `json:"tenantId,omitempty"`
+	UnlicensedUsersCount                    nullable.Type[int64]  `json:"unlicensedUsersCount,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

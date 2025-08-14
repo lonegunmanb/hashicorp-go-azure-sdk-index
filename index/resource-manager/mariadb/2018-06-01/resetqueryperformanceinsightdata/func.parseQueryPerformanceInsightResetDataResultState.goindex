@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mariadb/2018-06-01/resetqueryperformanceinsightdata
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseQueryPerformanceInsightResetDataResultState(input string) (*QueryPerformanceInsightResetDataResultState, error) {
+	vals := map[string]QueryPerformanceInsightResetDataResultState{
+		"failed":    QueryPerformanceInsightResetDataResultStateFailed,
+		"succeeded": QueryPerformanceInsightResetDataResultStateSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := QueryPerformanceInsightResetDataResultState(input)
+	return &out, nil
+}

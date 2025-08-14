@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerservice/2019-08-01/containerservices
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewContainerServicesClientWithBaseURI(sdkApi sdkEnv.Api) (*ContainerServicesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "containerservices", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ContainerServicesClient: %+v", err)
+	}
+
+	return &ContainerServicesClient{
+		Client: client,
+	}, nil
+}

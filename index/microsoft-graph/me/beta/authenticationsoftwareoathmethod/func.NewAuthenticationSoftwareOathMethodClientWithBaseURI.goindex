@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/authenticationsoftwareoathmethod
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAuthenticationSoftwareOathMethodClientWithBaseURI(sdkApi sdkEnv.Api) (*AuthenticationSoftwareOathMethodClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "authenticationsoftwareoathmethod", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AuthenticationSoftwareOathMethodClient: %+v", err)
+	}
+
+	return &AuthenticationSoftwareOathMethodClient{
+		Client: client,
+	}, nil
+}

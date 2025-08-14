@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/policies
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePolicyEvaluatorType(input string) (*PolicyEvaluatorType, error) {
+	vals := map[string]PolicyEvaluatorType{
+		"allowedvaluespolicy": PolicyEvaluatorTypeAllowedValuesPolicy,
+		"maxvaluepolicy":      PolicyEvaluatorTypeMaxValuePolicy,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PolicyEvaluatorType(input)
+	return &out, nil
+}

@@ -1,0 +1,43 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s CloudPC) MarshalJSON() ([]byte, error) {
+	type wrapper CloudPC
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling CloudPC: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling CloudPC: %+v", err)
+	}
+
+	delete(decoded, "aadDeviceId")
+	delete(decoded, "displayName")
+	delete(decoded, "imageDisplayName")
+	delete(decoded, "managedDeviceId")
+	delete(decoded, "managedDeviceName")
+	delete(decoded, "onPremisesConnectionName")
+	delete(decoded, "provisioningPolicyId")
+	delete(decoded, "provisioningPolicyName")
+	delete(decoded, "servicePlanId")
+	delete(decoded, "servicePlanName")
+	delete(decoded, "userPrincipalName")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.cloudPC"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling CloudPC: %+v", err)
+	}
+
+	return encoded, nil
+}

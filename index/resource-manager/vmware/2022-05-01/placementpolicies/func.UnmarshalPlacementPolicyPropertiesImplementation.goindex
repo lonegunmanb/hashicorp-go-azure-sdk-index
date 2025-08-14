@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2022-05-01/placementpolicies
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalPlacementPolicyPropertiesImplementation(input []byte) (PlacementPolicyProperties, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling PlacementPolicyProperties into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "VmHost") {
+		var out VMHostPlacementPolicyProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into VMHostPlacementPolicyProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "VmVm") {
+		var out VMVMPlacementPolicyProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into VMVMPlacementPolicyProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BasePlacementPolicyPropertiesImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BasePlacementPolicyPropertiesImpl: %+v", err)
+	}
+
+	return RawPlacementPolicyPropertiesImpl{
+		placementPolicyProperties: parent,
+		Type:                      value,
+		Values:                    temp,
+	}, nil
+
+}

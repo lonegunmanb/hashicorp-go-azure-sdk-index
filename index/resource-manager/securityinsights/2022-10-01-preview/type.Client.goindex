@@ -1,0 +1,77 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/v2022_10_01_preview
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/actions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/alertrules"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/alertruletemplates"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/automationrules"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/bookmark"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/bookmarkrelations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/bookmarks"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/checkdataconnectorrequirements"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/dataconnectors"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/dataconnectorsconnect"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/dataconnectorsdisconnect"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/enrichment"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/entities"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/entityqueries"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/entityrelations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/fileimports"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/incidentalerts"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/incidentbookmarks"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/incidentcomments"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/incidententities"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/incidentrelations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/incidents"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/incidentteam"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/manualtrigger"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/metadata"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/officeconsents"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/repositories"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/securitymlanalyticssettings"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/sentinelonboardingstates"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/settings"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/sourcecontrols"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/threatintelligence"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/watchlistitems"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/watchlists"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	Actions                        *actions.ActionsClient
+	AlertRuleTemplates             *alertruletemplates.AlertRuleTemplatesClient
+	AlertRules                     *alertrules.AlertRulesClient
+	AutomationRules                *automationrules.AutomationRulesClient
+	Bookmark                       *bookmark.BookmarkClient
+	BookmarkRelations              *bookmarkrelations.BookmarkRelationsClient
+	Bookmarks                      *bookmarks.BookmarksClient
+	CheckDataConnectorRequirements *checkdataconnectorrequirements.CheckDataConnectorRequirementsClient
+	DataConnectors                 *dataconnectors.DataConnectorsClient
+	DataConnectorsConnect          *dataconnectorsconnect.DataConnectorsConnectClient
+	DataConnectorsDisconnect       *dataconnectorsdisconnect.DataConnectorsDisconnectClient
+	Enrichment                     *enrichment.EnrichmentClient
+	Entities                       *entities.EntitiesClient
+	EntityQueries                  *entityqueries.EntityQueriesClient
+	EntityRelations                *entityrelations.EntityRelationsClient
+	FileImports                    *fileimports.FileImportsClient
+	IncidentAlerts                 *incidentalerts.IncidentAlertsClient
+	IncidentBookmarks              *incidentbookmarks.IncidentBookmarksClient
+	IncidentComments               *incidentcomments.IncidentCommentsClient
+	IncidentEntities               *incidententities.IncidentEntitiesClient
+	IncidentRelations              *incidentrelations.IncidentRelationsClient
+	IncidentTeam                   *incidentteam.IncidentTeamClient
+	Incidents                      *incidents.IncidentsClient
+	ManualTrigger                  *manualtrigger.ManualTriggerClient
+	Metadata                       *metadata.MetadataClient
+	OfficeConsents                 *officeconsents.OfficeConsentsClient
+	Repositories                   *repositories.RepositoriesClient
+	SecurityMLAnalyticsSettings    *securitymlanalyticssettings.SecurityMLAnalyticsSettingsClient
+	SentinelOnboardingStates       *sentinelonboardingstates.SentinelOnboardingStatesClient
+	Settings                       *settings.SettingsClient
+	SourceControls                 *sourcecontrols.SourceControlsClient
+	ThreatIntelligence             *threatintelligence.ThreatIntelligenceClient
+	WatchlistItems                 *watchlistitems.WatchlistItemsClient
+	Watchlists                     *watchlists.WatchlistsClient
+}

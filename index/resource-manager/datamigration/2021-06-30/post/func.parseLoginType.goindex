@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/post
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseLoginType(input string) (*LoginType, error) {
+	vals := map[string]LoginType{
+		"asymmetrickey": LoginTypeAsymmetricKey,
+		"certificate":   LoginTypeCertificate,
+		"externalgroup": LoginTypeExternalGroup,
+		"externaluser":  LoginTypeExternalUser,
+		"sqllogin":      LoginTypeSqlLogin,
+		"windowsgroup":  LoginTypeWindowsGroup,
+		"windowsuser":   LoginTypeWindowsUser,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := LoginType(input)
+	return &out, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2024-09-01/edgenodes
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewEdgenodesClientWithBaseURI(sdkApi sdkEnv.Api) (*EdgenodesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "edgenodes", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating EdgenodesClient: %+v", err)
+	}
+
+	return &EdgenodesClient{
+		Client: client,
+	}, nil
+}

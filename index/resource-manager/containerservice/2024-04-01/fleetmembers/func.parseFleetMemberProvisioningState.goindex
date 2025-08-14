@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerservice/2024-04-01/fleetmembers
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseFleetMemberProvisioningState(input string) (*FleetMemberProvisioningState, error) {
+	vals := map[string]FleetMemberProvisioningState{
+		"canceled":  FleetMemberProvisioningStateCanceled,
+		"failed":    FleetMemberProvisioningStateFailed,
+		"joining":   FleetMemberProvisioningStateJoining,
+		"leaving":   FleetMemberProvisioningStateLeaving,
+		"succeeded": FleetMemberProvisioningStateSucceeded,
+		"updating":  FleetMemberProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FleetMemberProvisioningState(input)
+	return &out, nil
+}

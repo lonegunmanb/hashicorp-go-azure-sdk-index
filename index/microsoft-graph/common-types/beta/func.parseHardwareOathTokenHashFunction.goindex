@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseHardwareOathTokenHashFunction(input string) (*HardwareOathTokenHashFunction, error) {
+	vals := map[string]HardwareOathTokenHashFunction{
+		"hmacsha1":   HardwareOathTokenHashFunction_Hmacsha1,
+		"hmacsha256": HardwareOathTokenHashFunction_Hmacsha256,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := HardwareOathTokenHashFunction(input)
+	return &out, nil
+}

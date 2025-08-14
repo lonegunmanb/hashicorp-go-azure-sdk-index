@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/cloudvmclusters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseIormLifecycleState(input string) (*IormLifecycleState, error) {
+	vals := map[string]IormLifecycleState{
+		"bootstrapping": IormLifecycleStateBootStrapping,
+		"disabled":      IormLifecycleStateDisabled,
+		"enabled":       IormLifecycleStateEnabled,
+		"failed":        IormLifecycleStateFailed,
+		"updating":      IormLifecycleStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IormLifecycleState(input)
+	return &out, nil
+}

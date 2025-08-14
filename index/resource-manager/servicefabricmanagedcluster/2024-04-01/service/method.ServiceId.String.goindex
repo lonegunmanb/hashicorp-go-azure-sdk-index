@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicefabricmanagedcluster/2024-04-01/service
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ServiceId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Managed Cluster Name: %q", id.ManagedClusterName),
+		fmt.Sprintf("Application Name: %q", id.ApplicationName),
+		fmt.Sprintf("Service Name: %q", id.ServiceName),
+	}
+	return fmt.Sprintf("Service (%s)", strings.Join(components, "\n"))
+}

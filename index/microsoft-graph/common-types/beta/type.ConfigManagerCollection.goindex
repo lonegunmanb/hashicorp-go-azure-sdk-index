@@ -1,0 +1,40 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ConfigManagerCollection struct {
+	// The collection identifier in SCCM.
+	CollectionIdentifier nullable.Type[string] `json:"collectionIdentifier,omitempty"`
+
+	// The created date.
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+
+	// The DisplayName.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// The Hierarchy Identifier.
+	HierarchyIdentifier nullable.Type[string] `json:"hierarchyIdentifier,omitempty"`
+
+	// The HierarchyName.
+	HierarchyName nullable.Type[string] `json:"hierarchyName,omitempty"`
+
+	// The last modified date.
+	LastModifiedDateTime *string `json:"lastModifiedDateTime,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id UserIdAuthenticationHardwareOathMethodIdDeviceHardwareOathDeviceId) String() string {
+	components := []string{
+		fmt.Sprintf("User: %q", id.UserId),
+		fmt.Sprintf("Hardware Oath Authentication Method: %q", id.HardwareOathAuthenticationMethodId),
+		fmt.Sprintf("Hardware Oath Token Authentication Method Device: %q", id.HardwareOathTokenAuthenticationMethodDeviceId),
+	}
+	return fmt.Sprintf("User Id Authentication Hardware Oath Method Id Device Hardware Oath Device (%s)", strings.Join(components, "\n"))
+}

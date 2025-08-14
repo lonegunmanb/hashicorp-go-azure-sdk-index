@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"bytes"
+	"context"
+	"crypto/hmac"
+	"crypto/sha256"
+	"encoding/base64"
+	"fmt"
+	"net/http"
+	"net/url"
+	"sort"
+	"strconv"
+	"strings"
+	"time"
+
+	"golang.org/x/oauth2"
+)
+func buildCanonicalizedHeader(headers http.Header) string {
+	cm := make(map[string]string)
+
+	for k := range headers {
+		headerName := strings.TrimSpace(strings.ToLower(k))
+		if strings.HasPrefix(headerName, "x-ms-") {
+			cm[headerName] = headers.Get(k)
+		}
+	}
+
+	if len(cm) == 0 {
+		return ""
+	}
+
+	keys := []string{}
+	for key := range cm {
+		keys = append(keys, key)
+	}
+
+	sort.Strings(keys)
+
+	ch := bytes.NewBufferString("")
+
+	for _, key := range keys {
+		ch.WriteString(key)
+		ch.WriteRune(':')
+		ch.WriteString(cm[key])
+		ch.WriteRune('\n')
+	}
+
+	return strings.TrimSuffix(ch.String(), "\n")
+}

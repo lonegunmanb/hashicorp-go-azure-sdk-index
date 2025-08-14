@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/profilepatent
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewProfilePatentClientWithBaseURI(sdkApi sdkEnv.Api) (*ProfilePatentClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "profilepatent", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ProfilePatentClient: %+v", err)
+	}
+
+	return &ProfilePatentClient{
+		Client: client,
+	}, nil
+}

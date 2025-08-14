@@ -1,0 +1,36 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type NetworkaccessTunnelConfigurationIKEv2Custom struct {
+	DhGroup         *NetworkaccessDhGroup         `json:"dhGroup,omitempty"`
+	IPSecEncryption *NetworkaccessIPSecEncryption `json:"ipSecEncryption,omitempty"`
+	IPSecIntegrity  *NetworkaccessIPSecIntegrity  `json:"ipSecIntegrity,omitempty"`
+	IkeEncryption   *NetworkaccessIkeEncryption   `json:"ikeEncryption,omitempty"`
+	IkeIntegrity    *NetworkaccessIkeIntegrity    `json:"ikeIntegrity,omitempty"`
+	PfsGroup        *NetworkaccessPfsGroup        `json:"pfsGroup,omitempty"`
+
+	// a standard specifiying Security Association lifetime with recommended values from an RFC standard.
+	SaLifeTimeSeconds *int64 `json:"saLifeTimeSeconds,omitempty"`
+
+	// Fields inherited from NetworkaccessTunnelConfiguration
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// A key to establish secure connection between the link and VPN tunnel on the edge.
+	PreSharedKey nullable.Type[string] `json:"preSharedKey,omitempty"`
+
+	// Another key for zone redundant tunnel. Required only when you select zoneRedundancy redindancyTier when creating a
+	// deviceLink.
+	ZoneRedundancyPreSharedKey nullable.Type[string] `json:"zoneRedundancyPreSharedKey,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

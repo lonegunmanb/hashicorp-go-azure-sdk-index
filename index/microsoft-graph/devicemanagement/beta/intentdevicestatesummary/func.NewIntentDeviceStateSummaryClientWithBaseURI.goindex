@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/intentdevicestatesummary
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewIntentDeviceStateSummaryClientWithBaseURI(sdkApi sdkEnv.Api) (*IntentDeviceStateSummaryClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "intentdevicestatesummary", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating IntentDeviceStateSummaryClient: %+v", err)
+	}
+
+	return &IntentDeviceStateSummaryClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-03-01/netappresource
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewNetAppResourceClientWithBaseURI(sdkApi sdkEnv.Api) (*NetAppResourceClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "netappresource", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating NetAppResourceClient: %+v", err)
+	}
+
+	return &NetAppResourceClient{
+		Client: client,
+	}, nil
+}

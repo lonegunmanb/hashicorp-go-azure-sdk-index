@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/entitlementmanagementsetting
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewEntitlementManagementSettingClientWithBaseURI(sdkApi sdkEnv.Api) (*EntitlementManagementSettingClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "entitlementmanagementsetting", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating EntitlementManagementSettingClient: %+v", err)
+	}
+
+	return &EntitlementManagementSettingClient{
+		Client: client,
+	}, nil
+}

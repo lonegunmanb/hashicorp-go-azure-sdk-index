@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2022-03-01/jobs
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseUpdateOperationStage(input string) (*UpdateOperationStage, error) {
+	vals := map[string]UpdateOperationStage{
+		"downloadcomplete": UpdateOperationStageDownloadComplete,
+		"downloadfailed":   UpdateOperationStageDownloadFailed,
+		"downloadstarted":  UpdateOperationStageDownloadStarted,
+		"failure":          UpdateOperationStageFailure,
+		"initial":          UpdateOperationStageInitial,
+		"installcomplete":  UpdateOperationStageInstallComplete,
+		"installfailed":    UpdateOperationStageInstallFailed,
+		"installstarted":   UpdateOperationStageInstallStarted,
+		"rebootinitiated":  UpdateOperationStageRebootInitiated,
+		"rescancomplete":   UpdateOperationStageRescanComplete,
+		"rescanfailed":     UpdateOperationStageRescanFailed,
+		"rescanstarted":    UpdateOperationStageRescanStarted,
+		"scancomplete":     UpdateOperationStageScanComplete,
+		"scanfailed":       UpdateOperationStageScanFailed,
+		"scanstarted":      UpdateOperationStageScanStarted,
+		"success":          UpdateOperationStageSuccess,
+		"unknown":          UpdateOperationStageUnknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UpdateOperationStage(input)
+	return &out, nil
+}

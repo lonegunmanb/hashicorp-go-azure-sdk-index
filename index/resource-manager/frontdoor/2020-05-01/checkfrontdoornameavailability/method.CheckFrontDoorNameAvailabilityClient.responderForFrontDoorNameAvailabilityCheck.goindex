@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/frontdoor/2020-05-01/checkfrontdoornameavailability
+import (
+	"context"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+)
+func (c CheckFrontDoorNameAvailabilityClient) responderForFrontDoorNameAvailabilityCheck(resp *http.Response) (result FrontDoorNameAvailabilityCheckOperationResponse, err error) {
+	err = autorest.Respond(
+		resp,
+		azure.WithErrorUnlessStatusCode(http.StatusOK),
+		autorest.ByUnmarshallingJSON(&result.Model),
+		autorest.ByClosing())
+	result.HttpResponse = resp
+
+	return
+}

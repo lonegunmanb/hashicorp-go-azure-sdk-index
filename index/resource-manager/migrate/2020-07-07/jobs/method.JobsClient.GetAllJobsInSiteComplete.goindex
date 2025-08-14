@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-07-07/jobs
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c JobsClient) GetAllJobsInSiteComplete(ctx context.Context, id VMwareSiteId) (GetAllJobsInSiteCompleteResult, error) {
+	return c.GetAllJobsInSiteCompleteMatchingPredicate(ctx, id, VMwareJobOperationPredicate{})
+}

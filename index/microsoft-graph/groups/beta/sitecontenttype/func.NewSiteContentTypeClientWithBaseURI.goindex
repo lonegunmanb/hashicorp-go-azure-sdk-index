@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitecontenttype
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSiteContentTypeClientWithBaseURI(sdkApi sdkEnv.Api) (*SiteContentTypeClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "sitecontenttype", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SiteContentTypeClient: %+v", err)
+	}
+
+	return &SiteContentTypeClient{
+		Client: client,
+	}, nil
+}

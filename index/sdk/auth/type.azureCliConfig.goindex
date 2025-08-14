@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"context"
+	"fmt"
+	"net/http"
+	"os"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	"github.com/hashicorp/go-azure-sdk/sdk/internal/azurecli"
+	"golang.org/x/oauth2"
+)
+type azureCliConfig struct {
+	Api environments.Api
+
+	// TenantID is the required tenant ID for the primary token
+	TenantID string
+
+	// AuxiliaryTenantIDs is an optional list of tenant IDs for which to obtain additional tokens
+	AuxiliaryTenantIDs []string
+
+	// DefaultSubscriptionID is the optional default subscription ID
+	DefaultSubscriptionID string
+
+	// SubscriptionIDHint is the subscription being targeted when obtaining a token, used to hint to Azure CLI which account to use
+	SubscriptionIDHint string
+}

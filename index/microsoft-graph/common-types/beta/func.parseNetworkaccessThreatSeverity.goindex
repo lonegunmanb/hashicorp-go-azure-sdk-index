@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNetworkaccessThreatSeverity(input string) (*NetworkaccessThreatSeverity, error) {
+	vals := map[string]NetworkaccessThreatSeverity{
+		"critical": NetworkaccessThreatSeverity_Critical,
+		"high":     NetworkaccessThreatSeverity_High,
+		"low":      NetworkaccessThreatSeverity_Low,
+		"medium":   NetworkaccessThreatSeverity_Medium,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NetworkaccessThreatSeverity(input)
+	return &out, nil
+}

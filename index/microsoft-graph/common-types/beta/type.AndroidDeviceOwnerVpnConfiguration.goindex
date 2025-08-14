@@ -1,0 +1,134 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type AndroidDeviceOwnerVpnConfiguration struct {
+	// Whether or not to enable always-on VPN connection.
+	AlwaysOn nullable.Type[bool] `json:"alwaysOn,omitempty"`
+
+	// If always-on VPN connection is enabled, whether or not to lock network traffic when that VPN is disconnected.
+	AlwaysOnLockdown nullable.Type[bool] `json:"alwaysOnLockdown,omitempty"`
+
+	// Android VPN connection type.
+	ConnectionType *AndroidVpnConnectionType `json:"connectionType,omitempty"`
+
+	// Custom data to define key/value pairs specific to a VPN provider. This collection can contain a maximum of 25
+	// elements.
+	CustomData *[]KeyValue `json:"customData,omitempty"`
+
+	// Custom data to define key/value pairs specific to a VPN provider. This collection can contain a maximum of 25
+	// elements.
+	CustomKeyValueData *[]KeyValuePair `json:"customKeyValueData,omitempty"`
+
+	// Tenant level settings for the Derived Credentials to be used for authentication.
+	DerivedCredentialSettings *DeviceManagementDerivedCredentialSettings `json:"derivedCredentialSettings,omitempty"`
+
+	// Identity certificate for client authentication when authentication method is certificate.
+	IdentityCertificate *AndroidDeviceOwnerCertificateProfileBase `json:"identityCertificate,omitempty"`
+
+	// Microsoft Tunnel site ID.
+	MicrosoftTunnelSiteId nullable.Type[string] `json:"microsoftTunnelSiteId,omitempty"`
+
+	// List of hosts to exclude using the proxy on connections for. These hosts can use wildcards such as .example.com.
+	ProxyExclusionList *[]string `json:"proxyExclusionList,omitempty"`
+
+	// Proxy server.
+	ProxyServer VpnProxyServer `json:"proxyServer"`
+
+	// Targeted mobile apps. This collection can contain a maximum of 500 elements.
+	TargetedMobileApps *[]AppListItem `json:"targetedMobileApps,omitempty"`
+
+	// Targeted App package IDs.
+	TargetedPackageIds *[]string `json:"targetedPackageIds,omitempty"`
+
+	// Fields inherited from VpnConfiguration
+
+	// VPN Authentication Method.
+	AuthenticationMethod *VpnAuthenticationMethod `json:"authenticationMethod,omitempty"`
+
+	// Connection name displayed to the user.
+	ConnectionName *string `json:"connectionName,omitempty"`
+
+	// Realm when connection type is set to Pulse Secure.
+	Realm nullable.Type[string] `json:"realm,omitempty"`
+
+	// Role when connection type is set to Pulse Secure.
+	Role nullable.Type[string] `json:"role,omitempty"`
+
+	// List of VPN Servers on the network. Make sure end users can access these network locations. This collection can
+	// contain a maximum of 500 elements.
+	Servers *[]VpnServer `json:"servers,omitempty"`
+
+	// Fields inherited from DeviceConfiguration
+
+	// The list of assignments for the device configuration profile.
+	Assignments *[]DeviceConfigurationAssignment `json:"assignments,omitempty"`
+
+	// DateTime the object was created.
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+
+	// Admin provided description of the Device Configuration.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// The device mode applicability rule for this Policy.
+	DeviceManagementApplicabilityRuleDeviceMode *DeviceManagementApplicabilityRuleDeviceMode `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+
+	// The OS edition applicability for this Policy.
+	DeviceManagementApplicabilityRuleOsEdition *DeviceManagementApplicabilityRuleOsEdition `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+
+	// The OS version applicability rule for this Policy.
+	DeviceManagementApplicabilityRuleOsVersion *DeviceManagementApplicabilityRuleOsVersion `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+
+	// Device Configuration Setting State Device Summary
+	DeviceSettingStateSummaries *[]SettingStateDeviceSummary `json:"deviceSettingStateSummaries,omitempty"`
+
+	// Device Configuration devices status overview
+	DeviceStatusOverview *DeviceConfigurationDeviceOverview `json:"deviceStatusOverview,omitempty"`
+
+	// Device configuration installation status by device.
+	DeviceStatuses *[]DeviceConfigurationDeviceStatus `json:"deviceStatuses,omitempty"`
+
+	// Admin provided name of the device configuration.
+	DisplayName *string `json:"displayName,omitempty"`
+
+	// The list of group assignments for the device configuration profile.
+	GroupAssignments *[]DeviceConfigurationGroupAssignment `json:"groupAssignments,omitempty"`
+
+	// DateTime the object was last modified.
+	LastModifiedDateTime *string `json:"lastModifiedDateTime,omitempty"`
+
+	// List of Scope Tags for this Entity instance.
+	RoleScopeTagIds *[]string `json:"roleScopeTagIds,omitempty"`
+
+	// Indicates whether or not the underlying Device Configuration supports the assignment of scope tags. Assigning to the
+	// ScopeTags property is not allowed when this value is false and entities will not be visible to scoped users. This
+	// occurs for Legacy policies created in Silverlight and can be resolved by deleting and recreating the policy in the
+	// Azure Portal. This property is read-only.
+	SupportsScopeTags *bool `json:"supportsScopeTags,omitempty"`
+
+	// Device Configuration users status overview
+	UserStatusOverview *DeviceConfigurationUserOverview `json:"userStatusOverview,omitempty"`
+
+	// Device configuration installation status by user.
+	UserStatuses *[]DeviceConfigurationUserStatus `json:"userStatuses,omitempty"`
+
+	// Version of the device configuration.
+	Version *int64 `json:"version,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

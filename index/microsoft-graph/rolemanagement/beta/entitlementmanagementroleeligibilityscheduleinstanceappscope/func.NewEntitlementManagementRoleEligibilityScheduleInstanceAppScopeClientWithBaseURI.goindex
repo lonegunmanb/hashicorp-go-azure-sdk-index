@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/entitlementmanagementroleeligibilityscheduleinstanceappscope
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewEntitlementManagementRoleEligibilityScheduleInstanceAppScopeClientWithBaseURI(sdkApi sdkEnv.Api) (*EntitlementManagementRoleEligibilityScheduleInstanceAppScopeClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "entitlementmanagementroleeligibilityscheduleinstanceappscope", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating EntitlementManagementRoleEligibilityScheduleInstanceAppScopeClient: %+v", err)
+	}
+
+	return &EntitlementManagementRoleEligibilityScheduleInstanceAppScopeClient{
+		Client: client,
+	}, nil
+}

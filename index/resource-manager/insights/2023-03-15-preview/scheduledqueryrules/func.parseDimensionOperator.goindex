@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2023-03-15-preview/scheduledqueryrules
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDimensionOperator(input string) (*DimensionOperator, error) {
+	vals := map[string]DimensionOperator{
+		"exclude": DimensionOperatorExclude,
+		"include": DimensionOperatorInclude,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DimensionOperator(input)
+	return &out, nil
+}

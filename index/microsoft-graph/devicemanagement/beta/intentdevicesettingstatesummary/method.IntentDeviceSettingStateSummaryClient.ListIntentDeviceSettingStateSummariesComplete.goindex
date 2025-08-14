@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/intentdevicesettingstatesummary
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c IntentDeviceSettingStateSummaryClient) ListIntentDeviceSettingStateSummariesComplete(ctx context.Context, id beta.DeviceManagementIntentId, options ListIntentDeviceSettingStateSummariesOperationOptions) (ListIntentDeviceSettingStateSummariesCompleteResult, error) {
+	return c.ListIntentDeviceSettingStateSummariesCompleteMatchingPredicate(ctx, id, options, DeviceManagementIntentDeviceSettingStateSummaryOperationPredicate{})
+}

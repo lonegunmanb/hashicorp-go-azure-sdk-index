@@ -1,0 +1,40 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *IdentityApiConnector) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+		TargetUrl   nullable.Type[string] `json:"targetUrl,omitempty"`
+		Id          *string               `json:"id,omitempty"`
+		ODataId     *string               `json:"@odata.id,omitempty"`
+		ODataType   *string               `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.DisplayName = decoded.DisplayName
+	s.TargetUrl = decoded.TargetUrl
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling IdentityApiConnector into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["authenticationConfiguration"]; ok {
+		impl, err := UnmarshalApiAuthenticationConfigurationBaseImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'AuthenticationConfiguration' for 'IdentityApiConnector': %+v", err)
+		}
+		s.AuthenticationConfiguration = impl
+	}
+
+	return nil
+}

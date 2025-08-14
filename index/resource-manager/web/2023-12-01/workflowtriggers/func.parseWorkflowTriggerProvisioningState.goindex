@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/workflowtriggers
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWorkflowTriggerProvisioningState(input string) (*WorkflowTriggerProvisioningState, error) {
+	vals := map[string]WorkflowTriggerProvisioningState{
+		"accepted":      WorkflowTriggerProvisioningStateAccepted,
+		"canceled":      WorkflowTriggerProvisioningStateCanceled,
+		"completed":     WorkflowTriggerProvisioningStateCompleted,
+		"created":       WorkflowTriggerProvisioningStateCreated,
+		"creating":      WorkflowTriggerProvisioningStateCreating,
+		"deleted":       WorkflowTriggerProvisioningStateDeleted,
+		"deleting":      WorkflowTriggerProvisioningStateDeleting,
+		"failed":        WorkflowTriggerProvisioningStateFailed,
+		"moving":        WorkflowTriggerProvisioningStateMoving,
+		"notspecified":  WorkflowTriggerProvisioningStateNotSpecified,
+		"ready":         WorkflowTriggerProvisioningStateReady,
+		"registered":    WorkflowTriggerProvisioningStateRegistered,
+		"registering":   WorkflowTriggerProvisioningStateRegistering,
+		"running":       WorkflowTriggerProvisioningStateRunning,
+		"succeeded":     WorkflowTriggerProvisioningStateSucceeded,
+		"unregistered":  WorkflowTriggerProvisioningStateUnregistered,
+		"unregistering": WorkflowTriggerProvisioningStateUnregistering,
+		"updating":      WorkflowTriggerProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WorkflowTriggerProvisioningState(input)
+	return &out, nil
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type DateTimeColumn struct {
+	// How the value should be presented in the UX. Must be one of default, friendly, or standard. See below for more
+	// details. If unspecified, treated as default.
+	DisplayAs nullable.Type[string] `json:"displayAs,omitempty"`
+
+	// Indicates whether the value should be presented as a date only or a date and time. Must be one of dateOnly or
+	// dateTime
+	Format nullable.Type[string] `json:"format,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+}

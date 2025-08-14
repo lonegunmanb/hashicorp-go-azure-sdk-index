@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/customproviders/2018-09-01-preview/customresourceprovider
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseActionRouting(input string) (*ActionRouting, error) {
+	vals := map[string]ActionRouting{
+		"proxy": ActionRoutingProxy,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ActionRouting(input)
+	return &out, nil
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cognitive/2024-10-01/cognitiveservicesaccounts
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseKeyName(input string) (*KeyName, error) {
+	vals := map[string]KeyName{
+		"key1": KeyNameKeyOne,
+		"key2": KeyNameKeyTwo,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := KeyName(input)
+	return &out, nil
+}

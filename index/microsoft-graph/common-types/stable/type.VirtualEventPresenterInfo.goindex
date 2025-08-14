@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type VirtualEventPresenterInfo struct {
+	PresenterDetails *VirtualEventPresenterDetails `json:"presenterDetails,omitempty"`
+
+	// Fields inherited from MeetingParticipantInfo
+
+	// Identity information of the participant.
+	Identity IdentitySet `json:"identity"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Specifies the participant's role in the meeting.
+	Role *OnlineMeetingRole `json:"role,omitempty"`
+
+	// User principal name of the participant.
+	Upn nullable.Type[string] `json:"upn,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

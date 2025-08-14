@@ -1,0 +1,37 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type RoleScopeTag struct {
+	// The list of assignments for this Role Scope Tag.
+	Assignments *[]RoleScopeTagAutoAssignment `json:"assignments,omitempty"`
+
+	// Description of the Role Scope Tag.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// The display or friendly name of the Role Scope Tag.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// Description of the Role Scope Tag. This property is read-only.
+	IsBuiltIn *bool `json:"isBuiltIn,omitempty"`
+
+	// Permissions associated with the Role Scope Tag. This property is read-only.
+	Permissions *[]string `json:"permissions,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

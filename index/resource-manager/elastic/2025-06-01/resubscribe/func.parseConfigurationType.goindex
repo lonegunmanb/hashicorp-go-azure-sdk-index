@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2025-06-01/resubscribe
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseConfigurationType(input string) (*ConfigurationType, error) {
+	vals := map[string]ConfigurationType{
+		"generalpurpose": ConfigurationTypeGeneralPurpose,
+		"notapplicable":  ConfigurationTypeNotApplicable,
+		"timeseries":     ConfigurationTypeTimeSeries,
+		"vector":         ConfigurationTypeVector,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ConfigurationType(input)
+	return &out, nil
+}

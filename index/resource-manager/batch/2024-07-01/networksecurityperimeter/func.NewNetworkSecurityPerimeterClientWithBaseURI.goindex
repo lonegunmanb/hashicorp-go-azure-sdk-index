@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/networksecurityperimeter
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewNetworkSecurityPerimeterClientWithBaseURI(sdkApi sdkEnv.Api) (*NetworkSecurityPerimeterClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "networksecurityperimeter", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating NetworkSecurityPerimeterClient: %+v", err)
+	}
+
+	return &NetworkSecurityPerimeterClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/get
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewGETClientWithBaseURI(sdkApi sdkEnv.Api) (*GETClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "get", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating GETClient: %+v", err)
+	}
+
+	return &GETClient{
+		Client: client,
+	}, nil
+}

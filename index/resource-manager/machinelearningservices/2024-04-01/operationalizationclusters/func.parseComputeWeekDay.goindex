@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/operationalizationclusters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseComputeWeekDay(input string) (*ComputeWeekDay, error) {
+	vals := map[string]ComputeWeekDay{
+		"friday":    ComputeWeekDayFriday,
+		"monday":    ComputeWeekDayMonday,
+		"saturday":  ComputeWeekDaySaturday,
+		"sunday":    ComputeWeekDaySunday,
+		"thursday":  ComputeWeekDayThursday,
+		"tuesday":   ComputeWeekDayTuesday,
+		"wednesday": ComputeWeekDayWednesday,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ComputeWeekDay(input)
+	return &out, nil
+}

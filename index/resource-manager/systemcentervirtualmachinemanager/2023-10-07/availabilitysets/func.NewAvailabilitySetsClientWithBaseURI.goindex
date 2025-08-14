@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/systemcentervirtualmachinemanager/2023-10-07/availabilitysets
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAvailabilitySetsClientWithBaseURI(sdkApi sdkEnv.Api) (*AvailabilitySetsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "availabilitysets", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AvailabilitySetsClient: %+v", err)
+	}
+
+	return &AvailabilitySetsClient{
+		Client: client,
+	}, nil
+}

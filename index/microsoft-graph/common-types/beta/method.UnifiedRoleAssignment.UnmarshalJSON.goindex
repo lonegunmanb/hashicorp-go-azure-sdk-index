@@ -1,0 +1,72 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *UnifiedRoleAssignment) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AppScopeId               nullable.Type[string]  `json:"appScopeId,omitempty"`
+		Condition                nullable.Type[string]  `json:"condition,omitempty"`
+		DirectoryScopeId         nullable.Type[string]  `json:"directoryScopeId,omitempty"`
+		DirectoryScope_ODataBind *string                `json:"directoryScope@odata.bind,omitempty"`
+		PrincipalId              nullable.Type[string]  `json:"principalId,omitempty"`
+		PrincipalOrganizationId  nullable.Type[string]  `json:"principalOrganizationId,omitempty"`
+		Principal_ODataBind      *string                `json:"principal@odata.bind,omitempty"`
+		ResourceScope            nullable.Type[string]  `json:"resourceScope,omitempty"`
+		RoleDefinition           *UnifiedRoleDefinition `json:"roleDefinition,omitempty"`
+		RoleDefinitionId         nullable.Type[string]  `json:"roleDefinitionId,omitempty"`
+		Id                       *string                `json:"id,omitempty"`
+		ODataId                  *string                `json:"@odata.id,omitempty"`
+		ODataType                *string                `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AppScopeId = decoded.AppScopeId
+	s.Condition = decoded.Condition
+	s.DirectoryScopeId = decoded.DirectoryScopeId
+	s.DirectoryScope_ODataBind = decoded.DirectoryScope_ODataBind
+	s.PrincipalId = decoded.PrincipalId
+	s.PrincipalOrganizationId = decoded.PrincipalOrganizationId
+	s.Principal_ODataBind = decoded.Principal_ODataBind
+	s.ResourceScope = decoded.ResourceScope
+	s.RoleDefinition = decoded.RoleDefinition
+	s.RoleDefinitionId = decoded.RoleDefinitionId
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling UnifiedRoleAssignment into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["appScope"]; ok {
+		impl, err := UnmarshalAppScopeImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'AppScope' for 'UnifiedRoleAssignment': %+v", err)
+		}
+		s.AppScope = &impl
+	}
+
+	if v, ok := temp["directoryScope"]; ok {
+		impl, err := UnmarshalDirectoryObjectImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'DirectoryScope' for 'UnifiedRoleAssignment': %+v", err)
+		}
+		s.DirectoryScope = &impl
+	}
+
+	if v, ok := temp["principal"]; ok {
+		impl, err := UnmarshalDirectoryObjectImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Principal' for 'UnifiedRoleAssignment': %+v", err)
+		}
+		s.Principal = &impl
+	}
+
+	return nil
+}

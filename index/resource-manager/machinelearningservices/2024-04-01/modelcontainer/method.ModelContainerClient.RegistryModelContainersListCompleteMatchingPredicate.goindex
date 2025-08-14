@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/modelcontainer
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ModelContainerClient) RegistryModelContainersListCompleteMatchingPredicate(ctx context.Context, id RegistryId, options RegistryModelContainersListOperationOptions, predicate ModelContainerResourceOperationPredicate) (result RegistryModelContainersListCompleteResult, err error) {
+	items := make([]ModelContainerResource, 0)
+
+	resp, err := c.RegistryModelContainersList(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = RegistryModelContainersListCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

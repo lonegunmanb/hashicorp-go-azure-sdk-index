@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cosmosdb/2023-04-15/managedcassandras
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ManagedCassandrasClient) CassandraDataCentersDeleteThenPoll(ctx context.Context, id DataCenterId) error {
+	result, err := c.CassandraDataCentersDelete(ctx, id)
+	if err != nil {
+		return fmt.Errorf("performing CassandraDataCentersDelete: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after CassandraDataCentersDelete: %+v", err)
+	}
+
+	return nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/drivefollowingcontentstream
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDriveFollowingContentStreamClientWithBaseURI(sdkApi sdkEnv.Api) (*DriveFollowingContentStreamClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "drivefollowingcontentstream", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DriveFollowingContentStreamClient: %+v", err)
+	}
+
+	return &DriveFollowingContentStreamClient{
+		Client: client,
+	}, nil
+}

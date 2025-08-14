@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type EnumeratedDomains struct {
+	// List of federated or managed root domains that Microsoft Entra ID validates.
+	DomainNames *[]string `json:"domainNames,omitempty"`
+
+	// Fields inherited from ValidatingDomains
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	RootDomains *RootDomains `json:"rootDomains,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

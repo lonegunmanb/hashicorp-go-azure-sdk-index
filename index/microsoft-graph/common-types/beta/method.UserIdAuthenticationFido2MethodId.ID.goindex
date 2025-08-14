@@ -1,0 +1,11 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id UserIdAuthenticationFido2MethodId) ID() string {
+	fmtString := "/users/%s/authentication/fido2Methods/%s"
+	return fmt.Sprintf(fmtString, id.UserId, id.Fido2AuthenticationMethodId)
+}

@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ManagedTenantsTemplateParameter struct {
+	// The description for the template parameter. Optional. Read-only.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// The display name for the template parameter. Required. Read-only.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// The allowed values for the template parameter represented by a serialized string of JSON. Optional. Read-only.
+	JsonAllowedValues nullable.Type[string] `json:"jsonAllowedValues,omitempty"`
+
+	// The default value for the template parameter represented by a serialized string of JSON. Required. Read-only.
+	JsonDefaultValue nullable.Type[string] `json:"jsonDefaultValue,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	ValueType *ManagedTenantsManagementParameterValueType `json:"valueType,omitempty"`
+}

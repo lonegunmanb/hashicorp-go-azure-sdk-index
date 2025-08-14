@@ -1,0 +1,73 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationprotecteditems
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalUnplannedFailoverProviderSpecificInputImplementation(input []byte) (UnplannedFailoverProviderSpecificInput, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling UnplannedFailoverProviderSpecificInput into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["instanceType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "A2A") {
+		var out A2AUnplannedFailoverInput
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into A2AUnplannedFailoverInput: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "HyperVReplicaAzure") {
+		var out HyperVReplicaAzureUnplannedFailoverInput
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into HyperVReplicaAzureUnplannedFailoverInput: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "InMageAzureV2") {
+		var out InMageAzureV2UnplannedFailoverInput
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into InMageAzureV2UnplannedFailoverInput: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "InMageRcm") {
+		var out InMageRcmUnplannedFailoverInput
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into InMageRcmUnplannedFailoverInput: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "InMage") {
+		var out InMageUnplannedFailoverInput
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into InMageUnplannedFailoverInput: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseUnplannedFailoverProviderSpecificInputImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseUnplannedFailoverProviderSpecificInputImpl: %+v", err)
+	}
+
+	return RawUnplannedFailoverProviderSpecificInputImpl{
+		unplannedFailoverProviderSpecificInput: parent,
+		Type:                                   value,
+		Values:                                 temp,
+	}, nil
+
+}

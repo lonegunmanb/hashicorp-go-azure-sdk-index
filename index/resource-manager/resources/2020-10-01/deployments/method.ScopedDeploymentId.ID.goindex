@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-10-01/deployments
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ScopedDeploymentId) ID() string {
+	fmtString := "/%s/providers/Microsoft.Resources/deployments/%s"
+	return fmt.Sprintf(fmtString, strings.TrimPrefix(id.Scope, "/"), id.DeploymentName)
+}

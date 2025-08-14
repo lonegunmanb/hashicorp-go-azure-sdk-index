@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/networkcloud/2025-02-01/networkclouds
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseHybridAksPluginType(input string) (*HybridAksPluginType, error) {
+	vals := map[string]HybridAksPluginType{
+		"dpdk":     HybridAksPluginTypeDPDK,
+		"osdevice": HybridAksPluginTypeOSDevice,
+		"sriov":    HybridAksPluginTypeSRIOV,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := HybridAksPluginType(input)
+	return &out, nil
+}

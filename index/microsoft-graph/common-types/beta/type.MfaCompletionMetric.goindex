@@ -1,0 +1,46 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type MfaCompletionMetric struct {
+	// The ID of the Microsoft Entra application. Supports $filter (eq).
+	AppId nullable.Type[string] `json:"appId,omitempty"`
+
+	// Number of users who attempted to sign up. Supports $filter (eq).
+	AttemptsCount *int64 `json:"attemptsCount,omitempty"`
+
+	Country nullable.Type[string] `json:"country,omitempty"`
+
+	// The date of the user insight.
+	FactDate nullable.Type[string] `json:"factDate,omitempty"`
+
+	IdentityProvider nullable.Type[string] `json:"identityProvider,omitempty"`
+	Language         nullable.Type[string] `json:"language,omitempty"`
+	MfaFailures      *[]MfaFailure         `json:"mfaFailures,omitempty"`
+
+	// The MFA authentication method used by the customers. Supports $filter (eq).
+	MfaMethod nullable.Type[string] `json:"mfaMethod,omitempty"`
+
+	// The platform of the device that the customers used. Supports $filter (eq).
+	Os nullable.Type[string] `json:"os,omitempty"`
+
+	// Number of users who signed up successfully. Supports $filter (eq).
+	SuccessCount *int64 `json:"successCount,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

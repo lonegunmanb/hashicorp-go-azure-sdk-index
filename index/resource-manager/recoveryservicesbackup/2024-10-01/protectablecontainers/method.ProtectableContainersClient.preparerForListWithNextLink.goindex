@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2024-10-01/protectablecontainers
+import (
+	"context"
+	"fmt"
+	"net/http"
+	"net/url"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+)
+func (c ProtectableContainersClient) preparerForListWithNextLink(ctx context.Context, nextLink string) (*http.Request, error) {
+	uri, err := url.Parse(nextLink)
+	if err != nil {
+		return nil, fmt.Errorf("parsing nextLink %q: %+v", nextLink, err)
+	}
+	queryParameters := map[string]interface{}{}
+	for k, v := range uri.Query() {
+		if len(v) == 0 {
+			continue
+		}
+		val := v[0]
+		val = autorest.Encode("query", val)
+		queryParameters[k] = val
+	}
+
+	preparer := autorest.CreatePreparer(
+		autorest.AsContentType("application/json; charset=utf-8"),
+		autorest.AsGet(),
+		autorest.WithBaseURL(c.baseUri),
+		autorest.WithPath(uri.Path),
+		autorest.WithQueryParameters(queryParameters))
+	return preparer.Prepare((&http.Request{}).WithContext(ctx))
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/kubernetesconfiguration/2023-05-01/sourcecontrolconfiguration
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *ScopedSourceControlConfigurationId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.Scope, ok = input.Parsed["scope"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "scope", input)
+	}
+
+	if id.SourceControlConfigurationName, ok = input.Parsed["sourceControlConfigurationName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "sourceControlConfigurationName", input)
+	}
+
+	return nil
+}

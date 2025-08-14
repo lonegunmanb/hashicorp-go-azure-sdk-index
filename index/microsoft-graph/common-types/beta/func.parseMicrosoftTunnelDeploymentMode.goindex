@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMicrosoftTunnelDeploymentMode(input string) (*MicrosoftTunnelDeploymentMode, error) {
+	vals := map[string]MicrosoftTunnelDeploymentMode{
+		"podrootful":         MicrosoftTunnelDeploymentMode_PodRootful,
+		"podrootless":        MicrosoftTunnelDeploymentMode_PodRootless,
+		"standalonerootful":  MicrosoftTunnelDeploymentMode_StandaloneRootful,
+		"standalonerootless": MicrosoftTunnelDeploymentMode_StandaloneRootless,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MicrosoftTunnelDeploymentMode(input)
+	return &out, nil
+}

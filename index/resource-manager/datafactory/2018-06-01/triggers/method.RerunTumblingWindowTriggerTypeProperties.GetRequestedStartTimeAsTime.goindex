@@ -1,0 +1,9 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/triggers
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *RerunTumblingWindowTriggerTypeProperties) GetRequestedStartTimeAsTime() (*time.Time, error) {
+	return dates.ParseAsFormat(&o.RequestedStartTime, "2006-01-02T15:04:05Z07:00")
+}

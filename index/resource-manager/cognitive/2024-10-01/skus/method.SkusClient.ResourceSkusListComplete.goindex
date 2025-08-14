@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cognitive/2024-10-01/skus
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SkusClient) ResourceSkusListComplete(ctx context.Context, id commonids.SubscriptionId) (ResourceSkusListCompleteResult, error) {
+	return c.ResourceSkusListCompleteMatchingPredicate(ctx, id, ResourceSkuOperationPredicate{})
+}

@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type SecurityCustomAction struct {
+	// Name of the custom action.
+	Name nullable.Type[string] `json:"name,omitempty"`
+
+	// Properties, in key-value pair format, of the action.
+	Properties *[]SecurityKeyValuePair `json:"properties,omitempty"`
+
+	// Fields inherited from SecurityInformationProtectionAction
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

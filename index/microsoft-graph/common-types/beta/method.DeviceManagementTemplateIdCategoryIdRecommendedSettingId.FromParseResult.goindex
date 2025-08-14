@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *DeviceManagementTemplateIdCategoryIdRecommendedSettingId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.DeviceManagementTemplateId, ok = input.Parsed["deviceManagementTemplateId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "deviceManagementTemplateId", input)
+	}
+
+	if id.DeviceManagementTemplateSettingCategoryId, ok = input.Parsed["deviceManagementTemplateSettingCategoryId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "deviceManagementTemplateSettingCategoryId", input)
+	}
+
+	if id.DeviceManagementSettingInstanceId, ok = input.Parsed["deviceManagementSettingInstanceId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "deviceManagementSettingInstanceId", input)
+	}
+
+	return nil
+}

@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/maintenance/2023-04-01/applyupdates
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ScopedApplyUpdateId) String() string {
+	components := []string{
+		fmt.Sprintf("Scope: %q", id.Scope),
+		fmt.Sprintf("Apply Update Name: %q", id.ApplyUpdateName),
+	}
+	return fmt.Sprintf("Scoped Apply Update (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2024-09-01/workloadnetworksegments
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c WorkloadNetworkSegmentsClient) WorkloadNetworksListSegmentsComplete(ctx context.Context, id PrivateCloudId) (WorkloadNetworksListSegmentsCompleteResult, error) {
+	return c.WorkloadNetworksListSegmentsCompleteMatchingPredicate(ctx, id, WorkloadNetworkSegmentOperationPredicate{})
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datalakeanalytics/2016-11-01/datalakestoreaccounts
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDataLakeStoreAccountsClientWithBaseURI(sdkApi sdkEnv.Api) (*DataLakeStoreAccountsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "datalakestoreaccounts", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DataLakeStoreAccountsClient: %+v", err)
+	}
+
+	return &DataLakeStoreAccountsClient{
+		Client: client,
+	}, nil
+}

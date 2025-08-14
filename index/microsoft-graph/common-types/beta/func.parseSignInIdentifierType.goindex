@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSignInIdentifierType(input string) (*SignInIdentifierType, error) {
+	vals := map[string]SignInIdentifierType{
+		"onpremisesuserprincipalname": SignInIdentifierType_OnPremisesUserPrincipalName,
+		"phonenumber":                 SignInIdentifierType_PhoneNumber,
+		"proxyaddress":                SignInIdentifierType_ProxyAddress,
+		"qrcode":                      SignInIdentifierType_QrCode,
+		"userprincipalname":           SignInIdentifierType_UserPrincipalName,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SignInIdentifierType(input)
+	return &out, nil
+}

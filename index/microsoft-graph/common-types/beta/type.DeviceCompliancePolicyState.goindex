@@ -1,0 +1,43 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type DeviceCompliancePolicyState struct {
+	// The name of the policy for this policyBase
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// Supported platform types for policies.
+	PlatformType *PolicyPlatformType `json:"platformType,omitempty"`
+
+	// Count of how many setting a policy holds
+	SettingCount *int64 `json:"settingCount,omitempty"`
+
+	SettingStates *[]DeviceCompliancePolicySettingState `json:"settingStates,omitempty"`
+	State         *ComplianceStatus                     `json:"state,omitempty"`
+
+	// User unique identifier, must be Guid
+	UserId nullable.Type[string] `json:"userId,omitempty"`
+
+	// User Principal Name
+	UserPrincipalName nullable.Type[string] `json:"userPrincipalName,omitempty"`
+
+	// The version of the policy
+	Version *int64 `json:"version,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

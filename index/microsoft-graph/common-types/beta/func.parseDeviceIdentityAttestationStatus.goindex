@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeviceIdentityAttestationStatus(input string) (*DeviceIdentityAttestationStatus, error) {
+	vals := map[string]DeviceIdentityAttestationStatus{
+		"incompletedata": DeviceIdentityAttestationStatus_IncompleteData,
+		"notsupported":   DeviceIdentityAttestationStatus_NotSupported,
+		"trusted":        DeviceIdentityAttestationStatus_Trusted,
+		"untrusted":      DeviceIdentityAttestationStatus_UnTrusted,
+		"unknown":        DeviceIdentityAttestationStatus_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceIdentityAttestationStatus(input)
+	return &out, nil
+}

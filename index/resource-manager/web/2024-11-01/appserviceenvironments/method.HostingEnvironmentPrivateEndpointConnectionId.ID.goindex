@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-11-01/appserviceenvironments
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id HostingEnvironmentPrivateEndpointConnectionId) ID() string {
+	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Web/hostingEnvironments/%s/privateEndpointConnections/%s"
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.HostingEnvironmentName, id.PrivateEndpointConnectionName)
+}

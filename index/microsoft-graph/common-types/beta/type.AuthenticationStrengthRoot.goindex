@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type AuthenticationStrengthRoot struct {
+	// A collection of all valid authentication method combinations in the system.
+	AuthenticationCombinations *[]AuthenticationMethodModes `json:"authenticationCombinations,omitempty"`
+
+	// Names and descriptions of all valid authentication method modes in the system.
+	AuthenticationMethodModes *[]AuthenticationMethodModeDetail `json:"authenticationMethodModes,omitempty"`
+
+	Combinations *[]AuthenticationMethodModes `json:"combinations,omitempty"`
+
+	// A collection of authentication strength policies that exist for this tenant, including both built-in and custom
+	// policies.
+	Policies *[]AuthenticationStrengthPolicy `json:"policies,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

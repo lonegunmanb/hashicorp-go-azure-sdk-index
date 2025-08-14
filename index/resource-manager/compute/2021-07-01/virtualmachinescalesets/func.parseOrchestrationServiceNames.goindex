@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2021-07-01/virtualmachinescalesets
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseOrchestrationServiceNames(input string) (*OrchestrationServiceNames, error) {
+	vals := map[string]OrchestrationServiceNames{
+		"automaticrepairs": OrchestrationServiceNamesAutomaticRepairs,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := OrchestrationServiceNames(input)
+	return &out, nil
+}

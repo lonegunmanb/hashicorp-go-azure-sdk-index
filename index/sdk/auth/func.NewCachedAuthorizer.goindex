@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"context"
+	"fmt"
+	"net/http"
+	"sync"
+	"time"
+
+	"golang.org/x/oauth2"
+)
+func NewCachedAuthorizer(src Authorizer) (CachingAuthorizer, error) {
+	if _, ok := src.(*SharedKeyAuthorizer); ok {
+		return nil, fmt.Errorf("internal-error: SharedKeyAuthorizer cannot be cached")
+	}
+	return &CachedAuthorizer{
+		Source: src,
+	}, nil
+}

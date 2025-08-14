@@ -1,0 +1,48 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *ServiceNowConnection) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		CreatedDateTime            nullable.Type[string]       `json:"createdDateTime,omitempty"`
+		IncidentApiUrl             nullable.Type[string]       `json:"incidentApiUrl,omitempty"`
+		InstanceUrl                nullable.Type[string]       `json:"instanceUrl,omitempty"`
+		LastModifiedDateTime       nullable.Type[string]       `json:"lastModifiedDateTime,omitempty"`
+		LastQueriedDateTime        nullable.Type[string]       `json:"lastQueriedDateTime,omitempty"`
+		ServiceNowConnectionStatus *ServiceNowConnectionStatus `json:"serviceNowConnectionStatus,omitempty"`
+		Id                         *string                     `json:"id,omitempty"`
+		ODataId                    *string                     `json:"@odata.id,omitempty"`
+		ODataType                  *string                     `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.IncidentApiUrl = decoded.IncidentApiUrl
+	s.InstanceUrl = decoded.InstanceUrl
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.LastQueriedDateTime = decoded.LastQueriedDateTime
+	s.ServiceNowConnectionStatus = decoded.ServiceNowConnectionStatus
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling ServiceNowConnection into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["authenticationMethod"]; ok {
+		impl, err := UnmarshalServiceNowAuthenticationMethodImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'AuthenticationMethod' for 'ServiceNowConnection': %+v", err)
+		}
+		s.AuthenticationMethod = impl
+	}
+
+	return nil
+}

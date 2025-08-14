@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseLocalSecurityOptionsAdministratorElevationPromptBehaviorType(input string) (*LocalSecurityOptionsAdministratorElevationPromptBehaviorType, error) {
+	vals := map[string]LocalSecurityOptionsAdministratorElevationPromptBehaviorType{
+		"elevatewithoutprompting":                LocalSecurityOptionsAdministratorElevationPromptBehaviorType_ElevateWithoutPrompting,
+		"notconfigured":                          LocalSecurityOptionsAdministratorElevationPromptBehaviorType_NotConfigured,
+		"promptforconsent":                       LocalSecurityOptionsAdministratorElevationPromptBehaviorType_PromptForConsent,
+		"promptforconsentfornonwindowsbinaries":  LocalSecurityOptionsAdministratorElevationPromptBehaviorType_PromptForConsentForNonWindowsBinaries,
+		"promptforconsentonthesecuredesktop":     LocalSecurityOptionsAdministratorElevationPromptBehaviorType_PromptForConsentOnTheSecureDesktop,
+		"promptforcredentials":                   LocalSecurityOptionsAdministratorElevationPromptBehaviorType_PromptForCredentials,
+		"promptforcredentialsonthesecuredesktop": LocalSecurityOptionsAdministratorElevationPromptBehaviorType_PromptForCredentialsOnTheSecureDesktop,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := LocalSecurityOptionsAdministratorElevationPromptBehaviorType(input)
+	return &out, nil
+}

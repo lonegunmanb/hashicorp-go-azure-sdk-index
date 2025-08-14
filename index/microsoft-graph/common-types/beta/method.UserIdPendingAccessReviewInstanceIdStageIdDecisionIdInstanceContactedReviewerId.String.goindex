@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id UserIdPendingAccessReviewInstanceIdStageIdDecisionIdInstanceContactedReviewerId) String() string {
+	components := []string{
+		fmt.Sprintf("User: %q", id.UserId),
+		fmt.Sprintf("Access Review Instance: %q", id.AccessReviewInstanceId),
+		fmt.Sprintf("Access Review Stage: %q", id.AccessReviewStageId),
+		fmt.Sprintf("Access Review Instance Decision Item: %q", id.AccessReviewInstanceDecisionItemId),
+		fmt.Sprintf("Access Review Reviewer: %q", id.AccessReviewReviewerId),
+	}
+	return fmt.Sprintf("User Id Pending Access Review Instance Id Stage Id Decision Id Instance Contacted Reviewer (%s)", strings.Join(components, "\n"))
+}

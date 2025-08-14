@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s DepMacOSEnrollmentProfile) EnrollmentProfile() BaseEnrollmentProfileImpl {
+	return BaseEnrollmentProfileImpl{
+		ConfigurationEndpointUrl:             s.ConfigurationEndpointUrl,
+		Description:                          s.Description,
+		DisplayName:                          s.DisplayName,
+		EnableAuthenticationViaCompanyPortal: s.EnableAuthenticationViaCompanyPortal,
+		RequireCompanyPortalOnSetupAssistantEnrolledDevices: s.RequireCompanyPortalOnSetupAssistantEnrolledDevices,
+		RequiresUserAuthentication:                          s.RequiresUserAuthentication,
+		Id:                                                  s.Id,
+		ODataId:                                             s.ODataId,
+		ODataType:                                           s.ODataType,
+	}
+}

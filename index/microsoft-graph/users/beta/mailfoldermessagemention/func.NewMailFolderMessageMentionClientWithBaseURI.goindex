@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/mailfoldermessagemention
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewMailFolderMessageMentionClientWithBaseURI(sdkApi sdkEnv.Api) (*MailFolderMessageMentionClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "mailfoldermessagemention", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating MailFolderMessageMentionClient: %+v", err)
+	}
+
+	return &MailFolderMessageMentionClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *IdentityGovernanceLifecycleWorkflowWorkflowIdVersionId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.WorkflowId, ok = input.Parsed["workflowId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "workflowId", input)
+	}
+
+	if id.WorkflowVersionVersionNumber, ok = input.Parsed["workflowVersionVersionNumber"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "workflowVersionVersionNumber", input)
+	}
+
+	return nil
+}

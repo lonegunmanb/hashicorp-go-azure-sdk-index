@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/comanageddevicesecuritybaselinestatesettingstate
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewComanagedDeviceSecurityBaselineStateSettingStateClientWithBaseURI(sdkApi sdkEnv.Api) (*ComanagedDeviceSecurityBaselineStateSettingStateClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "comanageddevicesecuritybaselinestatesettingstate", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ComanagedDeviceSecurityBaselineStateSettingStateClient: %+v", err)
+	}
+
+	return &ComanagedDeviceSecurityBaselineStateSettingStateClient{
+		Client: client,
+	}, nil
+}

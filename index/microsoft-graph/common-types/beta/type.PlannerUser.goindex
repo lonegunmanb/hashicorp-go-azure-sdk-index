@@ -1,0 +1,45 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type PlannerUser struct {
+	All *[]PlannerDelta `json:"all,omitempty"`
+
+	// A collection that contains the references to the plans that the user marked as favorites.
+	FavoritePlanReferences *PlannerFavoritePlanReferenceCollection `json:"favoritePlanReferences,omitempty"`
+
+	// Read-only. Nullable. Returns the plannerPlans that the user marked as favorites.
+	FavoritePlans *[]PlannerPlan `json:"favoritePlans,omitempty"`
+
+	// Read-only. Nullable. Returns the plannerTasks to be shown in the My Day view of the user.
+	MyDayTasks *[]PlannerTask `json:"myDayTasks,omitempty"`
+
+	Plans *[]PlannerPlan `json:"plans,omitempty"`
+
+	// A collection that contains references to the plans that the user recently viewed in apps that support recent plans.
+	RecentPlanReferences *PlannerRecentPlanReferenceCollection `json:"recentPlanReferences,omitempty"`
+
+	// Read-only. Nullable. Returns the plannerPlans that the user recently viewed in apps that support recent plans.
+	RecentPlans *[]PlannerPlan `json:"recentPlans,omitempty"`
+
+	// Read-only. Nullable. Returns the plannerPlans contained by the plannerRosters the user is a member.
+	RosterPlans *[]PlannerPlan `json:"rosterPlans,omitempty"`
+
+	// Read-only. Nullable. Returns the plannerTasks assigned to the user.
+	Tasks *[]PlannerTask `json:"tasks,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

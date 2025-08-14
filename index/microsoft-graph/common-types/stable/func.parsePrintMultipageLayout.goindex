@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePrintMultipageLayout(input string) (*PrintMultipageLayout, error) {
+	vals := map[string]PrintMultipageLayout{
+		"clockwisefrombottomleft":         PrintMultipageLayout_ClockwiseFromBottomLeft,
+		"clockwisefrombottomright":        PrintMultipageLayout_ClockwiseFromBottomRight,
+		"clockwisefromtopleft":            PrintMultipageLayout_ClockwiseFromTopLeft,
+		"clockwisefromtopright":           PrintMultipageLayout_ClockwiseFromTopRight,
+		"counterclockwisefrombottomleft":  PrintMultipageLayout_CounterclockwiseFromBottomLeft,
+		"counterclockwisefrombottomright": PrintMultipageLayout_CounterclockwiseFromBottomRight,
+		"counterclockwisefromtopleft":     PrintMultipageLayout_CounterclockwiseFromTopLeft,
+		"counterclockwisefromtopright":    PrintMultipageLayout_CounterclockwiseFromTopRight,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PrintMultipageLayout(input)
+	return &out, nil
+}

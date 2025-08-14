@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mongocluster/2024-07-01/privatelinks
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id MongoClusterId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Mongo Cluster Name: %q", id.MongoClusterName),
+	}
+	return fmt.Sprintf("Mongo Cluster (%s)", strings.Join(components, "\n"))
+}

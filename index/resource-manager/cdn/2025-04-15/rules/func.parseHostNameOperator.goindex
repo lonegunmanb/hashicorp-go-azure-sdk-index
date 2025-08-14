@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-04-15/rules
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseHostNameOperator(input string) (*HostNameOperator, error) {
+	vals := map[string]HostNameOperator{
+		"any":                HostNameOperatorAny,
+		"beginswith":         HostNameOperatorBeginsWith,
+		"contains":           HostNameOperatorContains,
+		"endswith":           HostNameOperatorEndsWith,
+		"equal":              HostNameOperatorEqual,
+		"greaterthan":        HostNameOperatorGreaterThan,
+		"greaterthanorequal": HostNameOperatorGreaterThanOrEqual,
+		"lessthan":           HostNameOperatorLessThan,
+		"lessthanorequal":    HostNameOperatorLessThanOrEqual,
+		"regex":              HostNameOperatorRegEx,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := HostNameOperator(input)
+	return &out, nil
+}

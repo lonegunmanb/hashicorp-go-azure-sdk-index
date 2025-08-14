@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2023-01-01/actiongroupsapis
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id NotificationStatusId) ID() string {
+	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Insights/actionGroups/%s/notificationStatus/%s"
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.ActionGroupName, id.NotificationId)
+}

@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerapps/2023-05-01/containerappssourcecontrols
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ContainerAppsSourceControlsClient) ListByContainerAppComplete(ctx context.Context, id ContainerAppId) (ListByContainerAppCompleteResult, error) {
+	return c.ListByContainerAppCompleteMatchingPredicate(ctx, id, SourceControlOperationPredicate{})
+}

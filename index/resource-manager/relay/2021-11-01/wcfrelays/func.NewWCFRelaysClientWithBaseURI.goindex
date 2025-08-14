@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/relay/2021-11-01/wcfrelays
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewWCFRelaysClientWithBaseURI(sdkApi sdkEnv.Api) (*WCFRelaysClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "wcfrelays", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating WCFRelaysClient: %+v", err)
+	}
+
+	return &WCFRelaysClient{
+		Client: client,
+	}, nil
+}

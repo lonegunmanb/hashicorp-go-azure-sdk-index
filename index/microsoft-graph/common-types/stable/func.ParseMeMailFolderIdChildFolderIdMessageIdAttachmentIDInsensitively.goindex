@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseMeMailFolderIdChildFolderIdMessageIdAttachmentIDInsensitively(input string) (*MeMailFolderIdChildFolderIdMessageIdAttachmentId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&MeMailFolderIdChildFolderIdMessageIdAttachmentId{})
+	parsed, err := parser.Parse(input, true)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := MeMailFolderIdChildFolderIdMessageIdAttachmentId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

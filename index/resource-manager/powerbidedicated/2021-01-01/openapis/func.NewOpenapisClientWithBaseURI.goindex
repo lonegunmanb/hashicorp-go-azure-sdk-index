@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/powerbidedicated/2021-01-01/openapis
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewOpenapisClientWithBaseURI(sdkApi sdkEnv.Api) (*OpenapisClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "openapis", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating OpenapisClient: %+v", err)
+	}
+
+	return &OpenapisClient{
+		Client: client,
+	}, nil
+}

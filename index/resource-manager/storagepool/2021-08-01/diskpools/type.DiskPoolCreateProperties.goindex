@@ -1,0 +1,10 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagepool/2021-08-01/diskpools
+import (
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+type DiskPoolCreateProperties struct {
+	AdditionalCapabilities *[]string     `json:"additionalCapabilities,omitempty"`
+	AvailabilityZones      *zones.Schema `json:"availabilityZones,omitempty"`
+	Disks                  *[]Disk       `json:"disks,omitempty"`
+	SubnetId               string        `json:"subnetId"`
+}

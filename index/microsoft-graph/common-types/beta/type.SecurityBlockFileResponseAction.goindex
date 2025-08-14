@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type SecurityBlockFileResponseAction struct {
+	// Device groups to which the actions set in the custom detection rule are applied. More information
+	DeviceGroupNames *[]string `json:"deviceGroupNames,omitempty"`
+
+	Identifier *SecurityFileEntityIdentifier `json:"identifier,omitempty"`
+
+	// Fields inherited from SecurityResponseAction
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

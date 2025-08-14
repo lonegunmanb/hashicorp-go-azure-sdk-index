@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2025-07-01/resourceguards
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewResourceGuardsClientWithBaseURI(sdkApi sdkEnv.Api) (*ResourceGuardsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "resourceguards", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ResourceGuardsClient: %+v", err)
+	}
+
+	return &ResourceGuardsClient{
+		Client: client,
+	}, nil
+}

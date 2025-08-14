@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/alertsmanagement/2019-06-01/smartdetectoralertrules
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAlertRuleState(input string) (*AlertRuleState, error) {
+	vals := map[string]AlertRuleState{
+		"disabled": AlertRuleStateDisabled,
+		"enabled":  AlertRuleStateEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AlertRuleState(input)
+	return &out, nil
+}

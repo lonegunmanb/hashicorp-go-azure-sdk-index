@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/siteinformationprotectionpolicylabel
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SiteInformationProtectionPolicyLabelClient) EvaluateSiteInformationProtectionPolicyLabelsRemovalsComplete(ctx context.Context, id beta.GroupIdSiteId, input EvaluateSiteInformationProtectionPolicyLabelsRemovalsRequest, options EvaluateSiteInformationProtectionPolicyLabelsRemovalsOperationOptions) (EvaluateSiteInformationProtectionPolicyLabelsRemovalsCompleteResult, error) {
+	return c.EvaluateSiteInformationProtectionPolicyLabelsRemovalsCompleteMatchingPredicate(ctx, id, input, options, InformationProtectionActionOperationPredicate{})
+}

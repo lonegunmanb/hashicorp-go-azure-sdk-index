@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerregistry/2023-11-01-preview/cacherules
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id CacheRuleId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.StaticSegment("staticSubscriptions", "subscriptions", "subscriptions"),
+		resourceids.SubscriptionIdSegment("subscriptionId", "12345678-1234-9876-4563-123456789012"),
+		resourceids.StaticSegment("staticResourceGroups", "resourceGroups", "resourceGroups"),
+		resourceids.ResourceGroupSegment("resourceGroupName", "example-resource-group"),
+		resourceids.StaticSegment("staticProviders", "providers", "providers"),
+		resourceids.ResourceProviderSegment("staticMicrosoftContainerRegistry", "Microsoft.ContainerRegistry", "Microsoft.ContainerRegistry"),
+		resourceids.StaticSegment("staticRegistries", "registries", "registries"),
+		resourceids.UserSpecifiedSegment("registryName", "registryName"),
+		resourceids.StaticSegment("staticCacheRules", "cacheRules", "cacheRules"),
+		resourceids.UserSpecifiedSegment("cacheRuleName", "cacheRuleName"),
+	}
+}

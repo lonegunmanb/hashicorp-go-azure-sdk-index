@@ -1,0 +1,176 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type IosEasEmailProfileConfiguration struct {
+	// Account name.
+	AccountName *string `json:"accountName,omitempty"`
+
+	// Authentication method for this Email profile. Possible values are: usernameAndPassword, certificate,
+	// derivedCredential.
+	AuthenticationMethod *EasAuthenticationMethod `json:"authenticationMethod,omitempty"`
+
+	// Indicates whether or not to block moving messages to other email accounts.
+	BlockMovingMessagesToOtherEmailAccounts nullable.Type[bool] `json:"blockMovingMessagesToOtherEmailAccounts,omitempty"`
+
+	// Indicates whether or not to block sending email from third party apps.
+	BlockSendingEmailFromThirdPartyApps nullable.Type[bool] `json:"blockSendingEmailFromThirdPartyApps,omitempty"`
+
+	// Indicates whether or not to block syncing recently used email addresses, for instance - when composing new email.
+	BlockSyncingRecentlyUsedEmailAddresses nullable.Type[bool] `json:"blockSyncingRecentlyUsedEmailAddresses,omitempty"`
+
+	// Tenant level settings for the Derived Credentials to be used for authentication.
+	DerivedCredentialSettings *DeviceManagementDerivedCredentialSettings `json:"derivedCredentialSettings,omitempty"`
+
+	// Possible values for email sync duration.
+	DurationOfEmailToSync *EmailSyncDuration `json:"durationOfEmailToSync,omitempty"`
+
+	// Exchange data to sync. Possible values are: none, calendars, contacts, email, notes, reminders.
+	EasServices *EasServices `json:"easServices,omitempty"`
+
+	// Allow users to change sync settings.
+	EasServicesUserOverrideEnabled nullable.Type[bool] `json:"easServicesUserOverrideEnabled,omitempty"`
+
+	// Possible values for username source or email source.
+	EmailAddressSource *UserEmailSource `json:"emailAddressSource,omitempty"`
+
+	// Encryption Certificate type for this Email profile. Possible values are: none, certificate, derivedCredential.
+	EncryptionCertificateType *EmailCertificateType `json:"encryptionCertificateType,omitempty"`
+
+	// Exchange location that (URL) that the native mail app connects to.
+	HostName *string `json:"hostName,omitempty"`
+
+	// Identity certificate.
+	IdentityCertificate *IosCertificateProfileBase `json:"identityCertificate,omitempty"`
+
+	// Profile ID of the Per-App VPN policy to be used to access emails from the native Mail client
+	PerAppVPNProfileId nullable.Type[string] `json:"perAppVPNProfileId,omitempty"`
+
+	// Indicates whether or not to use S/MIME certificate.
+	RequireSmime nullable.Type[bool] `json:"requireSmime,omitempty"`
+
+	// Indicates whether or not to use SSL.
+	RequireSsl *bool `json:"requireSsl,omitempty"`
+
+	// Signing Certificate type for this Email profile. Possible values are: none, certificate, derivedCredential.
+	SigningCertificateType *EmailCertificateType `json:"signingCertificateType,omitempty"`
+
+	// Indicates whether or not to allow unencrypted emails.
+	SmimeEnablePerMessageSwitch nullable.Type[bool] `json:"smimeEnablePerMessageSwitch,omitempty"`
+
+	// If set to true S/MIME encryption is enabled by default.
+	SmimeEncryptByDefaultEnabled nullable.Type[bool] `json:"smimeEncryptByDefaultEnabled,omitempty"`
+
+	// If set to true, the user can toggle the encryption by default setting.
+	SmimeEncryptByDefaultUserOverrideEnabled nullable.Type[bool] `json:"smimeEncryptByDefaultUserOverrideEnabled,omitempty"`
+
+	// S/MIME encryption certificate.
+	SmimeEncryptionCertificate *IosCertificateProfile `json:"smimeEncryptionCertificate,omitempty"`
+
+	// If set to true the user can select the S/MIME encryption identity.
+	SmimeEncryptionCertificateUserOverrideEnabled nullable.Type[bool] `json:"smimeEncryptionCertificateUserOverrideEnabled,omitempty"`
+
+	// S/MIME signing certificate.
+	SmimeSigningCertificate *IosCertificateProfile `json:"smimeSigningCertificate,omitempty"`
+
+	// If set to true, the user can select the signing identity.
+	SmimeSigningCertificateUserOverrideEnabled nullable.Type[bool] `json:"smimeSigningCertificateUserOverrideEnabled,omitempty"`
+
+	// If set to true S/MIME signing is enabled for this account
+	SmimeSigningEnabled nullable.Type[bool] `json:"smimeSigningEnabled,omitempty"`
+
+	// If set to true, the user can toggle S/MIME signing on or off.
+	SmimeSigningUserOverrideEnabled nullable.Type[bool] `json:"smimeSigningUserOverrideEnabled,omitempty"`
+
+	// Specifies whether the connection should use OAuth for authentication.
+	UseOAuth nullable.Type[bool] `json:"useOAuth,omitempty"`
+
+	// Fields inherited from EasEmailProfileConfigurationBase
+
+	// Custom domain name value used while generating an email profile before installing on the device.
+	CustomDomainName nullable.Type[string] `json:"customDomainName,omitempty"`
+
+	// UserDomainname attribute that is picked from AAD and injected into this profile before installing on the device.
+	// Possible values are: fullDomainName, netBiosDomainName.
+	UserDomainNameSource *DomainNameSource `json:"userDomainNameSource,omitempty"`
+
+	// Name of the AAD field, that will be used to retrieve UserName for email profile. Possible values are:
+	// userPrincipalName, primarySmtpAddress, samAccountName.
+	UsernameAADSource *UsernameSource `json:"usernameAADSource,omitempty"`
+
+	// Possible values for username source or email source.
+	UsernameSource *UserEmailSource `json:"usernameSource,omitempty"`
+
+	// Fields inherited from DeviceConfiguration
+
+	// The list of assignments for the device configuration profile.
+	Assignments *[]DeviceConfigurationAssignment `json:"assignments,omitempty"`
+
+	// DateTime the object was created.
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+
+	// Admin provided description of the Device Configuration.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// The device mode applicability rule for this Policy.
+	DeviceManagementApplicabilityRuleDeviceMode *DeviceManagementApplicabilityRuleDeviceMode `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+
+	// The OS edition applicability for this Policy.
+	DeviceManagementApplicabilityRuleOsEdition *DeviceManagementApplicabilityRuleOsEdition `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+
+	// The OS version applicability rule for this Policy.
+	DeviceManagementApplicabilityRuleOsVersion *DeviceManagementApplicabilityRuleOsVersion `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+
+	// Device Configuration Setting State Device Summary
+	DeviceSettingStateSummaries *[]SettingStateDeviceSummary `json:"deviceSettingStateSummaries,omitempty"`
+
+	// Device Configuration devices status overview
+	DeviceStatusOverview *DeviceConfigurationDeviceOverview `json:"deviceStatusOverview,omitempty"`
+
+	// Device configuration installation status by device.
+	DeviceStatuses *[]DeviceConfigurationDeviceStatus `json:"deviceStatuses,omitempty"`
+
+	// Admin provided name of the device configuration.
+	DisplayName *string `json:"displayName,omitempty"`
+
+	// The list of group assignments for the device configuration profile.
+	GroupAssignments *[]DeviceConfigurationGroupAssignment `json:"groupAssignments,omitempty"`
+
+	// DateTime the object was last modified.
+	LastModifiedDateTime *string `json:"lastModifiedDateTime,omitempty"`
+
+	// List of Scope Tags for this Entity instance.
+	RoleScopeTagIds *[]string `json:"roleScopeTagIds,omitempty"`
+
+	// Indicates whether or not the underlying Device Configuration supports the assignment of scope tags. Assigning to the
+	// ScopeTags property is not allowed when this value is false and entities will not be visible to scoped users. This
+	// occurs for Legacy policies created in Silverlight and can be resolved by deleting and recreating the policy in the
+	// Azure Portal. This property is read-only.
+	SupportsScopeTags *bool `json:"supportsScopeTags,omitempty"`
+
+	// Device Configuration users status overview
+	UserStatusOverview *DeviceConfigurationUserOverview `json:"userStatusOverview,omitempty"`
+
+	// Device configuration installation status by user.
+	UserStatuses *[]DeviceConfigurationUserStatus `json:"userStatuses,omitempty"`
+
+	// Version of the device configuration.
+	Version *int64 `json:"version,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

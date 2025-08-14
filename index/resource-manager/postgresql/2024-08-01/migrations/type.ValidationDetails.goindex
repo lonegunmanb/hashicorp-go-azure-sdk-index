@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2024-08-01/migrations
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type ValidationDetails struct {
+	DbLevelValidationDetails     *[]DbLevelValidationStatus `json:"dbLevelValidationDetails,omitempty"`
+	ServerLevelValidationDetails *[]ValidationSummaryItem   `json:"serverLevelValidationDetails,omitempty"`
+	Status                       *ValidationState           `json:"status,omitempty"`
+	ValidationEndTimeInUtc       *string                    `json:"validationEndTimeInUtc,omitempty"`
+	ValidationStartTimeInUtc     *string                    `json:"validationStartTimeInUtc,omitempty"`
+}

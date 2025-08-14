@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/entityqueries
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCustomEntityQueryKind(input string) (*CustomEntityQueryKind, error) {
+	vals := map[string]CustomEntityQueryKind{
+		"activity": CustomEntityQueryKindActivity,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CustomEntityQueryKind(input)
+	return &out, nil
+}

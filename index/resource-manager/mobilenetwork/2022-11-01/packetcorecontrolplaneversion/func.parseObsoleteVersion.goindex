@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mobilenetwork/2022-11-01/packetcorecontrolplaneversion
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseObsoleteVersion(input string) (*ObsoleteVersion, error) {
+	vals := map[string]ObsoleteVersion{
+		"notobsolete": ObsoleteVersionNotObsolete,
+		"obsolete":    ObsoleteVersionObsolete,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ObsoleteVersion(input)
+	return &out, nil
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationserviceenvironmentmanagedapi
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseApiTier(input string) (*ApiTier, error) {
+	vals := map[string]ApiTier{
+		"enterprise":   ApiTierEnterprise,
+		"notspecified": ApiTierNotSpecified,
+		"premium":      ApiTierPremium,
+		"standard":     ApiTierStandard,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ApiTier(input)
+	return &out, nil
+}

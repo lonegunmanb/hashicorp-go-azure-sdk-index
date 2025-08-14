@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/serviceprincipalcreationpolicyexclude
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewServicePrincipalCreationPolicyExcludeClientWithBaseURI(sdkApi sdkEnv.Api) (*ServicePrincipalCreationPolicyExcludeClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "serviceprincipalcreationpolicyexclude", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ServicePrincipalCreationPolicyExcludeClient: %+v", err)
+	}
+
+	return &ServicePrincipalCreationPolicyExcludeClient{
+		Client: client,
+	}, nil
+}

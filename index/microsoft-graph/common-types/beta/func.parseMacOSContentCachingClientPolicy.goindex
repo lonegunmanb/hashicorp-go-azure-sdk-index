@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMacOSContentCachingClientPolicy(input string) (*MacOSContentCachingClientPolicy, error) {
+	vals := map[string]MacOSContentCachingClientPolicy{
+		"clientsincustomlocalnetworks":             MacOSContentCachingClientPolicy_ClientsInCustomLocalNetworks,
+		"clientsincustomlocalnetworkswithfallback": MacOSContentCachingClientPolicy_ClientsInCustomLocalNetworksWithFallback,
+		"clientsinlocalnetwork":                    MacOSContentCachingClientPolicy_ClientsInLocalNetwork,
+		"clientswithsamepublicipaddress":           MacOSContentCachingClientPolicy_ClientsWithSamePublicIPAddress,
+		"notconfigured":                            MacOSContentCachingClientPolicy_NotConfigured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MacOSContentCachingClientPolicy(input)
+	return &out, nil
+}

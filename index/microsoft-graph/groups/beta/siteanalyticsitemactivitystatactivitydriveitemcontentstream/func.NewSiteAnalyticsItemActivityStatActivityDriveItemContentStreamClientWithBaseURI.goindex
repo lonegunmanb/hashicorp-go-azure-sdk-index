@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/siteanalyticsitemactivitystatactivitydriveitemcontentstream
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSiteAnalyticsItemActivityStatActivityDriveItemContentStreamClientWithBaseURI(sdkApi sdkEnv.Api) (*SiteAnalyticsItemActivityStatActivityDriveItemContentStreamClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "siteanalyticsitemactivitystatactivitydriveitemcontentstream", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SiteAnalyticsItemActivityStatActivityDriveItemContentStreamClient: %+v", err)
+	}
+
+	return &SiteAnalyticsItemActivityStatActivityDriveItemContentStreamClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *IdentityGovernanceLifecycleWorkflowTaskDefinitionId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.TaskDefinitionId, ok = input.Parsed["taskDefinitionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "taskDefinitionId", input)
+	}
+
+	return nil
+}

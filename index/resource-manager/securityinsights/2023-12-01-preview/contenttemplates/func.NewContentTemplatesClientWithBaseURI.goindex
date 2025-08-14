@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-12-01-preview/contenttemplates
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewContentTemplatesClientWithBaseURI(sdkApi sdkEnv.Api) (*ContentTemplatesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "contenttemplates", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ContentTemplatesClient: %+v", err)
+	}
+
+	return &ContentTemplatesClient{
+		Client: client,
+	}, nil
+}

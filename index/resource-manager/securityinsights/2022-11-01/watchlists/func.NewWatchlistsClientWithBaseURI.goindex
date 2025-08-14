@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-11-01/watchlists
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewWatchlistsClientWithBaseURI(sdkApi sdkEnv.Api) (*WatchlistsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "watchlists", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating WatchlistsClient: %+v", err)
+	}
+
+	return &WatchlistsClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2022-03-01/virtualmachinescalesets
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVirtualMachineScaleSetScaleInRules(input string) (*VirtualMachineScaleSetScaleInRules, error) {
+	vals := map[string]VirtualMachineScaleSetScaleInRules{
+		"default":  VirtualMachineScaleSetScaleInRulesDefault,
+		"newestvm": VirtualMachineScaleSetScaleInRulesNewestVM,
+		"oldestvm": VirtualMachineScaleSetScaleInRulesOldestVM,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VirtualMachineScaleSetScaleInRules(input)
+	return &out, nil
+}

@@ -1,0 +1,73 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *DeviceManagementIntent) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		Assignments                      *[]DeviceManagementIntentAssignment                `json:"assignments,omitempty"`
+		Categories                       *[]DeviceManagementIntentSettingCategory           `json:"categories,omitempty"`
+		Description                      nullable.Type[string]                              `json:"description,omitempty"`
+		DeviceSettingStateSummaries      *[]DeviceManagementIntentDeviceSettingStateSummary `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStateSummary               *DeviceManagementIntentDeviceStateSummary          `json:"deviceStateSummary,omitempty"`
+		DeviceStates                     *[]DeviceManagementIntentDeviceState               `json:"deviceStates,omitempty"`
+		DisplayName                      *string                                            `json:"displayName,omitempty"`
+		IsAssigned                       *bool                                              `json:"isAssigned,omitempty"`
+		IsMigratingToConfigurationPolicy nullable.Type[bool]                                `json:"isMigratingToConfigurationPolicy,omitempty"`
+		LastModifiedDateTime             *string                                            `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                  *[]string                                          `json:"roleScopeTagIds,omitempty"`
+		TemplateId                       nullable.Type[string]                              `json:"templateId,omitempty"`
+		UserStateSummary                 *DeviceManagementIntentUserStateSummary            `json:"userStateSummary,omitempty"`
+		UserStates                       *[]DeviceManagementIntentUserState                 `json:"userStates,omitempty"`
+		Id                               *string                                            `json:"id,omitempty"`
+		ODataId                          *string                                            `json:"@odata.id,omitempty"`
+		ODataType                        *string                                            `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.Assignments = decoded.Assignments
+	s.Categories = decoded.Categories
+	s.Description = decoded.Description
+	s.DeviceSettingStateSummaries = decoded.DeviceSettingStateSummaries
+	s.DeviceStateSummary = decoded.DeviceStateSummary
+	s.DeviceStates = decoded.DeviceStates
+	s.DisplayName = decoded.DisplayName
+	s.IsAssigned = decoded.IsAssigned
+	s.IsMigratingToConfigurationPolicy = decoded.IsMigratingToConfigurationPolicy
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.RoleScopeTagIds = decoded.RoleScopeTagIds
+	s.TemplateId = decoded.TemplateId
+	s.UserStateSummary = decoded.UserStateSummary
+	s.UserStates = decoded.UserStates
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling DeviceManagementIntent into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["settings"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling Settings into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]DeviceManagementSettingInstance, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalDeviceManagementSettingInstanceImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'Settings' for 'DeviceManagementIntent': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.Settings = &output
+	}
+
+	return nil
+}

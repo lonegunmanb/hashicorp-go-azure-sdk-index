@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-07-15/quotarequests
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseQuotaRequestState(input string) (*QuotaRequestState, error) {
+	vals := map[string]QuotaRequestState{
+		"accepted":   QuotaRequestStateAccepted,
+		"failed":     QuotaRequestStateFailed,
+		"inprogress": QuotaRequestStateInProgress,
+		"invalid":    QuotaRequestStateInvalid,
+		"succeeded":  QuotaRequestStateSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := QuotaRequestState(input)
+	return &out, nil
+}

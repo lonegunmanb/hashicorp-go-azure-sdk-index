@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2025-03-01/exports
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseExecutionStatus(input string) (*ExecutionStatus, error) {
+	vals := map[string]ExecutionStatus{
+		"completed":           ExecutionStatusCompleted,
+		"datanotavailable":    ExecutionStatusDataNotAvailable,
+		"failed":              ExecutionStatusFailed,
+		"inprogress":          ExecutionStatusInProgress,
+		"newdatanotavailable": ExecutionStatusNewDataNotAvailable,
+		"queued":              ExecutionStatusQueued,
+		"timeout":             ExecutionStatusTimeout,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ExecutionStatus(input)
+	return &out, nil
+}

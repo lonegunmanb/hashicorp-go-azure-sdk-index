@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/autonomousdatabasenationalcharactersets
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id AutonomousDatabaseNationalCharacterSetId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
+		fmt.Sprintf("Autonomous Database National Character Set Name: %q", id.AutonomousDatabaseNationalCharacterSetName),
+	}
+	return fmt.Sprintf("Autonomous Database National Character Set (%s)", strings.Join(components, "\n"))
+}

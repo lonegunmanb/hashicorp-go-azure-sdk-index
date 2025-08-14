@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/incidents
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseIncidentLabelType(input string) (*IncidentLabelType, error) {
+	vals := map[string]IncidentLabelType{
+		"autoassigned": IncidentLabelTypeAutoAssigned,
+		"user":         IncidentLabelTypeUser,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IncidentLabelType(input)
+	return &out, nil
+}

@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicelinker/2022-05-01/servicelinker
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ScopedLinkerId) ID() string {
+	fmtString := "/%s/providers/Microsoft.ServiceLinker/linkers/%s"
+	return fmt.Sprintf(fmtString, strings.TrimPrefix(id.ResourceUri, "/"), id.LinkerName)
+}

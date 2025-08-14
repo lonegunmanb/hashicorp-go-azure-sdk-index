@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/attachednetworkconnections
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseHealthCheckStatus(input string) (*HealthCheckStatus, error) {
+	vals := map[string]HealthCheckStatus{
+		"failed":        HealthCheckStatusFailed,
+		"informational": HealthCheckStatusInformational,
+		"passed":        HealthCheckStatusPassed,
+		"pending":       HealthCheckStatusPending,
+		"running":       HealthCheckStatusRunning,
+		"unknown":       HealthCheckStatusUnknown,
+		"warning":       HealthCheckStatusWarning,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := HealthCheckStatus(input)
+	return &out, nil
+}

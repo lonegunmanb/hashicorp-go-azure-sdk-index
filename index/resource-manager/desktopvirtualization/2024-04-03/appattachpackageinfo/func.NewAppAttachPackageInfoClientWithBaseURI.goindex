@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/desktopvirtualization/2024-04-03/appattachpackageinfo
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAppAttachPackageInfoClientWithBaseURI(sdkApi sdkEnv.Api) (*AppAttachPackageInfoClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "appattachpackageinfo", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AppAttachPackageInfoClient: %+v", err)
+	}
+
+	return &AppAttachPackageInfoClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/edgenodes
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c EdgenodesClient) ListComplete(ctx context.Context) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, EdgeNodeOperationPredicate{})
+}

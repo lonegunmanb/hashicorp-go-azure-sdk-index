@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2024-02-01/endpoints
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseClientPortOperator(input string) (*ClientPortOperator, error) {
+	vals := map[string]ClientPortOperator{
+		"any":                ClientPortOperatorAny,
+		"beginswith":         ClientPortOperatorBeginsWith,
+		"contains":           ClientPortOperatorContains,
+		"endswith":           ClientPortOperatorEndsWith,
+		"equal":              ClientPortOperatorEqual,
+		"greaterthan":        ClientPortOperatorGreaterThan,
+		"greaterthanorequal": ClientPortOperatorGreaterThanOrEqual,
+		"lessthan":           ClientPortOperatorLessThan,
+		"lessthanorequal":    ClientPortOperatorLessThanOrEqual,
+		"regex":              ClientPortOperatorRegEx,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ClientPortOperator(input)
+	return &out, nil
+}

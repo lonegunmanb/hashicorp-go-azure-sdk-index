@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCoachmarkLocationType(input string) (*CoachmarkLocationType, error) {
+	vals := map[string]CoachmarkLocationType{
+		"displayname": CoachmarkLocationType_DisplayName,
+		"externaltag": CoachmarkLocationType_ExternalTag,
+		"fromemail":   CoachmarkLocationType_FromEmail,
+		"messagebody": CoachmarkLocationType_MessageBody,
+		"subject":     CoachmarkLocationType_Subject,
+		"unknown":     CoachmarkLocationType_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CoachmarkLocationType(input)
+	return &out, nil
+}

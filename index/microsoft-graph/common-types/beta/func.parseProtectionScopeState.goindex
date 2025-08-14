@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseProtectionScopeState(input string) (*ProtectionScopeState, error) {
+	vals := map[string]ProtectionScopeState{
+		"modified":    ProtectionScopeState_Modified,
+		"notmodified": ProtectionScopeState_NotModified,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ProtectionScopeState(input)
+	return &out, nil
+}

@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeviceLicensingStatus(input string) (*DeviceLicensingStatus, error) {
+	vals := map[string]DeviceLicensingStatus{
+		"acquiringdevicelicense":                DeviceLicensingStatus_AcquiringDeviceLicense,
+		"deviceidentityverificationfailed":      DeviceLicensingStatus_DeviceIdentityVerificationFailed,
+		"deviceisnotazureactivedirectoryjoined": DeviceLicensingStatus_DeviceIsNotAzureActiveDirectoryJoined,
+		"devicelicenserefreshfailed":            DeviceLicensingStatus_DeviceLicenseRefreshFailed,
+		"devicelicenserefreshsucceed":           DeviceLicensingStatus_DeviceLicenseRefreshSucceed,
+		"devicelicenseremovefailed":             DeviceLicensingStatus_DeviceLicenseRemoveFailed,
+		"devicelicenseremovesucceed":            DeviceLicensingStatus_DeviceLicenseRemoveSucceed,
+		"licenserefreshpending":                 DeviceLicensingStatus_LicenseRefreshPending,
+		"licenserefreshstarted":                 DeviceLicensingStatus_LicenseRefreshStarted,
+		"microsoftaccountverificationfailed":    DeviceLicensingStatus_MicrosoftAccountVerificationFailed,
+		"refreshingdevicelicense":               DeviceLicensingStatus_RefreshingDeviceLicense,
+		"removingdevicelicense":                 DeviceLicensingStatus_RemovingDeviceLicense,
+		"unknown":                               DeviceLicensingStatus_Unknown,
+		"verifyingmicrosoftaccountidentity":     DeviceLicensingStatus_VerifyingMicrosoftAccountIdentity,
+		"verifyingmicrosoftdeviceidentity":      DeviceLicensingStatus_VerifyingMicrosoftDeviceIdentity,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceLicensingStatus(input)
+	return &out, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/grouppolicyconfigurationassignment
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewGroupPolicyConfigurationAssignmentClientWithBaseURI(sdkApi sdkEnv.Api) (*GroupPolicyConfigurationAssignmentClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "grouppolicyconfigurationassignment", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating GroupPolicyConfigurationAssignmentClient: %+v", err)
+	}
+
+	return &GroupPolicyConfigurationAssignmentClient{
+		Client: client,
+	}, nil
+}

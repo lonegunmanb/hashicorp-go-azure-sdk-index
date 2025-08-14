@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mobilenetwork/2024-04-01/slice
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id SliceId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Mobile Network Name: %q", id.MobileNetworkName),
+		fmt.Sprintf("Slice Name: %q", id.SliceName),
+	}
+	return fmt.Sprintf("Slice (%s)", strings.Join(components, "\n"))
+}

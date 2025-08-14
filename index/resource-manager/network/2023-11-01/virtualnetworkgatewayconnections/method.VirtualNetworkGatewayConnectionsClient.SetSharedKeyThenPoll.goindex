@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-11-01/virtualnetworkgatewayconnections
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c VirtualNetworkGatewayConnectionsClient) SetSharedKeyThenPoll(ctx context.Context, id ConnectionId, input ConnectionSharedKey) error {
+	result, err := c.SetSharedKey(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing SetSharedKey: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after SetSharedKey: %+v", err)
+	}
+
+	return nil
+}

@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/policyinsights/2024-10-01/policystates
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o SummarizeForManagementGroupOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.Filter != nil {
+		out.Append("$filter", fmt.Sprintf("%v", *o.Filter))
+	}
+	if o.From != nil {
+		out.Append("$from", fmt.Sprintf("%v", *o.From))
+	}
+	if o.To != nil {
+		out.Append("$to", fmt.Sprintf("%v", *o.To))
+	}
+	if o.Top != nil {
+		out.Append("$top", fmt.Sprintf("%v", *o.Top))
+	}
+	return &out
+}

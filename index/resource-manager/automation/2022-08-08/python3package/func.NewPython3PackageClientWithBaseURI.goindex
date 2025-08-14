@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2022-08-08/python3package
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPython3PackageClientWithBaseURI(sdkApi sdkEnv.Api) (*Python3PackageClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "python3package", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating Python3PackageClient: %+v", err)
+	}
+
+	return &Python3PackageClient{
+		Client: client,
+	}, nil
+}

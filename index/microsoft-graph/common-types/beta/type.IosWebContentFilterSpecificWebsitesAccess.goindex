@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type IosWebContentFilterSpecificWebsitesAccess struct {
+	// URL bookmarks which will be installed into built-in browser and user is only allowed to access websites through
+	// bookmarks. This collection can contain a maximum of 500 elements.
+	SpecificWebsitesOnly *[]IosBookmark `json:"specificWebsitesOnly,omitempty"`
+
+	// URL bookmarks which will be installed into built-in browser and user is only allowed to access websites through
+	// bookmarks. This collection can contain a maximum of 500 elements.
+	WebsiteList *[]IosBookmark `json:"websiteList,omitempty"`
+
+	// Fields inherited from IosWebContentFilterBase
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

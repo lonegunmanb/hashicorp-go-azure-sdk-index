@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ExtractTransformation struct {
+	// The type of extract transformation to apply.
+	Type *string `json:"type,omitempty"`
+
+	// The value to be used as part of the transformation.
+	Value *string `json:"value,omitempty"`
+
+	// An optional secondary value to be used when dealing with between extract operations.
+	Value2 nullable.Type[string] `json:"value2,omitempty"`
+
+	// Fields inherited from CustomClaimTransformation
+
+	// The input attribute that provides the source for the transformation. This parameter is required if it's the first or
+	// only transformation in the list of transformations to be applied. Subsequent transformations use the output of the
+	// prior transformation as input.
+	Input *TransformationAttribute `json:"input,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

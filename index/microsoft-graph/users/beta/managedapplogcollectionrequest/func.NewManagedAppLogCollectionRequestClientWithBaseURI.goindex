@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/managedapplogcollectionrequest
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewManagedAppLogCollectionRequestClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedAppLogCollectionRequestClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "managedapplogcollectionrequest", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ManagedAppLogCollectionRequestClient: %+v", err)
+	}
+
+	return &ManagedAppLogCollectionRequestClient{
+		Client: client,
+	}, nil
+}

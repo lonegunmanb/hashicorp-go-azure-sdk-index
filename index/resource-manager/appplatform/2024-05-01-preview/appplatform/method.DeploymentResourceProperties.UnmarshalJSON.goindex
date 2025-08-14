@@ -1,0 +1,38 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/appplatform/2024-05-01-preview/appplatform
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s *DeploymentResourceProperties) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		Active             *bool                                `json:"active,omitempty"`
+		DeploymentSettings *DeploymentSettings                  `json:"deploymentSettings,omitempty"`
+		Instances          *[]DeploymentInstance                `json:"instances,omitempty"`
+		ProvisioningState  *DeploymentResourceProvisioningState `json:"provisioningState,omitempty"`
+		Status             *DeploymentResourceStatus            `json:"status,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.Active = decoded.Active
+	s.DeploymentSettings = decoded.DeploymentSettings
+	s.Instances = decoded.Instances
+	s.ProvisioningState = decoded.ProvisioningState
+	s.Status = decoded.Status
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling DeploymentResourceProperties into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["source"]; ok {
+		impl, err := UnmarshalUserSourceInfoImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Source' for 'DeploymentResourceProperties': %+v", err)
+		}
+		s.Source = impl
+	}
+
+	return nil
+}

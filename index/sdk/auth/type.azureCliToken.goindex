@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"context"
+	"fmt"
+	"net/http"
+	"os"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	"github.com/hashicorp/go-azure-sdk/sdk/internal/azurecli"
+	"golang.org/x/oauth2"
+)
+type azureCliToken struct {
+	AccessToken string `json:"accessToken"`
+	ExpiresOn   string `json:"expiresOn"`
+	Tenant      string `json:"tenant"`
+	TokenType   string `json:"tokenType"`
+}

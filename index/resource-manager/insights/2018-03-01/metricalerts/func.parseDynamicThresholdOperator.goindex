@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2018-03-01/metricalerts
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDynamicThresholdOperator(input string) (*DynamicThresholdOperator, error) {
+	vals := map[string]DynamicThresholdOperator{
+		"greaterorlessthan": DynamicThresholdOperatorGreaterOrLessThan,
+		"greaterthan":       DynamicThresholdOperatorGreaterThan,
+		"lessthan":          DynamicThresholdOperatorLessThan,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DynamicThresholdOperator(input)
+	return &out, nil
+}

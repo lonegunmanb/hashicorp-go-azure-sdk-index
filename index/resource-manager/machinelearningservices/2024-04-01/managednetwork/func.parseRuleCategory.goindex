@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/managednetwork
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRuleCategory(input string) (*RuleCategory, error) {
+	vals := map[string]RuleCategory{
+		"dependency":  RuleCategoryDependency,
+		"recommended": RuleCategoryRecommended,
+		"required":    RuleCategoryRequired,
+		"userdefined": RuleCategoryUserDefined,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RuleCategory(input)
+	return &out, nil
+}

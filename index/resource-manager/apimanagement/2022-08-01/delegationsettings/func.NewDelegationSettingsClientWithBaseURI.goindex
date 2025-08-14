@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2022-08-01/delegationsettings
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDelegationSettingsClientWithBaseURI(sdkApi sdkEnv.Api) (*DelegationSettingsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "delegationsettings", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DelegationSettingsClient: %+v", err)
+	}
+
+	return &DelegationSettingsClient{
+		Client: client,
+	}, nil
+}

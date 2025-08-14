@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeviceManagementExchangeAccessState(input string) (*DeviceManagementExchangeAccessState, error) {
+	vals := map[string]DeviceManagementExchangeAccessState{
+		"allowed":     DeviceManagementExchangeAccessState_Allowed,
+		"blocked":     DeviceManagementExchangeAccessState_Blocked,
+		"none":        DeviceManagementExchangeAccessState_None,
+		"quarantined": DeviceManagementExchangeAccessState_Quarantined,
+		"unknown":     DeviceManagementExchangeAccessState_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceManagementExchangeAccessState(input)
+	return &out, nil
+}

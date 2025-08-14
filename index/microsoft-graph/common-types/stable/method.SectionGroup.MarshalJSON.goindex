@@ -1,0 +1,38 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s SectionGroup) MarshalJSON() ([]byte, error) {
+	type wrapper SectionGroup
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling SectionGroup: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling SectionGroup: %+v", err)
+	}
+
+	delete(decoded, "parentNotebook")
+	delete(decoded, "parentSectionGroup")
+	delete(decoded, "sectionGroups")
+	delete(decoded, "sectionGroupsUrl")
+	delete(decoded, "sections")
+	delete(decoded, "sectionsUrl")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.sectionGroup"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling SectionGroup: %+v", err)
+	}
+
+	return encoded, nil
+}

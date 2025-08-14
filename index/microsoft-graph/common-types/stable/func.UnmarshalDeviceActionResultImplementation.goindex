@@ -1,0 +1,83 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalDeviceActionResultImplementation(input []byte) (DeviceActionResult, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling DeviceActionResult into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.deleteUserFromSharedAppleDeviceActionResult") {
+		var out DeleteUserFromSharedAppleDeviceActionResult
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DeleteUserFromSharedAppleDeviceActionResult: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.locateDeviceActionResult") {
+		var out LocateDeviceActionResult
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into LocateDeviceActionResult: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.remoteLockActionResult") {
+		var out RemoteLockActionResult
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into RemoteLockActionResult: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.resetPasscodeActionResult") {
+		var out ResetPasscodeActionResult
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ResetPasscodeActionResult: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.rotateBitLockerKeysDeviceActionResult") {
+		var out RotateBitLockerKeysDeviceActionResult
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into RotateBitLockerKeysDeviceActionResult: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.windowsDefenderScanActionResult") {
+		var out WindowsDefenderScanActionResult
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into WindowsDefenderScanActionResult: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseDeviceActionResultImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseDeviceActionResultImpl: %+v", err)
+	}
+
+	return RawDeviceActionResultImpl{
+		deviceActionResult: parent,
+		Type:               value,
+		Values:             temp,
+	}, nil
+
+}

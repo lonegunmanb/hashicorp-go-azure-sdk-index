@@ -1,0 +1,39 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s PlannerTask) MarshalJSON() ([]byte, error) {
+	type wrapper PlannerTask
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling PlannerTask: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling PlannerTask: %+v", err)
+	}
+
+	delete(decoded, "assignedToTaskBoardFormat")
+	delete(decoded, "bucketTaskBoardFormat")
+	delete(decoded, "completedDateTime")
+	delete(decoded, "createdDateTime")
+	delete(decoded, "details")
+	delete(decoded, "hasDescription")
+	delete(decoded, "progressTaskBoardFormat")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.plannerTask"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling PlannerTask: %+v", err)
+	}
+
+	return encoded, nil
+}

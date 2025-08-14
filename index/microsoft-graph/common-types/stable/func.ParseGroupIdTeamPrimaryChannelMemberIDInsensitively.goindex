@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseGroupIdTeamPrimaryChannelMemberIDInsensitively(input string) (*GroupIdTeamPrimaryChannelMemberId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&GroupIdTeamPrimaryChannelMemberId{})
+	parsed, err := parser.Parse(input, true)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := GroupIdTeamPrimaryChannelMemberId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

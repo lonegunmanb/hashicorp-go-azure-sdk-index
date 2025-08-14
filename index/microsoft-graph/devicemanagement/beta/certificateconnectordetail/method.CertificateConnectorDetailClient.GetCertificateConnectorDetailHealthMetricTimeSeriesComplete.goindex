@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/certificateconnectordetail
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c CertificateConnectorDetailClient) GetCertificateConnectorDetailHealthMetricTimeSeriesComplete(ctx context.Context, id beta.DeviceManagementCertificateConnectorDetailId, input GetCertificateConnectorDetailHealthMetricTimeSeriesRequest, options GetCertificateConnectorDetailHealthMetricTimeSeriesOperationOptions) (GetCertificateConnectorDetailHealthMetricTimeSeriesCompleteResult, error) {
+	return c.GetCertificateConnectorDetailHealthMetricTimeSeriesCompleteMatchingPredicate(ctx, id, input, options, CertificateConnectorHealthMetricValueOperationPredicate{})
+}

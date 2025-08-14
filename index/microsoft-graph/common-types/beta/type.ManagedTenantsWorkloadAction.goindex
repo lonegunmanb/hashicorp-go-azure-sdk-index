@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ManagedTenantsWorkloadAction struct {
+	// The unique identifier for the workload action. Required. Read-only.
+	ActionId nullable.Type[string] `json:"actionId,omitempty"`
+
+	// The category for the workload action. Possible values are: automated, manual, unknownFutureValue. Optional.
+	// Read-only.
+	Category *ManagedTenantsWorkloadActionCategory `json:"category,omitempty"`
+
+	// The description for the workload action. Optional. Read-only.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// The display name for the workload action. Optional. Read-only.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	Licenses *[]string `json:"licenses,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The service associated with workload action. Optional. Read-only.
+	Service nullable.Type[string] `json:"service,omitempty"`
+
+	// The collection of settings associated with the workload action. Optional. Read-only.
+	Settings *[]ManagedTenantsSetting `json:"settings,omitempty"`
+}

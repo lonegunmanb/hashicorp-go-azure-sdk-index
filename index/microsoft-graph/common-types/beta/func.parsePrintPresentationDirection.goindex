@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePrintPresentationDirection(input string) (*PrintPresentationDirection, error) {
+	vals := map[string]PrintPresentationDirection{
+		"clockwisefrombottomleft":         PrintPresentationDirection_ClockwiseFromBottomLeft,
+		"clockwisefrombottomright":        PrintPresentationDirection_ClockwiseFromBottomRight,
+		"clockwisefromtopleft":            PrintPresentationDirection_ClockwiseFromTopLeft,
+		"clockwisefromtopright":           PrintPresentationDirection_ClockwiseFromTopRight,
+		"counterclockwisefrombottomleft":  PrintPresentationDirection_CounterClockwiseFromBottomLeft,
+		"counterclockwisefrombottomright": PrintPresentationDirection_CounterClockwiseFromBottomRight,
+		"counterclockwisefromtopleft":     PrintPresentationDirection_CounterClockwiseFromTopLeft,
+		"counterclockwisefromtopright":    PrintPresentationDirection_CounterClockwiseFromTopRight,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PrintPresentationDirection(input)
+	return &out, nil
+}

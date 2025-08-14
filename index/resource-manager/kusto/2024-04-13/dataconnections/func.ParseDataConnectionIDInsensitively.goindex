@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/kusto/2024-04-13/dataconnections
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseDataConnectionIDInsensitively(input string) (*DataConnectionId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&DataConnectionId{})
+	parsed, err := parser.Parse(input, true)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := DataConnectionId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

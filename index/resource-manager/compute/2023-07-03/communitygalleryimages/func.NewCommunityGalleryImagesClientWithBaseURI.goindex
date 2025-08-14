@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2023-07-03/communitygalleryimages
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewCommunityGalleryImagesClientWithBaseURI(sdkApi sdkEnv.Api) (*CommunityGalleryImagesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "communitygalleryimages", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating CommunityGalleryImagesClient: %+v", err)
+	}
+
+	return &CommunityGalleryImagesClient{
+		Client: client,
+	}, nil
+}

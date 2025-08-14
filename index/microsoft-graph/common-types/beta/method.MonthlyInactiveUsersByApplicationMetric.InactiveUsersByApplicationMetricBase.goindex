@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s MonthlyInactiveUsersByApplicationMetric) InactiveUsersByApplicationMetricBase() BaseInactiveUsersByApplicationMetricBaseImpl {
+	return BaseInactiveUsersByApplicationMetricBaseImpl{
+		AppId:              s.AppId,
+		FactDate:           s.FactDate,
+		Inactive30DayCount: s.Inactive30DayCount,
+		Inactive60DayCount: s.Inactive60DayCount,
+		Inactive90DayCount: s.Inactive90DayCount,
+		Id:                 s.Id,
+		ODataId:            s.ODataId,
+		ODataType:          s.ODataType,
+	}
+}

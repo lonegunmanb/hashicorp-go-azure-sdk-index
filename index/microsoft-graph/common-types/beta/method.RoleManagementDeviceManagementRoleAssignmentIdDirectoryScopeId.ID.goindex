@@ -1,0 +1,11 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id RoleManagementDeviceManagementRoleAssignmentIdDirectoryScopeId) ID() string {
+	fmtString := "/roleManagement/deviceManagement/roleAssignments/%s/directoryScopes/%s"
+	return fmt.Sprintf(fmtString, id.UnifiedRoleAssignmentMultipleId, id.DirectoryObjectId)
+}

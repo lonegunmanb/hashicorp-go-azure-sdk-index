@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/webpubsub/2024-03-01/webpubsub
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalEventListenerEndpointImplementation(input []byte) (EventListenerEndpoint, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling EventListenerEndpoint into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "EventHub") {
+		var out EventHubEndpoint
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into EventHubEndpoint: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseEventListenerEndpointImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseEventListenerEndpointImpl: %+v", err)
+	}
+
+	return RawEventListenerEndpointImpl{
+		eventListenerEndpoint: parent,
+		Type:                  value,
+		Values:                temp,
+	}, nil
+
+}

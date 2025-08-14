@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalSecurityIndicatorImplementation(input []byte) (SecurityIndicator, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling SecurityIndicator into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.security.articleIndicator") {
+		var out SecurityArticleIndicator
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SecurityArticleIndicator: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.security.intelligenceProfileIndicator") {
+		var out SecurityIntelligenceProfileIndicator
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SecurityIntelligenceProfileIndicator: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseSecurityIndicatorImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseSecurityIndicatorImpl: %+v", err)
+	}
+
+	return RawSecurityIndicatorImpl{
+		securityIndicator: parent,
+		Type:              value,
+		Values:            temp,
+	}, nil
+
+}

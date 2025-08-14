@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/grouppolicydefinitionpreviousversiondefinitionpresentation
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewGroupPolicyDefinitionPreviousVersionDefinitionPresentationClientWithBaseURI(sdkApi sdkEnv.Api) (*GroupPolicyDefinitionPreviousVersionDefinitionPresentationClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "grouppolicydefinitionpreviousversiondefinitionpresentation", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating GroupPolicyDefinitionPreviousVersionDefinitionPresentationClient: %+v", err)
+	}
+
+	return &GroupPolicyDefinitionPreviousVersionDefinitionPresentationClient{
+		Client: client,
+	}, nil
+}

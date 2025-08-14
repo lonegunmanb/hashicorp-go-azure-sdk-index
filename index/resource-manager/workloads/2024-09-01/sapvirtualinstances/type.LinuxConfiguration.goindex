@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/workloads/2024-09-01/sapvirtualinstances
+import (
+	"encoding/json"
+	"fmt"
+)
+type LinuxConfiguration struct {
+	DisablePasswordAuthentication *bool             `json:"disablePasswordAuthentication,omitempty"`
+	Ssh                           *SshConfiguration `json:"ssh,omitempty"`
+	SshKeyPair                    *SshKeyPair       `json:"sshKeyPair,omitempty"`
+
+	// Fields inherited from OSConfiguration
+
+	OsType OSType `json:"osType"`
+}

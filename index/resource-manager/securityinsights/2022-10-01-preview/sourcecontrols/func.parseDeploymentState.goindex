@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/sourcecontrols
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeploymentState(input string) (*DeploymentState, error) {
+	vals := map[string]DeploymentState{
+		"canceling":   DeploymentStateCanceling,
+		"completed":   DeploymentStateCompleted,
+		"in_progress": DeploymentStateInProgress,
+		"queued":      DeploymentStateQueued,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeploymentState(input)
+	return &out, nil
+}

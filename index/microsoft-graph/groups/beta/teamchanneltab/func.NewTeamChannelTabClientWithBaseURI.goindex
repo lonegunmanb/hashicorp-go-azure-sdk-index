@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchanneltab
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTeamChannelTabClientWithBaseURI(sdkApi sdkEnv.Api) (*TeamChannelTabClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "teamchanneltab", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TeamChannelTabClient: %+v", err)
+	}
+
+	return &TeamChannelTabClient{
+		Client: client,
+	}, nil
+}

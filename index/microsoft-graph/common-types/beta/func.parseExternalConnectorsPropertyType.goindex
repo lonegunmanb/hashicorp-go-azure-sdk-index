@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseExternalConnectorsPropertyType(input string) (*ExternalConnectorsPropertyType, error) {
+	vals := map[string]ExternalConnectorsPropertyType{
+		"boolean":            ExternalConnectorsPropertyType_Boolean,
+		"datetime":           ExternalConnectorsPropertyType_DateTime,
+		"datetimecollection": ExternalConnectorsPropertyType_DateTimeCollection,
+		"double":             ExternalConnectorsPropertyType_Double,
+		"doublecollection":   ExternalConnectorsPropertyType_DoubleCollection,
+		"int64":              ExternalConnectorsPropertyType_Int64,
+		"int64collection":    ExternalConnectorsPropertyType_Int64Collection,
+		"string":             ExternalConnectorsPropertyType_String,
+		"stringcollection":   ExternalConnectorsPropertyType_StringCollection,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ExternalConnectorsPropertyType(input)
+	return &out, nil
+}

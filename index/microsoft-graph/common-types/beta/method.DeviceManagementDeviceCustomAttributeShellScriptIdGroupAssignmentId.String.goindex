@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DeviceManagementDeviceCustomAttributeShellScriptIdGroupAssignmentId) String() string {
+	components := []string{
+		fmt.Sprintf("Device Custom Attribute Shell Script: %q", id.DeviceCustomAttributeShellScriptId),
+		fmt.Sprintf("Device Management Script Group Assignment: %q", id.DeviceManagementScriptGroupAssignmentId),
+	}
+	return fmt.Sprintf("Device Management Device Custom Attribute Shell Script Id Group Assignment (%s)", strings.Join(components, "\n"))
+}

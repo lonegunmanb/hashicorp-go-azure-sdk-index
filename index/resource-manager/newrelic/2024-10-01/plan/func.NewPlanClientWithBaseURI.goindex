@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/newrelic/2024-10-01/plan
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPlanClientWithBaseURI(sdkApi sdkEnv.Api) (*PlanClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "plan", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PlanClient: %+v", err)
+	}
+
+	return &PlanClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mongocluster/2024-07-01/mongoclusters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseHighAvailabilityMode(input string) (*HighAvailabilityMode, error) {
+	vals := map[string]HighAvailabilityMode{
+		"disabled":               HighAvailabilityModeDisabled,
+		"samezone":               HighAvailabilityModeSameZone,
+		"zoneredundantpreferred": HighAvailabilityModeZoneRedundantPreferred,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := HighAvailabilityMode(input)
+	return &out, nil
+}

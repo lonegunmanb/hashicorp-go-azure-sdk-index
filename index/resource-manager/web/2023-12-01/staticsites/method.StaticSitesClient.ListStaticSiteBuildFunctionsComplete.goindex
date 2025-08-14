@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/staticsites
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c StaticSitesClient) ListStaticSiteBuildFunctionsComplete(ctx context.Context, id BuildId) (ListStaticSiteBuildFunctionsCompleteResult, error) {
+	return c.ListStaticSiteBuildFunctionsCompleteMatchingPredicate(ctx, id, StaticSiteFunctionOverviewARMResourceOperationPredicate{})
+}

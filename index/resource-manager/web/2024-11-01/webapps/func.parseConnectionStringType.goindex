@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-11-01/webapps
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseConnectionStringType(input string) (*ConnectionStringType, error) {
+	vals := map[string]ConnectionStringType{
+		"apihub":          ConnectionStringTypeApiHub,
+		"custom":          ConnectionStringTypeCustom,
+		"docdb":           ConnectionStringTypeDocDb,
+		"eventhub":        ConnectionStringTypeEventHub,
+		"mysql":           ConnectionStringTypeMySql,
+		"notificationhub": ConnectionStringTypeNotificationHub,
+		"postgresql":      ConnectionStringTypePostgreSQL,
+		"rediscache":      ConnectionStringTypeRedisCache,
+		"sqlazure":        ConnectionStringTypeSQLAzure,
+		"sqlserver":       ConnectionStringTypeSQLServer,
+		"servicebus":      ConnectionStringTypeServiceBus,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ConnectionStringType(input)
+	return &out, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/lifecycleworkflowworkflowrunuserprocessingresultsubject
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewLifecycleWorkflowWorkflowRunUserProcessingResultSubjectClientWithBaseURI(sdkApi sdkEnv.Api) (*LifecycleWorkflowWorkflowRunUserProcessingResultSubjectClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "lifecycleworkflowworkflowrunuserprocessingresultsubject", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating LifecycleWorkflowWorkflowRunUserProcessingResultSubjectClient: %+v", err)
+	}
+
+	return &LifecycleWorkflowWorkflowRunUserProcessingResultSubjectClient{
+		Client: client,
+	}, nil
+}

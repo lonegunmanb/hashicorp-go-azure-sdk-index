@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2025-01-13/extensions
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ExtensionsClient) ExtensionMetadataV2ListCompleteMatchingPredicate(ctx context.Context, id ExtensionTypeId, predicate ExtensionValueV2OperationPredicate) (result ExtensionMetadataV2ListCompleteResult, err error) {
+	items := make([]ExtensionValueV2, 0)
+
+	resp, err := c.ExtensionMetadataV2List(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ExtensionMetadataV2ListCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

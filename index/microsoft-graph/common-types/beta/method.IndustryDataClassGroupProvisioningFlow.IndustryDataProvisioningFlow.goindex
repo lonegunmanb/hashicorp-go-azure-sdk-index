@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s IndustryDataClassGroupProvisioningFlow) IndustryDataProvisioningFlow() BaseIndustryDataProvisioningFlowImpl {
+	return BaseIndustryDataProvisioningFlowImpl{
+		CreatedDateTime:      s.CreatedDateTime,
+		LastModifiedDateTime: s.LastModifiedDateTime,
+		ReadinessStatus:      s.ReadinessStatus,
+		Id:                   s.Id,
+		ODataId:              s.ODataId,
+		ODataType:            s.ODataType,
+	}
+}

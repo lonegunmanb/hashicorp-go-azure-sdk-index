@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ItemActivity struct {
+	// An item was accessed.
+	Access *AccessAction `json:"access,omitempty"`
+
+	ActivityDateTime nullable.Type[string] `json:"activityDateTime,omitempty"`
+
+	// Identity of who performed the action. Read-only.
+	Actor *IdentitySet `json:"actor,omitempty"`
+
+	// Exposes the driveItem that was the target of this activity.
+	DriveItem *DriveItem `json:"driveItem,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

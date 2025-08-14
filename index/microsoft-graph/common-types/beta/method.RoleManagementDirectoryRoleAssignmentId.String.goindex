@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id RoleManagementDirectoryRoleAssignmentId) String() string {
+	components := []string{
+		fmt.Sprintf("Unified Role Assignment: %q", id.UnifiedRoleAssignmentId),
+	}
+	return fmt.Sprintf("Role Management Directory Role Assignment (%s)", strings.Join(components, "\n"))
+}

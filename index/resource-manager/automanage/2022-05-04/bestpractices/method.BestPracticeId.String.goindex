@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automanage/2022-05-04/bestpractices
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id BestPracticeId) String() string {
+	components := []string{
+		fmt.Sprintf("Best Practice Name: %q", id.BestPracticeName),
+	}
+	return fmt.Sprintf("Best Practice (%s)", strings.Join(components, "\n"))
+}

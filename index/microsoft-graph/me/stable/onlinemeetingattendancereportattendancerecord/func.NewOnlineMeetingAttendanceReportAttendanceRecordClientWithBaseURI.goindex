@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onlinemeetingattendancereportattendancerecord
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewOnlineMeetingAttendanceReportAttendanceRecordClientWithBaseURI(sdkApi sdkEnv.Api) (*OnlineMeetingAttendanceReportAttendanceRecordClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "onlinemeetingattendancereportattendancerecord", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating OnlineMeetingAttendanceReportAttendanceRecordClient: %+v", err)
+	}
+
+	return &OnlineMeetingAttendanceReportAttendanceRecordClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s DaylightTimeZoneOffset) StandardTimeZoneOffset() BaseStandardTimeZoneOffsetImpl {
+	return BaseStandardTimeZoneOffsetImpl{
+		DayOccurrence: s.DayOccurrence,
+		DayOfWeek:     s.DayOfWeek,
+		Month:         s.Month,
+		ODataId:       s.ODataId,
+		ODataType:     s.ODataType,
+		Time:          s.Time,
+		Year:          s.Year,
+	}
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2023-12-15-preview/topics
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseResourceKind(input string) (*ResourceKind, error) {
+	vals := map[string]ResourceKind{
+		"azure":    ResourceKindAzure,
+		"azurearc": ResourceKindAzureArc,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ResourceKind(input)
+	return &out, nil
+}

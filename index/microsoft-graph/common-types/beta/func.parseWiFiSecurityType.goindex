@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWiFiSecurityType(input string) (*WiFiSecurityType, error) {
+	vals := map[string]WiFiSecurityType{
+		"open":           WiFiSecurityType_Open,
+		"wep":            WiFiSecurityType_Wep,
+		"wpa2enterprise": WiFiSecurityType_Wpa2Enterprise,
+		"wpa2personal":   WiFiSecurityType_Wpa2Personal,
+		"wpaenterprise":  WiFiSecurityType_WpaEnterprise,
+		"wpapersonal":    WiFiSecurityType_WpaPersonal,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WiFiSecurityType(input)
+	return &out, nil
+}

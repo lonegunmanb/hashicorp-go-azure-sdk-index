@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/beta/synchronizationjobschemadirectory
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SynchronizationJobSchemaDirectoryClient) ListSynchronizationJobSchemaDirectoriesComplete(ctx context.Context, id beta.ApplicationIdSynchronizationJobId, options ListSynchronizationJobSchemaDirectoriesOperationOptions) (ListSynchronizationJobSchemaDirectoriesCompleteResult, error) {
+	return c.ListSynchronizationJobSchemaDirectoriesCompleteMatchingPredicate(ctx, id, options, DirectoryDefinitionOperationPredicate{})
+}

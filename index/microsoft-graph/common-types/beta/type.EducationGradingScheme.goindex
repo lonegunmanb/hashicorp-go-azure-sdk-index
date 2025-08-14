@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type EducationGradingScheme struct {
+	// The name of the grading scheme.
+	DisplayName *string `json:"displayName,omitempty"`
+
+	// The grades that make up the scheme.
+	Grades *[]EducationGradingSchemeGrade `json:"grades,omitempty"`
+
+	// The display setting for the UI. Indicates whether teachers can grade with points in addition to letter grades.
+	HidePointsDuringGrading *bool `json:"hidePointsDuringGrading,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

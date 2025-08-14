@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTokenIssuerType(input string) (*TokenIssuerType, error) {
+	vals := map[string]TokenIssuerType{
+		"adfederationservices":           TokenIssuerType_ADFederationServices,
+		"adfederationservicesmfaadapter": TokenIssuerType_ADFederationServicesMFAAdapter,
+		"azuread":                        TokenIssuerType_AzureAD,
+		"azureadbackupauth":              TokenIssuerType_AzureADBackupAuth,
+		"npsextension":                   TokenIssuerType_NPSExtension,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TokenIssuerType(input)
+	return &out, nil
+}

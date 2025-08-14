@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DeviceManagementNotificationMessageTemplateIdLocalizedNotificationMessageId) String() string {
+	components := []string{
+		fmt.Sprintf("Notification Message Template: %q", id.NotificationMessageTemplateId),
+		fmt.Sprintf("Localized Notification Message: %q", id.LocalizedNotificationMessageId),
+	}
+	return fmt.Sprintf("Device Management Notification Message Template Id Localized Notification Message (%s)", strings.Join(components, "\n"))
+}

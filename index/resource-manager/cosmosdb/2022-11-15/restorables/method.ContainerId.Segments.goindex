@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cosmosdb/2022-11-15/restorables
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ContainerId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.StaticSegment("staticSubscriptions", "subscriptions", "subscriptions"),
+		resourceids.SubscriptionIdSegment("subscriptionId", "12345678-1234-9876-4563-123456789012"),
+		resourceids.StaticSegment("staticResourceGroups", "resourceGroups", "resourceGroups"),
+		resourceids.ResourceGroupSegment("resourceGroupName", "example-resource-group"),
+		resourceids.StaticSegment("staticProviders", "providers", "providers"),
+		resourceids.ResourceProviderSegment("staticMicrosoftDocumentDB", "Microsoft.DocumentDB", "Microsoft.DocumentDB"),
+		resourceids.StaticSegment("staticDatabaseAccounts", "databaseAccounts", "databaseAccounts"),
+		resourceids.UserSpecifiedSegment("databaseAccountName", "databaseAccountName"),
+		resourceids.StaticSegment("staticSqlDatabases", "sqlDatabases", "sqlDatabases"),
+		resourceids.UserSpecifiedSegment("sqlDatabaseName", "sqlDatabaseName"),
+		resourceids.StaticSegment("staticContainers", "containers", "containers"),
+		resourceids.UserSpecifiedSegment("containerName", "containerName"),
+	}
+}

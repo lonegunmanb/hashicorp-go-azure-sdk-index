@@ -1,0 +1,36 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/azurestackhci/2024-01-01/updates
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseState(input string) (*State, error) {
+	vals := map[string]State{
+		"additionalcontentrequired": StateAdditionalContentRequired,
+		"downloadfailed":            StateDownloadFailed,
+		"downloading":               StateDownloading,
+		"hasprerequisite":           StateHasPrerequisite,
+		"healthcheckfailed":         StateHealthCheckFailed,
+		"healthchecking":            StateHealthChecking,
+		"installationfailed":        StateInstallationFailed,
+		"installed":                 StateInstalled,
+		"installing":                StateInstalling,
+		"invalid":                   StateInvalid,
+		"notapplicablebecauseanotherupdateisinprogress": StateNotApplicableBecauseAnotherUpdateIsInProgress,
+		"obsolete":          StateObsolete,
+		"preparationfailed": StatePreparationFailed,
+		"preparing":         StatePreparing,
+		"ready":             StateReady,
+		"readytoinstall":    StateReadyToInstall,
+		"recalled":          StateRecalled,
+		"scanfailed":        StateScanFailed,
+		"scaninprogress":    StateScanInProgress,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := State(input)
+	return &out, nil
+}

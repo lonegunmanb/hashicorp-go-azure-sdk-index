@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/customoperation
+import (
+	"encoding/json"
+	"fmt"
+)
+type SqlConnectionInfo struct {
+	AdditionalSettings     *string             `json:"additionalSettings,omitempty"`
+	Authentication         *AuthenticationType `json:"authentication,omitempty"`
+	DataSource             string              `json:"dataSource"`
+	EncryptConnection      *bool               `json:"encryptConnection,omitempty"`
+	Platform               *SqlSourcePlatform  `json:"platform,omitempty"`
+	TrustServerCertificate *bool               `json:"trustServerCertificate,omitempty"`
+
+	// Fields inherited from ConnectionInfo
+
+	Password *string `json:"password,omitempty"`
+	Type     string  `json:"type"`
+	UserName *string `json:"userName,omitempty"`
+}

@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseManagedTenantsTenantOnboardingEligibilityReason(input string) (*ManagedTenantsTenantOnboardingEligibilityReason, error) {
+	vals := map[string]ManagedTenantsTenantOnboardingEligibilityReason{
+		"contracttype":             ManagedTenantsTenantOnboardingEligibilityReason_ContractType,
+		"delegatedadminprivileges": ManagedTenantsTenantOnboardingEligibilityReason_DelegatedAdminPrivileges,
+		"license":                  ManagedTenantsTenantOnboardingEligibilityReason_License,
+		"none":                     ManagedTenantsTenantOnboardingEligibilityReason_None,
+		"userscount":               ManagedTenantsTenantOnboardingEligibilityReason_UsersCount,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagedTenantsTenantOnboardingEligibilityReason(input)
+	return &out, nil
+}

@@ -1,0 +1,125 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *EducationSubmission) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AssignmentId         nullable.Type[string]          `json:"assignmentId,omitempty"`
+		ExcusedDateTime      nullable.Type[string]          `json:"excusedDateTime,omitempty"`
+		LastModifiedDateTime nullable.Type[string]          `json:"lastModifiedDateTime,omitempty"`
+		ReassignedDateTime   nullable.Type[string]          `json:"reassignedDateTime,omitempty"`
+		Resources            *[]EducationSubmissionResource `json:"resources,omitempty"`
+		ResourcesFolderUrl   nullable.Type[string]          `json:"resourcesFolderUrl,omitempty"`
+		ReturnedDateTime     nullable.Type[string]          `json:"returnedDateTime,omitempty"`
+		Status               *EducationSubmissionStatus     `json:"status,omitempty"`
+		SubmittedDateTime    nullable.Type[string]          `json:"submittedDateTime,omitempty"`
+		SubmittedResources   *[]EducationSubmissionResource `json:"submittedResources,omitempty"`
+		UnsubmittedDateTime  nullable.Type[string]          `json:"unsubmittedDateTime,omitempty"`
+		WebUrl               nullable.Type[string]          `json:"webUrl,omitempty"`
+		Id                   *string                        `json:"id,omitempty"`
+		ODataId              *string                        `json:"@odata.id,omitempty"`
+		ODataType            *string                        `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AssignmentId = decoded.AssignmentId
+	s.ExcusedDateTime = decoded.ExcusedDateTime
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ReassignedDateTime = decoded.ReassignedDateTime
+	s.Resources = decoded.Resources
+	s.ResourcesFolderUrl = decoded.ResourcesFolderUrl
+	s.ReturnedDateTime = decoded.ReturnedDateTime
+	s.Status = decoded.Status
+	s.SubmittedDateTime = decoded.SubmittedDateTime
+	s.SubmittedResources = decoded.SubmittedResources
+	s.UnsubmittedDateTime = decoded.UnsubmittedDateTime
+	s.WebUrl = decoded.WebUrl
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling EducationSubmission into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["excusedBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'ExcusedBy' for 'EducationSubmission': %+v", err)
+		}
+		s.ExcusedBy = &impl
+	}
+
+	if v, ok := temp["lastModifiedBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'LastModifiedBy' for 'EducationSubmission': %+v", err)
+		}
+		s.LastModifiedBy = &impl
+	}
+
+	if v, ok := temp["outcomes"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling Outcomes into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]EducationOutcome, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalEducationOutcomeImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'Outcomes' for 'EducationSubmission': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.Outcomes = &output
+	}
+
+	if v, ok := temp["reassignedBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'ReassignedBy' for 'EducationSubmission': %+v", err)
+		}
+		s.ReassignedBy = &impl
+	}
+
+	if v, ok := temp["recipient"]; ok {
+		impl, err := UnmarshalEducationSubmissionRecipientImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Recipient' for 'EducationSubmission': %+v", err)
+		}
+		s.Recipient = impl
+	}
+
+	if v, ok := temp["returnedBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'ReturnedBy' for 'EducationSubmission': %+v", err)
+		}
+		s.ReturnedBy = &impl
+	}
+
+	if v, ok := temp["submittedBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'SubmittedBy' for 'EducationSubmission': %+v", err)
+		}
+		s.SubmittedBy = &impl
+	}
+
+	if v, ok := temp["unsubmittedBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'UnsubmittedBy' for 'EducationSubmission': %+v", err)
+		}
+		s.UnsubmittedBy = &impl
+	}
+
+	return nil
+}

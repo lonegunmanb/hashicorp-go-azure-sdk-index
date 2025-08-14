@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type WindowsUniversalAppXAppAssignmentSettings struct {
+	// If true, uses device execution context for Windows Universal AppX mobile app. Device-context install is not allowed
+	// when this type of app is targeted with Available intent. Defaults to false.
+	UseDeviceContext *bool `json:"useDeviceContext,omitempty"`
+
+	// Fields inherited from MobileAppAssignmentSettings
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

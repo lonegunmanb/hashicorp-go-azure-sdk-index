@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/authenticationeventlistener
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAuthenticationEventListenerClientWithBaseURI(sdkApi sdkEnv.Api) (*AuthenticationEventListenerClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "authenticationeventlistener", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AuthenticationEventListenerClient: %+v", err)
+	}
+
+	return &AuthenticationEventListenerClient{
+		Client: client,
+	}, nil
+}

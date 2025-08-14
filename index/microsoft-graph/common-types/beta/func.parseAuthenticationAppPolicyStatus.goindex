@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAuthenticationAppPolicyStatus(input string) (*AuthenticationAppPolicyStatus, error) {
+	vals := map[string]AuthenticationAppPolicyStatus{
+		"appcontextnotshown":                AuthenticationAppPolicyStatus_AppContextNotShown,
+		"appcontextoutofdate":               AuthenticationAppPolicyStatus_AppContextOutOfDate,
+		"appcontextshown":                   AuthenticationAppPolicyStatus_AppContextShown,
+		"applockdisabled":                   AuthenticationAppPolicyStatus_AppLockDisabled,
+		"applockenabled":                    AuthenticationAppPolicyStatus_AppLockEnabled,
+		"applockoutofdate":                  AuthenticationAppPolicyStatus_AppLockOutOfDate,
+		"locationcontextnotshown":           AuthenticationAppPolicyStatus_LocationContextNotShown,
+		"locationcontextoutofdate":          AuthenticationAppPolicyStatus_LocationContextOutOfDate,
+		"locationcontextshown":              AuthenticationAppPolicyStatus_LocationContextShown,
+		"numbermatchcorrectnumberentered":   AuthenticationAppPolicyStatus_NumberMatchCorrectNumberEntered,
+		"numbermatchdeny":                   AuthenticationAppPolicyStatus_NumberMatchDeny,
+		"numbermatchincorrectnumberentered": AuthenticationAppPolicyStatus_NumberMatchIncorrectNumberEntered,
+		"numbermatchoutofdate":              AuthenticationAppPolicyStatus_NumberMatchOutOfDate,
+		"tamperresistanthardwarenotused":    AuthenticationAppPolicyStatus_TamperResistantHardwareNotUsed,
+		"tamperresistanthardwareoutofdate":  AuthenticationAppPolicyStatus_TamperResistantHardwareOutOfDate,
+		"tamperresistanthardwareused":       AuthenticationAppPolicyStatus_TamperResistantHardwareUsed,
+		"unknown":                           AuthenticationAppPolicyStatus_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AuthenticationAppPolicyStatus(input)
+	return &out, nil
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/longtermretentionmanagedinstancebackups
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ListByResourceGroupInstanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.DatabaseState != nil {
+		out.Append("databaseState", fmt.Sprintf("%v", *o.DatabaseState))
+	}
+	if o.OnlyLatestPerDatabase != nil {
+		out.Append("onlyLatestPerDatabase", fmt.Sprintf("%v", *o.OnlyLatestPerDatabase))
+	}
+	return &out
+}

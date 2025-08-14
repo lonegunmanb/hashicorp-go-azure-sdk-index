@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/directoryroledefinitioninheritspermissionsfrom
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDirectoryRoleDefinitionInheritsPermissionsFromClientWithBaseURI(sdkApi sdkEnv.Api) (*DirectoryRoleDefinitionInheritsPermissionsFromClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "directoryroledefinitioninheritspermissionsfrom", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DirectoryRoleDefinitionInheritsPermissionsFromClient: %+v", err)
+	}
+
+	return &DirectoryRoleDefinitionInheritsPermissionsFromClient{
+		Client: client,
+	}, nil
+}

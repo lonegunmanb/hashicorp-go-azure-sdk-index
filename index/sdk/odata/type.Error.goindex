@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/sdk/odata
+import (
+	"encoding/json"
+	"fmt"
+	"regexp"
+	"strings"
+)
+type Error struct {
+	Code            *string          `json:"code"`
+	Date            *string          `json:"date"`
+	Message         *string          `json:"-"`
+	RawMessage      *json.RawMessage `json:"message"` // sometimes a string, sometimes an object :/
+	ClientRequestId *string          `json:"client-request-id"`
+	RequestId       *string          `json:"request-id"`
+
+	InnerError *Error `json:"innerError"` // nested errors
+
+	Details    *[]ErrorDetails  `json:"-"`
+	RawDetails *json.RawMessage `json:"details"` // should be an array, but sometimes an object :S
+
+	Values *[]struct {
+		Item  string `json:"item"`
+		Value string `json:"value"`
+	} `json:"values"`
+}

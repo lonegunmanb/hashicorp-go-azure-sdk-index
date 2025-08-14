@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/entitlementmanagementaccesspackageassignmentaccesspackageassignmentresourceroleaccesspackageassignment
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c EntitlementManagementAccessPackageAssignmentAccessPackageAssignmentResourceRoleAccessPackageAssignmentClient) ListEntitlementManagementAccessPackageAssignmentResourceRoleAccessPackageAssignmentsCompleteMatchingPredicate(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAccessPackageAssignmentResourceRoleId, options ListEntitlementManagementAccessPackageAssignmentResourceRoleAccessPackageAssignmentsOperationOptions, predicate AccessPackageAssignmentOperationPredicate) (result ListEntitlementManagementAccessPackageAssignmentResourceRoleAccessPackageAssignmentsCompleteResult, err error) {
+	items := make([]beta.AccessPackageAssignment, 0)
+
+	resp, err := c.ListEntitlementManagementAccessPackageAssignmentResourceRoleAccessPackageAssignments(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListEntitlementManagementAccessPackageAssignmentResourceRoleAccessPackageAssignmentsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

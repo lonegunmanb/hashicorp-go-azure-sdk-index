@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseApprovalItemType(input string) (*ApprovalItemType, error) {
+	vals := map[string]ApprovalItemType{
+		"basic":          ApprovalItemType_Basic,
+		"basicawaitall":  ApprovalItemType_BasicAwaitAll,
+		"custom":         ApprovalItemType_Custom,
+		"customawaitall": ApprovalItemType_CustomAwaitAll,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ApprovalItemType(input)
+	return &out, nil
+}

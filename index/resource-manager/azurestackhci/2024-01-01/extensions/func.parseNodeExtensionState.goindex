@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/azurestackhci/2024-01-01/extensions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNodeExtensionState(input string) (*NodeExtensionState, error) {
+	vals := map[string]NodeExtensionState{
+		"accepted":           NodeExtensionStateAccepted,
+		"canceled":           NodeExtensionStateCanceled,
+		"connected":          NodeExtensionStateConnected,
+		"creating":           NodeExtensionStateCreating,
+		"deleted":            NodeExtensionStateDeleted,
+		"deleting":           NodeExtensionStateDeleting,
+		"disconnected":       NodeExtensionStateDisconnected,
+		"error":              NodeExtensionStateError,
+		"failed":             NodeExtensionStateFailed,
+		"inprogress":         NodeExtensionStateInProgress,
+		"moving":             NodeExtensionStateMoving,
+		"notspecified":       NodeExtensionStateNotSpecified,
+		"partiallyconnected": NodeExtensionStatePartiallyConnected,
+		"partiallysucceeded": NodeExtensionStatePartiallySucceeded,
+		"provisioning":       NodeExtensionStateProvisioning,
+		"succeeded":          NodeExtensionStateSucceeded,
+		"updating":           NodeExtensionStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NodeExtensionState(input)
+	return &out, nil
+}

@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/integrationruntimenodes
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *SelfHostedIntegrationRuntimeNode) GetLastEndUpdateTimeAsTime() (*time.Time, error) {
+	if o.LastEndUpdateTime == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.LastEndUpdateTime, "2006-01-02T15:04:05Z07:00")
+}

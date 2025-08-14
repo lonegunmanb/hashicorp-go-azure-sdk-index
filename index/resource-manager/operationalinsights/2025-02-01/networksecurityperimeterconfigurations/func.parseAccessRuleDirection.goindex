@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/operationalinsights/2025-02-01/networksecurityperimeterconfigurations
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAccessRuleDirection(input string) (*AccessRuleDirection, error) {
+	vals := map[string]AccessRuleDirection{
+		"inbound":  AccessRuleDirectionInbound,
+		"outbound": AccessRuleDirectionOutbound,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AccessRuleDirection(input)
+	return &out, nil
+}

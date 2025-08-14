@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type MobileAppTroubleshootingAppTargetHistory struct {
+	// Error code for the failure, empty if no failure.
+	ErrorCode nullable.Type[string] `json:"errorCode,omitempty"`
+
+	// Indicates the type of execution status of the device management script.
+	RunState *RunState `json:"runState,omitempty"`
+
+	// AAD security group id to which it was targeted.
+	SecurityGroupId nullable.Type[string] `json:"securityGroupId,omitempty"`
+
+	// Fields inherited from MobileAppTroubleshootingHistoryItem
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Time when the history item occurred.
+	OccurrenceDateTime *string `json:"occurrenceDateTime,omitempty"`
+
+	// Object containing detailed information about the error and its remediation.
+	TroubleshootingErrorDetails *DeviceManagementTroubleshootingErrorDetails `json:"troubleshootingErrorDetails,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

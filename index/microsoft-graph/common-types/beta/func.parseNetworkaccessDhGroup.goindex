@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNetworkaccessDhGroup(input string) (*NetworkaccessDhGroup, error) {
+	vals := map[string]NetworkaccessDhGroup{
+		"dhgroup14":   NetworkaccessDhGroup_DhGroup14,
+		"dhgroup2048": NetworkaccessDhGroup_DhGroup2048,
+		"dhgroup24":   NetworkaccessDhGroup_DhGroup24,
+		"ecp256":      NetworkaccessDhGroup_Ecp256,
+		"ecp384":      NetworkaccessDhGroup_Ecp384,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NetworkaccessDhGroup(input)
+	return &out, nil
+}

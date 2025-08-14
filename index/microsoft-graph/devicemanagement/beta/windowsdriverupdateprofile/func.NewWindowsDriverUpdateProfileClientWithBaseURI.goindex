@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/windowsdriverupdateprofile
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewWindowsDriverUpdateProfileClientWithBaseURI(sdkApi sdkEnv.Api) (*WindowsDriverUpdateProfileClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "windowsdriverupdateprofile", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating WindowsDriverUpdateProfileClient: %+v", err)
+	}
+
+	return &WindowsDriverUpdateProfileClient{
+		Client: client,
+	}, nil
+}

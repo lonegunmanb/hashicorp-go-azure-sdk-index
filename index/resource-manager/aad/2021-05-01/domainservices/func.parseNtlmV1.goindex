@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/aad/2021-05-01/domainservices
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNtlmV1(input string) (*NtlmV1, error) {
+	vals := map[string]NtlmV1{
+		"disabled": NtlmV1Disabled,
+		"enabled":  NtlmV1Enabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NtlmV1(input)
+	return &out, nil
+}

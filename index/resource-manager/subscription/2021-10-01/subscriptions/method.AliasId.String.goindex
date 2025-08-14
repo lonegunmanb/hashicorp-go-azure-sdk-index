@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/subscription/2021-10-01/subscriptions
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id AliasId) String() string {
+	components := []string{
+		fmt.Sprintf("Alias Name: %q", id.AliasName),
+	}
+	return fmt.Sprintf("Alias (%s)", strings.Join(components, "\n"))
+}

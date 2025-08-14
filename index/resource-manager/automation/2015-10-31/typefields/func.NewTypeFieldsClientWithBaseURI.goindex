@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/typefields
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTypeFieldsClientWithBaseURI(sdkApi sdkEnv.Api) (*TypeFieldsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "typefields", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TypeFieldsClient: %+v", err)
+	}
+
+	return &TypeFieldsClient{
+		Client: client,
+	}, nil
+}

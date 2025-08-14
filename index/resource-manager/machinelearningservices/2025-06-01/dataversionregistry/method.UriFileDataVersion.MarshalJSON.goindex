@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2025-06-01/dataversionregistry
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s UriFileDataVersion) MarshalJSON() ([]byte, error) {
+	type wrapper UriFileDataVersion
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling UriFileDataVersion: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling UriFileDataVersion: %+v", err)
+	}
+
+	decoded["dataType"] = "uri_file"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling UriFileDataVersion: %+v", err)
+	}
+
+	return encoded, nil
+}

@@ -1,0 +1,46 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *ItemAttachment) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		ContentType          nullable.Type[string] `json:"contentType,omitempty"`
+		IsInline             *bool                 `json:"isInline,omitempty"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		Name                 nullable.Type[string] `json:"name,omitempty"`
+		Size                 *int64                `json:"size,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.ContentType = decoded.ContentType
+	s.Id = decoded.Id
+	s.IsInline = decoded.IsInline
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.Name = decoded.Name
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.Size = decoded.Size
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling ItemAttachment into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["item"]; ok {
+		impl, err := UnmarshalOutlookItemImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Item' for 'ItemAttachment': %+v", err)
+		}
+		s.Item = &impl
+	}
+
+	return nil
+}

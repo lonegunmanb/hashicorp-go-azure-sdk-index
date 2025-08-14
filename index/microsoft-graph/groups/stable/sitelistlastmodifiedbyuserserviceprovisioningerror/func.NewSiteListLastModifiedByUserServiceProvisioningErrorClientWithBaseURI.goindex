@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/sitelistlastmodifiedbyuserserviceprovisioningerror
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSiteListLastModifiedByUserServiceProvisioningErrorClientWithBaseURI(sdkApi sdkEnv.Api) (*SiteListLastModifiedByUserServiceProvisioningErrorClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "sitelistlastmodifiedbyuserserviceprovisioningerror", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SiteListLastModifiedByUserServiceProvisioningErrorClient: %+v", err)
+	}
+
+	return &SiteListLastModifiedByUserServiceProvisioningErrorClient{
+		Client: client,
+	}, nil
+}

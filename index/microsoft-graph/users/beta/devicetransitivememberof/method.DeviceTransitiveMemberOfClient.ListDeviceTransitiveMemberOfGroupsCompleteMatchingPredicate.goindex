@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/devicetransitivememberof
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DeviceTransitiveMemberOfClient) ListDeviceTransitiveMemberOfGroupsCompleteMatchingPredicate(ctx context.Context, id beta.UserIdDeviceId, options ListDeviceTransitiveMemberOfGroupsOperationOptions, predicate GroupOperationPredicate) (result ListDeviceTransitiveMemberOfGroupsCompleteResult, err error) {
+	items := make([]beta.Group, 0)
+
+	resp, err := c.ListDeviceTransitiveMemberOfGroups(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListDeviceTransitiveMemberOfGroupsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

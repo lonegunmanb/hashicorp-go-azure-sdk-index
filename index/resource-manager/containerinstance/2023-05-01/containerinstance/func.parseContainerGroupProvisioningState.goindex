@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerinstance/2023-05-01/containerinstance
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseContainerGroupProvisioningState(input string) (*ContainerGroupProvisioningState, error) {
+	vals := map[string]ContainerGroupProvisioningState{
+		"accepted":       ContainerGroupProvisioningStateAccepted,
+		"canceled":       ContainerGroupProvisioningStateCanceled,
+		"creating":       ContainerGroupProvisioningStateCreating,
+		"deleting":       ContainerGroupProvisioningStateDeleting,
+		"failed":         ContainerGroupProvisioningStateFailed,
+		"notaccessible":  ContainerGroupProvisioningStateNotAccessible,
+		"notspecified":   ContainerGroupProvisioningStateNotSpecified,
+		"pending":        ContainerGroupProvisioningStatePending,
+		"preprovisioned": ContainerGroupProvisioningStatePreProvisioned,
+		"repairing":      ContainerGroupProvisioningStateRepairing,
+		"succeeded":      ContainerGroupProvisioningStateSucceeded,
+		"unhealthy":      ContainerGroupProvisioningStateUnhealthy,
+		"updating":       ContainerGroupProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ContainerGroupProvisioningState(input)
+	return &out, nil
+}

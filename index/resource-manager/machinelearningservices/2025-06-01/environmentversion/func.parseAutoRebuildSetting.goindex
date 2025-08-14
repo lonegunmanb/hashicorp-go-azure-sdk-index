@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2025-06-01/environmentversion
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAutoRebuildSetting(input string) (*AutoRebuildSetting, error) {
+	vals := map[string]AutoRebuildSetting{
+		"disabled":          AutoRebuildSettingDisabled,
+		"onbaseimageupdate": AutoRebuildSettingOnBaseImageUpdate,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AutoRebuildSetting(input)
+	return &out, nil
+}

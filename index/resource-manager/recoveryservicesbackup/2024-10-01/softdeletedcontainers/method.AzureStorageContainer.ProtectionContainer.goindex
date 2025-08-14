@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2024-10-01/softdeletedcontainers
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s AzureStorageContainer) ProtectionContainer() BaseProtectionContainerImpl {
+	return BaseProtectionContainerImpl{
+		BackupManagementType:  s.BackupManagementType,
+		ContainerType:         s.ContainerType,
+		FriendlyName:          s.FriendlyName,
+		HealthStatus:          s.HealthStatus,
+		ProtectableObjectType: s.ProtectableObjectType,
+		RegistrationStatus:    s.RegistrationStatus,
+	}
+}

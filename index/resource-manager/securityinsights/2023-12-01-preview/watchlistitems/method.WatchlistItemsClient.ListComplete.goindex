@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-12-01-preview/watchlistitems
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c WatchlistItemsClient) ListComplete(ctx context.Context, id WatchlistId) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, WatchlistItemOperationPredicate{})
+}

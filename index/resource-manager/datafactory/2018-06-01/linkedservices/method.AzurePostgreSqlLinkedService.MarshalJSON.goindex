@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/linkedservices
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s AzurePostgreSqlLinkedService) MarshalJSON() ([]byte, error) {
+	type wrapper AzurePostgreSqlLinkedService
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AzurePostgreSqlLinkedService: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AzurePostgreSqlLinkedService: %+v", err)
+	}
+
+	decoded["type"] = "AzurePostgreSql"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AzurePostgreSqlLinkedService: %+v", err)
+	}
+
+	return encoded, nil
+}

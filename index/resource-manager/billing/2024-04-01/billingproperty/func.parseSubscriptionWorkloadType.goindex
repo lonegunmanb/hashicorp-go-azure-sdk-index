@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingproperty
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSubscriptionWorkloadType(input string) (*SubscriptionWorkloadType, error) {
+	vals := map[string]SubscriptionWorkloadType{
+		"devtest":    SubscriptionWorkloadTypeDevTest,
+		"internal":   SubscriptionWorkloadTypeInternal,
+		"none":       SubscriptionWorkloadTypeNone,
+		"production": SubscriptionWorkloadTypeProduction,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SubscriptionWorkloadType(input)
+	return &out, nil
+}

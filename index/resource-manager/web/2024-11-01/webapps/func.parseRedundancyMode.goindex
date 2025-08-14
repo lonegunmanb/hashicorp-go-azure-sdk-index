@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-11-01/webapps
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRedundancyMode(input string) (*RedundancyMode, error) {
+	vals := map[string]RedundancyMode{
+		"activeactive": RedundancyModeActiveActive,
+		"failover":     RedundancyModeFailover,
+		"georedundant": RedundancyModeGeoRedundant,
+		"manual":       RedundancyModeManual,
+		"none":         RedundancyModeNone,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RedundancyMode(input)
+	return &out, nil
+}

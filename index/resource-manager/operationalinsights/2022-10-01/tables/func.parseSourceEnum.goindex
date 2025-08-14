@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/operationalinsights/2022-10-01/tables
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSourceEnum(input string) (*SourceEnum, error) {
+	vals := map[string]SourceEnum{
+		"customer":  SourceEnumCustomer,
+		"microsoft": SourceEnumMicrosoft,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SourceEnum(input)
+	return &out, nil
+}

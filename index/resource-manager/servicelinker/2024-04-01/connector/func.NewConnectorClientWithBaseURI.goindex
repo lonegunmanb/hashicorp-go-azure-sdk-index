@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicelinker/2024-04-01/connector
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewConnectorClientWithBaseURI(sdkApi sdkEnv.Api) (*ConnectorClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "connector", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ConnectorClient: %+v", err)
+	}
+
+	return &ConnectorClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/user
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c UserClient) GetMailTipsComplete(ctx context.Context, id beta.UserId, input GetMailTipsRequest, options GetMailTipsOperationOptions) (GetMailTipsCompleteResult, error) {
+	return c.GetMailTipsCompleteMatchingPredicate(ctx, id, input, options, MailTipsOperationPredicate{})
+}

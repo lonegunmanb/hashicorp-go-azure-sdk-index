@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id PolicyActivityBasedTimeoutPolicyIdAppliesToId) String() string {
+	components := []string{
+		fmt.Sprintf("Activity Based Timeout Policy: %q", id.ActivityBasedTimeoutPolicyId),
+		fmt.Sprintf("Directory Object: %q", id.DirectoryObjectId),
+	}
+	return fmt.Sprintf("Policy Activity Based Timeout Policy Id Applies To (%s)", strings.Join(components, "\n"))
+}

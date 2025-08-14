@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationserviceenvironmentmanagedapis
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSwaggerSchemaType(input string) (*SwaggerSchemaType, error) {
+	vals := map[string]SwaggerSchemaType{
+		"array":   SwaggerSchemaTypeArray,
+		"boolean": SwaggerSchemaTypeBoolean,
+		"file":    SwaggerSchemaTypeFile,
+		"integer": SwaggerSchemaTypeInteger,
+		"null":    SwaggerSchemaTypeNull,
+		"number":  SwaggerSchemaTypeNumber,
+		"object":  SwaggerSchemaTypeObject,
+		"string":  SwaggerSchemaTypeString,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SwaggerSchemaType(input)
+	return &out, nil
+}

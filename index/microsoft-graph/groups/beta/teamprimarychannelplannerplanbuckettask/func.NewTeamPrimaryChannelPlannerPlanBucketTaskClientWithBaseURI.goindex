@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelplannerplanbuckettask
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTeamPrimaryChannelPlannerPlanBucketTaskClientWithBaseURI(sdkApi sdkEnv.Api) (*TeamPrimaryChannelPlannerPlanBucketTaskClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "teamprimarychannelplannerplanbuckettask", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TeamPrimaryChannelPlannerPlanBucketTaskClient: %+v", err)
+	}
+
+	return &TeamPrimaryChannelPlannerPlanBucketTaskClient{
+		Client: client,
+	}, nil
+}

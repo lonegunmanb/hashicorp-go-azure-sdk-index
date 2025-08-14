@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/workloads/2024-09-01/sapvirtualinstances
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalOSConfigurationImplementation(input []byte) (OSConfiguration, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling OSConfiguration into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["osType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "Linux") {
+		var out LinuxConfiguration
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into LinuxConfiguration: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "Windows") {
+		var out WindowsConfiguration
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into WindowsConfiguration: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseOSConfigurationImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseOSConfigurationImpl: %+v", err)
+	}
+
+	return RawOSConfigurationImpl{
+		oSConfiguration: parent,
+		Type:            value,
+		Values:          temp,
+	}, nil
+
+}

@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hardwaresecuritymodules/2025-03-31/dedicatedhsms
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseJsonWebKeyType(input string) (*JsonWebKeyType, error) {
+	vals := map[string]JsonWebKeyType{
+		"allocating":    JsonWebKeyTypeAllocating,
+		"checkingquota": JsonWebKeyTypeCheckingQuota,
+		"connecting":    JsonWebKeyTypeConnecting,
+		"deleting":      JsonWebKeyTypeDeleting,
+		"failed":        JsonWebKeyTypeFailed,
+		"provisioning":  JsonWebKeyTypeProvisioning,
+		"succeeded":     JsonWebKeyTypeSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := JsonWebKeyType(input)
+	return &out, nil
+}

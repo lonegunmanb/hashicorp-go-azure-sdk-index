@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/incidentrelations
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewIncidentRelationsClientWithBaseURI(sdkApi sdkEnv.Api) (*IncidentRelationsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "incidentrelations", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating IncidentRelationsClient: %+v", err)
+	}
+
+	return &IncidentRelationsClient{
+		Client: client,
+	}, nil
+}

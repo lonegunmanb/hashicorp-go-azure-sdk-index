@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type TeamworkPeripheral struct {
+	// Display name for the peripheral.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// The product ID of the device. Each product from a vendor has its own ID.
+	ProductId nullable.Type[string] `json:"productId,omitempty"`
+
+	// The unique identifier for the vendor of the device. Each vendor has a unique ID.
+	VendorId nullable.Type[string] `json:"vendorId,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/driveitem
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DriveItemClient) ListDriveItemInvitesCompleteMatchingPredicate(ctx context.Context, id beta.MeDriveIdItemId, input ListDriveItemInvitesRequest, options ListDriveItemInvitesOperationOptions, predicate PermissionOperationPredicate) (result ListDriveItemInvitesCompleteResult, err error) {
+	items := make([]beta.Permission, 0)
+
+	resp, err := c.ListDriveItemInvites(ctx, id, input, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListDriveItemInvitesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

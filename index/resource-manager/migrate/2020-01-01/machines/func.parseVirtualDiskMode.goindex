@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-01-01/machines
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVirtualDiskMode(input string) (*VirtualDiskMode, error) {
+	vals := map[string]VirtualDiskMode{
+		"append":                    VirtualDiskModeAppend,
+		"independent_nonpersistent": VirtualDiskModeIndependentNonpersistent,
+		"independent_persistent":    VirtualDiskModeIndependentPersistent,
+		"nonpersistent":             VirtualDiskModeNonpersistent,
+		"persistent":                VirtualDiskModePersistent,
+		"undoable":                  VirtualDiskModeUndoable,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VirtualDiskMode(input)
+	return &out, nil
+}

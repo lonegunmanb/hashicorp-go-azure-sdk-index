@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2022-08-08/softwareupdateconfigurationrun
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *SoftwareUpdateConfigurationRunProperties) GetStartTimeAsTime() (*time.Time, error) {
+	if o.StartTime == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.StartTime, "2006-01-02T15:04:05Z07:00")
+}

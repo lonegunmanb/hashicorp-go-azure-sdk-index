@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationserviceenvironmentskus
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseIntegrationServiceEnvironmentSkuScaleType(input string) (*IntegrationServiceEnvironmentSkuScaleType, error) {
+	vals := map[string]IntegrationServiceEnvironmentSkuScaleType{
+		"automatic": IntegrationServiceEnvironmentSkuScaleTypeAutomatic,
+		"manual":    IntegrationServiceEnvironmentSkuScaleTypeManual,
+		"none":      IntegrationServiceEnvironmentSkuScaleTypeNone,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IntegrationServiceEnvironmentSkuScaleType(input)
+	return &out, nil
+}

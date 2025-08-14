@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2021-05-01-preview/subscriptiondiagnosticsettings
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSubscriptionDiagnosticSettingsClientWithBaseURI(sdkApi sdkEnv.Api) (*SubscriptionDiagnosticSettingsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "subscriptiondiagnosticsettings", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SubscriptionDiagnosticSettingsClient: %+v", err)
+	}
+
+	return &SubscriptionDiagnosticSettingsClient{
+		Client: client,
+	}, nil
+}

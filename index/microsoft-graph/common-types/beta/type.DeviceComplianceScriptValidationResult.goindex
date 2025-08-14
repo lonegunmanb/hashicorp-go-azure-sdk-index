@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type DeviceComplianceScriptValidationResult struct {
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Errors in json for the script for rules.
+	RuleErrors *[]DeviceComplianceScriptRuleError `json:"ruleErrors,omitempty"`
+
+	// Parsed rules from json.
+	Rules *[]DeviceComplianceScriptRule `json:"rules,omitempty"`
+
+	// Errors in json for the script.
+	ScriptErrors *[]DeviceComplianceScriptError `json:"scriptErrors,omitempty"`
+}

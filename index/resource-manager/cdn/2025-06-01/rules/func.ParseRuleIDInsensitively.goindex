@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/rules
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseRuleIDInsensitively(input string) (*RuleId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&RuleId{})
+	parsed, err := parser.Parse(input, true)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := RuleId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

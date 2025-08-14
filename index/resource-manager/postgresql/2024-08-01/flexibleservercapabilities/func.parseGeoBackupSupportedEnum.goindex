@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2024-08-01/flexibleservercapabilities
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseGeoBackupSupportedEnum(input string) (*GeoBackupSupportedEnum, error) {
+	vals := map[string]GeoBackupSupportedEnum{
+		"disabled": GeoBackupSupportedEnumDisabled,
+		"enabled":  GeoBackupSupportedEnumEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := GeoBackupSupportedEnum(input)
+	return &out, nil
+}

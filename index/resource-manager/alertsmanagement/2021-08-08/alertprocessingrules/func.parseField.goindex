@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/alertsmanagement/2021-08-08/alertprocessingrules
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseField(input string) (*Field, error) {
+	vals := map[string]Field{
+		"alertcontext":        FieldAlertContext,
+		"alertruleid":         FieldAlertRuleId,
+		"alertrulename":       FieldAlertRuleName,
+		"description":         FieldDescription,
+		"monitorcondition":    FieldMonitorCondition,
+		"monitorservice":      FieldMonitorService,
+		"severity":            FieldSeverity,
+		"signaltype":          FieldSignalType,
+		"targetresource":      FieldTargetResource,
+		"targetresourcegroup": FieldTargetResourceGroup,
+		"targetresourcetype":  FieldTargetResourceType,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Field(input)
+	return &out, nil
+}

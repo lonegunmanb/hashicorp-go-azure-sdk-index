@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type ManagedDeviceWindowsOperatingSystemEdition struct {
+	// Windows Operating System is available in different editions, which have a specific set of features available. This
+	// enum type defines the corresponding edition.
+	EditionType *ManagedDeviceWindowsOperatingSystemEditionType `json:"editionType,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Indicates the Date until which this Operating System edition type is officially supported. The Timestamp type
+	// represents date and time information using ISO 8601 format and is always in Pacific Time Zone (PT). For example,
+	// 2014-01-01 would mean '2014-01-01T07:00:00Z' in UTC time. Returned by default. Read-only.
+	SupportEndDate *string `json:"supportEndDate,omitempty"`
+}

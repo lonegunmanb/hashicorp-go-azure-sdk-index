@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2023-03-11/datacollectionrules
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseKnownDataCollectionRuleProvisioningState(input string) (*KnownDataCollectionRuleProvisioningState, error) {
+	vals := map[string]KnownDataCollectionRuleProvisioningState{
+		"canceled":  KnownDataCollectionRuleProvisioningStateCanceled,
+		"creating":  KnownDataCollectionRuleProvisioningStateCreating,
+		"deleting":  KnownDataCollectionRuleProvisioningStateDeleting,
+		"failed":    KnownDataCollectionRuleProvisioningStateFailed,
+		"succeeded": KnownDataCollectionRuleProvisioningStateSucceeded,
+		"updating":  KnownDataCollectionRuleProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := KnownDataCollectionRuleProvisioningState(input)
+	return &out, nil
+}

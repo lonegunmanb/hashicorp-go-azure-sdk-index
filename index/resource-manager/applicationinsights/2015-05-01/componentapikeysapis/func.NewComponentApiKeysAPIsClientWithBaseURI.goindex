@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/applicationinsights/2015-05-01/componentapikeysapis
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewComponentApiKeysAPIsClientWithBaseURI(sdkApi sdkEnv.Api) (*ComponentApiKeysAPIsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "componentapikeysapis", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ComponentApiKeysAPIsClient: %+v", err)
+	}
+
+	return &ComponentApiKeysAPIsClient{
+		Client: client,
+	}, nil
+}

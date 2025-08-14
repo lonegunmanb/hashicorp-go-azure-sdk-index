@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2024-10-01/resourceguardproxy
+import (
+	"context"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+)
+func (c ResourceGuardProxyClient) Put(ctx context.Context, id BackupResourceGuardProxyId, input ResourceGuardProxyBaseResource) (result PutOperationResponse, err error) {
+	req, err := c.preparerForPut(ctx, id, input)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "resourceguardproxy.ResourceGuardProxyClient", "Put", nil, "Failure preparing request")
+		return
+	}
+
+	result.HttpResponse, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "resourceguardproxy.ResourceGuardProxyClient", "Put", result.HttpResponse, "Failure sending request")
+		return
+	}
+
+	result, err = c.responderForPut(result.HttpResponse)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "resourceguardproxy.ResourceGuardProxyClient", "Put", result.HttpResponse, "Failure responding to request")
+		return
+	}
+
+	return
+}

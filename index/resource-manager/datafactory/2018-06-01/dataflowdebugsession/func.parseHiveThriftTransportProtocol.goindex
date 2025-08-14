@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/dataflowdebugsession
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseHiveThriftTransportProtocol(input string) (*HiveThriftTransportProtocol, error) {
+	vals := map[string]HiveThriftTransportProtocol{
+		"binary": HiveThriftTransportProtocolBinary,
+		"http ":  HiveThriftTransportProtocolHTTP,
+		"sasl":   HiveThriftTransportProtocolSASL,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := HiveThriftTransportProtocol(input)
+	return &out, nil
+}

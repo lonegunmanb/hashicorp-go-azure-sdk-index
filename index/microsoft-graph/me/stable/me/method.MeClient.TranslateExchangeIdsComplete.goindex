@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/me
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c MeClient) TranslateExchangeIdsComplete(ctx context.Context, input TranslateExchangeIdsRequest, options TranslateExchangeIdsOperationOptions) (TranslateExchangeIdsCompleteResult, error) {
+	return c.TranslateExchangeIdsCompleteMatchingPredicate(ctx, input, options, ConvertIdResultOperationPredicate{})
+}

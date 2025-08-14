@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2024-11-01/mhsmlistregions
+
+func (p MHSMGeoReplicatedRegionOperationPredicate) Matches(input MHSMGeoReplicatedRegion) bool {
+
+	if p.IsPrimary != nil && (input.IsPrimary == nil || *p.IsPrimary != *input.IsPrimary) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	return true
+}

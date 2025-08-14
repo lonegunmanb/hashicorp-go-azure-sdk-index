@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type OutboundSharedUserProfile struct {
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The collection of external Microsoft Entra tenants that the user shared profile data with. Read-only.
+	Tenants *[]TenantReference `json:"tenants,omitempty"`
+
+	// The object id of the external user. Read-only.
+	UserId *string `json:"userId,omitempty"`
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dynatrace/2024-04-24/monitoredsubscriptions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSendingMetricsStatus(input string) (*SendingMetricsStatus, error) {
+	vals := map[string]SendingMetricsStatus{
+		"disabled": SendingMetricsStatusDisabled,
+		"enabled":  SendingMetricsStatusEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SendingMetricsStatus(input)
+	return &out, nil
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s LocationConstraintItem) Location() BaseLocationImpl {
+	return BaseLocationImpl{
+		Address:              s.Address,
+		Coordinates:          s.Coordinates,
+		DisplayName:          s.DisplayName,
+		LocationEmailAddress: s.LocationEmailAddress,
+		LocationType:         s.LocationType,
+		LocationUri:          s.LocationUri,
+		ODataId:              s.ODataId,
+		ODataType:            s.ODataType,
+		UniqueId:             s.UniqueId,
+		UniqueIdType:         s.UniqueIdType,
+	}
+}

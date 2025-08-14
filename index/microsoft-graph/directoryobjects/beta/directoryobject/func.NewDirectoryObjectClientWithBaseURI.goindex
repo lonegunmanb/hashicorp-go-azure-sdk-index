@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/directoryobjects/beta/directoryobject
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDirectoryObjectClientWithBaseURI(sdkApi sdkEnv.Api) (*DirectoryObjectClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "directoryobject", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DirectoryObjectClient: %+v", err)
+	}
+
+	return &DirectoryObjectClient{
+		Client: client,
+	}, nil
+}

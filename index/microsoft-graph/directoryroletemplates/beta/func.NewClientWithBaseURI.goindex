@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/directoryroletemplates/beta
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directoryroletemplates/beta/directoryroletemplate"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Client)) (*Client, error) {
+	directoryRoleTemplateClient, err := directoryroletemplate.NewDirectoryRoleTemplateClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building DirectoryRoleTemplate client: %+v", err)
+	}
+	configureFunc(directoryRoleTemplateClient.Client)
+
+	return &Client{
+		DirectoryRoleTemplate: directoryRoleTemplateClient,
+	}, nil
+}

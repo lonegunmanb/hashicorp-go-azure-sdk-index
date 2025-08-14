@@ -1,0 +1,50 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager
+import (
+	"bytes"
+	"context"
+	"encoding/json"
+	"errors"
+	"fmt"
+	"io"
+	"net/http"
+	"net/url"
+	"strconv"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+)
+func longRunningOperationPollerFromResponse(resp *client.Response, client *client.Client) (*longRunningOperationPoller, error) {
+	poller := longRunningOperationPoller{
+		client:                client,
+		initialRetryDuration:  10 * time.Second,
+		maxDroppedConnections: 3,
+	}
+
+	pollingUrl := pollingUriForLongRunningOperation(resp)
+	if pollingUrl == "" {
+		return nil, fmt.Errorf("no polling URL found in response")
+	}
+
+	u, err := url.Parse(pollingUrl)
+	if err != nil {
+		return nil, fmt.Errorf("invalid polling URL %q in response: %v", pollingUrl, err)
+	}
+	if !u.IsAbs() {
+		return nil, fmt.Errorf("invalid polling URL %q in response: URL was not absolute", pollingUrl)
+	}
+	poller.pollingUrl = u
+
+	if resp.Request != nil {
+		poller.originalUrl = resp.Request.URL
+	}
+
+	if s, ok := resp.Header["Retry-After"]; ok {
+		if sleep, err := strconv.ParseInt(s[0], 10, 64); err == nil {
+			poller.initialRetryDuration = time.Second * time.Duration(sleep)
+		}
+	}
+
+	return &poller, nil
+}

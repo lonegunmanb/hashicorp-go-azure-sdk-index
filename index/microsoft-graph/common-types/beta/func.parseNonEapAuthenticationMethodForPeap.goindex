@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNonEapAuthenticationMethodForPeap(input string) (*NonEapAuthenticationMethodForPeap, error) {
+	vals := map[string]NonEapAuthenticationMethodForPeap{
+		"microsoftchapversiontwo": NonEapAuthenticationMethodForPeap_MicrosoftChapVersionTwo,
+		"none":                    NonEapAuthenticationMethodForPeap_None,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NonEapAuthenticationMethodForPeap(input)
+	return &out, nil
+}

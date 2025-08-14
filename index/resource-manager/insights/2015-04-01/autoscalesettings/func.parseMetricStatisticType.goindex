@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2015-04-01/autoscalesettings
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMetricStatisticType(input string) (*MetricStatisticType, error) {
+	vals := map[string]MetricStatisticType{
+		"average": MetricStatisticTypeAverage,
+		"count":   MetricStatisticTypeCount,
+		"max":     MetricStatisticTypeMax,
+		"min":     MetricStatisticTypeMin,
+		"sum":     MetricStatisticTypeSum,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MetricStatisticType(input)
+	return &out, nil
+}

@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVpnAuthenticationMethod(input string) (*VpnAuthenticationMethod, error) {
+	vals := map[string]VpnAuthenticationMethod{
+		"azuread":             VpnAuthenticationMethod_AzureAD,
+		"certificate":         VpnAuthenticationMethod_Certificate,
+		"derivedcredential":   VpnAuthenticationMethod_DerivedCredential,
+		"sharedsecret":        VpnAuthenticationMethod_SharedSecret,
+		"usernameandpassword": VpnAuthenticationMethod_UsernameAndPassword,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VpnAuthenticationMethod(input)
+	return &out, nil
+}

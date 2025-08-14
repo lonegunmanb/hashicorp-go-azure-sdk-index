@@ -1,0 +1,9 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2021-05-01-preview/autoscalesettings
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *TimeWindow) GetStartAsTime() (*time.Time, error) {
+	return dates.ParseAsFormat(&o.Start, "2006-01-02T15:04:05Z07:00")
+}

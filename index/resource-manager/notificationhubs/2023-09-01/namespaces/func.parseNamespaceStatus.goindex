@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/notificationhubs/2023-09-01/namespaces
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNamespaceStatus(input string) (*NamespaceStatus, error) {
+	vals := map[string]NamespaceStatus{
+		"created":   NamespaceStatusCreated,
+		"creating":  NamespaceStatusCreating,
+		"deleting":  NamespaceStatusDeleting,
+		"suspended": NamespaceStatusSuspended,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NamespaceStatus(input)
+	return &out, nil
+}

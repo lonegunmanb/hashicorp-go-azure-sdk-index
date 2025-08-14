@@ -1,0 +1,56 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ManagedTenantsAggregatedPolicyCompliance struct {
+	// Identifier for the device compliance policy. Optional. Read-only.
+	CompliancePolicyId nullable.Type[string] `json:"compliancePolicyId,omitempty"`
+
+	// Name of the device compliance policy. Optional. Read-only.
+	CompliancePolicyName nullable.Type[string] `json:"compliancePolicyName,omitempty"`
+
+	// Platform for the device compliance policy. Possible values are: android, androidForWork, iOS, macOS, windowsPhone81,
+	// windows81AndLater, windows10AndLater, androidWorkProfile, androidAOSP, all. Optional. Read-only.
+	CompliancePolicyPlatform nullable.Type[string] `json:"compliancePolicyPlatform,omitempty"`
+
+	// The type of compliance policy. Optional. Read-only.
+	CompliancePolicyType nullable.Type[string] `json:"compliancePolicyType,omitempty"`
+
+	// Date and time the entity was last updated in the multi-tenant management platform. Optional. Read-only.
+	LastRefreshedDateTime nullable.Type[string] `json:"lastRefreshedDateTime,omitempty"`
+
+	// The number of devices that are in a compliant status. Optional. Read-only.
+	NumberOfCompliantDevices nullable.Type[int64] `json:"numberOfCompliantDevices,omitempty"`
+
+	// The number of devices that are in an error status. Optional. Read-only.
+	NumberOfErrorDevices nullable.Type[int64] `json:"numberOfErrorDevices,omitempty"`
+
+	// The number of device that are in a non-compliant status. Optional. Read-only.
+	NumberOfNonCompliantDevices nullable.Type[int64] `json:"numberOfNonCompliantDevices,omitempty"`
+
+	// The date and time the device policy was last modified. Optional. Read-only.
+	PolicyModifiedDateTime nullable.Type[string] `json:"policyModifiedDateTime,omitempty"`
+
+	// The display name for the managed tenant. Optional. Read-only.
+	TenantDisplayName nullable.Type[string] `json:"tenantDisplayName,omitempty"`
+
+	// The Microsoft Entra tenant identifier for the managed tenant. Optional. Read-only.
+	TenantId nullable.Type[string] `json:"tenantId,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

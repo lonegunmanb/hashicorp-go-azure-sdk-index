@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseProvisioningAction(input string) (*ProvisioningAction, error) {
+	vals := map[string]ProvisioningAction{
+		"create":       ProvisioningAction_Create,
+		"delete":       ProvisioningAction_Delete,
+		"disable":      ProvisioningAction_Disable,
+		"other":        ProvisioningAction_Other,
+		"stageddelete": ProvisioningAction_StagedDelete,
+		"update":       ProvisioningAction_Update,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ProvisioningAction(input)
+	return &out, nil
+}

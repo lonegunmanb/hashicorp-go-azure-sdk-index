@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseModality(input string) (*Modality, error) {
+	vals := map[string]Modality{
+		"audio":                   Modality_Audio,
+		"data":                    Modality_Data,
+		"unknown":                 Modality_Unknown,
+		"video":                   Modality_Video,
+		"videobasedscreensharing": Modality_VideoBasedScreenSharing,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Modality(input)
+	return &out, nil
+}

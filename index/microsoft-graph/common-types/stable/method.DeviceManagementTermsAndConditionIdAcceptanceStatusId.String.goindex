@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DeviceManagementTermsAndConditionIdAcceptanceStatusId) String() string {
+	components := []string{
+		fmt.Sprintf("Terms And Conditions: %q", id.TermsAndConditionsId),
+		fmt.Sprintf("Terms And Conditions Acceptance Status: %q", id.TermsAndConditionsAcceptanceStatusId),
+	}
+	return fmt.Sprintf("Device Management Terms And Condition Id Acceptance Status (%s)", strings.Join(components, "\n"))
+}

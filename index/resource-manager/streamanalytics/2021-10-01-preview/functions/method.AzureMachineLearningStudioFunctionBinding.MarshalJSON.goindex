@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/streamanalytics/2021-10-01-preview/functions
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s AzureMachineLearningStudioFunctionBinding) MarshalJSON() ([]byte, error) {
+	type wrapper AzureMachineLearningStudioFunctionBinding
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AzureMachineLearningStudioFunctionBinding: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AzureMachineLearningStudioFunctionBinding: %+v", err)
+	}
+
+	decoded["type"] = "Microsoft.MachineLearning/WebService"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AzureMachineLearningStudioFunctionBinding: %+v", err)
+	}
+
+	return encoded, nil
+}

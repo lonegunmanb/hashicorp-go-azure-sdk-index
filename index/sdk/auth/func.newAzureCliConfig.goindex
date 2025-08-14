@@ -1,0 +1,75 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"context"
+	"fmt"
+	"net/http"
+	"os"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	"github.com/hashicorp/go-azure-sdk/sdk/internal/azurecli"
+	"golang.org/x/oauth2"
+)
+func newAzureCliConfig(api environments.Api, tenantId string, auxiliaryTenantIds []string, subscriptionIdHint string) (*azureCliConfig, error) {
+	// check az-cli version, ensure that MSAL is supported
+	if err := azurecli.CheckAzVersion(); err != nil {
+		return nil, err
+	}
+
+	// obtain default tenant ID if no tenant ID was provided
+	if strings.TrimSpace(tenantId) == "" {
+		if defaultTenantId, err := azurecli.GetDefaultTenantID(); err != nil {
+			return nil, fmt.Errorf("tenant ID was not specified and the default tenant ID could not be determined: %v", err)
+		} else if defaultTenantId == nil {
+			return nil, fmt.Errorf("tenant ID was not specified and the default tenant ID could not be determined")
+		} else {
+			tenantId = *defaultTenantId
+		}
+	}
+
+	// validate tenant ID
+	if valid, err := azurecli.ValidateTenantID(tenantId); err != nil {
+		return nil, err
+	} else if !valid {
+		return nil, fmt.Errorf("invalid tenant ID was provided")
+	}
+
+	// get the default subscription ID
+	var subscriptionId string
+	if defaultSubscriptionId, err := azurecli.GetDefaultSubscriptionID(); err != nil {
+		return nil, err
+	} else if defaultSubscriptionId != nil {
+		subscriptionId = *defaultSubscriptionId
+	}
+
+	// validate subscriptionIdHint, if applicable (currently only for Resource Manager)
+	if environments.ApiIsKnownPublished(api, "AzureResourceManager") {
+		if subscriptionIdHint != "" {
+			if availableSubscriptionIds, err := azurecli.ListAvailableSubscriptionIDs(); err != nil {
+				return nil, err
+			} else if availableSubscriptionIds == nil {
+				return nil, fmt.Errorf("no available subscription IDs returned by Azure CLI")
+			} else {
+				found := false
+				for _, subId := range *availableSubscriptionIds {
+					if strings.EqualFold(subId, subscriptionIdHint) {
+						found = true
+						break
+					}
+				}
+				if !found {
+					return nil, fmt.Errorf("the provided subscription ID %q is not known by Azure CLI", subscriptionIdHint)
+				}
+			}
+		}
+	}
+
+	return &azureCliConfig{
+		Api:                   api,
+		TenantID:              tenantId,
+		AuxiliaryTenantIDs:    auxiliaryTenantIds,
+		DefaultSubscriptionID: subscriptionId,
+		SubscriptionIDHint:    strings.ToLower(subscriptionIdHint),
+	}, nil
+}

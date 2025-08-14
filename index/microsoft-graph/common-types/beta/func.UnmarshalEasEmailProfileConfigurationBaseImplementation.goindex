@@ -1,0 +1,59 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalEasEmailProfileConfigurationBaseImplementation(input []byte) (EasEmailProfileConfigurationBase, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling EasEmailProfileConfigurationBase into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.iosEasEmailProfileConfiguration") {
+		var out IosEasEmailProfileConfiguration
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into IosEasEmailProfileConfiguration: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.windows10EasEmailProfileConfiguration") {
+		var out Windows10EasEmailProfileConfiguration
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into Windows10EasEmailProfileConfiguration: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.windowsPhoneEASEmailProfileConfiguration") {
+		var out WindowsPhoneEASEmailProfileConfiguration
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into WindowsPhoneEASEmailProfileConfiguration: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseEasEmailProfileConfigurationBaseImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseEasEmailProfileConfigurationBaseImpl: %+v", err)
+	}
+
+	return RawEasEmailProfileConfigurationBaseImpl{
+		easEmailProfileConfigurationBase: parent,
+		Type:                             value,
+		Values:                           temp,
+	}, nil
+
+}

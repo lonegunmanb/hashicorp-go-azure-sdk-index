@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/security/2019-01-01-preview/regulatorycompliance
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c RegulatoryComplianceClient) ControlsListComplete(ctx context.Context, id RegulatoryComplianceStandardId, options ControlsListOperationOptions) (ControlsListCompleteResult, error) {
+	return c.ControlsListCompleteMatchingPredicate(ctx, id, options, RegulatoryComplianceControlOperationPredicate{})
+}

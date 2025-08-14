@@ -1,0 +1,11 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id UserIdDriveIdListContentTypeIdColumnId) ID() string {
+	fmtString := "/users/%s/drives/%s/list/contentTypes/%s/columns/%s"
+	return fmt.Sprintf(fmtString, id.UserId, id.DriveId, id.ContentTypeId, id.ColumnDefinitionId)
+}

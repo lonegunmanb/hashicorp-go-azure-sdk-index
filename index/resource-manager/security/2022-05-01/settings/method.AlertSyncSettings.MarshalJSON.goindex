@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/security/2022-05-01/settings
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s AlertSyncSettings) MarshalJSON() ([]byte, error) {
+	type wrapper AlertSyncSettings
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AlertSyncSettings: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AlertSyncSettings: %+v", err)
+	}
+
+	decoded["kind"] = "AlertSyncSettings"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AlertSyncSettings: %+v", err)
+	}
+
+	return encoded, nil
+}

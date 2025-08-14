@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mysql/2023-12-30/serverfailover
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewServerFailoverClientWithBaseURI(sdkApi sdkEnv.Api) (*ServerFailoverClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "serverfailover", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ServerFailoverClient: %+v", err)
+	}
+
+	return &ServerFailoverClient{
+		Client: client,
+	}, nil
+}

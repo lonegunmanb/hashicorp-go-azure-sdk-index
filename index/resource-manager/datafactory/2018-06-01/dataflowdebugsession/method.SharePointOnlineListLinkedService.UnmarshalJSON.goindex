@@ -1,0 +1,40 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/dataflowdebugsession
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s *SharePointOnlineListLinkedService) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		TypeProperties SharePointOnlineListLinkedServiceTypeProperties `json:"typeProperties"`
+		Annotations    *[]interface{}                                  `json:"annotations,omitempty"`
+		Description    *string                                         `json:"description,omitempty"`
+		Parameters     *map[string]ParameterSpecification              `json:"parameters,omitempty"`
+		Type           string                                          `json:"type"`
+		Version        *string                                         `json:"version,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.TypeProperties = decoded.TypeProperties
+	s.Annotations = decoded.Annotations
+	s.Description = decoded.Description
+	s.Parameters = decoded.Parameters
+	s.Type = decoded.Type
+	s.Version = decoded.Version
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling SharePointOnlineListLinkedService into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["connectVia"]; ok {
+		impl, err := UnmarshalReferenceImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'ConnectVia' for 'SharePointOnlineListLinkedService': %+v", err)
+		}
+		s.ConnectVia = impl
+	}
+
+	return nil
+}

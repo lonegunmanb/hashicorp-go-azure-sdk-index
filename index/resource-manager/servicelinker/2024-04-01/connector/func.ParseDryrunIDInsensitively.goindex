@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicelinker/2024-04-01/connector
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseDryrunIDInsensitively(input string) (*DryrunId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&DryrunId{})
+	parsed, err := parser.Parse(input, true)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := DryrunId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

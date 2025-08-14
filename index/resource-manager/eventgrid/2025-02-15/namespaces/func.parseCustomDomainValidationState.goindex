@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2025-02-15/namespaces
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCustomDomainValidationState(input string) (*CustomDomainValidationState, error) {
+	vals := map[string]CustomDomainValidationState{
+		"approved":                 CustomDomainValidationStateApproved,
+		"errorretrievingdnsrecord": CustomDomainValidationStateErrorRetrievingDnsRecord,
+		"pending":                  CustomDomainValidationStatePending,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CustomDomainValidationState(input)
+	return &out, nil
+}

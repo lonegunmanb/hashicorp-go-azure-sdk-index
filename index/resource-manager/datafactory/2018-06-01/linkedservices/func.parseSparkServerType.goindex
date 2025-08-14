@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/linkedservices
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSparkServerType(input string) (*SparkServerType, error) {
+	vals := map[string]SparkServerType{
+		"sharkserver":       SparkServerTypeSharkServer,
+		"sharkserver2":      SparkServerTypeSharkServerTwo,
+		"sparkthriftserver": SparkServerTypeSparkThriftServer,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SparkServerType(input)
+	return &out, nil
+}

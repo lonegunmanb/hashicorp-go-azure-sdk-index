@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/frontdoor/2025-03-01/webapplicationfirewallpolicies
+import (
+	"strings"
+)
+func parsePolicyRequestBodyCheck(input string) (*PolicyRequestBodyCheck, error) {
+	vals := map[string]PolicyRequestBodyCheck{
+		"disabled": PolicyRequestBodyCheckDisabled,
+		"enabled":  PolicyRequestBodyCheckEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PolicyRequestBodyCheck(input)
+	return &out, nil
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2019-10-01/forecasts
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseChargeType(input string) (*ChargeType, error) {
+	vals := map[string]ChargeType{
+		"actual":   ChargeTypeActual,
+		"forecast": ChargeTypeForecast,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ChargeType(input)
+	return &out, nil
+}

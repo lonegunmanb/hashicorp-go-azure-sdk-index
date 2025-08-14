@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/enterpriseapproleassignment
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewEnterpriseAppRoleAssignmentClientWithBaseURI(sdkApi sdkEnv.Api) (*EnterpriseAppRoleAssignmentClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "enterpriseapproleassignment", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating EnterpriseAppRoleAssignmentClient: %+v", err)
+	}
+
+	return &EnterpriseAppRoleAssignmentClient{
+		Client: client,
+	}, nil
+}

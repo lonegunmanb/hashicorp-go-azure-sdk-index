@@ -1,0 +1,70 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type SecurityThreatIntelligence struct {
+	// Refers to indicators of threat or compromise highlighted in an article.Note: List retrieval is not yet supported.
+	ArticleIndicators *[]SecurityArticleIndicator `json:"articleIndicators,omitempty"`
+
+	// A list of article objects.
+	Articles *[]SecurityArticle `json:"articles,omitempty"`
+
+	// Retrieve details about hostComponent objects.Note: List retrieval is not yet supported.
+	HostComponents *[]SecurityHostComponent `json:"hostComponents,omitempty"`
+
+	// Retrieve details about hostCookie objects.Note: List retrieval is not yet supported.
+	HostCookies *[]SecurityHostCookie `json:"hostCookies,omitempty"`
+
+	// Retrieve details about hostTracker objects.Note: List retrieval is not yet supported.
+	HostPairs *[]SecurityHostPair `json:"hostPairs,omitempty"`
+
+	// Retrieve details about hostPort objects.Note: List retrieval is not yet supported.
+	HostPorts *[]SecurityHostPort `json:"hostPorts,omitempty"`
+
+	// Retrieve details about hostSslCertificate objects.Note: List retrieval is not yet supported.
+	HostSslCertificates *[]SecurityHostSslCertificate `json:"hostSslCertificates,omitempty"`
+
+	// Retrieve details about hostTracker objects.Note: List retrieval is not yet supported.
+	HostTrackers *[]SecurityHostTracker `json:"hostTrackers,omitempty"`
+
+	// Refers to host objects that Microsoft Threat Intelligence has observed.Note: List retrieval is not yet supported.
+	Hosts *[]SecurityHost `json:"hosts,omitempty"`
+
+	// A list of intelligenceProfile objects.
+	IntelProfiles *[]SecurityIntelligenceProfile `json:"intelProfiles,omitempty"`
+
+	IntelligenceProfileIndicators *[]SecurityIntelligenceProfileIndicator `json:"intelligenceProfileIndicators,omitempty"`
+
+	// Retrieve details about passiveDnsRecord objects.Note: List retrieval is not yet supported.
+	PassiveDnsRecords *[]SecurityPassiveDnsRecord `json:"passiveDnsRecords,omitempty"`
+
+	// Retrieve details about sslCertificate objects.Note: List retrieval is not yet supported.
+	SslCertificates *[]SecuritySslCertificate `json:"sslCertificates,omitempty"`
+
+	// Retrieve details about the subdomain.Note: List retrieval is not yet supported.
+	Subdomains *[]SecuritySubdomain `json:"subdomains,omitempty"`
+
+	// Retrieve details about vulnerabilities.Note: List retrieval is not yet supported.
+	Vulnerabilities *[]SecurityVulnerability `json:"vulnerabilities,omitempty"`
+
+	// Retrieve details about whoisHistoryRecord objects.Note: List retrieval is not yet supported.
+	WhoisHistoryRecords *[]SecurityWhoisHistoryRecord `json:"whoisHistoryRecords,omitempty"`
+
+	// A list of whoisRecord objects.
+	WhoisRecords *[]SecurityWhoisRecord `json:"whoisRecords,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

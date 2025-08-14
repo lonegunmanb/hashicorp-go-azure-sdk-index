@@ -1,0 +1,89 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/jobdetails
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalJobImplementation(input []byte) (Job, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling Job into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["jobType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "AzureIaaSVMJob") {
+		var out AzureIaaSVMJob
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureIaaSVMJob: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "AzureIaaSVMJobV2") {
+		var out AzureIaaSVMJobV2
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureIaaSVMJobV2: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "AzureStorageJob") {
+		var out AzureStorageJob
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureStorageJob: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "AzureWorkloadJob") {
+		var out AzureWorkloadJob
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureWorkloadJob: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "DpmJob") {
+		var out DpmJob
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DpmJob: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "MabJob") {
+		var out MabJob
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into MabJob: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "VaultJob") {
+		var out VaultJob
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into VaultJob: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseJobImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseJobImpl: %+v", err)
+	}
+
+	return RawJobImpl{
+		job:    parent,
+		Type:   value,
+		Values: temp,
+	}, nil
+
+}

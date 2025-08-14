@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2022-03-02/disks
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDiskStorageAccountTypes(input string) (*DiskStorageAccountTypes, error) {
+	vals := map[string]DiskStorageAccountTypes{
+		"premium_lrs":     DiskStorageAccountTypesPremiumLRS,
+		"premiumv2_lrs":   DiskStorageAccountTypesPremiumVTwoLRS,
+		"premium_zrs":     DiskStorageAccountTypesPremiumZRS,
+		"standard_lrs":    DiskStorageAccountTypesStandardLRS,
+		"standardssd_lrs": DiskStorageAccountTypesStandardSSDLRS,
+		"standardssd_zrs": DiskStorageAccountTypesStandardSSDZRS,
+		"ultrassd_lrs":    DiskStorageAccountTypesUltraSSDLRS,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DiskStorageAccountTypes(input)
+	return &out, nil
+}

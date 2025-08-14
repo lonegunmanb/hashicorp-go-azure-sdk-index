@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/trafficmanager/2022-04-01/profiles
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTrafficRoutingMethod(input string) (*TrafficRoutingMethod, error) {
+	vals := map[string]TrafficRoutingMethod{
+		"geographic":  TrafficRoutingMethodGeographic,
+		"multivalue":  TrafficRoutingMethodMultiValue,
+		"performance": TrafficRoutingMethodPerformance,
+		"priority":    TrafficRoutingMethodPriority,
+		"subnet":      TrafficRoutingMethodSubnet,
+		"weighted":    TrafficRoutingMethodWeighted,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TrafficRoutingMethod(input)
+	return &out, nil
+}

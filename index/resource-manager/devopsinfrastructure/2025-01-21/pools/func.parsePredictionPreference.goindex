@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devopsinfrastructure/2025-01-21/pools
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePredictionPreference(input string) (*PredictionPreference, error) {
+	vals := map[string]PredictionPreference{
+		"balanced":          PredictionPreferenceBalanced,
+		"bestperformance":   PredictionPreferenceBestPerformance,
+		"morecosteffective": PredictionPreferenceMoreCostEffective,
+		"moreperformance":   PredictionPreferenceMorePerformance,
+		"mostcosteffective": PredictionPreferenceMostCostEffective,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PredictionPreference(input)
+	return &out, nil
+}

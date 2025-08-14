@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2023-12-15-preview/namespacetopics
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNamespaceTopicProvisioningState(input string) (*NamespaceTopicProvisioningState, error) {
+	vals := map[string]NamespaceTopicProvisioningState{
+		"canceled":      NamespaceTopicProvisioningStateCanceled,
+		"createfailed":  NamespaceTopicProvisioningStateCreateFailed,
+		"creating":      NamespaceTopicProvisioningStateCreating,
+		"deletefailed":  NamespaceTopicProvisioningStateDeleteFailed,
+		"deleted":       NamespaceTopicProvisioningStateDeleted,
+		"deleting":      NamespaceTopicProvisioningStateDeleting,
+		"failed":        NamespaceTopicProvisioningStateFailed,
+		"succeeded":     NamespaceTopicProvisioningStateSucceeded,
+		"updatedfailed": NamespaceTopicProvisioningStateUpdatedFailed,
+		"updating":      NamespaceTopicProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NamespaceTopicProvisioningState(input)
+	return &out, nil
+}

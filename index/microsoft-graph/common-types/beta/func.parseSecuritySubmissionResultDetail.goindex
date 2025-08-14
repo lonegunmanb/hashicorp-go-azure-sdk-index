@@ -1,0 +1,87 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecuritySubmissionResultDetail(input string) (*SecuritySubmissionResultDetail, error) {
+	vals := map[string]SecuritySubmissionResultDetail{
+		"allowedbyadvanceddelivery":              SecuritySubmissionResultDetail_AllowedByAdvancedDelivery,
+		"allowedbyconnection":                    SecuritySubmissionResultDetail_AllowedByConnection,
+		"allowedbyenhancedfiltering":             SecuritySubmissionResultDetail_AllowedByEnhancedFiltering,
+		"allowedbyexchangetransportrule":         SecuritySubmissionResultDetail_AllowedByExchangeTransportRule,
+		"allowedbysecops":                        SecuritySubmissionResultDetail_AllowedBySecOps,
+		"allowedbytenant":                        SecuritySubmissionResultDetail_AllowedByTenant,
+		"allowedbytenantallowblocklist":          SecuritySubmissionResultDetail_AllowedByTenantAllowBlockList,
+		"allowedbythirdpartyfilters":             SecuritySubmissionResultDetail_AllowedByThirdPartyFilters,
+		"allowedbyusersetting":                   SecuritySubmissionResultDetail_AllowedByUserSetting,
+		"allowedfilebytenantallowblocklist":      SecuritySubmissionResultDetail_AllowedFileByTenantAllowBlockList,
+		"allowedrecipientbytenantallowblocklist": SecuritySubmissionResultDetail_AllowedRecipientByTenantAllowBlockList,
+		"allowedsenderbytenantallowblocklist":    SecuritySubmissionResultDetail_AllowedSenderByTenantAllowBlockList,
+		"allowedurlbytenantallowblocklist":       SecuritySubmissionResultDetail_AllowedUrlByTenantAllowBlockList,
+		"associatedwithbrand":                    SecuritySubmissionResultDetail_AssociatedWithBrand,
+		"badreclassifiedasbad":                   SecuritySubmissionResultDetail_BadReclassifiedAsBad,
+		"badreclassifiedasbulk":                  SecuritySubmissionResultDetail_BadReclassifiedAsBulk,
+		"badreclassifiedascannotmakedecision":    SecuritySubmissionResultDetail_BadReclassifiedAsCannotMakeDecision,
+		"badreclassifiedasgood":                  SecuritySubmissionResultDetail_BadReclassifiedAsGood,
+		"blockedbyconnection":                    SecuritySubmissionResultDetail_BlockedByConnection,
+		"blockedbyexchangetransportrule":         SecuritySubmissionResultDetail_BlockedByExchangeTransportRule,
+		"blockedbytenant":                        SecuritySubmissionResultDetail_BlockedByTenant,
+		"blockedbytenantallowblocklist":          SecuritySubmissionResultDetail_BlockedByTenantAllowBlockList,
+		"blockedbyusersetting":                   SecuritySubmissionResultDetail_BlockedByUserSetting,
+		"blockedfilebytenantallowblocklist":      SecuritySubmissionResultDetail_BlockedFileByTenantAllowBlockList,
+		"blockedrecipientbytenantallowblocklist": SecuritySubmissionResultDetail_BlockedRecipientByTenantAllowBlockList,
+		"blockedsenderbytenantallowblocklist":    SecuritySubmissionResultDetail_BlockedSenderByTenantAllowBlockList,
+		"blockedurlbytenantallowblocklist":       SecuritySubmissionResultDetail_BlockedUrlByTenantAllowBlockList,
+		"brandimpersonation":                     SecuritySubmissionResultDetail_BrandImpersonation,
+		"checkuserreportedsettings":              SecuritySubmissionResultDetail_CheckUserReportedSettings,
+		"domainimpersonation":                    SecuritySubmissionResultDetail_DomainImpersonation,
+		"domainresembledyourorganization":        SecuritySubmissionResultDetail_DomainResembledYourOrganization,
+		"enduserbeingimpersonated":               SecuritySubmissionResultDetail_EndUserBeingImpersonated,
+		"enduserbeingspoofed":                    SecuritySubmissionResultDetail_EndUserBeingSpoofed,
+		"goodreclassifiedasbad":                  SecuritySubmissionResultDetail_GoodReclassifiedAsBad,
+		"goodreclassifiedasbulk":                 SecuritySubmissionResultDetail_GoodReclassifiedAsBulk,
+		"goodreclassifiedascannotmakedecision":   SecuritySubmissionResultDetail_GoodReclassifiedAsCannotMakeDecision,
+		"goodreclassifiedasgood":                 SecuritySubmissionResultDetail_GoodReclassifiedAsGood,
+		"invalidfalsenegative":                   SecuritySubmissionResultDetail_InvalidFalseNegative,
+		"invalidfalsepositive":                   SecuritySubmissionResultDetail_InvalidFalsePositive,
+		"itemdeleted":                            SecuritySubmissionResultDetail_ItemDeleted,
+		"itemfoundbulk":                          SecuritySubmissionResultDetail_ItemFoundBulk,
+		"itemfoundclean":                         SecuritySubmissionResultDetail_ItemFoundClean,
+		"itemfoundmalicious":                     SecuritySubmissionResultDetail_ItemFoundMalicious,
+		"itemfoundspam":                          SecuritySubmissionResultDetail_ItemFoundSpam,
+		"itemnotreceivedbyservice":               SecuritySubmissionResultDetail_ItemNotReceivedByService,
+		"junkmailruledisabled":                   SecuritySubmissionResultDetail_JunkMailRuleDisabled,
+		"messagenotfound":                        SecuritySubmissionResultDetail_MessageNotFound,
+		"none":                                   SecuritySubmissionResultDetail_None,
+		"onpremisesskip":                         SecuritySubmissionResultDetail_OnPremisesSkip,
+		"outboundbulk":                           SecuritySubmissionResultDetail_OutboundBulk,
+		"outboundcannotmakedecision":             SecuritySubmissionResultDetail_OutboundCannotMakeDecision,
+		"outboundnotrescanned":                   SecuritySubmissionResultDetail_OutboundNotRescanned,
+		"outboundshouldbeblocked":                SecuritySubmissionResultDetail_OutboundShouldBeBlocked,
+		"outboundshouldnotbeblocked":             SecuritySubmissionResultDetail_OutboundShouldNotBeBlocked,
+		"partofeducationcampaign":                SecuritySubmissionResultDetail_PartOfEducationCampaign,
+		"quarantinereleased":                     SecuritySubmissionResultDetail_QuarantineReleased,
+		"quarantinereleasedthenblocked":          SecuritySubmissionResultDetail_QuarantineReleasedThenBlocked,
+		"senderfailedauthentication":             SecuritySubmissionResultDetail_SenderFailedAuthentication,
+		"simulatedthreat":                        SecuritySubmissionResultDetail_SimulatedThreat,
+		"spoofblocked":                           SecuritySubmissionResultDetail_SpoofBlocked,
+		"unabletomakedecision":                   SecuritySubmissionResultDetail_UnableToMakeDecision,
+		"underinvestigation":                     SecuritySubmissionResultDetail_UnderInvestigation,
+		"urlfilecannotmakedecision":              SecuritySubmissionResultDetail_UrlFileCannotMakeDecision,
+		"urlfileshouldbeblocked":                 SecuritySubmissionResultDetail_UrlFileShouldBeBlocked,
+		"urlfileshouldnotbeblocked":              SecuritySubmissionResultDetail_UrlFileShouldNotBeBlocked,
+		"userimpersonation":                      SecuritySubmissionResultDetail_UserImpersonation,
+		"willnotifyoncedone":                     SecuritySubmissionResultDetail_WillNotifyOnceDone,
+		"zerohourautopurgeallowed":               SecuritySubmissionResultDetail_ZeroHourAutoPurgeAllowed,
+		"zerohourautopurgeblocked":               SecuritySubmissionResultDetail_ZeroHourAutoPurgeBlocked,
+		"zerohourautopurgequarantinereleased":    SecuritySubmissionResultDetail_ZeroHourAutoPurgeQuarantineReleased,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecuritySubmissionResultDetail(input)
+	return &out, nil
+}

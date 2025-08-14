@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-01-01/storageaccounts
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseExpirationAction(input string) (*ExpirationAction, error) {
+	vals := map[string]ExpirationAction{
+		"log": ExpirationActionLog,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ExpirationAction(input)
+	return &out, nil
+}

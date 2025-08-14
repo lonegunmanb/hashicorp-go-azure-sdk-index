@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2024-09-01/scriptcmdlets
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseScriptCmdletAudience(input string) (*ScriptCmdletAudience, error) {
+	vals := map[string]ScriptCmdletAudience{
+		"any":        ScriptCmdletAudienceAny,
+		"automation": ScriptCmdletAudienceAutomation,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ScriptCmdletAudience(input)
+	return &out, nil
+}

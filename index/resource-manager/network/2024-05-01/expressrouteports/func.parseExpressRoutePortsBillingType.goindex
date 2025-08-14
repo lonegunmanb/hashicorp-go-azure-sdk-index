@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-05-01/expressrouteports
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseExpressRoutePortsBillingType(input string) (*ExpressRoutePortsBillingType, error) {
+	vals := map[string]ExpressRoutePortsBillingType{
+		"metereddata":   ExpressRoutePortsBillingTypeMeteredData,
+		"unlimiteddata": ExpressRoutePortsBillingTypeUnlimitedData,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ExpressRoutePortsBillingType(input)
+	return &out, nil
+}

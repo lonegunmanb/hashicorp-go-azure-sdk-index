@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/subscription/2021-10-01/subscriptions
+import (
+	"strings"
+)
+func parseWorkload(input string) (*Workload, error) {
+	vals := map[string]Workload{
+		"devtest":    WorkloadDevTest,
+		"production": WorkloadProduction,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Workload(input)
+	return &out, nil
+}

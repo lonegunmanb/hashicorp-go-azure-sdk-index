@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-01-01/deletedaccounts
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DeletedAccountId) ID() string {
+	fmtString := "/subscriptions/%s/providers/Microsoft.Storage/locations/%s/deletedAccounts/%s"
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.LocationName, id.DeletedAccountName)
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/resourceaccessprofile
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewResourceAccessProfileClientWithBaseURI(sdkApi sdkEnv.Api) (*ResourceAccessProfileClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "resourceaccessprofile", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ResourceAccessProfileClient: %+v", err)
+	}
+
+	return &ResourceAccessProfileClient{
+		Client: client,
+	}, nil
+}

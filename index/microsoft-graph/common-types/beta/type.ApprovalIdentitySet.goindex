@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type ApprovalIdentitySet struct {
+	// The Microsoft Entra group associated with the approval item.
+	Group Identity `json:"group"`
+
+	// Fields inherited from IdentitySet
+
+	// The Identity of the Application. This property is read-only.
+	Application Identity `json:"application"`
+
+	// The Identity of the Device. This property is read-only.
+	Device Identity `json:"device"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The Identity of the User. This property is read-only.
+	User Identity `json:"user"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

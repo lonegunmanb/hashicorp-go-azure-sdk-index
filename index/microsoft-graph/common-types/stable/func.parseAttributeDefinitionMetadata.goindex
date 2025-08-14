@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAttributeDefinitionMetadata(input string) (*AttributeDefinitionMetadata, error) {
+	vals := map[string]AttributeDefinitionMetadata{
+		"baseattributename":       AttributeDefinitionMetadata_BaseAttributeName,
+		"complexobjectdefinition": AttributeDefinitionMetadata_ComplexObjectDefinition,
+		"iscontainer":             AttributeDefinitionMetadata_IsContainer,
+		"iscustomerdefined":       AttributeDefinitionMetadata_IsCustomerDefined,
+		"isdomainqualified":       AttributeDefinitionMetadata_IsDomainQualified,
+		"linkpropertynames":       AttributeDefinitionMetadata_LinkPropertyNames,
+		"linktypename":            AttributeDefinitionMetadata_LinkTypeName,
+		"maximumlength":           AttributeDefinitionMetadata_MaximumLength,
+		"referencedproperty":      AttributeDefinitionMetadata_ReferencedProperty,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AttributeDefinitionMetadata(input)
+	return &out, nil
+}

@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationmigrationitems
+import (
+	"encoding/json"
+	"fmt"
+)
+type VMwareCbtTestMigrateInput struct {
+	NetworkId          string                          `json:"networkId"`
+	OsUpgradeVersion   *string                         `json:"osUpgradeVersion,omitempty"`
+	PostMigrationSteps *[]ManagedRunCommandScriptInput `json:"postMigrationSteps,omitempty"`
+	RecoveryPointId    string                          `json:"recoveryPointId"`
+	VMNics             *[]VMwareCbtNicInput            `json:"vmNics,omitempty"`
+
+	// Fields inherited from TestMigrateProviderSpecificInput
+
+	InstanceType string `json:"instanceType"`
+}

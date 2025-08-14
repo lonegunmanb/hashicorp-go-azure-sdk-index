@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cognitive/2025-06-01/accountconnectionresource
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAccountConnectionResourceClientWithBaseURI(sdkApi sdkEnv.Api) (*AccountConnectionResourceClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "accountconnectionresource", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AccountConnectionResourceClient: %+v", err)
+	}
+
+	return &AccountConnectionResourceClient{
+		Client: client,
+	}, nil
+}

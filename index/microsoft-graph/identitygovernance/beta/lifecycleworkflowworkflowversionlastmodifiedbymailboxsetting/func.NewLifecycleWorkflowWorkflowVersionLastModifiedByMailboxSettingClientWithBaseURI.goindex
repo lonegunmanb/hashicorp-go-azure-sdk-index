@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/lifecycleworkflowworkflowversionlastmodifiedbymailboxsetting
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewLifecycleWorkflowWorkflowVersionLastModifiedByMailboxSettingClientWithBaseURI(sdkApi sdkEnv.Api) (*LifecycleWorkflowWorkflowVersionLastModifiedByMailboxSettingClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "lifecycleworkflowworkflowversionlastmodifiedbymailboxsetting", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating LifecycleWorkflowWorkflowVersionLastModifiedByMailboxSettingClient: %+v", err)
+	}
+
+	return &LifecycleWorkflowWorkflowVersionLastModifiedByMailboxSettingClient{
+		Client: client,
+	}, nil
+}

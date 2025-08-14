@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2025-01-01/policysetdefinitionversions
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *Providers2PolicySetDefinitionVersionId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.ManagementGroupName, ok = input.Parsed["managementGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "managementGroupName", input)
+	}
+
+	if id.PolicySetDefinitionName, ok = input.Parsed["policySetDefinitionName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "policySetDefinitionName", input)
+	}
+
+	if id.VersionName, ok = input.Parsed["versionName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "versionName", input)
+	}
+
+	return nil
+}

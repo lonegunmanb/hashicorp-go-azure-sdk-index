@@ -1,0 +1,72 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type OperationApprovalRequest struct {
+	// Indicates the justification for approving or rejecting the request. Maximum length of justification is 1024
+	// characters. For example: 'Approved per Change 23423 - needed for Feb 2023 application baseline updates.' Read-only.
+	// This property is read-only.
+	ApprovalJustification nullable.Type[string] `json:"approvalJustification,omitempty"`
+
+	// The identity of the approver as an Identity Set. Optionally contains the application ID, the device ID and the User
+	// ID. See information about this type here:
+	// https://learn.microsoft.com/graph/api/resources/identityset?view=graph-rest-1.0. Read-only. This property is
+	// read-only.
+	Approver *IdentitySet `json:"approver,omitempty"`
+
+	// Indicates the DateTime when any action on the approval request is no longer permitted. The value cannot be modified
+	// and is automatically populated when the request is created using expiration offset values defined in the service
+	// controllers. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time.
+	// For example, midnight UTC on Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'. Returned by default.
+	// Read-only. This property is read-only.
+	ExpirationDateTime *string `json:"expirationDateTime,omitempty"`
+
+	// Indicates the last DateTime that the request was modified. The value cannot be modified and is automatically
+	// populated whenever values in the request are updated. For example, when the 'status' property changes from
+	// needsApproval to approved. The Timestamp type represents date and time information using ISO 8601 format and is
+	// always in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'. Returned
+	// by default. Read-only. This property is read-only.
+	LastModifiedDateTime *string `json:"lastModifiedDateTime,omitempty"`
+
+	// Indicates the DateTime that the request was made. The value cannot be modified and is automatically populated when
+	// the request is created. The Timestamp type represents date and time information using ISO 8601 format and is always
+	// in UTC time. For example, midnight UTC on Jan 1, 2014 would look like this: '2014-01-01T00:00:00Z'. Returned by
+	// default. Read-only. This property is read-only.
+	RequestDateTime *string `json:"requestDateTime,omitempty"`
+
+	// Indicates the justification for creating the request. Maximum length of justification is 1024 characters. For
+	// example: 'Needed for Feb 2023 application baseline updates.' Read-only. This property is read-only.
+	RequestJustification nullable.Type[string] `json:"requestJustification,omitempty"`
+
+	// The identity of the requestor as an Identity Set. Optionally contains the application ID, the device ID and the User
+	// ID. See information about this type here:
+	// https://learn.microsoft.com/graph/api/resources/identityset?view=graph-rest-1.0. Read-only. This property is
+	// read-only.
+	Requestor *IdentitySet `json:"requestor,omitempty"`
+
+	// Indicates the approval policy types required by the request in order for the request to be approved or rejected.
+	// Read-only. This property is read-only.
+	RequiredOperationApprovalPolicyTypes *[]OperationApprovalPolicyType `json:"requiredOperationApprovalPolicyTypes,omitempty"`
+
+	// Indicates the status of the Approval Request. The status of a request will change when an action is successfully
+	// performed on it, such as when it is `approved` or `rejected`, or when the request's expiration DateTime passes and
+	// the result is `expired`.
+	Status *OperationApprovalRequestStatus `json:"status,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

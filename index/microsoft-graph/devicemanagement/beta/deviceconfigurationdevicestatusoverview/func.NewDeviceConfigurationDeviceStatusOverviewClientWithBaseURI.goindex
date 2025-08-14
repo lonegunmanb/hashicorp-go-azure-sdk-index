@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/deviceconfigurationdevicestatusoverview
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDeviceConfigurationDeviceStatusOverviewClientWithBaseURI(sdkApi sdkEnv.Api) (*DeviceConfigurationDeviceStatusOverviewClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "deviceconfigurationdevicestatusoverview", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DeviceConfigurationDeviceStatusOverviewClient: %+v", err)
+	}
+
+	return &DeviceConfigurationDeviceStatusOverviewClient{
+		Client: client,
+	}, nil
+}

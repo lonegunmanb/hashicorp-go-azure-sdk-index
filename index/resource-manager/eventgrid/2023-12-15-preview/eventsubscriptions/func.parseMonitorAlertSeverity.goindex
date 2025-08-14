@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2023-12-15-preview/eventsubscriptions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMonitorAlertSeverity(input string) (*MonitorAlertSeverity, error) {
+	vals := map[string]MonitorAlertSeverity{
+		"sev4": MonitorAlertSeveritySevFour,
+		"sev1": MonitorAlertSeveritySevOne,
+		"sev3": MonitorAlertSeveritySevThree,
+		"sev2": MonitorAlertSeveritySevTwo,
+		"sev0": MonitorAlertSeveritySevZero,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MonitorAlertSeverity(input)
+	return &out, nil
+}

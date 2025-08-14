@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/grouppolicyconfigurationassignment
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c GroupPolicyConfigurationAssignmentClient) ListGroupPolicyConfigurationAssignmentsComplete(ctx context.Context, id beta.DeviceManagementGroupPolicyConfigurationId, options ListGroupPolicyConfigurationAssignmentsOperationOptions) (ListGroupPolicyConfigurationAssignmentsCompleteResult, error) {
+	return c.ListGroupPolicyConfigurationAssignmentsCompleteMatchingPredicate(ctx, id, options, GroupPolicyConfigurationAssignmentOperationPredicate{})
+}

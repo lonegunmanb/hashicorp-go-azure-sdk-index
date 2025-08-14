@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootlistitemversion
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DriveRootListItemVersionClient) ListDriveRootListItemVersionsComplete(ctx context.Context, id stable.MeDriveId, options ListDriveRootListItemVersionsOperationOptions) (ListDriveRootListItemVersionsCompleteResult, error) {
+	return c.ListDriveRootListItemVersionsCompleteMatchingPredicate(ctx, id, options, ListItemVersionOperationPredicate{})
+}

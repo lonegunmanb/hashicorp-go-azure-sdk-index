@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/computerps
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id VMImageOfferId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
+		fmt.Sprintf("Edge Zone Name: %q", id.EdgeZoneName),
+		fmt.Sprintf("Publisher Name: %q", id.PublisherName),
+		fmt.Sprintf("Offer Name: %q", id.OfferName),
+	}
+	return fmt.Sprintf("V M Image Offer (%s)", strings.Join(components, "\n"))
+}

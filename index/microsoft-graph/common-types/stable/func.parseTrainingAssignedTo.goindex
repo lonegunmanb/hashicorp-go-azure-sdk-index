@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTrainingAssignedTo(input string) (*TrainingAssignedTo, error) {
+	vals := map[string]TrainingAssignedTo{
+		"allusers":          TrainingAssignedTo_AllUsers,
+		"clickedpayload":    TrainingAssignedTo_ClickedPayload,
+		"compromised":       TrainingAssignedTo_Compromised,
+		"didnothing":        TrainingAssignedTo_DidNothing,
+		"none":              TrainingAssignedTo_None,
+		"readbutnotclicked": TrainingAssignedTo_ReadButNotClicked,
+		"reportedphish":     TrainingAssignedTo_ReportedPhish,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TrainingAssignedTo(input)
+	return &out, nil
+}

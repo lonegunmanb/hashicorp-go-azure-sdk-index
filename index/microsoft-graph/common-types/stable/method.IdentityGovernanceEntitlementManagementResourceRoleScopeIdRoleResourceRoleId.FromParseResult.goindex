@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *IdentityGovernanceEntitlementManagementResourceRoleScopeIdRoleResourceRoleId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.AccessPackageResourceRoleScopeId, ok = input.Parsed["accessPackageResourceRoleScopeId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "accessPackageResourceRoleScopeId", input)
+	}
+
+	if id.AccessPackageResourceRoleId, ok = input.Parsed["accessPackageResourceRoleId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "accessPackageResourceRoleId", input)
+	}
+
+	return nil
+}

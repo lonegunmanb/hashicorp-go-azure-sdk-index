@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type BaseVirtualEventRegistrationConfigurationImpl struct {
+	// Total capacity of the virtual event.
+	Capacity nullable.Type[int64] `json:"capacity,omitempty"`
+
+	// Registration questions.
+	Questions *[]VirtualEventRegistrationQuestionBase `json:"questions,omitempty"`
+
+	// Registration URL of the virtual event.
+	RegistrationWebUrl nullable.Type[string] `json:"registrationWebUrl,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

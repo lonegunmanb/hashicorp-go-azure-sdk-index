@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/serverendpointresource
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseLocalCacheMode(input string) (*LocalCacheMode, error) {
+	vals := map[string]LocalCacheMode{
+		"downloadnewandmodifiedfiles": LocalCacheModeDownloadNewAndModifiedFiles,
+		"updatelocallycachedfiles":    LocalCacheModeUpdateLocallyCachedFiles,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := LocalCacheMode(input)
+	return &out, nil
+}

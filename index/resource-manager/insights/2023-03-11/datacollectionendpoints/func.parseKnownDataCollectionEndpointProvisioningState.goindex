@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2023-03-11/datacollectionendpoints
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseKnownDataCollectionEndpointProvisioningState(input string) (*KnownDataCollectionEndpointProvisioningState, error) {
+	vals := map[string]KnownDataCollectionEndpointProvisioningState{
+		"canceled":  KnownDataCollectionEndpointProvisioningStateCanceled,
+		"creating":  KnownDataCollectionEndpointProvisioningStateCreating,
+		"deleting":  KnownDataCollectionEndpointProvisioningStateDeleting,
+		"failed":    KnownDataCollectionEndpointProvisioningStateFailed,
+		"succeeded": KnownDataCollectionEndpointProvisioningStateSucceeded,
+		"updating":  KnownDataCollectionEndpointProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := KnownDataCollectionEndpointProvisioningState(input)
+	return &out, nil
+}

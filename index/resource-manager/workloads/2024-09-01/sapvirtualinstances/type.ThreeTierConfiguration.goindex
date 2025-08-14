@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/workloads/2024-09-01/sapvirtualinstances
+import (
+	"encoding/json"
+	"fmt"
+)
+type ThreeTierConfiguration struct {
+	ApplicationServer      ApplicationServerConfiguration `json:"applicationServer"`
+	CentralServer          CentralServerConfiguration     `json:"centralServer"`
+	CustomResourceNames    ThreeTierCustomResourceNames   `json:"customResourceNames"`
+	DatabaseServer         DatabaseConfiguration          `json:"databaseServer"`
+	HighAvailabilityConfig *HighAvailabilityConfiguration `json:"highAvailabilityConfig,omitempty"`
+	NetworkConfiguration   *NetworkConfiguration          `json:"networkConfiguration,omitempty"`
+	StorageConfiguration   *StorageConfiguration          `json:"storageConfiguration,omitempty"`
+
+	// Fields inherited from InfrastructureConfiguration
+
+	AppResourceGroup string            `json:"appResourceGroup"`
+	DeploymentType   SAPDeploymentType `json:"deploymentType"`
+}

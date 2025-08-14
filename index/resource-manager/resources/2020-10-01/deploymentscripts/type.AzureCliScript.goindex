@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-10-01/deploymentscripts
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+)
+type AzureCliScript struct {
+	Properties AzureCliScriptProperties `json:"properties"`
+
+	// Fields inherited from DeploymentScript
+
+	Id         *string                   `json:"id,omitempty"`
+	Identity   *identity.UserAssignedMap `json:"identity,omitempty"`
+	Kind       ScriptType                `json:"kind"`
+	Location   string                    `json:"location"`
+	Name       *string                   `json:"name,omitempty"`
+	SystemData *systemdata.SystemData    `json:"systemData,omitempty"`
+	Tags       *map[string]string        `json:"tags,omitempty"`
+	Type       *string                   `json:"type,omitempty"`
+}

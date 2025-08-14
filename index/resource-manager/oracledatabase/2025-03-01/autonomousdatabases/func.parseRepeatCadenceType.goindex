@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/autonomousdatabases
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRepeatCadenceType(input string) (*RepeatCadenceType, error) {
+	vals := map[string]RepeatCadenceType{
+		"monthly": RepeatCadenceTypeMonthly,
+		"onetime": RepeatCadenceTypeOneTime,
+		"weekly":  RepeatCadenceTypeWeekly,
+		"yearly":  RepeatCadenceTypeYearly,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RepeatCadenceType(input)
+	return &out, nil
+}

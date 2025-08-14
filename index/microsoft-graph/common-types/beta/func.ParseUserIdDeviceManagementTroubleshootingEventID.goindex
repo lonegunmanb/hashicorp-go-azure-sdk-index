@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseUserIdDeviceManagementTroubleshootingEventID(input string) (*UserIdDeviceManagementTroubleshootingEventId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&UserIdDeviceManagementTroubleshootingEventId{})
+	parsed, err := parser.Parse(input, false)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := UserIdDeviceManagementTroubleshootingEventId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

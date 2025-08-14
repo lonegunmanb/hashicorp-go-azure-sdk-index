@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/patch
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPATCHClientWithBaseURI(sdkApi sdkEnv.Api) (*PATCHClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "patch", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PATCHClient: %+v", err)
+	}
+
+	return &PATCHClient{
+		Client: client,
+	}, nil
+}

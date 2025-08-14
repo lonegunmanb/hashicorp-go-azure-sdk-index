@@ -1,0 +1,50 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *BookingCustomerInformation) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		CustomQuestionAnswers   *[]BookingQuestionAnswer `json:"customQuestionAnswers,omitempty"`
+		CustomerId              nullable.Type[string]    `json:"customerId,omitempty"`
+		EmailAddress            nullable.Type[string]    `json:"emailAddress,omitempty"`
+		Name                    nullable.Type[string]    `json:"name,omitempty"`
+		Notes                   nullable.Type[string]    `json:"notes,omitempty"`
+		Phone                   nullable.Type[string]    `json:"phone,omitempty"`
+		SmsNotificationsEnabled *bool                    `json:"smsNotificationsEnabled,omitempty"`
+		TimeZone                nullable.Type[string]    `json:"timeZone,omitempty"`
+		ODataId                 *string                  `json:"@odata.id,omitempty"`
+		ODataType               *string                  `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.CustomQuestionAnswers = decoded.CustomQuestionAnswers
+	s.CustomerId = decoded.CustomerId
+	s.EmailAddress = decoded.EmailAddress
+	s.Name = decoded.Name
+	s.Notes = decoded.Notes
+	s.Phone = decoded.Phone
+	s.SmsNotificationsEnabled = decoded.SmsNotificationsEnabled
+	s.TimeZone = decoded.TimeZone
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling BookingCustomerInformation into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["location"]; ok {
+		impl, err := UnmarshalLocationImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Location' for 'BookingCustomerInformation': %+v", err)
+		}
+		s.Location = impl
+	}
+
+	return nil
+}

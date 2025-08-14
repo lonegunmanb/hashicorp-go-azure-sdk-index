@@ -1,0 +1,57 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationprotectableitems
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalConfigurationSettingsImplementation(input []byte) (ConfigurationSettings, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling ConfigurationSettings into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["instanceType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "HyperVVirtualMachine") {
+		var out HyperVVirtualMachineDetails
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into HyperVVirtualMachineDetails: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "ReplicationGroupDetails") {
+		var out ReplicationGroupDetails
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ReplicationGroupDetails: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "VMwareVirtualMachine") {
+		var out VMwareVirtualMachineDetails
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into VMwareVirtualMachineDetails: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseConfigurationSettingsImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseConfigurationSettingsImpl: %+v", err)
+	}
+
+	return RawConfigurationSettingsImpl{
+		configurationSettings: parent,
+		Type:                  value,
+		Values:                temp,
+	}, nil
+
+}

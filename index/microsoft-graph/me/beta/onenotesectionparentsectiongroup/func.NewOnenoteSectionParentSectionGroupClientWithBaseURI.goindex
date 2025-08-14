@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/onenotesectionparentsectiongroup
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewOnenoteSectionParentSectionGroupClientWithBaseURI(sdkApi sdkEnv.Api) (*OnenoteSectionParentSectionGroupClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "onenotesectionparentsectiongroup", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating OnenoteSectionParentSectionGroupClient: %+v", err)
+	}
+
+	return &OnenoteSectionParentSectionGroupClient{
+		Client: client,
+	}, nil
+}

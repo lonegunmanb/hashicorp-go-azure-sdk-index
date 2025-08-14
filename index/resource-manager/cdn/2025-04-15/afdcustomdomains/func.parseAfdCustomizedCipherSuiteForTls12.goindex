@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-04-15/afdcustomdomains
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAfdCustomizedCipherSuiteForTls12(input string) (*AfdCustomizedCipherSuiteForTls12, error) {
+	vals := map[string]AfdCustomizedCipherSuiteForTls12{
+		"dhe_rsa_aes128_gcm_sha256":   AfdCustomizedCipherSuiteForTls12DHERSAAESOneTwoEightGCMSHATwoFiveSix,
+		"dhe_rsa_aes256_gcm_sha384":   AfdCustomizedCipherSuiteForTls12DHERSAAESTwoFiveSixGCMSHAThreeEightFour,
+		"ecdhe_rsa_aes128_gcm_sha256": AfdCustomizedCipherSuiteForTls12ECDHERSAAESOneTwoEightGCMSHATwoFiveSix,
+		"ecdhe_rsa_aes128_sha256":     AfdCustomizedCipherSuiteForTls12ECDHERSAAESOneTwoEightSHATwoFiveSix,
+		"ecdhe_rsa_aes256_gcm_sha384": AfdCustomizedCipherSuiteForTls12ECDHERSAAESTwoFiveSixGCMSHAThreeEightFour,
+		"ecdhe_rsa_aes256_sha384":     AfdCustomizedCipherSuiteForTls12ECDHERSAAESTwoFiveSixSHAThreeEightFour,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AfdCustomizedCipherSuiteForTls12(input)
+	return &out, nil
+}

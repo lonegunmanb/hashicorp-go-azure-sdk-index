@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/deletedservice
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DeletedServiceClient) PurgeThenPoll(ctx context.Context, id DeletedServiceId) error {
+	result, err := c.Purge(ctx, id)
+	if err != nil {
+		return fmt.Errorf("performing Purge: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after Purge: %+v", err)
+	}
+
+	return nil
+}

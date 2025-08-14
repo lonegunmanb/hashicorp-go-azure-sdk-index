@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/jobprivateendpoints
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *PrivateEndpointId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.ServerName, ok = input.Parsed["serverName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "serverName", input)
+	}
+
+	if id.JobAgentName, ok = input.Parsed["jobAgentName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "jobAgentName", input)
+	}
+
+	if id.PrivateEndpointName, ok = input.Parsed["privateEndpointName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "privateEndpointName", input)
+	}
+
+	return nil
+}

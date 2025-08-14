@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/webhook
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewWebhookClientWithBaseURI(sdkApi sdkEnv.Api) (*WebhookClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "webhook", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating WebhookClient: %+v", err)
+	}
+
+	return &WebhookClient{
+		Client: client,
+	}, nil
+}

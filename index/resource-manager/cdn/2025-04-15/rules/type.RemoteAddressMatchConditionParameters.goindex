@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-04-15/rules
+import (
+	"encoding/json"
+	"fmt"
+)
+type RemoteAddressMatchConditionParameters struct {
+	MatchValues     *[]string             `json:"matchValues,omitempty"`
+	NegateCondition *bool                 `json:"negateCondition,omitempty"`
+	Operator        RemoteAddressOperator `json:"operator"`
+	Transforms      *[]Transform          `json:"transforms,omitempty"`
+
+	// Fields inherited from DeliveryRuleConditionParameters
+
+	TypeName DeliveryRuleConditionParametersType `json:"typeName"`
+}

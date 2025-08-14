@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/deviceregistereduser
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DeviceRegisteredUserClient) ListDeviceRegisteredUserAppRoleAssignmentsComplete(ctx context.Context, id beta.MeDeviceId, options ListDeviceRegisteredUserAppRoleAssignmentsOperationOptions) (ListDeviceRegisteredUserAppRoleAssignmentsCompleteResult, error) {
+	return c.ListDeviceRegisteredUserAppRoleAssignmentsCompleteMatchingPredicate(ctx, id, options, AppRoleAssignmentOperationPredicate{})
+}

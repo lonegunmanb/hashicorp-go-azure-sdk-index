@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+type BaseAuthenticationCombinationConfigurationImpl struct {
+	// Which authentication method combinations this configuration applies to. Must be an allowedCombinations object defined
+	// for the authenticationStrengthPolicy. For fido2combinationConfigurations use 'fido2', for
+	// x509certificatecombinationconfiguration use 'x509CertificateSingleFactor' or 'x509CertificateMultiFactor'.
+	AppliesToCombinations *[]AuthenticationMethodModes `json:"appliesToCombinations,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

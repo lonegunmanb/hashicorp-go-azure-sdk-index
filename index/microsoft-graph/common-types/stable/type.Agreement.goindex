@@ -1,0 +1,51 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type Agreement struct {
+	// Read-only. Information about acceptances of this agreement.
+	Acceptances *[]AgreementAcceptance `json:"acceptances,omitempty"`
+
+	// Display name of the agreement. The display name is used for internal tracking of the agreement but isn't shown to end
+	// users who view the agreement. Supports $filter (eq).
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// Default PDF linked to this agreement.
+	File *AgreementFile `json:"file,omitempty"`
+
+	// PDFs linked to this agreement. This property is in the process of being deprecated. Use the file property instead.
+	// Supports $expand.
+	Files *[]AgreementFileLocalization `json:"files,omitempty"`
+
+	// Indicates whether end users are required to accept this agreement on every device that they access it from. The end
+	// user is required to register their device in Microsoft Entra ID, if they haven't already done so. Supports $filter
+	// (eq).
+	IsPerDeviceAcceptanceRequired nullable.Type[bool] `json:"isPerDeviceAcceptanceRequired,omitempty"`
+
+	// Indicates whether the user has to expand the agreement before accepting. Supports $filter (eq).
+	IsViewingBeforeAcceptanceRequired nullable.Type[bool] `json:"isViewingBeforeAcceptanceRequired,omitempty"`
+
+	// Expiration schedule and frequency of agreement for all users. Supports $filter (eq).
+	TermsExpiration *TermsExpiration `json:"termsExpiration,omitempty"`
+
+	// The duration after which the user must reaccept the terms of use. The value is represented in ISO 8601 format for
+	// durations. Supports $filter (eq).
+	UserReacceptRequiredFrequency nullable.Type[string] `json:"userReacceptRequiredFrequency,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

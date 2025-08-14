@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-12-01-preview/sentinelonboardingstates
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSentinelOnboardingStatesClientWithBaseURI(sdkApi sdkEnv.Api) (*SentinelOnboardingStatesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "sentinelonboardingstates", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SentinelOnboardingStatesClient: %+v", err)
+	}
+
+	return &SentinelOnboardingStatesClient{
+		Client: client,
+	}, nil
+}

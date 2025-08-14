@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2022-05-01/virtualmachines
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func NewVirtualMachineID(subscriptionId string, resourceGroupName string, privateCloudName string, clusterName string, virtualMachineId string) VirtualMachineId {
+	return VirtualMachineId{
+		SubscriptionId:    subscriptionId,
+		ResourceGroupName: resourceGroupName,
+		PrivateCloudName:  privateCloudName,
+		ClusterName:       clusterName,
+		VirtualMachineId:  virtualMachineId,
+	}
+}

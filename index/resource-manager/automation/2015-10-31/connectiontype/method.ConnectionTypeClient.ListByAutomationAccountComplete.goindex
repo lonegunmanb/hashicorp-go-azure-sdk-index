@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/connectiontype
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ConnectionTypeClient) ListByAutomationAccountComplete(ctx context.Context, id AutomationAccountId) (ListByAutomationAccountCompleteResult, error) {
+	return c.ListByAutomationAccountCompleteMatchingPredicate(ctx, id, ConnectionTypeOperationPredicate{})
+}

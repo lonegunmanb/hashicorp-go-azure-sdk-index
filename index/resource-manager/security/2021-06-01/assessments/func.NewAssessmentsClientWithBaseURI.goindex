@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/security/2021-06-01/assessments
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAssessmentsClientWithBaseURI(sdkApi sdkEnv.Api) (*AssessmentsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "assessments", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AssessmentsClient: %+v", err)
+	}
+
+	return &AssessmentsClient{
+		Client: client,
+	}, nil
+}

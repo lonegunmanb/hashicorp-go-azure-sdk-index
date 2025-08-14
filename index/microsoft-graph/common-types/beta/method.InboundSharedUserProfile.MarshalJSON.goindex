@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s InboundSharedUserProfile) MarshalJSON() ([]byte, error) {
+	type wrapper InboundSharedUserProfile
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling InboundSharedUserProfile: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling InboundSharedUserProfile: %+v", err)
+	}
+
+	delete(decoded, "displayName")
+	delete(decoded, "homeTenantId")
+	delete(decoded, "userId")
+	delete(decoded, "userPrincipalName")
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling InboundSharedUserProfile: %+v", err)
+	}
+
+	return encoded, nil
+}

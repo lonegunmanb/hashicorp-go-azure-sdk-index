@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecuritySubmissionContentType(input string) (*SecuritySubmissionContentType, error) {
+	vals := map[string]SecuritySubmissionContentType{
+		"app":   SecuritySubmissionContentType_App,
+		"email": SecuritySubmissionContentType_Email,
+		"file":  SecuritySubmissionContentType_File,
+		"url":   SecuritySubmissionContentType_Url,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecuritySubmissionContentType(input)
+	return &out, nil
+}

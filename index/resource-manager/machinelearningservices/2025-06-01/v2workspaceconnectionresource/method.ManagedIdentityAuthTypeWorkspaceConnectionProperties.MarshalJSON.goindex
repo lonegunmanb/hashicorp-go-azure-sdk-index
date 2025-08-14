@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2025-06-01/v2workspaceconnectionresource
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (s ManagedIdentityAuthTypeWorkspaceConnectionProperties) MarshalJSON() ([]byte, error) {
+	type wrapper ManagedIdentityAuthTypeWorkspaceConnectionProperties
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ManagedIdentityAuthTypeWorkspaceConnectionProperties: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ManagedIdentityAuthTypeWorkspaceConnectionProperties: %+v", err)
+	}
+
+	decoded["authType"] = "ManagedIdentity"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ManagedIdentityAuthTypeWorkspaceConnectionProperties: %+v", err)
+	}
+
+	return encoded, nil
+}

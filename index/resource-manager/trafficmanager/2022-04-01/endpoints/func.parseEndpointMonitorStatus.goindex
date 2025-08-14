@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/trafficmanager/2022-04-01/endpoints
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEndpointMonitorStatus(input string) (*EndpointMonitorStatus, error) {
+	vals := map[string]EndpointMonitorStatus{
+		"checkingendpoint": EndpointMonitorStatusCheckingEndpoint,
+		"degraded":         EndpointMonitorStatusDegraded,
+		"disabled":         EndpointMonitorStatusDisabled,
+		"inactive":         EndpointMonitorStatusInactive,
+		"online":           EndpointMonitorStatusOnline,
+		"stopped":          EndpointMonitorStatusStopped,
+		"unmonitored":      EndpointMonitorStatusUnmonitored,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EndpointMonitorStatus(input)
+	return &out, nil
+}

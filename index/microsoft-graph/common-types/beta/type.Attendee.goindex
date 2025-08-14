@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type Attendee struct {
+	// An alternate date/time proposed by the attendee for a meeting request to start and end. If the attendee hasn't
+	// proposed another time, then this property isn't included in a response of a GET event.
+	ProposedNewTime *TimeSlot `json:"proposedNewTime,omitempty"`
+
+	// The attendee's response (none, accepted, declined, etc.) for the event and date-time that the response was sent.
+	Status *ResponseStatus `json:"status,omitempty"`
+
+	// Fields inherited from AttendeeBase
+
+	// The type of attendee. Possible values are: required, optional, resource. Currently if the attendee is a person,
+	// findMeetingTimes always considers the person is of the Required type.
+	Type *AttendeeType `json:"type,omitempty"`
+
+	// Fields inherited from Recipient
+
+	// The recipient's email address.
+	EmailAddress EmailAddress `json:"emailAddress"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

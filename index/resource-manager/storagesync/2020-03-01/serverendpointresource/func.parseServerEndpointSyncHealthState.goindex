@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2020-03-01/serverendpointresource
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseServerEndpointSyncHealthState(input string) (*ServerEndpointSyncHealthState, error) {
+	vals := map[string]ServerEndpointSyncHealthState{
+		"error":      ServerEndpointSyncHealthStateError,
+		"healthy":    ServerEndpointSyncHealthStateHealthy,
+		"noactivity": ServerEndpointSyncHealthStateNoActivity,
+		"syncblockedforchangedetectionpostrestore": ServerEndpointSyncHealthStateSyncBlockedForChangeDetectionPostRestore,
+		"syncblockedforrestore":                    ServerEndpointSyncHealthStateSyncBlockedForRestore,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ServerEndpointSyncHealthState(input)
+	return &out, nil
+}

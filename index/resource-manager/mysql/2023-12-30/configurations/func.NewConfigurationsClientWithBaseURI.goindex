@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mysql/2023-12-30/configurations
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewConfigurationsClientWithBaseURI(sdkApi sdkEnv.Api) (*ConfigurationsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "configurations", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ConfigurationsClient: %+v", err)
+	}
+
+	return &ConfigurationsClient{
+		Client: client,
+	}, nil
+}

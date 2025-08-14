@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/dnsprivatezones
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DnsPrivateZoneId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
+		fmt.Sprintf("Dns Private Zone Name: %q", id.DnsPrivateZoneName),
+	}
+	return fmt.Sprintf("Dns Private Zone (%s)", strings.Join(components, "\n"))
+}

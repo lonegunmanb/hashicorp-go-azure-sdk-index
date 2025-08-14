@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/authenticationeventsflowexternalusersselfservicesignupeventsflowcondition
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowConditionClientWithBaseURI(sdkApi sdkEnv.Api) (*AuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowConditionClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "authenticationeventsflowexternalusersselfservicesignupeventsflowcondition", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowConditionClient: %+v", err)
+	}
+
+	return &AuthenticationEventsFlowExternalUsersSelfServiceSignUpEventsFlowConditionClient{
+		Client: client,
+	}, nil
+}

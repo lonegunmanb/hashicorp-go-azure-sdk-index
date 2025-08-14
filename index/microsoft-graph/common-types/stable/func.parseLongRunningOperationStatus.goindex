@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseLongRunningOperationStatus(input string) (*LongRunningOperationStatus, error) {
+	vals := map[string]LongRunningOperationStatus{
+		"failed":     LongRunningOperationStatus_Failed,
+		"notstarted": LongRunningOperationStatus_NotStarted,
+		"running":    LongRunningOperationStatus_Running,
+		"succeeded":  LongRunningOperationStatus_Succeeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := LongRunningOperationStatus(input)
+	return &out, nil
+}

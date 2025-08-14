@@ -1,0 +1,39 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s ServicePrincipal) MarshalJSON() ([]byte, error) {
+	type wrapper ServicePrincipal
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ServicePrincipal: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ServicePrincipal: %+v", err)
+	}
+
+	delete(decoded, "applicationTemplateId")
+	delete(decoded, "createdObjects")
+	delete(decoded, "memberOf")
+	delete(decoded, "oauth2PermissionGrants")
+	delete(decoded, "ownedObjects")
+	delete(decoded, "resourceSpecificApplicationPermissions")
+	delete(decoded, "signInAudience")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.servicePrincipal"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ServicePrincipal: %+v", err)
+	}
+
+	return encoded, nil
+}

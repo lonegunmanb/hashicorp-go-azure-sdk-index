@@ -1,0 +1,11 @@
+package github.com/hashicorp/go-azure-sdk/sdk/environments
+import "github.com/hashicorp/go-azure-helpers/lang/pointer"
+func StorageSyncAPI(domainSuffix string) Api {
+	return &ApiEndpoint{
+		domainSuffix:       pointer.To(domainSuffix),
+		endpoint:           nil,
+		appId:              pointer.To(storageSyncAppId),
+		name:               "StorageSync",
+		resourceIdentifier: nil,
+	}
+}

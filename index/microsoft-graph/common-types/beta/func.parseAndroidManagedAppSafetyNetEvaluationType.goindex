@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAndroidManagedAppSafetyNetEvaluationType(input string) (*AndroidManagedAppSafetyNetEvaluationType, error) {
+	vals := map[string]AndroidManagedAppSafetyNetEvaluationType{
+		"basic":          AndroidManagedAppSafetyNetEvaluationType_Basic,
+		"hardwarebacked": AndroidManagedAppSafetyNetEvaluationType_HardwareBacked,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AndroidManagedAppSafetyNetEvaluationType(input)
+	return &out, nil
+}

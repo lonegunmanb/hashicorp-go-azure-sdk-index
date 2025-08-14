@@ -1,0 +1,63 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type TimeCard struct {
+	// The list of breaks associated with the timeCard.
+	Breaks *[]TimeCardBreak `json:"breaks,omitempty"`
+
+	// The clock-in event of the timeCard.
+	ClockInEvent *TimeCardEvent `json:"clockInEvent,omitempty"`
+
+	// The clock-out event of the timeCard.
+	ClockOutEvent *TimeCardEvent `json:"clockOutEvent,omitempty"`
+
+	// Indicates whether this timeCard entry is confirmed. Possible values are: none, user, manager, unknownFutureValue.
+	ConfirmedBy *ConfirmedBy `json:"confirmedBy,omitempty"`
+
+	// Notes about the timeCard.
+	Notes *ItemBody `json:"notes,omitempty"`
+
+	// The original timeCardEntry of the timeCard before it was edited.
+	OriginalEntry *TimeCardEntry `json:"originalEntry,omitempty"`
+
+	// The current state of the timeCard during its life cycle. The possible values are: clockedIn, onBreak, clockedOut,
+	// unknownFutureValue.
+	State *TimeCardState `json:"state,omitempty"`
+
+	// User ID to which the timeCard belongs.
+	UserId nullable.Type[string] `json:"userId,omitempty"`
+
+	// Fields inherited from ChangeTrackedEntity
+
+	// Identity of the creator of the entity.
+	CreatedBy IdentitySet `json:"createdBy"`
+
+	// The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example,
+	// midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// Identity of the person who last modified the entity.
+	LastModifiedBy *IdentitySet `json:"lastModifiedBy,omitempty"`
+
+	// The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example,
+	// midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+	LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

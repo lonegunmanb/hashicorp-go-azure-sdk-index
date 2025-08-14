@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/exascaledbnodes
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *ExascaleDbNodeProperties) GetTimeMaintenanceWindowStartAsTime() (*time.Time, error) {
+	if o.TimeMaintenanceWindowStart == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.TimeMaintenanceWindowStart, "2006-01-02T15:04:05Z07:00")
+}

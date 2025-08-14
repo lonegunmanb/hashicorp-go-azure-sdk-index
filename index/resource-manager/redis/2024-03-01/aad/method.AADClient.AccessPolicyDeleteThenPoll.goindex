@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/redis/2024-03-01/aad
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c AADClient) AccessPolicyDeleteThenPoll(ctx context.Context, id AccessPolicyId) error {
+	result, err := c.AccessPolicyDelete(ctx, id)
+	if err != nil {
+		return fmt.Errorf("performing AccessPolicyDelete: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after AccessPolicyDelete: %+v", err)
+	}
+
+	return nil
+}

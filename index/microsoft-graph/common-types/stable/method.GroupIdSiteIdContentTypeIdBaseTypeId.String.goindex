@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id GroupIdSiteIdContentTypeIdBaseTypeId) String() string {
+	components := []string{
+		fmt.Sprintf("Group: %q", id.GroupId),
+		fmt.Sprintf("Site: %q", id.SiteId),
+		fmt.Sprintf("Content Type: %q", id.ContentTypeId),
+		fmt.Sprintf("Content Type Id 1: %q", id.ContentTypeId1),
+	}
+	return fmt.Sprintf("Group Id Site Id Content Type Id Base Type (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2022-08-08/job
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c JobClient) ListByAutomationAccountComplete(ctx context.Context, id AutomationAccountId, options ListByAutomationAccountOperationOptions) (ListByAutomationAccountCompleteResult, error) {
+	return c.ListByAutomationAccountCompleteMatchingPredicate(ctx, id, options, JobCollectionItemOperationPredicate{})
+}

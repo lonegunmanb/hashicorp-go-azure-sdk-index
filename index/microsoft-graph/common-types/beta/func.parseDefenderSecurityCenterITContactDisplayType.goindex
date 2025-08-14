@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDefenderSecurityCenterITContactDisplayType(input string) (*DefenderSecurityCenterITContactDisplayType, error) {
+	vals := map[string]DefenderSecurityCenterITContactDisplayType{
+		"displayinappandinnotifications": DefenderSecurityCenterITContactDisplayType_DisplayInAppAndInNotifications,
+		"displayonlyinapp":               DefenderSecurityCenterITContactDisplayType_DisplayOnlyInApp,
+		"displayonlyinnotifications":     DefenderSecurityCenterITContactDisplayType_DisplayOnlyInNotifications,
+		"notconfigured":                  DefenderSecurityCenterITContactDisplayType_NotConfigured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DefenderSecurityCenterITContactDisplayType(input)
+	return &out, nil
+}

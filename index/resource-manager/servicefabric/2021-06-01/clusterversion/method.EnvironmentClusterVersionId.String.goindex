@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicefabric/2021-06-01/clusterversion
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id EnvironmentClusterVersionId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
+		fmt.Sprintf("Environment: %q", string(id.Environment)),
+		fmt.Sprintf("Cluster Version Name: %q", id.ClusterVersionName),
+	}
+	return fmt.Sprintf("Environment Cluster Version (%s)", strings.Join(components, "\n"))
+}

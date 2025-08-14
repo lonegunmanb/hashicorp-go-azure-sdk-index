@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *DeviceManagementAdvancedThreatProtectionOnboardingStateSummaryAdvancedThreatProtectionOnboardingDeviceSettingStateId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.AdvancedThreatProtectionOnboardingDeviceSettingStateId, ok = input.Parsed["advancedThreatProtectionOnboardingDeviceSettingStateId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "advancedThreatProtectionOnboardingDeviceSettingStateId", input)
+	}
+
+	return nil
+}

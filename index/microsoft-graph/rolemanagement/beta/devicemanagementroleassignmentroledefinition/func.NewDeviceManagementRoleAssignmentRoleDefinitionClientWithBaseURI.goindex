@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/devicemanagementroleassignmentroledefinition
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDeviceManagementRoleAssignmentRoleDefinitionClientWithBaseURI(sdkApi sdkEnv.Api) (*DeviceManagementRoleAssignmentRoleDefinitionClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "devicemanagementroleassignmentroledefinition", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DeviceManagementRoleAssignmentRoleDefinitionClient: %+v", err)
+	}
+
+	return &DeviceManagementRoleAssignmentRoleDefinitionClient{
+		Client: client,
+	}, nil
+}

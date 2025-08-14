@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/activity
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewActivityClientWithBaseURI(sdkApi sdkEnv.Api) (*ActivityClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "activity", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ActivityClient: %+v", err)
+	}
+
+	return &ActivityClient{
+		Client: client,
+	}, nil
+}

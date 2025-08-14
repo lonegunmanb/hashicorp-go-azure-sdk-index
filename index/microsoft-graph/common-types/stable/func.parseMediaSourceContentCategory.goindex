@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMediaSourceContentCategory(input string) (*MediaSourceContentCategory, error) {
+	vals := map[string]MediaSourceContentCategory{
+		"chat":            MediaSourceContentCategory_Chat,
+		"comment":         MediaSourceContentCategory_Comment,
+		"livestream":      MediaSourceContentCategory_LiveStream,
+		"meeting":         MediaSourceContentCategory_Meeting,
+		"note":            MediaSourceContentCategory_Note,
+		"presentation":    MediaSourceContentCategory_Presentation,
+		"profile":         MediaSourceContentCategory_Profile,
+		"screenrecording": MediaSourceContentCategory_ScreenRecording,
+		"story":           MediaSourceContentCategory_Story,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MediaSourceContentCategory(input)
+	return &out, nil
+}

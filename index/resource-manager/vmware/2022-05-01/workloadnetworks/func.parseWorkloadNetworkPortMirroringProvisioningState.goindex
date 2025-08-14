@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2022-05-01/workloadnetworks
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWorkloadNetworkPortMirroringProvisioningState(input string) (*WorkloadNetworkPortMirroringProvisioningState, error) {
+	vals := map[string]WorkloadNetworkPortMirroringProvisioningState{
+		"building":  WorkloadNetworkPortMirroringProvisioningStateBuilding,
+		"canceled":  WorkloadNetworkPortMirroringProvisioningStateCanceled,
+		"deleting":  WorkloadNetworkPortMirroringProvisioningStateDeleting,
+		"failed":    WorkloadNetworkPortMirroringProvisioningStateFailed,
+		"succeeded": WorkloadNetworkPortMirroringProvisioningStateSucceeded,
+		"updating":  WorkloadNetworkPortMirroringProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WorkloadNetworkPortMirroringProvisioningState(input)
+	return &out, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/managedapplications/2021-07-01/applications
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *ApplicationIdId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.ApplicationId, ok = input.Parsed["applicationId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "applicationId", input)
+	}
+
+	return nil
+}

@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/privatelinkhubprivatelinkresources
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c PrivateLinkHubPrivateLinkResourcesClient) ListComplete(ctx context.Context, id PrivateLinkHubId) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, PrivateLinkResourceOperationPredicate{})
+}

@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/stable/activitybasedtimeoutpolicyappliesto
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ActivityBasedTimeoutPolicyAppliesToClient) ListActivityBasedTimeoutPolicyAppliesTosComplete(ctx context.Context, id stable.PolicyActivityBasedTimeoutPolicyId, options ListActivityBasedTimeoutPolicyAppliesTosOperationOptions) (ListActivityBasedTimeoutPolicyAppliesTosCompleteResult, error) {
+	return c.ListActivityBasedTimeoutPolicyAppliesTosCompleteMatchingPredicate(ctx, id, options, DirectoryObjectOperationPredicate{})
+}

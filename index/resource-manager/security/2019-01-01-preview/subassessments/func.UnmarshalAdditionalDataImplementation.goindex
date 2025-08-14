@@ -1,0 +1,57 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/security/2019-01-01-preview/subassessments
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalAdditionalDataImplementation(input []byte) (AdditionalData, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling AdditionalData into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["assessedResourceType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "ContainerRegistryVulnerability") {
+		var out ContainerRegistryVulnerabilityProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ContainerRegistryVulnerabilityProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "ServerVulnerabilityAssessment") {
+		var out ServerVulnerabilityProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ServerVulnerabilityProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "SqlServerVulnerability") {
+		var out SqlServerVulnerabilityProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SqlServerVulnerabilityProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseAdditionalDataImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseAdditionalDataImpl: %+v", err)
+	}
+
+	return RawAdditionalDataImpl{
+		additionalData: parent,
+		Type:           value,
+		Values:         temp,
+	}, nil
+
+}

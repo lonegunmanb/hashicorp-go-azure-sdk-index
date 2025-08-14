@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2025-02-15/eventsubscriptions
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s NumberLessThanOrEqualsAdvancedFilter) MarshalJSON() ([]byte, error) {
+	type wrapper NumberLessThanOrEqualsAdvancedFilter
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling NumberLessThanOrEqualsAdvancedFilter: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling NumberLessThanOrEqualsAdvancedFilter: %+v", err)
+	}
+
+	decoded["operatorType"] = "NumberLessThanOrEquals"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling NumberLessThanOrEqualsAdvancedFilter: %+v", err)
+	}
+
+	return encoded, nil
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseBookingStaffMembershipStatus(input string) (*BookingStaffMembershipStatus, error) {
+	vals := map[string]BookingStaffMembershipStatus{
+		"active":            BookingStaffMembershipStatus_Active,
+		"pendingacceptance": BookingStaffMembershipStatus_PendingAcceptance,
+		"rejectedbystaff":   BookingStaffMembershipStatus_RejectedByStaff,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := BookingStaffMembershipStatus(input)
+	return &out, nil
+}

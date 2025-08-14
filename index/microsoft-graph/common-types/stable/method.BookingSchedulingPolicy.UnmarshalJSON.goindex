@@ -1,0 +1,48 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *BookingSchedulingPolicy) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AllowStaffSelection               *bool                         `json:"allowStaffSelection,omitempty"`
+		CustomAvailabilities              *[]BookingsAvailabilityWindow `json:"customAvailabilities,omitempty"`
+		IsMeetingInviteToCustomersEnabled nullable.Type[bool]           `json:"isMeetingInviteToCustomersEnabled,omitempty"`
+		MaximumAdvance                    *string                       `json:"maximumAdvance,omitempty"`
+		MinimumLeadTime                   *string                       `json:"minimumLeadTime,omitempty"`
+		ODataId                           *string                       `json:"@odata.id,omitempty"`
+		ODataType                         *string                       `json:"@odata.type,omitempty"`
+		SendConfirmationsToOwner          *bool                         `json:"sendConfirmationsToOwner,omitempty"`
+		TimeSlotInterval                  *string                       `json:"timeSlotInterval,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AllowStaffSelection = decoded.AllowStaffSelection
+	s.CustomAvailabilities = decoded.CustomAvailabilities
+	s.IsMeetingInviteToCustomersEnabled = decoded.IsMeetingInviteToCustomersEnabled
+	s.MaximumAdvance = decoded.MaximumAdvance
+	s.MinimumLeadTime = decoded.MinimumLeadTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.SendConfirmationsToOwner = decoded.SendConfirmationsToOwner
+	s.TimeSlotInterval = decoded.TimeSlotInterval
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling BookingSchedulingPolicy into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["generalAvailability"]; ok {
+		impl, err := UnmarshalBookingsAvailabilityImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'GeneralAvailability' for 'BookingSchedulingPolicy': %+v", err)
+		}
+		s.GeneralAvailability = impl
+	}
+
+	return nil
+}

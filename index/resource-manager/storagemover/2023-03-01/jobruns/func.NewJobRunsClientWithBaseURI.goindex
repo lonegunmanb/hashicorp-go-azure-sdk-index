@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagemover/2023-03-01/jobruns
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewJobRunsClientWithBaseURI(sdkApi sdkEnv.Api) (*JobRunsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "jobruns", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating JobRunsClient: %+v", err)
+	}
+
+	return &JobRunsClient{
+		Client: client,
+	}, nil
+}

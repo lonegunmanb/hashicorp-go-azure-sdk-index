@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservices/2025-02-01/openapis
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCrossSubscriptionRestoreState(input string) (*CrossSubscriptionRestoreState, error) {
+	vals := map[string]CrossSubscriptionRestoreState{
+		"disabled":            CrossSubscriptionRestoreStateDisabled,
+		"enabled":             CrossSubscriptionRestoreStateEnabled,
+		"permanentlydisabled": CrossSubscriptionRestoreStatePermanentlyDisabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CrossSubscriptionRestoreState(input)
+	return &out, nil
+}

@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id GroupIdSiteIdInformationProtectionSensitivityLabelIdSublabelId) String() string {
+	components := []string{
+		fmt.Sprintf("Group: %q", id.GroupId),
+		fmt.Sprintf("Site: %q", id.SiteId),
+		fmt.Sprintf("Sensitivity Label: %q", id.SensitivityLabelId),
+		fmt.Sprintf("Sensitivity Label Id 1: %q", id.SensitivityLabelId1),
+	}
+	return fmt.Sprintf("Group Id Site Id Information Protection Sensitivity Label Id Sublabel (%s)", strings.Join(components, "\n"))
+}

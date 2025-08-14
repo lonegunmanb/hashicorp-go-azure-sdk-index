@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mobilenetwork/2024-04-01/extendedueinformation
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalExtendedUeInfoPropertiesImplementation(input []byte) (ExtendedUeInfoProperties, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling ExtendedUeInfoProperties into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["ratType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "4G") {
+		var out UeInfo4G
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into UeInfo4G: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "5G") {
+		var out UeInfo5G
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into UeInfo5G: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseExtendedUeInfoPropertiesImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseExtendedUeInfoPropertiesImpl: %+v", err)
+	}
+
+	return RawExtendedUeInfoPropertiesImpl{
+		extendedUeInfoProperties: parent,
+		Type:                     value,
+		Values:                   temp,
+	}, nil
+
+}

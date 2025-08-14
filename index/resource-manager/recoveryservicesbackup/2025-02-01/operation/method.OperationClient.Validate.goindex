@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/operation
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+)
+func (c OperationClient) Validate(ctx context.Context, id VaultId, input ValidateOperationRequestResource) (result ValidateOperationApiResponse, err error) {
+	req, err := c.preparerForValidate(ctx, id, input)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "operation.OperationClient", "Validate", nil, "Failure preparing request")
+		return
+	}
+
+	result.HttpResponse, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "operation.OperationClient", "Validate", result.HttpResponse, "Failure sending request")
+		return
+	}
+
+	result, err = c.responderForValidate(result.HttpResponse)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "operation.OperationClient", "Validate", result.HttpResponse, "Failure responding to request")
+		return
+	}
+
+	return
+}

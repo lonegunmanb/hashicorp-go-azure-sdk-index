@@ -1,0 +1,51 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalNetworkaccessTunnelConfigurationImplementation(input []byte) (NetworkaccessTunnelConfiguration, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling NetworkaccessTunnelConfiguration into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.networkaccess.tunnelConfigurationIKEv2Custom") {
+		var out NetworkaccessTunnelConfigurationIKEv2Custom
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into NetworkaccessTunnelConfigurationIKEv2Custom: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.networkaccess.tunnelConfigurationIKEv2Default") {
+		var out NetworkaccessTunnelConfigurationIKEv2Default
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into NetworkaccessTunnelConfigurationIKEv2Default: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseNetworkaccessTunnelConfigurationImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseNetworkaccessTunnelConfigurationImpl: %+v", err)
+	}
+
+	return RawNetworkaccessTunnelConfigurationImpl{
+		networkaccessTunnelConfiguration: parent,
+		Type:                             value,
+		Values:                           temp,
+	}, nil
+
+}

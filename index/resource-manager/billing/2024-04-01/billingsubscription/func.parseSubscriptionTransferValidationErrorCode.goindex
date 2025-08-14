@@ -1,0 +1,45 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingsubscription
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSubscriptionTransferValidationErrorCode(input string) (*SubscriptionTransferValidationErrorCode, error) {
+	vals := map[string]SubscriptionTransferValidationErrorCode{
+		"accountislocked":                     SubscriptionTransferValidationErrorCodeAccountIsLocked,
+		"assethascap":                         SubscriptionTransferValidationErrorCodeAssetHasCap,
+		"assetnotactive":                      SubscriptionTransferValidationErrorCodeAssetNotActive,
+		"billingaccountinactive":              SubscriptionTransferValidationErrorCodeBillingAccountInactive,
+		"billingprofilepastdue":               SubscriptionTransferValidationErrorCodeBillingProfilePastDue,
+		"crossbillingaccountnotallowed":       SubscriptionTransferValidationErrorCodeCrossBillingAccountNotAllowed,
+		"destinationbillingprofileinactive":   SubscriptionTransferValidationErrorCodeDestinationBillingProfileInactive,
+		"destinationbillingprofilenotfound":   SubscriptionTransferValidationErrorCodeDestinationBillingProfileNotFound,
+		"destinationbillingprofilepastdue":    SubscriptionTransferValidationErrorCodeDestinationBillingProfilePastDue,
+		"destinationinvoicesectioninactive":   SubscriptionTransferValidationErrorCodeDestinationInvoiceSectionInactive,
+		"destinationinvoicesectionnotfound":   SubscriptionTransferValidationErrorCodeDestinationInvoiceSectionNotFound,
+		"insufficientpermissionondestination": SubscriptionTransferValidationErrorCodeInsufficientPermissionOnDestination,
+		"insufficientpermissiononsource":      SubscriptionTransferValidationErrorCodeInsufficientPermissionOnSource,
+		"invaliddestination":                  SubscriptionTransferValidationErrorCodeInvalidDestination,
+		"invalidsource":                       SubscriptionTransferValidationErrorCodeInvalidSource,
+		"invoicesectionisrestricted":          SubscriptionTransferValidationErrorCodeInvoiceSectionIsRestricted,
+		"marketplacenotenabledondestination":  SubscriptionTransferValidationErrorCodeMarketplaceNotEnabledOnDestination,
+		"noactiveazureplan":                   SubscriptionTransferValidationErrorCodeNoActiveAzurePlan,
+		"none":                                SubscriptionTransferValidationErrorCodeNone,
+		"other":                               SubscriptionTransferValidationErrorCodeOther,
+		"productinactive":                     SubscriptionTransferValidationErrorCodeProductInactive,
+		"productnotfound":                     SubscriptionTransferValidationErrorCodeProductNotFound,
+		"producttypenotsupported":             SubscriptionTransferValidationErrorCodeProductTypeNotSupported,
+		"sourcebillingprofilepastdue":         SubscriptionTransferValidationErrorCodeSourceBillingProfilePastDue,
+		"sourceinvoicesectioninactive":        SubscriptionTransferValidationErrorCodeSourceInvoiceSectionInactive,
+		"subscriptionhasreservations":         SubscriptionTransferValidationErrorCodeSubscriptionHasReservations,
+		"subscriptionnotactive":               SubscriptionTransferValidationErrorCodeSubscriptionNotActive,
+		"subscriptiontypenotsupported":        SubscriptionTransferValidationErrorCodeSubscriptionTypeNotSupported,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SubscriptionTransferValidationErrorCode(input)
+	return &out, nil
+}

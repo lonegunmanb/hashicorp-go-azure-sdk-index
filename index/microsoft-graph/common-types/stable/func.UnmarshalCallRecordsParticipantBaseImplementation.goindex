@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalCallRecordsParticipantBaseImplementation(input []byte) (CallRecordsParticipantBase, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling CallRecordsParticipantBase into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.callRecords.organizer") {
+		var out CallRecordsOrganizer
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into CallRecordsOrganizer: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.callRecords.participant") {
+		var out CallRecordsParticipant
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into CallRecordsParticipant: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseCallRecordsParticipantBaseImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseCallRecordsParticipantBaseImpl: %+v", err)
+	}
+
+	return RawCallRecordsParticipantBaseImpl{
+		callRecordsParticipantBase: parent,
+		Type:                       value,
+		Values:                     temp,
+	}, nil
+
+}

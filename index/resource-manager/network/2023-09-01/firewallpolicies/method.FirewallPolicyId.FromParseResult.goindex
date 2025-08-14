@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-09-01/firewallpolicies
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *FirewallPolicyId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.FirewallPolicyName, ok = input.Parsed["firewallPolicyName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "firewallPolicyName", input)
+	}
+
+	return nil
+}

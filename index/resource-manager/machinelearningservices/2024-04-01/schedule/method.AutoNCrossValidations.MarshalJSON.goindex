@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/schedule
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s AutoNCrossValidations) MarshalJSON() ([]byte, error) {
+	type wrapper AutoNCrossValidations
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AutoNCrossValidations: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AutoNCrossValidations: %+v", err)
+	}
+
+	decoded["mode"] = "Auto"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AutoNCrossValidations: %+v", err)
+	}
+
+	return encoded, nil
+}

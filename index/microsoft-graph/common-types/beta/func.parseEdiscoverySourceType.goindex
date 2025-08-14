@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEdiscoverySourceType(input string) (*EdiscoverySourceType, error) {
+	vals := map[string]EdiscoverySourceType{
+		"mailbox": EdiscoverySourceType_Mailbox,
+		"site":    EdiscoverySourceType_Site,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EdiscoverySourceType(input)
+	return &out, nil
+}

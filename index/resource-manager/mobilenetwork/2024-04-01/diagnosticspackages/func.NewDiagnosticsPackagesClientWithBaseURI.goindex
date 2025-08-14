@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mobilenetwork/2024-04-01/diagnosticspackages
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDiagnosticsPackagesClientWithBaseURI(sdkApi sdkEnv.Api) (*DiagnosticsPackagesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "diagnosticspackages", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DiagnosticsPackagesClient: %+v", err)
+	}
+
+	return &DiagnosticsPackagesClient{
+		Client: client,
+	}, nil
+}

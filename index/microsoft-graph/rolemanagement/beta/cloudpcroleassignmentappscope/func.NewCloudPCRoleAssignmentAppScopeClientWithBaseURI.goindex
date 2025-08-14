@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/cloudpcroleassignmentappscope
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewCloudPCRoleAssignmentAppScopeClientWithBaseURI(sdkApi sdkEnv.Api) (*CloudPCRoleAssignmentAppScopeClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "cloudpcroleassignmentappscope", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating CloudPCRoleAssignmentAppScopeClient: %+v", err)
+	}
+
+	return &CloudPCRoleAssignmentAppScopeClient{
+		Client: client,
+	}, nil
+}

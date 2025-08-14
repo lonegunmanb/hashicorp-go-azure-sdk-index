@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/managedinstances
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseReplicaType(input string) (*ReplicaType, error) {
+	vals := map[string]ReplicaType{
+		"primary":           ReplicaTypePrimary,
+		"readablesecondary": ReplicaTypeReadableSecondary,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ReplicaType(input)
+	return &out, nil
+}

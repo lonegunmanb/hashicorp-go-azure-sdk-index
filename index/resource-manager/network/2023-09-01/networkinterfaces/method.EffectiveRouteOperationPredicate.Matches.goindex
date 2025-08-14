@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-09-01/networkinterfaces
+
+func (p EffectiveRouteOperationPredicate) Matches(input EffectiveRoute) bool {
+
+	if p.DisableBgpRoutePropagation != nil && (input.DisableBgpRoutePropagation == nil || *p.DisableBgpRoutePropagation != *input.DisableBgpRoutePropagation) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2024-10-01/backupprotecteditems
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (s AzureVMWorkloadSQLDatabaseProtectedItem) MarshalJSON() ([]byte, error) {
+	type wrapper AzureVMWorkloadSQLDatabaseProtectedItem
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AzureVMWorkloadSQLDatabaseProtectedItem: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AzureVMWorkloadSQLDatabaseProtectedItem: %+v", err)
+	}
+
+	decoded["protectedItemType"] = "AzureVmWorkloadSQLDatabase"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AzureVMWorkloadSQLDatabaseProtectedItem: %+v", err)
+	}
+
+	return encoded, nil
+}

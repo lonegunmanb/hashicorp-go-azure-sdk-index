@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagemover/v2024_07_01
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storagemover/2024-07-01/agents"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storagemover/2024-07-01/endpoints"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storagemover/2024-07-01/jobdefinitions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storagemover/2024-07-01/jobruns"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storagemover/2024-07-01/projects"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storagemover/2024-07-01/storagemovers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	Agents         *agents.AgentsClient
+	Endpoints      *endpoints.EndpointsClient
+	JobDefinitions *jobdefinitions.JobDefinitionsClient
+	JobRuns        *jobruns.JobRunsClient
+	Projects       *projects.ProjectsClient
+	StorageMovers  *storagemovers.StorageMoversClient
+}

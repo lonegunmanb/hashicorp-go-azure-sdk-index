@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id IdentityGovernanceAppConsentAppConsentRequestIdUserConsentRequestIdApprovalStepId) String() string {
+	components := []string{
+		fmt.Sprintf("App Consent Request: %q", id.AppConsentRequestId),
+		fmt.Sprintf("User Consent Request: %q", id.UserConsentRequestId),
+		fmt.Sprintf("Approval Step: %q", id.ApprovalStepId),
+	}
+	return fmt.Sprintf("Identity Governance App Consent App Consent Request Id User Consent Request Id Approval Step (%s)", strings.Join(components, "\n"))
+}

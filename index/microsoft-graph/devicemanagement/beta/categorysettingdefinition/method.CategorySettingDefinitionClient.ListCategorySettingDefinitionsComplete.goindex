@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/categorysettingdefinition
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c CategorySettingDefinitionClient) ListCategorySettingDefinitionsComplete(ctx context.Context, id beta.DeviceManagementCategoryId, options ListCategorySettingDefinitionsOperationOptions) (ListCategorySettingDefinitionsCompleteResult, error) {
+	return c.ListCategorySettingDefinitionsCompleteMatchingPredicate(ctx, id, options, DeviceManagementSettingDefinitionOperationPredicate{})
+}

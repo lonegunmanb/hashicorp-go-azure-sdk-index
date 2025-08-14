@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/importedwindowsautopilotdeviceidentity
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ListImportedWindowsAutopilotDeviceIdentitiesOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Count != nil {
+		out.Count = *o.Count
+	}
+	if o.Expand != nil {
+		out.Expand = *o.Expand
+	}
+	if o.Filter != nil {
+		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	if o.OrderBy != nil {
+		out.OrderBy = *o.OrderBy
+	}
+	if o.Search != nil {
+		out.Search = *o.Search
+	}
+	if o.Select != nil {
+		out.Select = *o.Select
+	}
+	if o.Skip != nil {
+		out.Skip = int(*o.Skip)
+	}
+	if o.Top != nil {
+		out.Top = int(*o.Top)
+	}
+	return &out
+}

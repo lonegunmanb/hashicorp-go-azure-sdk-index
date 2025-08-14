@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWindowsUpdateStatus(input string) (*WindowsUpdateStatus, error) {
+	vals := map[string]WindowsUpdateStatus{
+		"failed":              WindowsUpdateStatus_Failed,
+		"pendinginstallation": WindowsUpdateStatus_PendingInstallation,
+		"pendingreboot":       WindowsUpdateStatus_PendingReboot,
+		"uptodate":            WindowsUpdateStatus_UpToDate,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsUpdateStatus(input)
+	return &out, nil
+}

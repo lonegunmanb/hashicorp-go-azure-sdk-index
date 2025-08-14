@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/locationcapabilities
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePauseDelayTimeUnit(input string) (*PauseDelayTimeUnit, error) {
+	vals := map[string]PauseDelayTimeUnit{
+		"minutes": PauseDelayTimeUnitMinutes,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PauseDelayTimeUnit(input)
+	return &out, nil
+}

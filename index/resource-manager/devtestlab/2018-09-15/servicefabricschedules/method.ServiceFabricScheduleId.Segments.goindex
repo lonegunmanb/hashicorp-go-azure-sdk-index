@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/servicefabricschedules
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ServiceFabricScheduleId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.StaticSegment("staticSubscriptions", "subscriptions", "subscriptions"),
+		resourceids.SubscriptionIdSegment("subscriptionId", "12345678-1234-9876-4563-123456789012"),
+		resourceids.StaticSegment("staticResourceGroups", "resourceGroups", "resourceGroups"),
+		resourceids.ResourceGroupSegment("resourceGroupName", "example-resource-group"),
+		resourceids.StaticSegment("staticProviders", "providers", "providers"),
+		resourceids.ResourceProviderSegment("staticMicrosoftDevTestLab", "Microsoft.DevTestLab", "Microsoft.DevTestLab"),
+		resourceids.StaticSegment("staticLabs", "labs", "labs"),
+		resourceids.UserSpecifiedSegment("labName", "labName"),
+		resourceids.StaticSegment("staticUsers", "users", "users"),
+		resourceids.UserSpecifiedSegment("userName", "userName"),
+		resourceids.StaticSegment("staticServiceFabrics", "serviceFabrics", "serviceFabrics"),
+		resourceids.UserSpecifiedSegment("serviceFabricName", "serviceFabricName"),
+		resourceids.StaticSegment("staticSchedules", "schedules", "schedules"),
+		resourceids.UserSpecifiedSegment("scheduleName", "scheduleName"),
+	}
+}

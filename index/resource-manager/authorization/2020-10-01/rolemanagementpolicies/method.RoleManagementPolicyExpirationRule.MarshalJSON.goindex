@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/authorization/2020-10-01/rolemanagementpolicies
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s RoleManagementPolicyExpirationRule) MarshalJSON() ([]byte, error) {
+	type wrapper RoleManagementPolicyExpirationRule
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling RoleManagementPolicyExpirationRule: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling RoleManagementPolicyExpirationRule: %+v", err)
+	}
+
+	decoded["ruleType"] = "RoleManagementPolicyExpirationRule"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling RoleManagementPolicyExpirationRule: %+v", err)
+	}
+
+	return encoded, nil
+}

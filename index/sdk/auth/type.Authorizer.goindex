@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"context"
+	"net/http"
+
+	"golang.org/x/oauth2"
+)
+type Authorizer interface {
+	// Token obtains a new access token for the configured tenant
+	Token(ctx context.Context, request *http.Request) (*oauth2.Token, error)
+
+	// AuxiliaryTokens obtains new access tokens for the configured auxiliary tenants
+	AuxiliaryTokens(ctx context.Context, request *http.Request) ([]*oauth2.Token, error)
+}

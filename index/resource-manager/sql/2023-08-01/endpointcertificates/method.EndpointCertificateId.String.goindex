@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/endpointcertificates
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id EndpointCertificateId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Managed Instance Name: %q", id.ManagedInstanceName),
+		fmt.Sprintf("Endpoint Certificate Name: %q", id.EndpointCertificateName),
+	}
+	return fmt.Sprintf("Endpoint Certificate (%s)", strings.Join(components, "\n"))
+}

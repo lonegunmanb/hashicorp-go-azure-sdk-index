@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/blueprints/2018-11-01-preview/publishedblueprint
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseBlueprintTargetScope(input string) (*BlueprintTargetScope, error) {
+	vals := map[string]BlueprintTargetScope{
+		"managementgroup": BlueprintTargetScopeManagementGroup,
+		"subscription":    BlueprintTargetScopeSubscription,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := BlueprintTargetScope(input)
+	return &out, nil
+}

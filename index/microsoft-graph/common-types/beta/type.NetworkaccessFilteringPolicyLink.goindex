@@ -1,0 +1,39 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type NetworkaccessFilteringPolicyLink struct {
+	// The date and time when the filtering Policy link was created.
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+
+	// The date and time when the policy was most recently modified.
+	LastModifiedDateTime *string `json:"lastModifiedDateTime,omitempty"`
+
+	LoggingState *NetworkaccessStatus `json:"loggingState,omitempty"`
+
+	// Provides an integer priority level for each instance of a URL filtering policy linked to a profile. Required.
+	Priority int64 `json:"priority"`
+
+	// Fields inherited from NetworkaccessPolicyLink
+
+	Policy *NetworkaccessPolicy `json:"policy,omitempty"`
+	State  *NetworkaccessStatus `json:"state,omitempty"`
+
+	// Version.
+	Version *string `json:"version,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

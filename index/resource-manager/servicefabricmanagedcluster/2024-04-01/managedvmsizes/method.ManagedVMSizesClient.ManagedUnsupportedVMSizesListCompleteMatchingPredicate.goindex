@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicefabricmanagedcluster/2024-04-01/managedvmsizes
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ManagedVMSizesClient) ManagedUnsupportedVMSizesListCompleteMatchingPredicate(ctx context.Context, id LocationId, predicate ManagedVMSizeOperationPredicate) (result ManagedUnsupportedVMSizesListCompleteResult, err error) {
+	items := make([]ManagedVMSize, 0)
+
+	resp, err := c.ManagedUnsupportedVMSizesList(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ManagedUnsupportedVMSizesListCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

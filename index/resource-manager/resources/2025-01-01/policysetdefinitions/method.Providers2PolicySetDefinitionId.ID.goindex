@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2025-01-01/policysetdefinitions
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id Providers2PolicySetDefinitionId) ID() string {
+	fmtString := "/providers/Microsoft.Management/managementGroups/%s/providers/Microsoft.Authorization/policySetDefinitions/%s"
+	return fmt.Sprintf(fmtString, id.ManagementGroupName, id.PolicySetDefinitionName)
+}

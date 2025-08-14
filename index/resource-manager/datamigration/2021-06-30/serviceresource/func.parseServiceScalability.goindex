@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/serviceresource
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseServiceScalability(input string) (*ServiceScalability, error) {
+	vals := map[string]ServiceScalability{
+		"automatic": ServiceScalabilityAutomatic,
+		"manual":    ServiceScalabilityManual,
+		"none":      ServiceScalabilityNone,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ServiceScalability(input)
+	return &out, nil
+}

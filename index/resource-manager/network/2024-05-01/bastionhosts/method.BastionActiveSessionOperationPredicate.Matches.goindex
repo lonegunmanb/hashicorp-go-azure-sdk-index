@@ -1,0 +1,46 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-05-01/bastionhosts
+
+func (p BastionActiveSessionOperationPredicate) Matches(input BastionActiveSession) bool {
+
+	if p.ResourceType != nil && (input.ResourceType == nil || *p.ResourceType != *input.ResourceType) {
+		return false
+	}
+
+	if p.SessionDurationInMins != nil && (input.SessionDurationInMins == nil || *p.SessionDurationInMins != *input.SessionDurationInMins) {
+		return false
+	}
+
+	if p.SessionId != nil && (input.SessionId == nil || *p.SessionId != *input.SessionId) {
+		return false
+	}
+
+	if p.StartTime != nil && (input.StartTime == nil || *p.StartTime != *input.StartTime) {
+		return false
+	}
+
+	if p.TargetHostName != nil && (input.TargetHostName == nil || *p.TargetHostName != *input.TargetHostName) {
+		return false
+	}
+
+	if p.TargetIPAddress != nil && (input.TargetIPAddress == nil || *p.TargetIPAddress != *input.TargetIPAddress) {
+		return false
+	}
+
+	if p.TargetResourceGroup != nil && (input.TargetResourceGroup == nil || *p.TargetResourceGroup != *input.TargetResourceGroup) {
+		return false
+	}
+
+	if p.TargetResourceId != nil && (input.TargetResourceId == nil || *p.TargetResourceId != *input.TargetResourceId) {
+		return false
+	}
+
+	if p.TargetSubscriptionId != nil && (input.TargetSubscriptionId == nil || *p.TargetSubscriptionId != *input.TargetSubscriptionId) {
+		return false
+	}
+
+	if p.UserName != nil && (input.UserName == nil || *p.UserName != *input.UserName) {
+		return false
+	}
+
+	return true
+}

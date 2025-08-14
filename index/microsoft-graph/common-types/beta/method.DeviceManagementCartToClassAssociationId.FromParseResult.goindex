@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *DeviceManagementCartToClassAssociationId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.CartToClassAssociationId, ok = input.Parsed["cartToClassAssociationId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "cartToClassAssociationId", input)
+	}
+
+	return nil
+}

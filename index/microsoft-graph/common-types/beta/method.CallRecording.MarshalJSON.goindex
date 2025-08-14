@@ -1,0 +1,40 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s CallRecording) MarshalJSON() ([]byte, error) {
+	type wrapper CallRecording
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling CallRecording: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling CallRecording: %+v", err)
+	}
+
+	delete(decoded, "callId")
+	delete(decoded, "content")
+	delete(decoded, "contentCorrelationId")
+	delete(decoded, "createdDateTime")
+	delete(decoded, "endDateTime")
+	delete(decoded, "meetingId")
+	delete(decoded, "meetingOrganizer")
+	delete(decoded, "recordingContentUrl")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.callRecording"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling CallRecording: %+v", err)
+	}
+
+	return encoded, nil
+}

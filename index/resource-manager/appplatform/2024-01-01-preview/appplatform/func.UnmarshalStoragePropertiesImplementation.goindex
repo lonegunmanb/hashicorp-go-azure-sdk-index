@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/appplatform/2024-01-01-preview/appplatform
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalStoragePropertiesImplementation(input []byte) (StorageProperties, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling StorageProperties into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["storageType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "StorageAccount") {
+		var out StorageAccount
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into StorageAccount: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseStoragePropertiesImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseStoragePropertiesImpl: %+v", err)
+	}
+
+	return RawStoragePropertiesImpl{
+		storageProperties: parent,
+		Type:              value,
+		Values:            temp,
+	}, nil
+
+}

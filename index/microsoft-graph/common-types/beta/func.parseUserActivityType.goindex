@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseUserActivityType(input string) (*UserActivityType, error) {
+	vals := map[string]UserActivityType{
+		"downloadfile": UserActivityType_DownloadFile,
+		"downloadtext": UserActivityType_DownloadText,
+		"uploadfile":   UserActivityType_UploadFile,
+		"uploadtext":   UserActivityType_UploadText,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UserActivityType(input)
+	return &out, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/windowsautopilotdeploymentprofile
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewWindowsAutopilotDeploymentProfileClientWithBaseURI(sdkApi sdkEnv.Api) (*WindowsAutopilotDeploymentProfileClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "windowsautopilotdeploymentprofile", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating WindowsAutopilotDeploymentProfileClient: %+v", err)
+	}
+
+	return &WindowsAutopilotDeploymentProfileClient{
+		Client: client,
+	}, nil
+}

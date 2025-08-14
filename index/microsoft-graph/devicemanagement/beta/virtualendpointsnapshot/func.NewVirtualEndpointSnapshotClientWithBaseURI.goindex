@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/virtualendpointsnapshot
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewVirtualEndpointSnapshotClientWithBaseURI(sdkApi sdkEnv.Api) (*VirtualEndpointSnapshotClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "virtualendpointsnapshot", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating VirtualEndpointSnapshotClient: %+v", err)
+	}
+
+	return &VirtualEndpointSnapshotClient{
+		Client: client,
+	}, nil
+}

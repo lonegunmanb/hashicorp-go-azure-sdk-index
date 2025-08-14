@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2023-12-15-preview/domains
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDomainProvisioningState(input string) (*DomainProvisioningState, error) {
+	vals := map[string]DomainProvisioningState{
+		"canceled":  DomainProvisioningStateCanceled,
+		"creating":  DomainProvisioningStateCreating,
+		"deleting":  DomainProvisioningStateDeleting,
+		"failed":    DomainProvisioningStateFailed,
+		"succeeded": DomainProvisioningStateSucceeded,
+		"updating":  DomainProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DomainProvisioningState(input)
+	return &out, nil
+}

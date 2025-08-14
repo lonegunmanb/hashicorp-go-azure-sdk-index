@@ -1,0 +1,55 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/v2025_02_01
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/attachednetworkconnections"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/catalogs"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/checknameavailability"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/checkscopednameavailability"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/customizationtasks"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/devboxdefinitions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/devcenters"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/environmentdefinitions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/environmenttypes"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/galleries"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/imagedefinitions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/images"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/imageversions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/networkconnection"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/networkconnections"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/pools"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/projectcatalogs"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/projectpolicies"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/projects"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/projectskus"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/schedules"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/skus"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/usages"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	AttachedNetworkConnections  *attachednetworkconnections.AttachedNetworkConnectionsClient
+	Catalogs                    *catalogs.CatalogsClient
+	CheckNameAvailability       *checknameavailability.CheckNameAvailabilityClient
+	CheckScopedNameAvailability *checkscopednameavailability.CheckScopedNameAvailabilityClient
+	CustomizationTasks          *customizationtasks.CustomizationTasksClient
+	DevBoxDefinitions           *devboxdefinitions.DevBoxDefinitionsClient
+	DevCenters                  *devcenters.DevCentersClient
+	EnvironmentDefinitions      *environmentdefinitions.EnvironmentDefinitionsClient
+	EnvironmentTypes            *environmenttypes.EnvironmentTypesClient
+	Galleries                   *galleries.GalleriesClient
+	ImageDefinitions            *imagedefinitions.ImageDefinitionsClient
+	ImageVersions               *imageversions.ImageVersionsClient
+	Images                      *images.ImagesClient
+	NetworkConnection           *networkconnection.NetworkConnectionClient
+	NetworkConnections          *networkconnections.NetworkConnectionsClient
+	Pools                       *pools.PoolsClient
+	ProjectCatalogs             *projectcatalogs.ProjectCatalogsClient
+	ProjectPolicies             *projectpolicies.ProjectPoliciesClient
+	ProjectSKUs                 *projectskus.ProjectSKUsClient
+	Projects                    *projects.ProjectsClient
+	SKUs                        *skus.SKUsClient
+	Schedules                   *schedules.SchedulesClient
+	Usages                      *usages.UsagesClient
+}

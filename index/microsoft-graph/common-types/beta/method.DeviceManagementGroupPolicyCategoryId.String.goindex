@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DeviceManagementGroupPolicyCategoryId) String() string {
+	components := []string{
+		fmt.Sprintf("Group Policy Category: %q", id.GroupPolicyCategoryId),
+	}
+	return fmt.Sprintf("Device Management Group Policy Category (%s)", strings.Join(components, "\n"))
+}

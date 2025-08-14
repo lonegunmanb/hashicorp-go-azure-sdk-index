@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ReportUserInsightMonthlyAuthenticationId) String() string {
+	components := []string{
+		fmt.Sprintf("Authentications Metric: %q", id.AuthenticationsMetricId),
+	}
+	return fmt.Sprintf("Report User Insight Monthly Authentication (%s)", strings.Join(components, "\n"))
+}

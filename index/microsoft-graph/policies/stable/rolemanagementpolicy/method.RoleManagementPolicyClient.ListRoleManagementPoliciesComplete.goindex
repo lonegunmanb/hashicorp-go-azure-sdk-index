@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/stable/rolemanagementpolicy
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c RoleManagementPolicyClient) ListRoleManagementPoliciesComplete(ctx context.Context, options ListRoleManagementPoliciesOperationOptions) (ListRoleManagementPoliciesCompleteResult, error) {
+	return c.ListRoleManagementPoliciesCompleteMatchingPredicate(ctx, options, UnifiedRoleManagementPolicyOperationPredicate{})
+}

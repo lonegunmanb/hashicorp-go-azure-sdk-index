@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/healthcareapis/2022-12-01/fhirservices
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseFhirResourceVersionPolicy(input string) (*FhirResourceVersionPolicy, error) {
+	vals := map[string]FhirResourceVersionPolicy{
+		"no-version":       FhirResourceVersionPolicyNoNegativeversion,
+		"versioned":        FhirResourceVersionPolicyVersioned,
+		"versioned-update": FhirResourceVersionPolicyVersionedNegativeupdate,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FhirResourceVersionPolicy(input)
+	return &out, nil
+}

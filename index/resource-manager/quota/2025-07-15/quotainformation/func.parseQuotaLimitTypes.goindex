@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-07-15/quotainformation
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseQuotaLimitTypes(input string) (*QuotaLimitTypes, error) {
+	vals := map[string]QuotaLimitTypes{
+		"independent": QuotaLimitTypesIndependent,
+		"shared":      QuotaLimitTypesShared,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := QuotaLimitTypes(input)
+	return &out, nil
+}

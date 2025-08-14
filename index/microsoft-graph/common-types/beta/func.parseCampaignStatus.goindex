@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCampaignStatus(input string) (*CampaignStatus, error) {
+	vals := map[string]CampaignStatus{
+		"cancelled":  CampaignStatus_Cancelled,
+		"completed":  CampaignStatus_Completed,
+		"deleted":    CampaignStatus_Deleted,
+		"draft":      CampaignStatus_Draft,
+		"excluded":   CampaignStatus_Excluded,
+		"failed":     CampaignStatus_Failed,
+		"inprogress": CampaignStatus_InProgress,
+		"scheduled":  CampaignStatus_Scheduled,
+		"unknown":    CampaignStatus_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CampaignStatus(input)
+	return &out, nil
+}

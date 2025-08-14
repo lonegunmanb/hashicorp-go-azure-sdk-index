@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2023-12-15-preview/namespacetopics
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewNamespaceTopicsClientWithBaseURI(sdkApi sdkEnv.Api) (*NamespaceTopicsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "namespacetopics", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating NamespaceTopicsClient: %+v", err)
+	}
+
+	return &NamespaceTopicsClient{
+		Client: client,
+	}, nil
+}

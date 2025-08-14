@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamchannelfilesfoldercontent
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewJoinedTeamChannelFilesFolderContentClientWithBaseURI(sdkApi sdkEnv.Api) (*JoinedTeamChannelFilesFolderContentClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "joinedteamchannelfilesfoldercontent", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating JoinedTeamChannelFilesFolderContentClient: %+v", err)
+	}
+
+	return &JoinedTeamChannelFilesFolderContentClient{
+		Client: client,
+	}, nil
+}

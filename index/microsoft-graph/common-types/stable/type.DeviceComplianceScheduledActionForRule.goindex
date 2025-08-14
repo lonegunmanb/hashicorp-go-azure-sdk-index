@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type DeviceComplianceScheduledActionForRule struct {
+	// Name of the rule which this scheduled action applies to. Currently scheduled actions are created per policy instead
+	// of per rule, thus RuleName is always set to default value PasswordRequired.
+	RuleName nullable.Type[string] `json:"ruleName,omitempty"`
+
+	// The list of scheduled action configurations for this compliance policy. Compliance policy must have one and only one
+	// block scheduled action.
+	ScheduledActionConfigurations *[]DeviceComplianceActionItem `json:"scheduledActionConfigurations,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2018-03-01/metricalerts
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s MetricCriteria) MultiMetricCriteria() BaseMultiMetricCriteriaImpl {
+	return BaseMultiMetricCriteriaImpl{
+		CriterionType:        s.CriterionType,
+		Dimensions:           s.Dimensions,
+		MetricName:           s.MetricName,
+		MetricNamespace:      s.MetricNamespace,
+		Name:                 s.Name,
+		SkipMetricValidation: s.SkipMetricValidation,
+		TimeAggregation:      s.TimeAggregation,
+	}
+}

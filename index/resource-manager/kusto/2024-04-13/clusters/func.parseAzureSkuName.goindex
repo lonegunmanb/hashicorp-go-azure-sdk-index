@@ -1,0 +1,81 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/kusto/2024-04-13/clusters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAzureSkuName(input string) (*AzureSkuName, error) {
+	vals := map[string]AzureSkuName{
+		"dev(no sla)_standard_d11_v2": AzureSkuNameDevNoSLAStandardDOneOneVTwo,
+		"dev(no sla)_standard_e2a_v4": AzureSkuNameDevNoSLAStandardETwoaVFour,
+		"standard_d14_v2":             AzureSkuNameStandardDOneFourVTwo,
+		"standard_d11_v2":             AzureSkuNameStandardDOneOneVTwo,
+		"standard_d16d_v5":            AzureSkuNameStandardDOneSixdVFive,
+		"standard_d13_v2":             AzureSkuNameStandardDOneThreeVTwo,
+		"standard_d12_v2":             AzureSkuNameStandardDOneTwoVTwo,
+		"standard_ds14_v2+4tb_ps":     AzureSkuNameStandardDSOneFourVTwoPositiveFourTBPS,
+		"standard_ds14_v2+3tb_ps":     AzureSkuNameStandardDSOneFourVTwoPositiveThreeTBPS,
+		"standard_ds13_v2+1tb_ps":     AzureSkuNameStandardDSOneThreeVTwoPositiveOneTBPS,
+		"standard_ds13_v2+2tb_ps":     AzureSkuNameStandardDSOneThreeVTwoPositiveTwoTBPS,
+		"standard_d32d_v5":            AzureSkuNameStandardDThreeTwodVFive,
+		"standard_d32d_v4":            AzureSkuNameStandardDThreeTwodVFour,
+		"standard_ec8ads_v5":          AzureSkuNameStandardECEightadsVFive,
+		"standard_ec8as_v5+1tb_ps":    AzureSkuNameStandardECEightasVFivePositiveOneTBPS,
+		"standard_ec8as_v5+2tb_ps":    AzureSkuNameStandardECEightasVFivePositiveTwoTBPS,
+		"standard_ec16ads_v5":         AzureSkuNameStandardECOneSixadsVFive,
+		"standard_ec16as_v5+4tb_ps":   AzureSkuNameStandardECOneSixasVFivePositiveFourTBPS,
+		"standard_ec16as_v5+3tb_ps":   AzureSkuNameStandardECOneSixasVFivePositiveThreeTBPS,
+		"standard_e80ids_v4":          AzureSkuNameStandardEEightZeroidsVFour,
+		"standard_e8a_v4":             AzureSkuNameStandardEEightaVFour,
+		"standard_e8ads_v5":           AzureSkuNameStandardEEightadsVFive,
+		"standard_e8as_v5+1tb_ps":     AzureSkuNameStandardEEightasVFivePositiveOneTBPS,
+		"standard_e8as_v5+2tb_ps":     AzureSkuNameStandardEEightasVFivePositiveTwoTBPS,
+		"standard_e8as_v4+1tb_ps":     AzureSkuNameStandardEEightasVFourPositiveOneTBPS,
+		"standard_e8as_v4+2tb_ps":     AzureSkuNameStandardEEightasVFourPositiveTwoTBPS,
+		"standard_e8d_v5":             AzureSkuNameStandardEEightdVFive,
+		"standard_e8d_v4":             AzureSkuNameStandardEEightdVFour,
+		"standard_e8s_v5+1tb_ps":      AzureSkuNameStandardEEightsVFivePositiveOneTBPS,
+		"standard_e8s_v5+2tb_ps":      AzureSkuNameStandardEEightsVFivePositiveTwoTBPS,
+		"standard_e8s_v4+1tb_ps":      AzureSkuNameStandardEEightsVFourPositiveOneTBPS,
+		"standard_e8s_v4+2tb_ps":      AzureSkuNameStandardEEightsVFourPositiveTwoTBPS,
+		"standard_e4a_v4":             AzureSkuNameStandardEFouraVFour,
+		"standard_e4ads_v5":           AzureSkuNameStandardEFouradsVFive,
+		"standard_e4d_v5":             AzureSkuNameStandardEFourdVFive,
+		"standard_e4d_v4":             AzureSkuNameStandardEFourdVFour,
+		"standard_e16a_v4":            AzureSkuNameStandardEOneSixaVFour,
+		"standard_e16ads_v5":          AzureSkuNameStandardEOneSixadsVFive,
+		"standard_e16as_v5+4tb_ps":    AzureSkuNameStandardEOneSixasVFivePositiveFourTBPS,
+		"standard_e16as_v5+3tb_ps":    AzureSkuNameStandardEOneSixasVFivePositiveThreeTBPS,
+		"standard_e16as_v4+4tb_ps":    AzureSkuNameStandardEOneSixasVFourPositiveFourTBPS,
+		"standard_e16as_v4+3tb_ps":    AzureSkuNameStandardEOneSixasVFourPositiveThreeTBPS,
+		"standard_e16d_v5":            AzureSkuNameStandardEOneSixdVFive,
+		"standard_e16d_v4":            AzureSkuNameStandardEOneSixdVFour,
+		"standard_e16s_v5+4tb_ps":     AzureSkuNameStandardEOneSixsVFivePositiveFourTBPS,
+		"standard_e16s_v5+3tb_ps":     AzureSkuNameStandardEOneSixsVFivePositiveThreeTBPS,
+		"standard_e16s_v4+4tb_ps":     AzureSkuNameStandardEOneSixsVFourPositiveFourTBPS,
+		"standard_e16s_v4+3tb_ps":     AzureSkuNameStandardEOneSixsVFourPositiveThreeTBPS,
+		"standard_e64i_v3":            AzureSkuNameStandardESixFouriVThree,
+		"standard_e2a_v4":             AzureSkuNameStandardETwoaVFour,
+		"standard_e2ads_v5":           AzureSkuNameStandardETwoadsVFive,
+		"standard_e2d_v5":             AzureSkuNameStandardETwodVFive,
+		"standard_e2d_v4":             AzureSkuNameStandardETwodVFour,
+		"standard_l8as_v3":            AzureSkuNameStandardLEightasVThree,
+		"standard_l8s":                AzureSkuNameStandardLEights,
+		"standard_l8s_v3":             AzureSkuNameStandardLEightsVThree,
+		"standard_l8s_v2":             AzureSkuNameStandardLEightsVTwo,
+		"standard_l4s":                AzureSkuNameStandardLFours,
+		"standard_l16as_v3":           AzureSkuNameStandardLOneSixasVThree,
+		"standard_l16s":               AzureSkuNameStandardLOneSixs,
+		"standard_l16s_v3":            AzureSkuNameStandardLOneSixsVThree,
+		"standard_l16s_v2":            AzureSkuNameStandardLOneSixsVTwo,
+		"standard_l32as_v3":           AzureSkuNameStandardLThreeTwoasVThree,
+		"standard_l32s_v3":            AzureSkuNameStandardLThreeTwosVThree,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AzureSkuName(input)
+	return &out, nil
+}

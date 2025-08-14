@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/authorization/2020-10-01/rolemanagementpolicyassignments
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ScopedRoleManagementPolicyAssignmentId) String() string {
+	components := []string{
+		fmt.Sprintf("Scope: %q", id.Scope),
+		fmt.Sprintf("Role Management Policy Assignment Name: %q", id.RoleManagementPolicyAssignmentName),
+	}
+	return fmt.Sprintf("Scoped Role Management Policy Assignment (%s)", strings.Join(components, "\n"))
+}

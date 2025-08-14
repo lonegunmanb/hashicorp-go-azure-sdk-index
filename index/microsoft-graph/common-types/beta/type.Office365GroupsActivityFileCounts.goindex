@@ -1,0 +1,37 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type Office365GroupsActivityFileCounts struct {
+	// The number of files that were viewed, edited, shared, or synced in the group's SharePoint document library.
+	Active nullable.Type[int64] `json:"active,omitempty"`
+
+	// The date on which a number of files were active in the group's SharePoint site.
+	ReportDate nullable.Type[string] `json:"reportDate,omitempty"`
+
+	// The number of days the report covers.
+	ReportPeriod nullable.Type[string] `json:"reportPeriod,omitempty"`
+
+	// The latest date of the content.
+	ReportRefreshDate nullable.Type[string] `json:"reportRefreshDate,omitempty"`
+
+	// The total number of files in the group's SharePoint document library.
+	Total nullable.Type[int64] `json:"total,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

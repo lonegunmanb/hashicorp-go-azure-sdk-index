@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type SecurityHostSslCertificate struct {
+	// The first date and time when this hostSslCertificate was observed. The timestamp type represents date and time
+	// information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is
+	// 2014-01-01T00:00:00Z.
+	FirstSeenDateTime nullable.Type[string] `json:"firstSeenDateTime,omitempty"`
+
+	// The host for this hostSslCertificate.
+	Host *SecurityHost `json:"host,omitempty"`
+
+	// The most recent date and time when this hostSslCertificate was observed. The timestamp type represents date and time
+	// information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is
+	// 2014-01-01T00:00:00Z.
+	LastSeenDateTime nullable.Type[string] `json:"lastSeenDateTime,omitempty"`
+
+	// The ports related with this hostSslCertificate.
+	Ports *[]SecurityHostSslCertificatePort `json:"ports,omitempty"`
+
+	// The sslCertificate for this hostSslCertificate.
+	SslCertificate *SecuritySslCertificate `json:"sslCertificate,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

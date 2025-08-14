@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-05-01/virtualnetworkgateways
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseFailoverTestType(input string) (*FailoverTestType, error) {
+	vals := map[string]FailoverTestType{
+		"all":                FailoverTestTypeAll,
+		"multisitefailover":  FailoverTestTypeMultiSiteFailover,
+		"singlesitefailover": FailoverTestTypeSingleSiteFailover,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FailoverTestType(input)
+	return &out, nil
+}

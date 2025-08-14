@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ServicePrincipalIdSynchronizationJobIdSchemaDirectoryId) String() string {
+	components := []string{
+		fmt.Sprintf("Service Principal: %q", id.ServicePrincipalId),
+		fmt.Sprintf("Synchronization Job: %q", id.SynchronizationJobId),
+		fmt.Sprintf("Directory Definition: %q", id.DirectoryDefinitionId),
+	}
+	return fmt.Sprintf("Service Principal Id Synchronization Job Id Schema Directory (%s)", strings.Join(components, "\n"))
+}

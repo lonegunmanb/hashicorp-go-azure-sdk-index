@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseContinuousAccessEvaluationMode(input string) (*ContinuousAccessEvaluationMode, error) {
+	vals := map[string]ContinuousAccessEvaluationMode{
+		"disabled":          ContinuousAccessEvaluationMode_Disabled,
+		"strictenforcement": ContinuousAccessEvaluationMode_StrictEnforcement,
+		"strictlocation":    ContinuousAccessEvaluationMode_StrictLocation,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ContinuousAccessEvaluationMode(input)
+	return &out, nil
+}

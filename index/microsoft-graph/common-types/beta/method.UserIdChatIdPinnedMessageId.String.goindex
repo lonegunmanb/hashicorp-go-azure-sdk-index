@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id UserIdChatIdPinnedMessageId) String() string {
+	components := []string{
+		fmt.Sprintf("User: %q", id.UserId),
+		fmt.Sprintf("Chat: %q", id.ChatId),
+		fmt.Sprintf("Pinned Chat Message Info: %q", id.PinnedChatMessageInfoId),
+	}
+	return fmt.Sprintf("User Id Chat Id Pinned Message (%s)", strings.Join(components, "\n"))
+}

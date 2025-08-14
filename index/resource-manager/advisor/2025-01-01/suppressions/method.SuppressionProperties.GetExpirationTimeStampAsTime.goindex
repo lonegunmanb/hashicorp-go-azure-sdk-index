@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/advisor/2025-01-01/suppressions
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *SuppressionProperties) GetExpirationTimeStampAsTime() (*time.Time, error) {
+	if o.ExpirationTimeStamp == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.ExpirationTimeStamp, "2006-01-02T15:04:05Z07:00")
+}

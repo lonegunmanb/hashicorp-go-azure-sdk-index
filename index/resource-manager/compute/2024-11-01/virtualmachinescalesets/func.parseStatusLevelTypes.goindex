@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/virtualmachinescalesets
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseStatusLevelTypes(input string) (*StatusLevelTypes, error) {
+	vals := map[string]StatusLevelTypes{
+		"error":   StatusLevelTypesError,
+		"info":    StatusLevelTypesInfo,
+		"warning": StatusLevelTypesWarning,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := StatusLevelTypes(input)
+	return &out, nil
+}

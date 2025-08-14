@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerapps/2023-05-01/containerapps
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ContainerAppsClient) DiagnosticsListRevisionsCompleteMatchingPredicate(ctx context.Context, id ContainerAppId, options DiagnosticsListRevisionsOperationOptions, predicate RevisionOperationPredicate) (result DiagnosticsListRevisionsCompleteResult, err error) {
+	items := make([]Revision, 0)
+
+	resp, err := c.DiagnosticsListRevisions(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = DiagnosticsListRevisionsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

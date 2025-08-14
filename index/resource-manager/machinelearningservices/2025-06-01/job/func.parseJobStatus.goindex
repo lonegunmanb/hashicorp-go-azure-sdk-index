@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2025-06-01/job
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseJobStatus(input string) (*JobStatus, error) {
+	vals := map[string]JobStatus{
+		"cancelrequested": JobStatusCancelRequested,
+		"canceled":        JobStatusCanceled,
+		"completed":       JobStatusCompleted,
+		"failed":          JobStatusFailed,
+		"finalizing":      JobStatusFinalizing,
+		"notresponding":   JobStatusNotResponding,
+		"notstarted":      JobStatusNotStarted,
+		"paused":          JobStatusPaused,
+		"preparing":       JobStatusPreparing,
+		"provisioning":    JobStatusProvisioning,
+		"queued":          JobStatusQueued,
+		"running":         JobStatusRunning,
+		"starting":        JobStatusStarting,
+		"unknown":         JobStatusUnknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := JobStatus(input)
+	return &out, nil
+}

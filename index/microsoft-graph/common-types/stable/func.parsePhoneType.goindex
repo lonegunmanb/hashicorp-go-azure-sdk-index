@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePhoneType(input string) (*PhoneType, error) {
+	vals := map[string]PhoneType{
+		"assistant":   PhoneType_Assistant,
+		"business":    PhoneType_Business,
+		"businessfax": PhoneType_BusinessFax,
+		"home":        PhoneType_Home,
+		"homefax":     PhoneType_HomeFax,
+		"mobile":      PhoneType_Mobile,
+		"other":       PhoneType_Other,
+		"otherfax":    PhoneType_OtherFax,
+		"pager":       PhoneType_Pager,
+		"radio":       PhoneType_Radio,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PhoneType(input)
+	return &out, nil
+}

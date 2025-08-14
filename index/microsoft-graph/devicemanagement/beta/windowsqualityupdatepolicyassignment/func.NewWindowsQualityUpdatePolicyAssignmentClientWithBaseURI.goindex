@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/windowsqualityupdatepolicyassignment
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewWindowsQualityUpdatePolicyAssignmentClientWithBaseURI(sdkApi sdkEnv.Api) (*WindowsQualityUpdatePolicyAssignmentClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "windowsqualityupdatepolicyassignment", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating WindowsQualityUpdatePolicyAssignmentClient: %+v", err)
+	}
+
+	return &WindowsQualityUpdatePolicyAssignmentClient{
+		Client: client,
+	}, nil
+}

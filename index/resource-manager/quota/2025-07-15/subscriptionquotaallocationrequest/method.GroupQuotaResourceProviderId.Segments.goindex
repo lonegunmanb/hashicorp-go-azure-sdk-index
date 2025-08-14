@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-07-15/subscriptionquotaallocationrequest
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id GroupQuotaResourceProviderId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.StaticSegment("staticProviders", "providers", "providers"),
+		resourceids.ResourceProviderSegment("staticMicrosoftManagement", "Microsoft.Management", "Microsoft.Management"),
+		resourceids.StaticSegment("staticManagementGroups", "managementGroups", "managementGroups"),
+		resourceids.UserSpecifiedSegment("managementGroupId", "managementGroupId"),
+		resourceids.StaticSegment("staticSubscriptions", "subscriptions", "subscriptions"),
+		resourceids.SubscriptionIdSegment("subscriptionId", "12345678-1234-9876-4563-123456789012"),
+		resourceids.StaticSegment("staticProviders2", "providers", "providers"),
+		resourceids.ResourceProviderSegment("staticMicrosoftQuota", "Microsoft.Quota", "Microsoft.Quota"),
+		resourceids.StaticSegment("staticGroupQuotas", "groupQuotas", "groupQuotas"),
+		resourceids.UserSpecifiedSegment("groupQuotaName", "groupQuotaName"),
+		resourceids.StaticSegment("staticResourceProviders", "resourceProviders", "resourceProviders"),
+		resourceids.UserSpecifiedSegment("resourceProviderName", "resourceProviderName"),
+	}
+}

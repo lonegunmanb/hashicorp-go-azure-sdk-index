@@ -1,0 +1,37 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type GroupPolicyPresentationValueMultiText struct {
+	// A collection of non-empty strings for the associated presentation.
+	Values *[]string `json:"values,omitempty"`
+
+	// Fields inherited from GroupPolicyPresentationValue
+
+	// The date and time the object was created.
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+
+	// The group policy definition value associated with the presentation value.
+	DefinitionValue *GroupPolicyDefinitionValue `json:"definitionValue,omitempty"`
+
+	// The date and time the object was last modified.
+	LastModifiedDateTime *string `json:"lastModifiedDateTime,omitempty"`
+
+	// The group policy presentation associated with the presentation value.
+	Presentation *GroupPolicyPresentation `json:"presentation,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

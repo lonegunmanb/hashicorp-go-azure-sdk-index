@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/templatemigratabletocategoryrecommendedsetting
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTemplateMigratableToCategoryRecommendedSettingClientWithBaseURI(sdkApi sdkEnv.Api) (*TemplateMigratableToCategoryRecommendedSettingClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "templatemigratabletocategoryrecommendedsetting", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TemplateMigratableToCategoryRecommendedSettingClient: %+v", err)
+	}
+
+	return &TemplateMigratableToCategoryRecommendedSettingClient{
+		Client: client,
+	}, nil
+}

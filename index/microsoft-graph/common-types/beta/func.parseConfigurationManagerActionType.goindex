@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseConfigurationManagerActionType(input string) (*ConfigurationManagerActionType, error) {
+	vals := map[string]ConfigurationManagerActionType{
+		"appevaluation":                   ConfigurationManagerActionType_AppEvaluation,
+		"fullscan":                        ConfigurationManagerActionType_FullScan,
+		"quickscan":                       ConfigurationManagerActionType_QuickScan,
+		"refreshmachinepolicy":            ConfigurationManagerActionType_RefreshMachinePolicy,
+		"refreshuserpolicy":               ConfigurationManagerActionType_RefreshUserPolicy,
+		"wakeupclient":                    ConfigurationManagerActionType_WakeUpClient,
+		"windowsdefenderupdatesignatures": ConfigurationManagerActionType_WindowsDefenderUpdateSignatures,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ConfigurationManagerActionType(input)
+	return &out, nil
+}

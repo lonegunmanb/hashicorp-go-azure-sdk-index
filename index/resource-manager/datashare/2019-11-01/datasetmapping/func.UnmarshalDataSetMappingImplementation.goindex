@@ -1,0 +1,113 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2019-11-01/datasetmapping
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalDataSetMappingImplementation(input []byte) (DataSetMapping, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling DataSetMapping into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["kind"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "AdlsGen2File") {
+		var out ADLSGen2FileDataSetMapping
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ADLSGen2FileDataSetMapping: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "AdlsGen2FileSystem") {
+		var out ADLSGen2FileSystemDataSetMapping
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ADLSGen2FileSystemDataSetMapping: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "AdlsGen2Folder") {
+		var out ADLSGen2FolderDataSetMapping
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ADLSGen2FolderDataSetMapping: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "Container") {
+		var out BlobContainerDataSetMapping
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into BlobContainerDataSetMapping: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "Blob") {
+		var out BlobDataSetMapping
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into BlobDataSetMapping: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "BlobFolder") {
+		var out BlobFolderDataSetMapping
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into BlobFolderDataSetMapping: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "KustoCluster") {
+		var out KustoClusterDataSetMapping
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into KustoClusterDataSetMapping: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "KustoDatabase") {
+		var out KustoDatabaseDataSetMapping
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into KustoDatabaseDataSetMapping: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "SqlDBTable") {
+		var out SqlDBTableDataSetMapping
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SqlDBTableDataSetMapping: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "SqlDWTable") {
+		var out SqlDWTableDataSetMapping
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SqlDWTableDataSetMapping: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseDataSetMappingImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseDataSetMappingImpl: %+v", err)
+	}
+
+	return RawDataSetMappingImpl{
+		dataSetMapping: parent,
+		Type:           value,
+		Values:         temp,
+	}, nil
+
+}

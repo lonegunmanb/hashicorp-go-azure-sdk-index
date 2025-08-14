@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWin32LobAppDetectionOperator(input string) (*Win32LobAppDetectionOperator, error) {
+	vals := map[string]Win32LobAppDetectionOperator{
+		"equal":              Win32LobAppDetectionOperator_Equal,
+		"greaterthan":        Win32LobAppDetectionOperator_GreaterThan,
+		"greaterthanorequal": Win32LobAppDetectionOperator_GreaterThanOrEqual,
+		"lessthan":           Win32LobAppDetectionOperator_LessThan,
+		"lessthanorequal":    Win32LobAppDetectionOperator_LessThanOrEqual,
+		"notconfigured":      Win32LobAppDetectionOperator_NotConfigured,
+		"notequal":           Win32LobAppDetectionOperator_NotEqual,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Win32LobAppDetectionOperator(input)
+	return &out, nil
+}

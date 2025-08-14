@@ -1,0 +1,67 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *AccessPackageAssignmentRequest) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AccessPackage                   *AccessPackage                    `json:"accessPackage,omitempty"`
+		Assignment                      *AccessPackageAssignment          `json:"assignment,omitempty"`
+		CompletedDateTime               nullable.Type[string]             `json:"completedDateTime,omitempty"`
+		CreatedDateTime                 nullable.Type[string]             `json:"createdDateTime,omitempty"`
+		CustomExtensionCalloutInstances *[]CustomExtensionCalloutInstance `json:"customExtensionCalloutInstances,omitempty"`
+		Justification                   nullable.Type[string]             `json:"justification,omitempty"`
+		RequestType                     *AccessPackageRequestType         `json:"requestType,omitempty"`
+		Requestor                       *AccessPackageSubject             `json:"requestor,omitempty"`
+		Schedule                        *EntitlementManagementSchedule    `json:"schedule,omitempty"`
+		State                           *AccessPackageRequestState        `json:"state,omitempty"`
+		Status                          nullable.Type[string]             `json:"status,omitempty"`
+		Id                              *string                           `json:"id,omitempty"`
+		ODataId                         *string                           `json:"@odata.id,omitempty"`
+		ODataType                       *string                           `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AccessPackage = decoded.AccessPackage
+	s.Assignment = decoded.Assignment
+	s.CompletedDateTime = decoded.CompletedDateTime
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.CustomExtensionCalloutInstances = decoded.CustomExtensionCalloutInstances
+	s.Justification = decoded.Justification
+	s.RequestType = decoded.RequestType
+	s.Requestor = decoded.Requestor
+	s.Schedule = decoded.Schedule
+	s.State = decoded.State
+	s.Status = decoded.Status
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling AccessPackageAssignmentRequest into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["answers"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling Answers into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]AccessPackageAnswer, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalAccessPackageAnswerImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'Answers' for 'AccessPackageAssignmentRequest': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.Answers = &output
+	}
+
+	return nil
+}

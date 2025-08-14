@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-11-01/securityadminconfigurations
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SecurityAdminConfigurationsClient) ListComplete(ctx context.Context, id NetworkManagerId, options ListOperationOptions) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, options, SecurityAdminConfigurationOperationPredicate{})
+}

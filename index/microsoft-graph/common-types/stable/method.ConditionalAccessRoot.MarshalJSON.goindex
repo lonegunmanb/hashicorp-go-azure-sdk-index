@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s ConditionalAccessRoot) MarshalJSON() ([]byte, error) {
+	type wrapper ConditionalAccessRoot
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ConditionalAccessRoot: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ConditionalAccessRoot: %+v", err)
+	}
+
+	delete(decoded, "authenticationContextClassReferences")
+	delete(decoded, "namedLocations")
+	delete(decoded, "policies")
+	delete(decoded, "templates")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.conditionalAccessRoot"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ConditionalAccessRoot: %+v", err)
+	}
+
+	return encoded, nil
+}

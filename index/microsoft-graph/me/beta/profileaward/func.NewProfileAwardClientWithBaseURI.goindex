@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/profileaward
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewProfileAwardClientWithBaseURI(sdkApi sdkEnv.Api) (*ProfileAwardClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "profileaward", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ProfileAwardClient: %+v", err)
+	}
+
+	return &ProfileAwardClient{
+		Client: client,
+	}, nil
+}

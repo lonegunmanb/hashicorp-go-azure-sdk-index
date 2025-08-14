@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2022-08-01/backendreconnect
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewBackendReconnectClientWithBaseURI(sdkApi sdkEnv.Api) (*BackendReconnectClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "backendreconnect", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating BackendReconnectClient: %+v", err)
+	}
+
+	return &BackendReconnectClient{
+		Client: client,
+	}, nil
+}

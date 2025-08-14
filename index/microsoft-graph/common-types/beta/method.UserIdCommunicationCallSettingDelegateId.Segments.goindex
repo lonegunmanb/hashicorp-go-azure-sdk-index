@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id UserIdCommunicationCallSettingDelegateId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.StaticSegment("users", "users", "users"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
+		resourceids.StaticSegment("communications", "communications", "communications"),
+		resourceids.StaticSegment("callSettings", "callSettings", "callSettings"),
+		resourceids.StaticSegment("delegates", "delegates", "delegates"),
+		resourceids.UserSpecifiedSegment("delegationSettingsId", "delegationSettingsId"),
+	}
+}

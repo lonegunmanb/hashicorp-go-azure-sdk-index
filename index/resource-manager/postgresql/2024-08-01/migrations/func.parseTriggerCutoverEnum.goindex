@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2024-08-01/migrations
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTriggerCutoverEnum(input string) (*TriggerCutoverEnum, error) {
+	vals := map[string]TriggerCutoverEnum{
+		"false": TriggerCutoverEnumFalse,
+		"true":  TriggerCutoverEnumTrue,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TriggerCutoverEnum(input)
+	return &out, nil
+}

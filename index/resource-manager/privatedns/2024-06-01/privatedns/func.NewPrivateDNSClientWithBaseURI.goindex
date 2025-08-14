@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/privatedns/2024-06-01/privatedns
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPrivateDNSClientWithBaseURI(sdkApi sdkEnv.Api) (*PrivateDNSClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "privatedns", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PrivateDNSClient: %+v", err)
+	}
+
+	return &PrivateDNSClient{
+		Client: client,
+	}, nil
+}

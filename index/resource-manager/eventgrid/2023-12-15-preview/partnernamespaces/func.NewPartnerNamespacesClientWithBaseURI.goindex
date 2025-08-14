@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2023-12-15-preview/partnernamespaces
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPartnerNamespacesClientWithBaseURI(sdkApi sdkEnv.Api) (*PartnerNamespacesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "partnernamespaces", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PartnerNamespacesClient: %+v", err)
+	}
+
+	return &PartnerNamespacesClient{
+		Client: client,
+	}, nil
+}

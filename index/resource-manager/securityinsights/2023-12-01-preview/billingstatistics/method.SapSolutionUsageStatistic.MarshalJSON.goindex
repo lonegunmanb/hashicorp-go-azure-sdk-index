@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-12-01-preview/billingstatistics
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+)
+func (s SapSolutionUsageStatistic) MarshalJSON() ([]byte, error) {
+	type wrapper SapSolutionUsageStatistic
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling SapSolutionUsageStatistic: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling SapSolutionUsageStatistic: %+v", err)
+	}
+
+	decoded["kind"] = "SapSolutionUsage"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling SapSolutionUsageStatistic: %+v", err)
+	}
+
+	return encoded, nil
+}

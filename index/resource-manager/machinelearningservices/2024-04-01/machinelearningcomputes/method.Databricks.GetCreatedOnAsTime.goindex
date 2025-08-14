@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/machinelearningcomputes
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *Databricks) GetCreatedOnAsTime() (*time.Time, error) {
+	if o.CreatedOn == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.CreatedOn, "2006-01-02T15:04:05Z07:00")
+}

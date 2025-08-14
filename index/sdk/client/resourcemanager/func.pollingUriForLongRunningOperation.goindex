@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager
+import (
+	"bytes"
+	"context"
+	"encoding/json"
+	"errors"
+	"fmt"
+	"io"
+	"net/http"
+	"net/url"
+	"strconv"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+)
+func pollingUriForLongRunningOperation(resp *client.Response) string {
+	pollingUrl := resp.Header.Get("Azure-AsyncOperation")
+	if pollingUrl == "" {
+		pollingUrl = resp.Header.Get("Location")
+	}
+	return pollingUrl
+}

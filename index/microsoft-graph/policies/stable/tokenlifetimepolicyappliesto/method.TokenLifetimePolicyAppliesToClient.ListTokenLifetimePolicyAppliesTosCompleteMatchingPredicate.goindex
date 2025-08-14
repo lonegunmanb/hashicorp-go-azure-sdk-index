@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/stable/tokenlifetimepolicyappliesto
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c TokenLifetimePolicyAppliesToClient) ListTokenLifetimePolicyAppliesTosCompleteMatchingPredicate(ctx context.Context, id stable.PolicyTokenLifetimePolicyId, options ListTokenLifetimePolicyAppliesTosOperationOptions, predicate DirectoryObjectOperationPredicate) (result ListTokenLifetimePolicyAppliesTosCompleteResult, err error) {
+	items := make([]stable.DirectoryObject, 0)
+
+	resp, err := c.ListTokenLifetimePolicyAppliesTos(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListTokenLifetimePolicyAppliesTosCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

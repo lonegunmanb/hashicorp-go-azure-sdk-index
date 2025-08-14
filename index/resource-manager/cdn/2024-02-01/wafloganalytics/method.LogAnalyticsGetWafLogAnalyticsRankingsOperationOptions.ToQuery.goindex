@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2024-02-01/wafloganalytics
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o LogAnalyticsGetWafLogAnalyticsRankingsOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.Actions != nil {
+		out.Append("actions", fmt.Sprintf("%v", *o.Actions))
+	}
+	if o.DateTimeBegin != nil {
+		out.Append("dateTimeBegin", fmt.Sprintf("%v", *o.DateTimeBegin))
+	}
+	if o.DateTimeEnd != nil {
+		out.Append("dateTimeEnd", fmt.Sprintf("%v", *o.DateTimeEnd))
+	}
+	if o.MaxRanking != nil {
+		out.Append("maxRanking", fmt.Sprintf("%v", *o.MaxRanking))
+	}
+	if o.Metrics != nil {
+		out.Append("metrics", fmt.Sprintf("%v", *o.Metrics))
+	}
+	if o.Rankings != nil {
+		out.Append("rankings", fmt.Sprintf("%v", *o.Rankings))
+	}
+	if o.RuleTypes != nil {
+		out.Append("ruleTypes", fmt.Sprintf("%v", *o.RuleTypes))
+	}
+	return &out
+}

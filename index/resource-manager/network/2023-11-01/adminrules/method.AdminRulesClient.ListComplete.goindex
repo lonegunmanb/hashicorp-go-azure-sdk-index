@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-11-01/adminrules
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c AdminRulesClient) ListComplete(ctx context.Context, id RuleCollectionId) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, BaseAdminRuleOperationPredicate{})
+}

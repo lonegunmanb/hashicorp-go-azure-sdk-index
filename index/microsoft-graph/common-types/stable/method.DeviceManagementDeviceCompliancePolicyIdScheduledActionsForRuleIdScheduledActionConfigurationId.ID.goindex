@@ -1,0 +1,11 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DeviceManagementDeviceCompliancePolicyIdScheduledActionsForRuleIdScheduledActionConfigurationId) ID() string {
+	fmtString := "/deviceManagement/deviceCompliancePolicies/%s/scheduledActionsForRule/%s/scheduledActionConfigurations/%s"
+	return fmt.Sprintf(fmtString, id.DeviceCompliancePolicyId, id.DeviceComplianceScheduledActionForRuleId, id.DeviceComplianceActionItemId)
+}

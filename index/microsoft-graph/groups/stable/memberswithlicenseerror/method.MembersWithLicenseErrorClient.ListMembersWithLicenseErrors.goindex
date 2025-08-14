@@ -1,0 +1,61 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/memberswithlicenseerror
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c MembersWithLicenseErrorClient) ListMembersWithLicenseErrors(ctx context.Context, id stable.GroupId, options ListMembersWithLicenseErrorsOperationOptions) (result ListMembersWithLicenseErrorsOperationResponse, err error) {
+	opts := client.RequestOptions{
+		ContentType: "application/json; charset=utf-8",
+		ExpectedStatusCodes: []int{
+			http.StatusOK,
+		},
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Pager:         &ListMembersWithLicenseErrorsCustomPager{},
+		Path:          fmt.Sprintf("%s/membersWithLicenseErrors", id.ID()),
+		RetryFunc:     options.RetryFunc,
+	}
+
+	req, err := c.Client.NewRequest(ctx, opts)
+	if err != nil {
+		return
+	}
+
+	var resp *client.Response
+	resp, err = req.ExecutePaged(ctx)
+	if resp != nil {
+		result.OData = resp.OData
+		result.HttpResponse = resp.Response
+	}
+	if err != nil {
+		return
+	}
+
+	var values struct {
+		Values *[]json.RawMessage `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
+		return
+	}
+
+	temp := make([]stable.DirectoryObject, 0)
+	if values.Values != nil {
+		for i, v := range *values.Values {
+			val, err := stable.UnmarshalDirectoryObjectImplementation(v)
+			if err != nil {
+				err = fmt.Errorf("unmarshalling item %d for stable.DirectoryObject (%q): %+v", i, v, err)
+				return result, err
+			}
+			temp = append(temp, val)
+		}
+	}
+	result.Model = &temp
+
+	return
+}

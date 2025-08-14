@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2024-03-01/monitoredresources
+
+func (p MonitoredResourceOperationPredicate) Matches(input MonitoredResource) bool {
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ReasonForLogsStatus != nil && (input.ReasonForLogsStatus == nil || *p.ReasonForLogsStatus != *input.ReasonForLogsStatus) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityHuntingRuleErrorCode(input string) (*SecurityHuntingRuleErrorCode, error) {
+	vals := map[string]SecurityHuntingRuleErrorCode{
+		"alertcreationfailed":      SecurityHuntingRuleErrorCode_AlertCreationFailed,
+		"alertreportnotfound":      SecurityHuntingRuleErrorCode_AlertReportNotFound,
+		"noimpactedentity":         SecurityHuntingRuleErrorCode_NoImpactedEntity,
+		"partialrowsfailed":        SecurityHuntingRuleErrorCode_PartialRowsFailed,
+		"queryexceededresultsize":  SecurityHuntingRuleErrorCode_QueryExceededResultSize,
+		"queryexecutionfailed":     SecurityHuntingRuleErrorCode_QueryExecutionFailed,
+		"queryexecutionthrottling": SecurityHuntingRuleErrorCode_QueryExecutionThrottling,
+		"querylimitsexceeded":      SecurityHuntingRuleErrorCode_QueryLimitsExceeded,
+		"querytimeout":             SecurityHuntingRuleErrorCode_QueryTimeout,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityHuntingRuleErrorCode(input)
+	return &out, nil
+}

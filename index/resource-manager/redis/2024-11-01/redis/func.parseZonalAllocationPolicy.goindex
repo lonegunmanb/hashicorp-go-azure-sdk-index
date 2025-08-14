@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/redis/2024-11-01/redis
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseZonalAllocationPolicy(input string) (*ZonalAllocationPolicy, error) {
+	vals := map[string]ZonalAllocationPolicy{
+		"automatic":   ZonalAllocationPolicyAutomatic,
+		"nozones":     ZonalAllocationPolicyNoZones,
+		"userdefined": ZonalAllocationPolicyUserDefined,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ZonalAllocationPolicy(input)
+	return &out, nil
+}

@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/invitations/stable/invitation
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c InvitationClient) ListInvitationsComplete(ctx context.Context, options ListInvitationsOperationOptions) (ListInvitationsCompleteResult, error) {
+	return c.ListInvitationsCompleteMatchingPredicate(ctx, options, InvitationOperationPredicate{})
+}

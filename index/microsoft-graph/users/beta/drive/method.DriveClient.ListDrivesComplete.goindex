@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/drive
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DriveClient) ListDrivesComplete(ctx context.Context, id beta.UserId, options ListDrivesOperationOptions) (ListDrivesCompleteResult, error) {
+	return c.ListDrivesCompleteMatchingPredicate(ctx, id, options, DriveOperationPredicate{})
+}

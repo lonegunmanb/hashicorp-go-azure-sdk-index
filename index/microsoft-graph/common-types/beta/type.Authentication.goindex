@@ -1,0 +1,69 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type Authentication struct {
+	// Represents the email addresses registered to a user for authentication.
+	EmailMethods *[]EmailAuthenticationMethod `json:"emailMethods,omitempty"`
+
+	// Represents the FIDO2 security keys registered to a user for authentication.
+	Fido2Methods *[]Fido2AuthenticationMethod `json:"fido2Methods,omitempty"`
+
+	// The hardware OATH time-based one-time password (TOTP) devices assigned to a user for authentication.
+	HardwareOathMethods *[]HardwareOathAuthenticationMethod `json:"hardwareOathMethods,omitempty"`
+
+	// Represents all authentication methods registered to a user.
+	Methods *[]AuthenticationMethod `json:"methods,omitempty"`
+
+	// The details of the Microsoft Authenticator app registered to a user for authentication.
+	MicrosoftAuthenticatorMethods *[]MicrosoftAuthenticatorAuthenticationMethod `json:"microsoftAuthenticatorMethods,omitempty"`
+
+	// Represents the status of a long-running operation, such as a password reset operation.
+	Operations *[]LongRunningOperation `json:"operations,omitempty"`
+
+	// Represents the details of the password authentication method registered to a user for authentication.
+	PasswordMethods *[]PasswordAuthenticationMethod `json:"passwordMethods,omitempty"`
+
+	// Represents the Microsoft Authenticator Passwordless Phone Sign-in methods registered to a user for authentication.
+	PasswordlessMicrosoftAuthenticatorMethods *[]PasswordlessMicrosoftAuthenticatorAuthenticationMethod `json:"passwordlessMicrosoftAuthenticatorMethods,omitempty"`
+
+	// Represents the phone registered to a user for authentication.
+	PhoneMethods *[]PhoneAuthenticationMethod `json:"phoneMethods,omitempty"`
+
+	// Represents a platform credential instance registered to a user on Mac OS.
+	PlatformCredentialMethods *[]PlatformCredentialAuthenticationMethod `json:"platformCredentialMethods,omitempty"`
+
+	// Represents a QR code authentication method registered to a user for authentication.
+	QrCodePinMethod *QrCodePinAuthenticationMethod `json:"qrCodePinMethod,omitempty"`
+
+	// The settings and preferences for per-user Microsoft Entra multifactor authentication.
+	Requirements *StrongAuthenticationRequirements `json:"requirements,omitempty"`
+
+	// The settings and preferences for the sign-in experience of a user. Use this property to configure the user's default
+	// multifactor authentication (MFA) method.
+	SignInPreferences *SignInPreferences `json:"signInPreferences,omitempty"`
+
+	// The software OATH time-based one-time password (TOTP) applications registered to a user for authentication.
+	SoftwareOathMethods *[]SoftwareOathAuthenticationMethod `json:"softwareOathMethods,omitempty"`
+
+	// Represents a Temporary Access Pass registered to a user for authentication through time-limited passcodes.
+	TemporaryAccessPassMethods *[]TemporaryAccessPassAuthenticationMethod `json:"temporaryAccessPassMethods,omitempty"`
+
+	// Represents the Windows Hello for Business authentication method registered to a user for authentication.
+	WindowsHelloForBusinessMethods *[]WindowsHelloForBusinessAuthenticationMethod `json:"windowsHelloForBusinessMethods,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

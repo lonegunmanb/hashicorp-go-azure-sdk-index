@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseStagedFeatureName(input string) (*StagedFeatureName, error) {
+	vals := map[string]StagedFeatureName{
+		"certificatebasedauthentication": StagedFeatureName_CertificateBasedAuthentication,
+		"emailasalternateid":             StagedFeatureName_EmailAsAlternateId,
+		"passthroughauthentication":      StagedFeatureName_PassthroughAuthentication,
+		"passwordhashsync":               StagedFeatureName_PasswordHashSync,
+		"seamlesssso":                    StagedFeatureName_SeamlessSso,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := StagedFeatureName(input)
+	return &out, nil
+}

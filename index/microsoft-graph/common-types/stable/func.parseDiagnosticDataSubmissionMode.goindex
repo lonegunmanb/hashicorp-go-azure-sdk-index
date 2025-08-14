@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDiagnosticDataSubmissionMode(input string) (*DiagnosticDataSubmissionMode, error) {
+	vals := map[string]DiagnosticDataSubmissionMode{
+		"basic":       DiagnosticDataSubmissionMode_Basic,
+		"enhanced":    DiagnosticDataSubmissionMode_Enhanced,
+		"full":        DiagnosticDataSubmissionMode_Full,
+		"none":        DiagnosticDataSubmissionMode_None,
+		"userdefined": DiagnosticDataSubmissionMode_UserDefined,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DiagnosticDataSubmissionMode(input)
+	return &out, nil
+}

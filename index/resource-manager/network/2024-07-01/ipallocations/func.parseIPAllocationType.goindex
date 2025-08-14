@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/ipallocations
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseIPAllocationType(input string) (*IPAllocationType, error) {
+	vals := map[string]IPAllocationType{
+		"hypernet":  IPAllocationTypeHypernet,
+		"undefined": IPAllocationTypeUndefined,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IPAllocationType(input)
+	return &out, nil
+}

@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2023-02-01/vaults
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *DeletedVaultProperties) GetDeletionDateAsTime() (*time.Time, error) {
+	if o.DeletionDate == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.DeletionDate, "2006-01-02T15:04:05Z07:00")
+}

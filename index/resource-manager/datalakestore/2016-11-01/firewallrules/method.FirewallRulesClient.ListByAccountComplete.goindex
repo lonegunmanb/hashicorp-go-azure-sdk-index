@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datalakestore/2016-11-01/firewallrules
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c FirewallRulesClient) ListByAccountComplete(ctx context.Context, id AccountId) (ListByAccountCompleteResult, error) {
+	return c.ListByAccountCompleteMatchingPredicate(ctx, id, FirewallRuleOperationPredicate{})
+}

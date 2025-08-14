@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAssignmentFilterEvaluationResult(input string) (*AssignmentFilterEvaluationResult, error) {
+	vals := map[string]AssignmentFilterEvaluationResult{
+		"failure":      AssignmentFilterEvaluationResult_Failure,
+		"inconclusive": AssignmentFilterEvaluationResult_Inconclusive,
+		"match":        AssignmentFilterEvaluationResult_Match,
+		"notevaluated": AssignmentFilterEvaluationResult_NotEvaluated,
+		"notmatch":     AssignmentFilterEvaluationResult_NotMatch,
+		"unknown":      AssignmentFilterEvaluationResult_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AssignmentFilterEvaluationResult(input)
+	return &out, nil
+}

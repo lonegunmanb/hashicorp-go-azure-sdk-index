@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseStateManagementSetting(input string) (*StateManagementSetting, error) {
+	vals := map[string]StateManagementSetting{
+		"allowed":       StateManagementSetting_Allowed,
+		"blocked":       StateManagementSetting_Blocked,
+		"notconfigured": StateManagementSetting_NotConfigured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := StateManagementSetting(input)
+	return &out, nil
+}

@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/databricks/2024-05-01/accessconnector
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseAccessConnectorIDInsensitively(input string) (*AccessConnectorId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&AccessConnectorId{})
+	parsed, err := parser.Parse(input, true)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := AccessConnectorId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

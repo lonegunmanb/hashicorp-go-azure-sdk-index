@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/ownedobject
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c OwnedObjectClient) ListOwnedObjectsCompleteMatchingPredicate(ctx context.Context, id beta.ServicePrincipalId, options ListOwnedObjectsOperationOptions, predicate DirectoryObjectOperationPredicate) (result ListOwnedObjectsCompleteResult, err error) {
+	items := make([]beta.DirectoryObject, 0)
+
+	resp, err := c.ListOwnedObjects(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListOwnedObjectsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

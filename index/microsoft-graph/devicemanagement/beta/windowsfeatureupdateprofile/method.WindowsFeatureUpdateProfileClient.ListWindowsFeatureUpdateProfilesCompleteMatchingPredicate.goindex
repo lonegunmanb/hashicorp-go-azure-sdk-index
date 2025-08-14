@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/windowsfeatureupdateprofile
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c WindowsFeatureUpdateProfileClient) ListWindowsFeatureUpdateProfilesCompleteMatchingPredicate(ctx context.Context, options ListWindowsFeatureUpdateProfilesOperationOptions, predicate WindowsFeatureUpdateProfileOperationPredicate) (result ListWindowsFeatureUpdateProfilesCompleteResult, err error) {
+	items := make([]beta.WindowsFeatureUpdateProfile, 0)
+
+	resp, err := c.ListWindowsFeatureUpdateProfiles(ctx, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListWindowsFeatureUpdateProfilesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

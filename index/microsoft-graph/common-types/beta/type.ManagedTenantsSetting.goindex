@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ManagedTenantsSetting struct {
+	// The display name for the setting. Required. Read-only.
+	DisplayName *string `json:"displayName,omitempty"`
+
+	// The value for the setting serialized as string of JSON. Required. Read-only.
+	JsonValue *string `json:"jsonValue,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// A flag indicating whether the setting can be override existing configurations when applied. Required. Read-only.
+	OverwriteAllowed *bool `json:"overwriteAllowed,omitempty"`
+
+	SettingId nullable.Type[string]                       `json:"settingId,omitempty"`
+	ValueType *ManagedTenantsManagementParameterValueType `json:"valueType,omitempty"`
+}

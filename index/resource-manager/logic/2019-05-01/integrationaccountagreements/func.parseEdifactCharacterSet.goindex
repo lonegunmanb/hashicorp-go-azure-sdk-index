@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationaccountagreements
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEdifactCharacterSet(input string) (*EdifactCharacterSet, error) {
+	vals := map[string]EdifactCharacterSet{
+		"keca":         EdifactCharacterSetKECA,
+		"notspecified": EdifactCharacterSetNotSpecified,
+		"unoa":         EdifactCharacterSetUNOA,
+		"unob":         EdifactCharacterSetUNOB,
+		"unoc":         EdifactCharacterSetUNOC,
+		"unod":         EdifactCharacterSetUNOD,
+		"unoe":         EdifactCharacterSetUNOE,
+		"unof":         EdifactCharacterSetUNOF,
+		"unog":         EdifactCharacterSetUNOG,
+		"unoh":         EdifactCharacterSetUNOH,
+		"unoi":         EdifactCharacterSetUNOI,
+		"unoj":         EdifactCharacterSetUNOJ,
+		"unok":         EdifactCharacterSetUNOK,
+		"unox":         EdifactCharacterSetUNOX,
+		"unoy":         EdifactCharacterSetUNOY,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EdifactCharacterSet(input)
+	return &out, nil
+}

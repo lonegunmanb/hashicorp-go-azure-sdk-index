@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/subscription
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o WorkspaceSubscriptionCreateOrUpdateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.AppType != nil {
+		out.Append("appType", fmt.Sprintf("%v", *o.AppType))
+	}
+	if o.Notify != nil {
+		out.Append("notify", fmt.Sprintf("%v", *o.Notify))
+	}
+	return &out
+}

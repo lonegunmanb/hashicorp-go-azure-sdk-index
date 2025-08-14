@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/federatedtokenvalidationpolicy
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewFederatedTokenValidationPolicyClientWithBaseURI(sdkApi sdkEnv.Api) (*FederatedTokenValidationPolicyClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "federatedtokenvalidationpolicy", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating FederatedTokenValidationPolicyClient: %+v", err)
+	}
+
+	return &FederatedTokenValidationPolicyClient{
+		Client: client,
+	}, nil
+}

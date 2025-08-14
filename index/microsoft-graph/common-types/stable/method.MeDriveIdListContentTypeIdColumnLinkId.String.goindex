@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id MeDriveIdListContentTypeIdColumnLinkId) String() string {
+	components := []string{
+		fmt.Sprintf("Drive: %q", id.DriveId),
+		fmt.Sprintf("Content Type: %q", id.ContentTypeId),
+		fmt.Sprintf("Column Link: %q", id.ColumnLinkId),
+	}
+	return fmt.Sprintf("Me Drive Id List Content Type Id Column Link (%s)", strings.Join(components, "\n"))
+}

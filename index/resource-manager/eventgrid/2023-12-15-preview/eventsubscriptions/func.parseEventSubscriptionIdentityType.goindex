@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2023-12-15-preview/eventsubscriptions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEventSubscriptionIdentityType(input string) (*EventSubscriptionIdentityType, error) {
+	vals := map[string]EventSubscriptionIdentityType{
+		"systemassigned": EventSubscriptionIdentityTypeSystemAssigned,
+		"userassigned":   EventSubscriptionIdentityTypeUserAssigned,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EventSubscriptionIdentityType(input)
+	return &out, nil
+}

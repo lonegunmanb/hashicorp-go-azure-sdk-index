@@ -1,0 +1,44 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type WindowsUpdatesProductRevision struct {
+	CatalogEntry *WindowsUpdatesCatalogEntry `json:"catalogEntry,omitempty"`
+
+	// The display name of the content. Read-only.
+	DisplayName *string `json:"displayName,omitempty"`
+
+	// True indicates that the content is hotpatchable; otherwise, false. For more information, see Deploy a hotpatch
+	// quality update using Windows Autopatch. Read-only.
+	IsHotpatchUpdate *bool `json:"isHotpatchUpdate,omitempty"`
+
+	// The knowledge base article associated with the product revision.
+	KnowledgeBaseArticle *WindowsUpdatesKnowledgeBaseArticle `json:"knowledgeBaseArticle,omitempty"`
+
+	OsBuild *WindowsUpdatesBuildVersionDetails `json:"osBuild,omitempty"`
+
+	// The product of the revision. Possible values are: Windows 10, Windows 11. Read-only.
+	Product *string `json:"product,omitempty"`
+
+	// The release date for the content. The Timestamp type represents date and time information using ISO 8601 format and
+	// is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
+	ReleaseDateTime *string `json:"releaseDateTime,omitempty"`
+
+	// The version of the feature update. Read-only.
+	Version *string `json:"version,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

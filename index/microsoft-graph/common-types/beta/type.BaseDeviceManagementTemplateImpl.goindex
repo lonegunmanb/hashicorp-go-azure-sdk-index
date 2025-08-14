@@ -1,0 +1,59 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type BaseDeviceManagementTemplateImpl struct {
+	// Collection of setting categories within the template
+	Categories *[]DeviceManagementTemplateSettingCategory `json:"categories,omitempty"`
+
+	// The template's description
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// The template's display name
+	DisplayName *string `json:"displayName,omitempty"`
+
+	// Number of Intents created from this template.
+	IntentCount *int64 `json:"intentCount,omitempty"`
+
+	// The template is deprecated or not. Intents cannot be created from a deprecated template.
+	IsDeprecated *bool `json:"isDeprecated,omitempty"`
+
+	// Collection of templates this template can migrate to
+	MigratableTo *[]DeviceManagementTemplate `json:"migratableTo,omitempty"`
+
+	// Supported platform types for policies.
+	PlatformType *PolicyPlatformType `json:"platformType,omitempty"`
+
+	// When the template was published
+	PublishedDateTime *string `json:"publishedDateTime,omitempty"`
+
+	// Collection of all settings this template has
+	Settings *[]DeviceManagementSettingInstance `json:"settings,omitempty"`
+
+	// Template subtype
+	TemplateSubtype *DeviceManagementTemplateSubtype `json:"templateSubtype,omitempty"`
+
+	// Template type
+	TemplateType *DeviceManagementTemplateType `json:"templateType,omitempty"`
+
+	// The template's version information
+	VersionInfo nullable.Type[string] `json:"versionInfo,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

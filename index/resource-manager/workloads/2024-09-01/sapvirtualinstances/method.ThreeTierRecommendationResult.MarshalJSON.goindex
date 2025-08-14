@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/workloads/2024-09-01/sapvirtualinstances
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s ThreeTierRecommendationResult) MarshalJSON() ([]byte, error) {
+	type wrapper ThreeTierRecommendationResult
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ThreeTierRecommendationResult: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ThreeTierRecommendationResult: %+v", err)
+	}
+
+	decoded["deploymentType"] = "ThreeTier"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ThreeTierRecommendationResult: %+v", err)
+	}
+
+	return encoded, nil
+}

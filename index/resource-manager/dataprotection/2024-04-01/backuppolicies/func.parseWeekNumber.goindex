@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2024-04-01/backuppolicies
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWeekNumber(input string) (*WeekNumber, error) {
+	vals := map[string]WeekNumber{
+		"first":  WeekNumberFirst,
+		"fourth": WeekNumberFourth,
+		"last":   WeekNumberLast,
+		"second": WeekNumberSecond,
+		"third":  WeekNumberThird,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WeekNumber(input)
+	return &out, nil
+}

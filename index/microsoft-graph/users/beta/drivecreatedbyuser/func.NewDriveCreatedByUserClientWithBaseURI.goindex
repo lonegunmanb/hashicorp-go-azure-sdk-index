@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/drivecreatedbyuser
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDriveCreatedByUserClientWithBaseURI(sdkApi sdkEnv.Api) (*DriveCreatedByUserClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "drivecreatedbyuser", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DriveCreatedByUserClient: %+v", err)
+	}
+
+	return &DriveCreatedByUserClient{
+		Client: client,
+	}, nil
+}

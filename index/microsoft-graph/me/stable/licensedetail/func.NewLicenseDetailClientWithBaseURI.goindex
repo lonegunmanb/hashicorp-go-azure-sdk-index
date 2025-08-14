@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/licensedetail
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewLicenseDetailClientWithBaseURI(sdkApi sdkEnv.Api) (*LicenseDetailClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "licensedetail", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating LicenseDetailClient: %+v", err)
+	}
+
+	return &LicenseDetailClient{
+		Client: client,
+	}, nil
+}

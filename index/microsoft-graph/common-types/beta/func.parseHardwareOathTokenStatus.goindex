@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseHardwareOathTokenStatus(input string) (*HardwareOathTokenStatus, error) {
+	vals := map[string]HardwareOathTokenStatus{
+		"activated":        HardwareOathTokenStatus_Activated,
+		"assigned":         HardwareOathTokenStatus_Assigned,
+		"available":        HardwareOathTokenStatus_Available,
+		"failedactivation": HardwareOathTokenStatus_FailedActivation,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := HardwareOathTokenStatus(input)
+	return &out, nil
+}

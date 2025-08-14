@@ -1,0 +1,57 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s Group) MarshalJSON() ([]byte, error) {
+	type wrapper Group
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling Group: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling Group: %+v", err)
+	}
+
+	delete(decoded, "assignedLicenses")
+	delete(decoded, "calendar")
+	delete(decoded, "calendarView")
+	delete(decoded, "createdDateTime")
+	delete(decoded, "createdOnBehalfOf")
+	delete(decoded, "drive")
+	delete(decoded, "drives")
+	delete(decoded, "expirationDateTime")
+	delete(decoded, "extensions")
+	delete(decoded, "groupLifecyclePolicies")
+	delete(decoded, "licenseProcessingState")
+	delete(decoded, "mail")
+	delete(decoded, "memberOf")
+	delete(decoded, "membersWithLicenseErrors")
+	delete(decoded, "onPremisesDomainName")
+	delete(decoded, "onPremisesLastSyncDateTime")
+	delete(decoded, "onPremisesNetBiosName")
+	delete(decoded, "onPremisesSamAccountName")
+	delete(decoded, "onPremisesSecurityIdentifier")
+	delete(decoded, "onPremisesSyncEnabled")
+	delete(decoded, "photos")
+	delete(decoded, "proxyAddresses")
+	delete(decoded, "renewedDateTime")
+	delete(decoded, "securityIdentifier")
+	delete(decoded, "uniqueName")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.group"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling Group: %+v", err)
+	}
+
+	return encoded, nil
+}

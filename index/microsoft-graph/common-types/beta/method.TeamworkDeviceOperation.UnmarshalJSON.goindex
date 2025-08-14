@@ -1,0 +1,58 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *TeamworkDeviceOperation) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		CompletedDateTime  nullable.Type[string]        `json:"completedDateTime,omitempty"`
+		CreatedDateTime    nullable.Type[string]        `json:"createdDateTime,omitempty"`
+		Error              *OperationError              `json:"error,omitempty"`
+		LastActionDateTime nullable.Type[string]        `json:"lastActionDateTime,omitempty"`
+		OperationType      *TeamworkDeviceOperationType `json:"operationType,omitempty"`
+		StartedDateTime    nullable.Type[string]        `json:"startedDateTime,omitempty"`
+		Status             *string                      `json:"status,omitempty"`
+		Id                 *string                      `json:"id,omitempty"`
+		ODataId            *string                      `json:"@odata.id,omitempty"`
+		ODataType          *string                      `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.CompletedDateTime = decoded.CompletedDateTime
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Error = decoded.Error
+	s.LastActionDateTime = decoded.LastActionDateTime
+	s.OperationType = decoded.OperationType
+	s.StartedDateTime = decoded.StartedDateTime
+	s.Status = decoded.Status
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling TeamworkDeviceOperation into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["createdBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'CreatedBy' for 'TeamworkDeviceOperation': %+v", err)
+		}
+		s.CreatedBy = impl
+	}
+
+	if v, ok := temp["lastActionBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'LastActionBy' for 'TeamworkDeviceOperation': %+v", err)
+		}
+		s.LastActionBy = impl
+	}
+
+	return nil
+}

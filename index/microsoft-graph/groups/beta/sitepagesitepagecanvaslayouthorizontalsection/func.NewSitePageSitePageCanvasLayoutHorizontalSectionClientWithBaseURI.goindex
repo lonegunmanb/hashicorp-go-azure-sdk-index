@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagesitepagecanvaslayouthorizontalsection
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSitePageSitePageCanvasLayoutHorizontalSectionClientWithBaseURI(sdkApi sdkEnv.Api) (*SitePageSitePageCanvasLayoutHorizontalSectionClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "sitepagesitepagecanvaslayouthorizontalsection", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SitePageSitePageCanvasLayoutHorizontalSectionClient: %+v", err)
+	}
+
+	return &SitePageSitePageCanvasLayoutHorizontalSectionClient{
+		Client: client,
+	}, nil
+}

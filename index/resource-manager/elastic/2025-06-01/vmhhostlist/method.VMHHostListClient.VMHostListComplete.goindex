@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2025-06-01/vmhhostlist
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c VMHHostListClient) VMHostListComplete(ctx context.Context, id MonitorId) (VMHostListCompleteResult, error) {
+	return c.VMHostListCompleteMatchingPredicate(ctx, id, VMResourcesOperationPredicate{})
+}

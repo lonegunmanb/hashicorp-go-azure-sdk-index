@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s ExternalUserProfile) ExternalProfile() BaseExternalProfileImpl {
+	return BaseExternalProfileImpl{
+		Address:         s.Address,
+		CompanyName:     s.CompanyName,
+		CreatedBy:       s.CreatedBy,
+		CreatedDateTime: s.CreatedDateTime,
+		Department:      s.Department,
+		DisplayName:     s.DisplayName,
+		IsDiscoverable:  s.IsDiscoverable,
+		IsEnabled:       s.IsEnabled,
+		JobTitle:        s.JobTitle,
+		PhoneNumber:     s.PhoneNumber,
+		SupervisorId:    s.SupervisorId,
+		DeletedDateTime: s.DeletedDateTime,
+		Id:              s.Id,
+		ODataId:         s.ODataId,
+		ODataType:       s.ODataType,
+	}
+}

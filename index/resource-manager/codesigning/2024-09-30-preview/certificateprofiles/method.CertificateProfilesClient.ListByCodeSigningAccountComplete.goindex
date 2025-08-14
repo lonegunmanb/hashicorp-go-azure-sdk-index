@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/codesigning/2024-09-30-preview/certificateprofiles
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c CertificateProfilesClient) ListByCodeSigningAccountComplete(ctx context.Context, id CodeSigningAccountId) (ListByCodeSigningAccountCompleteResult, error) {
+	return c.ListByCodeSigningAccountCompleteMatchingPredicate(ctx, id, CertificateProfileOperationPredicate{})
+}

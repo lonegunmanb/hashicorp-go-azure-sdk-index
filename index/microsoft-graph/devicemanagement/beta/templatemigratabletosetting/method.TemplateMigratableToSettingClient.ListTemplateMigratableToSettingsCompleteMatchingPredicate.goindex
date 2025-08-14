@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/templatemigratabletosetting
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c TemplateMigratableToSettingClient) ListTemplateMigratableToSettingsCompleteMatchingPredicate(ctx context.Context, id beta.DeviceManagementTemplateIdMigratableToId, options ListTemplateMigratableToSettingsOperationOptions, predicate DeviceManagementSettingInstanceOperationPredicate) (result ListTemplateMigratableToSettingsCompleteResult, err error) {
+	items := make([]beta.DeviceManagementSettingInstance, 0)
+
+	resp, err := c.ListTemplateMigratableToSettings(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListTemplateMigratableToSettingsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

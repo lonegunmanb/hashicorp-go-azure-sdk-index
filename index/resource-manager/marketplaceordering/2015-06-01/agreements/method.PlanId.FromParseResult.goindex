@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/marketplaceordering/2015-06-01/agreements
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *PlanId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.PublisherId, ok = input.Parsed["publisherId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "publisherId", input)
+	}
+
+	if id.OfferId, ok = input.Parsed["offerId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "offerId", input)
+	}
+
+	if id.PlanId, ok = input.Parsed["planId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "planId", input)
+	}
+
+	return nil
+}

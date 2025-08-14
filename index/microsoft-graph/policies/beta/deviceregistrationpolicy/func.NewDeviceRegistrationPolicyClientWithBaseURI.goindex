@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/deviceregistrationpolicy
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDeviceRegistrationPolicyClientWithBaseURI(sdkApi sdkEnv.Api) (*DeviceRegistrationPolicyClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "deviceregistrationpolicy", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DeviceRegistrationPolicyClient: %+v", err)
+	}
+
+	return &DeviceRegistrationPolicyClient{
+		Client: client,
+	}, nil
+}

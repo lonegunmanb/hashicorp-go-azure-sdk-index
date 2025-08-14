@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type NetworkaccessAlert struct {
+	Actions             *[]NetworkaccessAlertAction     `json:"actions,omitempty"`
+	AlertType           *NetworkaccessAlertType         `json:"alertType,omitempty"`
+	CreationDateTime    *string                         `json:"creationDateTime,omitempty"`
+	Description         nullable.Type[string]           `json:"description,omitempty"`
+	DetectionTechnology nullable.Type[string]           `json:"detectionTechnology,omitempty"`
+	DisplayName         *string                         `json:"displayName,omitempty"`
+	Policy              *NetworkaccessFilteringPolicy   `json:"policy,omitempty"`
+	RelatedResources    *[]NetworkaccessRelatedResource `json:"relatedResources,omitempty"`
+	Severity            *NetworkaccessAlertSeverity     `json:"severity,omitempty"`
+	VendorName          *string                         `json:"vendorName,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

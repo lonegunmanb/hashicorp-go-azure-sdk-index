@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/windowsinformationprotectionnetworklearningsummary
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewWindowsInformationProtectionNetworkLearningSummaryClientWithBaseURI(sdkApi sdkEnv.Api) (*WindowsInformationProtectionNetworkLearningSummaryClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "windowsinformationprotectionnetworklearningsummary", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating WindowsInformationProtectionNetworkLearningSummaryClient: %+v", err)
+	}
+
+	return &WindowsInformationProtectionNetworkLearningSummaryClient{
+		Client: client,
+	}, nil
+}

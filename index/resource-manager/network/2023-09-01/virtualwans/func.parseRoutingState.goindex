@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-09-01/virtualwans
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRoutingState(input string) (*RoutingState, error) {
+	vals := map[string]RoutingState{
+		"failed":       RoutingStateFailed,
+		"none":         RoutingStateNone,
+		"provisioned":  RoutingStateProvisioned,
+		"provisioning": RoutingStateProvisioning,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RoutingState(input)
+	return &out, nil
+}

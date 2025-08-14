@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-09-01/firewallpolicyrulecollectiongroups
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id FirewallPolicyId) ID() string {
+	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Network/firewallPolicies/%s"
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.FirewallPolicyName)
+}

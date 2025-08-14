@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/driveitemlistitemcreatedbyusermailboxsetting
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDriveItemListItemCreatedByUserMailboxSettingClientWithBaseURI(sdkApi sdkEnv.Api) (*DriveItemListItemCreatedByUserMailboxSettingClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "driveitemlistitemcreatedbyusermailboxsetting", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DriveItemListItemCreatedByUserMailboxSettingClient: %+v", err)
+	}
+
+	return &DriveItemListItemCreatedByUserMailboxSettingClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/tokenissuancepolicyappliesto
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c TokenIssuancePolicyAppliesToClient) ListTokenIssuancePolicyAppliesTosCompleteMatchingPredicate(ctx context.Context, id beta.PolicyTokenIssuancePolicyId, options ListTokenIssuancePolicyAppliesTosOperationOptions, predicate DirectoryObjectOperationPredicate) (result ListTokenIssuancePolicyAppliesTosCompleteResult, err error) {
+	items := make([]beta.DirectoryObject, 0)
+
+	resp, err := c.ListTokenIssuancePolicyAppliesTos(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListTokenIssuancePolicyAppliesTosCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2018-03-01/metricalerts
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewMetricAlertsClientWithBaseURI(sdkApi sdkEnv.Api) (*MetricAlertsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "metricalerts", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating MetricAlertsClient: %+v", err)
+	}
+
+	return &MetricAlertsClient{
+		Client: client,
+	}, nil
+}

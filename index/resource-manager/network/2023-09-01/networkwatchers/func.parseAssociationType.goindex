@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-09-01/networkwatchers
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAssociationType(input string) (*AssociationType, error) {
+	vals := map[string]AssociationType{
+		"associated": AssociationTypeAssociated,
+		"contains":   AssociationTypeContains,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AssociationType(input)
+	return &out, nil
+}

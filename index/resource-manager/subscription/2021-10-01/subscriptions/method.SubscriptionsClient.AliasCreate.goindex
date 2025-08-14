@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/subscription/2021-10-01/subscriptions
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/polling"
+)
+func (c SubscriptionsClient) AliasCreate(ctx context.Context, id AliasId, input PutAliasRequest) (result AliasCreateOperationResponse, err error) {
+	req, err := c.preparerForAliasCreate(ctx, id, input)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "subscriptions.SubscriptionsClient", "AliasCreate", nil, "Failure preparing request")
+		return
+	}
+
+	result, err = c.senderForAliasCreate(ctx, req)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "subscriptions.SubscriptionsClient", "AliasCreate", result.HttpResponse, "Failure sending request")
+		return
+	}
+
+	return
+}

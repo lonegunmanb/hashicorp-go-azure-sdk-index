@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/transaction
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTransactionClientWithBaseURI(sdkApi sdkEnv.Api) (*TransactionClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "transaction", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TransactionClient: %+v", err)
+	}
+
+	return &TransactionClient{
+		Client: client,
+	}, nil
+}

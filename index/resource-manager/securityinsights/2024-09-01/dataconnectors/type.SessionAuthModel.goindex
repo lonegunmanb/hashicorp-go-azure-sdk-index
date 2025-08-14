@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2024-09-01/dataconnectors
+import (
+	"encoding/json"
+	"fmt"
+)
+type SessionAuthModel struct {
+	Headers                 *map[string]string      `json:"headers,omitempty"`
+	IsPostPayloadJson       *bool                   `json:"isPostPayloadJson,omitempty"`
+	Password                map[string]string       `json:"password"`
+	QueryParameters         *map[string]interface{} `json:"queryParameters,omitempty"`
+	SessionIdName           *string                 `json:"sessionIdName,omitempty"`
+	SessionLoginRequestUri  *string                 `json:"sessionLoginRequestUri,omitempty"`
+	SessionTimeoutInMinutes *int64                  `json:"sessionTimeoutInMinutes,omitempty"`
+	UserName                map[string]string       `json:"userName"`
+
+	// Fields inherited from CcpAuthConfig
+
+	Type CcpAuthType `json:"type"`
+}

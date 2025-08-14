@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2024-10-01/operation
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s AzureWorkloadSAPHanaPointInTimeRestoreRequest) MarshalJSON() ([]byte, error) {
+	type wrapper AzureWorkloadSAPHanaPointInTimeRestoreRequest
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AzureWorkloadSAPHanaPointInTimeRestoreRequest: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AzureWorkloadSAPHanaPointInTimeRestoreRequest: %+v", err)
+	}
+
+	decoded["objectType"] = "AzureWorkloadSAPHanaPointInTimeRestoreRequest"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AzureWorkloadSAPHanaPointInTimeRestoreRequest: %+v", err)
+	}
+
+	return encoded, nil
+}

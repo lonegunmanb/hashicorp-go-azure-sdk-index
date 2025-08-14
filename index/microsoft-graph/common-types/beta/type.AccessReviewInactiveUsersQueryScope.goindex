@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type AccessReviewInactiveUsersQueryScope struct {
+	// Defines the duration of inactivity. Inactivity is based on the last sign in date of the user compared to the access
+	// review instance's start date. If this property is not specified, it's assigned the default value PT0S.
+	InactiveDuration nullable.Type[string] `json:"inactiveDuration,omitempty"`
+
+	// Fields inherited from AccessReviewQueryScope
+
+	// The query representing what will be reviewed in an access review.
+	Query nullable.Type[string] `json:"query,omitempty"`
+
+	// In the scenario where reviewers need to be specified dynamically, this property is used to indicate the relative
+	// source of the query. This property is only required if a relative query is specified. For example, ./manager.
+	QueryRoot nullable.Type[string] `json:"queryRoot,omitempty"`
+
+	// Indicates the type of query. Types include MicrosoftGraph and ARM.
+	QueryType nullable.Type[string] `json:"queryType,omitempty"`
+
+	// Fields inherited from AccessReviewScope
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

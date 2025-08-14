@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DirectorySharedEmailDomainId) String() string {
+	components := []string{
+		fmt.Sprintf("Shared Email Domain: %q", id.SharedEmailDomainId),
+	}
+	return fmt.Sprintf("Directory Shared Email Domain (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type CustomExtensionCalloutResult struct {
+	// When the API transaction was initiated, the date and time information uses ISO 8601 format and is always in UTC time.
+	// Example: midnight on Jan 1, 2014, is reported as 2014-01-01T00:00:00Z.
+	CalloutDateTime nullable.Type[string] `json:"calloutDateTime,omitempty"`
+
+	// Identifier of the custom extension that was called.
+	CustomExtensionId nullable.Type[string] `json:"customExtensionId,omitempty"`
+
+	// Error code that was returned when the last API attempt failed.
+	ErrorCode nullable.Type[int64] `json:"errorCode,omitempty"`
+
+	// The HTTP status code that was returned by the target API endpoint after the last API attempt.
+	HttpStatus nullable.Type[int64] `json:"httpStatus,omitempty"`
+
+	// The number of API calls to the customer's API.
+	NumberOfAttempts nullable.Type[int64] `json:"numberOfAttempts,omitempty"`
+
+	// Fields inherited from AuthenticationEventHandlerResult
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

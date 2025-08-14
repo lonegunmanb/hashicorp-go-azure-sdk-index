@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/devicecustomattributeshellscriptgroupassignment
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDeviceCustomAttributeShellScriptGroupAssignmentClientWithBaseURI(sdkApi sdkEnv.Api) (*DeviceCustomAttributeShellScriptGroupAssignmentClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "devicecustomattributeshellscriptgroupassignment", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DeviceCustomAttributeShellScriptGroupAssignmentClient: %+v", err)
+	}
+
+	return &DeviceCustomAttributeShellScriptGroupAssignmentClient{
+		Client: client,
+	}, nil
+}

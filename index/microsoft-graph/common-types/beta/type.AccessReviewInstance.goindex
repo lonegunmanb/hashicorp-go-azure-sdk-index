@@ -1,0 +1,72 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type AccessReviewInstance struct {
+	// Returns the collection of reviewers who were contacted to complete this review. While the reviewers and
+	// fallbackReviewers properties of the accessReviewScheduleDefinition might specify group owners or managers as
+	// reviewers, contactedReviewers returns their individual identities. Supports $select. Read-only.
+	ContactedReviewers *[]AccessReviewReviewer `json:"contactedReviewers,omitempty"`
+
+	// Each user reviewed in an accessReviewInstance has a decision item representing if they were approved, denied, or not
+	// yet reviewed.
+	Decisions *[]AccessReviewInstanceDecisionItem `json:"decisions,omitempty"`
+
+	// There's exactly one accessReviewScheduleDefinition associated with each instance. It's the parent schedule for the
+	// instance, where instances are created for each recurrence of a review definition and each group selected to review by
+	// the definition.
+	Definition *AccessReviewScheduleDefinition `json:"definition,omitempty"`
+
+	// DateTime when review instance is scheduled to end. The DatetimeOffset type represents date and time information using
+	// ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Supports
+	// $select. Read-only.
+	EndDateTime nullable.Type[string] `json:"endDateTime,omitempty"`
+
+	// Collection of errors in an access review instance lifecycle. Read-only.
+	Errors *[]AccessReviewError `json:"errors,omitempty"`
+
+	// This collection of reviewer scopes is used to define the list of fallback reviewers. These fallback reviewers are
+	// notified to take action if no users are found from the list of reviewers specified. This could occur when either the
+	// group owner is specified as the reviewer but the group owner doesn't exist, or manager is specified as reviewer but a
+	// user's manager doesn't exist. Supports $select.
+	FallbackReviewers *[]AccessReviewReviewerScope `json:"fallbackReviewers,omitempty"`
+
+	// This collection of access review scopes is used to define who the reviewers are. Supports $select. For examples of
+	// options for assigning reviewers, see Assign reviewers to your access review definition using the Microsoft Graph API.
+	Reviewers *[]AccessReviewReviewerScope `json:"reviewers,omitempty"`
+
+	// Created based on scope and instanceEnumerationScope at the accessReviewScheduleDefinition level. Defines the scope of
+	// users reviewed in a group. Supports $select and $filter (contains only). Read-only.
+	Scope *AccessReviewScope `json:"scope,omitempty"`
+
+	// If the instance has multiple stages, this returns the collection of stages. A new stage will only be created when the
+	// previous stage ends. The existence, number, and settings of stages on a review instance are created based on the
+	// accessReviewStageSettings on the parent accessReviewScheduleDefinition.
+	Stages *[]AccessReviewStage `json:"stages,omitempty"`
+
+	// DateTime when review instance is scheduled to start. May be in the future. The DateTimeOffset type represents date
+	// and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is
+	// 2014-01-01T00:00:00Z. Supports $select. Read-only.
+	StartDateTime nullable.Type[string] `json:"startDateTime,omitempty"`
+
+	// Specifies the status of an accessReview. Possible values: Initializing, NotStarted, Starting, InProgress, Completing,
+	// Completed, AutoReviewing, and AutoReviewed. Supports $select, $orderby, and $filter (eq only). Read-only.
+	Status nullable.Type[string] `json:"status,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

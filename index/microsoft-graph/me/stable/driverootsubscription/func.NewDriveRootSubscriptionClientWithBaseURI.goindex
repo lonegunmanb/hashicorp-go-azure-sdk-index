@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootsubscription
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDriveRootSubscriptionClientWithBaseURI(sdkApi sdkEnv.Api) (*DriveRootSubscriptionClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "driverootsubscription", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DriveRootSubscriptionClient: %+v", err)
+	}
+
+	return &DriveRootSubscriptionClient{
+		Client: client,
+	}, nil
+}

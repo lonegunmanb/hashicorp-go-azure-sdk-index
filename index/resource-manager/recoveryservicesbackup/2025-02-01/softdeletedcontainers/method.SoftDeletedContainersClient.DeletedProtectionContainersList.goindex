@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/softdeletedcontainers
+import (
+	"context"
+	"fmt"
+	"net/http"
+	"net/url"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+)
+func (c SoftDeletedContainersClient) DeletedProtectionContainersList(ctx context.Context, id VaultId, options DeletedProtectionContainersListOperationOptions) (resp DeletedProtectionContainersListOperationResponse, err error) {
+	req, err := c.preparerForDeletedProtectionContainersList(ctx, id, options)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "softdeletedcontainers.SoftDeletedContainersClient", "DeletedProtectionContainersList", nil, "Failure preparing request")
+		return
+	}
+
+	resp.HttpResponse, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "softdeletedcontainers.SoftDeletedContainersClient", "DeletedProtectionContainersList", resp.HttpResponse, "Failure sending request")
+		return
+	}
+
+	resp, err = c.responderForDeletedProtectionContainersList(resp.HttpResponse)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "softdeletedcontainers.SoftDeletedContainersClient", "DeletedProtectionContainersList", resp.HttpResponse, "Failure responding to request")
+		return
+	}
+	return
+}

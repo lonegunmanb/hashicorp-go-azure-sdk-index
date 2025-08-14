@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type PrivilegedRoleAssignmentRequest struct {
+	AssignmentState   nullable.Type[string] `json:"assignmentState,omitempty"`
+	Duration          nullable.Type[string] `json:"duration,omitempty"`
+	Reason            nullable.Type[string] `json:"reason,omitempty"`
+	RequestedDateTime nullable.Type[string] `json:"requestedDateTime,omitempty"`
+	RoleId            nullable.Type[string] `json:"roleId,omitempty"`
+	RoleInfo          *PrivilegedRole       `json:"roleInfo,omitempty"`
+	Schedule          *GovernanceSchedule   `json:"schedule,omitempty"`
+	Status            nullable.Type[string] `json:"status,omitempty"`
+	TicketNumber      nullable.Type[string] `json:"ticketNumber,omitempty"`
+	TicketSystem      nullable.Type[string] `json:"ticketSystem,omitempty"`
+	Type              nullable.Type[string] `json:"type,omitempty"`
+	UserId            nullable.Type[string] `json:"userId,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

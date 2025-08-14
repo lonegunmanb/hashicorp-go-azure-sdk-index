@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type ProcessContentResponse struct {
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// A collection of policy actions (like DLP actions) triggered by the processed content. NOTE: Currently, the only
+	// policyAction supported in processContentResponse is '_restrictAccess'
+	PolicyActions *[]DlpActionInfo `json:"policyActions,omitempty"`
+
+	// A collection of errors encountered during the content processing.
+	ProcessingErrors *[]ProcessingError `json:"processingErrors,omitempty"`
+
+	ProtectionScopeState *ProtectionScopeState `json:"protectionScopeState,omitempty"`
+}

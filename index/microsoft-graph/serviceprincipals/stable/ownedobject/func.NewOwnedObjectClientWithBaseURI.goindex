@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/ownedobject
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewOwnedObjectClientWithBaseURI(sdkApi sdkEnv.Api) (*OwnedObjectClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "ownedobject", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating OwnedObjectClient: %+v", err)
+	}
+
+	return &OwnedObjectClient{
+		Client: client,
+	}, nil
+}

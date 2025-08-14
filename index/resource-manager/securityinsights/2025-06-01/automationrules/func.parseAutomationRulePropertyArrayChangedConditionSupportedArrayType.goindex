@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2025-06-01/automationrules
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAutomationRulePropertyArrayChangedConditionSupportedArrayType(input string) (*AutomationRulePropertyArrayChangedConditionSupportedArrayType, error) {
+	vals := map[string]AutomationRulePropertyArrayChangedConditionSupportedArrayType{
+		"alerts":   AutomationRulePropertyArrayChangedConditionSupportedArrayTypeAlerts,
+		"comments": AutomationRulePropertyArrayChangedConditionSupportedArrayTypeComments,
+		"labels":   AutomationRulePropertyArrayChangedConditionSupportedArrayTypeLabels,
+		"tactics":  AutomationRulePropertyArrayChangedConditionSupportedArrayTypeTactics,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AutomationRulePropertyArrayChangedConditionSupportedArrayType(input)
+	return &out, nil
+}

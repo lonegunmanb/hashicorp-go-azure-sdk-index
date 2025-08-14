@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/staticsites
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DatabaseConnectionId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Static Site Name: %q", id.StaticSiteName),
+		fmt.Sprintf("Database Connection Name: %q", id.DatabaseConnectionName),
+	}
+	return fmt.Sprintf("Database Connection (%s)", strings.Join(components, "\n"))
+}

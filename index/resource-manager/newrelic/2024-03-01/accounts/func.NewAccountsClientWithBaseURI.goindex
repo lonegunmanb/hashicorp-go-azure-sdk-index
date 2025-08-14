@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/newrelic/2024-03-01/accounts
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAccountsClientWithBaseURI(sdkApi sdkEnv.Api) (*AccountsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "accounts", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AccountsClient: %+v", err)
+	}
+
+	return &AccountsClient{
+		Client: client,
+	}, nil
+}

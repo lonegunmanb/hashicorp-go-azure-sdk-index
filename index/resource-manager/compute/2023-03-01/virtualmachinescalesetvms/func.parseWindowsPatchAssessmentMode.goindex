@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2023-03-01/virtualmachinescalesetvms
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWindowsPatchAssessmentMode(input string) (*WindowsPatchAssessmentMode, error) {
+	vals := map[string]WindowsPatchAssessmentMode{
+		"automaticbyplatform": WindowsPatchAssessmentModeAutomaticByPlatform,
+		"imagedefault":        WindowsPatchAssessmentModeImageDefault,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsPatchAssessmentMode(input)
+	return &out, nil
+}

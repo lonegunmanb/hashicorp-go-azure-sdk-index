@@ -1,0 +1,9 @@
+package github.com/hashicorp/go-azure-sdk/sdk/environments
+
+func AzureUSGovernmentL5() *Environment {
+	// L5 is Azure Government with a different Microsoft Graph endpoint
+	env := AzureUSGovernment()
+	env.Name = "USGovernmentL5"
+	env.MicrosoftGraph = MicrosoftGraphAPI("https://dod-graph.microsoft.us")
+	return env
+}

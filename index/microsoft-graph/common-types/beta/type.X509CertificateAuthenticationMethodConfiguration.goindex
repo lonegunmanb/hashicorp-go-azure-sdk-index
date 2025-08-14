@@ -1,0 +1,48 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type X509CertificateAuthenticationMethodConfiguration struct {
+	// Defines strong authentication configurations. This configuration includes the default authentication mode and the
+	// different rules for strong authentication bindings.
+	AuthenticationModeConfiguration *X509CertificateAuthenticationModeConfiguration `json:"authenticationModeConfiguration,omitempty"`
+
+	// Defines configuration to allow a group of users to use certificates from specific issuing certificate authorities to
+	// successfully authenticate.
+	CertificateAuthorityScopes *[]X509CertificateAuthorityScope `json:"certificateAuthorityScopes,omitempty"`
+
+	// Defines fields in the X.509 certificate that map to attributes of the Microsoft Entra user object in order to bind
+	// the certificate to the user. The priority of the object determines the order in which the binding is carried out. The
+	// first binding that matches will be used and the rest ignored.
+	CertificateUserBindings *[]X509CertificateUserBinding `json:"certificateUserBindings,omitempty"`
+
+	// A collection of groups that are enabled to use the authentication method.
+	IncludeTargets *[]AuthenticationMethodTarget `json:"includeTargets,omitempty"`
+
+	// Determines whether issuer(CA) hints are sent back to the client side to filter the certificates shown in certificate
+	// picker.
+	IssuerHintsConfiguration *X509CertificateIssuerHintsConfiguration `json:"issuerHintsConfiguration,omitempty"`
+
+	// Fields inherited from AuthenticationMethodConfiguration
+
+	// Groups of users that are excluded from a policy.
+	ExcludeTargets *[]ExcludeTarget `json:"excludeTargets,omitempty"`
+
+	// The state of the policy. Possible values are: enabled, disabled.
+	State *AuthenticationMethodState `json:"state,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

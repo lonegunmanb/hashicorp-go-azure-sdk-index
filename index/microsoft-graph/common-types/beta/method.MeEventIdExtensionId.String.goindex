@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id MeEventIdExtensionId) String() string {
+	components := []string{
+		fmt.Sprintf("Event: %q", id.EventId),
+		fmt.Sprintf("Extension: %q", id.ExtensionId),
+	}
+	return fmt.Sprintf("Me Event Id Extension (%s)", strings.Join(components, "\n"))
+}

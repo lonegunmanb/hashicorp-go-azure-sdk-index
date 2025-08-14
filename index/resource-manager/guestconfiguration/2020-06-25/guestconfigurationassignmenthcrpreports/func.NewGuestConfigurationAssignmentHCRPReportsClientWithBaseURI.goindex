@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/guestconfiguration/2020-06-25/guestconfigurationassignmenthcrpreports
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewGuestConfigurationAssignmentHCRPReportsClientWithBaseURI(sdkApi sdkEnv.Api) (*GuestConfigurationAssignmentHCRPReportsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "guestconfigurationassignmenthcrpreports", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating GuestConfigurationAssignmentHCRPReportsClient: %+v", err)
+	}
+
+	return &GuestConfigurationAssignmentHCRPReportsClient{
+		Client: client,
+	}, nil
+}

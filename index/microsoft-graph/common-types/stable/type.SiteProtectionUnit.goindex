@@ -1,0 +1,55 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type SiteProtectionUnit struct {
+	// Unique identifier of the SharePoint site.
+	SiteId nullable.Type[string] `json:"siteId,omitempty"`
+
+	// Name of the SharePoint site.
+	SiteName nullable.Type[string] `json:"siteName,omitempty"`
+
+	// The web URL of the SharePoint site.
+	SiteWebUrl nullable.Type[string] `json:"siteWebUrl,omitempty"`
+
+	// Fields inherited from ProtectionUnitBase
+
+	// The identity of person who created the protection unit.
+	CreatedBy IdentitySet `json:"createdBy"`
+
+	// The time of creation of the protection unit.
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// Contains error details if an error occurred while creating a protection unit.
+	Error *PublicError `json:"error,omitempty"`
+
+	// The identity of person who last modified the protection unit.
+	LastModifiedBy IdentitySet `json:"lastModifiedBy"`
+
+	// Timestamp of the last modification of this protection unit.
+	LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+
+	// The unique identifier of the protection policy based on which protection unit was created.
+	PolicyId nullable.Type[string] `json:"policyId,omitempty"`
+
+	// The status of the protection unit. The possible values are: protectRequested, protected, unprotectRequested,
+	// unprotected, removeRequested, unknownFutureValue.
+	Status *ProtectionUnitStatus `json:"status,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

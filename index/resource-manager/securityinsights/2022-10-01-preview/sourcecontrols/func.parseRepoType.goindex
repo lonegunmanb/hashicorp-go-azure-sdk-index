@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/sourcecontrols
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRepoType(input string) (*RepoType, error) {
+	vals := map[string]RepoType{
+		"devops": RepoTypeDevOps,
+		"github": RepoTypeGithub,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RepoType(input)
+	return &out, nil
+}

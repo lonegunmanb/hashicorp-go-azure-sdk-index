@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/androidforworkenrollmentprofile
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAndroidForWorkEnrollmentProfileClientWithBaseURI(sdkApi sdkEnv.Api) (*AndroidForWorkEnrollmentProfileClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "androidforworkenrollmentprofile", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AndroidForWorkEnrollmentProfileClient: %+v", err)
+	}
+
+	return &AndroidForWorkEnrollmentProfileClient{
+		Client: client,
+	}, nil
+}

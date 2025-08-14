@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/search/2024-06-01-preview/querykeys
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewQueryKeysClientWithBaseURI(sdkApi sdkEnv.Api) (*QueryKeysClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "querykeys", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating QueryKeysClient: %+v", err)
+	}
+
+	return &QueryKeysClient{
+		Client: client,
+	}, nil
+}

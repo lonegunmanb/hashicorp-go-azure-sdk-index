@@ -1,0 +1,10 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/appserviceenvironments
+
+func (p OutboundEnvironmentEndpointOperationPredicate) Matches(input OutboundEnvironmentEndpoint) bool {
+
+	if p.Category != nil && (input.Category == nil || *p.Category != *input.Category) {
+		return false
+	}
+
+	return true
+}

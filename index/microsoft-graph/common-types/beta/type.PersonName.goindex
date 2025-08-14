@@ -1,0 +1,81 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type PersonName struct {
+	// Provides an ordered rendering of firstName and lastName depending on the locale of the user or their device.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// First name of the user.
+	First nullable.Type[string] `json:"first,omitempty"`
+
+	// Initials of the user.
+	Initials nullable.Type[string] `json:"initials,omitempty"`
+
+	// Contains the name for the language (en-US, no-NB, en-AU) following IETF BCP47 format.
+	LanguageTag nullable.Type[string] `json:"languageTag,omitempty"`
+
+	// Last name of the user.
+	Last nullable.Type[string] `json:"last,omitempty"`
+
+	// Maiden name of the user.
+	Maiden nullable.Type[string] `json:"maiden,omitempty"`
+
+	// Middle name of the user.
+	Middle nullable.Type[string] `json:"middle,omitempty"`
+
+	// Nickname of the user.
+	Nickname nullable.Type[string] `json:"nickname,omitempty"`
+
+	// Guidance on how to pronounce the users name.
+	Pronunciation *PersonNamePronounciation `json:"pronunciation,omitempty"`
+
+	// Designators used after the users name (eg: PhD.)
+	Suffix nullable.Type[string] `json:"suffix,omitempty"`
+
+	// Honorifics used to prefix a users name (eg: Dr, Sir, Madam, Mrs.)
+	Title nullable.Type[string] `json:"title,omitempty"`
+
+	// Fields inherited from ItemFacet
+
+	// The audiences that are able to see the values contained within the associated entity. Possible values are: me,
+	// family, contacts, groupMembers, organization, federatedOrganizations, everyone, unknownFutureValue.
+	AllowedAudiences *AllowedAudiences `json:"allowedAudiences,omitempty"`
+
+	CreatedBy IdentitySet `json:"createdBy"`
+
+	// Provides the dateTimeOffset for when the entity was created.
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+
+	// Contains inference detail if the entity is inferred by the creating or modifying application.
+	Inference *InferenceData `json:"inference,omitempty"`
+
+	IsSearchable   nullable.Type[bool] `json:"isSearchable,omitempty"`
+	LastModifiedBy IdentitySet         `json:"lastModifiedBy"`
+
+	// Provides the dateTimeOffset for when the entity was created.
+	LastModifiedDateTime *string `json:"lastModifiedDateTime,omitempty"`
+
+	// Where the values within an entity originated if synced from another service.
+	Source *PersonDataSources `json:"source,omitempty"`
+
+	// Where the values within an entity originated if synced from another source.
+	Sources *[]ProfileSourceAnnotation `json:"sources,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

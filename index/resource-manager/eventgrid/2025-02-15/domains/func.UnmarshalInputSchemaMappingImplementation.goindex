@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2025-02-15/domains
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalInputSchemaMappingImplementation(input []byte) (InputSchemaMapping, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling InputSchemaMapping into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["inputSchemaMappingType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "Json") {
+		var out JsonInputSchemaMapping
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into JsonInputSchemaMapping: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseInputSchemaMappingImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseInputSchemaMappingImpl: %+v", err)
+	}
+
+	return RawInputSchemaMappingImpl{
+		inputSchemaMapping: parent,
+		Type:               value,
+		Values:             temp,
+	}, nil
+
+}

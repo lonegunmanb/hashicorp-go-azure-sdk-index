@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2023-04-02/disks
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDiskCreateOption(input string) (*DiskCreateOption, error) {
+	vals := map[string]DiskCreateOption{
+		"attach":               DiskCreateOptionAttach,
+		"copy":                 DiskCreateOptionCopy,
+		"copyfromsansnapshot":  DiskCreateOptionCopyFromSanSnapshot,
+		"copystart":            DiskCreateOptionCopyStart,
+		"empty":                DiskCreateOptionEmpty,
+		"fromimage":            DiskCreateOptionFromImage,
+		"import":               DiskCreateOptionImport,
+		"importsecure":         DiskCreateOptionImportSecure,
+		"restore":              DiskCreateOptionRestore,
+		"upload":               DiskCreateOptionUpload,
+		"uploadpreparedsecure": DiskCreateOptionUploadPreparedSecure,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DiskCreateOption(input)
+	return &out, nil
+}

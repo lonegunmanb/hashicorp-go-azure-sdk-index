@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/messageattachment
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c MessageAttachmentClient) ListMessageAttachmentsComplete(ctx context.Context, id beta.UserIdMessageId, options ListMessageAttachmentsOperationOptions) (ListMessageAttachmentsCompleteResult, error) {
+	return c.ListMessageAttachmentsCompleteMatchingPredicate(ctx, id, options, AttachmentOperationPredicate{})
+}

@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2019-10-01/reservationrecommendations
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *ModernReservationRecommendationProperties) GetFirstUsageDateAsTime() (*time.Time, error) {
+	if o.FirstUsageDate == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.FirstUsageDate, "2006-01-02T15:04:05Z07:00")
+}

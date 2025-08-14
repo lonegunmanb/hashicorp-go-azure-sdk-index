@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/enrollmentaccount
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DepartmentEnrollmentAccountId) ID() string {
+	fmtString := "/providers/Microsoft.Billing/billingAccounts/%s/departments/%s/enrollmentAccounts/%s"
+	return fmt.Sprintf(fmtString, id.BillingAccountName, id.DepartmentName, id.EnrollmentAccountName)
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cosmosdb/2025-04-15/restorables
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDistanceFunction(input string) (*DistanceFunction, error) {
+	vals := map[string]DistanceFunction{
+		"cosine":     DistanceFunctionCosine,
+		"dotproduct": DistanceFunctionDotproduct,
+		"euclidean":  DistanceFunctionEuclidean,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DistanceFunction(input)
+	return &out, nil
+}

@@ -1,0 +1,65 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cosmosdb/2025-04-15/graphapicompute
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalServiceResourcePropertiesImplementation(input []byte) (ServiceResourceProperties, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling ServiceResourceProperties into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["serviceType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "DataTransfer") {
+		var out DataTransferServiceResourceProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DataTransferServiceResourceProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "GraphAPICompute") {
+		var out GraphAPIComputeServiceResourceProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into GraphAPIComputeServiceResourceProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "MaterializedViewsBuilder") {
+		var out MaterializedViewsBuilderServiceResourceProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into MaterializedViewsBuilderServiceResourceProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "SqlDedicatedGateway") {
+		var out SqlDedicatedGatewayServiceResourceProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SqlDedicatedGatewayServiceResourceProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseServiceResourcePropertiesImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseServiceResourcePropertiesImpl: %+v", err)
+	}
+
+	return RawServiceResourcePropertiesImpl{
+		serviceResourceProperties: parent,
+		Type:                      value,
+		Values:                    temp,
+	}, nil
+
+}

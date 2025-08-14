@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/kusto/2024-04-13/clusters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCalloutType(input string) (*CalloutType, error) {
+	vals := map[string]CalloutType{
+		"azure_digital_twins": CalloutTypeAzureDigitalTwins,
+		"azure_openai":        CalloutTypeAzureOpenai,
+		"cosmosdb":            CalloutTypeCosmosdb,
+		"external_data":       CalloutTypeExternalData,
+		"genevametrics":       CalloutTypeGenevametrics,
+		"kusto":               CalloutTypeKusto,
+		"mysql":               CalloutTypeMysql,
+		"postgresql":          CalloutTypePostgresql,
+		"sandbox_artifacts":   CalloutTypeSandboxArtifacts,
+		"sql":                 CalloutTypeSql,
+		"webapi":              CalloutTypeWebapi,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CalloutType(input)
+	return &out, nil
+}

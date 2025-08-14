@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type SubjectRightsRequestHistory struct {
+	// Identity of the user who changed the subject rights request.
+	ChangedBy IdentitySet `json:"changedBy"`
+
+	// Data and time when the entity was changed.
+	EventDateTime nullable.Type[string] `json:"eventDateTime,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The stage when the entity was changed. Possible values are: contentRetrieval, contentReview, generateReport,
+	// contentDeletion, caseResolved, unknownFutureValue, approval. Use the Prefer: include-unknown-enum-members request
+	// header to get the following value(s) in this evolvable enum: approval.
+	Stage *SubjectRightsRequestStage `json:"stage,omitempty"`
+
+	// The status of the stage when the entity was changed. Possible values are: notStarted, current, completed, failed,
+	// unknownFutureValue.
+	StageStatus *SubjectRightsRequestStageStatus `json:"stageStatus,omitempty"`
+
+	// Type of history.
+	Type nullable.Type[string] `json:"type,omitempty"`
+}

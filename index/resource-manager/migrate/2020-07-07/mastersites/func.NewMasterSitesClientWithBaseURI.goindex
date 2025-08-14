@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-07-07/mastersites
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewMasterSitesClientWithBaseURI(sdkApi sdkEnv.Api) (*MasterSitesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "mastersites", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating MasterSitesClient: %+v", err)
+	}
+
+	return &MasterSitesClient{
+		Client: client,
+	}, nil
+}

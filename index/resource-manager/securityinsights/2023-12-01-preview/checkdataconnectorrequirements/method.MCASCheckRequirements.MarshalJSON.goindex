@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-12-01-preview/checkdataconnectorrequirements
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s MCASCheckRequirements) MarshalJSON() ([]byte, error) {
+	type wrapper MCASCheckRequirements
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling MCASCheckRequirements: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling MCASCheckRequirements: %+v", err)
+	}
+
+	decoded["kind"] = "MicrosoftCloudAppSecurity"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling MCASCheckRequirements: %+v", err)
+	}
+
+	return encoded, nil
+}

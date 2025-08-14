@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/windowsdriverupdateprofiledriverinventory
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c WindowsDriverUpdateProfileDriverInventoryClient) ListWindowsDriverUpdateProfileDriverInventoriesComplete(ctx context.Context, id beta.DeviceManagementWindowsDriverUpdateProfileId, options ListWindowsDriverUpdateProfileDriverInventoriesOperationOptions) (ListWindowsDriverUpdateProfileDriverInventoriesCompleteResult, error) {
+	return c.ListWindowsDriverUpdateProfileDriverInventoriesCompleteMatchingPredicate(ctx, id, options, WindowsDriverUpdateInventoryOperationPredicate{})
+}

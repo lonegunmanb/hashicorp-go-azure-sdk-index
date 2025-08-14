@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseManagedDeviceArchitecture(input string) (*ManagedDeviceArchitecture, error) {
+	vals := map[string]ManagedDeviceArchitecture{
+		"arm64":   ManagedDeviceArchitecture_ArM64,
+		"arm":     ManagedDeviceArchitecture_Arm,
+		"unknown": ManagedDeviceArchitecture_Unknown,
+		"x64":     ManagedDeviceArchitecture_X64,
+		"x86":     ManagedDeviceArchitecture_X86,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagedDeviceArchitecture(input)
+	return &out, nil
+}

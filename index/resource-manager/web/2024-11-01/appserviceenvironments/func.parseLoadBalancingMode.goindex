@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-11-01/appserviceenvironments
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseLoadBalancingMode(input string) (*LoadBalancingMode, error) {
+	vals := map[string]LoadBalancingMode{
+		"none":            LoadBalancingModeNone,
+		"publishing":      LoadBalancingModePublishing,
+		"web":             LoadBalancingModeWeb,
+		"web, publishing": LoadBalancingModeWebPublishing,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := LoadBalancingMode(input)
+	return &out, nil
+}

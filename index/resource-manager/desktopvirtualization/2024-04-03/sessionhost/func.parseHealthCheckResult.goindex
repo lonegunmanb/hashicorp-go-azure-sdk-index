@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/desktopvirtualization/2024-04-03/sessionhost
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseHealthCheckResult(input string) (*HealthCheckResult, error) {
+	vals := map[string]HealthCheckResult{
+		"healthcheckfailed":    HealthCheckResultHealthCheckFailed,
+		"healthchecksucceeded": HealthCheckResultHealthCheckSucceeded,
+		"sessionhostshutdown":  HealthCheckResultSessionHostShutdown,
+		"unknown":              HealthCheckResultUnknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := HealthCheckResult(input)
+	return &out, nil
+}

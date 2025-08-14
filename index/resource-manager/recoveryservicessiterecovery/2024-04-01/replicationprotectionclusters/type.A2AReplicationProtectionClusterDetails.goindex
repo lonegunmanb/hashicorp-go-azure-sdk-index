@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2024-04-01/replicationprotectionclusters
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/edgezones"
+)
+type A2AReplicationProtectionClusterDetails struct {
+	ClusterManagementId             *string                   `json:"clusterManagementId,omitempty"`
+	FailoverRecoveryPointId         *string                   `json:"failoverRecoveryPointId,omitempty"`
+	InitialPrimaryExtendedLocation  *edgezones.Model          `json:"initialPrimaryExtendedLocation,omitempty"`
+	InitialPrimaryFabricLocation    *string                   `json:"initialPrimaryFabricLocation,omitempty"`
+	InitialPrimaryZone              *string                   `json:"initialPrimaryZone,omitempty"`
+	InitialRecoveryExtendedLocation *edgezones.Model          `json:"initialRecoveryExtendedLocation,omitempty"`
+	InitialRecoveryFabricLocation   *string                   `json:"initialRecoveryFabricLocation,omitempty"`
+	InitialRecoveryZone             *string                   `json:"initialRecoveryZone,omitempty"`
+	LastRpoCalculatedTime           *string                   `json:"lastRpoCalculatedTime,omitempty"`
+	LifecycleId                     *string                   `json:"lifecycleId,omitempty"`
+	MultiVMGroupCreateOption        *MultiVMGroupCreateOption `json:"multiVmGroupCreateOption,omitempty"`
+	MultiVMGroupId                  *string                   `json:"multiVmGroupId,omitempty"`
+	MultiVMGroupName                *string                   `json:"multiVmGroupName,omitempty"`
+	PrimaryAvailabilityZone         *string                   `json:"primaryAvailabilityZone,omitempty"`
+	PrimaryExtendedLocation         *edgezones.Model          `json:"primaryExtendedLocation,omitempty"`
+	PrimaryFabricLocation           *string                   `json:"primaryFabricLocation,omitempty"`
+	RecoveryAvailabilityZone        *string                   `json:"recoveryAvailabilityZone,omitempty"`
+	RecoveryExtendedLocation        *edgezones.Model          `json:"recoveryExtendedLocation,omitempty"`
+	RecoveryFabricLocation          *string                   `json:"recoveryFabricLocation,omitempty"`
+	RpoInSeconds                    *int64                    `json:"rpoInSeconds,omitempty"`
+
+	// Fields inherited from ReplicationClusterProviderSpecificSettings
+
+	InstanceType string `json:"instanceType"`
+}

@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/advisor/2023-01-01/suppressions
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *ScopedSuppressionId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.ResourceUri, ok = input.Parsed["resourceUri"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceUri", input)
+	}
+
+	if id.RecommendationId, ok = input.Parsed["recommendationId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "recommendationId", input)
+	}
+
+	if id.SuppressionName, ok = input.Parsed["suppressionName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "suppressionName", input)
+	}
+
+	return nil
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2025-06-01/batchendpoint
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ListOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.Count != nil {
+		out.Append("count", fmt.Sprintf("%v", *o.Count))
+	}
+	if o.Skip != nil {
+		out.Append("$skip", fmt.Sprintf("%v", *o.Skip))
+	}
+	return &out
+}

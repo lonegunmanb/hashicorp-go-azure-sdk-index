@@ -1,0 +1,62 @@
+package github.com/hashicorp/go-azure-sdk/sdk/internal/test
+import (
+	"bytes"
+	"fmt"
+	"io"
+	"net/http"
+	"net/url"
+	"regexp"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func (c *AzureADAccessTokenMockClient) tokenFromLoginEndpoint(resp *http.Response) (*http.Response, error) {
+	if resp.Request.Method != http.MethodPost {
+		return nil, fmt.Errorf("unexpected request method, should be POST, received %s", resp.Request.Method)
+	}
+
+	pathRegex := fmt.Sprintf(`^\/(%s)(\/oauth2\/v2.0\/token)$`, uuidRegex)
+	if m := regexp.MustCompile(pathRegex).FindStringSubmatch(resp.Request.URL.Path); len(m) != 3 {
+		return nil, fmt.Errorf("URL path did not match pattern %q: %q", pathRegex, resp.Request.URL.Path)
+	}
+
+	clientId := resp.Request.PostForm.Get("client_id")
+	if clientId == "" {
+		resp.StatusCode = http.StatusBadRequest
+		resp.Body = io.NopCloser(bytes.NewBufferString(`{"error":"missing 'client_id' field"}`))
+		return resp, nil
+	}
+
+	scope := resp.Request.PostForm.Get("scope")
+	if scope == "" {
+		resp.StatusCode = http.StatusBadRequest
+		resp.Body = io.NopCloser(bytes.NewBufferString(`{"error":"missing 'scope' field"}`))
+		return resp, nil
+	}
+
+	grantType := resp.Request.PostForm.Get("grant_type")
+	switch grantType {
+	case "client_credentials":
+		if clientSecret := resp.Request.PostForm.Get("client_secret"); clientSecret != "" {
+			return c.token(resp)
+		}
+
+		if clientAssertion := resp.Request.PostForm.Get("client_assertion"); clientAssertion != "" {
+			switch clientAssertionType := resp.Request.PostForm.Get("client_assertion_type"); clientAssertionType {
+			case "urn:ietf:params:oauth:client-assertion-type:jwt-bearer":
+				return c.token(resp)
+			}
+
+			resp.StatusCode = http.StatusBadRequest
+			resp.Body = io.NopCloser(bytes.NewBufferString(`{"error":"unrecognised value for 'client_assertion_type' field"}`))
+
+			return resp, nil
+		}
+	default:
+		return nil, fmt.Errorf("grant type %q is not supported", grantType)
+	}
+
+	resp.StatusCode = http.StatusBadRequest
+	resp.Body = io.NopCloser(bytes.NewBufferString(`{"error":"unsupported or unrecognised authentication parameters"}`))
+
+	return resp, nil
+}

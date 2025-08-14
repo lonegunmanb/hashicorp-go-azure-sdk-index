@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/loadtestservice/2022-12-01/loadtests
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseResourceState(input string) (*ResourceState, error) {
+	vals := map[string]ResourceState{
+		"canceled":  ResourceStateCanceled,
+		"deleted":   ResourceStateDeleted,
+		"failed":    ResourceStateFailed,
+		"succeeded": ResourceStateSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ResourceState(input)
+	return &out, nil
+}

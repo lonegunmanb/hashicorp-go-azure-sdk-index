@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devopsinfrastructure/2025-01-21/pools
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalFabricProfileImplementation(input []byte) (FabricProfile, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling FabricProfile into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["kind"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "Vmss") {
+		var out VMSSFabricProfile
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into VMSSFabricProfile: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseFabricProfileImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseFabricProfileImpl: %+v", err)
+	}
+
+	return RawFabricProfileImpl{
+		fabricProfile: parent,
+		Type:          value,
+		Values:        temp,
+	}, nil
+
+}

@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2025-02-15/clientgroups
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ClientGroupsClient) ListByNamespaceComplete(ctx context.Context, id NamespaceId, options ListByNamespaceOperationOptions) (ListByNamespaceCompleteResult, error) {
+	return c.ListByNamespaceCompleteMatchingPredicate(ctx, id, options, ClientGroupOperationPredicate{})
+}

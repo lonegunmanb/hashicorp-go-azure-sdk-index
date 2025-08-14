@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/contenttype
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ContentTypeClient) ListByServiceComplete(ctx context.Context, id ServiceId) (ListByServiceCompleteResult, error) {
+	return c.ListByServiceCompleteMatchingPredicate(ctx, id, ContentTypeContractOperationPredicate{})
+}

@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/orbital/2022-11-01/contact
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *ContactInstanceProperties) GetTxEndTimeAsTime() (*time.Time, error) {
+	if o.TxEndTime == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.TxEndTime, "2006-01-02T15:04:05Z07:00")
+}

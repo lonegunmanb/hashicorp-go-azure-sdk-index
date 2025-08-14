@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s X509CertificateAuthenticationMethodConfiguration) MarshalJSON() ([]byte, error) {
+	type wrapper X509CertificateAuthenticationMethodConfiguration
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling X509CertificateAuthenticationMethodConfiguration: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling X509CertificateAuthenticationMethodConfiguration: %+v", err)
+	}
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.x509CertificateAuthenticationMethodConfiguration"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling X509CertificateAuthenticationMethodConfiguration: %+v", err)
+	}
+
+	return encoded, nil
+}

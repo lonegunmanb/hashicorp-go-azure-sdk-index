@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/attestation/v2021_06_01
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/attestation/2021-06-01/attestationproviders"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/attestation/2021-06-01/privateendpointconnections"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/attestation/2021-06-01/privatelinkresources"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	attestationProvidersClient, err := attestationproviders.NewAttestationProvidersClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building AttestationProviders client: %+v", err)
+	}
+	configureFunc(attestationProvidersClient.Client)
+
+	privateEndpointConnectionsClient, err := privateendpointconnections.NewPrivateEndpointConnectionsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building PrivateEndpointConnections client: %+v", err)
+	}
+	configureFunc(privateEndpointConnectionsClient.Client)
+
+	privateLinkResourcesClient, err := privatelinkresources.NewPrivateLinkResourcesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building PrivateLinkResources client: %+v", err)
+	}
+	configureFunc(privateLinkResourcesClient.Client)
+
+	return &Client{
+		AttestationProviders:       attestationProvidersClient,
+		PrivateEndpointConnections: privateEndpointConnectionsClient,
+		PrivateLinkResources:       privateLinkResourcesClient,
+	}, nil
+}

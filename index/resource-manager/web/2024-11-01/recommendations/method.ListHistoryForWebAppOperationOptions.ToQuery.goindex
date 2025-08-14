@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-11-01/recommendations
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ListHistoryForWebAppOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.ExpiredOnly != nil {
+		out.Append("expiredOnly", fmt.Sprintf("%v", *o.ExpiredOnly))
+	}
+	if o.Filter != nil {
+		out.Append("$filter", fmt.Sprintf("%v", *o.Filter))
+	}
+	return &out
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apicenter/2024-03-15-preview/apidefinitions
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewApiDefinitionsClientWithBaseURI(sdkApi sdkEnv.Api) (*ApiDefinitionsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "apidefinitions", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ApiDefinitionsClient: %+v", err)
+	}
+
+	return &ApiDefinitionsClient{
+		Client: client,
+	}, nil
+}

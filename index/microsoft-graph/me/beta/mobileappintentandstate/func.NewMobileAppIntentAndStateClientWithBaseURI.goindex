@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/mobileappintentandstate
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewMobileAppIntentAndStateClientWithBaseURI(sdkApi sdkEnv.Api) (*MobileAppIntentAndStateClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "mobileappintentandstate", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating MobileAppIntentAndStateClient: %+v", err)
+	}
+
+	return &MobileAppIntentAndStateClient{
+		Client: client,
+	}, nil
+}

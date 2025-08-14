@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/permissiongrantpolicy
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPermissionGrantPolicyClientWithBaseURI(sdkApi sdkEnv.Api) (*PermissionGrantPolicyClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "permissiongrantpolicy", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PermissionGrantPolicyClient: %+v", err)
+	}
+
+	return &PermissionGrantPolicyClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicebus/2024-01-01/topics
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTopicsClientWithBaseURI(sdkApi sdkEnv.Api) (*TopicsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "topics", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TopicsClient: %+v", err)
+	}
+
+	return &TopicsClient{
+		Client: client,
+	}, nil
+}

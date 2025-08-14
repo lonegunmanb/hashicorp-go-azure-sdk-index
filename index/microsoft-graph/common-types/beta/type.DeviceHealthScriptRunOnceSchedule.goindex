@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type DeviceHealthScriptRunOnceSchedule struct {
+	// The date the script is scheduled to run. This collection can contain a maximum of 20 elements.
+	Date nullable.Type[string] `json:"date,omitempty"`
+
+	// Fields inherited from DeviceHealthScriptTimeSchedule
+
+	// At what time the script is scheduled to run. This collection can contain a maximum of 20 elements.
+	Time nullable.Type[string] `json:"time,omitempty"`
+
+	// Indicate if the time is Utc or client local time.
+	UseUtc *bool `json:"useUtc,omitempty"`
+
+	// Fields inherited from DeviceHealthScriptRunSchedule
+
+	// The x value of every x hours for hourly schedule, every x days for Daily Schedule, every x weeks for weekly schedule,
+	// every x months for Monthly Schedule. Valid values 1 to 23
+	Interval *int64 `json:"interval,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

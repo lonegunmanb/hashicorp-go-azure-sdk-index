@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/flexcomponents
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewFlexComponentsClientWithBaseURI(sdkApi sdkEnv.Api) (*FlexComponentsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "flexcomponents", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating FlexComponentsClient: %+v", err)
+	}
+
+	return &FlexComponentsClient{
+		Client: client,
+	}, nil
+}

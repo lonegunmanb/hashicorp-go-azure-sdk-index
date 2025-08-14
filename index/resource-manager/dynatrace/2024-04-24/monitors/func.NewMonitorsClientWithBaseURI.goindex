@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dynatrace/2024-04-24/monitors
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewMonitorsClientWithBaseURI(sdkApi sdkEnv.Api) (*MonitorsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "monitors", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating MonitorsClient: %+v", err)
+	}
+
+	return &MonitorsClient{
+		Client: client,
+	}, nil
+}

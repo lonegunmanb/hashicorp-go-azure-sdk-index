@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagecache/2023-05-01/amlfilesystems
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAmlFilesystemsClientWithBaseURI(sdkApi sdkEnv.Api) (*AmlFilesystemsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "amlfilesystems", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AmlFilesystemsClient: %+v", err)
+	}
+
+	return &AmlFilesystemsClient{
+		Client: client,
+	}, nil
+}

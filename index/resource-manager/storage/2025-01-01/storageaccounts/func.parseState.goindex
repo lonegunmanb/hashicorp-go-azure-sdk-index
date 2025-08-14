@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-01-01/storageaccounts
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseState(input string) (*State, error) {
+	vals := map[string]State{
+		"deprovisioning":       StateDeprovisioning,
+		"failed":               StateFailed,
+		"networksourcedeleted": StateNetworkSourceDeleted,
+		"provisioning":         StateProvisioning,
+		"succeeded":            StateSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := State(input)
+	return &out, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/videoindexer/2025-04-01/accesstoken
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAccessTokenClientWithBaseURI(sdkApi sdkEnv.Api) (*AccessTokenClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "accesstoken", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AccessTokenClient: %+v", err)
+	}
+
+	return &AccessTokenClient{
+		Client: client,
+	}, nil
+}

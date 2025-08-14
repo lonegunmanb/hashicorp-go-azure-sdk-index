@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/contactfoldercontactextension
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ContactFolderContactExtensionClient) ListContactFolderContactExtensionsComplete(ctx context.Context, id beta.UserIdContactFolderIdContactId, options ListContactFolderContactExtensionsOperationOptions) (ListContactFolderContactExtensionsCompleteResult, error) {
+	return c.ListContactFolderContactExtensionsCompleteMatchingPredicate(ctx, id, options, ExtensionOperationPredicate{})
+}

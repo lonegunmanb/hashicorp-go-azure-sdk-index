@@ -1,0 +1,51 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *DeviceManagementAbstractComplexSettingInstance) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		ImplementationId nullable.Type[string] `json:"implementationId,omitempty"`
+		DefinitionId     *string               `json:"definitionId,omitempty"`
+		ValueJson        nullable.Type[string] `json:"valueJson,omitempty"`
+		Id               *string               `json:"id,omitempty"`
+		ODataId          *string               `json:"@odata.id,omitempty"`
+		ODataType        *string               `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.ImplementationId = decoded.ImplementationId
+	s.DefinitionId = decoded.DefinitionId
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.ValueJson = decoded.ValueJson
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling DeviceManagementAbstractComplexSettingInstance into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["value"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling Value into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]DeviceManagementSettingInstance, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalDeviceManagementSettingInstanceImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'Value' for 'DeviceManagementAbstractComplexSettingInstance': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.Value = &output
+	}
+
+	return nil
+}

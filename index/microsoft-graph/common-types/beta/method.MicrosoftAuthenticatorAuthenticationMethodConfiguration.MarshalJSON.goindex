@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s MicrosoftAuthenticatorAuthenticationMethodConfiguration) MarshalJSON() ([]byte, error) {
+	type wrapper MicrosoftAuthenticatorAuthenticationMethodConfiguration
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling MicrosoftAuthenticatorAuthenticationMethodConfiguration: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling MicrosoftAuthenticatorAuthenticationMethodConfiguration: %+v", err)
+	}
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.microsoftAuthenticatorAuthenticationMethodConfiguration"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling MicrosoftAuthenticatorAuthenticationMethodConfiguration: %+v", err)
+	}
+
+	return encoded, nil
+}

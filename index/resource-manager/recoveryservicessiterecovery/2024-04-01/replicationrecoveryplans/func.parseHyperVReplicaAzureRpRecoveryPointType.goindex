@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2024-04-01/replicationrecoveryplans
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseHyperVReplicaAzureRpRecoveryPointType(input string) (*HyperVReplicaAzureRpRecoveryPointType, error) {
+	vals := map[string]HyperVReplicaAzureRpRecoveryPointType{
+		"latest":                      HyperVReplicaAzureRpRecoveryPointTypeLatest,
+		"latestapplicationconsistent": HyperVReplicaAzureRpRecoveryPointTypeLatestApplicationConsistent,
+		"latestprocessed":             HyperVReplicaAzureRpRecoveryPointTypeLatestProcessed,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := HyperVReplicaAzureRpRecoveryPointType(input)
+	return &out, nil
+}

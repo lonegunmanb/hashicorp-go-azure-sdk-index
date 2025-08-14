@@ -1,0 +1,36 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2023-11-01/experiments
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s *QuerySelector) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		QueryString     string       `json:"queryString"`
+		SubscriptionIds []string     `json:"subscriptionIds"`
+		Id              string       `json:"id"`
+		Type            SelectorType `json:"type"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.QueryString = decoded.QueryString
+	s.SubscriptionIds = decoded.SubscriptionIds
+	s.Id = decoded.Id
+	s.Type = decoded.Type
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling QuerySelector into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["filter"]; ok {
+		impl, err := UnmarshalFilterImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Filter' for 'QuerySelector': %+v", err)
+		}
+		s.Filter = impl
+	}
+
+	return nil
+}

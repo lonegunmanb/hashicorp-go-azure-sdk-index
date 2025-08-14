@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDelegatedAdminRelationshipRequestStatus(input string) (*DelegatedAdminRelationshipRequestStatus, error) {
+	vals := map[string]DelegatedAdminRelationshipRequestStatus{
+		"created":   DelegatedAdminRelationshipRequestStatus_Created,
+		"failed":    DelegatedAdminRelationshipRequestStatus_Failed,
+		"pending":   DelegatedAdminRelationshipRequestStatus_Pending,
+		"succeeded": DelegatedAdminRelationshipRequestStatus_Succeeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DelegatedAdminRelationshipRequestStatus(input)
+	return &out, nil
+}

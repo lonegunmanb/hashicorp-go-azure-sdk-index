@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/origins
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePrivateEndpointStatus(input string) (*PrivateEndpointStatus, error) {
+	vals := map[string]PrivateEndpointStatus{
+		"approved":     PrivateEndpointStatusApproved,
+		"disconnected": PrivateEndpointStatusDisconnected,
+		"pending":      PrivateEndpointStatusPending,
+		"rejected":     PrivateEndpointStatusRejected,
+		"timeout":      PrivateEndpointStatusTimeout,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PrivateEndpointStatus(input)
+	return &out, nil
+}

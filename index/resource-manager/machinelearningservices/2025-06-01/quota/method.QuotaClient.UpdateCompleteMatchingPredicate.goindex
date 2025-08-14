@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2025-06-01/quota
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c QuotaClient) UpdateCompleteMatchingPredicate(ctx context.Context, id LocationId, input QuotaUpdateParameters, predicate UpdateWorkspaceQuotasOperationPredicate) (result UpdateCompleteResult, err error) {
+	items := make([]UpdateWorkspaceQuotas, 0)
+
+	resp, err := c.Update(ctx, id, input)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = UpdateCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

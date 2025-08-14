@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseContentFormat(input string) (*ContentFormat, error) {
+	vals := map[string]ContentFormat{
+		"default": ContentFormat_Default,
+		"email":   ContentFormat_Email,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ContentFormat(input)
+	return &out, nil
+}

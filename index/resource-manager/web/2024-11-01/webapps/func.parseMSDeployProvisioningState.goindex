@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-11-01/webapps
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMSDeployProvisioningState(input string) (*MSDeployProvisioningState, error) {
+	vals := map[string]MSDeployProvisioningState{
+		"accepted":  MSDeployProvisioningStateAccepted,
+		"canceled":  MSDeployProvisioningStateCanceled,
+		"failed":    MSDeployProvisioningStateFailed,
+		"running":   MSDeployProvisioningStateRunning,
+		"succeeded": MSDeployProvisioningStateSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MSDeployProvisioningState(input)
+	return &out, nil
+}

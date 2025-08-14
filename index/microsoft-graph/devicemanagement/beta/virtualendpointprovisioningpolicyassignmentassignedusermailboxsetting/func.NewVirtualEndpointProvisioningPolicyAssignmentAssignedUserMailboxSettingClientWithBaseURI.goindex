@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/virtualendpointprovisioningpolicyassignmentassignedusermailboxsetting
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewVirtualEndpointProvisioningPolicyAssignmentAssignedUserMailboxSettingClientWithBaseURI(sdkApi sdkEnv.Api) (*VirtualEndpointProvisioningPolicyAssignmentAssignedUserMailboxSettingClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "virtualendpointprovisioningpolicyassignmentassignedusermailboxsetting", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating VirtualEndpointProvisioningPolicyAssignmentAssignedUserMailboxSettingClient: %+v", err)
+	}
+
+	return &VirtualEndpointProvisioningPolicyAssignmentAssignedUserMailboxSettingClient{
+		Client: client,
+	}, nil
+}

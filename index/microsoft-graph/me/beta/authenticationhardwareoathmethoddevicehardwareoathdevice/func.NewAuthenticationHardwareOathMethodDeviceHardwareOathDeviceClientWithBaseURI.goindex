@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/authenticationhardwareoathmethoddevicehardwareoathdevice
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAuthenticationHardwareOathMethodDeviceHardwareOathDeviceClientWithBaseURI(sdkApi sdkEnv.Api) (*AuthenticationHardwareOathMethodDeviceHardwareOathDeviceClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "authenticationhardwareoathmethoddevicehardwareoathdevice", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AuthenticationHardwareOathMethodDeviceHardwareOathDeviceClient: %+v", err)
+	}
+
+	return &AuthenticationHardwareOathMethodDeviceHardwareOathDeviceClient{
+		Client: client,
+	}, nil
+}

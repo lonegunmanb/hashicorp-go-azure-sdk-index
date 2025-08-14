@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-12-01-preview/incidentcomments
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id IncidentCommentId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Workspace Name: %q", id.WorkspaceName),
+		fmt.Sprintf("Incident: %q", id.IncidentId),
+		fmt.Sprintf("Incident Comment: %q", id.IncidentCommentId),
+	}
+	return fmt.Sprintf("Incident Comment (%s)", strings.Join(components, "\n"))
+}

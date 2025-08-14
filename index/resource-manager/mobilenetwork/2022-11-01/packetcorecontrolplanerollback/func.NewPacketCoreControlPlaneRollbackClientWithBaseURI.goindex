@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mobilenetwork/2022-11-01/packetcorecontrolplanerollback
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPacketCoreControlPlaneRollbackClientWithBaseURI(sdkApi sdkEnv.Api) (*PacketCoreControlPlaneRollbackClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "packetcorecontrolplanerollback", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PacketCoreControlPlaneRollbackClient: %+v", err)
+	}
+
+	return &PacketCoreControlPlaneRollbackClient{
+		Client: client,
+	}, nil
+}

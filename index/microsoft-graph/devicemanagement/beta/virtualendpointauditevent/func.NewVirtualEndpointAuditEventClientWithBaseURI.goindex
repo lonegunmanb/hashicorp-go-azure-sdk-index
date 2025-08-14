@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/virtualendpointauditevent
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewVirtualEndpointAuditEventClientWithBaseURI(sdkApi sdkEnv.Api) (*VirtualEndpointAuditEventClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "virtualendpointauditevent", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating VirtualEndpointAuditEventClient: %+v", err)
+	}
+
+	return &VirtualEndpointAuditEventClient{
+		Client: client,
+	}, nil
+}

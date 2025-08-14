@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerapps/2023-05-01/containerappssourcecontrols
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewContainerAppsSourceControlsClientWithBaseURI(sdkApi sdkEnv.Api) (*ContainerAppsSourceControlsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "containerappssourcecontrols", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ContainerAppsSourceControlsClient: %+v", err)
+	}
+
+	return &ContainerAppsSourceControlsClient{
+		Client: client,
+	}, nil
+}

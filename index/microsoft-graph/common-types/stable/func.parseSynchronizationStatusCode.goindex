@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSynchronizationStatusCode(input string) (*SynchronizationStatusCode, error) {
+	vals := map[string]SynchronizationStatusCode{
+		"active":        SynchronizationStatusCode_Active,
+		"notconfigured": SynchronizationStatusCode_NotConfigured,
+		"notrun":        SynchronizationStatusCode_NotRun,
+		"paused":        SynchronizationStatusCode_Paused,
+		"quarantine":    SynchronizationStatusCode_Quarantine,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SynchronizationStatusCode(input)
+	return &out, nil
+}

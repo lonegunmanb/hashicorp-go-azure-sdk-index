@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEnrollmentAvailabilityOptions(input string) (*EnrollmentAvailabilityOptions, error) {
+	vals := map[string]EnrollmentAvailabilityOptions{
+		"availablewithprompts":    EnrollmentAvailabilityOptions_AvailableWithPrompts,
+		"availablewithoutprompts": EnrollmentAvailabilityOptions_AvailableWithoutPrompts,
+		"unavailable":             EnrollmentAvailabilityOptions_Unavailable,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EnrollmentAvailabilityOptions(input)
+	return &out, nil
+}

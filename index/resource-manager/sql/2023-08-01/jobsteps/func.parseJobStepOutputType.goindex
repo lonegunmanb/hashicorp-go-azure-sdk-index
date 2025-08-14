@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/jobsteps
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseJobStepOutputType(input string) (*JobStepOutputType, error) {
+	vals := map[string]JobStepOutputType{
+		"sqldatabase": JobStepOutputTypeSqlDatabase,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := JobStepOutputType(input)
+	return &out, nil
+}

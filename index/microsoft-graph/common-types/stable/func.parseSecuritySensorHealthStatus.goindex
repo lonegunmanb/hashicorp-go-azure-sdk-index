@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecuritySensorHealthStatus(input string) (*SecuritySensorHealthStatus, error) {
+	vals := map[string]SecuritySensorHealthStatus{
+		"healthy":          SecuritySensorHealthStatus_Healthy,
+		"nothealthyhigh":   SecuritySensorHealthStatus_NotHealthyHigh,
+		"nothealthylow":    SecuritySensorHealthStatus_NotHealthyLow,
+		"nothealthymedium": SecuritySensorHealthStatus_NotHealthyMedium,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecuritySensorHealthStatus(input)
+	return &out, nil
+}

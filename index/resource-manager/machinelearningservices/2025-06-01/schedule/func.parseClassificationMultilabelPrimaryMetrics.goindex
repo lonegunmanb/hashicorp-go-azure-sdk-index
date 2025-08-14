@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2025-06-01/schedule
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseClassificationMultilabelPrimaryMetrics(input string) (*ClassificationMultilabelPrimaryMetrics, error) {
+	vals := map[string]ClassificationMultilabelPrimaryMetrics{
+		"aucweighted":                   ClassificationMultilabelPrimaryMetricsAUCWeighted,
+		"accuracy":                      ClassificationMultilabelPrimaryMetricsAccuracy,
+		"averageprecisionscoreweighted": ClassificationMultilabelPrimaryMetricsAveragePrecisionScoreWeighted,
+		"iou":                           ClassificationMultilabelPrimaryMetricsIOU,
+		"normmacrorecall":               ClassificationMultilabelPrimaryMetricsNormMacroRecall,
+		"precisionscoreweighted":        ClassificationMultilabelPrimaryMetricsPrecisionScoreWeighted,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ClassificationMultilabelPrimaryMetrics(input)
+	return &out, nil
+}

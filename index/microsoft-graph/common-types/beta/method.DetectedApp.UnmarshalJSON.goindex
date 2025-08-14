@@ -1,0 +1,57 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *DetectedApp) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		DeviceCount *int64                   `json:"deviceCount,omitempty"`
+		DisplayName nullable.Type[string]    `json:"displayName,omitempty"`
+		Platform    *DetectedAppPlatformType `json:"platform,omitempty"`
+		Publisher   nullable.Type[string]    `json:"publisher,omitempty"`
+		SizeInByte  *int64                   `json:"sizeInByte,omitempty"`
+		Version     nullable.Type[string]    `json:"version,omitempty"`
+		Id          *string                  `json:"id,omitempty"`
+		ODataId     *string                  `json:"@odata.id,omitempty"`
+		ODataType   *string                  `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.DeviceCount = decoded.DeviceCount
+	s.DisplayName = decoded.DisplayName
+	s.Platform = decoded.Platform
+	s.Publisher = decoded.Publisher
+	s.SizeInByte = decoded.SizeInByte
+	s.Version = decoded.Version
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling DetectedApp into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["managedDevices"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling ManagedDevices into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]ManagedDevice, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalManagedDeviceImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'ManagedDevices' for 'DetectedApp': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.ManagedDevices = &output
+	}
+
+	return nil
+}

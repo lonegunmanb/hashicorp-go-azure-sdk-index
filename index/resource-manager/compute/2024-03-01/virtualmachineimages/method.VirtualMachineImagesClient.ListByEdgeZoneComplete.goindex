@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-03-01/virtualmachineimages
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c VirtualMachineImagesClient) ListByEdgeZoneComplete(ctx context.Context, id EdgeZoneId) (ListByEdgeZoneCompleteResult, error) {
+	return c.ListByEdgeZoneCompleteMatchingPredicate(ctx, id, VirtualMachineImageResourceOperationPredicate{})
+}

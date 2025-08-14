@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/directoryroles/beta/scopedmember
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewScopedMemberClientWithBaseURI(sdkApi sdkEnv.Api) (*ScopedMemberClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "scopedmember", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ScopedMemberClient: %+v", err)
+	}
+
+	return &ScopedMemberClient{
+		Client: client,
+	}, nil
+}

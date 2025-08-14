@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/virtualnetworkgateways
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c VirtualNetworkGatewaysClient) GetRoutesInformationThenPoll(ctx context.Context, id VirtualNetworkGatewayId, options GetRoutesInformationOperationOptions) error {
+	result, err := c.GetRoutesInformation(ctx, id, options)
+	if err != nil {
+		return fmt.Errorf("performing GetRoutesInformation: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after GetRoutesInformation: %+v", err)
+	}
+
+	return nil
+}

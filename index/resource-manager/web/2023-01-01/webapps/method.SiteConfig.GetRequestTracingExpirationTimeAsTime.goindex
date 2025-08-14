@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/webapps
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *SiteConfig) GetRequestTracingExpirationTimeAsTime() (*time.Time, error) {
+	if o.RequestTracingExpirationTime == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.RequestTracingExpirationTime, "2006-01-02T15:04:05Z07:00")
+}

@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id RoleManagementDirectoryRoleDefinitionId) String() string {
+	components := []string{
+		fmt.Sprintf("Unified Role Definition: %q", id.UnifiedRoleDefinitionId),
+	}
+	return fmt.Sprintf("Role Management Directory Role Definition (%s)", strings.Join(components, "\n"))
+}

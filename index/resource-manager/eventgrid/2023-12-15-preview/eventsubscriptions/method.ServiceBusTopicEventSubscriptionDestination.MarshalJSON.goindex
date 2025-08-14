@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2023-12-15-preview/eventsubscriptions
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s ServiceBusTopicEventSubscriptionDestination) MarshalJSON() ([]byte, error) {
+	type wrapper ServiceBusTopicEventSubscriptionDestination
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ServiceBusTopicEventSubscriptionDestination: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ServiceBusTopicEventSubscriptionDestination: %+v", err)
+	}
+
+	decoded["endpointType"] = "ServiceBusTopic"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ServiceBusTopicEventSubscriptionDestination: %+v", err)
+	}
+
+	return encoded, nil
+}

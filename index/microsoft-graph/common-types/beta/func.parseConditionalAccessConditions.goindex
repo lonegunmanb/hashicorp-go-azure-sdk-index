@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseConditionalAccessConditions(input string) (*ConditionalAccessConditions, error) {
+	vals := map[string]ConditionalAccessConditions{
+		"application":                     ConditionalAccessConditions_Application,
+		"authenticationflows":             ConditionalAccessConditions_AuthenticationFlows,
+		"client":                          ConditionalAccessConditions_Client,
+		"clienttype":                      ConditionalAccessConditions_ClientType,
+		"deviceplatform":                  ConditionalAccessConditions_DevicePlatform,
+		"devicestate":                     ConditionalAccessConditions_DeviceState,
+		"ipaddressseenbyazuread":          ConditionalAccessConditions_IPAddressSeenByAzureAD,
+		"ipaddressseenbyresourceprovider": ConditionalAccessConditions_IPAddressSeenByResourceProvider,
+		"insiderrisk":                     ConditionalAccessConditions_InsiderRisk,
+		"location":                        ConditionalAccessConditions_Location,
+		"none":                            ConditionalAccessConditions_None,
+		"serviceprincipalrisk":            ConditionalAccessConditions_ServicePrincipalRisk,
+		"serviceprincipals":               ConditionalAccessConditions_ServicePrincipals,
+		"signinrisk":                      ConditionalAccessConditions_SignInRisk,
+		"time":                            ConditionalAccessConditions_Time,
+		"userrisk":                        ConditionalAccessConditions_UserRisk,
+		"users":                           ConditionalAccessConditions_Users,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ConditionalAccessConditions(input)
+	return &out, nil
+}

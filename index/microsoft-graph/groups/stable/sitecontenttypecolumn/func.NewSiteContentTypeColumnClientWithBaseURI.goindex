@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/sitecontenttypecolumn
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSiteContentTypeColumnClientWithBaseURI(sdkApi sdkEnv.Api) (*SiteContentTypeColumnClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "sitecontenttypecolumn", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SiteContentTypeColumnClient: %+v", err)
+	}
+
+	return &SiteContentTypeColumnClient{
+		Client: client,
+	}, nil
+}

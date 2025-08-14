@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type TeamsAppUpgradedEventMessageDetail struct {
+	// Initiator of the event.
+	Initiator IdentitySet `json:"initiator"`
+
+	// Display name of the teamsApp.
+	TeamsAppDisplayName nullable.Type[string] `json:"teamsAppDisplayName,omitempty"`
+
+	// Unique identifier of the teamsApp.
+	TeamsAppId nullable.Type[string] `json:"teamsAppId,omitempty"`
+
+	// Fields inherited from EventMessageDetail
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

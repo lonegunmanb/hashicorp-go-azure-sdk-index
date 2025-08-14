@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2023-04-02/incrementalrestorepoints
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewIncrementalRestorePointsClientWithBaseURI(sdkApi sdkEnv.Api) (*IncrementalRestorePointsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "incrementalrestorepoints", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating IncrementalRestorePointsClient: %+v", err)
+	}
+
+	return &IncrementalRestorePointsClient{
+		Client: client,
+	}, nil
+}

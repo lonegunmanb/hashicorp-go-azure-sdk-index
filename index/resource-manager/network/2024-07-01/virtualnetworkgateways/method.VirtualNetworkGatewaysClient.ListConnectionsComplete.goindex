@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/virtualnetworkgateways
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c VirtualNetworkGatewaysClient) ListConnectionsComplete(ctx context.Context, id VirtualNetworkGatewayId) (ListConnectionsCompleteResult, error) {
+	return c.ListConnectionsCompleteMatchingPredicate(ctx, id, VirtualNetworkGatewayConnectionListEntityOperationPredicate{})
+}

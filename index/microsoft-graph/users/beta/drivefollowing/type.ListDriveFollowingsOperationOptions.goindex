@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/drivefollowing
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+type ListDriveFollowingsOperationOptions struct {
+	Count     *bool
+	Expand    *odata.Expand
+	Filter    *string
+	Metadata  *odata.Metadata
+	OrderBy   *odata.OrderBy
+	RetryFunc client.RequestRetryFunc
+	Search    *string
+	Select    *[]string
+	Skip      *int64
+	Top       *int64
+}

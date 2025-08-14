@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/onenotenotebooksectiongroupsectiongroup
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewOnenoteNotebookSectionGroupSectionGroupClientWithBaseURI(sdkApi sdkEnv.Api) (*OnenoteNotebookSectionGroupSectionGroupClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "onenotenotebooksectiongroupsectiongroup", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating OnenoteNotebookSectionGroupSectionGroupClient: %+v", err)
+	}
+
+	return &OnenoteNotebookSectionGroupSectionGroupClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/drivelistitempermission
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDriveListItemPermissionClientWithBaseURI(sdkApi sdkEnv.Api) (*DriveListItemPermissionClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "drivelistitempermission", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DriveListItemPermissionClient: %+v", err)
+	}
+
+	return &DriveListItemPermissionClient{
+		Client: client,
+	}, nil
+}

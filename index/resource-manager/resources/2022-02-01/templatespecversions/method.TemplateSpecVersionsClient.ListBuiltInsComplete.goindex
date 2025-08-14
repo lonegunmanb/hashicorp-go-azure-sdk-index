@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2022-02-01/templatespecversions
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c TemplateSpecVersionsClient) ListBuiltInsComplete(ctx context.Context, id BuiltInTemplateSpecId) (ListBuiltInsCompleteResult, error) {
+	return c.ListBuiltInsCompleteMatchingPredicate(ctx, id, TemplateSpecVersionOperationPredicate{})
+}

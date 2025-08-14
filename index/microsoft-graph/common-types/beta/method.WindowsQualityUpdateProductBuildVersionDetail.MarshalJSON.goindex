@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s WindowsQualityUpdateProductBuildVersionDetail) MarshalJSON() ([]byte, error) {
+	type wrapper WindowsQualityUpdateProductBuildVersionDetail
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling WindowsQualityUpdateProductBuildVersionDetail: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling WindowsQualityUpdateProductBuildVersionDetail: %+v", err)
+	}
+
+	delete(decoded, "buildNumber")
+	delete(decoded, "majorVersionNumber")
+	delete(decoded, "minorVersionNumber")
+	delete(decoded, "updateBuildRevision")
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling WindowsQualityUpdateProductBuildVersionDetail: %+v", err)
+	}
+
+	return encoded, nil
+}

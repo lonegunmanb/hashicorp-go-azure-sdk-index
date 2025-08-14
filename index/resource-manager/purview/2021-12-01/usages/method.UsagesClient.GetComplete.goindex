@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/purview/2021-12-01/usages
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c UsagesClient) GetComplete(ctx context.Context, id LocationId, options GetOperationOptions) (GetCompleteResult, error) {
+	return c.GetCompleteMatchingPredicate(ctx, id, options, UsageOperationPredicate{})
+}

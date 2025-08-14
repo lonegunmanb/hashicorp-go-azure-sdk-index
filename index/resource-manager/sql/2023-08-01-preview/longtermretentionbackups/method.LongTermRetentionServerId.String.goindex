@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/longtermretentionbackups
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id LongTermRetentionServerId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
+		fmt.Sprintf("Long Term Retention Server Name: %q", id.LongTermRetentionServerName),
+	}
+	return fmt.Sprintf("Long Term Retention Server (%s)", strings.Join(components, "\n"))
+}

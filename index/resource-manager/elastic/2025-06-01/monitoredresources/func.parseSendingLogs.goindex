@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2025-06-01/monitoredresources
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSendingLogs(input string) (*SendingLogs, error) {
+	vals := map[string]SendingLogs{
+		"false": SendingLogsFalse,
+		"true":  SendingLogsTrue,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SendingLogs(input)
+	return &out, nil
+}

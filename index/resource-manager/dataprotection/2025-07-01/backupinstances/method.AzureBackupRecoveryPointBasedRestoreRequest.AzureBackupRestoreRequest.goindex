@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2025-07-01/backupinstances
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s AzureBackupRecoveryPointBasedRestoreRequest) AzureBackupRestoreRequest() BaseAzureBackupRestoreRequestImpl {
+	return BaseAzureBackupRestoreRequestImpl{
+		IdentityDetails:                s.IdentityDetails,
+		ObjectType:                     s.ObjectType,
+		ResourceGuardOperationRequests: s.ResourceGuardOperationRequests,
+		RestoreTargetInfo:              s.RestoreTargetInfo,
+		SourceDataStoreType:            s.SourceDataStoreType,
+		SourceResourceId:               s.SourceResourceId,
+	}
+}

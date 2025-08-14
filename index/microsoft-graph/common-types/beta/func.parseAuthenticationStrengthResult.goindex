@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAuthenticationStrengthResult(input string) (*AuthenticationStrengthResult, error) {
+	vals := map[string]AuthenticationStrengthResult{
+		"cannotsatisfy": AuthenticationStrengthResult_CannotSatisfy,
+		"cannotsatisfyduetocombinationconfiguration": AuthenticationStrengthResult_CannotSatisfyDueToCombinationConfiguration,
+		"multiplechallengesrequired":                 AuthenticationStrengthResult_MultipleChallengesRequired,
+		"multipleregistrationsrequired":              AuthenticationStrengthResult_MultipleRegistrationsRequired,
+		"notset":                                     AuthenticationStrengthResult_NotSet,
+		"satisfied":                                  AuthenticationStrengthResult_Satisfied,
+		"singlechallengerequired":                    AuthenticationStrengthResult_SingleChallengeRequired,
+		"singleregistrationrequired":                 AuthenticationStrengthResult_SingleRegistrationRequired,
+		"skippedforproofup":                          AuthenticationStrengthResult_SkippedForProofUp,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AuthenticationStrengthResult(input)
+	return &out, nil
+}

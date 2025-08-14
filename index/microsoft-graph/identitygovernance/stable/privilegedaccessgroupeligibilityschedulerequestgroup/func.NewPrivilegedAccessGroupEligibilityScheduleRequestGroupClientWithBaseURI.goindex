@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/privilegedaccessgroupeligibilityschedulerequestgroup
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPrivilegedAccessGroupEligibilityScheduleRequestGroupClientWithBaseURI(sdkApi sdkEnv.Api) (*PrivilegedAccessGroupEligibilityScheduleRequestGroupClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "privilegedaccessgroupeligibilityschedulerequestgroup", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PrivilegedAccessGroupEligibilityScheduleRequestGroupClient: %+v", err)
+	}
+
+	return &PrivilegedAccessGroupEligibilityScheduleRequestGroupClient{
+		Client: client,
+	}, nil
+}

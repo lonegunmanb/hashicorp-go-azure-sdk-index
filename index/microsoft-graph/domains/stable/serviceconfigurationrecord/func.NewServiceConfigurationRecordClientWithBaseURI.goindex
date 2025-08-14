@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/domains/stable/serviceconfigurationrecord
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewServiceConfigurationRecordClientWithBaseURI(sdkApi sdkEnv.Api) (*ServiceConfigurationRecordClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "serviceconfigurationrecord", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ServiceConfigurationRecordClient: %+v", err)
+	}
+
+	return &ServiceConfigurationRecordClient{
+		Client: client,
+	}, nil
+}

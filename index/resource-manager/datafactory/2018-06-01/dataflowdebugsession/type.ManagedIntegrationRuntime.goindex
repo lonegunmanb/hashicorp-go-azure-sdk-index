@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/dataflowdebugsession
+import (
+	"encoding/json"
+	"fmt"
+)
+type ManagedIntegrationRuntime struct {
+	ManagedVirtualNetwork *ManagedVirtualNetworkReference         `json:"managedVirtualNetwork,omitempty"`
+	State                 *IntegrationRuntimeState                `json:"state,omitempty"`
+	TypeProperties        ManagedIntegrationRuntimeTypeProperties `json:"typeProperties"`
+
+	// Fields inherited from IntegrationRuntime
+
+	Description *string                `json:"description,omitempty"`
+	Type        IntegrationRuntimeType `json:"type"`
+}

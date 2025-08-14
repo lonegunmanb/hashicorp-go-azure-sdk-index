@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/applicationgateways
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSharingScope(input string) (*SharingScope, error) {
+	vals := map[string]SharingScope{
+		"delegatedservices": SharingScopeDelegatedServices,
+		"tenant":            SharingScopeTenant,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SharingScope(input)
+	return &out, nil
+}

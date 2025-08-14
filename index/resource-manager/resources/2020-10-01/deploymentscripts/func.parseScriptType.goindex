@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-10-01/deploymentscripts
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseScriptType(input string) (*ScriptType, error) {
+	vals := map[string]ScriptType{
+		"azurecli":        ScriptTypeAzureCLI,
+		"azurepowershell": ScriptTypeAzurePowerShell,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ScriptType(input)
+	return &out, nil
+}

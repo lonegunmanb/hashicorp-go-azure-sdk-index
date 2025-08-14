@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2023-03-11/datacollectionrules
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func (s *KnownPrometheusForwarderDataSourceStreams) UnmarshalJSON(bytes []byte) error {
+	var decoded string
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+	out, err := parseKnownPrometheusForwarderDataSourceStreams(decoded)
+	if err != nil {
+		return fmt.Errorf("parsing %q: %+v", decoded, err)
+	}
+	*s = *out
+	return nil
+}

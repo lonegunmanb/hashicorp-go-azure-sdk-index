@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/workloads/2024-09-01/sapvirtualinstances
+import (
+	"encoding/json"
+	"fmt"
+)
+type SAPVirtualInstanceProperties struct {
+	Configuration                     SAPConfiguration                     `json:"configuration"`
+	Environment                       SAPEnvironmentType                   `json:"environment"`
+	Errors                            *SAPVirtualInstanceError             `json:"errors,omitempty"`
+	Health                            *SAPHealthState                      `json:"health,omitempty"`
+	ManagedResourceGroupConfiguration *ManagedRGConfiguration              `json:"managedResourceGroupConfiguration,omitempty"`
+	ManagedResourcesNetworkAccessType *ManagedResourcesNetworkAccessType   `json:"managedResourcesNetworkAccessType,omitempty"`
+	ProvisioningState                 *SapVirtualInstanceProvisioningState `json:"provisioningState,omitempty"`
+	SapProduct                        SAPProductType                       `json:"sapProduct"`
+	State                             *SAPVirtualInstanceState             `json:"state,omitempty"`
+	Status                            *SAPVirtualInstanceStatus            `json:"status,omitempty"`
+}

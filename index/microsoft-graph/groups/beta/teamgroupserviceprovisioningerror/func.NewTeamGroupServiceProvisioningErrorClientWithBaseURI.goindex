@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamgroupserviceprovisioningerror
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTeamGroupServiceProvisioningErrorClientWithBaseURI(sdkApi sdkEnv.Api) (*TeamGroupServiceProvisioningErrorClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "teamgroupserviceprovisioningerror", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TeamGroupServiceProvisioningErrorClient: %+v", err)
+	}
+
+	return &TeamGroupServiceProvisioningErrorClient{
+		Client: client,
+	}, nil
+}

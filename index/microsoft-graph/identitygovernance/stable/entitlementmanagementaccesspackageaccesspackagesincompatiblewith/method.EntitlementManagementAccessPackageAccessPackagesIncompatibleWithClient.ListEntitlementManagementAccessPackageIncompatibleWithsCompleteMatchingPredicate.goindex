@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementaccesspackageaccesspackagesincompatiblewith
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c EntitlementManagementAccessPackageAccessPackagesIncompatibleWithClient) ListEntitlementManagementAccessPackageIncompatibleWithsCompleteMatchingPredicate(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementAccessPackageId, options ListEntitlementManagementAccessPackageIncompatibleWithsOperationOptions, predicate AccessPackageOperationPredicate) (result ListEntitlementManagementAccessPackageIncompatibleWithsCompleteResult, err error) {
+	items := make([]stable.AccessPackage, 0)
+
+	resp, err := c.ListEntitlementManagementAccessPackageIncompatibleWiths(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListEntitlementManagementAccessPackageIncompatibleWithsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

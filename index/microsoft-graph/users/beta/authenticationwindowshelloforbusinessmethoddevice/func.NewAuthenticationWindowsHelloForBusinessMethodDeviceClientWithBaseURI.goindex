@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authenticationwindowshelloforbusinessmethoddevice
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAuthenticationWindowsHelloForBusinessMethodDeviceClientWithBaseURI(sdkApi sdkEnv.Api) (*AuthenticationWindowsHelloForBusinessMethodDeviceClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "authenticationwindowshelloforbusinessmethoddevice", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AuthenticationWindowsHelloForBusinessMethodDeviceClient: %+v", err)
+	}
+
+	return &AuthenticationWindowsHelloForBusinessMethodDeviceClient{
+		Client: client,
+	}, nil
+}

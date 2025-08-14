@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicefabric/2021-06-01/applicationtype
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewApplicationTypeClientWithBaseURI(sdkApi sdkEnv.Api) (*ApplicationTypeClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "applicationtype", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ApplicationTypeClient: %+v", err)
+	}
+
+	return &ApplicationTypeClient{
+		Client: client,
+	}, nil
+}

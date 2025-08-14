@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type PermissionsCreepIndexDistribution struct {
+	AuthorizationSystem *AuthorizationSystem `json:"authorizationSystem,omitempty"`
+
+	// Defines when the PCI distribution was created.
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+
+	HighRiskProfile   *RiskProfile `json:"highRiskProfile,omitempty"`
+	LowRiskProfile    *RiskProfile `json:"lowRiskProfile,omitempty"`
+	MediumRiskProfile *RiskProfile `json:"mediumRiskProfile,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerapps/2025-01-01/diagnostics
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DiagnosticsClient) JobsListDetectorsCompleteMatchingPredicate(ctx context.Context, id JobId, predicate DiagnosticsOperationPredicate) (result JobsListDetectorsCompleteResult, err error) {
+	items := make([]Diagnostics, 0)
+
+	resp, err := c.JobsListDetectors(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = JobsListDetectorsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

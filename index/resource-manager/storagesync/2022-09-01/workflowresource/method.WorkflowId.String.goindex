@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/workflowresource
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id WorkflowId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Storage Sync Service Name: %q", id.StorageSyncServiceName),
+		fmt.Sprintf("Workflow: %q", id.WorkflowId),
+	}
+	return fmt.Sprintf("Workflow (%s)", strings.Join(components, "\n"))
+}

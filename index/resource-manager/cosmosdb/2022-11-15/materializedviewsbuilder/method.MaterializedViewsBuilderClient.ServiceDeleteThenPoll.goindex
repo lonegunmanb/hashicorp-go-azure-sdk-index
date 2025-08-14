@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cosmosdb/2022-11-15/materializedviewsbuilder
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c MaterializedViewsBuilderClient) ServiceDeleteThenPoll(ctx context.Context, id ServiceId) error {
+	result, err := c.ServiceDelete(ctx, id)
+	if err != nil {
+		return fmt.Errorf("performing ServiceDelete: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after ServiceDelete: %+v", err)
+	}
+
+	return nil
+}

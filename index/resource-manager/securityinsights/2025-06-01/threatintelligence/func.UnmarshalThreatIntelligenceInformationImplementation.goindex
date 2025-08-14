@@ -1,0 +1,43 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2025-06-01/threatintelligence
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+)
+func UnmarshalThreatIntelligenceInformationImplementation(input []byte) (ThreatIntelligenceInformation, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling ThreatIntelligenceInformation into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["kind"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "indicator") {
+		var out ThreatIntelligenceIndicatorModel
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ThreatIntelligenceIndicatorModel: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseThreatIntelligenceInformationImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseThreatIntelligenceInformationImpl: %+v", err)
+	}
+
+	return RawThreatIntelligenceInformationImpl{
+		threatIntelligenceInformation: parent,
+		Type:                          value,
+		Values:                        temp,
+	}, nil
+
+}

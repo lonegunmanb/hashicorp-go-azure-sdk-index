@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/userexperienceanalyticsapphealthosversionperformance
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewUserExperienceAnalyticsAppHealthOSVersionPerformanceClientWithBaseURI(sdkApi sdkEnv.Api) (*UserExperienceAnalyticsAppHealthOSVersionPerformanceClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "userexperienceanalyticsapphealthosversionperformance", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating UserExperienceAnalyticsAppHealthOSVersionPerformanceClient: %+v", err)
+	}
+
+	return &UserExperienceAnalyticsAppHealthOSVersionPerformanceClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2022-08-01/authorizations
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c AuthorizationsClient) AuthorizationListByAuthorizationProviderComplete(ctx context.Context, id AuthorizationProviderId, options AuthorizationListByAuthorizationProviderOperationOptions) (AuthorizationListByAuthorizationProviderCompleteResult, error) {
+	return c.AuthorizationListByAuthorizationProviderCompleteMatchingPredicate(ctx, id, options, AuthorizationContractOperationPredicate{})
+}

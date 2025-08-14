@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2024-08-01/advancedthreatprotectionsettings
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c AdvancedThreatProtectionSettingsClient) ServerThreatProtectionSettingsCreateOrUpdateThenPoll(ctx context.Context, id FlexibleServerId, input ServerThreatProtectionSettingsModel) error {
+	result, err := c.ServerThreatProtectionSettingsCreateOrUpdate(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing ServerThreatProtectionSettingsCreateOrUpdate: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after ServerThreatProtectionSettingsCreateOrUpdate: %+v", err)
+	}
+
+	return nil
+}

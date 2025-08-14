@@ -1,0 +1,74 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseResponseEmotionType(input string) (*ResponseEmotionType, error) {
+	vals := map[string]ResponseEmotionType{
+		"ambitious":    ResponseEmotionType_Ambitious,
+		"angry":        ResponseEmotionType_Angry,
+		"annoyed":      ResponseEmotionType_Annoyed,
+		"anxious":      ResponseEmotionType_Anxious,
+		"apathetic":    ResponseEmotionType_Apathetic,
+		"ashamed":      ResponseEmotionType_Ashamed,
+		"awed":         ResponseEmotionType_Awed,
+		"bored":        ResponseEmotionType_Bored,
+		"calm":         ResponseEmotionType_Calm,
+		"cheerful":     ResponseEmotionType_Cheerful,
+		"comfortable":  ResponseEmotionType_Comfortable,
+		"concerned":    ResponseEmotionType_Concerned,
+		"confident":    ResponseEmotionType_Confident,
+		"confused":     ResponseEmotionType_Confused,
+		"content":      ResponseEmotionType_Content,
+		"creative":     ResponseEmotionType_Creative,
+		"curious":      ResponseEmotionType_Curious,
+		"depressed":    ResponseEmotionType_Depressed,
+		"determined":   ResponseEmotionType_Determined,
+		"disappointed": ResponseEmotionType_Disappointed,
+		"energized":    ResponseEmotionType_Energized,
+		"excited":      ResponseEmotionType_Excited,
+		"exhausted":    ResponseEmotionType_Exhausted,
+		"focused":      ResponseEmotionType_Focused,
+		"frightened":   ResponseEmotionType_Frightened,
+		"frustrated":   ResponseEmotionType_Frustrated,
+		"fulfilled":    ResponseEmotionType_Fulfilled,
+		"glad":         ResponseEmotionType_Glad,
+		"grateful":     ResponseEmotionType_Grateful,
+		"happy":        ResponseEmotionType_Happy,
+		"hopeless":     ResponseEmotionType_Hopeless,
+		"hurt":         ResponseEmotionType_Hurt,
+		"included":     ResponseEmotionType_Included,
+		"inspired":     ResponseEmotionType_Inspired,
+		"jealous":      ResponseEmotionType_Jealous,
+		"lonely":       ResponseEmotionType_Lonely,
+		"miserable":    ResponseEmotionType_Miserable,
+		"motivated":    ResponseEmotionType_Motivated,
+		"nervous":      ResponseEmotionType_Nervous,
+		"none":         ResponseEmotionType_None,
+		"optimistic":   ResponseEmotionType_Optimistic,
+		"overwhelmed":  ResponseEmotionType_Overwhelmed,
+		"peaceful":     ResponseEmotionType_Peaceful,
+		"pensive":      ResponseEmotionType_Pensive,
+		"proud":        ResponseEmotionType_Proud,
+		"reserved":     ResponseEmotionType_Reserved,
+		"restless":     ResponseEmotionType_Restless,
+		"sad":          ResponseEmotionType_Sad,
+		"sensitive":    ResponseEmotionType_Sensitive,
+		"shocked":      ResponseEmotionType_Shocked,
+		"skeptical":    ResponseEmotionType_Skeptical,
+		"stressed":     ResponseEmotionType_Stressed,
+		"stuck":        ResponseEmotionType_Stuck,
+		"successful":   ResponseEmotionType_Successful,
+		"tired":        ResponseEmotionType_Tired,
+		"valuable":     ResponseEmotionType_Valuable,
+		"worthless":    ResponseEmotionType_Worthless,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ResponseEmotionType(input)
+	return &out, nil
+}

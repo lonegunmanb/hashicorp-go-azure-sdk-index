@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/stable/synchronizationjobschemadirectory
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSynchronizationJobSchemaDirectoryClientWithBaseURI(sdkApi sdkEnv.Api) (*SynchronizationJobSchemaDirectoryClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "synchronizationjobschemadirectory", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SynchronizationJobSchemaDirectoryClient: %+v", err)
+	}
+
+	return &SynchronizationJobSchemaDirectoryClient{
+		Client: client,
+	}, nil
+}

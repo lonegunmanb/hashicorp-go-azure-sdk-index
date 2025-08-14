@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/azurestackhci/2024-01-01/updatesummaries
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewUpdateSummariesClientWithBaseURI(sdkApi sdkEnv.Api) (*UpdateSummariesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "updatesummaries", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating UpdateSummariesClient: %+v", err)
+	}
+
+	return &UpdateSummariesClient{
+		Client: client,
+	}, nil
+}

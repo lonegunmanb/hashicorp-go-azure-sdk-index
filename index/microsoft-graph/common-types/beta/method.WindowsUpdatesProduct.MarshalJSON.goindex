@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s WindowsUpdatesProduct) MarshalJSON() ([]byte, error) {
+	type wrapper WindowsUpdatesProduct
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling WindowsUpdatesProduct: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling WindowsUpdatesProduct: %+v", err)
+	}
+
+	delete(decoded, "friendlyNames")
+	delete(decoded, "groupName")
+	delete(decoded, "name")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.windowsUpdates.product"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling WindowsUpdatesProduct: %+v", err)
+	}
+
+	return encoded, nil
+}

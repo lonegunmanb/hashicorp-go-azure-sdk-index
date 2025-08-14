@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s DeviceManagementSettingBooleanConstraint) MarshalJSON() ([]byte, error) {
+	type wrapper DeviceManagementSettingBooleanConstraint
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling DeviceManagementSettingBooleanConstraint: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling DeviceManagementSettingBooleanConstraint: %+v", err)
+	}
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.deviceManagementSettingBooleanConstraint"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling DeviceManagementSettingBooleanConstraint: %+v", err)
+	}
+
+	return encoded, nil
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/guestconfiguration/2024-04-05/guestconfigurationassignments
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseComplianceStatus(input string) (*ComplianceStatus, error) {
+	vals := map[string]ComplianceStatus{
+		"compliant":    ComplianceStatusCompliant,
+		"noncompliant": ComplianceStatusNonCompliant,
+		"pending":      ComplianceStatusPending,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ComplianceStatus(input)
+	return &out, nil
+}

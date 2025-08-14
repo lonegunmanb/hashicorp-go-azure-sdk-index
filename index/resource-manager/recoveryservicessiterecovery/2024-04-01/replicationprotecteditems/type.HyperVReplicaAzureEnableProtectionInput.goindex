@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2024-04-01/replicationprotecteditems
+import (
+	"encoding/json"
+	"fmt"
+)
+type HyperVReplicaAzureEnableProtectionInput struct {
+	DiskEncryptionSetId             *string                               `json:"diskEncryptionSetId,omitempty"`
+	DiskType                        *DiskAccountType                      `json:"diskType,omitempty"`
+	DisksToInclude                  *[]string                             `json:"disksToInclude,omitempty"`
+	DisksToIncludeForManagedDisks   *[]HyperVReplicaAzureDiskInputDetails `json:"disksToIncludeForManagedDisks,omitempty"`
+	EnableRdpOnTargetOption         *string                               `json:"enableRdpOnTargetOption,omitempty"`
+	HvHostVMId                      *string                               `json:"hvHostVmId,omitempty"`
+	LicenseType                     *LicenseType                          `json:"licenseType,omitempty"`
+	LogStorageAccountId             *string                               `json:"logStorageAccountId,omitempty"`
+	OsType                          *string                               `json:"osType,omitempty"`
+	SeedManagedDiskTags             *map[string]string                    `json:"seedManagedDiskTags,omitempty"`
+	SqlServerLicenseType            *SqlServerLicenseType                 `json:"sqlServerLicenseType,omitempty"`
+	TargetAvailabilitySetId         *string                               `json:"targetAvailabilitySetId,omitempty"`
+	TargetAvailabilityZone          *string                               `json:"targetAvailabilityZone,omitempty"`
+	TargetAzureNetworkId            *string                               `json:"targetAzureNetworkId,omitempty"`
+	TargetAzureSubnetId             *string                               `json:"targetAzureSubnetId,omitempty"`
+	TargetAzureV1ResourceGroupId    *string                               `json:"targetAzureV1ResourceGroupId,omitempty"`
+	TargetAzureV2ResourceGroupId    *string                               `json:"targetAzureV2ResourceGroupId,omitempty"`
+	TargetAzureVMName               *string                               `json:"targetAzureVmName,omitempty"`
+	TargetManagedDiskTags           *map[string]string                    `json:"targetManagedDiskTags,omitempty"`
+	TargetNicTags                   *map[string]string                    `json:"targetNicTags,omitempty"`
+	TargetProximityPlacementGroupId *string                               `json:"targetProximityPlacementGroupId,omitempty"`
+	TargetStorageAccountId          *string                               `json:"targetStorageAccountId,omitempty"`
+	TargetVMSecurityProfile         *SecurityProfileProperties            `json:"targetVmSecurityProfile,omitempty"`
+	TargetVMSize                    *string                               `json:"targetVmSize,omitempty"`
+	TargetVMTags                    *map[string]string                    `json:"targetVmTags,omitempty"`
+	UseManagedDisks                 *string                               `json:"useManagedDisks,omitempty"`
+	UseManagedDisksForReplication   *string                               `json:"useManagedDisksForReplication,omitempty"`
+	UserSelectedOSName              *string                               `json:"userSelectedOSName,omitempty"`
+	VhdId                           *string                               `json:"vhdId,omitempty"`
+	VirtualMachineName              *string                               `json:"vmName,omitempty"`
+
+	// Fields inherited from EnableProtectionProviderSpecificInput
+
+	InstanceType string `json:"instanceType"`
+}

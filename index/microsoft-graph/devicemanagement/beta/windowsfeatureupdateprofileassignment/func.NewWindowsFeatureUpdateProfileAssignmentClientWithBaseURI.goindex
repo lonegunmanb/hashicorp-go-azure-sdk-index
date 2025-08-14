@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/windowsfeatureupdateprofileassignment
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewWindowsFeatureUpdateProfileAssignmentClientWithBaseURI(sdkApi sdkEnv.Api) (*WindowsFeatureUpdateProfileAssignmentClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "windowsfeatureupdateprofileassignment", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating WindowsFeatureUpdateProfileAssignmentClient: %+v", err)
+	}
+
+	return &WindowsFeatureUpdateProfileAssignmentClient{
+		Client: client,
+	}, nil
+}

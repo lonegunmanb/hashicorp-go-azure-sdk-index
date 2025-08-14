@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2024-10-01/jobdetails
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type AzureWorkloadJob struct {
+	ActionsInfo  *[]JobSupportedAction         `json:"actionsInfo,omitempty"`
+	Duration     *string                       `json:"duration,omitempty"`
+	ErrorDetails *[]AzureWorkloadErrorInfo     `json:"errorDetails,omitempty"`
+	ExtendedInfo *AzureWorkloadJobExtendedInfo `json:"extendedInfo,omitempty"`
+	WorkloadType *string                       `json:"workloadType,omitempty"`
+
+	// Fields inherited from Job
+
+	ActivityId           *string               `json:"activityId,omitempty"`
+	BackupManagementType *BackupManagementType `json:"backupManagementType,omitempty"`
+	EndTime              *string               `json:"endTime,omitempty"`
+	EntityFriendlyName   *string               `json:"entityFriendlyName,omitempty"`
+	JobType              string                `json:"jobType"`
+	Operation            *string               `json:"operation,omitempty"`
+	StartTime            *string               `json:"startTime,omitempty"`
+	Status               *string               `json:"status,omitempty"`
+}

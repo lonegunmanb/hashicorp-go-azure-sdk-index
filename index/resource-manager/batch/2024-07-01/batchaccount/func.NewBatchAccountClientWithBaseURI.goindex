@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/batchaccount
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewBatchAccountClientWithBaseURI(sdkApi sdkEnv.Api) (*BatchAccountClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "batchaccount", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating BatchAccountClient: %+v", err)
+	}
+
+	return &BatchAccountClient{
+		Client: client,
+	}, nil
+}

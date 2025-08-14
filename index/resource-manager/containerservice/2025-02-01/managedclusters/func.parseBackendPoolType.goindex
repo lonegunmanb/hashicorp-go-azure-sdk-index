@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerservice/2025-02-01/managedclusters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseBackendPoolType(input string) (*BackendPoolType, error) {
+	vals := map[string]BackendPoolType{
+		"nodeip":              BackendPoolTypeNodeIP,
+		"nodeipconfiguration": BackendPoolTypeNodeIPConfiguration,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := BackendPoolType(input)
+	return &out, nil
+}

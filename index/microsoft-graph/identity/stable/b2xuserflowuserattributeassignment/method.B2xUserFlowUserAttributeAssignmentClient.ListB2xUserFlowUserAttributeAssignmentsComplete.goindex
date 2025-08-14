@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/b2xuserflowuserattributeassignment
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c B2xUserFlowUserAttributeAssignmentClient) ListB2xUserFlowUserAttributeAssignmentsComplete(ctx context.Context, id stable.IdentityB2xUserFlowId, options ListB2xUserFlowUserAttributeAssignmentsOperationOptions) (ListB2xUserFlowUserAttributeAssignmentsCompleteResult, error) {
+	return c.ListB2xUserFlowUserAttributeAssignmentsCompleteMatchingPredicate(ctx, id, options, IdentityUserFlowAttributeAssignmentOperationPredicate{})
+}

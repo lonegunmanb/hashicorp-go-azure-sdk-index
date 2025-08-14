@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/contactfolderchildfolder
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ContactFolderChildFolderClient) ListContactFolderChildFoldersComplete(ctx context.Context, id beta.MeContactFolderId, options ListContactFolderChildFoldersOperationOptions) (ListContactFolderChildFoldersCompleteResult, error) {
+	return c.ListContactFolderChildFoldersCompleteMatchingPredicate(ctx, id, options, ContactFolderOperationPredicate{})
+}

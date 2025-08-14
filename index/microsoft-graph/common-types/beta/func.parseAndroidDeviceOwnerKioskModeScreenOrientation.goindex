@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAndroidDeviceOwnerKioskModeScreenOrientation(input string) (*AndroidDeviceOwnerKioskModeScreenOrientation, error) {
+	vals := map[string]AndroidDeviceOwnerKioskModeScreenOrientation{
+		"autorotate":    AndroidDeviceOwnerKioskModeScreenOrientation_AutoRotate,
+		"landscape":     AndroidDeviceOwnerKioskModeScreenOrientation_Landscape,
+		"notconfigured": AndroidDeviceOwnerKioskModeScreenOrientation_NotConfigured,
+		"portrait":      AndroidDeviceOwnerKioskModeScreenOrientation_Portrait,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AndroidDeviceOwnerKioskModeScreenOrientation(input)
+	return &out, nil
+}

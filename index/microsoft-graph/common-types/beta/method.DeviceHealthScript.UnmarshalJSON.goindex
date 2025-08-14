@@ -1,0 +1,98 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *DeviceHealthScript) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		Assignments              *[]DeviceHealthScriptAssignment  `json:"assignments,omitempty"`
+		CreatedDateTime          *string                          `json:"createdDateTime,omitempty"`
+		Description              nullable.Type[string]            `json:"description,omitempty"`
+		DetectionScriptContent   nullable.Type[string]            `json:"detectionScriptContent,omitempty"`
+		DeviceHealthScriptType   *DeviceHealthScriptType          `json:"deviceHealthScriptType,omitempty"`
+		DeviceRunStates          *[]DeviceHealthScriptDeviceState `json:"deviceRunStates,omitempty"`
+		DisplayName              nullable.Type[string]            `json:"displayName,omitempty"`
+		EnforceSignatureCheck    *bool                            `json:"enforceSignatureCheck,omitempty"`
+		HighestAvailableVersion  nullable.Type[string]            `json:"highestAvailableVersion,omitempty"`
+		IsGlobalScript           *bool                            `json:"isGlobalScript,omitempty"`
+		LastModifiedDateTime     *string                          `json:"lastModifiedDateTime,omitempty"`
+		Publisher                nullable.Type[string]            `json:"publisher,omitempty"`
+		RemediationScriptContent nullable.Type[string]            `json:"remediationScriptContent,omitempty"`
+		RoleScopeTagIds          *[]string                        `json:"roleScopeTagIds,omitempty"`
+		RunAs32Bit               *bool                            `json:"runAs32Bit,omitempty"`
+		RunAsAccount             *RunAsAccountType                `json:"runAsAccount,omitempty"`
+		RunSummary               *DeviceHealthScriptRunSummary    `json:"runSummary,omitempty"`
+		Version                  nullable.Type[string]            `json:"version,omitempty"`
+		Id                       *string                          `json:"id,omitempty"`
+		ODataId                  *string                          `json:"@odata.id,omitempty"`
+		ODataType                *string                          `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.Assignments = decoded.Assignments
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Description = decoded.Description
+	s.DetectionScriptContent = decoded.DetectionScriptContent
+	s.DeviceHealthScriptType = decoded.DeviceHealthScriptType
+	s.DeviceRunStates = decoded.DeviceRunStates
+	s.DisplayName = decoded.DisplayName
+	s.EnforceSignatureCheck = decoded.EnforceSignatureCheck
+	s.HighestAvailableVersion = decoded.HighestAvailableVersion
+	s.IsGlobalScript = decoded.IsGlobalScript
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.Publisher = decoded.Publisher
+	s.RemediationScriptContent = decoded.RemediationScriptContent
+	s.RoleScopeTagIds = decoded.RoleScopeTagIds
+	s.RunAs32Bit = decoded.RunAs32Bit
+	s.RunAsAccount = decoded.RunAsAccount
+	s.RunSummary = decoded.RunSummary
+	s.Version = decoded.Version
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling DeviceHealthScript into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["detectionScriptParameters"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling DetectionScriptParameters into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]DeviceHealthScriptParameter, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalDeviceHealthScriptParameterImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'DetectionScriptParameters' for 'DeviceHealthScript': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.DetectionScriptParameters = &output
+	}
+
+	if v, ok := temp["remediationScriptParameters"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling RemediationScriptParameters into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]DeviceHealthScriptParameter, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalDeviceHealthScriptParameterImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'RemediationScriptParameters' for 'DeviceHealthScript': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.RemediationScriptParameters = &output
+	}
+
+	return nil
+}

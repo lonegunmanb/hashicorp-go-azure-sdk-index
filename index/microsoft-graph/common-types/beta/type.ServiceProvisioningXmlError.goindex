@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ServiceProvisioningXmlError struct {
+	// Error Information published by the Federated Service as an xml string.
+	ErrorDetail nullable.Type[string] `json:"errorDetail,omitempty"`
+
+	// Fields inherited from ServiceProvisioningError
+
+	// The date and time at which the error occurred.
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// Indicates whether the Error has been attended to.
+	IsResolved nullable.Type[bool] `json:"isResolved,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Qualified service instance (for example, 'SharePoint/Dublin') that published the service error information.
+	ServiceInstance nullable.Type[string] `json:"serviceInstance,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

@@ -1,0 +1,52 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s ManagedTenantsCloudPCOverview) MarshalJSON() ([]byte, error) {
+	type wrapper ManagedTenantsCloudPCOverview
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ManagedTenantsCloudPCOverview: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ManagedTenantsCloudPCOverview: %+v", err)
+	}
+
+	delete(decoded, "frontlineLicensesCount")
+	delete(decoded, "lastRefreshedDateTime")
+	delete(decoded, "numberOfCloudPcConnectionStatusFailed")
+	delete(decoded, "numberOfCloudPcConnectionStatusPassed")
+	delete(decoded, "numberOfCloudPcConnectionStatusPending")
+	delete(decoded, "numberOfCloudPcConnectionStatusRunning")
+	delete(decoded, "numberOfCloudPcConnectionStatusUnkownFutureValue")
+	delete(decoded, "numberOfCloudPcStatusDeprovisioning")
+	delete(decoded, "numberOfCloudPcStatusFailed")
+	delete(decoded, "numberOfCloudPcStatusInGracePeriod")
+	delete(decoded, "numberOfCloudPcStatusNotProvisioned")
+	delete(decoded, "numberOfCloudPcStatusProvisioned")
+	delete(decoded, "numberOfCloudPcStatusProvisioning")
+	delete(decoded, "numberOfCloudPcStatusUnknown")
+	delete(decoded, "numberOfCloudPcStatusUpgrading")
+	delete(decoded, "tenantDisplayName")
+	delete(decoded, "totalBusinessLicenses")
+	delete(decoded, "totalCloudPcConnectionStatus")
+	delete(decoded, "totalCloudPcStatus")
+	delete(decoded, "totalEnterpriseLicenses")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.managedTenants.cloudPcOverview"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ManagedTenantsCloudPCOverview: %+v", err)
+	}
+
+	return encoded, nil
+}

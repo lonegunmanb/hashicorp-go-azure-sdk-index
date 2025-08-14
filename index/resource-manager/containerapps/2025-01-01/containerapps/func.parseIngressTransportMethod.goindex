@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerapps/2025-01-01/containerapps
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseIngressTransportMethod(input string) (*IngressTransportMethod, error) {
+	vals := map[string]IngressTransportMethod{
+		"auto":  IngressTransportMethodAuto,
+		"http":  IngressTransportMethodHTTP,
+		"http2": IngressTransportMethodHTTPTwo,
+		"tcp":   IngressTransportMethodTcp,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IngressTransportMethod(input)
+	return &out, nil
+}

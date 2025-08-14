@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/healthcareapis/2022-12-01/iotconnectors
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id IotConnectorId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Workspace Name: %q", id.WorkspaceName),
+		fmt.Sprintf("Iot Connector Name: %q", id.IotConnectorName),
+	}
+	return fmt.Sprintf("Iot Connector (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2021-05-01-preview/autoscaleapis
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAutoscaleAPIsClientWithBaseURI(sdkApi sdkEnv.Api) (*AutoscaleAPIsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "autoscaleapis", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AutoscaleAPIsClient: %+v", err)
+	}
+
+	return &AutoscaleAPIsClient{
+		Client: client,
+	}, nil
+}

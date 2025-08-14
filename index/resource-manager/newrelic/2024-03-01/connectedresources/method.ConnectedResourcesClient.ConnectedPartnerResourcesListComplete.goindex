@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/newrelic/2024-03-01/connectedresources
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ConnectedResourcesClient) ConnectedPartnerResourcesListComplete(ctx context.Context, id MonitorId, input string) (ConnectedPartnerResourcesListCompleteResult, error) {
+	return c.ConnectedPartnerResourcesListCompleteMatchingPredicate(ctx, id, input, ConnectedPartnerResourcesListFormatOperationPredicate{})
+}

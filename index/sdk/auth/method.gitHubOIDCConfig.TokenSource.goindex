@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"io"
+	"net/http"
+	"net/url"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	"golang.org/x/oauth2"
+)
+func (c *gitHubOIDCConfig) TokenSource(ctx context.Context) (Authorizer, error) {
+	return NewCachedAuthorizer(&GitHubOIDCAuthorizer{
+		conf: c,
+	})
+}

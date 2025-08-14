@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2023-07-03/galleryimages
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *GalleryImageProperties) GetEndOfLifeDateAsTime() (*time.Time, error) {
+	if o.EndOfLifeDate == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.EndOfLifeDate, "2006-01-02T15:04:05Z07:00")
+}

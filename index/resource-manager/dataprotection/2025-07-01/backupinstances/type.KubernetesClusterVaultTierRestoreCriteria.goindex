@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2025-07-01/backupinstances
+import (
+	"encoding/json"
+	"fmt"
+)
+type KubernetesClusterVaultTierRestoreCriteria struct {
+	ConflictPolicy               *ExistingResourcePolicy      `json:"conflictPolicy,omitempty"`
+	ExcludedNamespaces           *[]string                    `json:"excludedNamespaces,omitempty"`
+	ExcludedResourceTypes        *[]string                    `json:"excludedResourceTypes,omitempty"`
+	IncludeClusterScopeResources bool                         `json:"includeClusterScopeResources"`
+	IncludedNamespaces           *[]string                    `json:"includedNamespaces,omitempty"`
+	IncludedResourceTypes        *[]string                    `json:"includedResourceTypes,omitempty"`
+	LabelSelectors               *[]string                    `json:"labelSelectors,omitempty"`
+	NamespaceMappings            *map[string]string           `json:"namespaceMappings,omitempty"`
+	PersistentVolumeRestoreMode  *PersistentVolumeRestoreMode `json:"persistentVolumeRestoreMode,omitempty"`
+	ResourceModifierReference    *NamespacedNameResource      `json:"resourceModifierReference,omitempty"`
+	RestoreHookReferences        *[]NamespacedNameResource    `json:"restoreHookReferences,omitempty"`
+	StagingResourceGroupId       *string                      `json:"stagingResourceGroupId,omitempty"`
+	StagingStorageAccountId      *string                      `json:"stagingStorageAccountId,omitempty"`
+
+	// Fields inherited from ItemLevelRestoreCriteria
+
+	ObjectType string `json:"objectType"`
+}

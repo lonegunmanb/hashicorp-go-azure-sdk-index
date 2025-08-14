@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/networkcloud/2025-02-01/networkclouds
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseKubernetesClusterNodeDetailedStatus(input string) (*KubernetesClusterNodeDetailedStatus, error) {
+	vals := map[string]KubernetesClusterNodeDetailedStatus{
+		"available":    KubernetesClusterNodeDetailedStatusAvailable,
+		"error":        KubernetesClusterNodeDetailedStatusError,
+		"provisioning": KubernetesClusterNodeDetailedStatusProvisioning,
+		"running":      KubernetesClusterNodeDetailedStatusRunning,
+		"scheduling":   KubernetesClusterNodeDetailedStatusScheduling,
+		"stopped":      KubernetesClusterNodeDetailedStatusStopped,
+		"terminating":  KubernetesClusterNodeDetailedStatusTerminating,
+		"unknown":      KubernetesClusterNodeDetailedStatusUnknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := KubernetesClusterNodeDetailedStatus(input)
+	return &out, nil
+}

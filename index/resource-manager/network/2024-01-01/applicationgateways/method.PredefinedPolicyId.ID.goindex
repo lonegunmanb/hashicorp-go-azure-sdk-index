@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-01-01/applicationgateways
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id PredefinedPolicyId) ID() string {
+	fmtString := "/subscriptions/%s/providers/Microsoft.Network/applicationGatewayAvailableSslOptions/default/predefinedPolicies/%s"
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.PredefinedPolicyName)
+}

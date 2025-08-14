@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicelinker/2024-04-01/servicelinker
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewServicelinkerClientWithBaseURI(sdkApi sdkEnv.Api) (*ServicelinkerClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "servicelinker", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ServicelinkerClient: %+v", err)
+	}
+
+	return &ServicelinkerClient{
+		Client: client,
+	}, nil
+}

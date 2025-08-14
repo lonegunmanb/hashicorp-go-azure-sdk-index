@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/softwareupdatestatussummary
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSoftwareUpdateStatusSummaryClientWithBaseURI(sdkApi sdkEnv.Api) (*SoftwareUpdateStatusSummaryClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "softwareupdatestatussummary", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SoftwareUpdateStatusSummaryClient: %+v", err)
+	}
+
+	return &SoftwareUpdateStatusSummaryClient{
+		Client: client,
+	}, nil
+}

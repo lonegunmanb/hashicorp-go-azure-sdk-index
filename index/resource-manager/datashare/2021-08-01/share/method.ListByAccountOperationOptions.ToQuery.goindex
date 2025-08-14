@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2021-08-01/share
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ListByAccountOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.Filter != nil {
+		out.Append("$filter", fmt.Sprintf("%v", *o.Filter))
+	}
+	if o.Orderby != nil {
+		out.Append("$orderby", fmt.Sprintf("%v", *o.Orderby))
+	}
+	return &out
+}

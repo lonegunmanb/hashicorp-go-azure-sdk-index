@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/apiversionset
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewApiVersionSetClientWithBaseURI(sdkApi sdkEnv.Api) (*ApiVersionSetClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "apiversionset", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ApiVersionSetClient: %+v", err)
+	}
+
+	return &ApiVersionSetClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/advisor/2023-01-01/suppressions
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SuppressionsClient) ListComplete(ctx context.Context, id commonids.SubscriptionId, options ListOperationOptions) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, options, SuppressionContractOperationPredicate{})
+}

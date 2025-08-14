@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/lifecycleworkflowdeleteditemworkflowversiontask
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c LifecycleWorkflowDeletedItemWorkflowVersionTaskClient) ListLifecycleWorkflowDeletedItemWorkflowVersionTasksComplete(ctx context.Context, id stable.IdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdVersionId, options ListLifecycleWorkflowDeletedItemWorkflowVersionTasksOperationOptions) (ListLifecycleWorkflowDeletedItemWorkflowVersionTasksCompleteResult, error) {
+	return c.ListLifecycleWorkflowDeletedItemWorkflowVersionTasksCompleteMatchingPredicate(ctx, id, options, IdentityGovernanceTaskOperationPredicate{})
+}

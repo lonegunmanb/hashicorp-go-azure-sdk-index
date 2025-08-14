@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseExternalConnectorsLabel(input string) (*ExternalConnectorsLabel, error) {
+	vals := map[string]ExternalConnectorsLabel{
+		"authors":              ExternalConnectorsLabel_Authors,
+		"createdby":            ExternalConnectorsLabel_CreatedBy,
+		"createddatetime":      ExternalConnectorsLabel_CreatedDateTime,
+		"fileextension":        ExternalConnectorsLabel_FileExtension,
+		"filename":             ExternalConnectorsLabel_FileName,
+		"iconurl":              ExternalConnectorsLabel_IconUrl,
+		"lastmodifiedby":       ExternalConnectorsLabel_LastModifiedBy,
+		"lastmodifieddatetime": ExternalConnectorsLabel_LastModifiedDateTime,
+		"title":                ExternalConnectorsLabel_Title,
+		"url":                  ExternalConnectorsLabel_Url,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ExternalConnectorsLabel(input)
+	return &out, nil
+}

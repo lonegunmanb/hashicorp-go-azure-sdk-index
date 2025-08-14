@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/taskresource
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSyncTableMigrationState(input string) (*SyncTableMigrationState, error) {
+	vals := map[string]SyncTableMigrationState{
+		"before_load": SyncTableMigrationStateBEFORELOAD,
+		"canceled":    SyncTableMigrationStateCANCELED,
+		"completed":   SyncTableMigrationStateCOMPLETED,
+		"error":       SyncTableMigrationStateERROR,
+		"failed":      SyncTableMigrationStateFAILED,
+		"full_load":   SyncTableMigrationStateFULLLOAD,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SyncTableMigrationState(input)
+	return &out, nil
+}

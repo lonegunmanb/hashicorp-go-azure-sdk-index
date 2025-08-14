@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistcolumnsourcecolumn
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDriveListColumnSourceColumnClientWithBaseURI(sdkApi sdkEnv.Api) (*DriveListColumnSourceColumnClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "drivelistcolumnsourcecolumn", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DriveListColumnSourceColumnClient: %+v", err)
+	}
+
+	return &DriveListColumnSourceColumnClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/auditevent
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAuditEventClientWithBaseURI(sdkApi sdkEnv.Api) (*AuditEventClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "auditevent", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AuditEventClient: %+v", err)
+	}
+
+	return &AuditEventClient{
+		Client: client,
+	}, nil
+}

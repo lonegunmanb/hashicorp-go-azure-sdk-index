@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/operationalinsights/2023-09-01/tables
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTableTypeEnum(input string) (*TableTypeEnum, error) {
+	vals := map[string]TableTypeEnum{
+		"customlog":     TableTypeEnumCustomLog,
+		"microsoft":     TableTypeEnumMicrosoft,
+		"restoredlogs":  TableTypeEnumRestoredLogs,
+		"searchresults": TableTypeEnumSearchResults,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TableTypeEnum(input)
+	return &out, nil
+}

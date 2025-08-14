@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2025-02-15/domains
+import (
+	"encoding/json"
+	"fmt"
+)
+type DomainProperties struct {
+	AutoCreateTopicWithFirstSubscription *bool                        `json:"autoCreateTopicWithFirstSubscription,omitempty"`
+	AutoDeleteTopicWithLastSubscription  *bool                        `json:"autoDeleteTopicWithLastSubscription,omitempty"`
+	DataResidencyBoundary                *DataResidencyBoundary       `json:"dataResidencyBoundary,omitempty"`
+	DisableLocalAuth                     *bool                        `json:"disableLocalAuth,omitempty"`
+	Endpoint                             *string                      `json:"endpoint,omitempty"`
+	EventTypeInfo                        *EventTypeInfo               `json:"eventTypeInfo,omitempty"`
+	InboundIPRules                       *[]InboundIPRule             `json:"inboundIpRules,omitempty"`
+	InputSchema                          *InputSchema                 `json:"inputSchema,omitempty"`
+	InputSchemaMapping                   InputSchemaMapping           `json:"inputSchemaMapping"`
+	MetricResourceId                     *string                      `json:"metricResourceId,omitempty"`
+	MinimumTlsVersionAllowed             *TlsVersion                  `json:"minimumTlsVersionAllowed,omitempty"`
+	PrivateEndpointConnections           *[]PrivateEndpointConnection `json:"privateEndpointConnections,omitempty"`
+	ProvisioningState                    *DomainProvisioningState     `json:"provisioningState,omitempty"`
+	PublicNetworkAccess                  *PublicNetworkAccess         `json:"publicNetworkAccess,omitempty"`
+}

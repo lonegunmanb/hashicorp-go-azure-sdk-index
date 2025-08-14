@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2018-04-16/scheduledqueryrules
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewScheduledQueryRulesClientWithBaseURI(sdkApi sdkEnv.Api) (*ScheduledQueryRulesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "scheduledqueryrules", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ScheduledQueryRulesClient: %+v", err)
+	}
+
+	return &ScheduledQueryRulesClient{
+		Client: client,
+	}, nil
+}

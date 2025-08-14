@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-08-01/scheduledactions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseScheduledActionStatus(input string) (*ScheduledActionStatus, error) {
+	vals := map[string]ScheduledActionStatus{
+		"disabled": ScheduledActionStatusDisabled,
+		"enabled":  ScheduledActionStatusEnabled,
+		"expired":  ScheduledActionStatusExpired,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ScheduledActionStatus(input)
+	return &out, nil
+}

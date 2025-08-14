@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/fabric/2023-11-01/fabriccapacities
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRpSkuTier(input string) (*RpSkuTier, error) {
+	vals := map[string]RpSkuTier{
+		"fabric": RpSkuTierFabric,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RpSkuTier(input)
+	return &out, nil
+}

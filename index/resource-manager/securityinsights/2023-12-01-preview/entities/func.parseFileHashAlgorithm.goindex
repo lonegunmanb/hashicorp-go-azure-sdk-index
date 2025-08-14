@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-12-01-preview/entities
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseFileHashAlgorithm(input string) (*FileHashAlgorithm, error) {
+	vals := map[string]FileHashAlgorithm{
+		"md5":      FileHashAlgorithmMDFive,
+		"sha1":     FileHashAlgorithmSHAOne,
+		"sha256":   FileHashAlgorithmSHATwoFiveSix,
+		"sha256ac": FileHashAlgorithmSHATwoFiveSixAC,
+		"unknown":  FileHashAlgorithmUnknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FileHashAlgorithm(input)
+	return &out, nil
+}

@@ -1,0 +1,68 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *MailboxRestoreArtifactsBulkAdditionRequest) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		DirectoryObjectIds     *[]string                          `json:"directoryObjectIds,omitempty"`
+		Mailboxes              *[]string                          `json:"mailboxes,omitempty"`
+		CreatedDateTime        nullable.Type[string]              `json:"createdDateTime,omitempty"`
+		DestinationType        *DestinationType                   `json:"destinationType,omitempty"`
+		DisplayName            nullable.Type[string]              `json:"displayName,omitempty"`
+		Error                  *PublicError                       `json:"error,omitempty"`
+		LastModifiedDateTime   nullable.Type[string]              `json:"lastModifiedDateTime,omitempty"`
+		ProtectionTimePeriod   *TimePeriod                        `json:"protectionTimePeriod,omitempty"`
+		ProtectionUnitIds      *[]string                          `json:"protectionUnitIds,omitempty"`
+		RestorePointPreference *RestorePointPreference            `json:"restorePointPreference,omitempty"`
+		Status                 *RestoreArtifactsBulkRequestStatus `json:"status,omitempty"`
+		Tags                   *RestorePointTags                  `json:"tags,omitempty"`
+		Id                     *string                            `json:"id,omitempty"`
+		ODataId                *string                            `json:"@odata.id,omitempty"`
+		ODataType              *string                            `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.DirectoryObjectIds = decoded.DirectoryObjectIds
+	s.Mailboxes = decoded.Mailboxes
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.DestinationType = decoded.DestinationType
+	s.DisplayName = decoded.DisplayName
+	s.Error = decoded.Error
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.ProtectionTimePeriod = decoded.ProtectionTimePeriod
+	s.ProtectionUnitIds = decoded.ProtectionUnitIds
+	s.RestorePointPreference = decoded.RestorePointPreference
+	s.Status = decoded.Status
+	s.Tags = decoded.Tags
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling MailboxRestoreArtifactsBulkAdditionRequest into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["createdBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'CreatedBy' for 'MailboxRestoreArtifactsBulkAdditionRequest': %+v", err)
+		}
+		s.CreatedBy = impl
+	}
+
+	if v, ok := temp["lastModifiedBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'LastModifiedBy' for 'MailboxRestoreArtifactsBulkAdditionRequest': %+v", err)
+		}
+		s.LastModifiedBy = impl
+	}
+
+	return nil
+}

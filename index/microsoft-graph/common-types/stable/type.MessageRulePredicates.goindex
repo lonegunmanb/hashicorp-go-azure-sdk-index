@@ -1,0 +1,125 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type MessageRulePredicates struct {
+	// Represents the strings that should appear in the body of an incoming message in order for the condition or exception
+	// to apply.
+	BodyContains *[]string `json:"bodyContains,omitempty"`
+
+	// Represents the strings that should appear in the body or subject of an incoming message in order for the condition or
+	// exception to apply.
+	BodyOrSubjectContains *[]string `json:"bodyOrSubjectContains,omitempty"`
+
+	// Represents the categories that an incoming message should be labeled with in order for the condition or exception to
+	// apply.
+	Categories *[]string `json:"categories,omitempty"`
+
+	// Represents the specific sender email addresses of an incoming message in order for the condition or exception to
+	// apply.
+	FromAddresses *[]Recipient `json:"fromAddresses,omitempty"`
+
+	// Indicates whether an incoming message must have attachments in order for the condition or exception to apply.
+	HasAttachments nullable.Type[bool] `json:"hasAttachments,omitempty"`
+
+	// Represents the strings that appear in the headers of an incoming message in order for the condition or exception to
+	// apply.
+	HeaderContains *[]string `json:"headerContains,omitempty"`
+
+	// The importance that is stamped on an incoming message in order for the condition or exception to apply: low, normal,
+	// high.
+	Importance *Importance `json:"importance,omitempty"`
+
+	// Indicates whether an incoming message must be an approval request in order for the condition or exception to apply.
+	IsApprovalRequest nullable.Type[bool] `json:"isApprovalRequest,omitempty"`
+
+	// Indicates whether an incoming message must be automatically forwarded in order for the condition or exception to
+	// apply.
+	IsAutomaticForward nullable.Type[bool] `json:"isAutomaticForward,omitempty"`
+
+	// Indicates whether an incoming message must be an auto reply in order for the condition or exception to apply.
+	IsAutomaticReply nullable.Type[bool] `json:"isAutomaticReply,omitempty"`
+
+	// Indicates whether an incoming message must be encrypted in order for the condition or exception to apply.
+	IsEncrypted nullable.Type[bool] `json:"isEncrypted,omitempty"`
+
+	// Indicates whether an incoming message must be a meeting request in order for the condition or exception to apply.
+	IsMeetingRequest nullable.Type[bool] `json:"isMeetingRequest,omitempty"`
+
+	// Indicates whether an incoming message must be a meeting response in order for the condition or exception to apply.
+	IsMeetingResponse nullable.Type[bool] `json:"isMeetingResponse,omitempty"`
+
+	// Indicates whether an incoming message must be a non-delivery report in order for the condition or exception to apply.
+	IsNonDeliveryReport nullable.Type[bool] `json:"isNonDeliveryReport,omitempty"`
+
+	// Indicates whether an incoming message must be permission controlled (RMS-protected) in order for the condition or
+	// exception to apply.
+	IsPermissionControlled nullable.Type[bool] `json:"isPermissionControlled,omitempty"`
+
+	// Indicates whether an incoming message must be a read receipt in order for the condition or exception to apply.
+	IsReadReceipt nullable.Type[bool] `json:"isReadReceipt,omitempty"`
+
+	// Indicates whether an incoming message must be S/MIME-signed in order for the condition or exception to apply.
+	IsSigned nullable.Type[bool] `json:"isSigned,omitempty"`
+
+	// Indicates whether an incoming message must be a voice mail in order for the condition or exception to apply.
+	IsVoicemail nullable.Type[bool] `json:"isVoicemail,omitempty"`
+
+	// Represents the flag-for-action value that appears on an incoming message in order for the condition or exception to
+	// apply. The possible values are: any, call, doNotForward, followUp, fyi, forward, noResponseNecessary, read, reply,
+	// replyToAll, review.
+	MessageActionFlag *MessageActionFlag `json:"messageActionFlag,omitempty"`
+
+	// Indicates whether the owner of the mailbox must not be a recipient of an incoming message in order for the condition
+	// or exception to apply.
+	NotSentToMe nullable.Type[bool] `json:"notSentToMe,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Represents the strings that appear in either the toRecipients or ccRecipients properties of an incoming message in
+	// order for the condition or exception to apply.
+	RecipientContains *[]string `json:"recipientContains,omitempty"`
+
+	// Represents the strings that appear in the from property of an incoming message in order for the condition or
+	// exception to apply.
+	SenderContains *[]string `json:"senderContains,omitempty"`
+
+	// Represents the sensitivity level that must be stamped on an incoming message in order for the condition or exception
+	// to apply. The possible values are: normal, personal, private, confidential.
+	Sensitivity *Sensitivity `json:"sensitivity,omitempty"`
+
+	// Indicates whether the owner of the mailbox must be in the ccRecipients property of an incoming message in order for
+	// the condition or exception to apply.
+	SentCcMe nullable.Type[bool] `json:"sentCcMe,omitempty"`
+
+	// Indicates whether the owner of the mailbox must be the only recipient in an incoming message in order for the
+	// condition or exception to apply.
+	SentOnlyToMe nullable.Type[bool] `json:"sentOnlyToMe,omitempty"`
+
+	// Represents the email addresses that an incoming message must have been sent to in order for the condition or
+	// exception to apply.
+	SentToAddresses *[]Recipient `json:"sentToAddresses,omitempty"`
+
+	// Indicates whether the owner of the mailbox must be in the toRecipients property of an incoming message in order for
+	// the condition or exception to apply.
+	SentToMe nullable.Type[bool] `json:"sentToMe,omitempty"`
+
+	// Indicates whether the owner of the mailbox must be in either a toRecipients or ccRecipients property of an incoming
+	// message in order for the condition or exception to apply.
+	SentToOrCcMe nullable.Type[bool] `json:"sentToOrCcMe,omitempty"`
+
+	// Represents the strings that appear in the subject of an incoming message in order for the condition or exception to
+	// apply.
+	SubjectContains *[]string `json:"subjectContains,omitempty"`
+
+	// Represents the minimum and maximum sizes (in kilobytes) that an incoming message must fall in between in order for
+	// the condition or exception to apply.
+	WithinSizeRange *SizeRange `json:"withinSizeRange,omitempty"`
+}

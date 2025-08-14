@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type WorkbookChartTitle struct {
+	// The formatting of a chart title, which includes fill and font formatting. Read-only.
+	Format *WorkbookChartTitleFormat `json:"format,omitempty"`
+
+	// Indicates whether the chart title will overlay the chart or not.
+	Overlay nullable.Type[bool] `json:"overlay,omitempty"`
+
+	// The title text of the chart.
+	Text nullable.Type[string] `json:"text,omitempty"`
+
+	// Indicates whether the chart title is visible.
+	Visible *bool `json:"visible,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

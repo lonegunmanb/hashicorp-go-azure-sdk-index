@@ -1,0 +1,39 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-12-01-preview/checkdataconnectorrequirements
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDataConnectorKind(input string) (*DataConnectorKind, error) {
+	vals := map[string]DataConnectorKind{
+		"apipolling":                    DataConnectorKindAPIPolling,
+		"amazonwebservicescloudtrail":   DataConnectorKindAmazonWebServicesCloudTrail,
+		"amazonwebservicess3":           DataConnectorKindAmazonWebServicesSThree,
+		"azureactivedirectory":          DataConnectorKindAzureActiveDirectory,
+		"azureadvancedthreatprotection": DataConnectorKindAzureAdvancedThreatProtection,
+		"azuresecuritycenter":           DataConnectorKindAzureSecurityCenter,
+		"dynamics365":                   DataConnectorKindDynamicsThreeSixFive,
+		"gcp":                           DataConnectorKindGCP,
+		"genericui":                     DataConnectorKindGenericUI,
+		"iot":                           DataConnectorKindIOT,
+		"microsoftcloudappsecurity":     DataConnectorKindMicrosoftCloudAppSecurity,
+		"microsoftdefenderadvancedthreatprotection": DataConnectorKindMicrosoftDefenderAdvancedThreatProtection,
+		"microsoftpurviewinformationprotection":     DataConnectorKindMicrosoftPurviewInformationProtection,
+		"microsoftthreatintelligence":               DataConnectorKindMicrosoftThreatIntelligence,
+		"microsoftthreatprotection":                 DataConnectorKindMicrosoftThreatProtection,
+		"officeatp":                                 DataConnectorKindOfficeATP,
+		"officeirm":                                 DataConnectorKindOfficeIRM,
+		"officepowerbi":                             DataConnectorKindOfficePowerBI,
+		"office365":                                 DataConnectorKindOfficeThreeSixFive,
+		"office365project":                          DataConnectorKindOfficeThreeSixFiveProject,
+		"threatintelligence":                        DataConnectorKindThreatIntelligence,
+		"threatintelligencetaxii":                   DataConnectorKindThreatIntelligenceTaxii,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DataConnectorKind(input)
+	return &out, nil
+}

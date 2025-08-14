@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/systemcentervirtualmachinemanager/2023-10-07/vmmservers
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseForceDelete(input string) (*ForceDelete, error) {
+	vals := map[string]ForceDelete{
+		"false": ForceDeleteFalse,
+		"true":  ForceDeleteTrue,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ForceDelete(input)
+	return &out, nil
+}

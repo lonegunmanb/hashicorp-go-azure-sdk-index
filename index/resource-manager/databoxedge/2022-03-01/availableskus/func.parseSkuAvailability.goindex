@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2022-03-01/availableskus
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSkuAvailability(input string) (*SkuAvailability, error) {
+	vals := map[string]SkuAvailability{
+		"available":   SkuAvailabilityAvailable,
+		"unavailable": SkuAvailabilityUnavailable,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SkuAvailability(input)
+	return &out, nil
+}

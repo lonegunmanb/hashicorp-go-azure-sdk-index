@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTeamworkDeviceActivityState(input string) (*TeamworkDeviceActivityState, error) {
+	vals := map[string]TeamworkDeviceActivityState{
+		"busy":        TeamworkDeviceActivityState_Busy,
+		"idle":        TeamworkDeviceActivityState_Idle,
+		"unavailable": TeamworkDeviceActivityState_Unavailable,
+		"unknown":     TeamworkDeviceActivityState_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TeamworkDeviceActivityState(input)
+	return &out, nil
+}

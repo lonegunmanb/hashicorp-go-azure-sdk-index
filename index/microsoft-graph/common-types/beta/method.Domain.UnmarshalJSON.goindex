@@ -1,0 +1,109 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *Domain) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AuthenticationType               *string                        `json:"authenticationType,omitempty"`
+		AvailabilityStatus               nullable.Type[string]          `json:"availabilityStatus,omitempty"`
+		DomainNameReferences_ODataBind   *[]string                      `json:"domainNameReferences@odata.bind,omitempty"`
+		FederationConfiguration          *[]InternalDomainFederation    `json:"federationConfiguration,omitempty"`
+		IsAdminManaged                   *bool                          `json:"isAdminManaged,omitempty"`
+		IsDefault                        *bool                          `json:"isDefault,omitempty"`
+		IsInitial                        *bool                          `json:"isInitial,omitempty"`
+		IsRoot                           *bool                          `json:"isRoot,omitempty"`
+		IsVerified                       *bool                          `json:"isVerified,omitempty"`
+		PasswordNotificationWindowInDays nullable.Type[int64]           `json:"passwordNotificationWindowInDays,omitempty"`
+		PasswordValidityPeriodInDays     nullable.Type[int64]           `json:"passwordValidityPeriodInDays,omitempty"`
+		RootDomain                       *Domain                        `json:"rootDomain,omitempty"`
+		SharedEmailDomainInvitations     *[]SharedEmailDomainInvitation `json:"sharedEmailDomainInvitations,omitempty"`
+		State                            *DomainState                   `json:"state,omitempty"`
+		SupportedServices                *[]string                      `json:"supportedServices,omitempty"`
+		Id                               *string                        `json:"id,omitempty"`
+		ODataId                          *string                        `json:"@odata.id,omitempty"`
+		ODataType                        *string                        `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AuthenticationType = decoded.AuthenticationType
+	s.AvailabilityStatus = decoded.AvailabilityStatus
+	s.DomainNameReferences_ODataBind = decoded.DomainNameReferences_ODataBind
+	s.FederationConfiguration = decoded.FederationConfiguration
+	s.IsAdminManaged = decoded.IsAdminManaged
+	s.IsDefault = decoded.IsDefault
+	s.IsInitial = decoded.IsInitial
+	s.IsRoot = decoded.IsRoot
+	s.IsVerified = decoded.IsVerified
+	s.PasswordNotificationWindowInDays = decoded.PasswordNotificationWindowInDays
+	s.PasswordValidityPeriodInDays = decoded.PasswordValidityPeriodInDays
+	s.RootDomain = decoded.RootDomain
+	s.SharedEmailDomainInvitations = decoded.SharedEmailDomainInvitations
+	s.State = decoded.State
+	s.SupportedServices = decoded.SupportedServices
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling Domain into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["domainNameReferences"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling DomainNameReferences into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]DirectoryObject, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalDirectoryObjectImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'DomainNameReferences' for 'Domain': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.DomainNameReferences = &output
+	}
+
+	if v, ok := temp["serviceConfigurationRecords"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling ServiceConfigurationRecords into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]DomainDnsRecord, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalDomainDnsRecordImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'ServiceConfigurationRecords' for 'Domain': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.ServiceConfigurationRecords = &output
+	}
+
+	if v, ok := temp["verificationDnsRecords"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling VerificationDnsRecords into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]DomainDnsRecord, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalDomainDnsRecordImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'VerificationDnsRecords' for 'Domain': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.VerificationDnsRecords = &output
+	}
+
+	return nil
+}

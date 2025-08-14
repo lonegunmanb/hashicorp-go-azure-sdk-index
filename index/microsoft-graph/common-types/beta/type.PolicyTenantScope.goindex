@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type PolicyTenantScope struct {
+	// Specifies the users and groups included in or excluded from this tenant-level policy scope.
+	PolicyScope *PolicyBinding `json:"policyScope,omitempty"`
+
+	// Fields inherited from PolicyScopeBase
+
+	Activities    *UserActivityTypes `json:"activities,omitempty"`
+	ExecutionMode *ExecutionMode     `json:"executionMode,omitempty"`
+
+	// The locations (like domains or URLs) to be protected. Required.
+	Locations []PolicyLocation `json:"locations"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The enforcement actions to take if the policy conditions are met within this scope. Required.
+	PolicyActions []DlpActionInfo `json:"policyActions"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

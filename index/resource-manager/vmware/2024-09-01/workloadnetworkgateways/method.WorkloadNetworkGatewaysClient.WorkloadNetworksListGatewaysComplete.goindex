@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2024-09-01/workloadnetworkgateways
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c WorkloadNetworkGatewaysClient) WorkloadNetworksListGatewaysComplete(ctx context.Context, id PrivateCloudId) (WorkloadNetworksListGatewaysCompleteResult, error) {
+	return c.WorkloadNetworksListGatewaysCompleteMatchingPredicate(ctx, id, WorkloadNetworkGatewayOperationPredicate{})
+}

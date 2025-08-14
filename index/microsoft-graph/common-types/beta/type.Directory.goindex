@@ -1,0 +1,83 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type Directory struct {
+	// Conceptual container for user and group directory objects.
+	AdministrativeUnits *[]AdministrativeUnit `json:"administrativeUnits,omitempty"`
+
+	// Group of related custom security attribute definitions.
+	AttributeSets *[]AttributeSet `json:"attributeSets,omitempty"`
+
+	// Exposes the hardware OATH method in the directory.
+	AuthenticationMethodDevices *AuthenticationMethodDevice `json:"authenticationMethodDevices,omitempty"`
+
+	// Container for certificate authorities-related configurations for applications in the tenant.
+	CertificateAuthorities *CertificateAuthorityPath `json:"certificateAuthorities,omitempty"`
+
+	// Schema of a custom security attributes (key-value pairs).
+	CustomSecurityAttributeDefinitions *[]CustomSecurityAttributeDefinition `json:"customSecurityAttributeDefinitions,omitempty"`
+
+	// Recently deleted items. Read-only. Nullable.
+	DeletedItems *[]DirectoryObject `json:"deletedItems,omitempty"`
+
+	// List of OData IDs for `DeletedItems` to bind to this entity
+	DeletedItems_ODataBind *[]string `json:"deletedItems@odata.bind,omitempty"`
+
+	// The credentials of the device's local administrator account backed up to Microsoft Entra ID.
+	DeviceLocalCredentials *[]DeviceLocalCredentialInfo `json:"deviceLocalCredentials,omitempty"`
+
+	// Collection of external user profiles that represent collaborators in the directory.
+	ExternalUserProfiles *[]ExternalUserProfile `json:"externalUserProfiles,omitempty"`
+
+	FeatureRolloutPolicies *[]FeatureRolloutPolicy `json:"featureRolloutPolicies,omitempty"`
+
+	// Configure domain federation with organizations whose identity provider (IdP) supports either the SAML or WS-Fed
+	// protocol.
+	FederationConfigurations *[]IdentityProviderBase `json:"federationConfigurations,omitempty"`
+
+	ImpactedResources *[]ImpactedResource `json:"impactedResources,omitempty"`
+
+	// A collection of external users whose profile data is shared with the Microsoft Entra tenant. Nullable.
+	InboundSharedUserProfiles *[]InboundSharedUserProfile `json:"inboundSharedUserProfiles,omitempty"`
+
+	// A container for on-premises directory synchronization functionalities that are available for the organization.
+	OnPremisesSynchronization *[]OnPremisesDirectorySynchronization `json:"onPremisesSynchronization,omitempty"`
+
+	OutboundSharedUserProfiles *[]OutboundSharedUserProfile `json:"outboundSharedUserProfiles,omitempty"`
+
+	// Collection of pending external user profiles representing collaborators in the directory that are unredeemed.
+	PendingExternalUserProfiles *[]PendingExternalUserProfile `json:"pendingExternalUserProfiles,omitempty"`
+
+	// The collection of public key infrastructure instances for the certificate-based authentication feature for users in a
+	// Microsoft Entra tenant.
+	PublicKeyInfrastructure *PublicKeyInfrastructureRoot `json:"publicKeyInfrastructure,omitempty"`
+
+	RecommendationConfiguration *RecommendationConfiguration `json:"recommendationConfiguration,omitempty"`
+
+	// List of recommended improvements to improve tenant posture.
+	Recommendations *[]Recommendation `json:"recommendations,omitempty"`
+
+	SharedEmailDomains *[]SharedEmailDomain `json:"sharedEmailDomains,omitempty"`
+
+	// List of commercial subscriptions that an organization has.
+	Subscriptions *[]CompanySubscription `json:"subscriptions,omitempty"`
+
+	// A container for templates, such as device templates used for onboarding devices in Microsoft Entra ID.
+	Templates *Template `json:"templates,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

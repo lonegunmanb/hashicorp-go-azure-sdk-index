@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDefenderAttackSurfaceType(input string) (*DefenderAttackSurfaceType, error) {
+	vals := map[string]DefenderAttackSurfaceType{
+		"auditmode":   DefenderAttackSurfaceType_AuditMode,
+		"block":       DefenderAttackSurfaceType_Block,
+		"disable":     DefenderAttackSurfaceType_Disable,
+		"userdefined": DefenderAttackSurfaceType_UserDefined,
+		"warn":        DefenderAttackSurfaceType_Warn,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DefenderAttackSurfaceType(input)
+	return &out, nil
+}

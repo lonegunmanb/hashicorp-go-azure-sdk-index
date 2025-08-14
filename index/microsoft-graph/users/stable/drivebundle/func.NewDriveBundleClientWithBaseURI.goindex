@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/drivebundle
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDriveBundleClientWithBaseURI(sdkApi sdkEnv.Api) (*DriveBundleClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "drivebundle", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DriveBundleClient: %+v", err)
+	}
+
+	return &DriveBundleClient{
+		Client: client,
+	}, nil
+}

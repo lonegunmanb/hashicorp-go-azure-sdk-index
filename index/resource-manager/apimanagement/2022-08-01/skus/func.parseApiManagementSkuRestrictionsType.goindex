@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2022-08-01/skus
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseApiManagementSkuRestrictionsType(input string) (*ApiManagementSkuRestrictionsType, error) {
+	vals := map[string]ApiManagementSkuRestrictionsType{
+		"location": ApiManagementSkuRestrictionsTypeLocation,
+		"zone":     ApiManagementSkuRestrictionsTypeZone,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ApiManagementSkuRestrictionsType(input)
+	return &out, nil
+}

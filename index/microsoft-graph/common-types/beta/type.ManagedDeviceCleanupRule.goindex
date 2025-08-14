@@ -1,0 +1,37 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ManagedDeviceCleanupRule struct {
+	// Indicates the description for the device clean up rule.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// Define the platform type for which the admin wants to create the device clean up rule
+	DeviceCleanupRulePlatformType *DeviceCleanupRulePlatformType `json:"deviceCleanupRulePlatformType,omitempty"`
+
+	// Indicates the number of days when the device has not contacted Intune. Valid values 0 to 2147483647
+	DeviceInactivityBeforeRetirementInDays *int64 `json:"deviceInactivityBeforeRetirementInDays,omitempty"`
+
+	// Indicates the display name of the device cleanup rule.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// Indicates the date and time when the device cleanup rule was last modified. This property is read-only.
+	LastModifiedDateTime *string `json:"lastModifiedDateTime,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

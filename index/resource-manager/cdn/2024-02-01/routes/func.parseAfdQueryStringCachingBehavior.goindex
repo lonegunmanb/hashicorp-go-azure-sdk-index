@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2024-02-01/routes
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAfdQueryStringCachingBehavior(input string) (*AfdQueryStringCachingBehavior, error) {
+	vals := map[string]AfdQueryStringCachingBehavior{
+		"ignorequerystring":            AfdQueryStringCachingBehaviorIgnoreQueryString,
+		"ignorespecifiedquerystrings":  AfdQueryStringCachingBehaviorIgnoreSpecifiedQueryStrings,
+		"includespecifiedquerystrings": AfdQueryStringCachingBehaviorIncludeSpecifiedQueryStrings,
+		"usequerystring":               AfdQueryStringCachingBehaviorUseQueryString,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AfdQueryStringCachingBehavior(input)
+	return &out, nil
+}

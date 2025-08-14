@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/informationprotectionpolicylabel
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c InformationProtectionPolicyLabelClient) EvaluateInformationProtectionPolicyLabelsRemovalsCompleteMatchingPredicate(ctx context.Context, input EvaluateInformationProtectionPolicyLabelsRemovalsRequest, options EvaluateInformationProtectionPolicyLabelsRemovalsOperationOptions, predicate InformationProtectionActionOperationPredicate) (result EvaluateInformationProtectionPolicyLabelsRemovalsCompleteResult, err error) {
+	items := make([]beta.InformationProtectionAction, 0)
+
+	resp, err := c.EvaluateInformationProtectionPolicyLabelsRemovals(ctx, input, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = EvaluateInformationProtectionPolicyLabelsRemovalsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2024-07-10/machines
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePatchModeTypes(input string) (*PatchModeTypes, error) {
+	vals := map[string]PatchModeTypes{
+		"automaticbyos":       PatchModeTypesAutomaticByOS,
+		"automaticbyplatform": PatchModeTypesAutomaticByPlatform,
+		"imagedefault":        PatchModeTypesImageDefault,
+		"manual":              PatchModeTypesManual,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PatchModeTypes(input)
+	return &out, nil
+}

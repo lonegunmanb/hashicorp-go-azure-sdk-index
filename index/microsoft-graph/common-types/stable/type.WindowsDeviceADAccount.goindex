@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type WindowsDeviceADAccount struct {
+	// Not yet documented
+	DomainName nullable.Type[string] `json:"domainName,omitempty"`
+
+	// Not yet documented
+	UserName nullable.Type[string] `json:"userName,omitempty"`
+
+	// Fields inherited from WindowsDeviceAccount
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Not yet documented
+	Password nullable.Type[string] `json:"password,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2022-06-01/policyassignments
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *ScopedPolicyAssignmentId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.Scope, ok = input.Parsed["scope"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "scope", input)
+	}
+
+	if id.PolicyAssignmentName, ok = input.Parsed["policyAssignmentName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "policyAssignmentName", input)
+	}
+
+	return nil
+}

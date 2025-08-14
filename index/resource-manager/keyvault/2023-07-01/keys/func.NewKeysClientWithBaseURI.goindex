@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2023-07-01/keys
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewKeysClientWithBaseURI(sdkApi sdkEnv.Api) (*KeysClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "keys", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating KeysClient: %+v", err)
+	}
+
+	return &KeysClient{
+		Client: client,
+	}, nil
+}

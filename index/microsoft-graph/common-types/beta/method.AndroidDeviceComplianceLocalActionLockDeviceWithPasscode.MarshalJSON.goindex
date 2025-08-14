@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s AndroidDeviceComplianceLocalActionLockDeviceWithPasscode) MarshalJSON() ([]byte, error) {
+	type wrapper AndroidDeviceComplianceLocalActionLockDeviceWithPasscode
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AndroidDeviceComplianceLocalActionLockDeviceWithPasscode: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AndroidDeviceComplianceLocalActionLockDeviceWithPasscode: %+v", err)
+	}
+
+	delete(decoded, "passcode")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.androidDeviceComplianceLocalActionLockDeviceWithPasscode"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AndroidDeviceComplianceLocalActionLockDeviceWithPasscode: %+v", err)
+	}
+
+	return encoded, nil
+}

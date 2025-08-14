@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type JoinMeetingIdSettings struct {
+	// Indicates whether a passcode is required to join a meeting when using joinMeetingId. Optional.
+	IsPasscodeRequired nullable.Type[bool] `json:"isPasscodeRequired,omitempty"`
+
+	// The meeting ID to be used to join a meeting. Optional. Read-only.
+	JoinMeetingId nullable.Type[string] `json:"joinMeetingId,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The passcode to join a meeting. Optional. Read-only.
+	Passcode nullable.Type[string] `json:"passcode,omitempty"`
+}

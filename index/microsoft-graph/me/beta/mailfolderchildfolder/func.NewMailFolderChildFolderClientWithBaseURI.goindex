@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/mailfolderchildfolder
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewMailFolderChildFolderClientWithBaseURI(sdkApi sdkEnv.Api) (*MailFolderChildFolderClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "mailfolderchildfolder", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating MailFolderChildFolderClient: %+v", err)
+	}
+
+	return &MailFolderChildFolderClient{
+		Client: client,
+	}, nil
+}

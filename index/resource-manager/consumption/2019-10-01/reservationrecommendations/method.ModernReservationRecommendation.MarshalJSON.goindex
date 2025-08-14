@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2019-10-01/reservationrecommendations
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s ModernReservationRecommendation) MarshalJSON() ([]byte, error) {
+	type wrapper ModernReservationRecommendation
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ModernReservationRecommendation: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ModernReservationRecommendation: %+v", err)
+	}
+
+	decoded["kind"] = "modern"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ModernReservationRecommendation: %+v", err)
+	}
+
+	return encoded, nil
+}

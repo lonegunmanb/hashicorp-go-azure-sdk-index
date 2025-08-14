@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2015-04-01/eventcategories
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewEventCategoriesClientWithBaseURI(sdkApi sdkEnv.Api) (*EventCategoriesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "eventcategories", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating EventCategoriesClient: %+v", err)
+	}
+
+	return &EventCategoriesClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client
+import (
+	"bytes"
+	"context"
+	"crypto/tls"
+	"encoding/json"
+	"encoding/xml"
+	"errors"
+	"fmt"
+	"io"
+	"log"
+	"math"
+	"net"
+	"net/http"
+	"net/url"
+	"regexp"
+	"runtime"
+	"strconv"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/auth"
+	"github.com/hashicorp/go-azure-sdk/sdk/internal/accept"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+	"github.com/hashicorp/go-retryablehttp"
+)
+func containsStatusCode(expected []int, actual int) bool {
+	for _, v := range expected {
+		if actual == v {
+			return true
+		}
+	}
+
+	return false
+}

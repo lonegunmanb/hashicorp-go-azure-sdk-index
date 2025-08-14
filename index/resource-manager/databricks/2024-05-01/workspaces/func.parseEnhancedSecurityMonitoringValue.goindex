@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/databricks/2024-05-01/workspaces
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEnhancedSecurityMonitoringValue(input string) (*EnhancedSecurityMonitoringValue, error) {
+	vals := map[string]EnhancedSecurityMonitoringValue{
+		"disabled": EnhancedSecurityMonitoringValueDisabled,
+		"enabled":  EnhancedSecurityMonitoringValueEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EnhancedSecurityMonitoringValue(input)
+	return &out, nil
+}

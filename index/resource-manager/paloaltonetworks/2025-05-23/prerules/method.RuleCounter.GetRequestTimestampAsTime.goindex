@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-05-23/prerules
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *RuleCounter) GetRequestTimestampAsTime() (*time.Time, error) {
+	if o.RequestTimestamp == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.RequestTimestamp, "2006-01-02T15:04:05Z07:00")
+}

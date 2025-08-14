@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/operationalinsights/2020-08-01/availableservicetiers
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAvailableServiceTiersClientWithBaseURI(sdkApi sdkEnv.Api) (*AvailableServiceTiersClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "availableservicetiers", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AvailableServiceTiersClient: %+v", err)
+	}
+
+	return &AvailableServiceTiersClient{
+		Client: client,
+	}, nil
+}

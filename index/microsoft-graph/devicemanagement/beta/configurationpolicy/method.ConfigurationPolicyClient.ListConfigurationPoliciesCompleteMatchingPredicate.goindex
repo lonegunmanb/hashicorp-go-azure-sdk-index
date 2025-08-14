@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/configurationpolicy
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ConfigurationPolicyClient) ListConfigurationPoliciesCompleteMatchingPredicate(ctx context.Context, options ListConfigurationPoliciesOperationOptions, predicate DeviceManagementConfigurationPolicyOperationPredicate) (result ListConfigurationPoliciesCompleteResult, err error) {
+	items := make([]beta.DeviceManagementConfigurationPolicy, 0)
+
+	resp, err := c.ListConfigurationPolicies(ctx, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListConfigurationPoliciesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

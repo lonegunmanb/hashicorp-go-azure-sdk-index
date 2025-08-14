@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/directoryroleassignmentroledefinition
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDirectoryRoleAssignmentRoleDefinitionClientWithBaseURI(sdkApi sdkEnv.Api) (*DirectoryRoleAssignmentRoleDefinitionClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "directoryroleassignmentroledefinition", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DirectoryRoleAssignmentRoleDefinitionClient: %+v", err)
+	}
+
+	return &DirectoryRoleAssignmentRoleDefinitionClient{
+		Client: client,
+	}, nil
+}

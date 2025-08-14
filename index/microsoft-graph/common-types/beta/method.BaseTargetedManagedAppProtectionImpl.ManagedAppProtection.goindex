@@ -1,0 +1,68 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s BaseTargetedManagedAppProtectionImpl) ManagedAppProtection() BaseManagedAppProtectionImpl {
+	return BaseManagedAppProtectionImpl{
+		AllowedDataIngestionLocations:                  s.AllowedDataIngestionLocations,
+		AllowedDataStorageLocations:                    s.AllowedDataStorageLocations,
+		AllowedInboundDataTransferSources:              s.AllowedInboundDataTransferSources,
+		AllowedOutboundClipboardSharingExceptionLength: s.AllowedOutboundClipboardSharingExceptionLength,
+		AllowedOutboundClipboardSharingLevel:           s.AllowedOutboundClipboardSharingLevel,
+		AllowedOutboundDataTransferDestinations:        s.AllowedOutboundDataTransferDestinations,
+		AppActionIfDeviceComplianceRequired:            s.AppActionIfDeviceComplianceRequired,
+		AppActionIfMaximumPinRetriesExceeded:           s.AppActionIfMaximumPinRetriesExceeded,
+		AppActionIfUnableToAuthenticateUser:            s.AppActionIfUnableToAuthenticateUser,
+		BlockDataIngestionIntoOrganizationDocuments:    s.BlockDataIngestionIntoOrganizationDocuments,
+		ContactSyncBlocked:                             s.ContactSyncBlocked,
+		DataBackupBlocked:                              s.DataBackupBlocked,
+		DeviceComplianceRequired:                       s.DeviceComplianceRequired,
+		DialerRestrictionLevel:                         s.DialerRestrictionLevel,
+		DisableAppPinIfDevicePinIsSet:                  s.DisableAppPinIfDevicePinIsSet,
+		FingerprintBlocked:                             s.FingerprintBlocked,
+		GracePeriodToBlockAppsDuringOffClockHours:      s.GracePeriodToBlockAppsDuringOffClockHours,
+		ManagedBrowser:                                 s.ManagedBrowser,
+		ManagedBrowserToOpenLinksRequired:              s.ManagedBrowserToOpenLinksRequired,
+		MaximumAllowedDeviceThreatLevel:                s.MaximumAllowedDeviceThreatLevel,
+		MaximumPinRetries:                              s.MaximumPinRetries,
+		MaximumRequiredOsVersion:                       s.MaximumRequiredOsVersion,
+		MaximumWarningOsVersion:                        s.MaximumWarningOsVersion,
+		MaximumWipeOsVersion:                           s.MaximumWipeOsVersion,
+		MinimumPinLength:                               s.MinimumPinLength,
+		MinimumRequiredAppVersion:                      s.MinimumRequiredAppVersion,
+		MinimumRequiredOsVersion:                       s.MinimumRequiredOsVersion,
+		MinimumWarningAppVersion:                       s.MinimumWarningAppVersion,
+		MinimumWarningOsVersion:                        s.MinimumWarningOsVersion,
+		MinimumWipeAppVersion:                          s.MinimumWipeAppVersion,
+		MinimumWipeOsVersion:                           s.MinimumWipeOsVersion,
+		MobileThreatDefensePartnerPriority:             s.MobileThreatDefensePartnerPriority,
+		MobileThreatDefenseRemediationAction:           s.MobileThreatDefenseRemediationAction,
+		NotificationRestriction:                        s.NotificationRestriction,
+		OrganizationalCredentialsRequired:              s.OrganizationalCredentialsRequired,
+		PeriodBeforePinReset:                           s.PeriodBeforePinReset,
+		PeriodOfflineBeforeAccessCheck:                 s.PeriodOfflineBeforeAccessCheck,
+		PeriodOfflineBeforeWipeIsEnforced:              s.PeriodOfflineBeforeWipeIsEnforced,
+		PeriodOnlineBeforeAccessCheck:                  s.PeriodOnlineBeforeAccessCheck,
+		PinCharacterSet:                                s.PinCharacterSet,
+		PinRequired:                                    s.PinRequired,
+		PinRequiredInsteadOfBiometricTimeout:           s.PinRequiredInsteadOfBiometricTimeout,
+		PreviousPinBlockCount:                          s.PreviousPinBlockCount,
+		PrintBlocked:                                   s.PrintBlocked,
+		ProtectedMessagingRedirectAppType:              s.ProtectedMessagingRedirectAppType,
+		SaveAsBlocked:                                  s.SaveAsBlocked,
+		SimplePinBlocked:                               s.SimplePinBlocked,
+		CreatedDateTime:                                s.CreatedDateTime,
+		Description:                                    s.Description,
+		DisplayName:                                    s.DisplayName,
+		LastModifiedDateTime:                           s.LastModifiedDateTime,
+		RoleScopeTagIds:                                s.RoleScopeTagIds,
+		Version:                                        s.Version,
+		Id:                                             s.Id,
+		ODataId:                                        s.ODataId,
+		ODataType:                                      s.ODataType,
+	}
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cosmosdb/2022-05-15/materializedviewsbuilder
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewMaterializedViewsBuilderClientWithBaseURI(sdkApi sdkEnv.Api) (*MaterializedViewsBuilderClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "materializedviewsbuilder", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating MaterializedViewsBuilderClient: %+v", err)
+	}
+
+	return &MaterializedViewsBuilderClient{
+		Client: client,
+	}, nil
+}

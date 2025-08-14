@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/webapps
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseBackupRestoreOperationType(input string) (*BackupRestoreOperationType, error) {
+	vals := map[string]BackupRestoreOperationType{
+		"clone":      BackupRestoreOperationTypeClone,
+		"cloudfs":    BackupRestoreOperationTypeCloudFS,
+		"default":    BackupRestoreOperationTypeDefault,
+		"relocation": BackupRestoreOperationTypeRelocation,
+		"snapshot":   BackupRestoreOperationTypeSnapshot,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := BackupRestoreOperationType(input)
+	return &out, nil
+}

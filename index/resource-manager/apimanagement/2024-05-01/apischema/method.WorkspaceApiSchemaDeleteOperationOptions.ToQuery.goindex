@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/apischema
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o WorkspaceApiSchemaDeleteOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.Force != nil {
+		out.Append("force", fmt.Sprintf("%v", *o.Force))
+	}
+	return &out
+}

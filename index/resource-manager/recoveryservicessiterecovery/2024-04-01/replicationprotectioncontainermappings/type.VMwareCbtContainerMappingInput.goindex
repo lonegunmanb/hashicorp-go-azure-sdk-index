@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2024-04-01/replicationprotectioncontainermappings
+import (
+	"encoding/json"
+	"fmt"
+)
+type VMwareCbtContainerMappingInput struct {
+	KeyVaultId                           *string `json:"keyVaultId,omitempty"`
+	KeyVaultUri                          *string `json:"keyVaultUri,omitempty"`
+	ServiceBusConnectionStringSecretName *string `json:"serviceBusConnectionStringSecretName,omitempty"`
+	StorageAccountId                     string  `json:"storageAccountId"`
+	StorageAccountSasSecretName          *string `json:"storageAccountSasSecretName,omitempty"`
+	TargetLocation                       string  `json:"targetLocation"`
+
+	// Fields inherited from ReplicationProviderSpecificContainerMappingInput
+
+	InstanceType string `json:"instanceType"`
+}

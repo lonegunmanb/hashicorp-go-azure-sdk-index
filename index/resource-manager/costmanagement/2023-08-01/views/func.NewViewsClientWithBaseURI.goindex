@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-08-01/views
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewViewsClientWithBaseURI(sdkApi sdkEnv.Api) (*ViewsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "views", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ViewsClient: %+v", err)
+	}
+
+	return &ViewsClient{
+		Client: client,
+	}, nil
+}

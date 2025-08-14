@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/sqlpoolsschemas
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SqlPoolsSchemasClient) SqlPoolSchemasListCompleteMatchingPredicate(ctx context.Context, id SqlPoolId, options SqlPoolSchemasListOperationOptions, predicate ResourceOperationPredicate) (result SqlPoolSchemasListCompleteResult, err error) {
+	items := make([]Resource, 0)
+
+	resp, err := c.SqlPoolSchemasList(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = SqlPoolSchemasListCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

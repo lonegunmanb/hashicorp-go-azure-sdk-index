@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-08-01/exports
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseFormatType(input string) (*FormatType, error) {
+	vals := map[string]FormatType{
+		"csv": FormatTypeCsv,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FormatType(input)
+	return &out, nil
+}

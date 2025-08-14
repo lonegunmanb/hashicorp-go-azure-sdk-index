@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2022-08-29/fqdnlistglobalrulestack
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewFqdnListGlobalRulestackClientWithBaseURI(sdkApi sdkEnv.Api) (*FqdnListGlobalRulestackClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "fqdnlistglobalrulestack", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating FqdnListGlobalRulestackClient: %+v", err)
+	}
+
+	return &FqdnListGlobalRulestackClient{
+		Client: client,
+	}, nil
+}

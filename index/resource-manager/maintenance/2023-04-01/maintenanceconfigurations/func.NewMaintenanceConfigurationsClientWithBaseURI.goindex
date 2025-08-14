@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/maintenance/2023-04-01/maintenanceconfigurations
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewMaintenanceConfigurationsClientWithBaseURI(sdkApi sdkEnv.Api) (*MaintenanceConfigurationsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "maintenanceconfigurations", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating MaintenanceConfigurationsClient: %+v", err)
+	}
+
+	return &MaintenanceConfigurationsClient{
+		Client: client,
+	}, nil
+}

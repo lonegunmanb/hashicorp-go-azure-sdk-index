@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCloudPCDisasterRecoveryCapabilityType(input string) (*CloudPCDisasterRecoveryCapabilityType, error) {
+	vals := map[string]CloudPCDisasterRecoveryCapabilityType{
+		"failback": CloudPCDisasterRecoveryCapabilityType_Failback,
+		"failover": CloudPCDisasterRecoveryCapabilityType_Failover,
+		"none":     CloudPCDisasterRecoveryCapabilityType_None,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CloudPCDisasterRecoveryCapabilityType(input)
+	return &out, nil
+}

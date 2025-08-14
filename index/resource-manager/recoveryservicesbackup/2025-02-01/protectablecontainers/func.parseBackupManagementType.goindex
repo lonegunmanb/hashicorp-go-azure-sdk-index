@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/protectablecontainers
+import (
+	"strings"
+)
+func parseBackupManagementType(input string) (*BackupManagementType, error) {
+	vals := map[string]BackupManagementType{
+		"azurebackupserver": BackupManagementTypeAzureBackupServer,
+		"azureiaasvm":       BackupManagementTypeAzureIaasVM,
+		"azuresql":          BackupManagementTypeAzureSql,
+		"azurestorage":      BackupManagementTypeAzureStorage,
+		"azureworkload":     BackupManagementTypeAzureWorkload,
+		"dpm":               BackupManagementTypeDPM,
+		"defaultbackup":     BackupManagementTypeDefaultBackup,
+		"invalid":           BackupManagementTypeInvalid,
+		"mab":               BackupManagementTypeMAB,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := BackupManagementType(input)
+	return &out, nil
+}

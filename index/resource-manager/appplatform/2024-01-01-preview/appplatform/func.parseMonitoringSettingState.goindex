@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/appplatform/2024-01-01-preview/appplatform
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMonitoringSettingState(input string) (*MonitoringSettingState, error) {
+	vals := map[string]MonitoringSettingState{
+		"failed":       MonitoringSettingStateFailed,
+		"notavailable": MonitoringSettingStateNotAvailable,
+		"succeeded":    MonitoringSettingStateSucceeded,
+		"updating":     MonitoringSettingStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MonitoringSettingState(input)
+	return &out, nil
+}

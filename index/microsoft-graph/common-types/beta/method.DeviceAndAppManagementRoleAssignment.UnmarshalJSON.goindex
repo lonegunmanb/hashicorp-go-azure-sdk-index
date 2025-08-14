@@ -1,0 +1,52 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *DeviceAndAppManagementRoleAssignment) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		Members         *[]string                `json:"members,omitempty"`
+		RoleScopeTagIds *[]string                `json:"roleScopeTagIds,omitempty"`
+		RoleScopeTags   *[]RoleScopeTag          `json:"roleScopeTags,omitempty"`
+		Description     nullable.Type[string]    `json:"description,omitempty"`
+		DisplayName     nullable.Type[string]    `json:"displayName,omitempty"`
+		ResourceScopes  *[]string                `json:"resourceScopes,omitempty"`
+		ScopeMembers    *[]string                `json:"scopeMembers,omitempty"`
+		ScopeType       *RoleAssignmentScopeType `json:"scopeType,omitempty"`
+		Id              *string                  `json:"id,omitempty"`
+		ODataId         *string                  `json:"@odata.id,omitempty"`
+		ODataType       *string                  `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.Members = decoded.Members
+	s.RoleScopeTagIds = decoded.RoleScopeTagIds
+	s.RoleScopeTags = decoded.RoleScopeTags
+	s.Description = decoded.Description
+	s.DisplayName = decoded.DisplayName
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.ResourceScopes = decoded.ResourceScopes
+	s.ScopeMembers = decoded.ScopeMembers
+	s.ScopeType = decoded.ScopeType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling DeviceAndAppManagementRoleAssignment into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["roleDefinition"]; ok {
+		impl, err := UnmarshalRoleDefinitionImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'RoleDefinition' for 'DeviceAndAppManagementRoleAssignment': %+v", err)
+		}
+		s.RoleDefinition = &impl
+	}
+
+	return nil
+}

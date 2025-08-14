@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-01-01/virtualwans
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ConfigurationPolicyGroupId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Vpn Server Configuration Name: %q", id.VpnServerConfigurationName),
+		fmt.Sprintf("Configuration Policy Group Name: %q", id.ConfigurationPolicyGroupName),
+	}
+	return fmt.Sprintf("Configuration Policy Group (%s)", strings.Join(components, "\n"))
+}

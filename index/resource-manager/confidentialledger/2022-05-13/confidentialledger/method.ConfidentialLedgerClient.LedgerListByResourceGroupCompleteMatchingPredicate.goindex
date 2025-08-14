@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/confidentialledger/2022-05-13/confidentialledger
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ConfidentialLedgerClient) LedgerListByResourceGroupCompleteMatchingPredicate(ctx context.Context, id commonids.ResourceGroupId, options LedgerListByResourceGroupOperationOptions, predicate ConfidentialLedgerOperationPredicate) (result LedgerListByResourceGroupCompleteResult, err error) {
+	items := make([]ConfidentialLedger, 0)
+
+	resp, err := c.LedgerListByResourceGroup(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = LedgerListByResourceGroupCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

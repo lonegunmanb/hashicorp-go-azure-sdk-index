@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/systemcentervirtualmachinemanager/2023-10-07/inventoryitems
+import (
+	"encoding/json"
+	"fmt"
+)
+type VirtualMachineInventoryItem struct {
+	BiosGuid                 *string               `json:"biosGuid,omitempty"`
+	Cloud                    *InventoryItemDetails `json:"cloud,omitempty"`
+	IPAddresses              *[]string             `json:"ipAddresses,omitempty"`
+	ManagedMachineResourceId *string               `json:"managedMachineResourceId,omitempty"`
+	OsName                   *string               `json:"osName,omitempty"`
+	OsType                   *OsType               `json:"osType,omitempty"`
+	OsVersion                *string               `json:"osVersion,omitempty"`
+	PowerState               *string               `json:"powerState,omitempty"`
+
+	// Fields inherited from InventoryItemProperties
+
+	InventoryItemName *string            `json:"inventoryItemName,omitempty"`
+	InventoryType     InventoryType      `json:"inventoryType"`
+	ManagedResourceId *string            `json:"managedResourceId,omitempty"`
+	ProvisioningState *ProvisioningState `json:"provisioningState,omitempty"`
+	Uuid              *string            `json:"uuid,omitempty"`
+}

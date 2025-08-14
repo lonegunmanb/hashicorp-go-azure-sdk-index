@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEndpointSecurityConfigurationType(input string) (*EndpointSecurityConfigurationType, error) {
+	vals := map[string]EndpointSecurityConfigurationType{
+		"accountprotection":            EndpointSecurityConfigurationType_AccountProtection,
+		"antivirus":                    EndpointSecurityConfigurationType_Antivirus,
+		"attacksurfacereduction":       EndpointSecurityConfigurationType_AttackSurfaceReduction,
+		"diskencryption":               EndpointSecurityConfigurationType_DiskEncryption,
+		"endpointdetectionandresponse": EndpointSecurityConfigurationType_EndpointDetectionAndResponse,
+		"firewall":                     EndpointSecurityConfigurationType_Firewall,
+		"unknown":                      EndpointSecurityConfigurationType_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EndpointSecurityConfigurationType(input)
+	return &out, nil
+}

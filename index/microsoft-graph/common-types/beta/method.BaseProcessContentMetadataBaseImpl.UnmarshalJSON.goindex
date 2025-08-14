@@ -1,0 +1,51 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *BaseProcessContentMetadataBaseImpl) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		CorrelationId    nullable.Type[string] `json:"correlationId,omitempty"`
+		CreatedDateTime  string                `json:"createdDateTime"`
+		Identifier       string                `json:"identifier"`
+		IsTruncated      bool                  `json:"isTruncated"`
+		Length           nullable.Type[int64]  `json:"length,omitempty"`
+		ModifiedDateTime string                `json:"modifiedDateTime"`
+		Name             string                `json:"name"`
+		ODataId          *string               `json:"@odata.id,omitempty"`
+		ODataType        *string               `json:"@odata.type,omitempty"`
+		SequenceNumber   nullable.Type[int64]  `json:"sequenceNumber,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.CorrelationId = decoded.CorrelationId
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Identifier = decoded.Identifier
+	s.IsTruncated = decoded.IsTruncated
+	s.Length = decoded.Length
+	s.ModifiedDateTime = decoded.ModifiedDateTime
+	s.Name = decoded.Name
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.SequenceNumber = decoded.SequenceNumber
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling BaseProcessContentMetadataBaseImpl into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["content"]; ok {
+		impl, err := UnmarshalContentBaseImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Content' for 'BaseProcessContentMetadataBaseImpl': %+v", err)
+		}
+		s.Content = impl
+	}
+
+	return nil
+}

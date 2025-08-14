@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAuthenticationMethodModes(input string) (*AuthenticationMethodModes, error) {
+	vals := map[string]AuthenticationMethodModes{
+		"devicebasedpush":             AuthenticationMethodModes_DeviceBasedPush,
+		"email":                       AuthenticationMethodModes_Email,
+		"federatedmultifactor":        AuthenticationMethodModes_FederatedMultiFactor,
+		"federatedsinglefactor":       AuthenticationMethodModes_FederatedSingleFactor,
+		"fido2":                       AuthenticationMethodModes_Fido2,
+		"hardwareoath":                AuthenticationMethodModes_HardwareOath,
+		"microsoftauthenticatorpush":  AuthenticationMethodModes_MicrosoftAuthenticatorPush,
+		"password":                    AuthenticationMethodModes_Password,
+		"sms":                         AuthenticationMethodModes_Sms,
+		"softwareoath":                AuthenticationMethodModes_SoftwareOath,
+		"temporaryaccesspassmultiuse": AuthenticationMethodModes_TemporaryAccessPassMultiUse,
+		"temporaryaccesspassonetime":  AuthenticationMethodModes_TemporaryAccessPassOneTime,
+		"voice":                       AuthenticationMethodModes_Voice,
+		"windowshelloforbusiness":     AuthenticationMethodModes_WindowsHelloForBusiness,
+		"x509certificatemultifactor":  AuthenticationMethodModes_X509CertificateMultiFactor,
+		"x509certificatesinglefactor": AuthenticationMethodModes_X509CertificateSingleFactor,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AuthenticationMethodModes(input)
+	return &out, nil
+}

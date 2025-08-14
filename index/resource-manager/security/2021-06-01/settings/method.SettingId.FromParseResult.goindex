@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/security/2021-06-01/settings
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *SettingId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if v, ok := input.Parsed["settingName"]; true {
+		if !ok {
+			return resourceids.NewSegmentNotSpecifiedError(id, "settingName", input)
+		}
+
+		settingName, err := parseSettingName(v)
+		if err != nil {
+			return fmt.Errorf("parsing %q: %+v", v, err)
+		}
+		id.SettingName = *settingName
+	}
+
+	return nil
+}

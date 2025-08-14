@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/cloudvmclusters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseObjective(input string) (*Objective, error) {
+	vals := map[string]Objective{
+		"auto":           ObjectiveAuto,
+		"balanced":       ObjectiveBalanced,
+		"basic":          ObjectiveBasic,
+		"highthroughput": ObjectiveHighThroughput,
+		"lowlatency":     ObjectiveLowLatency,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Objective(input)
+	return &out, nil
+}

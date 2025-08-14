@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2024-02-01/afdprofiles
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSkuName(input string) (*SkuName, error) {
+	vals := map[string]SkuName{
+		"custom_verizon":                     SkuNameCustomVerizon,
+		"premium_azurefrontdoor":             SkuNamePremiumAzureFrontDoor,
+		"premium_verizon":                    SkuNamePremiumVerizon,
+		"standard_akamai":                    SkuNameStandardAkamai,
+		"standard_avgbandwidth_chinacdn":     SkuNameStandardAvgBandWidthChinaCdn,
+		"standard_azurefrontdoor":            SkuNameStandardAzureFrontDoor,
+		"standard_chinacdn":                  SkuNameStandardChinaCdn,
+		"standard_microsoft":                 SkuNameStandardMicrosoft,
+		"standard_955bandwidth_chinacdn":     SkuNameStandardNineFiveFiveBandWidthChinaCdn,
+		"standardplus_avgbandwidth_chinacdn": SkuNameStandardPlusAvgBandWidthChinaCdn,
+		"standardplus_chinacdn":              SkuNameStandardPlusChinaCdn,
+		"standardplus_955bandwidth_chinacdn": SkuNameStandardPlusNineFiveFiveBandWidthChinaCdn,
+		"standard_verizon":                   SkuNameStandardVerizon,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SkuName(input)
+	return &out, nil
+}

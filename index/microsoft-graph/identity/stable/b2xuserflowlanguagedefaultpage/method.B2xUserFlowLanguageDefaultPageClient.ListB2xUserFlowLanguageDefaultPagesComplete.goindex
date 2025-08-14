@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/b2xuserflowlanguagedefaultpage
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c B2xUserFlowLanguageDefaultPageClient) ListB2xUserFlowLanguageDefaultPagesComplete(ctx context.Context, id stable.IdentityB2xUserFlowIdLanguageId, options ListB2xUserFlowLanguageDefaultPagesOperationOptions) (ListB2xUserFlowLanguageDefaultPagesCompleteResult, error) {
+	return c.ListB2xUserFlowLanguageDefaultPagesCompleteMatchingPredicate(ctx, id, options, UserFlowLanguagePageOperationPredicate{})
+}

@@ -1,0 +1,44 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type BookingCustomer struct {
+	// Addresses associated with the customer, including home, business and other addresses.
+	Addresses *[]PhysicalAddress `json:"addresses,omitempty"`
+
+	// The date, time, and timezone when the customer was created.
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// The date, time, and timezone when the customer was last updated.
+	LastUpdatedDateTime nullable.Type[string] `json:"lastUpdatedDateTime,omitempty"`
+
+	// Phone numbers associated with the customer, including home, business and mobile numbers.
+	Phones *[]Phone `json:"phones,omitempty"`
+
+	// Fields inherited from BookingPerson
+
+	// The email address of the person.
+	EmailAddress nullable.Type[string] `json:"emailAddress,omitempty"`
+
+	// Fields inherited from BookingNamedEntity
+
+	// A name for the derived entity, which interfaces with customers.
+	DisplayName *string `json:"displayName,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

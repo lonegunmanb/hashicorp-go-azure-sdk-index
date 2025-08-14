@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/networkfunction/2022-11-01/azuretrafficcollectors
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAzureTrafficCollectorsClientWithBaseURI(sdkApi sdkEnv.Api) (*AzureTrafficCollectorsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "azuretrafficcollectors", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AzureTrafficCollectorsClient: %+v", err)
+	}
+
+	return &AzureTrafficCollectorsClient{
+		Client: client,
+	}, nil
+}

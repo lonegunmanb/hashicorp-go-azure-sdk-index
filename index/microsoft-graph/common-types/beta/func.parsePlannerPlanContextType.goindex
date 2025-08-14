@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePlannerPlanContextType(input string) (*PlannerPlanContextType, error) {
+	vals := map[string]PlannerPlanContextType{
+		"looppage":       PlannerPlanContextType_LoopPage,
+		"meetingnotes":   PlannerPlanContextType_MeetingNotes,
+		"other":          PlannerPlanContextType_Other,
+		"project":        PlannerPlanContextType_Project,
+		"sharepointpage": PlannerPlanContextType_SharePointPage,
+		"teamstab":       PlannerPlanContextType_TeamsTab,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PlannerPlanContextType(input)
+	return &out, nil
+}

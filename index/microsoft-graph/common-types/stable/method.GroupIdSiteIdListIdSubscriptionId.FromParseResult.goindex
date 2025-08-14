@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *GroupIdSiteIdListIdSubscriptionId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.GroupId, ok = input.Parsed["groupId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "groupId", input)
+	}
+
+	if id.SiteId, ok = input.Parsed["siteId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "siteId", input)
+	}
+
+	if id.ListId, ok = input.Parsed["listId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "listId", input)
+	}
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	return nil
+}

@@ -1,0 +1,40 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type DeviceComplianceScriptRunSummary struct {
+	// Number of devices on which the detection script execution encountered an error and did not complete. Valid values
+	// -2147483648 to 2147483647
+	DetectionScriptErrorDeviceCount *int64 `json:"detectionScriptErrorDeviceCount,omitempty"`
+
+	// Number of devices which have not yet run the latest version of the device compliance script. Valid values -2147483648
+	// to 2147483647
+	DetectionScriptPendingDeviceCount *int64 `json:"detectionScriptPendingDeviceCount,omitempty"`
+
+	// Number of devices for which the detection script found an issue. Valid values -2147483648 to 2147483647
+	IssueDetectedDeviceCount *int64 `json:"issueDetectedDeviceCount,omitempty"`
+
+	// Last run time for the script across all devices
+	LastScriptRunDateTime nullable.Type[string] `json:"lastScriptRunDateTime,omitempty"`
+
+	// Number of devices for which the detection script did not find an issue and the device is healthy. Valid values
+	// -2147483648 to 2147483647
+	NoIssueDetectedDeviceCount *int64 `json:"noIssueDetectedDeviceCount,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

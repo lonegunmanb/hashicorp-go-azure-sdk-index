@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ParticipantInfo struct {
+	// The ISO 3166-1 Alpha-2 country code of the participant's best estimated physical location at the start of the call.
+	// Read-only.
+	CountryCode nullable.Type[string] `json:"countryCode,omitempty"`
+
+	// The type of endpoint the participant is using. Possible values are: default, skypeForBusiness, or
+	// skypeForBusinessVoipPhone. Read-only.
+	EndpointType *EndpointType `json:"endpointType,omitempty"`
+
+	Identity IdentitySet `json:"identity"`
+
+	// The language culture string. Read-only.
+	LanguageId nullable.Type[string] `json:"languageId,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The participant ID of the participant. Read-only.
+	ParticipantId nullable.Type[string] `json:"participantId,omitempty"`
+
+	// The home region of the participant. This can be a country, a continent, or a larger geographic region. This doesn't
+	// change based on the participant's current physical location. Read-only.
+	Region nullable.Type[string] `json:"region,omitempty"`
+}

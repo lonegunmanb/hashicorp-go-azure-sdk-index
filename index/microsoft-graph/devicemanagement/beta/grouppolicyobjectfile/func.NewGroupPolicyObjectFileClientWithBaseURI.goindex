@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/grouppolicyobjectfile
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewGroupPolicyObjectFileClientWithBaseURI(sdkApi sdkEnv.Api) (*GroupPolicyObjectFileClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "grouppolicyobjectfile", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating GroupPolicyObjectFileClient: %+v", err)
+	}
+
+	return &GroupPolicyObjectFileClient{
+		Client: client,
+	}, nil
+}

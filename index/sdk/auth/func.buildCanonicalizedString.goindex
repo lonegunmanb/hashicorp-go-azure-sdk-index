@@ -1,0 +1,62 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"bytes"
+	"context"
+	"crypto/hmac"
+	"crypto/sha256"
+	"encoding/base64"
+	"fmt"
+	"net/http"
+	"net/url"
+	"sort"
+	"strconv"
+	"strings"
+	"time"
+
+	"golang.org/x/oauth2"
+)
+func buildCanonicalizedString(verb string, contentLength int64, headers http.Header, canonicalizedResource string, keyType SharedKeyType) (string, error) {
+	var contentLengthString string
+	if contentLength > 0 {
+		contentLengthString = strconv.Itoa(int(contentLength))
+	}
+	date := headers.Get(headerDate)
+	if v := headers.Get(headerXMSDate); v != "" {
+		if keyType == SharedKey {
+			date = ""
+		} else {
+			date = v
+		}
+	}
+	var canString string
+	switch keyType {
+	case SharedKey:
+		canString = strings.Join([]string{
+			verb,
+			headers.Get(headerContentEncoding),
+			headers.Get(headerContentLanguage),
+			contentLengthString,
+			headers.Get(headerContentMD5),
+			headers.Get(headerContentType),
+			date,
+			headers.Get(headerIfModifiedSince),
+			headers.Get(headerIfMatch),
+			headers.Get(headerIfNoneMatch),
+			headers.Get(headerIfUnmodifiedSince),
+			headers.Get(headerRange),
+			buildCanonicalizedHeader(headers),
+			canonicalizedResource,
+		}, "\n")
+	case SharedKeyTable:
+		canString = strings.Join([]string{
+			verb,
+			headers.Get(headerContentMD5),
+			headers.Get(headerContentType),
+			date,
+			canonicalizedResource,
+		}, "\n")
+	default:
+		return "", fmt.Errorf("key type '%s' is not supported", keyType)
+	}
+	return canString, nil
+}

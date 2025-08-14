@@ -1,0 +1,71 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type UnifiedRoleAssignment struct {
+	// Read-only property with details of the app specific scope when the assignment scope is app specific. Containment
+	// entity. Supports $expand for the entitlement provider only.
+	AppScope *AppScope `json:"appScope,omitempty"`
+
+	// Identifier of the app specific scope when the assignment scope is app specific. The scope of an assignment determines
+	// the set of resources for which the principal has been granted access. App scopes are scopes that are defined and
+	// understood by a resource application only. For the entitlement management provider, use this property to specify a
+	// catalog. For example, /AccessPackageCatalog/beedadfe-01d5-4025-910b-84abb9369997. Supports $filter (eq, in). For
+	// example /roleManagement/entitlementManagement/roleAssignments?$filter=appScopeId eq '/AccessPackageCatalog/{catalog
+	// id}'.
+	AppScopeId nullable.Type[string] `json:"appScopeId,omitempty"`
+
+	Condition nullable.Type[string] `json:"condition,omitempty"`
+
+	// The directory object that is the scope of the assignment. Read-only. Supports $expand for the directory provider.
+	DirectoryScope *DirectoryObject `json:"directoryScope,omitempty"`
+
+	// Identifier of the directory object representing the scope of the assignment. The scope of an assignment determines
+	// the set of resources for which the principal has been granted access. Directory scopes are shared scopes stored in
+	// the directory that are understood by multiple applications, unlike app scopes that are defined and understood by a
+	// resource application only. Supports $filter (eq, in).
+	DirectoryScopeId nullable.Type[string] `json:"directoryScopeId,omitempty"`
+
+	// OData ID for `DirectoryScope` to bind to this entity
+	DirectoryScope_ODataBind *string `json:"directoryScope@odata.bind,omitempty"`
+
+	// Referencing the assigned principal. Read-only. Supports $expand except for the Exchange provider.
+	Principal *DirectoryObject `json:"principal,omitempty"`
+
+	// Identifier of the principal to which the assignment is granted. Supported principals are users, role-assignable
+	// groups, and service principals. Supports $filter (eq, in).
+	PrincipalId nullable.Type[string] `json:"principalId,omitempty"`
+
+	// Identifier of the home tenant for the principal to which the assignment is granted.
+	PrincipalOrganizationId nullable.Type[string] `json:"principalOrganizationId,omitempty"`
+
+	// OData ID for `Principal` to bind to this entity
+	Principal_ODataBind *string `json:"principal@odata.bind,omitempty"`
+
+	// The scope at which the unifiedRoleAssignment applies. This is / for service-wide. DO NOT USE. This property will be
+	// deprecated soon.
+	ResourceScope nullable.Type[string] `json:"resourceScope,omitempty"`
+
+	// The roleDefinition the assignment is for. Supports $expand.
+	RoleDefinition *UnifiedRoleDefinition `json:"roleDefinition,omitempty"`
+
+	// Identifier of the unifiedRoleDefinition the assignment is for. Read-only. Supports $filter (eq, in).
+	RoleDefinitionId nullable.Type[string] `json:"roleDefinitionId,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

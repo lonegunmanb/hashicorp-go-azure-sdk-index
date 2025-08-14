@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2025-04-01/deploymentoperations
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ScopedDeploymentId) String() string {
+	components := []string{
+		fmt.Sprintf("Scope: %q", id.Scope),
+		fmt.Sprintf("Deployment Name: %q", id.DeploymentName),
+	}
+	return fmt.Sprintf("Scoped Deployment (%s)", strings.Join(components, "\n"))
+}

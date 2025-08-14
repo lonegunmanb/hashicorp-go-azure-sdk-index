@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/maintenance/2023-04-01/configurationassignments
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseConfigurationAssignmentIDInsensitively(input string) (*ConfigurationAssignmentId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&ConfigurationAssignmentId{})
+	parsed, err := parser.Parse(input, true)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := ConfigurationAssignmentId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2022-03-01/virtualmachines
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVMGuestPatchRebootBehavior(input string) (*VMGuestPatchRebootBehavior, error) {
+	vals := map[string]VMGuestPatchRebootBehavior{
+		"alwaysrequiresreboot": VMGuestPatchRebootBehaviorAlwaysRequiresReboot,
+		"canrequestreboot":     VMGuestPatchRebootBehaviorCanRequestReboot,
+		"neverreboots":         VMGuestPatchRebootBehaviorNeverReboots,
+		"unknown":              VMGuestPatchRebootBehaviorUnknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VMGuestPatchRebootBehavior(input)
+	return &out, nil
+}

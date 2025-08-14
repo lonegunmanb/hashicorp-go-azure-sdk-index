@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseFileVaultState(input string) (*FileVaultState, error) {
+	vals := map[string]FileVaultState{
+		"driveencryptedbyuser":   FileVaultState_DriveEncryptedByUser,
+		"escrownotenabled":       FileVaultState_EscrowNotEnabled,
+		"success":                FileVaultState_Success,
+		"userdeferredencryption": FileVaultState_UserDeferredEncryption,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FileVaultState(input)
+	return &out, nil
+}

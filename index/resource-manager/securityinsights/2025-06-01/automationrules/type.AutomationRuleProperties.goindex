@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2025-06-01/automationrules
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type AutomationRuleProperties struct {
+	Actions             []AutomationRuleAction        `json:"actions"`
+	CreatedBy           *ClientInfo                   `json:"createdBy,omitempty"`
+	CreatedTimeUtc      *string                       `json:"createdTimeUtc,omitempty"`
+	DisplayName         string                        `json:"displayName"`
+	LastModifiedBy      *ClientInfo                   `json:"lastModifiedBy,omitempty"`
+	LastModifiedTimeUtc *string                       `json:"lastModifiedTimeUtc,omitempty"`
+	Order               int64                         `json:"order"`
+	TriggeringLogic     AutomationRuleTriggeringLogic `json:"triggeringLogic"`
+}

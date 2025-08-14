@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+)
+type ChannelMembersNotificationRecipient struct {
+	// The unique identifier for the channel whose members should receive the notification.
+	ChannelId *string `json:"channelId,omitempty"`
+
+	// The unique identifier for the team under which the channel resides.
+	TeamId *string `json:"teamId,omitempty"`
+
+	// Fields inherited from TeamworkNotificationRecipient
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

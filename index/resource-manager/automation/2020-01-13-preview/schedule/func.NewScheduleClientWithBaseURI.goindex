@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/schedule
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewScheduleClientWithBaseURI(sdkApi sdkEnv.Api) (*ScheduleClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "schedule", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ScheduleClient: %+v", err)
+	}
+
+	return &ScheduleClient{
+		Client: client,
+	}, nil
+}

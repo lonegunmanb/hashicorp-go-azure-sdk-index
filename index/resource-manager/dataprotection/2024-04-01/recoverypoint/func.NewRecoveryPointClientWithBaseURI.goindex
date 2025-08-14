@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2024-04-01/recoverypoint
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewRecoveryPointClientWithBaseURI(sdkApi sdkEnv.Api) (*RecoveryPointClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "recoverypoint", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating RecoveryPointClient: %+v", err)
+	}
+
+	return &RecoveryPointClient{
+		Client: client,
+	}, nil
+}

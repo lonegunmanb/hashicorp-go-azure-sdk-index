@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/compliancecategory
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewComplianceCategoryClientWithBaseURI(sdkApi sdkEnv.Api) (*ComplianceCategoryClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "compliancecategory", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ComplianceCategoryClient: %+v", err)
+	}
+
+	return &ComplianceCategoryClient{
+		Client: client,
+	}, nil
+}

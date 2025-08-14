@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWebBrowserCookieSettings(input string) (*WebBrowserCookieSettings, error) {
+	vals := map[string]WebBrowserCookieSettings{
+		"allowalways":              WebBrowserCookieSettings_AllowAlways,
+		"allowcurrentwebsite":      WebBrowserCookieSettings_AllowCurrentWebSite,
+		"allowfromwebsitesvisited": WebBrowserCookieSettings_AllowFromWebsitesVisited,
+		"blockalways":              WebBrowserCookieSettings_BlockAlways,
+		"browserdefault":           WebBrowserCookieSettings_BrowserDefault,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WebBrowserCookieSettings(input)
+	return &out, nil
+}

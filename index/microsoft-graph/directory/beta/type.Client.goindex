@@ -1,0 +1,93 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/administrativeunit"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/administrativeunitdeletedmember"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/administrativeunitextension"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/administrativeunitmember"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/administrativeunitscopedrolemember"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/assigndirectoryauthenticationmethoddevicehardwareoathdeviceto"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/attributeset"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/authenticationmethoddevice"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/authenticationmethoddevicehardwareoathdevice"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/authenticationmethoddevicehardwareoathdeviceassigntomailboxsetting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/authenticationmethoddevicehardwareoathdeviceassigntoserviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/certificateauthority"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/certificateauthoritycertificatebasedapplicationconfiguration"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/certificateauthoritycertificatebasedapplicationconfigurationtrustedcertificateauthority"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/certificateauthoritymutualtlsoauthconfiguration"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/customsecurityattributedefinition"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/customsecurityattributedefinitionallowedvalue"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/deleteditem"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/devicelocalcredential"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/directory"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/externaluserprofile"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/featurerolloutpolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/featurerolloutpolicyappliesto"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/federationconfiguration"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/impactedresource"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/inboundshareduserprofile"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/onpremisessynchronization"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/outboundshareduserprofile"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/outboundshareduserprofiletenant"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/pendingexternaluserprofile"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/publickeyinfrastructure"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/publickeyinfrastructurecertificatebasedauthconfiguration"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/publickeyinfrastructurecertificatebasedauthconfigurationcertificateauthority"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/recommendation"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/recommendationconfiguration"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/recommendationimpactedresource"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/sharedemaildomain"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/subscription"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/template"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/templatedevicetemplate"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/templatedevicetemplatedeviceinstance"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/templatedevicetemplateowner"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	AdministrativeUnit                                                                      *administrativeunit.AdministrativeUnitClient
+	AdministrativeUnitDeletedMember                                                         *administrativeunitdeletedmember.AdministrativeUnitDeletedMemberClient
+	AdministrativeUnitExtension                                                             *administrativeunitextension.AdministrativeUnitExtensionClient
+	AdministrativeUnitMember                                                                *administrativeunitmember.AdministrativeUnitMemberClient
+	AdministrativeUnitScopedRoleMember                                                      *administrativeunitscopedrolemember.AdministrativeUnitScopedRoleMemberClient
+	AssignDirectoryAuthenticationMethodDeviceHardwareOathDeviceTo                           *assigndirectoryauthenticationmethoddevicehardwareoathdeviceto.AssignDirectoryAuthenticationMethodDeviceHardwareOathDeviceToClient
+	AttributeSet                                                                            *attributeset.AttributeSetClient
+	AuthenticationMethodDevice                                                              *authenticationmethoddevice.AuthenticationMethodDeviceClient
+	AuthenticationMethodDeviceHardwareOathDevice                                            *authenticationmethoddevicehardwareoathdevice.AuthenticationMethodDeviceHardwareOathDeviceClient
+	AuthenticationMethodDeviceHardwareOathDeviceAssignToMailboxSetting                      *authenticationmethoddevicehardwareoathdeviceassigntomailboxsetting.AuthenticationMethodDeviceHardwareOathDeviceAssignToMailboxSettingClient
+	AuthenticationMethodDeviceHardwareOathDeviceAssignToServiceProvisioningError            *authenticationmethoddevicehardwareoathdeviceassigntoserviceprovisioningerror.AuthenticationMethodDeviceHardwareOathDeviceAssignToServiceProvisioningErrorClient
+	CertificateAuthority                                                                    *certificateauthority.CertificateAuthorityClient
+	CertificateAuthorityCertificateBasedApplicationConfiguration                            *certificateauthoritycertificatebasedapplicationconfiguration.CertificateAuthorityCertificateBasedApplicationConfigurationClient
+	CertificateAuthorityCertificateBasedApplicationConfigurationTrustedCertificateAuthority *certificateauthoritycertificatebasedapplicationconfigurationtrustedcertificateauthority.CertificateAuthorityCertificateBasedApplicationConfigurationTrustedCertificateAuthorityClient
+	CertificateAuthorityMutualTlsOauthConfiguration                                         *certificateauthoritymutualtlsoauthconfiguration.CertificateAuthorityMutualTlsOauthConfigurationClient
+	CustomSecurityAttributeDefinition                                                       *customsecurityattributedefinition.CustomSecurityAttributeDefinitionClient
+	CustomSecurityAttributeDefinitionAllowedValue                                           *customsecurityattributedefinitionallowedvalue.CustomSecurityAttributeDefinitionAllowedValueClient
+	DeletedItem                                                                             *deleteditem.DeletedItemClient
+	DeviceLocalCredential                                                                   *devicelocalcredential.DeviceLocalCredentialClient
+	Directory                                                                               *directory.DirectoryClient
+	ExternalUserProfile                                                                     *externaluserprofile.ExternalUserProfileClient
+	FeatureRolloutPolicy                                                                    *featurerolloutpolicy.FeatureRolloutPolicyClient
+	FeatureRolloutPolicyAppliesTo                                                           *featurerolloutpolicyappliesto.FeatureRolloutPolicyAppliesToClient
+	FederationConfiguration                                                                 *federationconfiguration.FederationConfigurationClient
+	ImpactedResource                                                                        *impactedresource.ImpactedResourceClient
+	InboundSharedUserProfile                                                                *inboundshareduserprofile.InboundSharedUserProfileClient
+	OnPremisesSynchronization                                                               *onpremisessynchronization.OnPremisesSynchronizationClient
+	OutboundSharedUserProfile                                                               *outboundshareduserprofile.OutboundSharedUserProfileClient
+	OutboundSharedUserProfileTenant                                                         *outboundshareduserprofiletenant.OutboundSharedUserProfileTenantClient
+	PendingExternalUserProfile                                                              *pendingexternaluserprofile.PendingExternalUserProfileClient
+	PublicKeyInfrastructure                                                                 *publickeyinfrastructure.PublicKeyInfrastructureClient
+	PublicKeyInfrastructureCertificateBasedAuthConfiguration                                *publickeyinfrastructurecertificatebasedauthconfiguration.PublicKeyInfrastructureCertificateBasedAuthConfigurationClient
+	PublicKeyInfrastructureCertificateBasedAuthConfigurationCertificateAuthority            *publickeyinfrastructurecertificatebasedauthconfigurationcertificateauthority.PublicKeyInfrastructureCertificateBasedAuthConfigurationCertificateAuthorityClient
+	Recommendation                                                                          *recommendation.RecommendationClient
+	RecommendationConfiguration                                                             *recommendationconfiguration.RecommendationConfigurationClient
+	RecommendationImpactedResource                                                          *recommendationimpactedresource.RecommendationImpactedResourceClient
+	SharedEmailDomain                                                                       *sharedemaildomain.SharedEmailDomainClient
+	Subscription                                                                            *subscription.SubscriptionClient
+	Template                                                                                *template.TemplateClient
+	TemplateDeviceTemplate                                                                  *templatedevicetemplate.TemplateDeviceTemplateClient
+	TemplateDeviceTemplateDeviceInstance                                                    *templatedevicetemplatedeviceinstance.TemplateDeviceTemplateDeviceInstanceClient
+	TemplateDeviceTemplateOwner                                                             *templatedevicetemplateowner.TemplateDeviceTemplateOwnerClient
+}

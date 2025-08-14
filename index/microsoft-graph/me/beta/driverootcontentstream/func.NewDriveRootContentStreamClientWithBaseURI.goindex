@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/driverootcontentstream
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDriveRootContentStreamClientWithBaseURI(sdkApi sdkEnv.Api) (*DriveRootContentStreamClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "driverootcontentstream", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DriveRootContentStreamClient: %+v", err)
+	}
+
+	return &DriveRootContentStreamClient{
+		Client: client,
+	}, nil
+}

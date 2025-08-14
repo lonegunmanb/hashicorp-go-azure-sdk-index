@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-05-23/localrulestacks
+
+func (p CountryOperationPredicate) Matches(input Country) bool {
+
+	if p.Code != nil && *p.Code != input.Code {
+		return false
+	}
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	return true
+}

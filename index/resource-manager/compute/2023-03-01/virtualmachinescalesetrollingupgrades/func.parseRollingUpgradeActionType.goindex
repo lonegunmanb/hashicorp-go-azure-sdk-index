@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2023-03-01/virtualmachinescalesetrollingupgrades
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRollingUpgradeActionType(input string) (*RollingUpgradeActionType, error) {
+	vals := map[string]RollingUpgradeActionType{
+		"cancel": RollingUpgradeActionTypeCancel,
+		"start":  RollingUpgradeActionTypeStart,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RollingUpgradeActionType(input)
+	return &out, nil
+}

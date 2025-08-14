@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2024-04-01/fetchsecondaryrecoverypoints
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRehydrationStatus(input string) (*RehydrationStatus, error) {
+	vals := map[string]RehydrationStatus{
+		"completed":          RehydrationStatusCOMPLETED,
+		"create_in_progress": RehydrationStatusCREATEINPROGRESS,
+		"deleted":            RehydrationStatusDELETED,
+		"delete_in_progress": RehydrationStatusDELETEINPROGRESS,
+		"failed":             RehydrationStatusFAILED,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RehydrationStatus(input)
+	return &out, nil
+}

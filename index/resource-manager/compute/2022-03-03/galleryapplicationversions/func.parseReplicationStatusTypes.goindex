@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2022-03-03/galleryapplicationversions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseReplicationStatusTypes(input string) (*ReplicationStatusTypes, error) {
+	vals := map[string]ReplicationStatusTypes{
+		"replicationstatus": ReplicationStatusTypesReplicationStatus,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ReplicationStatusTypes(input)
+	return &out, nil
+}

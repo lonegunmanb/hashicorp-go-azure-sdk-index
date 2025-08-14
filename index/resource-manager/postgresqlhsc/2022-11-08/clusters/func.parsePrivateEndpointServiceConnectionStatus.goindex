@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/postgresqlhsc/2022-11-08/clusters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePrivateEndpointServiceConnectionStatus(input string) (*PrivateEndpointServiceConnectionStatus, error) {
+	vals := map[string]PrivateEndpointServiceConnectionStatus{
+		"approved": PrivateEndpointServiceConnectionStatusApproved,
+		"pending":  PrivateEndpointServiceConnectionStatusPending,
+		"rejected": PrivateEndpointServiceConnectionStatusRejected,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PrivateEndpointServiceConnectionStatus(input)
+	return &out, nil
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-01-01/storageaccountsnetworksecurityperimeterconfigurations
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseResourceAssociationAccessMode(input string) (*ResourceAssociationAccessMode, error) {
+	vals := map[string]ResourceAssociationAccessMode{
+		"audit":    ResourceAssociationAccessModeAudit,
+		"enforced": ResourceAssociationAccessModeEnforced,
+		"learning": ResourceAssociationAccessModeLearning,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ResourceAssociationAccessMode(input)
+	return &out, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/standbypool/2025-03-01/standbyvirtualmachines
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewStandbyVirtualMachinesClientWithBaseURI(sdkApi sdkEnv.Api) (*StandbyVirtualMachinesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "standbyvirtualmachines", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating StandbyVirtualMachinesClient: %+v", err)
+	}
+
+	return &StandbyVirtualMachinesClient{
+		Client: client,
+	}, nil
+}

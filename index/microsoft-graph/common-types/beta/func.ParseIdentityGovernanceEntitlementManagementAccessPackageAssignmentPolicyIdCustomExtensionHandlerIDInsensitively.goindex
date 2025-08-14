@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseIdentityGovernanceEntitlementManagementAccessPackageAssignmentPolicyIdCustomExtensionHandlerIDInsensitively(input string) (*IdentityGovernanceEntitlementManagementAccessPackageAssignmentPolicyIdCustomExtensionHandlerId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&IdentityGovernanceEntitlementManagementAccessPackageAssignmentPolicyIdCustomExtensionHandlerId{})
+	parsed, err := parser.Parse(input, true)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := IdentityGovernanceEntitlementManagementAccessPackageAssignmentPolicyIdCustomExtensionHandlerId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

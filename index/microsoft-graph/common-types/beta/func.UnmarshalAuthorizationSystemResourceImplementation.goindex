@@ -1,0 +1,59 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalAuthorizationSystemResourceImplementation(input []byte) (AuthorizationSystemResource, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling AuthorizationSystemResource into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.awsAuthorizationSystemResource") {
+		var out AwsAuthorizationSystemResource
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AwsAuthorizationSystemResource: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.azureAuthorizationSystemResource") {
+		var out AzureAuthorizationSystemResource
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureAuthorizationSystemResource: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.gcpAuthorizationSystemResource") {
+		var out GcpAuthorizationSystemResource
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into GcpAuthorizationSystemResource: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseAuthorizationSystemResourceImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseAuthorizationSystemResourceImpl: %+v", err)
+	}
+
+	return RawAuthorizationSystemResourceImpl{
+		authorizationSystemResource: parent,
+		Type:                        value,
+		Values:                      temp,
+	}, nil
+
+}

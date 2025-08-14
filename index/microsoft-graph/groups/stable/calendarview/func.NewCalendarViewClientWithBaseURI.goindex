@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/calendarview
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewCalendarViewClientWithBaseURI(sdkApi sdkEnv.Api) (*CalendarViewClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "calendarview", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating CalendarViewClient: %+v", err)
+	}
+
+	return &CalendarViewClient{
+		Client: client,
+	}, nil
+}

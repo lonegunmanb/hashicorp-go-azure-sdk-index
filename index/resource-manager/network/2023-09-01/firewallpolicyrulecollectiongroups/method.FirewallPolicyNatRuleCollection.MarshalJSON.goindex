@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-09-01/firewallpolicyrulecollectiongroups
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s FirewallPolicyNatRuleCollection) MarshalJSON() ([]byte, error) {
+	type wrapper FirewallPolicyNatRuleCollection
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling FirewallPolicyNatRuleCollection: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling FirewallPolicyNatRuleCollection: %+v", err)
+	}
+
+	decoded["ruleCollectionType"] = "FirewallPolicyNatRuleCollection"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling FirewallPolicyNatRuleCollection: %+v", err)
+	}
+
+	return encoded, nil
+}

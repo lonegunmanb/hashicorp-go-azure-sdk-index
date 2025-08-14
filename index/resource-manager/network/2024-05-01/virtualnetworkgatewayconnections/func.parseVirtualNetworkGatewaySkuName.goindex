@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-05-01/virtualnetworkgatewayconnections
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVirtualNetworkGatewaySkuName(input string) (*VirtualNetworkGatewaySkuName, error) {
+	vals := map[string]VirtualNetworkGatewaySkuName{
+		"basic":            VirtualNetworkGatewaySkuNameBasic,
+		"ergw1az":          VirtualNetworkGatewaySkuNameErGwOneAZ,
+		"ergwscale":        VirtualNetworkGatewaySkuNameErGwScale,
+		"ergw3az":          VirtualNetworkGatewaySkuNameErGwThreeAZ,
+		"ergw2az":          VirtualNetworkGatewaySkuNameErGwTwoAZ,
+		"highperformance":  VirtualNetworkGatewaySkuNameHighPerformance,
+		"standard":         VirtualNetworkGatewaySkuNameStandard,
+		"ultraperformance": VirtualNetworkGatewaySkuNameUltraPerformance,
+		"vpngw5":           VirtualNetworkGatewaySkuNameVpnGwFive,
+		"vpngw5az":         VirtualNetworkGatewaySkuNameVpnGwFiveAZ,
+		"vpngw4":           VirtualNetworkGatewaySkuNameVpnGwFour,
+		"vpngw4az":         VirtualNetworkGatewaySkuNameVpnGwFourAZ,
+		"vpngw1":           VirtualNetworkGatewaySkuNameVpnGwOne,
+		"vpngw1az":         VirtualNetworkGatewaySkuNameVpnGwOneAZ,
+		"vpngw3":           VirtualNetworkGatewaySkuNameVpnGwThree,
+		"vpngw3az":         VirtualNetworkGatewaySkuNameVpnGwThreeAZ,
+		"vpngw2":           VirtualNetworkGatewaySkuNameVpnGwTwo,
+		"vpngw2az":         VirtualNetworkGatewaySkuNameVpnGwTwoAZ,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VirtualNetworkGatewaySkuName(input)
+	return &out, nil
+}

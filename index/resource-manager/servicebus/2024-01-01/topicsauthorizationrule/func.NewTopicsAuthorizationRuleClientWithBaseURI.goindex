@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicebus/2024-01-01/topicsauthorizationrule
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTopicsAuthorizationRuleClientWithBaseURI(sdkApi sdkEnv.Api) (*TopicsAuthorizationRuleClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "topicsauthorizationrule", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TopicsAuthorizationRuleClient: %+v", err)
+	}
+
+	return &TopicsAuthorizationRuleClient{
+		Client: client,
+	}, nil
+}

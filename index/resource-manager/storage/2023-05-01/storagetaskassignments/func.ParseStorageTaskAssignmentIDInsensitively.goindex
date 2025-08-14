@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/storagetaskassignments
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseStorageTaskAssignmentIDInsensitively(input string) (*StorageTaskAssignmentId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&StorageTaskAssignmentId{})
+	parsed, err := parser.Parse(input, true)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := StorageTaskAssignmentId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

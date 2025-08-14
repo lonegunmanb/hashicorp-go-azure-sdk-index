@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/alertsmanagement/2021-08-08/alertprocessingrules
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalActionImplementation(input []byte) (Action, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling Action into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["actionType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "AddActionGroups") {
+		var out AddActionGroups
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AddActionGroups: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "RemoveAllActionGroups") {
+		var out RemoveAllActionGroups
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into RemoveAllActionGroups: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseActionImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseActionImpl: %+v", err)
+	}
+
+	return RawActionImpl{
+		action: parent,
+		Type:   value,
+		Values: temp,
+	}, nil
+
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/templatemigratabletosetting
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTemplateMigratableToSettingClientWithBaseURI(sdkApi sdkEnv.Api) (*TemplateMigratableToSettingClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "templatemigratabletosetting", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TemplateMigratableToSettingClient: %+v", err)
+	}
+
+	return &TemplateMigratableToSettingClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/storageaccounts
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePostPlannedFailoverRedundancy(input string) (*PostPlannedFailoverRedundancy, error) {
+	vals := map[string]PostPlannedFailoverRedundancy{
+		"standard_grs":    PostPlannedFailoverRedundancyStandardGRS,
+		"standard_gzrs":   PostPlannedFailoverRedundancyStandardGZRS,
+		"standard_ragrs":  PostPlannedFailoverRedundancyStandardRAGRS,
+		"standard_ragzrs": PostPlannedFailoverRedundancyStandardRAGZRS,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PostPlannedFailoverRedundancy(input)
+	return &out, nil
+}

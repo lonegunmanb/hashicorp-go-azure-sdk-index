@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/appplatform/2024-05-01-preview/appplatform
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseStorageType(input string) (*StorageType, error) {
+	vals := map[string]StorageType{
+		"storageaccount": StorageTypeStorageAccount,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := StorageType(input)
+	return &out, nil
+}

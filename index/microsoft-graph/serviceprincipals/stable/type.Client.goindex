@@ -1,0 +1,65 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/appmanagementpolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/approleassignedto"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/approleassignment"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/claimsmappingpolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/createdobject"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/delegatedpermissionclassification"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/endpoint"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/federatedidentitycredential"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/homerealmdiscoverypolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/memberof"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/oauth2permissiongrant"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/ownedobject"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/owner"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/remotedesktopsecurityconfiguration"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/remotedesktopsecurityconfigurationtargetdevicegroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/serviceprincipal"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/synchronization"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/synchronizationjob"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/synchronizationjobbulkupload"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/synchronizationjobschema"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/synchronizationjobschemadirectory"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/synchronizationsecret"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/synchronizationtemplate"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/synchronizationtemplateschema"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/synchronizationtemplateschemadirectory"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/tokenissuancepolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/tokenlifetimepolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/transitivememberof"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	AppManagementPolicy                                 *appmanagementpolicy.AppManagementPolicyClient
+	AppRoleAssignedTo                                   *approleassignedto.AppRoleAssignedToClient
+	AppRoleAssignment                                   *approleassignment.AppRoleAssignmentClient
+	ClaimsMappingPolicy                                 *claimsmappingpolicy.ClaimsMappingPolicyClient
+	CreatedObject                                       *createdobject.CreatedObjectClient
+	DelegatedPermissionClassification                   *delegatedpermissionclassification.DelegatedPermissionClassificationClient
+	Endpoint                                            *endpoint.EndpointClient
+	FederatedIdentityCredential                         *federatedidentitycredential.FederatedIdentityCredentialClient
+	HomeRealmDiscoveryPolicy                            *homerealmdiscoverypolicy.HomeRealmDiscoveryPolicyClient
+	MemberOf                                            *memberof.MemberOfClient
+	OAuth2PermissionGrant                               *oauth2permissiongrant.OAuth2PermissionGrantClient
+	OwnedObject                                         *ownedobject.OwnedObjectClient
+	Owner                                               *owner.OwnerClient
+	RemoteDesktopSecurityConfiguration                  *remotedesktopsecurityconfiguration.RemoteDesktopSecurityConfigurationClient
+	RemoteDesktopSecurityConfigurationTargetDeviceGroup *remotedesktopsecurityconfigurationtargetdevicegroup.RemoteDesktopSecurityConfigurationTargetDeviceGroupClient
+	ServicePrincipal                                    *serviceprincipal.ServicePrincipalClient
+	Synchronization                                     *synchronization.SynchronizationClient
+	SynchronizationJob                                  *synchronizationjob.SynchronizationJobClient
+	SynchronizationJobBulkUpload                        *synchronizationjobbulkupload.SynchronizationJobBulkUploadClient
+	SynchronizationJobSchema                            *synchronizationjobschema.SynchronizationJobSchemaClient
+	SynchronizationJobSchemaDirectory                   *synchronizationjobschemadirectory.SynchronizationJobSchemaDirectoryClient
+	SynchronizationSecret                               *synchronizationsecret.SynchronizationSecretClient
+	SynchronizationTemplate                             *synchronizationtemplate.SynchronizationTemplateClient
+	SynchronizationTemplateSchema                       *synchronizationtemplateschema.SynchronizationTemplateSchemaClient
+	SynchronizationTemplateSchemaDirectory              *synchronizationtemplateschemadirectory.SynchronizationTemplateSchemaDirectoryClient
+	TokenIssuancePolicy                                 *tokenissuancepolicy.TokenIssuancePolicyClient
+	TokenLifetimePolicy                                 *tokenlifetimepolicy.TokenLifetimePolicyClient
+	TransitiveMemberOf                                  *transitivememberof.TransitiveMemberOfClient
+}

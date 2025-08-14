@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/linkedservices
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s CouchbaseLinkedService) MarshalJSON() ([]byte, error) {
+	type wrapper CouchbaseLinkedService
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling CouchbaseLinkedService: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling CouchbaseLinkedService: %+v", err)
+	}
+
+	decoded["type"] = "Couchbase"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling CouchbaseLinkedService: %+v", err)
+	}
+
+	return encoded, nil
+}

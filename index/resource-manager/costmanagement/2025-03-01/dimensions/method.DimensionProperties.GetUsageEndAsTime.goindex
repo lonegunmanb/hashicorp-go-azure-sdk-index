@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2025-03-01/dimensions
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *DimensionProperties) GetUsageEndAsTime() (*time.Time, error) {
+	if o.UsageEnd == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.UsageEnd, "2006-01-02T15:04:05Z07:00")
+}

@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resourceconnector/2022-10-27/appliances
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseStatus(input string) (*Status, error) {
+	vals := map[string]Status{
+		"connected":                             StatusConnected,
+		"connecting":                            StatusConnecting,
+		"etcdsnapshotfailed":                    StatusETCDSnapshotFailed,
+		"imagedeprovisioning":                   StatusImageDeprovisioning,
+		"imagedownloaded":                       StatusImageDownloaded,
+		"imagedownloading":                      StatusImageDownloading,
+		"imagepending":                          StatusImagePending,
+		"imageprovisioned":                      StatusImageProvisioned,
+		"imageprovisioning":                     StatusImageProvisioning,
+		"imageunknown":                          StatusImageUnknown,
+		"none":                                  StatusNone,
+		"offline":                               StatusOffline,
+		"postupgrade":                           StatusPostUpgrade,
+		"preupgrade":                            StatusPreUpgrade,
+		"preparingforupgrade":                   StatusPreparingForUpgrade,
+		"running":                               StatusRunning,
+		"updatingcapi":                          StatusUpdatingCAPI,
+		"updatingcloudoperator":                 StatusUpdatingCloudOperator,
+		"updatingcluster":                       StatusUpdatingCluster,
+		"upgradeclusterextensionfailedtodelete": StatusUpgradeClusterExtensionFailedToDelete,
+		"upgradecomplete":                       StatusUpgradeComplete,
+		"upgradefailed":                         StatusUpgradeFailed,
+		"upgradeprerequisitescompleted":         StatusUpgradePrerequisitesCompleted,
+		"upgradingkvaio":                        StatusUpgradingKVAIO,
+		"validating":                            StatusValidating,
+		"validatingetcdhealth":                  StatusValidatingETCDHealth,
+		"validatingimagedownload":               StatusValidatingImageDownload,
+		"validatingimageupload":                 StatusValidatingImageUpload,
+		"validatingsfsconnectivity":             StatusValidatingSFSConnectivity,
+		"waitingforcloudoperator":               StatusWaitingForCloudOperator,
+		"waitingforheartbeat":                   StatusWaitingForHeartbeat,
+		"waitingforkvaio":                       StatusWaitingForKVAIO,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Status(input)
+	return &out, nil
+}

@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2022-05-01/scripts
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ScriptsClient) ScriptExecutionsCreateOrUpdateThenPoll(ctx context.Context, id ScriptExecutionId, input ScriptExecution) error {
+	result, err := c.ScriptExecutionsCreateOrUpdate(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing ScriptExecutionsCreateOrUpdate: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after ScriptExecutionsCreateOrUpdate: %+v", err)
+	}
+
+	return nil
+}

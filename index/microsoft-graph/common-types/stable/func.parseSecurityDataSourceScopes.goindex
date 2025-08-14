@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityDataSourceScopes(input string) (*SecurityDataSourceScopes, error) {
+	vals := map[string]SecurityDataSourceScopes{
+		"allcasecustodians":              SecurityDataSourceScopes_AllCaseCustodians,
+		"allcasenoncustodialdatasources": SecurityDataSourceScopes_AllCaseNoncustodialDataSources,
+		"alltenantmailboxes":             SecurityDataSourceScopes_AllTenantMailboxes,
+		"alltenantsites":                 SecurityDataSourceScopes_AllTenantSites,
+		"none":                           SecurityDataSourceScopes_None,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityDataSourceScopes(input)
+	return &out, nil
+}

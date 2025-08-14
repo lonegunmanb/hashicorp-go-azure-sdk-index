@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityTeamsDeliveryLocation(input string) (*SecurityTeamsDeliveryLocation, error) {
+	vals := map[string]SecurityTeamsDeliveryLocation{
+		"failed":     SecurityTeamsDeliveryLocation_Failed,
+		"quarantine": SecurityTeamsDeliveryLocation_Quarantine,
+		"teams":      SecurityTeamsDeliveryLocation_Teams,
+		"unknown":    SecurityTeamsDeliveryLocation_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityTeamsDeliveryLocation(input)
+	return &out, nil
+}

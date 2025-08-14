@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2024-09-01/privateclouds
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNsxPublicIPQuotaRaisedEnum(input string) (*NsxPublicIPQuotaRaisedEnum, error) {
+	vals := map[string]NsxPublicIPQuotaRaisedEnum{
+		"disabled": NsxPublicIPQuotaRaisedEnumDisabled,
+		"enabled":  NsxPublicIPQuotaRaisedEnumEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NsxPublicIPQuotaRaisedEnum(input)
+	return &out, nil
+}

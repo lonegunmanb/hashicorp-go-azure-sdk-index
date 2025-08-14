@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/onlinemeetingregistrationcustomquestion
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c OnlineMeetingRegistrationCustomQuestionClient) ListOnlineMeetingRegistrationCustomQuestionsCompleteMatchingPredicate(ctx context.Context, id beta.MeOnlineMeetingId, options ListOnlineMeetingRegistrationCustomQuestionsOperationOptions, predicate MeetingRegistrationQuestionOperationPredicate) (result ListOnlineMeetingRegistrationCustomQuestionsCompleteResult, err error) {
+	items := make([]beta.MeetingRegistrationQuestion, 0)
+
+	resp, err := c.ListOnlineMeetingRegistrationCustomQuestions(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListOnlineMeetingRegistrationCustomQuestionsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

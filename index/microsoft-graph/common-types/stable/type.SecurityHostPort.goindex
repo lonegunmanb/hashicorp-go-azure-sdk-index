@@ -1,0 +1,60 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type SecurityHostPort struct {
+	// The hostPortBanners retrieved from scanning the port.
+	Banners *[]SecurityHostPortBanner `json:"banners,omitempty"`
+
+	// The first date and time when Microsoft Defender Threat Intelligence observed the hostPort. The timestamp type
+	// represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1,
+	// 2014, is 2014-01-01T00:00:00Z.
+	FirstSeenDateTime nullable.Type[string] `json:"firstSeenDateTime,omitempty"`
+
+	Host *SecurityHost `json:"host,omitempty"`
+
+	// The last date and time when Microsoft Defender Threat Intelligence scanned the hostPort. The timestamp type
+	// represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1,
+	// 2014, is 2014-01-01T00:00:00Z.
+	LastScanDateTime nullable.Type[string] `json:"lastScanDateTime,omitempty"`
+
+	// The last date and time when Microsoft Defender Threat Intelligence observed the hostPort. The timestamp type
+	// represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1,
+	// 2014, is 2014-01-01T00:00:00Z.
+	LastSeenDateTime nullable.Type[string] `json:"lastSeenDateTime,omitempty"`
+
+	// The most recent sslCertificate used to communicate on the port.
+	MostRecentSslCertificate *SecuritySslCertificate `json:"mostRecentSslCertificate,omitempty"`
+
+	// The numerical identifier of the port which is standardized across the internet.
+	Port *int64 `json:"port,omitempty"`
+
+	// The general protocol used to scan the port. The possible values are: tcp, udp, unknownFutureValue.
+	Protocol *SecurityHostPortProtocol `json:"protocol,omitempty"`
+
+	// The hostPortComponents retrieved from scanning the port.
+	Services *[]SecurityHostPortComponent `json:"services,omitempty"`
+
+	// The status of the port. The possible values are: open, filtered, closed, unknownFutureValue.
+	Status *SecurityHostPortStatus `json:"status,omitempty"`
+
+	// The total amount of times that Microsoft Defender Threat Intelligence has observed the hostPort in all its scans.
+	TimesObserved nullable.Type[int64] `json:"timesObserved,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

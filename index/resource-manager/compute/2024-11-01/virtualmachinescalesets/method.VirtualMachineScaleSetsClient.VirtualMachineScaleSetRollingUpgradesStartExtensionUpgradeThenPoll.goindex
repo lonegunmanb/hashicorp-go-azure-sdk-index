@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/virtualmachinescalesets
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c VirtualMachineScaleSetsClient) VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeThenPoll(ctx context.Context, id VirtualMachineScaleSetId) error {
+	result, err := c.VirtualMachineScaleSetRollingUpgradesStartExtensionUpgrade(ctx, id)
+	if err != nil {
+		return fmt.Errorf("performing VirtualMachineScaleSetRollingUpgradesStartExtensionUpgrade: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after VirtualMachineScaleSetRollingUpgradesStartExtensionUpgrade: %+v", err)
+	}
+
+	return nil
+}

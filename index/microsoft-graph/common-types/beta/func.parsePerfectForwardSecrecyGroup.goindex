@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePerfectForwardSecrecyGroup(input string) (*PerfectForwardSecrecyGroup, error) {
+	vals := map[string]PerfectForwardSecrecyGroup{
+		"ecp256":  PerfectForwardSecrecyGroup_Ecp256,
+		"ecp384":  PerfectForwardSecrecyGroup_Ecp384,
+		"pfs1":    PerfectForwardSecrecyGroup_Pfs1,
+		"pfs2":    PerfectForwardSecrecyGroup_Pfs2,
+		"pfs2048": PerfectForwardSecrecyGroup_Pfs2048,
+		"pfs24":   PerfectForwardSecrecyGroup_Pfs24,
+		"pfsmm":   PerfectForwardSecrecyGroup_PfsMM,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PerfectForwardSecrecyGroup(input)
+	return &out, nil
+}

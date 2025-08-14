@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/communication/2023-03-31/domains
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id EmailServiceId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Email Service Name: %q", id.EmailServiceName),
+	}
+	return fmt.Sprintf("Email Service (%s)", strings.Join(components, "\n"))
+}

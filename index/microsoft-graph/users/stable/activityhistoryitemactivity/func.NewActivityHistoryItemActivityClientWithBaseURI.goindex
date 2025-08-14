@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/activityhistoryitemactivity
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewActivityHistoryItemActivityClientWithBaseURI(sdkApi sdkEnv.Api) (*ActivityHistoryItemActivityClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "activityhistoryitemactivity", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ActivityHistoryItemActivityClient: %+v", err)
+	}
+
+	return &ActivityHistoryItemActivityClient{
+		Client: client,
+	}, nil
+}

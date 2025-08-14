@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWindowsDeviceHealthState(input string) (*WindowsDeviceHealthState, error) {
+	vals := map[string]WindowsDeviceHealthState{
+		"clean":              WindowsDeviceHealthState_Clean,
+		"critical":           WindowsDeviceHealthState_Critical,
+		"fullscanpending":    WindowsDeviceHealthState_FullScanPending,
+		"manualstepspending": WindowsDeviceHealthState_ManualStepsPending,
+		"offlinescanpending": WindowsDeviceHealthState_OfflineScanPending,
+		"rebootpending":      WindowsDeviceHealthState_RebootPending,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsDeviceHealthState(input)
+	return &out, nil
+}

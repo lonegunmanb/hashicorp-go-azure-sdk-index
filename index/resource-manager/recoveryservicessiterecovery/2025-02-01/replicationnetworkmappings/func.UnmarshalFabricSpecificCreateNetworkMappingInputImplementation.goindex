@@ -1,0 +1,57 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationnetworkmappings
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalFabricSpecificCreateNetworkMappingInputImplementation(input []byte) (FabricSpecificCreateNetworkMappingInput, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling FabricSpecificCreateNetworkMappingInput into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["instanceType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "AzureToAzure") {
+		var out AzureToAzureCreateNetworkMappingInput
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureToAzureCreateNetworkMappingInput: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "VmmToAzure") {
+		var out VMmToAzureCreateNetworkMappingInput
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into VMmToAzureCreateNetworkMappingInput: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "VmmToVmm") {
+		var out VMmToVMmCreateNetworkMappingInput
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into VMmToVMmCreateNetworkMappingInput: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseFabricSpecificCreateNetworkMappingInputImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseFabricSpecificCreateNetworkMappingInputImpl: %+v", err)
+	}
+
+	return RawFabricSpecificCreateNetworkMappingInputImpl{
+		fabricSpecificCreateNetworkMappingInput: parent,
+		Type:                                    value,
+		Values:                                  temp,
+	}, nil
+
+}

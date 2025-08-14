@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePermissionsRequestOccurrenceStatus(input string) (*PermissionsRequestOccurrenceStatus, error) {
+	vals := map[string]PermissionsRequestOccurrenceStatus{
+		"granted":        PermissionsRequestOccurrenceStatus_Granted,
+		"granting":       PermissionsRequestOccurrenceStatus_Granting,
+		"grantingfailed": PermissionsRequestOccurrenceStatus_GrantingFailed,
+		"revoked":        PermissionsRequestOccurrenceStatus_Revoked,
+		"revoking":       PermissionsRequestOccurrenceStatus_Revoking,
+		"revokingfailed": PermissionsRequestOccurrenceStatus_RevokingFailed,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PermissionsRequestOccurrenceStatus(input)
+	return &out, nil
+}

@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2024-09-01/endpoints
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseURLPathOperator(input string) (*URLPathOperator, error) {
+	vals := map[string]URLPathOperator{
+		"any":                URLPathOperatorAny,
+		"beginswith":         URLPathOperatorBeginsWith,
+		"contains":           URLPathOperatorContains,
+		"endswith":           URLPathOperatorEndsWith,
+		"equal":              URLPathOperatorEqual,
+		"greaterthan":        URLPathOperatorGreaterThan,
+		"greaterthanorequal": URLPathOperatorGreaterThanOrEqual,
+		"lessthan":           URLPathOperatorLessThan,
+		"lessthanorequal":    URLPathOperatorLessThanOrEqual,
+		"regex":              URLPathOperatorRegEx,
+		"wildcard":           URLPathOperatorWildcard,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := URLPathOperator(input)
+	return &out, nil
+}

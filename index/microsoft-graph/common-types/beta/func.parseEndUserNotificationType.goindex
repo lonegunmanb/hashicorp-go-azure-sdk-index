@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEndUserNotificationType(input string) (*EndUserNotificationType, error) {
+	vals := map[string]EndUserNotificationType{
+		"notraining":            EndUserNotificationType_NoTraining,
+		"positivereinforcement": EndUserNotificationType_PositiveReinforcement,
+		"trainingassignment":    EndUserNotificationType_TrainingAssignment,
+		"trainingreminder":      EndUserNotificationType_TrainingReminder,
+		"unknown":               EndUserNotificationType_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EndUserNotificationType(input)
+	return &out, nil
+}

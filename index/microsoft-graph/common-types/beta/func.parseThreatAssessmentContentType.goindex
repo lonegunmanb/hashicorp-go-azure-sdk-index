@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseThreatAssessmentContentType(input string) (*ThreatAssessmentContentType, error) {
+	vals := map[string]ThreatAssessmentContentType{
+		"file": ThreatAssessmentContentType_File,
+		"mail": ThreatAssessmentContentType_Mail,
+		"url":  ThreatAssessmentContentType_Url,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ThreatAssessmentContentType(input)
+	return &out, nil
+}

@@ -1,0 +1,59 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalDeviceAppManagementTaskImplementation(input []byte) (DeviceAppManagementTask, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling DeviceAppManagementTask into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.appVulnerabilityTask") {
+		var out AppVulnerabilityTask
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AppVulnerabilityTask: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.securityConfigurationTask") {
+		var out SecurityConfigurationTask
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SecurityConfigurationTask: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.unmanagedDeviceDiscoveryTask") {
+		var out UnmanagedDeviceDiscoveryTask
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into UnmanagedDeviceDiscoveryTask: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseDeviceAppManagementTaskImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseDeviceAppManagementTaskImpl: %+v", err)
+	}
+
+	return RawDeviceAppManagementTaskImpl{
+		deviceAppManagementTask: parent,
+		Type:                    value,
+		Values:                  temp,
+	}, nil
+
+}

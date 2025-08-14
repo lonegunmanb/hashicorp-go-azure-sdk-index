@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2024-08-01/longtermretentionbackup
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewLongTermRetentionBackupClientWithBaseURI(sdkApi sdkEnv.Api) (*LongTermRetentionBackupClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "longtermretentionbackup", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating LongTermRetentionBackupClient: %+v", err)
+	}
+
+	return &LongTermRetentionBackupClient{
+		Client: client,
+	}, nil
+}

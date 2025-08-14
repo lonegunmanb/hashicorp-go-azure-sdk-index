@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/provider
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ProviderClient) GetFunctionAppStacksCompleteMatchingPredicate(ctx context.Context, options GetFunctionAppStacksOperationOptions, predicate FunctionAppStackOperationPredicate) (result GetFunctionAppStacksCompleteResult, err error) {
+	items := make([]FunctionAppStack, 0)
+
+	resp, err := c.GetFunctionAppStacks(ctx, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = GetFunctionAppStacksCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

@@ -1,0 +1,39 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s Notebook) MarshalJSON() ([]byte, error) {
+	type wrapper Notebook
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling Notebook: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling Notebook: %+v", err)
+	}
+
+	delete(decoded, "isDefault")
+	delete(decoded, "isShared")
+	delete(decoded, "sectionGroups")
+	delete(decoded, "sectionGroupsUrl")
+	delete(decoded, "sections")
+	delete(decoded, "sectionsUrl")
+	delete(decoded, "userRole")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.notebook"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling Notebook: %+v", err)
+	}
+
+	return encoded, nil
+}

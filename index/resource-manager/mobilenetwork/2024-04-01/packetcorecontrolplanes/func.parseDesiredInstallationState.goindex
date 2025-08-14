@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mobilenetwork/2024-04-01/packetcorecontrolplanes
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDesiredInstallationState(input string) (*DesiredInstallationState, error) {
+	vals := map[string]DesiredInstallationState{
+		"installed":   DesiredInstallationStateInstalled,
+		"uninstalled": DesiredInstallationStateUninstalled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DesiredInstallationState(input)
+	return &out, nil
+}

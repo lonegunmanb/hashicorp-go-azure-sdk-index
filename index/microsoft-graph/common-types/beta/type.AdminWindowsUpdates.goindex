@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type AdminWindowsUpdates struct {
+	// Catalog of content that can be approved for deployment by Windows Autopatch. Read-only.
+	Catalog *WindowsUpdatesCatalog `json:"catalog,omitempty"`
+
+	// The set of updatableAsset resources to which a deployment can apply.
+	DeploymentAudiences *[]WindowsUpdatesDeploymentAudience `json:"deploymentAudiences,omitempty"`
+
+	// Deployments created using Windows Autopatch.
+	Deployments *[]WindowsUpdatesDeployment `json:"deployments,omitempty"`
+
+	// A collection of Windows products.
+	Products *[]WindowsUpdatesProduct `json:"products,omitempty"`
+
+	// Service connections to external resources such as analytics workspaces.
+	ResourceConnections *[]WindowsUpdatesResourceConnection `json:"resourceConnections,omitempty"`
+
+	// Assets registered with Windows Autopatch that can receive updates.
+	UpdatableAssets *[]WindowsUpdatesUpdatableAsset `json:"updatableAssets,omitempty"`
+
+	// A collection of policies for approving the deployment of different content to an audience over time.
+	UpdatePolicies *[]WindowsUpdatesUpdatePolicy `json:"updatePolicies,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

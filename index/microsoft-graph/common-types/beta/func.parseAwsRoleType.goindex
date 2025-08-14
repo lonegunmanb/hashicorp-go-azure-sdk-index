@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAwsRoleType(input string) (*AwsRoleType, error) {
+	vals := map[string]AwsRoleType{
+		"custom": AwsRoleType_Custom,
+		"system": AwsRoleType_System,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AwsRoleType(input)
+	return &out, nil
+}

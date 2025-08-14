@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicelinker/2024-04-01/linkers
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c LinkersClient) CreateDryrunThenPoll(ctx context.Context, id ScopedDryrunId, input DryrunResource) error {
+	result, err := c.CreateDryrun(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing CreateDryrun: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after CreateDryrun: %+v", err)
+	}
+
+	return nil
+}

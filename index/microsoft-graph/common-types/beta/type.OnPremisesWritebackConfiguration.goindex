@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type OnPremisesWritebackConfiguration struct {
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The distinguished name of the on-premises container that the customer is using to store unified groups which are
+	// created in the cloud.
+	UnifiedGroupContainer nullable.Type[string] `json:"unifiedGroupContainer,omitempty"`
+
+	// The distinguished name of the on-premises container that the customer is using to store users which are created in
+	// the cloud.
+	UserContainer nullable.Type[string] `json:"userContainer,omitempty"`
+}

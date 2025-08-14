@@ -1,0 +1,47 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type MessageRuleActions struct {
+	// A list of categories to be assigned to a message.
+	AssignCategories *[]string `json:"assignCategories,omitempty"`
+
+	// The ID of a folder that a message is to be copied to.
+	CopyToFolder nullable.Type[string] `json:"copyToFolder,omitempty"`
+
+	// Indicates whether a message should be moved to the Deleted Items folder.
+	Delete nullable.Type[bool] `json:"delete,omitempty"`
+
+	// The email addresses of the recipients to which a message should be forwarded as an attachment.
+	ForwardAsAttachmentTo *[]Recipient `json:"forwardAsAttachmentTo,omitempty"`
+
+	// The email addresses of the recipients to which a message should be forwarded.
+	ForwardTo *[]Recipient `json:"forwardTo,omitempty"`
+
+	// Indicates whether a message should be marked as read.
+	MarkAsRead nullable.Type[bool] `json:"markAsRead,omitempty"`
+
+	// Sets the importance of the message, which can be: low, normal, high.
+	MarkImportance *Importance `json:"markImportance,omitempty"`
+
+	// The ID of the folder that a message will be moved to.
+	MoveToFolder nullable.Type[string] `json:"moveToFolder,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Indicates whether a message should be permanently deleted and not saved to the Deleted Items folder.
+	PermanentDelete nullable.Type[bool] `json:"permanentDelete,omitempty"`
+
+	// The email address to which a message should be redirected.
+	RedirectTo *[]Recipient `json:"redirectTo,omitempty"`
+
+	// Indicates whether subsequent rules should be evaluated.
+	StopProcessingRules nullable.Type[bool] `json:"stopProcessingRules,omitempty"`
+}

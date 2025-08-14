@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2015-04-01/tenantactivitylogs
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *EventData) GetEventTimestampAsTime() (*time.Time, error) {
+	if o.EventTimestamp == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.EventTimestamp, "2006-01-02T15:04:05Z07:00")
+}

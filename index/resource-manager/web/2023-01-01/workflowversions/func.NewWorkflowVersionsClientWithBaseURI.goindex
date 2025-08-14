@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/workflowversions
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewWorkflowVersionsClientWithBaseURI(sdkApi sdkEnv.Api) (*WorkflowVersionsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "workflowversions", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating WorkflowVersionsClient: %+v", err)
+	}
+
+	return &WorkflowVersionsClient{
+		Client: client,
+	}, nil
+}

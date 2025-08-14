@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseManagedAppPhoneNumberRedirectLevel(input string) (*ManagedAppPhoneNumberRedirectLevel, error) {
+	vals := map[string]ManagedAppPhoneNumberRedirectLevel{
+		"allapps":     ManagedAppPhoneNumberRedirectLevel_AllApps,
+		"blocked":     ManagedAppPhoneNumberRedirectLevel_Blocked,
+		"customapp":   ManagedAppPhoneNumberRedirectLevel_CustomApp,
+		"managedapps": ManagedAppPhoneNumberRedirectLevel_ManagedApps,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagedAppPhoneNumberRedirectLevel(input)
+	return &out, nil
+}

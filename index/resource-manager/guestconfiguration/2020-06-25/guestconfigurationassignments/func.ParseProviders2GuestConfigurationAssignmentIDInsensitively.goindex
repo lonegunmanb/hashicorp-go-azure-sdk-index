@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/guestconfiguration/2020-06-25/guestconfigurationassignments
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseProviders2GuestConfigurationAssignmentIDInsensitively(input string) (*Providers2GuestConfigurationAssignmentId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&Providers2GuestConfigurationAssignmentId{})
+	parsed, err := parser.Parse(input, true)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := Providers2GuestConfigurationAssignmentId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

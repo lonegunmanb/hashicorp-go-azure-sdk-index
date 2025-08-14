@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/azurestackhci/2024-01-01/skus
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id SkuId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Cluster Name: %q", id.ClusterName),
+		fmt.Sprintf("Publisher Name: %q", id.PublisherName),
+		fmt.Sprintf("Offer Name: %q", id.OfferName),
+		fmt.Sprintf("Sku Name: %q", id.SkuName),
+	}
+	return fmt.Sprintf("Sku (%s)", strings.Join(components, "\n"))
+}

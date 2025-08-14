@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type PlannerExternalPlanSource struct {
+	// Nullable. An identifier for the scenario associated with this external source. This should be in reverse DNS format.
+	// For example, Contoso company owned application for customer support would have a value like
+	// 'com.constoso.customerSupport'.
+	ContextScenarioId nullable.Type[string] `json:"contextScenarioId,omitempty"`
+
+	// Nullable. The ID of the external entity's containing entity or context.
+	ExternalContextId nullable.Type[string] `json:"externalContextId,omitempty"`
+
+	// Nullable. The ID of the entity that an external service associates with a plan.
+	ExternalObjectId nullable.Type[string] `json:"externalObjectId,omitempty"`
+
+	// Fields inherited from PlannerPlanCreation
+
+	// Specifies what kind of creation source the plan is created with. The possible values are: external, publication and
+	// unknownFutureValue.
+	CreationSourceKind *PlannerCreationSourceKind `json:"creationSourceKind,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

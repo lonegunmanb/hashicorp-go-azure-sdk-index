@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2025-01-13/machines
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseArcKindEnum(input string) (*ArcKindEnum, error) {
+	vals := map[string]ArcKindEnum{
+		"avs":    ArcKindEnumAVS,
+		"aws":    ArcKindEnumAWS,
+		"eps":    ArcKindEnumEPS,
+		"gcp":    ArcKindEnumGCP,
+		"hci":    ArcKindEnumHCI,
+		"scvmm":  ArcKindEnumSCVMM,
+		"vmware": ArcKindEnumVMware,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ArcKindEnum(input)
+	return &out, nil
+}

@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/newrelic/2024-03-01/monitors
+
+func (p MonitoredResourceOperationPredicate) Matches(input MonitoredResource) bool {
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.ReasonForLogsStatus != nil && (input.ReasonForLogsStatus == nil || *p.ReasonForLogsStatus != *input.ReasonForLogsStatus) {
+		return false
+	}
+
+	if p.ReasonForMetricsStatus != nil && (input.ReasonForMetricsStatus == nil || *p.ReasonForMetricsStatus != *input.ReasonForMetricsStatus) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseOnenoteSourceService(input string) (*OnenoteSourceService, error) {
+	vals := map[string]OnenoteSourceService{
+		"onpremonedriveforbusiness": OnenoteSourceService_OnPremOneDriveForBusiness,
+		"onedrive":                  OnenoteSourceService_OneDrive,
+		"onedriveforbusiness":       OnenoteSourceService_OneDriveForBusiness,
+		"unknown":                   OnenoteSourceService_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := OnenoteSourceService(input)
+	return &out, nil
+}

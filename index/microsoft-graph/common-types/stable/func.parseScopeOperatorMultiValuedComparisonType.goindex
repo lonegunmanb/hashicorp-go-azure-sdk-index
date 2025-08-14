@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseScopeOperatorMultiValuedComparisonType(input string) (*ScopeOperatorMultiValuedComparisonType, error) {
+	vals := map[string]ScopeOperatorMultiValuedComparisonType{
+		"all": ScopeOperatorMultiValuedComparisonType_All,
+		"any": ScopeOperatorMultiValuedComparisonType_Any,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ScopeOperatorMultiValuedComparisonType(input)
+	return &out, nil
+}

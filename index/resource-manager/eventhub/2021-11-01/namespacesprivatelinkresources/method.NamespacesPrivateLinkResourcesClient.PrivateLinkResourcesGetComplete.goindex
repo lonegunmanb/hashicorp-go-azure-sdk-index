@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2021-11-01/namespacesprivatelinkresources
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c NamespacesPrivateLinkResourcesClient) PrivateLinkResourcesGetComplete(ctx context.Context, id NamespaceId) (PrivateLinkResourcesGetCompleteResult, error) {
+	return c.PrivateLinkResourcesGetCompleteMatchingPredicate(ctx, id, PrivateLinkResourceOperationPredicate{})
+}

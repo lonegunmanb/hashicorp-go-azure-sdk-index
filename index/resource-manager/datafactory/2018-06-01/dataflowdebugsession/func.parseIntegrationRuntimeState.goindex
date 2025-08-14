@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/dataflowdebugsession
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseIntegrationRuntimeState(input string) (*IntegrationRuntimeState, error) {
+	vals := map[string]IntegrationRuntimeState{
+		"accessdenied":     IntegrationRuntimeStateAccessDenied,
+		"initial":          IntegrationRuntimeStateInitial,
+		"limited":          IntegrationRuntimeStateLimited,
+		"needregistration": IntegrationRuntimeStateNeedRegistration,
+		"offline":          IntegrationRuntimeStateOffline,
+		"online":           IntegrationRuntimeStateOnline,
+		"started":          IntegrationRuntimeStateStarted,
+		"starting":         IntegrationRuntimeStateStarting,
+		"stopped":          IntegrationRuntimeStateStopped,
+		"stopping":         IntegrationRuntimeStateStopping,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IntegrationRuntimeState(input)
+	return &out, nil
+}

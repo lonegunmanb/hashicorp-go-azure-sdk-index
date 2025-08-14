@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id IdentityGovernanceRoleManagementAlertAlertIdAlertIncidentId) String() string {
+	components := []string{
+		fmt.Sprintf("Unified Role Management Alert: %q", id.UnifiedRoleManagementAlertId),
+		fmt.Sprintf("Unified Role Management Alert Incident: %q", id.UnifiedRoleManagementAlertIncidentId),
+	}
+	return fmt.Sprintf("Identity Governance Role Management Alert Alert Id Alert Incident (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationrecoveryplans
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseReplicationProtectedItemOperation(input string) (*ReplicationProtectedItemOperation, error) {
+	vals := map[string]ReplicationProtectedItemOperation{
+		"cancelfailover":      ReplicationProtectedItemOperationCancelFailover,
+		"changepit":           ReplicationProtectedItemOperationChangePit,
+		"commit":              ReplicationProtectedItemOperationCommit,
+		"completemigration":   ReplicationProtectedItemOperationCompleteMigration,
+		"disableprotection":   ReplicationProtectedItemOperationDisableProtection,
+		"failback":            ReplicationProtectedItemOperationFailback,
+		"finalizefailback":    ReplicationProtectedItemOperationFinalizeFailback,
+		"plannedfailover":     ReplicationProtectedItemOperationPlannedFailover,
+		"repairreplication":   ReplicationProtectedItemOperationRepairReplication,
+		"reversereplicate":    ReplicationProtectedItemOperationReverseReplicate,
+		"switchprotection":    ReplicationProtectedItemOperationSwitchProtection,
+		"testfailover":        ReplicationProtectedItemOperationTestFailover,
+		"testfailovercleanup": ReplicationProtectedItemOperationTestFailoverCleanup,
+		"unplannedfailover":   ReplicationProtectedItemOperationUnplannedFailover,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ReplicationProtectedItemOperation(input)
+	return &out, nil
+}

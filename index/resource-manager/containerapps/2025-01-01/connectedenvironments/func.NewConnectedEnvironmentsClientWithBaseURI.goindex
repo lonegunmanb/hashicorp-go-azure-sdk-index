@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerapps/2025-01-01/connectedenvironments
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewConnectedEnvironmentsClientWithBaseURI(sdkApi sdkEnv.Api) (*ConnectedEnvironmentsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "connectedenvironments", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ConnectedEnvironmentsClient: %+v", err)
+	}
+
+	return &ConnectedEnvironmentsClient{
+		Client: client,
+	}, nil
+}

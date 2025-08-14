@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/customoperation
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+type BaseMongoDbProgressImpl struct {
+	BytesCopied     int64                   `json:"bytesCopied"`
+	DocumentsCopied int64                   `json:"documentsCopied"`
+	ElapsedTime     string                  `json:"elapsedTime"`
+	Errors          map[string]MongoDbError `json:"errors"`
+	EventsPending   int64                   `json:"eventsPending"`
+	EventsReplayed  int64                   `json:"eventsReplayed"`
+	LastEventTime   *string                 `json:"lastEventTime,omitempty"`
+	LastReplayTime  *string                 `json:"lastReplayTime,omitempty"`
+	Name            *string                 `json:"name,omitempty"`
+	QualifiedName   *string                 `json:"qualifiedName,omitempty"`
+	ResultType      ResultType              `json:"resultType"`
+	State           MongoDbMigrationState   `json:"state"`
+	TotalBytes      int64                   `json:"totalBytes"`
+	TotalDocuments  int64                   `json:"totalDocuments"`
+}

@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/endpoints
+
+func (p ResourceUsageOperationPredicate) Matches(input ResourceUsage) bool {
+
+	if p.CurrentValue != nil && (input.CurrentValue == nil || *p.CurrentValue != *input.CurrentValue) {
+		return false
+	}
+
+	if p.Limit != nil && (input.Limit == nil || *p.Limit != *input.Limit) {
+		return false
+	}
+
+	if p.ResourceType != nil && (input.ResourceType == nil || *p.ResourceType != *input.ResourceType) {
+		return false
+	}
+
+	return true
+}

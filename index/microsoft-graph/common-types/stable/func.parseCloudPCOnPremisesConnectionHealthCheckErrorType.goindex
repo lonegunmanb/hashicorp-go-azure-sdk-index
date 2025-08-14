@@ -1,0 +1,84 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCloudPCOnPremisesConnectionHealthCheckErrorType(input string) (*CloudPCOnPremisesConnectionHealthCheckErrorType, error) {
+	vals := map[string]CloudPCOnPremisesConnectionHealthCheckErrorType{
+		"adjoincheckaccessdenied":                                           CloudPCOnPremisesConnectionHealthCheckErrorType_AdJoinCheckAccessDenied,
+		"adjoincheckaccountlockedordisabled":                                CloudPCOnPremisesConnectionHealthCheckErrorType_AdJoinCheckAccountLockedOrDisabled,
+		"adjoincheckaccountquotaexceeded":                                   CloudPCOnPremisesConnectionHealthCheckErrorType_AdJoinCheckAccountQuotaExceeded,
+		"adjoincheckcomputerobjectalreadyexists":                            CloudPCOnPremisesConnectionHealthCheckErrorType_AdJoinCheckComputerObjectAlreadyExists,
+		"adjoincheckcredentialsexpired":                                     CloudPCOnPremisesConnectionHealthCheckErrorType_AdJoinCheckCredentialsExpired,
+		"adjoincheckfqdnnotfound":                                           CloudPCOnPremisesConnectionHealthCheckErrorType_AdJoinCheckFqdnNotFound,
+		"adjoincheckincorrectcredentials":                                   CloudPCOnPremisesConnectionHealthCheckErrorType_AdJoinCheckIncorrectCredentials,
+		"adjoincheckorganizationalunitincorrectformat":                      CloudPCOnPremisesConnectionHealthCheckErrorType_AdJoinCheckOrganizationalUnitIncorrectFormat,
+		"adjoincheckorganizationalunitnotfound":                             CloudPCOnPremisesConnectionHealthCheckErrorType_AdJoinCheckOrganizationalUnitNotFound,
+		"adjoincheckservernotoperational":                                   CloudPCOnPremisesConnectionHealthCheckErrorType_AdJoinCheckServerNotOperational,
+		"adjoincheckunknownerror":                                           CloudPCOnPremisesConnectionHealthCheckErrorType_AdJoinCheckUnknownError,
+		"azureaddevicesynccheckconnectdisabled":                             CloudPCOnPremisesConnectionHealthCheckErrorType_AzureAdDeviceSyncCheckConnectDisabled,
+		"azureaddevicesynccheckdevicenotfound":                              CloudPCOnPremisesConnectionHealthCheckErrorType_AzureAdDeviceSyncCheckDeviceNotFound,
+		"azureaddevicesynccheckdurationexceeded":                            CloudPCOnPremisesConnectionHealthCheckErrorType_AzureAdDeviceSyncCheckDurationExceeded,
+		"azureaddevicesyncchecklongsynccircle":                              CloudPCOnPremisesConnectionHealthCheckErrorType_AzureAdDeviceSyncCheckLongSyncCircle,
+		"azureaddevicesynccheckscpnotconfigured":                            CloudPCOnPremisesConnectionHealthCheckErrorType_AzureAdDeviceSyncCheckScpNotConfigured,
+		"azureaddevicesyncchecktransientserviceerror":                       CloudPCOnPremisesConnectionHealthCheckErrorType_AzureAdDeviceSyncCheckTransientServiceError,
+		"azureaddevicesynccheckunknownerror":                                CloudPCOnPremisesConnectionHealthCheckErrorType_AzureAdDeviceSyncCheckUnknownError,
+		"dnscheckfqdnnotfound":                                              CloudPCOnPremisesConnectionHealthCheckErrorType_DnsCheckFqdnNotFound,
+		"dnschecknamewithinvalidcharacter":                                  CloudPCOnPremisesConnectionHealthCheckErrorType_DnsCheckNameWithInvalidCharacter,
+		"dnscheckunknownerror":                                              CloudPCOnPremisesConnectionHealthCheckErrorType_DnsCheckUnknownError,
+		"endpointconnectivitycheckazureadurlnotallowlisted":                 CloudPCOnPremisesConnectionHealthCheckErrorType_EndpointConnectivityCheckAzureADUrlNotAllowListed,
+		"endpointconnectivitycheckcloudpcurlnotallowlisted":                 CloudPCOnPremisesConnectionHealthCheckErrorType_EndpointConnectivityCheckCloudPCUrlNotAllowListed,
+		"endpointconnectivitycheckintuneurlnotallowlisted":                  CloudPCOnPremisesConnectionHealthCheckErrorType_EndpointConnectivityCheckIntuneUrlNotAllowListed,
+		"endpointconnectivitychecklocaleurlnotallowlisted":                  CloudPCOnPremisesConnectionHealthCheckErrorType_EndpointConnectivityCheckLocaleUrlNotAllowListed,
+		"endpointconnectivitycheckunknownerror":                             CloudPCOnPremisesConnectionHealthCheckErrorType_EndpointConnectivityCheckUnknownError,
+		"endpointconnectivitycheckwvdurlnotallowlisted":                     CloudPCOnPremisesConnectionHealthCheckErrorType_EndpointConnectivityCheckWVDUrlNotAllowListed,
+		"internalservererrorallocateresourcefailed":                         CloudPCOnPremisesConnectionHealthCheckErrorType_InternalServerErrorAllocateResourceFailed,
+		"internalservererrordeploymentcanceled":                             CloudPCOnPremisesConnectionHealthCheckErrorType_InternalServerErrorDeploymentCanceled,
+		"internalservererrorunabletorundscscript":                           CloudPCOnPremisesConnectionHealthCheckErrorType_InternalServerErrorUnableToRunDscScript,
+		"internalservererrorvmdeploymenttimeout":                            CloudPCOnPremisesConnectionHealthCheckErrorType_InternalServerErrorVMDeploymentTimeout,
+		"internalserverunknownerror":                                        CloudPCOnPremisesConnectionHealthCheckErrorType_InternalServerUnknownError,
+		"permissionchecknoresourcegroupnetworkcontributorrole":              CloudPCOnPremisesConnectionHealthCheckErrorType_PermissionCheckNoResourceGroupNetworkContributorRole,
+		"permissionchecknoresourcegroupownerrole":                           CloudPCOnPremisesConnectionHealthCheckErrorType_PermissionCheckNoResourceGroupOwnerRole,
+		"permissionchecknosubscriptionreaderrole":                           CloudPCOnPremisesConnectionHealthCheckErrorType_PermissionCheckNoSubscriptionReaderRole,
+		"permissionchecknovnetcontributorrole":                              CloudPCOnPremisesConnectionHealthCheckErrorType_PermissionCheckNoVNetContributorRole,
+		"permissionchecknowindows365networkinterfacecontributorrole":        CloudPCOnPremisesConnectionHealthCheckErrorType_PermissionCheckNoWindows365NetworkInterfaceContributorRole,
+		"permissionchecknowindows365networkuserrole":                        CloudPCOnPremisesConnectionHealthCheckErrorType_PermissionCheckNoWindows365NetworkUserRole,
+		"permissionchecktransientserviceerror":                              CloudPCOnPremisesConnectionHealthCheckErrorType_PermissionCheckTransientServiceError,
+		"permissioncheckunknownerror":                                       CloudPCOnPremisesConnectionHealthCheckErrorType_PermissionCheckUnknownError,
+		"resourceavailabilitycheckazurepolicyviolation":                     CloudPCOnPremisesConnectionHealthCheckErrorType_ResourceAvailabilityCheckAzurePolicyViolation,
+		"resourceavailabilitycheckdeploymentquotalimitreached":              CloudPCOnPremisesConnectionHealthCheckErrorType_ResourceAvailabilityCheckDeploymentQuotaLimitReached,
+		"resourceavailabilitycheckgeneralsubscriptionerror":                 CloudPCOnPremisesConnectionHealthCheckErrorType_ResourceAvailabilityCheckGeneralSubscriptionError,
+		"resourceavailabilitycheckintunecustomwindowsrestrictionviolation":  CloudPCOnPremisesConnectionHealthCheckErrorType_ResourceAvailabilityCheckIntuneCustomWindowsRestrictionViolation,
+		"resourceavailabilitycheckintunedefaultwindowsrestrictionviolation": CloudPCOnPremisesConnectionHealthCheckErrorType_ResourceAvailabilityCheckIntuneDefaultWindowsRestrictionViolation,
+		"resourceavailabilitychecknointunereaderroleerror":                  CloudPCOnPremisesConnectionHealthCheckErrorType_ResourceAvailabilityCheckNoIntuneReaderRoleError,
+		"resourceavailabilitychecknosubnetip":                               CloudPCOnPremisesConnectionHealthCheckErrorType_ResourceAvailabilityCheckNoSubnetIP,
+		"resourceavailabilitycheckresourcegroupbeingdeleted":                CloudPCOnPremisesConnectionHealthCheckErrorType_ResourceAvailabilityCheckResourceGroupBeingDeleted,
+		"resourceavailabilitycheckresourcegroupinvalid":                     CloudPCOnPremisesConnectionHealthCheckErrorType_ResourceAvailabilityCheckResourceGroupInvalid,
+		"resourceavailabilitycheckresourcegrouplockedfordelete":             CloudPCOnPremisesConnectionHealthCheckErrorType_ResourceAvailabilityCheckResourceGroupLockedForDelete,
+		"resourceavailabilitycheckresourcegrouplockedforreadonly":           CloudPCOnPremisesConnectionHealthCheckErrorType_ResourceAvailabilityCheckResourceGroupLockedForReadonly,
+		"resourceavailabilitychecksubnetdelegationfailed":                   CloudPCOnPremisesConnectionHealthCheckErrorType_ResourceAvailabilityCheckSubnetDelegationFailed,
+		"resourceavailabilitychecksubnetinvalid":                            CloudPCOnPremisesConnectionHealthCheckErrorType_ResourceAvailabilityCheckSubnetInvalid,
+		"resourceavailabilitychecksubnetwithexternalresources":              CloudPCOnPremisesConnectionHealthCheckErrorType_ResourceAvailabilityCheckSubnetWithExternalResources,
+		"resourceavailabilitychecksubscriptiondisabled":                     CloudPCOnPremisesConnectionHealthCheckErrorType_ResourceAvailabilityCheckSubscriptionDisabled,
+		"resourceavailabilitychecksubscriptionnotfound":                     CloudPCOnPremisesConnectionHealthCheckErrorType_ResourceAvailabilityCheckSubscriptionNotFound,
+		"resourceavailabilitychecksubscriptiontransferred":                  CloudPCOnPremisesConnectionHealthCheckErrorType_ResourceAvailabilityCheckSubscriptionTransferred,
+		"resourceavailabilitychecktransientserviceerror":                    CloudPCOnPremisesConnectionHealthCheckErrorType_ResourceAvailabilityCheckTransientServiceError,
+		"resourceavailabilitycheckunknownerror":                             CloudPCOnPremisesConnectionHealthCheckErrorType_ResourceAvailabilityCheckUnknownError,
+		"resourceavailabilitycheckunsupportedvnetregion":                    CloudPCOnPremisesConnectionHealthCheckErrorType_ResourceAvailabilityCheckUnsupportedVNetRegion,
+		"resourceavailabilitycheckvnetbeingmoved":                           CloudPCOnPremisesConnectionHealthCheckErrorType_ResourceAvailabilityCheckVNetBeingMoved,
+		"resourceavailabilitycheckvnetinvalid":                              CloudPCOnPremisesConnectionHealthCheckErrorType_ResourceAvailabilityCheckVNetInvalid,
+		"ssocheckkerberosconfigurationerror":                                CloudPCOnPremisesConnectionHealthCheckErrorType_SsoCheckKerberosConfigurationError,
+		"udpconnectivitycheckstunurlnotallowlisted":                         CloudPCOnPremisesConnectionHealthCheckErrorType_UdpConnectivityCheckStunUrlNotAllowListed,
+		"udpconnectivitycheckturnurlnotallowlisted":                         CloudPCOnPremisesConnectionHealthCheckErrorType_UdpConnectivityCheckTurnUrlNotAllowListed,
+		"udpconnectivitycheckunknownerror":                                  CloudPCOnPremisesConnectionHealthCheckErrorType_UdpConnectivityCheckUnknownError,
+		"udpconnectivitycheckurlsnotallowlisted":                            CloudPCOnPremisesConnectionHealthCheckErrorType_UdpConnectivityCheckUrlsNotAllowListed,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CloudPCOnPremisesConnectionHealthCheckErrorType(input)
+	return &out, nil
+}

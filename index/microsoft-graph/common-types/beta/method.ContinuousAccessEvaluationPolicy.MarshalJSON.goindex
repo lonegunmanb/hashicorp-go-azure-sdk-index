@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s ContinuousAccessEvaluationPolicy) MarshalJSON() ([]byte, error) {
+	type wrapper ContinuousAccessEvaluationPolicy
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ContinuousAccessEvaluationPolicy: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ContinuousAccessEvaluationPolicy: %+v", err)
+	}
+
+	delete(decoded, "description")
+	delete(decoded, "displayName")
+	delete(decoded, "groups")
+	delete(decoded, "isEnabled")
+	delete(decoded, "users")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.continuousAccessEvaluationPolicy"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ContinuousAccessEvaluationPolicy: %+v", err)
+	}
+
+	return encoded, nil
+}

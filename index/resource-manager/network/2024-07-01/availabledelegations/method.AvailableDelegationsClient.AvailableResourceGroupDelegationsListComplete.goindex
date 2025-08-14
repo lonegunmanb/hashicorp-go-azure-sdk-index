@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/availabledelegations
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c AvailableDelegationsClient) AvailableResourceGroupDelegationsListComplete(ctx context.Context, id ProviderLocationId) (AvailableResourceGroupDelegationsListCompleteResult, error) {
+	return c.AvailableResourceGroupDelegationsListCompleteMatchingPredicate(ctx, id, AvailableDelegationOperationPredicate{})
+}

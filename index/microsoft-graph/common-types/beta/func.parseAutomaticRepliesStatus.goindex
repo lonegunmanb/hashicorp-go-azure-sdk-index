@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAutomaticRepliesStatus(input string) (*AutomaticRepliesStatus, error) {
+	vals := map[string]AutomaticRepliesStatus{
+		"alwaysenabled": AutomaticRepliesStatus_AlwaysEnabled,
+		"disabled":      AutomaticRepliesStatus_Disabled,
+		"scheduled":     AutomaticRepliesStatus_Scheduled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AutomaticRepliesStatus(input)
+	return &out, nil
+}

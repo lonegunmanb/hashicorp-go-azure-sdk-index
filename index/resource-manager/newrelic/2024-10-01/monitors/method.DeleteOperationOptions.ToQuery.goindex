@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/newrelic/2024-10-01/monitors
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o DeleteOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.UserEmail != nil {
+		out.Append("userEmail", fmt.Sprintf("%v", *o.UserEmail))
+	}
+	return &out
+}

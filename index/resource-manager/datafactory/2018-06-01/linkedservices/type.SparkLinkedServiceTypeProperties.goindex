@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/linkedservices
+import (
+	"encoding/json"
+	"fmt"
+)
+type SparkLinkedServiceTypeProperties struct {
+	AllowHostNameCNMismatch           *bool                         `json:"allowHostNameCNMismatch,omitempty"`
+	AllowSelfSignedServerCert         *bool                         `json:"allowSelfSignedServerCert,omitempty"`
+	AuthenticationType                SparkAuthenticationType       `json:"authenticationType"`
+	EnableServerCertificateValidation *bool                         `json:"enableServerCertificateValidation,omitempty"`
+	EnableSsl                         *bool                         `json:"enableSsl,omitempty"`
+	EncryptedCredential               *string                       `json:"encryptedCredential,omitempty"`
+	HTTPPath                          *interface{}                  `json:"httpPath,omitempty"`
+	Host                              interface{}                   `json:"host"`
+	Password                          SecretBase                    `json:"password"`
+	Port                              int64                         `json:"port"`
+	ServerType                        *SparkServerType              `json:"serverType,omitempty"`
+	ThriftTransportProtocol           *SparkThriftTransportProtocol `json:"thriftTransportProtocol,omitempty"`
+	TrustedCertPath                   *interface{}                  `json:"trustedCertPath,omitempty"`
+	UseSystemTrustStore               *bool                         `json:"useSystemTrustStore,omitempty"`
+	Username                          *interface{}                  `json:"username,omitempty"`
+}

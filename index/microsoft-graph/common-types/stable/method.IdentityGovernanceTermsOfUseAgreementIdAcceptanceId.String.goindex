@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id IdentityGovernanceTermsOfUseAgreementIdAcceptanceId) String() string {
+	components := []string{
+		fmt.Sprintf("Agreement: %q", id.AgreementId),
+		fmt.Sprintf("Agreement Acceptance: %q", id.AgreementAcceptanceId),
+	}
+	return fmt.Sprintf("Identity Governance Terms Of Use Agreement Id Acceptance (%s)", strings.Join(components, "\n"))
+}

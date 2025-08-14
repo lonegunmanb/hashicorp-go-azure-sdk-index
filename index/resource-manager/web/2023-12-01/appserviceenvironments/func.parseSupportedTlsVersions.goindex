@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/appserviceenvironments
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSupportedTlsVersions(input string) (*SupportedTlsVersions, error) {
+	vals := map[string]SupportedTlsVersions{
+		"1.1": SupportedTlsVersionsOnePointOne,
+		"1.3": SupportedTlsVersionsOnePointThree,
+		"1.2": SupportedTlsVersionsOnePointTwo,
+		"1.0": SupportedTlsVersionsOnePointZero,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SupportedTlsVersions(input)
+	return &out, nil
+}

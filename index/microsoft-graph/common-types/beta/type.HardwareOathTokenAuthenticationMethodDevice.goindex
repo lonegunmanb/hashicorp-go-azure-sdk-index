@@ -1,0 +1,61 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type HardwareOathTokenAuthenticationMethodDevice struct {
+	// Assign the hardware OATH token to a user.
+	AssignTo *User `json:"assignTo,omitempty"`
+
+	// User the token is assigned to. Nullable. Supports $filter (eq).
+	AssignedTo *Identity `json:"assignedTo"`
+
+	// Hash function of the hardrware token. The possible values are: hmacsha1 or hmacsha256. Default value is: hmacsha1.
+	// Supports $filter (eq).
+	HashFunction *HardwareOathTokenHashFunction `json:"hashFunction,omitempty"`
+
+	// Manufacturer name of the hardware token. Supports $filter (eq).
+	Manufacturer *string `json:"manufacturer,omitempty"`
+
+	// Model name of the hardware token. Supports $filter (eq).
+	Model *string `json:"model,omitempty"`
+
+	// Secret key of the specific hardware token, provided by the vendor.
+	SecretKey nullable.Type[string] `json:"secretKey,omitempty"`
+
+	// Serial number of the specific hardware token, often found on the back of the device. Supports $select and $filter
+	// (eq).
+	SerialNumber *string `json:"serialNumber,omitempty"`
+
+	// Status of the hardware OATH token.The possible values are: available, assigned, activated, failedActivation. Supports
+	// $filter(eq).
+	Status *HardwareOathTokenStatus `json:"status,omitempty"`
+
+	// Refresh interval of the 6-digit verification code, in seconds. The possible values are: 30 or 60. Supports $filter
+	// (eq).
+	TimeIntervalInSeconds *int64 `json:"timeIntervalInSeconds,omitempty"`
+
+	// Fields inherited from AuthenticationMethodDevice
+
+	// Optional name given to the hardware OATH device.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// Exposes the hardware OATH method in the directory.
+	HardwareOathDevices *[]HardwareOathTokenAuthenticationMethodDevice `json:"hardwareOathDevices,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

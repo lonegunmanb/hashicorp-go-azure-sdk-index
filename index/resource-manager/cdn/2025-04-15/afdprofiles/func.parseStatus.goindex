@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-04-15/afdprofiles
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseStatus(input string) (*Status, error) {
+	vals := map[string]Status{
+		"accessdenied":       StatusAccessDenied,
+		"certificateexpired": StatusCertificateExpired,
+		"invalid":            StatusInvalid,
+		"valid":              StatusValid,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Status(input)
+	return &out, nil
+}

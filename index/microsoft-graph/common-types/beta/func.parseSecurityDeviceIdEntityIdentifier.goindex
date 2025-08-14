@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityDeviceIdEntityIdentifier(input string) (*SecurityDeviceIdEntityIdentifier, error) {
+	vals := map[string]SecurityDeviceIdEntityIdentifier{
+		"deviceid": SecurityDeviceIdEntityIdentifier_DeviceId,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityDeviceIdEntityIdentifier(input)
+	return &out, nil
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type HealthMonitoringEnrichment struct {
+	// A collection of resource impact summaries that gives a high level view of the kind of resources that were impacted
+	// and to what degree.
+	Impacts *[]HealthMonitoringResourceImpactSummary `json:"impacts,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	State *HealthMonitoringEnrichmentState `json:"state,omitempty"`
+
+	// A collection of supportingData locations that can be queried for debugging the alert.
+	SupportingData *HealthMonitoringSupportingData `json:"supportingData,omitempty"`
+}

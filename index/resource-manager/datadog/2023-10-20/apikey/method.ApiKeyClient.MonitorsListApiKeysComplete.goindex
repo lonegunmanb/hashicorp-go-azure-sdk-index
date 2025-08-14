@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datadog/2023-10-20/apikey
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ApiKeyClient) MonitorsListApiKeysComplete(ctx context.Context, id MonitorId) (MonitorsListApiKeysCompleteResult, error) {
+	return c.MonitorsListApiKeysCompleteMatchingPredicate(ctx, id, DatadogApiKeyOperationPredicate{})
+}

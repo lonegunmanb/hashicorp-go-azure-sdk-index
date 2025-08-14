@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingaccount
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSupportLevel(input string) (*SupportLevel, error) {
+	vals := map[string]SupportLevel{
+		"developer":  SupportLevelDeveloper,
+		"other":      SupportLevelOther,
+		"pro-direct": SupportLevelProNegativeDirect,
+		"standard":   SupportLevelStandard,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SupportLevel(input)
+	return &out, nil
+}

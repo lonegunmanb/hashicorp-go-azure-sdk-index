@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-11-01/publicipaddresses
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePublicIPAddressSkuName(input string) (*PublicIPAddressSkuName, error) {
+	vals := map[string]PublicIPAddressSkuName{
+		"basic":    PublicIPAddressSkuNameBasic,
+		"standard": PublicIPAddressSkuNameStandard,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PublicIPAddressSkuName(input)
+	return &out, nil
+}

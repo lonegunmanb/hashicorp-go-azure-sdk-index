@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2025-01-01/experiments
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func (s *BaseChaosTargetSelectorImpl) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		Id   string       `json:"id"`
+		Type SelectorType `json:"type"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.Id = decoded.Id
+	s.Type = decoded.Type
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling BaseChaosTargetSelectorImpl into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["filter"]; ok {
+		impl, err := UnmarshalChaosTargetFilterImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Filter' for 'BaseChaosTargetSelectorImpl': %+v", err)
+		}
+		s.Filter = impl
+	}
+
+	return nil
+}

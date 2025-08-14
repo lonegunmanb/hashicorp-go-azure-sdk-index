@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/recommendations
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c RecommendationsClient) ListHistoryForWebAppComplete(ctx context.Context, id commonids.AppServiceId, options ListHistoryForWebAppOperationOptions) (ListHistoryForWebAppCompleteResult, error) {
+	return c.ListHistoryForWebAppCompleteMatchingPredicate(ctx, id, options, RecommendationOperationPredicate{})
+}

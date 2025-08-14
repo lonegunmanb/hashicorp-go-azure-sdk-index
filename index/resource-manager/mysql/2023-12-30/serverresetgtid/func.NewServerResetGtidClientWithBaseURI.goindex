@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mysql/2023-12-30/serverresetgtid
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewServerResetGtidClientWithBaseURI(sdkApi sdkEnv.Api) (*ServerResetGtidClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "serverresetgtid", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ServerResetGtidClient: %+v", err)
+	}
+
+	return &ServerResetGtidClient{
+		Client: client,
+	}, nil
+}

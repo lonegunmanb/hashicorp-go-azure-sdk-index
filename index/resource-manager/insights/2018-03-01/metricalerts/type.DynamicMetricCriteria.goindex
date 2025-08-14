@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2018-03-01/metricalerts
+import (
+	"encoding/json"
+	"fmt"
+)
+type DynamicMetricCriteria struct {
+	AlertSensitivity DynamicThresholdSensitivity    `json:"alertSensitivity"`
+	FailingPeriods   DynamicThresholdFailingPeriods `json:"failingPeriods"`
+	IgnoreDataBefore *string                        `json:"ignoreDataBefore,omitempty"`
+	Operator         DynamicThresholdOperator       `json:"operator"`
+
+	// Fields inherited from MultiMetricCriteria
+
+	CriterionType        CriterionType       `json:"criterionType"`
+	Dimensions           *[]MetricDimension  `json:"dimensions,omitempty"`
+	MetricName           string              `json:"metricName"`
+	MetricNamespace      *string             `json:"metricNamespace,omitempty"`
+	Name                 string              `json:"name"`
+	SkipMetricValidation *bool               `json:"skipMetricValidation,omitempty"`
+	TimeAggregation      AggregationTypeEnum `json:"timeAggregation"`
+}

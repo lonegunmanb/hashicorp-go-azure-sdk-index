@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRecommendationFeatureAreas(input string) (*RecommendationFeatureAreas, error) {
+	vals := map[string]RecommendationFeatureAreas{
+		"accessreviews":     RecommendationFeatureAreas_AccessReviews,
+		"applications":      RecommendationFeatureAreas_Applications,
+		"conditionalaccess": RecommendationFeatureAreas_ConditionalAccess,
+		"devices":           RecommendationFeatureAreas_Devices,
+		"governance":        RecommendationFeatureAreas_Governance,
+		"groups":            RecommendationFeatureAreas_Groups,
+		"users":             RecommendationFeatureAreas_Users,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RecommendationFeatureAreas(input)
+	return &out, nil
+}

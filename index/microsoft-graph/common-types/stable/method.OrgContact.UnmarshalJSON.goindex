@@ -1,0 +1,142 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *OrgContact) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		Addresses                    *[]PhysicalOfficeAddress       `json:"addresses,omitempty"`
+		CompanyName                  nullable.Type[string]          `json:"companyName,omitempty"`
+		Department                   nullable.Type[string]          `json:"department,omitempty"`
+		DirectReports_ODataBind      *[]string                      `json:"directReports@odata.bind,omitempty"`
+		DisplayName                  nullable.Type[string]          `json:"displayName,omitempty"`
+		GivenName                    nullable.Type[string]          `json:"givenName,omitempty"`
+		JobTitle                     nullable.Type[string]          `json:"jobTitle,omitempty"`
+		Mail                         nullable.Type[string]          `json:"mail,omitempty"`
+		MailNickname                 nullable.Type[string]          `json:"mailNickname,omitempty"`
+		Manager_ODataBind            *string                        `json:"manager@odata.bind,omitempty"`
+		MemberOf_ODataBind           *[]string                      `json:"memberOf@odata.bind,omitempty"`
+		OnPremisesLastSyncDateTime   nullable.Type[string]          `json:"onPremisesLastSyncDateTime,omitempty"`
+		OnPremisesProvisioningErrors *[]OnPremisesProvisioningError `json:"onPremisesProvisioningErrors,omitempty"`
+		OnPremisesSyncEnabled        nullable.Type[bool]            `json:"onPremisesSyncEnabled,omitempty"`
+		Phones                       *[]Phone                       `json:"phones,omitempty"`
+		ProxyAddresses               *[]string                      `json:"proxyAddresses,omitempty"`
+		Surname                      nullable.Type[string]          `json:"surname,omitempty"`
+		TransitiveMemberOf_ODataBind *[]string                      `json:"transitiveMemberOf@odata.bind,omitempty"`
+		DeletedDateTime              nullable.Type[string]          `json:"deletedDateTime,omitempty"`
+		Id                           *string                        `json:"id,omitempty"`
+		ODataId                      *string                        `json:"@odata.id,omitempty"`
+		ODataType                    *string                        `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.Addresses = decoded.Addresses
+	s.CompanyName = decoded.CompanyName
+	s.Department = decoded.Department
+	s.DirectReports_ODataBind = decoded.DirectReports_ODataBind
+	s.DisplayName = decoded.DisplayName
+	s.GivenName = decoded.GivenName
+	s.JobTitle = decoded.JobTitle
+	s.Mail = decoded.Mail
+	s.MailNickname = decoded.MailNickname
+	s.Manager_ODataBind = decoded.Manager_ODataBind
+	s.MemberOf_ODataBind = decoded.MemberOf_ODataBind
+	s.OnPremisesLastSyncDateTime = decoded.OnPremisesLastSyncDateTime
+	s.OnPremisesProvisioningErrors = decoded.OnPremisesProvisioningErrors
+	s.OnPremisesSyncEnabled = decoded.OnPremisesSyncEnabled
+	s.Phones = decoded.Phones
+	s.ProxyAddresses = decoded.ProxyAddresses
+	s.Surname = decoded.Surname
+	s.TransitiveMemberOf_ODataBind = decoded.TransitiveMemberOf_ODataBind
+	s.DeletedDateTime = decoded.DeletedDateTime
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling OrgContact into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["directReports"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling DirectReports into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]DirectoryObject, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalDirectoryObjectImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'DirectReports' for 'OrgContact': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.DirectReports = &output
+	}
+
+	if v, ok := temp["manager"]; ok {
+		impl, err := UnmarshalDirectoryObjectImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Manager' for 'OrgContact': %+v", err)
+		}
+		s.Manager = &impl
+	}
+
+	if v, ok := temp["memberOf"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling MemberOf into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]DirectoryObject, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalDirectoryObjectImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'MemberOf' for 'OrgContact': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.MemberOf = &output
+	}
+
+	if v, ok := temp["serviceProvisioningErrors"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling ServiceProvisioningErrors into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]ServiceProvisioningError, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalServiceProvisioningErrorImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'ServiceProvisioningErrors' for 'OrgContact': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.ServiceProvisioningErrors = &output
+	}
+
+	if v, ok := temp["transitiveMemberOf"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling TransitiveMemberOf into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]DirectoryObject, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalDirectoryObjectImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'TransitiveMemberOf' for 'OrgContact': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.TransitiveMemberOf = &output
+	}
+
+	return nil
+}

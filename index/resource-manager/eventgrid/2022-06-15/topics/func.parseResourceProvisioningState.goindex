@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2022-06-15/topics
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseResourceProvisioningState(input string) (*ResourceProvisioningState, error) {
+	vals := map[string]ResourceProvisioningState{
+		"canceled":  ResourceProvisioningStateCanceled,
+		"creating":  ResourceProvisioningStateCreating,
+		"deleting":  ResourceProvisioningStateDeleting,
+		"failed":    ResourceProvisioningStateFailed,
+		"succeeded": ResourceProvisioningStateSucceeded,
+		"updating":  ResourceProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ResourceProvisioningState(input)
+	return &out, nil
+}

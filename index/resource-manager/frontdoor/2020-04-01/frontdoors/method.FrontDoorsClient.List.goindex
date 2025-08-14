@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/frontdoor/2020-04-01/frontdoors
+import (
+	"context"
+	"fmt"
+	"net/http"
+	"net/url"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+)
+func (c FrontDoorsClient) List(ctx context.Context, id commonids.SubscriptionId) (resp ListOperationResponse, err error) {
+	req, err := c.preparerForList(ctx, id)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "frontdoors.FrontDoorsClient", "List", nil, "Failure preparing request")
+		return
+	}
+
+	resp.HttpResponse, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "frontdoors.FrontDoorsClient", "List", resp.HttpResponse, "Failure sending request")
+		return
+	}
+
+	resp, err = c.responderForList(resp.HttpResponse)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "frontdoors.FrontDoorsClient", "List", resp.HttpResponse, "Failure responding to request")
+		return
+	}
+	return
+}

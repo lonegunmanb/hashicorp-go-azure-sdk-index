@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2022-08-01/diagnostic
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDiagnosticClientWithBaseURI(sdkApi sdkEnv.Api) (*DiagnosticClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "diagnostic", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DiagnosticClient: %+v", err)
+	}
+
+	return &DiagnosticClient{
+		Client: client,
+	}, nil
+}

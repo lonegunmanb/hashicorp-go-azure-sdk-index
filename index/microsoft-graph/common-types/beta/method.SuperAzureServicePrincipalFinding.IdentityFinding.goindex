@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s SuperAzureServicePrincipalFinding) IdentityFinding() BaseIdentityFindingImpl {
+	return BaseIdentityFindingImpl{
+		ActionSummary:         s.ActionSummary,
+		Identity:              s.Identity,
+		IdentityDetails:       s.IdentityDetails,
+		PermissionsCreepIndex: s.PermissionsCreepIndex,
+		CreatedDateTime:       s.CreatedDateTime,
+		Id:                    s.Id,
+		ODataId:               s.ODataId,
+		ODataType:             s.ODataType,
+	}
+}

@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cosmosdb/2022-05-15/graphapicompute
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c GraphAPIComputeClient) ServiceCreateThenPoll(ctx context.Context, id ServiceId, input ServiceResourceCreateUpdateParameters) error {
+	result, err := c.ServiceCreate(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing ServiceCreate: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after ServiceCreate: %+v", err)
+	}
+
+	return nil
+}

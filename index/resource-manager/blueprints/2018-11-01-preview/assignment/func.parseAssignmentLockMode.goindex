@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/blueprints/2018-11-01-preview/assignment
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAssignmentLockMode(input string) (*AssignmentLockMode, error) {
+	vals := map[string]AssignmentLockMode{
+		"allresourcesdonotdelete": AssignmentLockModeAllResourcesDoNotDelete,
+		"allresourcesreadonly":    AssignmentLockModeAllResourcesReadOnly,
+		"none":                    AssignmentLockModeNone,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AssignmentLockMode(input)
+	return &out, nil
+}

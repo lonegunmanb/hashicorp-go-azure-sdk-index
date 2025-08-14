@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/userexperienceanalyticsresourceperformance
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewUserExperienceAnalyticsResourcePerformanceClientWithBaseURI(sdkApi sdkEnv.Api) (*UserExperienceAnalyticsResourcePerformanceClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "userexperienceanalyticsresourceperformance", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating UserExperienceAnalyticsResourcePerformanceClient: %+v", err)
+	}
+
+	return &UserExperienceAnalyticsResourcePerformanceClient{
+		Client: client,
+	}, nil
+}

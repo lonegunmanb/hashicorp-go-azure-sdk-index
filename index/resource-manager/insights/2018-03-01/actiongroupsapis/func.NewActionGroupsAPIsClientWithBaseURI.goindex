@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2018-03-01/actiongroupsapis
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewActionGroupsAPIsClientWithBaseURI(sdkApi sdkEnv.Api) (*ActionGroupsAPIsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "actiongroupsapis", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ActionGroupsAPIsClient: %+v", err)
+	}
+
+	return &ActionGroupsAPIsClient{
+		Client: client,
+	}, nil
+}

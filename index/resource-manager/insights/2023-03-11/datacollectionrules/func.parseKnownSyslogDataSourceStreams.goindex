@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2023-03-11/datacollectionrules
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseKnownSyslogDataSourceStreams(input string) (*KnownSyslogDataSourceStreams, error) {
+	vals := map[string]KnownSyslogDataSourceStreams{
+		"microsoft-syslog": KnownSyslogDataSourceStreamsMicrosoftNegativeSyslog,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := KnownSyslogDataSourceStreams(input)
+	return &out, nil
+}

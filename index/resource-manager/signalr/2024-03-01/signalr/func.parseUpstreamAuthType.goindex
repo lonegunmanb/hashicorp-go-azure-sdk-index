@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/signalr/2024-03-01/signalr
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseUpstreamAuthType(input string) (*UpstreamAuthType, error) {
+	vals := map[string]UpstreamAuthType{
+		"managedidentity": UpstreamAuthTypeManagedIdentity,
+		"none":            UpstreamAuthTypeNone,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UpstreamAuthType(input)
+	return &out, nil
+}

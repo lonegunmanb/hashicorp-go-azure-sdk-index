@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityAlertStatus(input string) (*SecurityAlertStatus, error) {
+	vals := map[string]SecurityAlertStatus{
+		"inprogress": SecurityAlertStatus_InProgress,
+		"new":        SecurityAlertStatus_New,
+		"resolved":   SecurityAlertStatus_Resolved,
+		"unknown":    SecurityAlertStatus_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityAlertStatus(input)
+	return &out, nil
+}

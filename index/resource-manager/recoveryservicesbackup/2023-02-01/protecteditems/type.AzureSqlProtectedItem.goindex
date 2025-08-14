@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2023-02-01/protecteditems
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type AzureSqlProtectedItem struct {
+	ExtendedInfo        *AzureSqlProtectedItemExtendedInfo `json:"extendedInfo,omitempty"`
+	ProtectedItemDataId *string                            `json:"protectedItemDataId,omitempty"`
+	ProtectionState     *ProtectedItemState                `json:"protectionState,omitempty"`
+
+	// Fields inherited from ProtectedItem
+
+	BackupManagementType             *BackupManagementType `json:"backupManagementType,omitempty"`
+	BackupSetName                    *string               `json:"backupSetName,omitempty"`
+	ContainerName                    *string               `json:"containerName,omitempty"`
+	CreateMode                       *CreateMode           `json:"createMode,omitempty"`
+	DeferredDeleteTimeInUTC          *string               `json:"deferredDeleteTimeInUTC,omitempty"`
+	DeferredDeleteTimeRemaining      *string               `json:"deferredDeleteTimeRemaining,omitempty"`
+	IsArchiveEnabled                 *bool                 `json:"isArchiveEnabled,omitempty"`
+	IsDeferredDeleteScheduleUpcoming *bool                 `json:"isDeferredDeleteScheduleUpcoming,omitempty"`
+	IsRehydrate                      *bool                 `json:"isRehydrate,omitempty"`
+	IsScheduledForDeferredDelete     *bool                 `json:"isScheduledForDeferredDelete,omitempty"`
+	LastRecoveryPoint                *string               `json:"lastRecoveryPoint,omitempty"`
+	PolicyId                         *string               `json:"policyId,omitempty"`
+	PolicyName                       *string               `json:"policyName,omitempty"`
+	ProtectedItemType                string                `json:"protectedItemType"`
+	ResourceGuardOperationRequests   *[]string             `json:"resourceGuardOperationRequests,omitempty"`
+	SoftDeleteRetentionPeriodInDays  *int64                `json:"softDeleteRetentionPeriodInDays,omitempty"`
+	SourceResourceId                 *string               `json:"sourceResourceId,omitempty"`
+	WorkloadType                     *DataSourceType       `json:"workloadType,omitempty"`
+}

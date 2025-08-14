@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/healthbot/2024-02-01/healthbots
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c HealthbotsClient) BotsListByResourceGroupComplete(ctx context.Context, id commonids.ResourceGroupId) (BotsListByResourceGroupCompleteResult, error) {
+	return c.BotsListByResourceGroupCompleteMatchingPredicate(ctx, id, HealthBotOperationPredicate{})
+}

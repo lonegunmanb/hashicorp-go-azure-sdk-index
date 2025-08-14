@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2024-10-01/backupresourcestorageconfigsnoncrr
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+)
+func (c BackupResourceStorageConfigsNonCRRClient) Patch(ctx context.Context, id VaultId, input BackupResourceConfigResource) (result PatchOperationResponse, err error) {
+	req, err := c.preparerForPatch(ctx, id, input)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "backupresourcestorageconfigsnoncrr.BackupResourceStorageConfigsNonCRRClient", "Patch", nil, "Failure preparing request")
+		return
+	}
+
+	result.HttpResponse, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "backupresourcestorageconfigsnoncrr.BackupResourceStorageConfigsNonCRRClient", "Patch", result.HttpResponse, "Failure sending request")
+		return
+	}
+
+	result, err = c.responderForPatch(result.HttpResponse)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "backupresourcestorageconfigsnoncrr.BackupResourceStorageConfigsNonCRRClient", "Patch", result.HttpResponse, "Failure responding to request")
+		return
+	}
+
+	return
+}

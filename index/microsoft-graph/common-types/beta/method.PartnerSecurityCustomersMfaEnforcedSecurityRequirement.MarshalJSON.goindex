@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s PartnerSecurityCustomersMfaEnforcedSecurityRequirement) MarshalJSON() ([]byte, error) {
+	type wrapper PartnerSecurityCustomersMfaEnforcedSecurityRequirement
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling PartnerSecurityCustomersMfaEnforcedSecurityRequirement: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling PartnerSecurityCustomersMfaEnforcedSecurityRequirement: %+v", err)
+	}
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.partner.security.customersMfaEnforcedSecurityRequirement"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling PartnerSecurityCustomersMfaEnforcedSecurityRequirement: %+v", err)
+	}
+
+	return encoded, nil
+}

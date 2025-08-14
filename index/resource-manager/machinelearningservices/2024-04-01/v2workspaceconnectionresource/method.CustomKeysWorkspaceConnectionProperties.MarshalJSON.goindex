@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/v2workspaceconnectionresource
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (s CustomKeysWorkspaceConnectionProperties) MarshalJSON() ([]byte, error) {
+	type wrapper CustomKeysWorkspaceConnectionProperties
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling CustomKeysWorkspaceConnectionProperties: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling CustomKeysWorkspaceConnectionProperties: %+v", err)
+	}
+
+	decoded["authType"] = "CustomKeys"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling CustomKeysWorkspaceConnectionProperties: %+v", err)
+	}
+
+	return encoded, nil
+}

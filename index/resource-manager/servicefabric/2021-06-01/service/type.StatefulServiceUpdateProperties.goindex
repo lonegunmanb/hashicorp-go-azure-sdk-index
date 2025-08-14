@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicefabric/2021-06-01/service
+import (
+	"encoding/json"
+	"fmt"
+)
+type StatefulServiceUpdateProperties struct {
+	MinReplicaSetSize          *int64  `json:"minReplicaSetSize,omitempty"`
+	QuorumLossWaitDuration     *string `json:"quorumLossWaitDuration,omitempty"`
+	ReplicaRestartWaitDuration *string `json:"replicaRestartWaitDuration,omitempty"`
+	StandByReplicaKeepDuration *string `json:"standByReplicaKeepDuration,omitempty"`
+	TargetReplicaSetSize       *int64  `json:"targetReplicaSetSize,omitempty"`
+
+	// Fields inherited from ServiceResourceUpdateProperties
+
+	CorrelationScheme        *[]ServiceCorrelationDescription     `json:"correlationScheme,omitempty"`
+	DefaultMoveCost          *MoveCost                            `json:"defaultMoveCost,omitempty"`
+	PlacementConstraints     *string                              `json:"placementConstraints,omitempty"`
+	ServiceKind              ServiceKind                          `json:"serviceKind"`
+	ServiceLoadMetrics       *[]ServiceLoadMetricDescription      `json:"serviceLoadMetrics,omitempty"`
+	ServicePlacementPolicies *[]ServicePlacementPolicyDescription `json:"servicePlacementPolicies,omitempty"`
+}

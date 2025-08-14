@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/rolemanagementpolicyassignment
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewRoleManagementPolicyAssignmentClientWithBaseURI(sdkApi sdkEnv.Api) (*RoleManagementPolicyAssignmentClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "rolemanagementpolicyassignment", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating RoleManagementPolicyAssignmentClient: %+v", err)
+	}
+
+	return &RoleManagementPolicyAssignmentClient{
+		Client: client,
+	}, nil
+}

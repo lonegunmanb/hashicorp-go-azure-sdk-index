@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hybridazurekubernetesservice/2024-01-01/provisionedclusterinstances
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ProvisionedClusterInstancesClient) AgentPoolListByProvisionedClusterCompleteMatchingPredicate(ctx context.Context, id commonids.ScopeId, predicate AgentPoolOperationPredicate) (result AgentPoolListByProvisionedClusterCompleteResult, err error) {
+	items := make([]AgentPool, 0)
+
+	resp, err := c.AgentPoolListByProvisionedCluster(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = AgentPoolListByProvisionedClusterCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

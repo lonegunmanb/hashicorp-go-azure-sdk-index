@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/virtualwans
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRouteMapActionType(input string) (*RouteMapActionType, error) {
+	vals := map[string]RouteMapActionType{
+		"add":     RouteMapActionTypeAdd,
+		"drop":    RouteMapActionTypeDrop,
+		"remove":  RouteMapActionTypeRemove,
+		"replace": RouteMapActionTypeReplace,
+		"unknown": RouteMapActionTypeUnknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RouteMapActionType(input)
+	return &out, nil
+}

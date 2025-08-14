@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2019-11-01/share
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ShareClient) ListSynchronizationDetailsCompleteMatchingPredicate(ctx context.Context, id ShareId, input ShareSynchronization, options ListSynchronizationDetailsOperationOptions, predicate SynchronizationDetailsOperationPredicate) (result ListSynchronizationDetailsCompleteResult, err error) {
+	items := make([]SynchronizationDetails, 0)
+
+	resp, err := c.ListSynchronizationDetails(ctx, id, input, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListSynchronizationDetailsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

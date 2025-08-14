@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/managedservices/2022-10-01/marketplaceregistrationdefinitions
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c MarketplaceRegistrationDefinitionsClient) ListComplete(ctx context.Context, id commonids.ScopeId, options ListOperationOptions) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, options, MarketplaceRegistrationDefinitionOperationPredicate{})
+}

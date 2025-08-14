@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/employeeexperienceassignedrolememberuserserviceprovisioningerror
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewEmployeeExperienceAssignedRoleMemberUserServiceProvisioningErrorClientWithBaseURI(sdkApi sdkEnv.Api) (*EmployeeExperienceAssignedRoleMemberUserServiceProvisioningErrorClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "employeeexperienceassignedrolememberuserserviceprovisioningerror", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating EmployeeExperienceAssignedRoleMemberUserServiceProvisioningErrorClient: %+v", err)
+	}
+
+	return &EmployeeExperienceAssignedRoleMemberUserServiceProvisioningErrorClient{
+		Client: client,
+	}, nil
+}

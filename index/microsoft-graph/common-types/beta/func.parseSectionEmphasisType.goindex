@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSectionEmphasisType(input string) (*SectionEmphasisType, error) {
+	vals := map[string]SectionEmphasisType{
+		"neutral": SectionEmphasisType_Neutral,
+		"none":    SectionEmphasisType_None,
+		"soft":    SectionEmphasisType_Soft,
+		"strong":  SectionEmphasisType_Strong,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SectionEmphasisType(input)
+	return &out, nil
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/appserviceenvironments
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAzureStorageState(input string) (*AzureStorageState, error) {
+	vals := map[string]AzureStorageState{
+		"invalidcredentials": AzureStorageStateInvalidCredentials,
+		"invalidshare":       AzureStorageStateInvalidShare,
+		"notvalidated":       AzureStorageStateNotValidated,
+		"ok":                 AzureStorageStateOk,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AzureStorageState(input)
+	return &out, nil
+}

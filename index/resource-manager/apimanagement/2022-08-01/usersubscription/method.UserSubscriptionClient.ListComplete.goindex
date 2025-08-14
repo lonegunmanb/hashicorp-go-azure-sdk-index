@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2022-08-01/usersubscription
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c UserSubscriptionClient) ListComplete(ctx context.Context, id UserId, options ListOperationOptions) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, options, SubscriptionContractOperationPredicate{})
+}

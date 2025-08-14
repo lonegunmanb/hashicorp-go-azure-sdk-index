@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/datasecurityandgovernancesensitivitylabel
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DataSecurityAndGovernanceSensitivityLabelClient) ListDataSecurityAndGovernanceSensitivityLabelsComplete(ctx context.Context, id beta.UserId, options ListDataSecurityAndGovernanceSensitivityLabelsOperationOptions) (ListDataSecurityAndGovernanceSensitivityLabelsCompleteResult, error) {
+	return c.ListDataSecurityAndGovernanceSensitivityLabelsCompleteMatchingPredicate(ctx, id, options, SensitivityLabelOperationPredicate{})
+}

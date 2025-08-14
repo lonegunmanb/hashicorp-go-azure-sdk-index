@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/bastionshareablelink
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewBastionShareableLinkClientWithBaseURI(sdkApi sdkEnv.Api) (*BastionShareableLinkClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "bastionshareablelink", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating BastionShareableLinkClient: %+v", err)
+	}
+
+	return &BastionShareableLinkClient{
+		Client: client,
+	}, nil
+}

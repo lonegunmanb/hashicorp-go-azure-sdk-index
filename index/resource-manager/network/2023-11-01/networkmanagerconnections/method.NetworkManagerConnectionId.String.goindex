@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-11-01/networkmanagerconnections
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id NetworkManagerConnectionId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Network Manager Connection Name: %q", id.NetworkManagerConnectionName),
+	}
+	return fmt.Sprintf("Network Manager Connection (%s)", strings.Join(components, "\n"))
+}

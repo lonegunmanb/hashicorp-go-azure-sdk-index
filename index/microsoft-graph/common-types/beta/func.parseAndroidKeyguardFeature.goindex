@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAndroidKeyguardFeature(input string) (*AndroidKeyguardFeature, error) {
+	vals := map[string]AndroidKeyguardFeature{
+		"allfeatures":             AndroidKeyguardFeature_AllFeatures,
+		"biometrics":              AndroidKeyguardFeature_Biometrics,
+		"camera":                  AndroidKeyguardFeature_Camera,
+		"face":                    AndroidKeyguardFeature_Face,
+		"fingerprint":             AndroidKeyguardFeature_Fingerprint,
+		"iris":                    AndroidKeyguardFeature_Iris,
+		"notconfigured":           AndroidKeyguardFeature_NotConfigured,
+		"notifications":           AndroidKeyguardFeature_Notifications,
+		"remoteinput":             AndroidKeyguardFeature_RemoteInput,
+		"trustagents":             AndroidKeyguardFeature_TrustAgents,
+		"unredactednotifications": AndroidKeyguardFeature_UnredactedNotifications,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AndroidKeyguardFeature(input)
+	return &out, nil
+}

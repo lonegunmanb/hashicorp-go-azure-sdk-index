@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSingleSignOnMode(input string) (*SingleSignOnMode, error) {
+	vals := map[string]SingleSignOnMode{
+		"aadheaderbased":     SingleSignOnMode_AadHeaderBased,
+		"none":               SingleSignOnMode_None,
+		"oauthtoken":         SingleSignOnMode_OAuthToken,
+		"onpremiseskerberos": SingleSignOnMode_OnPremisesKerberos,
+		"pingheaderbased":    SingleSignOnMode_PingHeaderBased,
+		"saml":               SingleSignOnMode_Saml,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SingleSignOnMode(input)
+	return &out, nil
+}

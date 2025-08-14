@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/serverdevopsaudit
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewServerDevOpsAuditClientWithBaseURI(sdkApi sdkEnv.Api) (*ServerDevOpsAuditClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "serverdevopsaudit", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ServerDevOpsAuditClient: %+v", err)
+	}
+
+	return &ServerDevOpsAuditClient{
+		Client: client,
+	}, nil
+}

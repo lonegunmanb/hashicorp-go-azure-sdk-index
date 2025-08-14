@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/savingsplan
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ListByBillingAccountOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.Filter != nil {
+		out.Append("filter", fmt.Sprintf("%v", *o.Filter))
+	}
+	if o.OrderBy != nil {
+		out.Append("orderBy", fmt.Sprintf("%v", *o.OrderBy))
+	}
+	if o.RefreshSummary != nil {
+		out.Append("refreshSummary", fmt.Sprintf("%v", *o.RefreshSummary))
+	}
+	if o.SelectedState != nil {
+		out.Append("selectedState", fmt.Sprintf("%v", *o.SelectedState))
+	}
+	if o.Skiptoken != nil {
+		out.Append("skiptoken", fmt.Sprintf("%v", *o.Skiptoken))
+	}
+	if o.Take != nil {
+		out.Append("take", fmt.Sprintf("%v", *o.Take))
+	}
+	return &out
+}

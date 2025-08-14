@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/deviceregistry/2024-11-01/assets
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDataPointObservabilityMode(input string) (*DataPointObservabilityMode, error) {
+	vals := map[string]DataPointObservabilityMode{
+		"counter":   DataPointObservabilityModeCounter,
+		"gauge":     DataPointObservabilityModeGauge,
+		"histogram": DataPointObservabilityModeHistogram,
+		"log":       DataPointObservabilityModeLog,
+		"none":      DataPointObservabilityModeNone,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DataPointObservabilityMode(input)
+	return &out, nil
+}

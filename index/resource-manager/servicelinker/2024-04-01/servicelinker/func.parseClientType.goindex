@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicelinker/2024-04-01/servicelinker
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseClientType(input string) (*ClientType, error) {
+	vals := map[string]ClientType{
+		"dapr":             ClientTypeDapr,
+		"django":           ClientTypeDjango,
+		"dotnet":           ClientTypeDotnet,
+		"go":               ClientTypeGo,
+		"java":             ClientTypeJava,
+		"jms-springboot":   ClientTypeJmsNegativespringBoot,
+		"kafka-springboot": ClientTypeKafkaNegativespringBoot,
+		"nodejs":           ClientTypeNodejs,
+		"none":             ClientTypeNone,
+		"php":              ClientTypePhp,
+		"python":           ClientTypePython,
+		"ruby":             ClientTypeRuby,
+		"springboot":       ClientTypeSpringBoot,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ClientType(input)
+	return &out, nil
+}

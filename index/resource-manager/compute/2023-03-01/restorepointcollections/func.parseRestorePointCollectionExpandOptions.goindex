@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2023-03-01/restorepointcollections
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRestorePointCollectionExpandOptions(input string) (*RestorePointCollectionExpandOptions, error) {
+	vals := map[string]RestorePointCollectionExpandOptions{
+		"restorepoints": RestorePointCollectionExpandOptionsRestorePoints,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RestorePointCollectionExpandOptions(input)
+	return &out, nil
+}

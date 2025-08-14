@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ChatMessageInfo struct {
+	// Body of the chatMessage. This will still contain markers for @mentions and attachments even though the object doesn't
+	// return @mentions and attachments.
+	Body *ItemBody `json:"body,omitempty"`
+
+	// Date time object representing the time at which message was created.
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// Read-only. If present, represents details of an event that happened in a chat, a channel, or a team, for example,
+	// members were added, and so on. For event messages, the messageType property is set to systemEventMessage.
+	EventDetail *EventMessageDetail `json:"eventDetail,omitempty"`
+
+	// Information about the sender of the message.
+	From *ChatMessageFromIdentitySet `json:"from,omitempty"`
+
+	// If set to true, the original message has been deleted.
+	IsDeleted nullable.Type[bool] `json:"isDeleted,omitempty"`
+
+	MessageType *ChatMessageType `json:"messageType,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

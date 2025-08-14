@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/syncgroups
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SyncGroupsClient) ListHubSchemasCompleteMatchingPredicate(ctx context.Context, id SyncGroupId, predicate SyncFullSchemaPropertiesOperationPredicate) (result ListHubSchemasCompleteResult, err error) {
+	items := make([]SyncFullSchemaProperties, 0)
+
+	resp, err := c.ListHubSchemas(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListHubSchemasCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

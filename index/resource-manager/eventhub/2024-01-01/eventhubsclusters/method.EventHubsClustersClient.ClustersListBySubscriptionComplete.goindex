@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2024-01-01/eventhubsclusters
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c EventHubsClustersClient) ClustersListBySubscriptionComplete(ctx context.Context, id commonids.SubscriptionId) (ClustersListBySubscriptionCompleteResult, error) {
+	return c.ClustersListBySubscriptionCompleteMatchingPredicate(ctx, id, ClusterOperationPredicate{})
+}

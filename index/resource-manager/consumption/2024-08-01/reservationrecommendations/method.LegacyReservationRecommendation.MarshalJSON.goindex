@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/reservationrecommendations
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s LegacyReservationRecommendation) MarshalJSON() ([]byte, error) {
+	type wrapper LegacyReservationRecommendation
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling LegacyReservationRecommendation: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling LegacyReservationRecommendation: %+v", err)
+	}
+
+	decoded["kind"] = "legacy"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling LegacyReservationRecommendation: %+v", err)
+	}
+
+	return encoded, nil
+}

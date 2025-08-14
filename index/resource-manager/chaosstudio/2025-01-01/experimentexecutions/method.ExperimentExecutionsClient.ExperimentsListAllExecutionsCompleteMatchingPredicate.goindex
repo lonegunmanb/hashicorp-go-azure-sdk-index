@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2025-01-01/experimentexecutions
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ExperimentExecutionsClient) ExperimentsListAllExecutionsCompleteMatchingPredicate(ctx context.Context, id ExperimentId, predicate ExperimentExecutionOperationPredicate) (result ExperimentsListAllExecutionsCompleteResult, err error) {
+	items := make([]ExperimentExecution, 0)
+
+	resp, err := c.ExperimentsListAllExecutions(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ExperimentsListAllExecutionsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

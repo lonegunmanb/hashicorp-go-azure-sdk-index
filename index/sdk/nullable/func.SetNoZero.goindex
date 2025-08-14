@@ -1,0 +1,9 @@
+package github.com/hashicorp/go-azure-sdk/sdk/nullable
+import (
+	"bytes"
+	"encoding/json"
+)
+func (t *Type[T]) SetNoZero(value T) {
+	var empty T
+	*t = map[bool]T{value != empty: value}
+}

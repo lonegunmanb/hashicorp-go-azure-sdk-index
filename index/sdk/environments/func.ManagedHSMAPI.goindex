@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/sdk/environments
+import "github.com/hashicorp/go-azure-helpers/lang/pointer"
+func ManagedHSMAPI(endpoint, domainSuffix string) *ApiEndpoint {
+	// endpoint and resource ID are the same, only the domainSuffix is returned in metadata
+	return &ApiEndpoint{
+		domainSuffix:       pointer.To(domainSuffix),
+		endpoint:           pointer.To(endpoint),
+		appId:              pointer.To(managedHSMAppId),
+		name:               "ManagedHSM",
+		resourceIdentifier: pointer.To(endpoint),
+	}
+}

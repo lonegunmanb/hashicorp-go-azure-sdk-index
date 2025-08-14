@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cosmosdb/2024-08-15/graphapicompute
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s *ServiceResourceCreateUpdateParameters) UnmarshalJSON(bytes []byte) error {
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling ServiceResourceCreateUpdateParameters into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["properties"]; ok {
+		impl, err := UnmarshalServiceResourceCreateUpdatePropertiesImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Properties' for 'ServiceResourceCreateUpdateParameters': %+v", err)
+		}
+		s.Properties = impl
+	}
+
+	return nil
+}

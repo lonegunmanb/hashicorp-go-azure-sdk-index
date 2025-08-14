@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2023-04-02/diskaccesses
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DiskAccessId) ID() string {
+	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Compute/diskAccesses/%s"
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.DiskAccessName)
+}

@@ -1,0 +1,55 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRemoteAction(input string) (*RemoteAction, error) {
+	vals := map[string]RemoteAction{
+		"activatedeviceesim":             RemoteAction_ActivateDeviceEsim,
+		"automaticredeployment":          RemoteAction_AutomaticRedeployment,
+		"changeassignments":              RemoteAction_ChangeAssignments,
+		"cleanwindowsdevice":             RemoteAction_CleanWindowsDevice,
+		"delete":                         RemoteAction_Delete,
+		"deprovision":                    RemoteAction_Deprovision,
+		"disable":                        RemoteAction_Disable,
+		"disablelostmode":                RemoteAction_DisableLostMode,
+		"enablelostmode":                 RemoteAction_EnableLostMode,
+		"factoryreset":                   RemoteAction_FactoryReset,
+		"factoryresetkeepenrollmentdata": RemoteAction_FactoryResetKeepEnrollmentData,
+		"fullscan":                       RemoteAction_FullScan,
+		"getfilevaultkey":                RemoteAction_GetFileVaultKey,
+		"initiatedeviceattestation":      RemoteAction_InitiateDeviceAttestation,
+		"initiatemobiledevicemanagementkeyrecovery": RemoteAction_InitiateMobileDeviceManagementKeyRecovery,
+		"initiateondemandproactiveremediation":      RemoteAction_InitiateOnDemandProactiveRemediation,
+		"launchremotehelp":                          RemoteAction_LaunchRemoteHelp,
+		"locatedevice":                              RemoteAction_LocateDevice,
+		"logoutsharedappledeviceactiveuser":         RemoteAction_LogoutSharedAppleDeviceActiveUser,
+		"movedevicetoorganizationalunit":            RemoteAction_MoveDeviceToOrganizationalUnit,
+		"pauseconfigurationrefresh":                 RemoteAction_PauseConfigurationRefresh,
+		"quickscan":                                 RemoteAction_QuickScan,
+		"rebootnow":                                 RemoteAction_RebootNow,
+		"recoverpasscode":                           RemoteAction_RecoverPasscode,
+		"reenable":                                  RemoteAction_Reenable,
+		"remotelock":                                RemoteAction_RemoteLock,
+		"removecompanydata":                         RemoteAction_RemoveCompanyData,
+		"removedevicefirmwareconfigurationinterfacemanagement": RemoteAction_RemoveDeviceFirmwareConfigurationInterfaceManagement,
+		"resetpasscode":                   RemoteAction_ResetPasscode,
+		"revokeapplevpplicenses":          RemoteAction_RevokeAppleVppLicenses,
+		"rotatebitlockerkeys":             RemoteAction_RotateBitLockerKeys,
+		"rotatefilevaultkey":              RemoteAction_RotateFileVaultKey,
+		"rotatelocaladminpassword":        RemoteAction_RotateLocalAdminPassword,
+		"setdevicename":                   RemoteAction_SetDeviceName,
+		"shutdown":                        RemoteAction_ShutDown,
+		"unknown":                         RemoteAction_Unknown,
+		"updatedeviceaccount":             RemoteAction_UpdateDeviceAccount,
+		"windowsdefenderupdatesignatures": RemoteAction_WindowsDefenderUpdateSignatures,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RemoteAction(input)
+	return &out, nil
+}

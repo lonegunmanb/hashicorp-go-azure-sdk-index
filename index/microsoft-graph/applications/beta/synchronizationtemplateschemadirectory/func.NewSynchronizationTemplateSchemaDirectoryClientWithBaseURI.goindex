@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/beta/synchronizationtemplateschemadirectory
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSynchronizationTemplateSchemaDirectoryClientWithBaseURI(sdkApi sdkEnv.Api) (*SynchronizationTemplateSchemaDirectoryClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "synchronizationtemplateschemadirectory", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SynchronizationTemplateSchemaDirectoryClient: %+v", err)
+	}
+
+	return &SynchronizationTemplateSchemaDirectoryClient{
+		Client: client,
+	}, nil
+}

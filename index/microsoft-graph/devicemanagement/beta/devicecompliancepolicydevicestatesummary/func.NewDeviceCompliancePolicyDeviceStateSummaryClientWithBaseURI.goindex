@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/devicecompliancepolicydevicestatesummary
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDeviceCompliancePolicyDeviceStateSummaryClientWithBaseURI(sdkApi sdkEnv.Api) (*DeviceCompliancePolicyDeviceStateSummaryClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "devicecompliancepolicydevicestatesummary", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DeviceCompliancePolicyDeviceStateSummaryClient: %+v", err)
+	}
+
+	return &DeviceCompliancePolicyDeviceStateSummaryClient{
+		Client: client,
+	}, nil
+}

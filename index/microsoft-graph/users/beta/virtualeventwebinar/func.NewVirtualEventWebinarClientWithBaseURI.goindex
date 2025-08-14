@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/virtualeventwebinar
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewVirtualEventWebinarClientWithBaseURI(sdkApi sdkEnv.Api) (*VirtualEventWebinarClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "virtualeventwebinar", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating VirtualEventWebinarClient: %+v", err)
+	}
+
+	return &VirtualEventWebinarClient{
+		Client: client,
+	}, nil
+}

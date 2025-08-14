@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/deviceconfigurationassignment
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DeviceConfigurationAssignmentClient) ListDeviceConfigurationAssignmentsComplete(ctx context.Context, id beta.DeviceManagementDeviceConfigurationId, options ListDeviceConfigurationAssignmentsOperationOptions) (ListDeviceConfigurationAssignmentsCompleteResult, error) {
+	return c.ListDeviceConfigurationAssignmentsCompleteMatchingPredicate(ctx, id, options, DeviceConfigurationAssignmentOperationPredicate{})
+}

@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/linkedservices
+import (
+	"encoding/json"
+	"fmt"
+)
+type SqlServerLinkedServiceTypeProperties struct {
+	AlwaysEncryptedSettings  *SqlAlwaysEncryptedProperties `json:"alwaysEncryptedSettings,omitempty"`
+	ApplicationIntent        *interface{}                  `json:"applicationIntent,omitempty"`
+	AuthenticationType       *SqlServerAuthenticationType  `json:"authenticationType,omitempty"`
+	CommandTimeout           *int64                        `json:"commandTimeout,omitempty"`
+	ConnectRetryCount        *int64                        `json:"connectRetryCount,omitempty"`
+	ConnectRetryInterval     *int64                        `json:"connectRetryInterval,omitempty"`
+	ConnectTimeout           *int64                        `json:"connectTimeout,omitempty"`
+	ConnectionString         *interface{}                  `json:"connectionString,omitempty"`
+	Credential               *CredentialReference          `json:"credential,omitempty"`
+	Database                 *interface{}                  `json:"database,omitempty"`
+	Encrypt                  *interface{}                  `json:"encrypt,omitempty"`
+	EncryptedCredential      *string                       `json:"encryptedCredential,omitempty"`
+	FailoverPartner          *interface{}                  `json:"failoverPartner,omitempty"`
+	HostNameInCertificate    *interface{}                  `json:"hostNameInCertificate,omitempty"`
+	IntegratedSecurity       *bool                         `json:"integratedSecurity,omitempty"`
+	LoadBalanceTimeout       *int64                        `json:"loadBalanceTimeout,omitempty"`
+	MaxPoolSize              *int64                        `json:"maxPoolSize,omitempty"`
+	MinPoolSize              *int64                        `json:"minPoolSize,omitempty"`
+	MultiSubnetFailover      *bool                         `json:"multiSubnetFailover,omitempty"`
+	MultipleActiveResultSets *bool                         `json:"multipleActiveResultSets,omitempty"`
+	PacketSize               *int64                        `json:"packetSize,omitempty"`
+	Password                 SecretBase                    `json:"password"`
+	Pooling                  *bool                         `json:"pooling,omitempty"`
+	Server                   *interface{}                  `json:"server,omitempty"`
+	TrustServerCertificate   *bool                         `json:"trustServerCertificate,omitempty"`
+	UserName                 *interface{}                  `json:"userName,omitempty"`
+}

@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id IdentityGovernanceEntitlementManagementConnectedOrganizationIdInternalSponsorId) String() string {
+	components := []string{
+		fmt.Sprintf("Connected Organization: %q", id.ConnectedOrganizationId),
+		fmt.Sprintf("Directory Object: %q", id.DirectoryObjectId),
+	}
+	return fmt.Sprintf("Identity Governance Entitlement Management Connected Organization Id Internal Sponsor (%s)", strings.Join(components, "\n"))
+}

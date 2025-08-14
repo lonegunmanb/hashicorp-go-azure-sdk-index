@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerapps/2025-01-01/daprcomponents
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDaprComponentsClientWithBaseURI(sdkApi sdkEnv.Api) (*DaprComponentsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "daprcomponents", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DaprComponentsClient: %+v", err)
+	}
+
+	return &DaprComponentsClient{
+		Client: client,
+	}, nil
+}

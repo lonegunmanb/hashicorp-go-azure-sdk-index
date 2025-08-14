@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCloudPCAuditCategory(input string) (*CloudPCAuditCategory, error) {
+	vals := map[string]CloudPCAuditCategory{
+		"cloudpc": CloudPCAuditCategory_CloudPC,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CloudPCAuditCategory(input)
+	return &out, nil
+}

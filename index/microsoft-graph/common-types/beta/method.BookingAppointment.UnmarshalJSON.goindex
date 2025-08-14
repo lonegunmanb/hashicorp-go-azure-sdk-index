@@ -1,0 +1,131 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *BookingAppointment) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AdditionalInformation            nullable.Type[string] `json:"additionalInformation,omitempty"`
+		AnonymousJoinWebUrl              nullable.Type[string] `json:"anonymousJoinWebUrl,omitempty"`
+		AppointmentLabel                 nullable.Type[string] `json:"appointmentLabel,omitempty"`
+		CreatedDateTime                  nullable.Type[string] `json:"createdDateTime,omitempty"`
+		CustomerEmailAddress             nullable.Type[string] `json:"customerEmailAddress,omitempty"`
+		CustomerId                       nullable.Type[string] `json:"customerId,omitempty"`
+		CustomerName                     nullable.Type[string] `json:"customerName,omitempty"`
+		CustomerNotes                    nullable.Type[string] `json:"customerNotes,omitempty"`
+		CustomerPhone                    nullable.Type[string] `json:"customerPhone,omitempty"`
+		CustomerTimeZone                 nullable.Type[string] `json:"customerTimeZone,omitempty"`
+		Duration                         *string               `json:"duration,omitempty"`
+		End                              *DateTimeTimeZone     `json:"end,omitempty"`
+		FilledAttendeesCount             *int64                `json:"filledAttendeesCount,omitempty"`
+		InvoiceDate                      *DateTimeTimeZone     `json:"invoiceDate,omitempty"`
+		InvoiceId                        nullable.Type[string] `json:"invoiceId,omitempty"`
+		InvoiceStatus                    *BookingInvoiceStatus `json:"invoiceStatus,omitempty"`
+		InvoiceUrl                       nullable.Type[string] `json:"invoiceUrl,omitempty"`
+		IsCustomerAllowedToManageBooking nullable.Type[bool]   `json:"isCustomerAllowedToManageBooking,omitempty"`
+		IsLocationOnline                 *bool                 `json:"isLocationOnline,omitempty"`
+		JoinWebUrl                       nullable.Type[string] `json:"joinWebUrl,omitempty"`
+		LastUpdatedDateTime              nullable.Type[string] `json:"lastUpdatedDateTime,omitempty"`
+		MaximumAttendeesCount            *int64                `json:"maximumAttendeesCount,omitempty"`
+		OnlineMeetingUrl                 nullable.Type[string] `json:"onlineMeetingUrl,omitempty"`
+		OptOutOfCustomerEmail            *bool                 `json:"optOutOfCustomerEmail,omitempty"`
+		PostBuffer                       *string               `json:"postBuffer,omitempty"`
+		PreBuffer                        *string               `json:"preBuffer,omitempty"`
+		PriceType                        *BookingPriceType     `json:"priceType,omitempty"`
+		Reminders                        *[]BookingReminder    `json:"reminders,omitempty"`
+		SelfServiceAppointmentId         nullable.Type[string] `json:"selfServiceAppointmentId,omitempty"`
+		ServiceId                        nullable.Type[string] `json:"serviceId,omitempty"`
+		ServiceName                      *string               `json:"serviceName,omitempty"`
+		ServiceNotes                     nullable.Type[string] `json:"serviceNotes,omitempty"`
+		SmsNotificationsEnabled          *bool                 `json:"smsNotificationsEnabled,omitempty"`
+		StaffMemberIds                   *[]string             `json:"staffMemberIds,omitempty"`
+		Start                            *DateTimeTimeZone     `json:"start,omitempty"`
+		Id                               *string               `json:"id,omitempty"`
+		ODataId                          *string               `json:"@odata.id,omitempty"`
+		ODataType                        *string               `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AdditionalInformation = decoded.AdditionalInformation
+	s.AnonymousJoinWebUrl = decoded.AnonymousJoinWebUrl
+	s.AppointmentLabel = decoded.AppointmentLabel
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.CustomerEmailAddress = decoded.CustomerEmailAddress
+	s.CustomerId = decoded.CustomerId
+	s.CustomerName = decoded.CustomerName
+	s.CustomerNotes = decoded.CustomerNotes
+	s.CustomerPhone = decoded.CustomerPhone
+	s.CustomerTimeZone = decoded.CustomerTimeZone
+	s.Duration = decoded.Duration
+	s.End = decoded.End
+	s.FilledAttendeesCount = decoded.FilledAttendeesCount
+	s.InvoiceDate = decoded.InvoiceDate
+	s.InvoiceId = decoded.InvoiceId
+	s.InvoiceStatus = decoded.InvoiceStatus
+	s.InvoiceUrl = decoded.InvoiceUrl
+	s.IsCustomerAllowedToManageBooking = decoded.IsCustomerAllowedToManageBooking
+	s.IsLocationOnline = decoded.IsLocationOnline
+	s.JoinWebUrl = decoded.JoinWebUrl
+	s.LastUpdatedDateTime = decoded.LastUpdatedDateTime
+	s.MaximumAttendeesCount = decoded.MaximumAttendeesCount
+	s.OnlineMeetingUrl = decoded.OnlineMeetingUrl
+	s.OptOutOfCustomerEmail = decoded.OptOutOfCustomerEmail
+	s.PostBuffer = decoded.PostBuffer
+	s.PreBuffer = decoded.PreBuffer
+	s.PriceType = decoded.PriceType
+	s.Reminders = decoded.Reminders
+	s.SelfServiceAppointmentId = decoded.SelfServiceAppointmentId
+	s.ServiceId = decoded.ServiceId
+	s.ServiceName = decoded.ServiceName
+	s.ServiceNotes = decoded.ServiceNotes
+	s.SmsNotificationsEnabled = decoded.SmsNotificationsEnabled
+	s.StaffMemberIds = decoded.StaffMemberIds
+	s.Start = decoded.Start
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling BookingAppointment into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["customerLocation"]; ok {
+		impl, err := UnmarshalLocationImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'CustomerLocation' for 'BookingAppointment': %+v", err)
+		}
+		s.CustomerLocation = impl
+	}
+
+	if v, ok := temp["customers"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling Customers into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]BookingCustomerInformationBase, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalBookingCustomerInformationBaseImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'Customers' for 'BookingAppointment': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.Customers = &output
+	}
+
+	if v, ok := temp["serviceLocation"]; ok {
+		impl, err := UnmarshalLocationImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'ServiceLocation' for 'BookingAppointment': %+v", err)
+		}
+		s.ServiceLocation = impl
+	}
+
+	return nil
+}

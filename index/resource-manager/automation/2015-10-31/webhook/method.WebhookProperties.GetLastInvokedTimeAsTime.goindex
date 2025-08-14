@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/webhook
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *WebhookProperties) GetLastInvokedTimeAsTime() (*time.Time, error) {
+	if o.LastInvokedTime == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.LastInvokedTime, "2006-01-02T15:04:05Z07:00")
+}

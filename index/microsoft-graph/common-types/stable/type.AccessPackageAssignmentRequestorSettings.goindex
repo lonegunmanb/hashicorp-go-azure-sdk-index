@@ -1,0 +1,38 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type AccessPackageAssignmentRequestorSettings struct {
+	// False indicates that the requestor isn't permitted to include a schedule in their request.
+	AllowCustomAssignmentSchedule nullable.Type[bool] `json:"allowCustomAssignmentSchedule,omitempty"`
+
+	// True allows on-behalf-of requestors to create a request to add access for another principal.
+	EnableOnBehalfRequestorsToAddAccess nullable.Type[bool] `json:"enableOnBehalfRequestorsToAddAccess,omitempty"`
+
+	// True allows on-behalf-of requestors to create a request to remove access for another principal.
+	EnableOnBehalfRequestorsToRemoveAccess nullable.Type[bool] `json:"enableOnBehalfRequestorsToRemoveAccess,omitempty"`
+
+	// True allows on-behalf-of requestors to create a request to update access for another principal.
+	EnableOnBehalfRequestorsToUpdateAccess nullable.Type[bool] `json:"enableOnBehalfRequestorsToUpdateAccess,omitempty"`
+
+	// True allows requestors to create a request to add access for themselves.
+	EnableTargetsToSelfAddAccess nullable.Type[bool] `json:"enableTargetsToSelfAddAccess,omitempty"`
+
+	// True allows requestors to create a request to remove their access.
+	EnableTargetsToSelfRemoveAccess nullable.Type[bool] `json:"enableTargetsToSelfRemoveAccess,omitempty"`
+
+	// True allows requestors to create a request to update their access.
+	EnableTargetsToSelfUpdateAccess nullable.Type[bool] `json:"enableTargetsToSelfUpdateAccess,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The principals who can request on-behalf-of others.
+	OnBehalfRequestors *[]SubjectSet `json:"onBehalfRequestors,omitempty"`
+}

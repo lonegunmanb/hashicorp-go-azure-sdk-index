@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/sitepermission
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SitePermissionClient) ListSitePermissionGrantsComplete(ctx context.Context, id stable.GroupIdSiteIdPermissionId, input ListSitePermissionGrantsRequest, options ListSitePermissionGrantsOperationOptions) (ListSitePermissionGrantsCompleteResult, error) {
+	return c.ListSitePermissionGrantsCompleteMatchingPredicate(ctx, id, input, options, PermissionOperationPredicate{})
+}

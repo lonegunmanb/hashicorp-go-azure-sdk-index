@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2025-06-01/environmentcontainer
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id RegistryEnvironmentId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Registry Name: %q", id.RegistryName),
+		fmt.Sprintf("Environment Name: %q", id.EnvironmentName),
+	}
+	return fmt.Sprintf("Registry Environment (%s)", strings.Join(components, "\n"))
+}

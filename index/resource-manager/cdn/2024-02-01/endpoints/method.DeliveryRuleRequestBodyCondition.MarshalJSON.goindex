@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2024-02-01/endpoints
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s DeliveryRuleRequestBodyCondition) MarshalJSON() ([]byte, error) {
+	type wrapper DeliveryRuleRequestBodyCondition
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling DeliveryRuleRequestBodyCondition: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling DeliveryRuleRequestBodyCondition: %+v", err)
+	}
+
+	decoded["name"] = "RequestBody"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling DeliveryRuleRequestBodyCondition: %+v", err)
+	}
+
+	return encoded, nil
+}

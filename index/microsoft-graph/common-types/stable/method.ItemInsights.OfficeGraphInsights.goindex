@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s ItemInsights) OfficeGraphInsights() BaseOfficeGraphInsightsImpl {
+	return BaseOfficeGraphInsightsImpl{
+		Shared:    s.Shared,
+		Trending:  s.Trending,
+		Used:      s.Used,
+		Id:        s.Id,
+		ODataId:   s.ODataId,
+		ODataType: s.ODataType,
+	}
+}

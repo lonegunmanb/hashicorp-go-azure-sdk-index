@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2024-04-01/replicationjobs
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s ClusterSwitchProtectionJobDetails) MarshalJSON() ([]byte, error) {
+	type wrapper ClusterSwitchProtectionJobDetails
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ClusterSwitchProtectionJobDetails: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ClusterSwitchProtectionJobDetails: %+v", err)
+	}
+
+	decoded["instanceType"] = "ClusterSwitchProtectionJobDetails"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ClusterSwitchProtectionJobDetails: %+v", err)
+	}
+
+	return encoded, nil
+}

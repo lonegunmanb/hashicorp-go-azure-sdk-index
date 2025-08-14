@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/stable/permissiongrantpolicyexclude
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c PermissionGrantPolicyExcludeClient) ListPermissionGrantPolicyExcludesCompleteMatchingPredicate(ctx context.Context, id stable.PolicyPermissionGrantPolicyId, options ListPermissionGrantPolicyExcludesOperationOptions, predicate PermissionGrantConditionSetOperationPredicate) (result ListPermissionGrantPolicyExcludesCompleteResult, err error) {
+	items := make([]stable.PermissionGrantConditionSet, 0)
+
+	resp, err := c.ListPermissionGrantPolicyExcludes(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListPermissionGrantPolicyExcludesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

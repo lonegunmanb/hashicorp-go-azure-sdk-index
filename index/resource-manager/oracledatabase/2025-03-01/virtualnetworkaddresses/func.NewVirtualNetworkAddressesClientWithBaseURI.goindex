@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/virtualnetworkaddresses
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewVirtualNetworkAddressesClientWithBaseURI(sdkApi sdkEnv.Api) (*VirtualNetworkAddressesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "virtualnetworkaddresses", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating VirtualNetworkAddressesClient: %+v", err)
+	}
+
+	return &VirtualNetworkAddressesClient{
+		Client: client,
+	}, nil
+}

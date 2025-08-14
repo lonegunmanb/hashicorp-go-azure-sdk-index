@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2024-02-01/afdprofiles
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseProfileProvisioningState(input string) (*ProfileProvisioningState, error) {
+	vals := map[string]ProfileProvisioningState{
+		"creating":  ProfileProvisioningStateCreating,
+		"deleting":  ProfileProvisioningStateDeleting,
+		"failed":    ProfileProvisioningStateFailed,
+		"succeeded": ProfileProvisioningStateSucceeded,
+		"updating":  ProfileProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ProfileProvisioningState(input)
+	return &out, nil
+}

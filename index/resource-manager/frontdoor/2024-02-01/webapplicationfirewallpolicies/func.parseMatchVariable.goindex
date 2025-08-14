@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/frontdoor/2024-02-01/webapplicationfirewallpolicies
+import (
+	"strings"
+)
+func parseMatchVariable(input string) (*MatchVariable, error) {
+	vals := map[string]MatchVariable{
+		"cookies":       MatchVariableCookies,
+		"postargs":      MatchVariablePostArgs,
+		"querystring":   MatchVariableQueryString,
+		"remoteaddr":    MatchVariableRemoteAddr,
+		"requestbody":   MatchVariableRequestBody,
+		"requestheader": MatchVariableRequestHeader,
+		"requestmethod": MatchVariableRequestMethod,
+		"requesturi":    MatchVariableRequestUri,
+		"socketaddr":    MatchVariableSocketAddr,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MatchVariable(input)
+	return &out, nil
+}

@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type RubricLevel struct {
+	// The description of this rubric level.
+	Description *EducationItemBody `json:"description,omitempty"`
+
+	// The name of this rubric level.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// Null if this is a no-points rubric; educationAssignmentPointsGradeType if it's a points rubric.
+	Grading EducationAssignmentGradeType `json:"grading"`
+
+	// The ID of this resource.
+	LevelId nullable.Type[string] `json:"levelId,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+}

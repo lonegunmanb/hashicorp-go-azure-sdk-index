@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/portal/2020-09-01-preview/tenantconfigurations
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *TenantConfigurationId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.TenantConfigurationName, ok = input.Parsed["tenantConfigurationName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "tenantConfigurationName", input)
+	}
+
+	return nil
+}

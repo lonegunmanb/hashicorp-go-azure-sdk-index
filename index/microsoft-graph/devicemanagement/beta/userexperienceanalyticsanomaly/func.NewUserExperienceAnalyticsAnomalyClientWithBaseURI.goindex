@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/userexperienceanalyticsanomaly
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewUserExperienceAnalyticsAnomalyClientWithBaseURI(sdkApi sdkEnv.Api) (*UserExperienceAnalyticsAnomalyClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "userexperienceanalyticsanomaly", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating UserExperienceAnalyticsAnomalyClient: %+v", err)
+	}
+
+	return &UserExperienceAnalyticsAnomalyClient{
+		Client: client,
+	}, nil
+}

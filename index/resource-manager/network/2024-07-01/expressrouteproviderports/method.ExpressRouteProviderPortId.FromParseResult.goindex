@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/expressrouteproviderports
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *ExpressRouteProviderPortId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ExpressRouteProviderPortName, ok = input.Parsed["expressRouteProviderPortName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "expressRouteProviderPortName", input)
+	}
+
+	return nil
+}

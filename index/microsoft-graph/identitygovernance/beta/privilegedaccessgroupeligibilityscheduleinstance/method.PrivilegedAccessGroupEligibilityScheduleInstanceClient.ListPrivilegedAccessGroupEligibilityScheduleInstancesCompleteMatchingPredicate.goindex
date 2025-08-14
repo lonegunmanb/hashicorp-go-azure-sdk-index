@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/privilegedaccessgroupeligibilityscheduleinstance
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c PrivilegedAccessGroupEligibilityScheduleInstanceClient) ListPrivilegedAccessGroupEligibilityScheduleInstancesCompleteMatchingPredicate(ctx context.Context, options ListPrivilegedAccessGroupEligibilityScheduleInstancesOperationOptions, predicate PrivilegedAccessGroupEligibilityScheduleInstanceOperationPredicate) (result ListPrivilegedAccessGroupEligibilityScheduleInstancesCompleteResult, err error) {
+	items := make([]beta.PrivilegedAccessGroupEligibilityScheduleInstance, 0)
+
+	resp, err := c.ListPrivilegedAccessGroupEligibilityScheduleInstances(ctx, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListPrivilegedAccessGroupEligibilityScheduleInstancesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/distributedavailabilitygroups
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseFailoverModeType(input string) (*FailoverModeType, error) {
+	vals := map[string]FailoverModeType{
+		"manual": FailoverModeTypeManual,
+		"none":   FailoverModeTypeNone,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FailoverModeType(input)
+	return &out, nil
+}

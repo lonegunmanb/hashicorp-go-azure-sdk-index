@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerregistry/2023-11-01-preview/importpipelines
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePipelineOptions(input string) (*PipelineOptions, error) {
+	vals := map[string]PipelineOptions{
+		"continueonerrors":          PipelineOptionsContinueOnErrors,
+		"deletesourceblobonsuccess": PipelineOptionsDeleteSourceBlobOnSuccess,
+		"overwriteblobs":            PipelineOptionsOverwriteBlobs,
+		"overwritetags":             PipelineOptionsOverwriteTags,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PipelineOptions(input)
+	return &out, nil
+}

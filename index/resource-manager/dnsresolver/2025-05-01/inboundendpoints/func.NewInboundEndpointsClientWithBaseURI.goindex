@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dnsresolver/2025-05-01/inboundendpoints
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewInboundEndpointsClientWithBaseURI(sdkApi sdkEnv.Api) (*InboundEndpointsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "inboundendpoints", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating InboundEndpointsClient: %+v", err)
+	}
+
+	return &InboundEndpointsClient{
+		Client: client,
+	}, nil
+}

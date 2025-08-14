@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type WorkbookOperationError struct {
+	// The error code.
+	Code nullable.Type[string] `json:"code,omitempty"`
+
+	InnerError *WorkbookOperationError `json:"innerError,omitempty"`
+
+	// The error message.
+	Message nullable.Type[string] `json:"message,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+}

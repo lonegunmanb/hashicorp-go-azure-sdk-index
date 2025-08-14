@@ -1,0 +1,57 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2024-04-01/backuppolicies
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalCopyOptionImplementation(input []byte) (CopyOption, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling CopyOption into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["objectType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "CopyOnExpiryOption") {
+		var out CopyOnExpiryOption
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into CopyOnExpiryOption: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "CustomCopyOption") {
+		var out CustomCopyOption
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into CustomCopyOption: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "ImmediateCopyOption") {
+		var out ImmediateCopyOption
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ImmediateCopyOption: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseCopyOptionImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseCopyOptionImpl: %+v", err)
+	}
+
+	return RawCopyOptionImpl{
+		copyOption: parent,
+		Type:       value,
+		Values:     temp,
+	}, nil
+
+}

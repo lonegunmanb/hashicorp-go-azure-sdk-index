@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-01-01/networkmanagereffectiveconnectivityconfiguration
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeleteExistingPeering(input string) (*DeleteExistingPeering, error) {
+	vals := map[string]DeleteExistingPeering{
+		"false": DeleteExistingPeeringFalse,
+		"true":  DeleteExistingPeeringTrue,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeleteExistingPeering(input)
+	return &out, nil
+}

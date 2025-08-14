@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type WindowsUpdatesScheduleSettings struct {
+	// Settings for governing how to rollout content to devices. One of:
+	// microsoft.graph.windowsUpdates.dateDrivenRolloutSettings,
+	// microsoft.graph.windowsUpdates.durationDrivenRolloutSettings, or
+	// microsoft.graph.windowsUpdates.rateDrivenRolloutSettings.
+	GradualRollout WindowsUpdatesGradualRolloutSettings `json:"gradualRollout"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The date on which devices in the deployment start receiving the update. When not set, the deployment starts as soon
+	// as devices are assigned. The Timestamp type represents date and time information using ISO 8601 format and is always
+	// in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+	StartDateTime nullable.Type[string] `json:"startDateTime,omitempty"`
+}

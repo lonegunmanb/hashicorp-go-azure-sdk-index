@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/connectedvmware/2023-12-01/virtualmachineinstances
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVirtualSCSISharing(input string) (*VirtualSCSISharing, error) {
+	vals := map[string]VirtualSCSISharing{
+		"nosharing":       VirtualSCSISharingNoSharing,
+		"physicalsharing": VirtualSCSISharingPhysicalSharing,
+		"virtualsharing":  VirtualSCSISharingVirtualSharing,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VirtualSCSISharing(input)
+	return &out, nil
+}

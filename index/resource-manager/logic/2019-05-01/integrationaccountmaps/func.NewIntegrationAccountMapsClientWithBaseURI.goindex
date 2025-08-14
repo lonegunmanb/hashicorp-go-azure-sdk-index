@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationaccountmaps
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewIntegrationAccountMapsClientWithBaseURI(sdkApi sdkEnv.Api) (*IntegrationAccountMapsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "integrationaccountmaps", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating IntegrationAccountMapsClient: %+v", err)
+	}
+
+	return &IntegrationAccountMapsClient{
+		Client: client,
+	}, nil
+}

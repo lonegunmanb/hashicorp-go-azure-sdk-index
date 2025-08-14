@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2023-02-01/managedhsmkeys
+import (
+	"context"
+	"fmt"
+	"net/http"
+	"net/url"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+)
+func (c ManagedHsmKeysClient) List(ctx context.Context, id ManagedHSMId) (resp ListOperationResponse, err error) {
+	req, err := c.preparerForList(ctx, id)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "managedhsmkeys.ManagedHsmKeysClient", "List", nil, "Failure preparing request")
+		return
+	}
+
+	resp.HttpResponse, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "managedhsmkeys.ManagedHsmKeysClient", "List", resp.HttpResponse, "Failure sending request")
+		return
+	}
+
+	resp, err = c.responderForList(resp.HttpResponse)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "managedhsmkeys.ManagedHsmKeysClient", "List", resp.HttpResponse, "Failure responding to request")
+		return
+	}
+	return
+}

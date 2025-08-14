@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/kubernetesconfiguration/2022-11-01/flux
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ScopedFluxConfigurationId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.ScopeSegment("scope", "/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/some-resource-group"),
+		resourceids.StaticSegment("staticProviders", "providers", "providers"),
+		resourceids.ResourceProviderSegment("staticMicrosoftKubernetesConfiguration", "Microsoft.KubernetesConfiguration", "Microsoft.KubernetesConfiguration"),
+		resourceids.StaticSegment("staticFluxConfigurations", "fluxConfigurations", "fluxConfigurations"),
+		resourceids.UserSpecifiedSegment("fluxConfigurationName", "fluxConfigurationName"),
+	}
+}

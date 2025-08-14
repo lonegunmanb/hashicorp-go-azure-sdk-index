@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/giminorversions
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id GiMinorVersionId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
+		fmt.Sprintf("Gi Version Name: %q", id.GiVersionName),
+		fmt.Sprintf("Gi Minor Version Name: %q", id.GiMinorVersionName),
+	}
+	return fmt.Sprintf("Gi Minor Version (%s)", strings.Join(components, "\n"))
+}

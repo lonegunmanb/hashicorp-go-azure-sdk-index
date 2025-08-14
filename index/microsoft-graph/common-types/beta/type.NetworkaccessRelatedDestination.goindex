@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type NetworkaccessRelatedDestination struct {
+	Fqdn               nullable.Type[string]            `json:"fqdn,omitempty"`
+	Ip                 *string                          `json:"ip,omitempty"`
+	NetworkingProtocol *NetworkaccessNetworkingProtocol `json:"networkingProtocol,omitempty"`
+	Port               *int64                           `json:"port,omitempty"`
+
+	// Fields inherited from NetworkaccessRelatedResource
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

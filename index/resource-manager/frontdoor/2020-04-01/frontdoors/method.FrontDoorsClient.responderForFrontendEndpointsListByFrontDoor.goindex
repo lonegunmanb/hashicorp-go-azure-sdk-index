@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/frontdoor/2020-04-01/frontdoors
+import (
+	"context"
+	"fmt"
+	"net/http"
+	"net/url"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+)
+func (c FrontDoorsClient) responderForFrontendEndpointsListByFrontDoor(resp *http.Response) (result FrontendEndpointsListByFrontDoorOperationResponse, err error) {
+	type page struct {
+		Values   []FrontendEndpoint `json:"value"`
+		NextLink *string            `json:"nextLink"`
+	}
+	var respObj page
+	err = autorest.Respond(
+		resp,
+		azure.WithErrorUnlessStatusCode(http.StatusOK),
+		autorest.ByUnmarshallingJSON(&respObj),
+		autorest.ByClosing())
+	result.HttpResponse = resp
+	result.Model = &respObj.Values
+	result.nextLink = respObj.NextLink
+	if respObj.NextLink != nil {
+		result.nextPageFunc = func(ctx context.Context, nextLink string) (result FrontendEndpointsListByFrontDoorOperationResponse, err error) {
+			req, err := c.preparerForFrontendEndpointsListByFrontDoorWithNextLink(ctx, nextLink)
+			if err != nil {
+				err = autorest.NewErrorWithError(err, "frontdoors.FrontDoorsClient", "FrontendEndpointsListByFrontDoor", nil, "Failure preparing request")
+				return
+			}
+
+			result.HttpResponse, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
+			if err != nil {
+				err = autorest.NewErrorWithError(err, "frontdoors.FrontDoorsClient", "FrontendEndpointsListByFrontDoor", result.HttpResponse, "Failure sending request")
+				return
+			}
+
+			result, err = c.responderForFrontendEndpointsListByFrontDoor(result.HttpResponse)
+			if err != nil {
+				err = autorest.NewErrorWithError(err, "frontdoors.FrontDoorsClient", "FrontendEndpointsListByFrontDoor", result.HttpResponse, "Failure responding to request")
+				return
+			}
+
+			return
+		}
+	}
+	return
+}

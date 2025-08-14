@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/azurestackhci/2024-01-01/logicalnetworks
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseExtendedLocationTypes(input string) (*ExtendedLocationTypes, error) {
+	vals := map[string]ExtendedLocationTypes{
+		"customlocation": ExtendedLocationTypesCustomLocation,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ExtendedLocationTypes(input)
+	return &out, nil
+}

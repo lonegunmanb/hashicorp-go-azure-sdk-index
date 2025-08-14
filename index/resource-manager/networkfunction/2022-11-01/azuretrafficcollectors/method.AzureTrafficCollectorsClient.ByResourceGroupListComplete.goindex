@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/networkfunction/2022-11-01/azuretrafficcollectors
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c AzureTrafficCollectorsClient) ByResourceGroupListComplete(ctx context.Context, id commonids.ResourceGroupId) (ByResourceGroupListCompleteResult, error) {
+	return c.ByResourceGroupListCompleteMatchingPredicate(ctx, id, AzureTrafficCollectorOperationPredicate{})
+}

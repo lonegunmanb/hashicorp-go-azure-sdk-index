@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hardwaresecuritymodules/2021-11-30/dedicatedhsms
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDedicatedHsmsClientWithBaseURI(sdkApi sdkEnv.Api) (*DedicatedHsmsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "dedicatedhsms", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DedicatedHsmsClient: %+v", err)
+	}
+
+	return &DedicatedHsmsClient{
+		Client: client,
+	}, nil
+}

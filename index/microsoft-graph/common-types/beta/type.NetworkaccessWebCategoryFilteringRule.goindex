@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type NetworkaccessWebCategoryFilteringRule struct {
+
+	// Fields inherited from NetworkaccessFilteringRule
+
+	// Possible destinations and types of destinations accessed by the user in accordance with the network filtering policy,
+	// such as IP addresses and FQDNs/URLs.
+	Destinations *[]NetworkaccessRuleDestination `json:"destinations,omitempty"`
+
+	RuleType *NetworkaccessNetworkDestinationType `json:"ruleType,omitempty"`
+
+	// Fields inherited from NetworkaccessPolicyRule
+
+	// Name.
+	Name *string `json:"name,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

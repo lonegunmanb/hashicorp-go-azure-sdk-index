@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicefabric/2021-06-01/cluster
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNotificationCategory(input string) (*NotificationCategory, error) {
+	vals := map[string]NotificationCategory{
+		"waveprogress": NotificationCategoryWaveProgress,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NotificationCategory(input)
+	return &out, nil
+}

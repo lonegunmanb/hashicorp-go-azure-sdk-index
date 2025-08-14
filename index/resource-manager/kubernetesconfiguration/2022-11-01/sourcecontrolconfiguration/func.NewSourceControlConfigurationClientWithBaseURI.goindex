@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/kubernetesconfiguration/2022-11-01/sourcecontrolconfiguration
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSourceControlConfigurationClientWithBaseURI(sdkApi sdkEnv.Api) (*SourceControlConfigurationClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "sourcecontrolconfiguration", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SourceControlConfigurationClient: %+v", err)
+	}
+
+	return &SourceControlConfigurationClient{
+		Client: client,
+	}, nil
+}

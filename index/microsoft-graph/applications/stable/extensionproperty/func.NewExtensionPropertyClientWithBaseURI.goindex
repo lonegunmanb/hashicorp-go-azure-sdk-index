@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/stable/extensionproperty
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewExtensionPropertyClientWithBaseURI(sdkApi sdkEnv.Api) (*ExtensionPropertyClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "extensionproperty", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ExtensionPropertyClient: %+v", err)
+	}
+
+	return &ExtensionPropertyClient{
+		Client: client,
+	}, nil
+}

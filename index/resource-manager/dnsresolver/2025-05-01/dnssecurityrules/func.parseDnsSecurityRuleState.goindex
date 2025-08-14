@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dnsresolver/2025-05-01/dnssecurityrules
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDnsSecurityRuleState(input string) (*DnsSecurityRuleState, error) {
+	vals := map[string]DnsSecurityRuleState{
+		"disabled": DnsSecurityRuleStateDisabled,
+		"enabled":  DnsSecurityRuleStateEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DnsSecurityRuleState(input)
+	return &out, nil
+}

@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2018-03-01/metricalerts
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalMultiMetricCriteriaImplementation(input []byte) (MultiMetricCriteria, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling MultiMetricCriteria into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["criterionType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "DynamicThresholdCriterion") {
+		var out DynamicMetricCriteria
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DynamicMetricCriteria: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "StaticThresholdCriterion") {
+		var out MetricCriteria
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into MetricCriteria: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseMultiMetricCriteriaImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseMultiMetricCriteriaImpl: %+v", err)
+	}
+
+	return RawMultiMetricCriteriaImpl{
+		multiMetricCriteria: parent,
+		Type:                value,
+		Values:              temp,
+	}, nil
+
+}

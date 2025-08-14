@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMobileAppIntent(input string) (*MobileAppIntent, error) {
+	vals := map[string]MobileAppIntent{
+		"available":                         MobileAppIntent_Available,
+		"availableinstallwithoutenrollment": MobileAppIntent_AvailableInstallWithoutEnrollment,
+		"exclude":                           MobileAppIntent_Exclude,
+		"notavailable":                      MobileAppIntent_NotAvailable,
+		"requiredandavailableinstall":       MobileAppIntent_RequiredAndAvailableInstall,
+		"requiredinstall":                   MobileAppIntent_RequiredInstall,
+		"requireduninstall":                 MobileAppIntent_RequiredUninstall,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MobileAppIntent(input)
+	return &out, nil
+}

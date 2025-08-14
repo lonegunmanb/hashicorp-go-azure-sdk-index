@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/connectedvmware/2023-12-01/inventoryitems
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c InventoryItemsClient) ListByVCenterComplete(ctx context.Context, id VCenterId) (ListByVCenterCompleteResult, error) {
+	return c.ListByVCenterCompleteMatchingPredicate(ctx, id, InventoryItemOperationPredicate{})
+}

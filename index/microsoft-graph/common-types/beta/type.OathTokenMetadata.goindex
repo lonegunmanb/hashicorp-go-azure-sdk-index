@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type OathTokenMetadata struct {
+	Enabled                nullable.Type[bool]   `json:"enabled,omitempty"`
+	Manufacturer           nullable.Type[string] `json:"manufacturer,omitempty"`
+	ManufacturerProperties *[]KeyValue           `json:"manufacturerProperties,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	SerialNumber nullable.Type[string] `json:"serialNumber,omitempty"`
+	TokenType    *string               `json:"tokenType,omitempty"`
+}

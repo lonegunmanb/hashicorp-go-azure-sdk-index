@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/syncgroups
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id SyncGroupId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Server Name: %q", id.ServerName),
+		fmt.Sprintf("Database Name: %q", id.DatabaseName),
+		fmt.Sprintf("Sync Group Name: %q", id.SyncGroupName),
+	}
+	return fmt.Sprintf("Sync Group (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cosmosdb/2024-08-15/cosmosdb
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewCosmosDBClientWithBaseURI(sdkApi sdkEnv.Api) (*CosmosDBClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "cosmosdb", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating CosmosDBClient: %+v", err)
+	}
+
+	return &CosmosDBClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,37 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type BaseAuthenticationEventsFlowImpl struct {
+	// The conditions representing the context of the authentication request that's used to decide whether the events policy
+	// is invoked. Supports $filter (eq). See support for filtering on user flows for syntax information.
+	Conditions *AuthenticationConditions `json:"conditions,omitempty"`
+
+	// The description of the events policy.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// Required. The display name for the events policy.
+	DisplayName string `json:"displayName"`
+
+	// The priority to use for each individual event of the events policy. If multiple competing listeners for an event have
+	// the same priority, one is chosen and an error is silently logged. Defaults to 500.
+	Priority *int64 `json:"priority,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

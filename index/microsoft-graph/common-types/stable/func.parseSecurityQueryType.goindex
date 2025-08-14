@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityQueryType(input string) (*SecurityQueryType, error) {
+	vals := map[string]SecurityQueryType{
+		"files":    SecurityQueryType_Files,
+		"messages": SecurityQueryType_Messages,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityQueryType(input)
+	return &out, nil
+}

@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/redhatopenshift/2023-09-04/syncsets
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id OpenShiftClusterId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Open Shift Cluster Name: %q", id.OpenShiftClusterName),
+	}
+	return fmt.Sprintf("Open Shift Cluster (%s)", strings.Join(components, "\n"))
+}

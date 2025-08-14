@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/zebrafotaconnector
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewZebraFotaConnectorClientWithBaseURI(sdkApi sdkEnv.Api) (*ZebraFotaConnectorClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "zebrafotaconnector", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ZebraFotaConnectorClient: %+v", err)
+	}
+
+	return &ZebraFotaConnectorClient{
+		Client: client,
+	}, nil
+}

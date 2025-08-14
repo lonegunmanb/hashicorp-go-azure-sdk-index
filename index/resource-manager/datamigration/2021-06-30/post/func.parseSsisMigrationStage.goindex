@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/post
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSsisMigrationStage(input string) (*SsisMigrationStage, error) {
+	vals := map[string]SsisMigrationStage{
+		"completed":  SsisMigrationStageCompleted,
+		"inprogress": SsisMigrationStageInProgress,
+		"initialize": SsisMigrationStageInitialize,
+		"none":       SsisMigrationStageNone,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SsisMigrationStage(input)
+	return &out, nil
+}

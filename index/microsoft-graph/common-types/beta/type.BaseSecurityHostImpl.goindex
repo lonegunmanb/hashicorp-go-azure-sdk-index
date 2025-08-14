@@ -1,0 +1,72 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type BaseSecurityHostImpl struct {
+	// The hostPairs that are resources associated with a host, where that host is the parentHost and has an outgoing
+	// pairing to a cihldHost.
+	ChildHostPairs *[]SecurityHostPair `json:"childHostPairs,omitempty"`
+
+	// The hostComponents that are associated with this host.
+	Components *[]SecurityHostComponent `json:"components,omitempty"`
+
+	// The hostCookies that are associated with this host.
+	Cookies *[]SecurityHostCookie `json:"cookies,omitempty"`
+
+	// The first date and time when this host was observed. The Timestamp type represents date and time information using
+	// ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+	FirstSeenDateTime nullable.Type[string] `json:"firstSeenDateTime,omitempty"`
+
+	// The hostPairs that are associated with this host, where this host is either the parentHost or childHost.
+	HostPairs *[]SecurityHostPair `json:"hostPairs,omitempty"`
+
+	// The most recent date and time when this host was observed. The Timestamp type represents date and time information
+	// using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+	LastSeenDateTime nullable.Type[string] `json:"lastSeenDateTime,omitempty"`
+
+	// The hostPairs that are associated with a host, where that host is the childHost and has an incoming pairing with a
+	// parentHost.
+	ParentHostPairs *[]SecurityHostPair `json:"parentHostPairs,omitempty"`
+
+	// Passive DNS retrieval about this host.
+	PassiveDns *[]SecurityPassiveDnsRecord `json:"passiveDns,omitempty"`
+
+	// Reverse passive DNS retrieval about this host.
+	PassiveDnsReverse *[]SecurityPassiveDnsRecord `json:"passiveDnsReverse,omitempty"`
+
+	// The hostPorts associated with a host.
+	Ports *[]SecurityHostPort `json:"ports,omitempty"`
+
+	// Represents a calculated reputation of this host.
+	Reputation *SecurityHostReputation `json:"reputation,omitempty"`
+
+	// The hostSslCertificates that are associated with this host.
+	SslCertificates *[]SecurityHostSslCertificate `json:"sslCertificates,omitempty"`
+
+	// The subdomains that are associated with this host.
+	Subdomains *[]SecuritySubdomain `json:"subdomains,omitempty"`
+
+	// The hostTrackers that are associated with this host.
+	Trackers *[]SecurityHostTracker `json:"trackers,omitempty"`
+
+	// The most recent whoisRecord for this host.
+	Whois *SecurityWhoisRecord `json:"whois,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

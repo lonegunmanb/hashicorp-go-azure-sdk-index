@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/syncgroups
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSyncGroupLogType(input string) (*SyncGroupLogType, error) {
+	vals := map[string]SyncGroupLogType{
+		"all":     SyncGroupLogTypeAll,
+		"error":   SyncGroupLogTypeError,
+		"success": SyncGroupLogTypeSuccess,
+		"warning": SyncGroupLogTypeWarning,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SyncGroupLogType(input)
+	return &out, nil
+}

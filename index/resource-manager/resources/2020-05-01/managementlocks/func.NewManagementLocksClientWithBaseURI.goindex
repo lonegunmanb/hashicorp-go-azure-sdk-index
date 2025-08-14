@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-05-01/managementlocks
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewManagementLocksClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagementLocksClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "managementlocks", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ManagementLocksClient: %+v", err)
+	}
+
+	return &ManagementLocksClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/kubernetesconfiguration/2022-11-01/clusterextensions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAKSIdentityType(input string) (*AKSIdentityType, error) {
+	vals := map[string]AKSIdentityType{
+		"systemassigned": AKSIdentityTypeSystemAssigned,
+		"userassigned":   AKSIdentityTypeUserAssigned,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AKSIdentityType(input)
+	return &out, nil
+}

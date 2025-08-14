@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cognitive/2025-06-01/defenderforaisettings
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDefenderForAISettingState(input string) (*DefenderForAISettingState, error) {
+	vals := map[string]DefenderForAISettingState{
+		"disabled": DefenderForAISettingStateDisabled,
+		"enabled":  DefenderForAISettingStateEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DefenderForAISettingState(input)
+	return &out, nil
+}

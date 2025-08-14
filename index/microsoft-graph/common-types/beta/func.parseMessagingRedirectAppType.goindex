@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMessagingRedirectAppType(input string) (*MessagingRedirectAppType, error) {
+	vals := map[string]MessagingRedirectAppType{
+		"anyapp":        MessagingRedirectAppType_AnyApp,
+		"anymanagedapp": MessagingRedirectAppType_AnyManagedApp,
+		"blocked":       MessagingRedirectAppType_Blocked,
+		"specificapps":  MessagingRedirectAppType_SpecificApps,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MessagingRedirectAppType(input)
+	return &out, nil
+}

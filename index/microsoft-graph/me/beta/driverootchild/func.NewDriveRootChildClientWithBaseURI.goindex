@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/driverootchild
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDriveRootChildClientWithBaseURI(sdkApi sdkEnv.Api) (*DriveRootChildClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "driverootchild", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DriveRootChildClient: %+v", err)
+	}
+
+	return &DriveRootChildClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/databaseencryptionprotectorrevalidate
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDatabaseEncryptionProtectorRevalidateClientWithBaseURI(sdkApi sdkEnv.Api) (*DatabaseEncryptionProtectorRevalidateClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "databaseencryptionprotectorrevalidate", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DatabaseEncryptionProtectorRevalidateClient: %+v", err)
+	}
+
+	return &DatabaseEncryptionProtectorRevalidateClient{
+		Client: client,
+	}, nil
+}

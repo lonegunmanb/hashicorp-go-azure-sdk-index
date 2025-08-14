@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2024-10-01/backuppolicies
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s LongTermSchedulePolicy) MarshalJSON() ([]byte, error) {
+	type wrapper LongTermSchedulePolicy
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling LongTermSchedulePolicy: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling LongTermSchedulePolicy: %+v", err)
+	}
+
+	decoded["schedulePolicyType"] = "LongTermSchedulePolicy"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling LongTermSchedulePolicy: %+v", err)
+	}
+
+	return encoded, nil
+}

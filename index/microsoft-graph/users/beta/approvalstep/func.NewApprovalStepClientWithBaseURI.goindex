@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/approvalstep
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewApprovalStepClientWithBaseURI(sdkApi sdkEnv.Api) (*ApprovalStepClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "approvalstep", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ApprovalStepClient: %+v", err)
+	}
+
+	return &ApprovalStepClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DirectoryFeatureRolloutPolicyIdAppliesToId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.StaticSegment("directory", "directory", "directory"),
+		resourceids.StaticSegment("featureRolloutPolicies", "featureRolloutPolicies", "featureRolloutPolicies"),
+		resourceids.UserSpecifiedSegment("featureRolloutPolicyId", "featureRolloutPolicyId"),
+		resourceids.StaticSegment("appliesTo", "appliesTo", "appliesTo"),
+		resourceids.UserSpecifiedSegment("directoryObjectId", "directoryObjectId"),
+	}
+}

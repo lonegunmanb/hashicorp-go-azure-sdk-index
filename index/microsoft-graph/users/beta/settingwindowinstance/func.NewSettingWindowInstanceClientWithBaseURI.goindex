@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/settingwindowinstance
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSettingWindowInstanceClientWithBaseURI(sdkApi sdkEnv.Api) (*SettingWindowInstanceClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "settingwindowinstance", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SettingWindowInstanceClient: %+v", err)
+	}
+
+	return &SettingWindowInstanceClient{
+		Client: client,
+	}, nil
+}

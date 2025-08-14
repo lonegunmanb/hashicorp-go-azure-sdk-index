@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-01-01/peerexpressroutecircuitconnections
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPeerExpressRouteCircuitConnectionsClientWithBaseURI(sdkApi sdkEnv.Api) (*PeerExpressRouteCircuitConnectionsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "peerexpressroutecircuitconnections", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PeerExpressRouteCircuitConnectionsClient: %+v", err)
+	}
+
+	return &PeerExpressRouteCircuitConnectionsClient{
+		Client: client,
+	}, nil
+}

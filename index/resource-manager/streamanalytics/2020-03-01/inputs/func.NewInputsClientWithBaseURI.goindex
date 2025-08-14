@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/streamanalytics/2020-03-01/inputs
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewInputsClientWithBaseURI(sdkApi sdkEnv.Api) (*InputsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "inputs", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating InputsClient: %+v", err)
+	}
+
+	return &InputsClient{
+		Client: client,
+	}, nil
+}

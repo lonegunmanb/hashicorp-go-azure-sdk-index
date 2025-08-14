@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type DeviceManagementConfigurationIntegerSettingValueTemplate struct {
+	// Integer Setting Value Default Template.
+	DefaultValue DeviceManagementConfigurationIntegerSettingValueDefaultTemplate `json:"defaultValue"`
+
+	// Recommended value definition.
+	RecommendedValueDefinition *DeviceManagementConfigurationIntegerSettingValueDefinitionTemplate `json:"recommendedValueDefinition,omitempty"`
+
+	// Required value definition.
+	RequiredValueDefinition *DeviceManagementConfigurationIntegerSettingValueDefinitionTemplate `json:"requiredValueDefinition,omitempty"`
+
+	// Fields inherited from DeviceManagementConfigurationSimpleSettingValueTemplate
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Setting Value Template Id
+	SettingValueTemplateId *string `json:"settingValueTemplateId,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

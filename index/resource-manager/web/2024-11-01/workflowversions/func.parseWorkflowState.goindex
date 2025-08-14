@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-11-01/workflowversions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWorkflowState(input string) (*WorkflowState, error) {
+	vals := map[string]WorkflowState{
+		"completed":    WorkflowStateCompleted,
+		"deleted":      WorkflowStateDeleted,
+		"disabled":     WorkflowStateDisabled,
+		"enabled":      WorkflowStateEnabled,
+		"notspecified": WorkflowStateNotSpecified,
+		"suspended":    WorkflowStateSuspended,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WorkflowState(input)
+	return &out, nil
+}

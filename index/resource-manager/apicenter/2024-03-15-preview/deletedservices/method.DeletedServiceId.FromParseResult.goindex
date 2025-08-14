@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apicenter/2024-03-15-preview/deletedservices
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *DeletedServiceId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.DeletedServiceName, ok = input.Parsed["deletedServiceName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "deletedServiceName", input)
+	}
+
+	return nil
+}

@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DeviceManagementMacOSSoftwareUpdateAccountSummaryIdCategorySummaryIdUpdateStateSummaryId) String() string {
+	components := []string{
+		fmt.Sprintf("Mac O S Software Update Account Summary: %q", id.MacOSSoftwareUpdateAccountSummaryId),
+		fmt.Sprintf("Mac O S Software Update Category Summary: %q", id.MacOSSoftwareUpdateCategorySummaryId),
+		fmt.Sprintf("Mac O S Software Update State Summary: %q", id.MacOSSoftwareUpdateStateSummaryId),
+	}
+	return fmt.Sprintf("Device Management Mac O S Software Update Account Summary Id Category Summary Id Update State Summary (%s)", strings.Join(components, "\n"))
+}

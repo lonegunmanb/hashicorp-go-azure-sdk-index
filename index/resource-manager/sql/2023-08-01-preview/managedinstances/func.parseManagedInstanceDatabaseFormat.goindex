@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/managedinstances
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseManagedInstanceDatabaseFormat(input string) (*ManagedInstanceDatabaseFormat, error) {
+	vals := map[string]ManagedInstanceDatabaseFormat{
+		"alwaysuptodate": ManagedInstanceDatabaseFormatAlwaysUpToDate,
+		"sqlserver2022":  ManagedInstanceDatabaseFormatSQLServerTwoZeroTwoTwo,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagedInstanceDatabaseFormat(input)
+	return &out, nil
+}

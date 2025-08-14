@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/drivelastmodifiedbyuserserviceprovisioningerror
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDriveLastModifiedByUserServiceProvisioningErrorClientWithBaseURI(sdkApi sdkEnv.Api) (*DriveLastModifiedByUserServiceProvisioningErrorClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "drivelastmodifiedbyuserserviceprovisioningerror", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DriveLastModifiedByUserServiceProvisioningErrorClient: %+v", err)
+	}
+
+	return &DriveLastModifiedByUserServiceProvisioningErrorClient{
+		Client: client,
+	}, nil
+}

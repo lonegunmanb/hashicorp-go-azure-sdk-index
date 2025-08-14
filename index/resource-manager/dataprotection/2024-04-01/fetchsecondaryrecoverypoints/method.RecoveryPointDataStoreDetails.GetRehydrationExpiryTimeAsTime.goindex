@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2024-04-01/fetchsecondaryrecoverypoints
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *RecoveryPointDataStoreDetails) GetRehydrationExpiryTimeAsTime() (*time.Time, error) {
+	if o.RehydrationExpiryTime == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.RehydrationExpiryTime, "2006-01-02T15:04:05Z07:00")
+}

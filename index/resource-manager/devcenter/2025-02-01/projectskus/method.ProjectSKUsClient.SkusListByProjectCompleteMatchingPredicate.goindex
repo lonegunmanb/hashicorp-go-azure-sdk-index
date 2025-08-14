@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/projectskus
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ProjectSKUsClient) SkusListByProjectCompleteMatchingPredicate(ctx context.Context, id ProjectId, predicate DevCenterSkuOperationPredicate) (result SkusListByProjectCompleteResult, err error) {
+	items := make([]DevCenterSku, 0)
+
+	resp, err := c.SkusListByProject(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = SkusListByProjectCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

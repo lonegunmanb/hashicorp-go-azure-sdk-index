@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/manageddatabases
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseManagedDatabaseStatus(input string) (*ManagedDatabaseStatus, error) {
+	vals := map[string]ManagedDatabaseStatus{
+		"creating":     ManagedDatabaseStatusCreating,
+		"dbcopying":    ManagedDatabaseStatusDbCopying,
+		"dbmoving":     ManagedDatabaseStatusDbMoving,
+		"inaccessible": ManagedDatabaseStatusInaccessible,
+		"offline":      ManagedDatabaseStatusOffline,
+		"online":       ManagedDatabaseStatusOnline,
+		"restoring":    ManagedDatabaseStatusRestoring,
+		"shutdown":     ManagedDatabaseStatusShutdown,
+		"starting":     ManagedDatabaseStatusStarting,
+		"stopped":      ManagedDatabaseStatusStopped,
+		"stopping":     ManagedDatabaseStatusStopping,
+		"updating":     ManagedDatabaseStatusUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagedDatabaseStatus(input)
+	return &out, nil
+}

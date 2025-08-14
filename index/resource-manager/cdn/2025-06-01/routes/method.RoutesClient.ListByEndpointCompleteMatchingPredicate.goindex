@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/routes
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c RoutesClient) ListByEndpointCompleteMatchingPredicate(ctx context.Context, id AfdEndpointId, predicate RouteOperationPredicate) (result ListByEndpointCompleteResult, err error) {
+	items := make([]Route, 0)
+
+	resp, err := c.ListByEndpoint(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByEndpointCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

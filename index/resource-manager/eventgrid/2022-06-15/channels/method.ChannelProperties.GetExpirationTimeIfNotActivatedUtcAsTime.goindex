@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2022-06-15/channels
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *ChannelProperties) GetExpirationTimeIfNotActivatedUtcAsTime() (*time.Time, error) {
+	if o.ExpirationTimeIfNotActivatedUtc == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.ExpirationTimeIfNotActivatedUtc, "2006-01-02T15:04:05Z07:00")
+}

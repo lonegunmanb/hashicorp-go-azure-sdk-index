@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/sdk/internal/azurecli
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"log"
+	"os/exec"
+	"regexp"
+	"strings"
+
+	"github.com/hashicorp/go-version"
+)
+func ListAvailableSubscriptionIDs() (*[]string, error) {
+	accounts, err := listAzAccounts()
+	if err != nil {
+		return nil, fmt.Errorf("obtaining subscription ID: %s", err)
+	}
+	subscriptionIds := make([]string, 0)
+	if accounts != nil {
+		for _, account := range *accounts {
+			if account.Id != nil {
+				subscriptionIds = append(subscriptionIds, *account.Id)
+			}
+		}
+	}
+	return &subscriptionIds, nil
+}

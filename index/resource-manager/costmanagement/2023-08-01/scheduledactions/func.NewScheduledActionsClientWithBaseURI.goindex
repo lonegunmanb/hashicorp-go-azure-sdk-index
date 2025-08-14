@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-08-01/scheduledactions
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewScheduledActionsClientWithBaseURI(sdkApi sdkEnv.Api) (*ScheduledActionsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "scheduledactions", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ScheduledActionsClient: %+v", err)
+	}
+
+	return &ScheduledActionsClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/informatica/2024-05-08/serverlessruntimes
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseApplicationType(input string) (*ApplicationType, error) {
+	vals := map[string]ApplicationType{
+		"cdi":  ApplicationTypeCDI,
+		"cdie": ApplicationTypeCDIE,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ApplicationType(input)
+	return &out, nil
+}

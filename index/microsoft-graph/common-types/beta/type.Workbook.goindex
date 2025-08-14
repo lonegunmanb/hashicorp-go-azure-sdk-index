@@ -1,0 +1,37 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type Workbook struct {
+	Application *WorkbookApplication `json:"application,omitempty"`
+	Comments    *[]WorkbookComment   `json:"comments,omitempty"`
+	Functions   *WorkbookFunctions   `json:"functions,omitempty"`
+
+	// Represents a collection of workbooks scoped named items (named ranges and constants). Read-only.
+	Names *[]WorkbookNamedItem `json:"names,omitempty"`
+
+	// The status of Workbook operations. Getting an operation collection is not supported, but you can get the status of a
+	// long-running operation if the Location header is returned in the response. Read-only. Nullable.
+	Operations *[]WorkbookOperation `json:"operations,omitempty"`
+
+	// Represents a collection of tables associated with the workbook. Read-only.
+	Tables *[]WorkbookTable `json:"tables,omitempty"`
+
+	// Represents a collection of worksheets associated with the workbook. Read-only.
+	Worksheets *[]WorkbookWorksheet `json:"worksheets,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

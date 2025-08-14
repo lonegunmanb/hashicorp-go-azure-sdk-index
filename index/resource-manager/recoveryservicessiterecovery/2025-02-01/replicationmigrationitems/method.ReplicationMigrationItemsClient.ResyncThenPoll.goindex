@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationmigrationitems
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ReplicationMigrationItemsClient) ResyncThenPoll(ctx context.Context, id ReplicationMigrationItemId, input ResyncInput) error {
+	result, err := c.Resync(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing Resync: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after Resync: %+v", err)
+	}
+
+	return nil
+}

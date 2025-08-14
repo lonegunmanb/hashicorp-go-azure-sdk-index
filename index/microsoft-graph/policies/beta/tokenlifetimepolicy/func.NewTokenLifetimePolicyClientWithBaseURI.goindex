@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/tokenlifetimepolicy
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTokenLifetimePolicyClientWithBaseURI(sdkApi sdkEnv.Api) (*TokenLifetimePolicyClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "tokenlifetimepolicy", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TokenLifetimePolicyClient: %+v", err)
+	}
+
+	return &TokenLifetimePolicyClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,105 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalPlannerDeltaImplementation(input []byte) (PlannerDelta, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling PlannerDelta into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.plannerAssignedToTaskBoardTaskFormat") {
+		var out PlannerAssignedToTaskBoardTaskFormat
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into PlannerAssignedToTaskBoardTaskFormat: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.plannerBucket") {
+		var out PlannerBucket
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into PlannerBucket: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.plannerBucketTaskBoardTaskFormat") {
+		var out PlannerBucketTaskBoardTaskFormat
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into PlannerBucketTaskBoardTaskFormat: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.plannerPlan") {
+		var out PlannerPlan
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into PlannerPlan: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.plannerPlanDetails") {
+		var out PlannerPlanDetails
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into PlannerPlanDetails: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.plannerProgressTaskBoardTaskFormat") {
+		var out PlannerProgressTaskBoardTaskFormat
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into PlannerProgressTaskBoardTaskFormat: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.plannerTask") {
+		var out PlannerTask
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into PlannerTask: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.plannerTaskDetails") {
+		var out PlannerTaskDetails
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into PlannerTaskDetails: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.plannerUser") {
+		var out PlannerUser
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into PlannerUser: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BasePlannerDeltaImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BasePlannerDeltaImpl: %+v", err)
+	}
+
+	return RawPlannerDeltaImpl{
+		plannerDelta: parent,
+		Type:         value,
+		Values:       temp,
+	}, nil
+
+}

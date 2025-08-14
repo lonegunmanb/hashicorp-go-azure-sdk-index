@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/integrationruntimeobjectmetadata
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c IntegrationRuntimeObjectMetadataClient) GetComplete(ctx context.Context, id IntegrationRuntimeId, input GetSsisObjectMetadataRequest) (GetCompleteResult, error) {
+	return c.GetCompleteMatchingPredicate(ctx, id, input, SsisObjectMetadataOperationPredicate{})
+}

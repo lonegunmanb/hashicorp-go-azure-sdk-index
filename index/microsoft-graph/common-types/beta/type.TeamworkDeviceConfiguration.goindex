@@ -1,0 +1,59 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type TeamworkDeviceConfiguration struct {
+	// The camera configuration. Applicable only for Microsoft Teams Rooms-enabled devices.
+	CameraConfiguration *TeamworkCameraConfiguration `json:"cameraConfiguration,omitempty"`
+
+	// Identity of the user who created the device configuration document.
+	CreatedBy IdentitySet `json:"createdBy"`
+
+	// The UTC date and time when the device configuration document was created.
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// The display configuration.
+	DisplayConfiguration *TeamworkDisplayConfiguration `json:"displayConfiguration,omitempty"`
+
+	// The hardware configuration. Applicable only for Teams Rooms-enabled devices.
+	HardwareConfiguration *TeamworkHardwareConfiguration `json:"hardwareConfiguration,omitempty"`
+
+	// Identity of the user who last modified the device configuration.
+	LastModifiedBy IdentitySet `json:"lastModifiedBy"`
+
+	// The UTC date and time when the device configuration was last modified.
+	LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+
+	// The microphone configuration. Applicable only for Teams Rooms-enabled devices.
+	MicrophoneConfiguration *TeamworkMicrophoneConfiguration `json:"microphoneConfiguration,omitempty"`
+
+	// Information related to software versions for the device, such as firmware, operating system, Teams client, and admin
+	// agent.
+	SoftwareVersions *TeamworkDeviceSoftwareVersions `json:"softwareVersions,omitempty"`
+
+	// The speaker configuration. Applicable only for Teams Rooms-enabled devices.
+	SpeakerConfiguration *TeamworkSpeakerConfiguration `json:"speakerConfiguration,omitempty"`
+
+	// The system configuration. Not applicable for Teams Rooms-enabled devices.
+	SystemConfiguration *TeamworkSystemConfiguration `json:"systemConfiguration,omitempty"`
+
+	// The Teams client configuration. Applicable only for Teams Rooms-enabled devices.
+	TeamsClientConfiguration *TeamworkTeamsClientConfiguration `json:"teamsClientConfiguration,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

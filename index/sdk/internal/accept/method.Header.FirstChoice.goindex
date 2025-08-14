@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/sdk/internal/accept
+import (
+	"fmt"
+	"sort"
+	"strconv"
+	"strings"
+)
+func (h Header) FirstChoice() *PreferredType {
+	if len(h.types) == 0 {
+		return nil
+	}
+	return &h.types[0]
+}

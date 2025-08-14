@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationprotectioncontainers
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ReplicationProtectionContainersClient) ListComplete(ctx context.Context, id VaultId) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, ProtectionContainerOperationPredicate{})
+}

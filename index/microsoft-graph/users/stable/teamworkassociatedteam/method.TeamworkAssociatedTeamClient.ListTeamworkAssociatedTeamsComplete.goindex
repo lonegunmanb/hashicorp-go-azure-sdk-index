@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/teamworkassociatedteam
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c TeamworkAssociatedTeamClient) ListTeamworkAssociatedTeamsComplete(ctx context.Context, id stable.UserId, options ListTeamworkAssociatedTeamsOperationOptions) (ListTeamworkAssociatedTeamsCompleteResult, error) {
+	return c.ListTeamworkAssociatedTeamsCompleteMatchingPredicate(ctx, id, options, AssociatedTeamInfoOperationPredicate{})
+}

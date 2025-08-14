@@ -1,0 +1,40 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type CustomClaimsPolicy struct {
+	// If specified, it overrides the content of the audience claim for WS-Federation and SAML2 protocols. A custom signing
+	// key must be used for audienceOverride to be applied, otherwise, the audienceOverride value is ignored. The value
+	// provided must be in the format of an absolute URI.
+	AudienceOverride nullable.Type[string] `json:"audienceOverride,omitempty"`
+
+	// Defines which claims are present in the tokens affected by the policy, in addition to the basic claim and the core
+	// claim set. Inherited from customclaimbase.
+	Claims *[]CustomClaimBase `json:"claims,omitempty"`
+
+	// Indicates whether the application ID is added to the claim. It is relevant only for SAML2.0 and if a custom signing
+	// key is used. the default value is true. Optional.
+	IncludeApplicationIdInIssuer nullable.Type[bool] `json:"includeApplicationIdInIssuer,omitempty"`
+
+	// Determines whether the basic claim set is included in tokens affected by this policy. If set to true, all claims in
+	// the basic claim set are emitted in tokens affected by the policy. By default the basic claim set isn't in the tokens
+	// unless they're explicitly configured in this policy.
+	IncludeBasicClaimSet nullable.Type[bool] `json:"includeBasicClaimSet,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

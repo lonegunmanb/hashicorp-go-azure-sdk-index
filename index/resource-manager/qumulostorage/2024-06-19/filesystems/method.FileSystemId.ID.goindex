@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/qumulostorage/2024-06-19/filesystems
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id FileSystemId) ID() string {
+	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Qumulo.Storage/fileSystems/%s"
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.FileSystemName)
+}

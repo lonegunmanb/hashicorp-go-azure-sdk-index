@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/security/2019-01-01-preview/regulatorycompliance
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *RegulatoryComplianceControlId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.RegulatoryComplianceStandardName, ok = input.Parsed["regulatoryComplianceStandardName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "regulatoryComplianceStandardName", input)
+	}
+
+	if id.RegulatoryComplianceControlName, ok = input.Parsed["regulatoryComplianceControlName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "regulatoryComplianceControlName", input)
+	}
+
+	return nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/delegatedpermissionclassification
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDelegatedPermissionClassificationClientWithBaseURI(sdkApi sdkEnv.Api) (*DelegatedPermissionClassificationClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "delegatedpermissionclassification", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DelegatedPermissionClassificationClient: %+v", err)
+	}
+
+	return &DelegatedPermissionClassificationClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,50 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *PlannerTaskDetails) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		Checklist              *PlannerChecklistItems                   `json:"checklist,omitempty"`
+		CompletionRequirements *PlannerTaskCompletionRequirementDetails `json:"completionRequirements,omitempty"`
+		Description            nullable.Type[string]                    `json:"description,omitempty"`
+		Forms                  *PlannerFormsDictionary                  `json:"forms,omitempty"`
+		Notes                  *ItemBody                                `json:"notes,omitempty"`
+		PreviewType            *PlannerPreviewType                      `json:"previewType,omitempty"`
+		References             *PlannerExternalReferences               `json:"references,omitempty"`
+		Id                     *string                                  `json:"id,omitempty"`
+		ODataId                *string                                  `json:"@odata.id,omitempty"`
+		ODataType              *string                                  `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.Checklist = decoded.Checklist
+	s.CompletionRequirements = decoded.CompletionRequirements
+	s.Description = decoded.Description
+	s.Forms = decoded.Forms
+	s.Notes = decoded.Notes
+	s.PreviewType = decoded.PreviewType
+	s.References = decoded.References
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling PlannerTaskDetails into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["approvalAttachment"]; ok {
+		impl, err := UnmarshalPlannerBaseApprovalAttachmentImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'ApprovalAttachment' for 'PlannerTaskDetails': %+v", err)
+		}
+		s.ApprovalAttachment = impl
+	}
+
+	return nil
+}

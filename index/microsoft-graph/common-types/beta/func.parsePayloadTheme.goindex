@@ -1,0 +1,48 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePayloadTheme(input string) (*PayloadTheme, error) {
+	vals := map[string]PayloadTheme{
+		"accountactivation":     PayloadTheme_AccountActivation,
+		"accountverification":   PayloadTheme_AccountVerification,
+		"advertisement":         PayloadTheme_Advertisement,
+		"billing":               PayloadTheme_Billing,
+		"cleanupmail":           PayloadTheme_CleanUpMail,
+		"controversial":         PayloadTheme_Controversial,
+		"documentreceived":      PayloadTheme_DocumentReceived,
+		"employeeengagement":    PayloadTheme_EmployeeEngagement,
+		"expense":               PayloadTheme_Expense,
+		"fax":                   PayloadTheme_Fax,
+		"financereport":         PayloadTheme_FinanceReport,
+		"incomingmessages":      PayloadTheme_IncomingMessages,
+		"invoice":               PayloadTheme_Invoice,
+		"itemreceived":          PayloadTheme_ItemReceived,
+		"loginalert":            PayloadTheme_LoginAlert,
+		"mailreceived":          PayloadTheme_MailReceived,
+		"other":                 PayloadTheme_Other,
+		"password":              PayloadTheme_Password,
+		"payment":               PayloadTheme_Payment,
+		"payroll":               PayloadTheme_Payroll,
+		"personalizedoffer":     PayloadTheme_PersonalizedOffer,
+		"quarantine":            PayloadTheme_Quarantine,
+		"remotework":            PayloadTheme_RemoteWork,
+		"reviewmessage":         PayloadTheme_ReviewMessage,
+		"securityupdate":        PayloadTheme_SecurityUpdate,
+		"servicesuspended":      PayloadTheme_ServiceSuspended,
+		"signaturerequired":     PayloadTheme_SignatureRequired,
+		"unknown":               PayloadTheme_Unknown,
+		"upgrademailboxstorage": PayloadTheme_UpgradeMailboxStorage,
+		"verifymailbox":         PayloadTheme_VerifyMailbox,
+		"voicemail":             PayloadTheme_Voicemail,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PayloadTheme(input)
+	return &out, nil
+}

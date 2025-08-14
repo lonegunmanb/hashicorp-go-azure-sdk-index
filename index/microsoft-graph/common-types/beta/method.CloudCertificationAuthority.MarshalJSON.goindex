@@ -1,0 +1,54 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s CloudCertificationAuthority) MarshalJSON() ([]byte, error) {
+	type wrapper CloudCertificationAuthority
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling CloudCertificationAuthority: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling CloudCertificationAuthority: %+v", err)
+	}
+
+	delete(decoded, "certificateDownloadUrl")
+	delete(decoded, "certificateRevocationListUrl")
+	delete(decoded, "certificateSigningRequest")
+	delete(decoded, "certificationAuthorityIssuerId")
+	delete(decoded, "certificationAuthorityIssuerUri")
+	delete(decoded, "commonName")
+	delete(decoded, "countryName")
+	delete(decoded, "createdDateTime")
+	delete(decoded, "extendedKeyUsages")
+	delete(decoded, "localityName")
+	delete(decoded, "ocspResponderUri")
+	delete(decoded, "organizationName")
+	delete(decoded, "organizationUnit")
+	delete(decoded, "rootCertificateCommonName")
+	delete(decoded, "scepServerUrl")
+	delete(decoded, "serialNumber")
+	delete(decoded, "stateName")
+	delete(decoded, "subjectName")
+	delete(decoded, "thumbprint")
+	delete(decoded, "validityEndDateTime")
+	delete(decoded, "validityStartDateTime")
+	delete(decoded, "versionNumber")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.cloudCertificationAuthority"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling CloudCertificationAuthority: %+v", err)
+	}
+
+	return encoded, nil
+}

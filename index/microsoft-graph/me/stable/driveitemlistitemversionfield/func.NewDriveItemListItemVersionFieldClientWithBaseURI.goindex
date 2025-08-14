@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemlistitemversionfield
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDriveItemListItemVersionFieldClientWithBaseURI(sdkApi sdkEnv.Api) (*DriveItemListItemVersionFieldClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "driveitemlistitemversionfield", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DriveItemListItemVersionFieldClient: %+v", err)
+	}
+
+	return &DriveItemListItemVersionFieldClient{
+		Client: client,
+	}, nil
+}

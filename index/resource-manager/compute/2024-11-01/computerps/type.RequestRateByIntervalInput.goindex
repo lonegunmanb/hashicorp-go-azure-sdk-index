@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/computerps
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type RequestRateByIntervalInput struct {
+	BlobContainerSasUri        string         `json:"blobContainerSasUri"`
+	FromTime                   string         `json:"fromTime"`
+	GroupByClientApplicationId *bool          `json:"groupByClientApplicationId,omitempty"`
+	GroupByOperationName       *bool          `json:"groupByOperationName,omitempty"`
+	GroupByResourceName        *bool          `json:"groupByResourceName,omitempty"`
+	GroupByThrottlePolicy      *bool          `json:"groupByThrottlePolicy,omitempty"`
+	GroupByUserAgent           *bool          `json:"groupByUserAgent,omitempty"`
+	IntervalLength             IntervalInMins `json:"intervalLength"`
+	ToTime                     string         `json:"toTime"`
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightdailyusercount
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewUserInsightDailyUserCountClientWithBaseURI(sdkApi sdkEnv.Api) (*UserInsightDailyUserCountClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "userinsightdailyusercount", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating UserInsightDailyUserCountClient: %+v", err)
+	}
+
+	return &UserInsightDailyUserCountClient{
+		Client: client,
+	}, nil
+}

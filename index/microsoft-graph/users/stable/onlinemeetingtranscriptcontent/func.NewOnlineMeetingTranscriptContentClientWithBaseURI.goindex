@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/onlinemeetingtranscriptcontent
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewOnlineMeetingTranscriptContentClientWithBaseURI(sdkApi sdkEnv.Api) (*OnlineMeetingTranscriptContentClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "onlinemeetingtranscriptcontent", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating OnlineMeetingTranscriptContentClient: %+v", err)
+	}
+
+	return &OnlineMeetingTranscriptContentClient{
+		Client: client,
+	}, nil
+}

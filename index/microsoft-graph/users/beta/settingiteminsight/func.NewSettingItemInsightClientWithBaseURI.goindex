@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/settingiteminsight
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSettingItemInsightClientWithBaseURI(sdkApi sdkEnv.Api) (*SettingItemInsightClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "settingiteminsight", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SettingItemInsightClient: %+v", err)
+	}
+
+	return &SettingItemInsightClient{
+		Client: client,
+	}, nil
+}

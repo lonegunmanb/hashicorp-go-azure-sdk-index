@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/privatelinkresource
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPrivateLinkResourceClientWithBaseURI(sdkApi sdkEnv.Api) (*PrivateLinkResourceClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "privatelinkresource", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PrivateLinkResourceClient: %+v", err)
+	}
+
+	return &PrivateLinkResourceClient{
+		Client: client,
+	}, nil
+}

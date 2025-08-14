@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2025-07-01/deletedbackupinstances
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseValidationType(input string) (*ValidationType, error) {
+	vals := map[string]ValidationType{
+		"deepvalidation":    ValidationTypeDeepValidation,
+		"shallowvalidation": ValidationTypeShallowValidation,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ValidationType(input)
+	return &out, nil
+}

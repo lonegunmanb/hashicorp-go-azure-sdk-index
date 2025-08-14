@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/purview/2021-12-01/account
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseManagedResourcesPublicNetworkAccess(input string) (*ManagedResourcesPublicNetworkAccess, error) {
+	vals := map[string]ManagedResourcesPublicNetworkAccess{
+		"disabled":     ManagedResourcesPublicNetworkAccessDisabled,
+		"enabled":      ManagedResourcesPublicNetworkAccessEnabled,
+		"notspecified": ManagedResourcesPublicNetworkAccessNotSpecified,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagedResourcesPublicNetworkAccess(input)
+	return &out, nil
+}

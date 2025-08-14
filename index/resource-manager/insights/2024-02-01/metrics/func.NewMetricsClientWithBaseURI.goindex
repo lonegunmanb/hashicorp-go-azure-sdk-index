@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2024-02-01/metrics
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewMetricsClientWithBaseURI(sdkApi sdkEnv.Api) (*MetricsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "metrics", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating MetricsClient: %+v", err)
+	}
+
+	return &MetricsClient{
+		Client: client,
+	}, nil
+}

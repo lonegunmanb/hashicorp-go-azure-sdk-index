@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-09-01/connectionmonitors
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseIssueType(input string) (*IssueType, error) {
+	vals := map[string]IssueType{
+		"agentstopped":        IssueTypeAgentStopped,
+		"dnsresolution":       IssueTypeDnsResolution,
+		"guestfirewall":       IssueTypeGuestFirewall,
+		"networksecurityrule": IssueTypeNetworkSecurityRule,
+		"platform":            IssueTypePlatform,
+		"portthrottled":       IssueTypePortThrottled,
+		"socketbind":          IssueTypeSocketBind,
+		"unknown":             IssueTypeUnknown,
+		"userdefinedroute":    IssueTypeUserDefinedRoute,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IssueType(input)
+	return &out, nil
+}

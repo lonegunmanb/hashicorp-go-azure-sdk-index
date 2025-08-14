@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cognitive/2024-10-01/raicontentfilters
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewRaiContentFiltersClientWithBaseURI(sdkApi sdkEnv.Api) (*RaiContentFiltersClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "raicontentfilters", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating RaiContentFiltersClient: %+v", err)
+	}
+
+	return &RaiContentFiltersClient{
+		Client: client,
+	}, nil
+}

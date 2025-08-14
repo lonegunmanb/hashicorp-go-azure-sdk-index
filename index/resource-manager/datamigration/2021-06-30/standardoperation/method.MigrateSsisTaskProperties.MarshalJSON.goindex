@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/standardoperation
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s MigrateSsisTaskProperties) MarshalJSON() ([]byte, error) {
+	type wrapper MigrateSsisTaskProperties
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling MigrateSsisTaskProperties: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling MigrateSsisTaskProperties: %+v", err)
+	}
+
+	decoded["taskType"] = "Migrate.Ssis"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling MigrateSsisTaskProperties: %+v", err)
+	}
+
+	return encoded, nil
+}

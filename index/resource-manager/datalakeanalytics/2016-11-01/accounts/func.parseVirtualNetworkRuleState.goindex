@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datalakeanalytics/2016-11-01/accounts
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVirtualNetworkRuleState(input string) (*VirtualNetworkRuleState, error) {
+	vals := map[string]VirtualNetworkRuleState{
+		"active":               VirtualNetworkRuleStateActive,
+		"failed":               VirtualNetworkRuleStateFailed,
+		"networksourcedeleted": VirtualNetworkRuleStateNetworkSourceDeleted,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VirtualNetworkRuleState(input)
+	return &out, nil
+}

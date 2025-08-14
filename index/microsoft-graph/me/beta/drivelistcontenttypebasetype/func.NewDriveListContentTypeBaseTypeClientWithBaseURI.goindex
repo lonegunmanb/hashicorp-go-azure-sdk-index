@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/drivelistcontenttypebasetype
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDriveListContentTypeBaseTypeClientWithBaseURI(sdkApi sdkEnv.Api) (*DriveListContentTypeBaseTypeClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "drivelistcontenttypebasetype", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DriveListContentTypeBaseTypeClient: %+v", err)
+	}
+
+	return &DriveListContentTypeBaseTypeClient{
+		Client: client,
+	}, nil
+}

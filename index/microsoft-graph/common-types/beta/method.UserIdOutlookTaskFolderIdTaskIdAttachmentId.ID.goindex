@@ -1,0 +1,11 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id UserIdOutlookTaskFolderIdTaskIdAttachmentId) ID() string {
+	fmtString := "/users/%s/outlook/taskFolders/%s/tasks/%s/attachments/%s"
+	return fmt.Sprintf(fmtString, id.UserId, id.OutlookTaskFolderId, id.OutlookTaskId, id.AttachmentId)
+}

@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/softdeletedcontainers
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s AzureIaaSComputeVMContainer) MarshalJSON() ([]byte, error) {
+	type wrapper AzureIaaSComputeVMContainer
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AzureIaaSComputeVMContainer: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AzureIaaSComputeVMContainer: %+v", err)
+	}
+
+	decoded["containerType"] = "Microsoft.Compute/virtualMachines"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AzureIaaSComputeVMContainer: %+v", err)
+	}
+
+	return encoded, nil
+}

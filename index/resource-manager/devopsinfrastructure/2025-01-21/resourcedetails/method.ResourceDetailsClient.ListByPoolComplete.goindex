@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devopsinfrastructure/2025-01-21/resourcedetails
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ResourceDetailsClient) ListByPoolComplete(ctx context.Context, id PoolId) (ListByPoolCompleteResult, error) {
+	return c.ListByPoolCompleteMatchingPredicate(ctx, id, ResourceDetailsObjectOperationPredicate{})
+}

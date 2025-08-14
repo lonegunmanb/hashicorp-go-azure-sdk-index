@@ -1,0 +1,48 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s *NetworkaccessDeviceLink) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		BandwidthCapacityInMbps *NetworkaccessBandwidthCapacityInMbps `json:"bandwidthCapacityInMbps,omitempty"`
+		BgpConfiguration        *NetworkaccessBgpConfiguration        `json:"bgpConfiguration,omitempty"`
+		DeviceVendor            *NetworkaccessDeviceVendor            `json:"deviceVendor,omitempty"`
+		IPAddress               *string                               `json:"ipAddress,omitempty"`
+		LastModifiedDateTime    *string                               `json:"lastModifiedDateTime,omitempty"`
+		Name                    *string                               `json:"name,omitempty"`
+		RedundancyConfiguration *NetworkaccessRedundancyConfiguration `json:"redundancyConfiguration,omitempty"`
+		Id                      *string                               `json:"id,omitempty"`
+		ODataId                 *string                               `json:"@odata.id,omitempty"`
+		ODataType               *string                               `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.BandwidthCapacityInMbps = decoded.BandwidthCapacityInMbps
+	s.BgpConfiguration = decoded.BgpConfiguration
+	s.DeviceVendor = decoded.DeviceVendor
+	s.IPAddress = decoded.IPAddress
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.Name = decoded.Name
+	s.RedundancyConfiguration = decoded.RedundancyConfiguration
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling NetworkaccessDeviceLink into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["tunnelConfiguration"]; ok {
+		impl, err := UnmarshalNetworkaccessTunnelConfigurationImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'TunnelConfiguration' for 'NetworkaccessDeviceLink': %+v", err)
+		}
+		s.TunnelConfiguration = impl
+	}
+
+	return nil
+}

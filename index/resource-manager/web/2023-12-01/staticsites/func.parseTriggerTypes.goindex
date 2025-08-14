@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/staticsites
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTriggerTypes(input string) (*TriggerTypes, error) {
+	vals := map[string]TriggerTypes{
+		"httptrigger": TriggerTypesHTTPTrigger,
+		"unknown":     TriggerTypesUnknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TriggerTypes(input)
+	return &out, nil
+}

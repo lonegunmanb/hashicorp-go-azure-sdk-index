@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-10-01/deploymentscripts
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+)
+func (s AzureCliScript) MarshalJSON() ([]byte, error) {
+	type wrapper AzureCliScript
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AzureCliScript: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AzureCliScript: %+v", err)
+	}
+
+	decoded["kind"] = "AzureCLI"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AzureCliScript: %+v", err)
+	}
+
+	return encoded, nil
+}

@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s BaseClassificationErrorImpl) ClassifcationErrorBase() BaseClassifcationErrorBaseImpl {
+	return BaseClassifcationErrorBaseImpl{
+		Code:       s.Code,
+		InnerError: s.InnerError,
+		Message:    s.Message,
+		ODataId:    s.ODataId,
+		ODataType:  s.ODataType,
+		Target:     s.Target,
+	}
+}

@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type SharingInvitation struct {
+	// The email address provided for the recipient of the sharing invitation. Read-only.
+	Email nullable.Type[string] `json:"email,omitempty"`
+
+	// Provides information about who sent the invitation that created this permission, if that information is available.
+	// Read-only.
+	InvitedBy *IdentitySet `json:"invitedBy,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	RedeemedBy nullable.Type[string] `json:"redeemedBy,omitempty"`
+
+	// If true the recipient of the invitation needs to sign in in order to access the shared item. Read-only.
+	SignInRequired nullable.Type[bool] `json:"signInRequired,omitempty"`
+}

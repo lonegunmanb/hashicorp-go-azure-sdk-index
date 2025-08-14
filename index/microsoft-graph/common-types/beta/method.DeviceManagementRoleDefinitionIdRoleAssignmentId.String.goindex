@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DeviceManagementRoleDefinitionIdRoleAssignmentId) String() string {
+	components := []string{
+		fmt.Sprintf("Role Definition: %q", id.RoleDefinitionId),
+		fmt.Sprintf("Role Assignment: %q", id.RoleAssignmentId),
+	}
+	return fmt.Sprintf("Device Management Role Definition Id Role Assignment (%s)", strings.Join(components, "\n"))
+}

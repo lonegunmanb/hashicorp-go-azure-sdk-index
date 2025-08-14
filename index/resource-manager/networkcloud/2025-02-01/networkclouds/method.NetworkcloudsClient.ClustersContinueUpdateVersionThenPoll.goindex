@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/networkcloud/2025-02-01/networkclouds
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c NetworkcloudsClient) ClustersContinueUpdateVersionThenPoll(ctx context.Context, id ClusterId, input ClusterContinueUpdateVersionParameters) error {
+	result, err := c.ClustersContinueUpdateVersion(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing ClustersContinueUpdateVersion: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after ClustersContinueUpdateVersion: %+v", err)
+	}
+
+	return nil
+}

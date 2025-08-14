@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type MfaDetail struct {
+	// Indicates the MFA auth detail for the corresponding sign-in activity when the MFA Required is 'Yes'.
+	AuthDetail nullable.Type[string] `json:"authDetail,omitempty"`
+
+	// Indicates the MFA Auth methods (SMS, Phone, Authenticator App are some of the values) for the corresponding sign-in
+	// activity when the MFA Required field is 'Yes'.
+	AuthMethod nullable.Type[string] `json:"authMethod,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/schedule
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseGoal(input string) (*Goal, error) {
+	vals := map[string]Goal{
+		"maximize": GoalMaximize,
+		"minimize": GoalMinimize,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Goal(input)
+	return &out, nil
+}

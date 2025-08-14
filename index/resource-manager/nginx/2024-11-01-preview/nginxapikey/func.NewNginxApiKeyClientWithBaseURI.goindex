@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/nginx/2024-11-01-preview/nginxapikey
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewNginxApiKeyClientWithBaseURI(sdkApi sdkEnv.Api) (*NginxApiKeyClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "nginxapikey", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating NginxApiKeyClient: %+v", err)
+	}
+
+	return &NginxApiKeyClient{
+		Client: client,
+	}, nil
+}

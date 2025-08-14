@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2018-03-01/metricalerts
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s DynamicMetricCriteria) MarshalJSON() ([]byte, error) {
+	type wrapper DynamicMetricCriteria
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling DynamicMetricCriteria: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling DynamicMetricCriteria: %+v", err)
+	}
+
+	decoded["criterionType"] = "DynamicThresholdCriterion"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling DynamicMetricCriteria: %+v", err)
+	}
+
+	return encoded, nil
+}

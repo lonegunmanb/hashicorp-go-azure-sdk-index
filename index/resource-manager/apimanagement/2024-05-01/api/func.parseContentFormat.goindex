@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/api
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseContentFormat(input string) (*ContentFormat, error) {
+	vals := map[string]ContentFormat{
+		"graphql-link":      ContentFormatGraphqlNegativelink,
+		"grpc":              ContentFormatGrpc,
+		"grpc-link":         ContentFormatGrpcNegativelink,
+		"odata":             ContentFormatOdata,
+		"odata-link":        ContentFormatOdataNegativelink,
+		"openapi":           ContentFormatOpenapi,
+		"openapi-link":      ContentFormatOpenapiNegativelink,
+		"openapi+json":      ContentFormatOpenapiPositivejson,
+		"openapi+json-link": ContentFormatOpenapiPositivejsonNegativelink,
+		"swagger-json":      ContentFormatSwaggerNegativejson,
+		"swagger-link-json": ContentFormatSwaggerNegativelinkNegativejson,
+		"wadl-link-json":    ContentFormatWadlNegativelinkNegativejson,
+		"wadl-xml":          ContentFormatWadlNegativexml,
+		"wsdl":              ContentFormatWsdl,
+		"wsdl-link":         ContentFormatWsdlNegativelink,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ContentFormat(input)
+	return &out, nil
+}

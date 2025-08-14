@@ -1,0 +1,93 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *BaseDeviceManagementConfigurationSimpleSettingDefinitionImpl) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		DependedOnBy                   *[]DeviceManagementConfigurationSettingDependedOnBy        `json:"dependedOnBy,omitempty"`
+		DependentOn                    *[]DeviceManagementConfigurationDependentOn                `json:"dependentOn,omitempty"`
+		AccessTypes                    *DeviceManagementConfigurationSettingAccessTypes           `json:"accessTypes,omitempty"`
+		BaseUri                        nullable.Type[string]                                      `json:"baseUri,omitempty"`
+		CategoryId                     nullable.Type[string]                                      `json:"categoryId,omitempty"`
+		Description                    nullable.Type[string]                                      `json:"description,omitempty"`
+		DisplayName                    nullable.Type[string]                                      `json:"displayName,omitempty"`
+		HelpText                       nullable.Type[string]                                      `json:"helpText,omitempty"`
+		InfoUrls                       *[]string                                                  `json:"infoUrls,omitempty"`
+		Keywords                       *[]string                                                  `json:"keywords,omitempty"`
+		Name                           nullable.Type[string]                                      `json:"name,omitempty"`
+		Occurrence                     *DeviceManagementConfigurationSettingOccurrence            `json:"occurrence,omitempty"`
+		OffsetUri                      nullable.Type[string]                                      `json:"offsetUri,omitempty"`
+		ReferredSettingInformationList *[]DeviceManagementConfigurationReferredSettingInformation `json:"referredSettingInformationList,omitempty"`
+		RiskLevel                      *DeviceManagementConfigurationSettingRiskLevel             `json:"riskLevel,omitempty"`
+		RootDefinitionId               nullable.Type[string]                                      `json:"rootDefinitionId,omitempty"`
+		SettingUsage                   *DeviceManagementConfigurationSettingUsage                 `json:"settingUsage,omitempty"`
+		UxBehavior                     *DeviceManagementConfigurationControlType                  `json:"uxBehavior,omitempty"`
+		Version                        nullable.Type[string]                                      `json:"version,omitempty"`
+		Visibility                     *DeviceManagementConfigurationSettingVisibility            `json:"visibility,omitempty"`
+		Id                             *string                                                    `json:"id,omitempty"`
+		ODataId                        *string                                                    `json:"@odata.id,omitempty"`
+		ODataType                      *string                                                    `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.DependedOnBy = decoded.DependedOnBy
+	s.DependentOn = decoded.DependentOn
+	s.AccessTypes = decoded.AccessTypes
+	s.BaseUri = decoded.BaseUri
+	s.CategoryId = decoded.CategoryId
+	s.Description = decoded.Description
+	s.DisplayName = decoded.DisplayName
+	s.HelpText = decoded.HelpText
+	s.Id = decoded.Id
+	s.InfoUrls = decoded.InfoUrls
+	s.Keywords = decoded.Keywords
+	s.Name = decoded.Name
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.Occurrence = decoded.Occurrence
+	s.OffsetUri = decoded.OffsetUri
+	s.ReferredSettingInformationList = decoded.ReferredSettingInformationList
+	s.RiskLevel = decoded.RiskLevel
+	s.RootDefinitionId = decoded.RootDefinitionId
+	s.SettingUsage = decoded.SettingUsage
+	s.UxBehavior = decoded.UxBehavior
+	s.Version = decoded.Version
+	s.Visibility = decoded.Visibility
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling BaseDeviceManagementConfigurationSimpleSettingDefinitionImpl into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["applicability"]; ok {
+		impl, err := UnmarshalDeviceManagementConfigurationSettingApplicabilityImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Applicability' for 'BaseDeviceManagementConfigurationSimpleSettingDefinitionImpl': %+v", err)
+		}
+		s.Applicability = impl
+	}
+
+	if v, ok := temp["defaultValue"]; ok {
+		impl, err := UnmarshalDeviceManagementConfigurationSettingValueImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'DefaultValue' for 'BaseDeviceManagementConfigurationSimpleSettingDefinitionImpl': %+v", err)
+		}
+		s.DefaultValue = impl
+	}
+
+	if v, ok := temp["valueDefinition"]; ok {
+		impl, err := UnmarshalDeviceManagementConfigurationSettingValueDefinitionImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'ValueDefinition' for 'BaseDeviceManagementConfigurationSimpleSettingDefinitionImpl': %+v", err)
+		}
+		s.ValueDefinition = impl
+	}
+
+	return nil
+}

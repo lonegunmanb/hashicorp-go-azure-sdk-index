@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/entitlementmanagementroleassignmentscheduleinstanceprincipal
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewEntitlementManagementRoleAssignmentScheduleInstancePrincipalClientWithBaseURI(sdkApi sdkEnv.Api) (*EntitlementManagementRoleAssignmentScheduleInstancePrincipalClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "entitlementmanagementroleassignmentscheduleinstanceprincipal", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating EntitlementManagementRoleAssignmentScheduleInstancePrincipalClient: %+v", err)
+	}
+
+	return &EntitlementManagementRoleAssignmentScheduleInstancePrincipalClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/privatedns/2024-06-01/virtualnetworklinks
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVirtualNetworkLinkState(input string) (*VirtualNetworkLinkState, error) {
+	vals := map[string]VirtualNetworkLinkState{
+		"completed":  VirtualNetworkLinkStateCompleted,
+		"inprogress": VirtualNetworkLinkStateInProgress,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VirtualNetworkLinkState(input)
+	return &out, nil
+}

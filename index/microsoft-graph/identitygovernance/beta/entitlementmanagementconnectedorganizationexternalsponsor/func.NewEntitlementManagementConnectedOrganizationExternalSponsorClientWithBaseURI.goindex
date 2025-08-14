@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/entitlementmanagementconnectedorganizationexternalsponsor
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewEntitlementManagementConnectedOrganizationExternalSponsorClientWithBaseURI(sdkApi sdkEnv.Api) (*EntitlementManagementConnectedOrganizationExternalSponsorClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "entitlementmanagementconnectedorganizationexternalsponsor", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating EntitlementManagementConnectedOrganizationExternalSponsorClient: %+v", err)
+	}
+
+	return &EntitlementManagementConnectedOrganizationExternalSponsorClient{
+		Client: client,
+	}, nil
+}

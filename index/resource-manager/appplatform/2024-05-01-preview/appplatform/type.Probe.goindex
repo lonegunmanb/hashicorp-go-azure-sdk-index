@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/appplatform/2024-05-01-preview/appplatform
+import (
+	"encoding/json"
+	"fmt"
+)
+type Probe struct {
+	DisableProbe        bool        `json:"disableProbe"`
+	FailureThreshold    *int64      `json:"failureThreshold,omitempty"`
+	InitialDelaySeconds *int64      `json:"initialDelaySeconds,omitempty"`
+	PeriodSeconds       *int64      `json:"periodSeconds,omitempty"`
+	ProbeAction         ProbeAction `json:"probeAction"`
+	SuccessThreshold    *int64      `json:"successThreshold,omitempty"`
+	TimeoutSeconds      *int64      `json:"timeoutSeconds,omitempty"`
+}

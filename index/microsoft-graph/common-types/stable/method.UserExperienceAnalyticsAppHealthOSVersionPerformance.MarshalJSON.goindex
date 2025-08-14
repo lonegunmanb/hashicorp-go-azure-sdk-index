@@ -1,0 +1,36 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s UserExperienceAnalyticsAppHealthOSVersionPerformance) MarshalJSON() ([]byte, error) {
+	type wrapper UserExperienceAnalyticsAppHealthOSVersionPerformance
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling UserExperienceAnalyticsAppHealthOSVersionPerformance: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling UserExperienceAnalyticsAppHealthOSVersionPerformance: %+v", err)
+	}
+
+	delete(decoded, "activeDeviceCount")
+	delete(decoded, "meanTimeToFailureInMinutes")
+	delete(decoded, "osBuildNumber")
+	delete(decoded, "osVersion")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.userExperienceAnalyticsAppHealthOSVersionPerformance"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling UserExperienceAnalyticsAppHealthOSVersionPerformance: %+v", err)
+	}
+
+	return encoded, nil
+}

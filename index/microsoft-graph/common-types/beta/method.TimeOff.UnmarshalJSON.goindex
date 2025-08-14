@@ -1,0 +1,60 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *TimeOff) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		DraftTimeOff         TimeOffItem           `json:"draftTimeOff"`
+		IsStagedForDeletion  nullable.Type[bool]   `json:"isStagedForDeletion,omitempty"`
+		SharedTimeOff        TimeOffItem           `json:"sharedTimeOff"`
+		TeamInfo             *ShiftsTeamInfo       `json:"teamInfo,omitempty"`
+		UserId               nullable.Type[string] `json:"userId,omitempty"`
+		UserInfo             *ShiftsUserInfo       `json:"userInfo,omitempty"`
+		CreatedDateTime      nullable.Type[string] `json:"createdDateTime,omitempty"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.DraftTimeOff = decoded.DraftTimeOff
+	s.IsStagedForDeletion = decoded.IsStagedForDeletion
+	s.SharedTimeOff = decoded.SharedTimeOff
+	s.TeamInfo = decoded.TeamInfo
+	s.UserId = decoded.UserId
+	s.UserInfo = decoded.UserInfo
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling TimeOff into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["createdBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'CreatedBy' for 'TimeOff': %+v", err)
+		}
+		s.CreatedBy = impl
+	}
+
+	if v, ok := temp["lastModifiedBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'LastModifiedBy' for 'TimeOff': %+v", err)
+		}
+		s.LastModifiedBy = &impl
+	}
+
+	return nil
+}

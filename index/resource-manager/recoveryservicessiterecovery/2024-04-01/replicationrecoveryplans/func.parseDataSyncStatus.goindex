@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2024-04-01/replicationrecoveryplans
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDataSyncStatus(input string) (*DataSyncStatus, error) {
+	vals := map[string]DataSyncStatus{
+		"fordowntime":        DataSyncStatusForDownTime,
+		"forsynchronization": DataSyncStatusForSynchronization,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DataSyncStatus(input)
+	return &out, nil
+}

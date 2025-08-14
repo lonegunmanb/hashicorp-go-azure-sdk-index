@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/desktopvirtualization/2024-04-03/applicationgroup
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewApplicationGroupClientWithBaseURI(sdkApi sdkEnv.Api) (*ApplicationGroupClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "applicationgroup", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ApplicationGroupClient: %+v", err)
+	}
+
+	return &ApplicationGroupClient{
+		Client: client,
+	}, nil
+}

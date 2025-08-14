@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hardwaresecuritymodules/2025-03-31/cloudhsmclusters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCloudHsmClusterSkuName(input string) (*CloudHsmClusterSkuName, error) {
+	vals := map[string]CloudHsmClusterSkuName{
+		"standard_b1":  CloudHsmClusterSkuNameStandardBOne,
+		"standard b10": CloudHsmClusterSkuNameStandardBOneZero,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CloudHsmClusterSkuName(input)
+	return &out, nil
+}

@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-08-01/pricesheets
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c PriceSheetsClient) PriceSheetDownloadThenPoll(ctx context.Context, id InvoiceId) error {
+	result, err := c.PriceSheetDownload(ctx, id)
+	if err != nil {
+		return fmt.Errorf("performing PriceSheetDownload: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after PriceSheetDownload: %+v", err)
+	}
+
+	return nil
+}

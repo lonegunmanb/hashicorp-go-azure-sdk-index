@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/sdk/odata
+import (
+	"encoding/json"
+	"fmt"
+	"net/url"
+	"regexp"
+
+	"github.com/hashicorp/go-uuid"
+)
+func (l *Link) UnmarshalJSON(data []byte) error {
+	if l == nil {
+		return nil
+	}
+
+	var link string
+	if err := json.Unmarshal(data, &link); err != nil {
+		return err
+	}
+
+	// Fix unescaped URLs
+	// https://github.com/Azure/azure-sdk-for-go/issues/18809
+	u, err := url.ParseRequestURI(link)
+	if err != nil {
+		// When an invalid URI is returned, we'll return nil instead of raising the error
+		return nil
+	}
+	u.RawQuery = u.Query().Encode()
+
+	// For MS Graph, "v2" is a dev/internal version that sometimes leaks out
+	*l = Link(regexp.MustCompile(`/v2/`).ReplaceAllString(u.String(), `/v1.0/`))
+
+	return nil
+}

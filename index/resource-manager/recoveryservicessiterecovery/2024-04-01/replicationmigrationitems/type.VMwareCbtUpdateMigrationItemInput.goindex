@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2024-04-01/replicationmigrationitems
+import (
+	"encoding/json"
+	"fmt"
+)
+type VMwareCbtUpdateMigrationItemInput struct {
+	LicenseType                           *LicenseType                `json:"licenseType,omitempty"`
+	LinuxLicenseType                      *LinuxLicenseType           `json:"linuxLicenseType,omitempty"`
+	PerformAutoResync                     *string                     `json:"performAutoResync,omitempty"`
+	SqlServerLicenseType                  *SqlServerLicenseType       `json:"sqlServerLicenseType,omitempty"`
+	TargetAvailabilitySetId               *string                     `json:"targetAvailabilitySetId,omitempty"`
+	TargetAvailabilityZone                *string                     `json:"targetAvailabilityZone,omitempty"`
+	TargetBootDiagnosticsStorageAccountId *string                     `json:"targetBootDiagnosticsStorageAccountId,omitempty"`
+	TargetDiskTags                        *map[string]string          `json:"targetDiskTags,omitempty"`
+	TargetNetworkId                       *string                     `json:"targetNetworkId,omitempty"`
+	TargetNicTags                         *map[string]string          `json:"targetNicTags,omitempty"`
+	TargetProximityPlacementGroupId       *string                     `json:"targetProximityPlacementGroupId,omitempty"`
+	TargetResourceGroupId                 *string                     `json:"targetResourceGroupId,omitempty"`
+	TargetVMName                          *string                     `json:"targetVmName,omitempty"`
+	TargetVMSize                          *string                     `json:"targetVmSize,omitempty"`
+	TargetVMTags                          *map[string]string          `json:"targetVmTags,omitempty"`
+	TestNetworkId                         *string                     `json:"testNetworkId,omitempty"`
+	VMDisks                               *[]VMwareCbtUpdateDiskInput `json:"vmDisks,omitempty"`
+	VMNics                                *[]VMwareCbtNicInput        `json:"vmNics,omitempty"`
+
+	// Fields inherited from UpdateMigrationItemProviderSpecificInput
+
+	InstanceType string `json:"instanceType"`
+}

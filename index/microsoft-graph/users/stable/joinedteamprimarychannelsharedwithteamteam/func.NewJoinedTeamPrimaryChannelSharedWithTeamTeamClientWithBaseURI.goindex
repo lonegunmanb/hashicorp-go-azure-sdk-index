@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamprimarychannelsharedwithteamteam
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewJoinedTeamPrimaryChannelSharedWithTeamTeamClientWithBaseURI(sdkApi sdkEnv.Api) (*JoinedTeamPrimaryChannelSharedWithTeamTeamClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "joinedteamprimarychannelsharedwithteamteam", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating JoinedTeamPrimaryChannelSharedWithTeamTeamClient: %+v", err)
+	}
+
+	return &JoinedTeamPrimaryChannelSharedWithTeamTeamClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s SkypeForBusinessUserConversationMember) ConversationMember() BaseConversationMemberImpl {
+	return BaseConversationMemberImpl{
+		DisplayName:                 s.DisplayName,
+		Roles:                       s.Roles,
+		VisibleHistoryStartDateTime: s.VisibleHistoryStartDateTime,
+		Id:                          s.Id,
+		ODataId:                     s.ODataId,
+		ODataType:                   s.ODataType,
+	}
+}

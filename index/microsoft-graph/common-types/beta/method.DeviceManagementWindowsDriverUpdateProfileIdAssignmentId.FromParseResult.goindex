@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *DeviceManagementWindowsDriverUpdateProfileIdAssignmentId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.WindowsDriverUpdateProfileId, ok = input.Parsed["windowsDriverUpdateProfileId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "windowsDriverUpdateProfileId", input)
+	}
+
+	if id.WindowsDriverUpdateProfileAssignmentId, ok = input.Parsed["windowsDriverUpdateProfileAssignmentId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "windowsDriverUpdateProfileAssignmentId", input)
+	}
+
+	return nil
+}

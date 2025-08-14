@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/outlooktaskfolder
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewOutlookTaskFolderClientWithBaseURI(sdkApi sdkEnv.Api) (*OutlookTaskFolderClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "outlooktaskfolder", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating OutlookTaskFolderClient: %+v", err)
+	}
+
+	return &OutlookTaskFolderClient{
+		Client: client,
+	}, nil
+}

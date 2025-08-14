@@ -1,0 +1,11 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2021-07-01/skus
+import (
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+type ResourceSkuLocationInfo struct {
+	ExtendedLocations *[]string                 `json:"extendedLocations,omitempty"`
+	Location          *string                   `json:"location,omitempty"`
+	Type              *ExtendedLocationType     `json:"type,omitempty"`
+	ZoneDetails       *[]ResourceSkuZoneDetails `json:"zoneDetails,omitempty"`
+	Zones             *zones.Schema             `json:"zones,omitempty"`
+}

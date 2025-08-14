@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ChatViewpoint struct {
+	// Indicates whether the chat is hidden for the current user.
+	IsHidden nullable.Type[bool] `json:"isHidden,omitempty"`
+
+	// Represents the dateTime up until which the current user has read chatMessages in a specific chat.
+	LastMessageReadDateTime nullable.Type[string] `json:"lastMessageReadDateTime,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/trafficmanager/2022-04-01/geographichierarchies
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewGeographicHierarchiesClientWithBaseURI(sdkApi sdkEnv.Api) (*GeographicHierarchiesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "geographichierarchies", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating GeographicHierarchiesClient: %+v", err)
+	}
+
+	return &GeographicHierarchiesClient{
+		Client: client,
+	}, nil
+}

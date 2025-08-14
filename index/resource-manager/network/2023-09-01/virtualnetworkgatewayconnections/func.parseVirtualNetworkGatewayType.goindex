@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-09-01/virtualnetworkgatewayconnections
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVirtualNetworkGatewayType(input string) (*VirtualNetworkGatewayType, error) {
+	vals := map[string]VirtualNetworkGatewayType{
+		"expressroute": VirtualNetworkGatewayTypeExpressRoute,
+		"localgateway": VirtualNetworkGatewayTypeLocalGateway,
+		"vpn":          VirtualNetworkGatewayTypeVpn,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VirtualNetworkGatewayType(input)
+	return &out, nil
+}

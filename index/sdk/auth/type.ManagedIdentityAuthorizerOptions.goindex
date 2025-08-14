@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"io"
+	"log"
+	"net/http"
+	"net/url"
+	"strconv"
+	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	"golang.org/x/oauth2"
+)
+type ManagedIdentityAuthorizerOptions struct {
+	// Api describes the Azure API being used
+	Api environments.Api
+
+	// ClientId is the client ID used when authenticating
+	ClientId string
+
+	// CustomManagedIdentityEndpoint is an optional endpoint from which to obtain an access
+	// token. When blank, the default is used.
+	CustomManagedIdentityEndpoint string
+
+	// CustomManagedIdentityAPIVersion is an optional API version to use when requesting a token.
+	// This is required when using an endpoint that does not support the default API version such as Azure Container Apps.
+	CustomManagedIdentityAPIVersion string
+}

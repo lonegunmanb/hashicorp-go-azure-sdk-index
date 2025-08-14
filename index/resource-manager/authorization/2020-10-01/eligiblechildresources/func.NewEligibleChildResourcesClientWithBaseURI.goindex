@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/authorization/2020-10-01/eligiblechildresources
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewEligibleChildResourcesClientWithBaseURI(sdkApi sdkEnv.Api) (*EligibleChildResourcesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "eligiblechildresources", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating EligibleChildResourcesClient: %+v", err)
+	}
+
+	return &EligibleChildResourcesClient{
+		Client: client,
+	}, nil
+}

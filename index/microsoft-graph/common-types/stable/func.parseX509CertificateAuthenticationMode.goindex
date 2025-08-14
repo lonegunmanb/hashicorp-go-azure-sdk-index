@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseX509CertificateAuthenticationMode(input string) (*X509CertificateAuthenticationMode, error) {
+	vals := map[string]X509CertificateAuthenticationMode{
+		"x509certificatemultifactor":  X509CertificateAuthenticationMode_X509CertificateMultiFactor,
+		"x509certificatesinglefactor": X509CertificateAuthenticationMode_X509CertificateSingleFactor,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := X509CertificateAuthenticationMode(input)
+	return &out, nil
+}

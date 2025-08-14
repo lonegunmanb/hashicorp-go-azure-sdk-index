@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationmigrationitems
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ListByReplicationProtectionContainersOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.Filter != nil {
+		out.Append("$filter", fmt.Sprintf("%v", *o.Filter))
+	}
+	if o.SkipToken != nil {
+		out.Append("skipToken", fmt.Sprintf("%v", *o.SkipToken))
+	}
+	if o.TakeToken != nil {
+		out.Append("takeToken", fmt.Sprintf("%v", *o.TakeToken))
+	}
+	return &out
+}

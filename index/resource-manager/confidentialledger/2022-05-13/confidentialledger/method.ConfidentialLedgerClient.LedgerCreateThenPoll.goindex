@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/confidentialledger/2022-05-13/confidentialledger
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ConfidentialLedgerClient) LedgerCreateThenPoll(ctx context.Context, id LedgerId, input ConfidentialLedger) error {
+	result, err := c.LedgerCreate(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing LedgerCreate: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after LedgerCreate: %+v", err)
+	}
+
+	return nil
+}

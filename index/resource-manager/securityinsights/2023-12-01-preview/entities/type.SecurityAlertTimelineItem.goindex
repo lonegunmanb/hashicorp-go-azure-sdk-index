@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-12-01-preview/entities
+import (
+	"encoding/json"
+	"fmt"
+)
+type SecurityAlertTimelineItem struct {
+	AlertType       string           `json:"alertType"`
+	AzureResourceId string           `json:"azureResourceId"`
+	Description     *string          `json:"description,omitempty"`
+	DisplayName     string           `json:"displayName"`
+	EndTimeUtc      string           `json:"endTimeUtc"`
+	Intent          *KillChainIntent `json:"intent,omitempty"`
+	ProductName     *string          `json:"productName,omitempty"`
+	Severity        AlertSeverity    `json:"severity"`
+	StartTimeUtc    string           `json:"startTimeUtc"`
+	Techniques      *[]string        `json:"techniques,omitempty"`
+	TimeGenerated   string           `json:"timeGenerated"`
+
+	// Fields inherited from EntityTimelineItem
+
+	Kind EntityTimelineKind `json:"kind"`
+}

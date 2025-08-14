@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/rules
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s URLRewriteActionParameters) MarshalJSON() ([]byte, error) {
+	type wrapper URLRewriteActionParameters
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling URLRewriteActionParameters: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling URLRewriteActionParameters: %+v", err)
+	}
+
+	decoded["typeName"] = "DeliveryRuleUrlRewriteActionParameters"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling URLRewriteActionParameters: %+v", err)
+	}
+
+	return encoded, nil
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dashboard/2023-09-01/managedprivateendpoints
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseManagedPrivateEndpointConnectionStatus(input string) (*ManagedPrivateEndpointConnectionStatus, error) {
+	vals := map[string]ManagedPrivateEndpointConnectionStatus{
+		"approved":     ManagedPrivateEndpointConnectionStatusApproved,
+		"disconnected": ManagedPrivateEndpointConnectionStatusDisconnected,
+		"pending":      ManagedPrivateEndpointConnectionStatusPending,
+		"rejected":     ManagedPrivateEndpointConnectionStatusRejected,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagedPrivateEndpointConnectionStatus(input)
+	return &out, nil
+}

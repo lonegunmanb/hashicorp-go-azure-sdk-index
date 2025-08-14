@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWindowsUpdatesAzureADDeviceRegistrationErrorReason(input string) (*WindowsUpdatesAzureADDeviceRegistrationErrorReason, error) {
+	vals := map[string]WindowsUpdatesAzureADDeviceRegistrationErrorReason{
+		"invalidazureaddeviceid": WindowsUpdatesAzureADDeviceRegistrationErrorReason_InvalidAzureADDeviceId,
+		"invalidazureadjoin":     WindowsUpdatesAzureADDeviceRegistrationErrorReason_InvalidAzureADJoin,
+		"invalidglobaldeviceid":  WindowsUpdatesAzureADDeviceRegistrationErrorReason_InvalidGlobalDeviceId,
+		"missingtrusttype":       WindowsUpdatesAzureADDeviceRegistrationErrorReason_MissingTrustType,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsUpdatesAzureADDeviceRegistrationErrorReason(input)
+	return &out, nil
+}

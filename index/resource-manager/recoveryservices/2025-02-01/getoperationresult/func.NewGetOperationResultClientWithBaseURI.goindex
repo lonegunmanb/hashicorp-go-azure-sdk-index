@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservices/2025-02-01/getoperationresult
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewGetOperationResultClientWithBaseURI(sdkApi sdkEnv.Api) (*GetOperationResultClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "getoperationresult", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating GetOperationResultClient: %+v", err)
+	}
+
+	return &GetOperationResultClient{
+		Client: client,
+	}, nil
+}

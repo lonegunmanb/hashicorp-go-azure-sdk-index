@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/devcenters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCatalogItemSyncEnableStatus(input string) (*CatalogItemSyncEnableStatus, error) {
+	vals := map[string]CatalogItemSyncEnableStatus{
+		"disabled": CatalogItemSyncEnableStatusDisabled,
+		"enabled":  CatalogItemSyncEnableStatusEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CatalogItemSyncEnableStatus(input)
+	return &out, nil
+}

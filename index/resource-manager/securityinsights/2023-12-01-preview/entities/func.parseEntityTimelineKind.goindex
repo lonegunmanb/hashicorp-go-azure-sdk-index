@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-12-01-preview/entities
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEntityTimelineKind(input string) (*EntityTimelineKind, error) {
+	vals := map[string]EntityTimelineKind{
+		"activity":      EntityTimelineKindActivity,
+		"anomaly":       EntityTimelineKindAnomaly,
+		"bookmark":      EntityTimelineKindBookmark,
+		"securityalert": EntityTimelineKindSecurityAlert,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EntityTimelineKind(input)
+	return &out, nil
+}

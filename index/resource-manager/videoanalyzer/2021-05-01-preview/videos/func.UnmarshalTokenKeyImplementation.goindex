@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/videoanalyzer/2021-05-01-preview/videos
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalTokenKeyImplementation(input []byte) (TokenKey, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling TokenKey into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#Microsoft.VideoAnalyzer.EccTokenKey") {
+		var out EccTokenKey
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into EccTokenKey: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#Microsoft.VideoAnalyzer.RsaTokenKey") {
+		var out RsaTokenKey
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into RsaTokenKey: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseTokenKeyImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseTokenKeyImpl: %+v", err)
+	}
+
+	return RawTokenKeyImpl{
+		tokenKey: parent,
+		Type:     value,
+		Values:   temp,
+	}, nil
+
+}

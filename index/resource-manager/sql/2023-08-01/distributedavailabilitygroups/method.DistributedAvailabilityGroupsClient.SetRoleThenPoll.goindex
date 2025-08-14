@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/distributedavailabilitygroups
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DistributedAvailabilityGroupsClient) SetRoleThenPoll(ctx context.Context, id DistributedAvailabilityGroupId, input DistributedAvailabilityGroupSetRole) error {
+	result, err := c.SetRole(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing SetRole: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after SetRole: %+v", err)
+	}
+
+	return nil
+}

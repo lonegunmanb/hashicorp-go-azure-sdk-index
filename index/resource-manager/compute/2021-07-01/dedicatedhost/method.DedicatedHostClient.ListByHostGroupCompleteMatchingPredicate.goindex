@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2021-07-01/dedicatedhost
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DedicatedHostClient) ListByHostGroupCompleteMatchingPredicate(ctx context.Context, id commonids.DedicatedHostGroupId, predicate DedicatedHostOperationPredicate) (result ListByHostGroupCompleteResult, err error) {
+	items := make([]DedicatedHost, 0)
+
+	resp, err := c.ListByHostGroup(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByHostGroupCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

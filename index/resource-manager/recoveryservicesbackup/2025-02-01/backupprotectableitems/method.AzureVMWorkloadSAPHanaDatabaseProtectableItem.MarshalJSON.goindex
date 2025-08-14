@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/backupprotectableitems
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s AzureVMWorkloadSAPHanaDatabaseProtectableItem) MarshalJSON() ([]byte, error) {
+	type wrapper AzureVMWorkloadSAPHanaDatabaseProtectableItem
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AzureVMWorkloadSAPHanaDatabaseProtectableItem: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AzureVMWorkloadSAPHanaDatabaseProtectableItem: %+v", err)
+	}
+
+	decoded["protectableItemType"] = "SAPHanaDatabase"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AzureVMWorkloadSAPHanaDatabaseProtectableItem: %+v", err)
+	}
+
+	return encoded, nil
+}

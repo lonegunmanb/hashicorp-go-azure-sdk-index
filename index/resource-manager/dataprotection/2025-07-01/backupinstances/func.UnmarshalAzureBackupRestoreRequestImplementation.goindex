@@ -1,0 +1,57 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2025-07-01/backupinstances
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalAzureBackupRestoreRequestImplementation(input []byte) (AzureBackupRestoreRequest, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling AzureBackupRestoreRequest into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["objectType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "AzureBackupRecoveryPointBasedRestoreRequest") {
+		var out AzureBackupRecoveryPointBasedRestoreRequest
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureBackupRecoveryPointBasedRestoreRequest: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "AzureBackupRecoveryTimeBasedRestoreRequest") {
+		var out AzureBackupRecoveryTimeBasedRestoreRequest
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureBackupRecoveryTimeBasedRestoreRequest: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "AzureBackupRestoreWithRehydrationRequest") {
+		var out AzureBackupRestoreWithRehydrationRequest
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureBackupRestoreWithRehydrationRequest: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseAzureBackupRestoreRequestImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseAzureBackupRestoreRequestImpl: %+v", err)
+	}
+
+	return RawAzureBackupRestoreRequestImpl{
+		azureBackupRestoreRequest: parent,
+		Type:                      value,
+		Values:                    temp,
+	}, nil
+
+}

@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type CallEndedEventMessageDetail struct {
+	// Duration of the call.
+	CallDuration nullable.Type[string] `json:"callDuration,omitempty"`
+
+	// Represents the call event type. Possible values are: call, meeting, screenShare, unknownFutureValue.
+	CallEventType *TeamworkCallEventType `json:"callEventType,omitempty"`
+
+	// Unique identifier of the call.
+	CallId nullable.Type[string] `json:"callId,omitempty"`
+
+	// List of call participants.
+	CallParticipants *[]CallParticipantInfo `json:"callParticipants,omitempty"`
+
+	// Initiator of the event.
+	Initiator IdentitySet `json:"initiator"`
+
+	// Fields inherited from EventMessageDetail
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

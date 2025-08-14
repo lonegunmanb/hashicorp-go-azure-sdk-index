@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/schedule
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNCrossValidationsMode(input string) (*NCrossValidationsMode, error) {
+	vals := map[string]NCrossValidationsMode{
+		"auto":   NCrossValidationsModeAuto,
+		"custom": NCrossValidationsModeCustom,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NCrossValidationsMode(input)
+	return &out, nil
+}

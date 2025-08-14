@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2023-02-01/datamove
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/polling"
+)
+func (c DataMoveClient) BMSTriggerDataMoveThenPoll(ctx context.Context, id VaultId, input TriggerDataMoveRequest) error {
+	result, err := c.BMSTriggerDataMove(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing BMSTriggerDataMove: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(); err != nil {
+		return fmt.Errorf("polling after BMSTriggerDataMove: %+v", err)
+	}
+
+	return nil
+}

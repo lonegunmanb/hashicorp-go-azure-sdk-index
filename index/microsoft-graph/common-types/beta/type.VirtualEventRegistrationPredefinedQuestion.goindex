@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type VirtualEventRegistrationPredefinedQuestion struct {
+	// Label of the predefined registration question. The following label values accept a single line of text: street, city,
+	// state, postalCode, countryOrRegion, industry, jobTitle, and organization. unknownFutureValue is an evolvable
+	// enumeration sentinel value; do not use this label.
+	Label *VirtualEventRegistrationPredefinedQuestionLabel `json:"label,omitempty"`
+
+	// Fields inherited from VirtualEventRegistrationQuestionBase
+
+	// Display name of the registration question.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// Indicates whether an answer to the question is required. The default value is false.
+	IsRequired nullable.Type[bool] `json:"isRequired,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

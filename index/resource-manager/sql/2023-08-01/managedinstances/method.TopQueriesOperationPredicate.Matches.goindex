@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/managedinstances
+
+func (p TopQueriesOperationPredicate) Matches(input TopQueries) bool {
+
+	if p.AggregationFunction != nil && (input.AggregationFunction == nil || *p.AggregationFunction != *input.AggregationFunction) {
+		return false
+	}
+
+	if p.EndTime != nil && (input.EndTime == nil || *p.EndTime != *input.EndTime) {
+		return false
+	}
+
+	if p.NumberOfQueries != nil && (input.NumberOfQueries == nil || *p.NumberOfQueries != *input.NumberOfQueries) {
+		return false
+	}
+
+	if p.ObservationMetric != nil && (input.ObservationMetric == nil || *p.ObservationMetric != *input.ObservationMetric) {
+		return false
+	}
+
+	if p.StartTime != nil && (input.StartTime == nil || *p.StartTime != *input.StartTime) {
+		return false
+	}
+
+	return true
+}

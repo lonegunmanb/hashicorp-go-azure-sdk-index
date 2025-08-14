@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/bastionhosts
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseBastionConnectProtocol(input string) (*BastionConnectProtocol, error) {
+	vals := map[string]BastionConnectProtocol{
+		"rdp": BastionConnectProtocolRDP,
+		"ssh": BastionConnectProtocolSSH,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := BastionConnectProtocol(input)
+	return &out, nil
+}

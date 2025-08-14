@@ -1,0 +1,46 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type PlannerTeamsPublicationInfo struct {
+	// The date and time when this task was last modified by the publication process. Read-only.
+	LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+
+	// The identifier of the publication. Read-only.
+	PublicationId nullable.Type[string] `json:"publicationId,omitempty"`
+
+	// The name of the published task list. Read-only.
+	PublicationName nullable.Type[string] `json:"publicationName,omitempty"`
+
+	// The identifier of the plannerPlan this task was originally placed in. Read-only.
+	PublishedToPlanId nullable.Type[string] `json:"publishedToPlanId,omitempty"`
+
+	// The identifier of the team that initiated the publication process. Read-only.
+	PublishingTeamId nullable.Type[string] `json:"publishingTeamId,omitempty"`
+
+	// The display name of the team that initiated the publication process. This display name is for reference only, and
+	// might not represent the most up-to-date name of the team. Read-only.
+	PublishingTeamName nullable.Type[string] `json:"publishingTeamName,omitempty"`
+
+	// Fields inherited from PlannerTaskCreation
+
+	// Specifies what kind of creation source the task is created with. The possible values are: external, publication and
+	// unknownFutureValue.
+	CreationSourceKind *PlannerCreationSourceKind `json:"creationSourceKind,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Information about the publication process that created this task. This field is deprecated and clients should move to
+	// using the new inheritance model.
+	TeamsPublicationInfo *PlannerTeamsPublicationInfo `json:"teamsPublicationInfo,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

@@ -1,0 +1,68 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type SecurityEdiscoveryCase struct {
+	// Returns a list of ediscoveryCaseMember objects associated to this case.
+	CaseMembers *[]SecurityEdiscoveryCaseMember `json:"caseMembers,omitempty"`
+
+	// The user who closed the case.
+	ClosedBy IdentitySet `json:"closedBy"`
+
+	// The date and time when the case was closed. The Timestamp type represents date and time information using ISO 8601
+	// format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z
+	ClosedDateTime nullable.Type[string] `json:"closedDateTime,omitempty"`
+
+	// Returns a list of case ediscoveryCustodian objects for this case.
+	Custodians *[]SecurityEdiscoveryCustodian `json:"custodians,omitempty"`
+
+	// The external case number for customer reference.
+	ExternalId nullable.Type[string] `json:"externalId,omitempty"`
+
+	// Returns a list of case eDiscoveryHoldPolicy objects for this case.
+	LegalHolds *[]SecurityEdiscoveryHoldPolicy `json:"legalHolds,omitempty"`
+
+	// Returns a list of case ediscoveryNoncustodialDataSource objects for this case.
+	NoncustodialDataSources *[]SecurityEdiscoveryNoncustodialDataSource `json:"noncustodialDataSources,omitempty"`
+
+	// Returns a list of case caseOperation objects for this case.
+	Operations *[]SecurityCaseOperation `json:"operations,omitempty"`
+
+	// Returns a list of eDiscoveryReviewSet objects in the case.
+	ReviewSets *[]SecurityEdiscoveryReviewSet `json:"reviewSets,omitempty"`
+
+	// Returns a list of eDiscoverySearch objects associated with this case.
+	Searches *[]SecurityEdiscoverySearch `json:"searches,omitempty"`
+
+	// Returns a list of eDIscoverySettings objects in the case.
+	Settings *SecurityEdiscoveryCaseSettings `json:"settings,omitempty"`
+
+	// Returns a list of ediscoveryReviewTag objects associated to this case.
+	Tags *[]SecurityEdiscoveryReviewTag `json:"tags,omitempty"`
+
+	// Fields inherited from SecurityCase
+
+	CreatedDateTime      nullable.Type[string] `json:"createdDateTime,omitempty"`
+	Description          nullable.Type[string] `json:"description,omitempty"`
+	DisplayName          nullable.Type[string] `json:"displayName,omitempty"`
+	LastModifiedBy       IdentitySet           `json:"lastModifiedBy"`
+	LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+	Status               *SecurityCaseStatus   `json:"status,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/cloudvmclusters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAzureResourceProvisioningState(input string) (*AzureResourceProvisioningState, error) {
+	vals := map[string]AzureResourceProvisioningState{
+		"canceled":     AzureResourceProvisioningStateCanceled,
+		"failed":       AzureResourceProvisioningStateFailed,
+		"provisioning": AzureResourceProvisioningStateProvisioning,
+		"succeeded":    AzureResourceProvisioningStateSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AzureResourceProvisioningState(input)
+	return &out, nil
+}

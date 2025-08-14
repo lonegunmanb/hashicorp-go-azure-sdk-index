@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/workspacemanagedsqlserversqlusages
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c WorkspaceManagedSqlServerSqlUsagesClient) WorkspaceManagedSqlServerUsagesListComplete(ctx context.Context, id WorkspaceId) (WorkspaceManagedSqlServerUsagesListCompleteResult, error) {
+	return c.WorkspaceManagedSqlServerUsagesListCompleteMatchingPredicate(ctx, id, ServerUsageOperationPredicate{})
+}

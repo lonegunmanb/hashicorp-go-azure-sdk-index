@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2024-02-01/rules
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseServerPortOperator(input string) (*ServerPortOperator, error) {
+	vals := map[string]ServerPortOperator{
+		"any":                ServerPortOperatorAny,
+		"beginswith":         ServerPortOperatorBeginsWith,
+		"contains":           ServerPortOperatorContains,
+		"endswith":           ServerPortOperatorEndsWith,
+		"equal":              ServerPortOperatorEqual,
+		"greaterthan":        ServerPortOperatorGreaterThan,
+		"greaterthanorequal": ServerPortOperatorGreaterThanOrEqual,
+		"lessthan":           ServerPortOperatorLessThan,
+		"lessthanorequal":    ServerPortOperatorLessThanOrEqual,
+		"regex":              ServerPortOperatorRegEx,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ServerPortOperator(input)
+	return &out, nil
+}

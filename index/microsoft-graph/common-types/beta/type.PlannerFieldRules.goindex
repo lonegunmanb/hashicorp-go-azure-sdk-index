@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+
+type PlannerFieldRules struct {
+	// The default rules that apply if no override matches to the current data.
+	DefaultRules *[]string `json:"defaultRules,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Overrides that specify different rules for specific data associated with the field.
+	Overrides *[]PlannerRuleOverride `json:"overrides,omitempty"`
+}

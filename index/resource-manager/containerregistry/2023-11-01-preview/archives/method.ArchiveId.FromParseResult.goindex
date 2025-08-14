@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerregistry/2023-11-01-preview/archives
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *ArchiveId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.RegistryName, ok = input.Parsed["registryName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "registryName", input)
+	}
+
+	if id.PackageName, ok = input.Parsed["packageName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "packageName", input)
+	}
+
+	if id.ArchiveName, ok = input.Parsed["archiveName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "archiveName", input)
+	}
+
+	return nil
+}

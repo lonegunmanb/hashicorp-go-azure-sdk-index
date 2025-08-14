@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2025-06-01/monitoredsubscriptions
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c MonitoredSubscriptionsClient) CreateorUpdateThenPoll(ctx context.Context, id MonitoredSubscriptionId, input MonitoredSubscriptionProperties) error {
+	result, err := c.CreateorUpdate(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing CreateorUpdate: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after CreateorUpdate: %+v", err)
+	}
+
+	return nil
+}

@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerapps/2025-01-01/containerappssessionpools
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSessionPoolProvisioningState(input string) (*SessionPoolProvisioningState, error) {
+	vals := map[string]SessionPoolProvisioningState{
+		"canceled":   SessionPoolProvisioningStateCanceled,
+		"deleting":   SessionPoolProvisioningStateDeleting,
+		"failed":     SessionPoolProvisioningStateFailed,
+		"inprogress": SessionPoolProvisioningStateInProgress,
+		"succeeded":  SessionPoolProvisioningStateSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SessionPoolProvisioningState(input)
+	return &out, nil
+}

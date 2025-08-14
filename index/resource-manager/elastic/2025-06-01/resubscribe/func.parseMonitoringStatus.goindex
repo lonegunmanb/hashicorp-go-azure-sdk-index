@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2025-06-01/resubscribe
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMonitoringStatus(input string) (*MonitoringStatus, error) {
+	vals := map[string]MonitoringStatus{
+		"disabled": MonitoringStatusDisabled,
+		"enabled":  MonitoringStatusEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MonitoringStatus(input)
+	return &out, nil
+}

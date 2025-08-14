@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/permissionsanalyticazure
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPermissionsAnalyticAzureClientWithBaseURI(sdkApi sdkEnv.Api) (*PermissionsAnalyticAzureClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "permissionsanalyticazure", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PermissionsAnalyticAzureClient: %+v", err)
+	}
+
+	return &PermissionsAnalyticAzureClient{
+		Client: client,
+	}, nil
+}

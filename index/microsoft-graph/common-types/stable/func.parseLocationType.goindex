@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseLocationType(input string) (*LocationType, error) {
+	vals := map[string]LocationType{
+		"businessaddress": LocationType_BusinessAddress,
+		"conferenceroom":  LocationType_ConferenceRoom,
+		"default":         LocationType_Default,
+		"geocoordinates":  LocationType_GeoCoordinates,
+		"homeaddress":     LocationType_HomeAddress,
+		"hotel":           LocationType_Hotel,
+		"localbusiness":   LocationType_LocalBusiness,
+		"postaladdress":   LocationType_PostalAddress,
+		"restaurant":      LocationType_Restaurant,
+		"streetaddress":   LocationType_StreetAddress,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := LocationType(input)
+	return &out, nil
+}

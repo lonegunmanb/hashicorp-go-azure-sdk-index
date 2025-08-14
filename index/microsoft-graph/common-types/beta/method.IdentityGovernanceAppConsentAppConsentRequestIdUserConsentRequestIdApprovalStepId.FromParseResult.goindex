@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *IdentityGovernanceAppConsentAppConsentRequestIdUserConsentRequestIdApprovalStepId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.AppConsentRequestId, ok = input.Parsed["appConsentRequestId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "appConsentRequestId", input)
+	}
+
+	if id.UserConsentRequestId, ok = input.Parsed["userConsentRequestId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "userConsentRequestId", input)
+	}
+
+	if id.ApprovalStepId, ok = input.Parsed["approvalStepId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "approvalStepId", input)
+	}
+
+	return nil
+}

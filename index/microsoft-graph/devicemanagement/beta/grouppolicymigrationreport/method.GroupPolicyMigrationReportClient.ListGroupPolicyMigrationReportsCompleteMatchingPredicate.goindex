@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/grouppolicymigrationreport
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c GroupPolicyMigrationReportClient) ListGroupPolicyMigrationReportsCompleteMatchingPredicate(ctx context.Context, options ListGroupPolicyMigrationReportsOperationOptions, predicate GroupPolicyMigrationReportOperationPredicate) (result ListGroupPolicyMigrationReportsCompleteResult, err error) {
+	items := make([]beta.GroupPolicyMigrationReport, 0)
+
+	resp, err := c.ListGroupPolicyMigrationReports(ctx, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListGroupPolicyMigrationReportsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

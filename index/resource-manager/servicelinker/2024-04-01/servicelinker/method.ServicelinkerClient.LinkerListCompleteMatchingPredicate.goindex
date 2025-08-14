@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicelinker/2024-04-01/servicelinker
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ServicelinkerClient) LinkerListCompleteMatchingPredicate(ctx context.Context, id commonids.ScopeId, predicate LinkerResourceOperationPredicate) (result LinkerListCompleteResult, err error) {
+	items := make([]LinkerResource, 0)
+
+	resp, err := c.LinkerList(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = LinkerListCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

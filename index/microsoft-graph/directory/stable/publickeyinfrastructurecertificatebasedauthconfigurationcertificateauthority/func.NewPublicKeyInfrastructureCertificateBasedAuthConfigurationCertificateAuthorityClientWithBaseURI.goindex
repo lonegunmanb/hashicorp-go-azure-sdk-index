@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable/publickeyinfrastructurecertificatebasedauthconfigurationcertificateauthority
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPublicKeyInfrastructureCertificateBasedAuthConfigurationCertificateAuthorityClientWithBaseURI(sdkApi sdkEnv.Api) (*PublicKeyInfrastructureCertificateBasedAuthConfigurationCertificateAuthorityClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "publickeyinfrastructurecertificatebasedauthconfigurationcertificateauthority", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PublicKeyInfrastructureCertificateBasedAuthConfigurationCertificateAuthorityClient: %+v", err)
+	}
+
+	return &PublicKeyInfrastructureCertificateBasedAuthConfigurationCertificateAuthorityClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,90 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type EducationSubmission struct {
+	// The unique identifier for the assignment with which this submission is associated. A submission is always associated
+	// with one and only one assignment.
+	AssignmentId nullable.Type[string] `json:"assignmentId,omitempty"`
+
+	// The user that marked the submission as excused.
+	ExcusedBy *IdentitySet `json:"excusedBy,omitempty"`
+
+	// Moment in time when the submission was moved to the excused state. The timestamp type represents date and time
+	// information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is
+	// 2014-01-01T00:00:00Z.
+	ExcusedDateTime nullable.Type[string] `json:"excusedDateTime,omitempty"`
+
+	// The identities of those who modified the submission.
+	LastModifiedBy *IdentitySet `json:"lastModifiedBy,omitempty"`
+
+	// The date and time the submission was modified.
+	LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+
+	Outcomes *[]EducationOutcome `json:"outcomes,omitempty"`
+
+	// User who moved the status of this submission to reassigned.
+	ReassignedBy *IdentitySet `json:"reassignedBy,omitempty"`
+
+	// Moment in time when the submission was reassigned. The timestamp type represents date and time information using ISO
+	// 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+	ReassignedDateTime nullable.Type[string] `json:"reassignedDateTime,omitempty"`
+
+	// Who this submission is assigned to.
+	Recipient EducationSubmissionRecipient `json:"recipient"`
+
+	Resources *[]EducationSubmissionResource `json:"resources,omitempty"`
+
+	// Folder where all file resources for this submission need to be stored.
+	ResourcesFolderUrl nullable.Type[string] `json:"resourcesFolderUrl,omitempty"`
+
+	// User who moved the status of this submission to returned.
+	ReturnedBy *IdentitySet `json:"returnedBy,omitempty"`
+
+	// Moment in time when the submission was returned. The timestamp type represents date and time information using ISO
+	// 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+	ReturnedDateTime nullable.Type[string] `json:"returnedDateTime,omitempty"`
+
+	// Read-only. Possible values are: working, submitted, returned, unknownFutureValue, reassigned, and excused. Use the
+	// Prefer: include-unknown-enum-members request header to get the following values in this evolvable enum: reassigned,
+	// and excused.
+	Status *EducationSubmissionStatus `json:"status,omitempty"`
+
+	// User who moved the resource into the submitted state.
+	SubmittedBy *IdentitySet `json:"submittedBy,omitempty"`
+
+	// Moment in time when the submission was moved into the submitted state. The timestamp type represents date and time
+	// information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is
+	// 2014-01-01T00:00:00Z.
+	SubmittedDateTime nullable.Type[string] `json:"submittedDateTime,omitempty"`
+
+	SubmittedResources *[]EducationSubmissionResource `json:"submittedResources,omitempty"`
+
+	// User who moved the resource from submitted into the working state.
+	UnsubmittedBy *IdentitySet `json:"unsubmittedBy,omitempty"`
+
+	// Moment in time when the submission was moved from submitted into the working state. The timestamp type represents
+	// date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is
+	// 2014-01-01T00:00:00Z.
+	UnsubmittedDateTime nullable.Type[string] `json:"unsubmittedDateTime,omitempty"`
+
+	// The deep link URL for the given submission.
+	WebUrl nullable.Type[string] `json:"webUrl,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

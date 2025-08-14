@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerregistry/2019-06-01-preview/taskruns
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s TaskRunRequest) MarshalJSON() ([]byte, error) {
+	type wrapper TaskRunRequest
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling TaskRunRequest: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling TaskRunRequest: %+v", err)
+	}
+
+	decoded["type"] = "TaskRunRequest"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling TaskRunRequest: %+v", err)
+	}
+
+	return encoded, nil
+}

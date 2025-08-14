@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/serviceresource
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ServiceResourceClient) TasksListCompleteMatchingPredicate(ctx context.Context, id ProjectId, options TasksListOperationOptions, predicate ProjectTaskOperationPredicate) (result TasksListCompleteResult, err error) {
+	items := make([]ProjectTask, 0)
+
+	resp, err := c.TasksList(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = TasksListCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

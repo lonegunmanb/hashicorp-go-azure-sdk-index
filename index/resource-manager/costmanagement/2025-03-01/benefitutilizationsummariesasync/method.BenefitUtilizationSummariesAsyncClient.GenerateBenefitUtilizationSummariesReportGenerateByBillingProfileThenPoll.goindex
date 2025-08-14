@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2025-03-01/benefitutilizationsummariesasync
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c BenefitUtilizationSummariesAsyncClient) GenerateBenefitUtilizationSummariesReportGenerateByBillingProfileThenPoll(ctx context.Context, id BillingProfileId, input BenefitUtilizationSummariesRequest) error {
+	result, err := c.GenerateBenefitUtilizationSummariesReportGenerateByBillingProfile(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing GenerateBenefitUtilizationSummariesReportGenerateByBillingProfile: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after GenerateBenefitUtilizationSummariesReportGenerateByBillingProfile: %+v", err)
+	}
+
+	return nil
+}

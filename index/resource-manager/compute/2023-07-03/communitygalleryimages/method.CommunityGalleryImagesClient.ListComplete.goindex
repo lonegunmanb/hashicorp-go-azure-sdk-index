@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2023-07-03/communitygalleryimages
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c CommunityGalleryImagesClient) ListComplete(ctx context.Context, id CommunityGalleryId) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, CommunityGalleryImageOperationPredicate{})
+}

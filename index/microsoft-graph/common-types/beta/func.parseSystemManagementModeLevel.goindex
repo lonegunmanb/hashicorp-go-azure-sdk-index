@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSystemManagementModeLevel(input string) (*SystemManagementModeLevel, error) {
+	vals := map[string]SystemManagementModeLevel{
+		"level1":        SystemManagementModeLevel_Level1,
+		"level2":        SystemManagementModeLevel_Level2,
+		"level3":        SystemManagementModeLevel_Level3,
+		"notapplicable": SystemManagementModeLevel_NotApplicable,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SystemManagementModeLevel(input)
+	return &out, nil
+}

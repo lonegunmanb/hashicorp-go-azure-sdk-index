@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2024-02-01/metrics
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMetricResultType(input string) (*MetricResultType, error) {
+	vals := map[string]MetricResultType{
+		"data":     MetricResultTypeData,
+		"metadata": MetricResultTypeMetadata,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MetricResultType(input)
+	return &out, nil
+}

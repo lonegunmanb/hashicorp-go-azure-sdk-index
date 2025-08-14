@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-11-01/resourceproviders
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCheckNameResourceTypes(input string) (*CheckNameResourceTypes, error) {
+	vals := map[string]CheckNameResourceTypes{
+		"hostingenvironment":                CheckNameResourceTypesHostingEnvironment,
+		"microsoft.web/hostingenvironments": CheckNameResourceTypesMicrosoftPointWebHostingEnvironments,
+		"microsoft.web/publishingusers":     CheckNameResourceTypesMicrosoftPointWebPublishingUsers,
+		"microsoft.web/sites":               CheckNameResourceTypesMicrosoftPointWebSites,
+		"microsoft.web/sites/slots":         CheckNameResourceTypesMicrosoftPointWebSitesSlots,
+		"publishinguser":                    CheckNameResourceTypesPublishingUser,
+		"site":                              CheckNameResourceTypesSite,
+		"slot":                              CheckNameResourceTypesSlot,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CheckNameResourceTypes(input)
+	return &out, nil
+}

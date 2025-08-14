@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+)
+type AadUserNotificationRecipient struct {
+	// Microsoft Entra user identifier. Use the List users method to get this ID.
+	UserId *string `json:"userId,omitempty"`
+
+	// Fields inherited from TeamworkNotificationRecipient
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerapps/2025-01-01/containerappsrevisionreplicas
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseContainerAppContainerRunningState(input string) (*ContainerAppContainerRunningState, error) {
+	vals := map[string]ContainerAppContainerRunningState{
+		"running":    ContainerAppContainerRunningStateRunning,
+		"terminated": ContainerAppContainerRunningStateTerminated,
+		"waiting":    ContainerAppContainerRunningStateWaiting,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ContainerAppContainerRunningState(input)
+	return &out, nil
+}

@@ -1,0 +1,46 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *BrowserSiteHistory) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AllowRedirect     nullable.Type[bool]           `json:"allowRedirect,omitempty"`
+		Comment           *string                       `json:"comment,omitempty"`
+		CompatibilityMode *BrowserSiteCompatibilityMode `json:"compatibilityMode,omitempty"`
+		MergeType         *BrowserSiteMergeType         `json:"mergeType,omitempty"`
+		ODataId           *string                       `json:"@odata.id,omitempty"`
+		ODataType         *string                       `json:"@odata.type,omitempty"`
+		PublishedDateTime *string                       `json:"publishedDateTime,omitempty"`
+		TargetEnvironment *BrowserSiteTargetEnvironment `json:"targetEnvironment,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AllowRedirect = decoded.AllowRedirect
+	s.Comment = decoded.Comment
+	s.CompatibilityMode = decoded.CompatibilityMode
+	s.MergeType = decoded.MergeType
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.PublishedDateTime = decoded.PublishedDateTime
+	s.TargetEnvironment = decoded.TargetEnvironment
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling BrowserSiteHistory into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["lastModifiedBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'LastModifiedBy' for 'BrowserSiteHistory': %+v", err)
+		}
+		s.LastModifiedBy = impl
+	}
+
+	return nil
+}

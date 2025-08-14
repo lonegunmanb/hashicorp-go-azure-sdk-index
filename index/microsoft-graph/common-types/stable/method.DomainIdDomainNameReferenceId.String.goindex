@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DomainIdDomainNameReferenceId) String() string {
+	components := []string{
+		fmt.Sprintf("Domain: %q", id.DomainId),
+		fmt.Sprintf("Directory Object: %q", id.DirectoryObjectId),
+	}
+	return fmt.Sprintf("Domain Id Domain Name Reference (%s)", strings.Join(components, "\n"))
+}

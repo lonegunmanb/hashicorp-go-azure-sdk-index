@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAuthenticationAppAdminConfiguration(input string) (*AuthenticationAppAdminConfiguration, error) {
+	vals := map[string]AuthenticationAppAdminConfiguration{
+		"disabled":      AuthenticationAppAdminConfiguration_Disabled,
+		"enabled":       AuthenticationAppAdminConfiguration_Enabled,
+		"notapplicable": AuthenticationAppAdminConfiguration_NotApplicable,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AuthenticationAppAdminConfiguration(input)
+	return &out, nil
+}

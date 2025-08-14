@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingproperty
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAccountType(input string) (*AccountType, error) {
+	vals := map[string]AccountType{
+		"business":       AccountTypeBusiness,
+		"classicpartner": AccountTypeClassicPartner,
+		"enterprise":     AccountTypeEnterprise,
+		"individual":     AccountTypeIndividual,
+		"internal":       AccountTypeInternal,
+		"other":          AccountTypeOther,
+		"partner":        AccountTypePartner,
+		"reseller":       AccountTypeReseller,
+		"tenant":         AccountTypeTenant,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AccountType(input)
+	return &out, nil
+}

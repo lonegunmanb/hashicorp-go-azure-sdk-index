@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/appplatform/2024-01-01-preview/appplatform
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id RouteConfigId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Spring Name: %q", id.SpringName),
+		fmt.Sprintf("Gateway Name: %q", id.GatewayName),
+		fmt.Sprintf("Route Config Name: %q", id.RouteConfigName),
+	}
+	return fmt.Sprintf("Route Config (%s)", strings.Join(components, "\n"))
+}

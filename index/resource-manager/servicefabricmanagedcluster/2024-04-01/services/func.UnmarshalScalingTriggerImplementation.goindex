@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicefabricmanagedcluster/2024-04-01/services
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalScalingTriggerImplementation(input []byte) (ScalingTrigger, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling ScalingTrigger into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["kind"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "AveragePartitionLoadTrigger") {
+		var out AveragePartitionLoadScalingTrigger
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AveragePartitionLoadScalingTrigger: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "AverageServiceLoadTrigger") {
+		var out AverageServiceLoadScalingTrigger
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AverageServiceLoadScalingTrigger: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseScalingTriggerImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseScalingTriggerImpl: %+v", err)
+	}
+
+	return RawScalingTriggerImpl{
+		scalingTrigger: parent,
+		Type:           value,
+		Values:         temp,
+	}, nil
+
+}

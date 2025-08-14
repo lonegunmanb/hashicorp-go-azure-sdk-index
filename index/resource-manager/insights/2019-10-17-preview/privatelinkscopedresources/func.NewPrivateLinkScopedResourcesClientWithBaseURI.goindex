@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2019-10-17-preview/privatelinkscopedresources
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPrivateLinkScopedResourcesClientWithBaseURI(sdkApi sdkEnv.Api) (*PrivateLinkScopedResourcesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "privatelinkscopedresources", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PrivateLinkScopedResourcesClient: %+v", err)
+	}
+
+	return &PrivateLinkScopedResourcesClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/analyticsactivitystatistic
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAnalyticsActivityStatisticClientWithBaseURI(sdkApi sdkEnv.Api) (*AnalyticsActivityStatisticClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "analyticsactivitystatistic", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AnalyticsActivityStatisticClient: %+v", err)
+	}
+
+	return &AnalyticsActivityStatisticClient{
+		Client: client,
+	}, nil
+}

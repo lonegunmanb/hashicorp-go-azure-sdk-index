@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAuthenticationMethodPlatform(input string) (*AuthenticationMethodPlatform, error) {
+	vals := map[string]AuthenticationMethodPlatform{
+		"android": AuthenticationMethodPlatform_Android,
+		"ios":     AuthenticationMethodPlatform_IOS,
+		"linux":   AuthenticationMethodPlatform_Linux,
+		"macos":   AuthenticationMethodPlatform_MacOS,
+		"unknown": AuthenticationMethodPlatform_Unknown,
+		"windows": AuthenticationMethodPlatform_Windows,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AuthenticationMethodPlatform(input)
+	return &out, nil
+}

@@ -1,0 +1,65 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/streamanalytics/2020-03-01/inputs
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalSerializationImplementation(input []byte) (Serialization, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling Serialization into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "Avro") {
+		var out AvroSerialization
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AvroSerialization: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "Csv") {
+		var out CsvSerialization
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into CsvSerialization: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "Json") {
+		var out JsonSerialization
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into JsonSerialization: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "Parquet") {
+		var out ParquetSerialization
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ParquetSerialization: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseSerializationImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseSerializationImpl: %+v", err)
+	}
+
+	return RawSerializationImpl{
+		serialization: parent,
+		Type:          value,
+		Values:        temp,
+	}, nil
+
+}

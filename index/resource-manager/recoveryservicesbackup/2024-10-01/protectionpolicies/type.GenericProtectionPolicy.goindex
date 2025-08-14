@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2024-10-01/protectionpolicies
+import (
+	"encoding/json"
+	"fmt"
+)
+type GenericProtectionPolicy struct {
+	FabricName          *string                `json:"fabricName,omitempty"`
+	SubProtectionPolicy *[]SubProtectionPolicy `json:"subProtectionPolicy,omitempty"`
+	TimeZone            *string                `json:"timeZone,omitempty"`
+
+	// Fields inherited from ProtectionPolicy
+
+	BackupManagementType           string    `json:"backupManagementType"`
+	ProtectedItemsCount            *int64    `json:"protectedItemsCount,omitempty"`
+	ResourceGuardOperationRequests *[]string `json:"resourceGuardOperationRequests,omitempty"`
+}

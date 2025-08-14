@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagetemplatewebpart
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSitePageTemplateWebPartClientWithBaseURI(sdkApi sdkEnv.Api) (*SitePageTemplateWebPartClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "sitepagetemplatewebpart", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SitePageTemplateWebPartClient: %+v", err)
+	}
+
+	return &SitePageTemplateWebPartClient{
+		Client: client,
+	}, nil
+}

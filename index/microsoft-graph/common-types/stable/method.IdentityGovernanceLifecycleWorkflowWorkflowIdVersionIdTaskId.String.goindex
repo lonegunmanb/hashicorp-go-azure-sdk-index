@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id IdentityGovernanceLifecycleWorkflowWorkflowIdVersionIdTaskId) String() string {
+	components := []string{
+		fmt.Sprintf("Workflow: %q", id.WorkflowId),
+		fmt.Sprintf("Workflow Version Version Number: %q", id.WorkflowVersionVersionNumber),
+		fmt.Sprintf("Task: %q", id.TaskId),
+	}
+	return fmt.Sprintf("Identity Governance Lifecycle Workflow Workflow Id Version Id Task (%s)", strings.Join(components, "\n"))
+}

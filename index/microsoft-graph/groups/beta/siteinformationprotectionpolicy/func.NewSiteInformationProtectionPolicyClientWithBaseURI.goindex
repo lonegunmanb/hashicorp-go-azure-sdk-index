@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/siteinformationprotectionpolicy
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSiteInformationProtectionPolicyClientWithBaseURI(sdkApi sdkEnv.Api) (*SiteInformationProtectionPolicyClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "siteinformationprotectionpolicy", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SiteInformationProtectionPolicyClient: %+v", err)
+	}
+
+	return &SiteInformationProtectionPolicyClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cosmosdb/2023-04-15/cosmosdb
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTriggerType(input string) (*TriggerType, error) {
+	vals := map[string]TriggerType{
+		"post": TriggerTypePost,
+		"pre":  TriggerTypePre,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TriggerType(input)
+	return &out, nil
+}

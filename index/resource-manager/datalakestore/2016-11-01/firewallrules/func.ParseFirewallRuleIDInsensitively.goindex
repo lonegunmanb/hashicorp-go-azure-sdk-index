@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datalakestore/2016-11-01/firewallrules
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseFirewallRuleIDInsensitively(input string) (*FirewallRuleId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&FirewallRuleId{})
+	parsed, err := parser.Parse(input, true)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := FirewallRuleId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

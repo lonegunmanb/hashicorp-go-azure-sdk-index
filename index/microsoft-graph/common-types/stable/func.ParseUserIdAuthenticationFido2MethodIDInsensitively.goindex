@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseUserIdAuthenticationFido2MethodIDInsensitively(input string) (*UserIdAuthenticationFido2MethodId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&UserIdAuthenticationFido2MethodId{})
+	parsed, err := parser.Parse(input, true)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := UserIdAuthenticationFido2MethodId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

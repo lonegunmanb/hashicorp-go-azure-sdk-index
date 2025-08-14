@@ -1,0 +1,10 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/mailfoldermessage
+import (
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ForwardMailFolderMessageRequest struct {
+	Comment      nullable.Type[string] `json:"Comment,omitempty"`
+	Message      *stable.Message       `json:"Message,omitempty"`
+	ToRecipients *[]stable.Recipient   `json:"ToRecipients,omitempty"`
+}

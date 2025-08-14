@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2019-10-01/reservationdetails
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ReservationId) ID() string {
+	fmtString := "/providers/Microsoft.Capacity/reservationOrders/%s/reservations/%s"
+	return fmt.Sprintf(fmtString, id.ReservationOrderId, id.ReservationId)
+}

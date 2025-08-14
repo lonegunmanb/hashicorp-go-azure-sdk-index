@@ -1,0 +1,102 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type WindowsAutopilotDeviceIdentity struct {
+	// Addressable user name.
+	AddressableUserName nullable.Type[string] `json:"addressableUserName,omitempty"`
+
+	// AAD Device ID - to be deprecated
+	AzureActiveDirectoryDeviceId nullable.Type[string] `json:"azureActiveDirectoryDeviceId,omitempty"`
+
+	// AAD Device ID
+	AzureAdDeviceId nullable.Type[string] `json:"azureAdDeviceId,omitempty"`
+
+	// Deployment profile currently assigned to the Windows autopilot device.
+	DeploymentProfile *WindowsAutopilotDeploymentProfile `json:"deploymentProfile,omitempty"`
+
+	// Profile set time of the Windows autopilot device.
+	DeploymentProfileAssignedDateTime *string `json:"deploymentProfileAssignedDateTime,omitempty"`
+
+	DeploymentProfileAssignmentDetailedStatus *WindowsAutopilotProfileAssignmentDetailedStatus `json:"deploymentProfileAssignmentDetailedStatus,omitempty"`
+	DeploymentProfileAssignmentStatus         *WindowsAutopilotProfileAssignmentStatus         `json:"deploymentProfileAssignmentStatus,omitempty"`
+
+	// Surface Hub Device Account Password
+	DeviceAccountPassword nullable.Type[string] `json:"deviceAccountPassword,omitempty"`
+
+	// Surface Hub Device Account Upn
+	DeviceAccountUpn nullable.Type[string] `json:"deviceAccountUpn,omitempty"`
+
+	// Surface Hub Device Friendly Name
+	DeviceFriendlyName nullable.Type[string] `json:"deviceFriendlyName,omitempty"`
+
+	// Display Name
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	EnrollmentState *EnrollmentState `json:"enrollmentState,omitempty"`
+
+	// Group Tag of the Windows autopilot device.
+	GroupTag nullable.Type[string] `json:"groupTag,omitempty"`
+
+	// Deployment profile intended to be assigned to the Windows autopilot device.
+	IntendedDeploymentProfile *WindowsAutopilotDeploymentProfile `json:"intendedDeploymentProfile,omitempty"`
+
+	// Intune Last Contacted Date Time of the Windows autopilot device.
+	LastContactedDateTime *string `json:"lastContactedDateTime,omitempty"`
+
+	// Managed Device ID
+	ManagedDeviceId nullable.Type[string] `json:"managedDeviceId,omitempty"`
+
+	// Oem manufacturer of the Windows autopilot device.
+	Manufacturer nullable.Type[string] `json:"manufacturer,omitempty"`
+
+	// Model name of the Windows autopilot device.
+	Model nullable.Type[string] `json:"model,omitempty"`
+
+	// Product Key of the Windows autopilot device.
+	ProductKey nullable.Type[string] `json:"productKey,omitempty"`
+
+	// Purchase Order Identifier of the Windows autopilot device.
+	PurchaseOrderIdentifier nullable.Type[string] `json:"purchaseOrderIdentifier,omitempty"`
+
+	// Device remediation status, indicating whether or not hardware has been changed for an Autopilot-registered device.
+	RemediationState *WindowsAutopilotDeviceRemediationState `json:"remediationState,omitempty"`
+
+	// RemediationState set time of Autopilot device.
+	RemediationStateLastModifiedDateTime *string `json:"remediationStateLastModifiedDateTime,omitempty"`
+
+	// Resource Name.
+	ResourceName nullable.Type[string] `json:"resourceName,omitempty"`
+
+	// Serial number of the Windows autopilot device.
+	SerialNumber nullable.Type[string] `json:"serialNumber,omitempty"`
+
+	// SKU Number
+	SkuNumber nullable.Type[string] `json:"skuNumber,omitempty"`
+
+	// System Family
+	SystemFamily nullable.Type[string] `json:"systemFamily,omitempty"`
+
+	// User Principal Name.
+	UserPrincipalName nullable.Type[string] `json:"userPrincipalName,omitempty"`
+
+	// Userless enrollment block status, indicating whether the next device enrollment will be blocked.
+	UserlessEnrollmentStatus *WindowsAutopilotUserlessEnrollmentStatus `json:"userlessEnrollmentStatus,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

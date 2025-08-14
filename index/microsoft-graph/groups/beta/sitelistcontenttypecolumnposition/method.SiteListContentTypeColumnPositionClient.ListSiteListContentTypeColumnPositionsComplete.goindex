@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitelistcontenttypecolumnposition
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SiteListContentTypeColumnPositionClient) ListSiteListContentTypeColumnPositionsComplete(ctx context.Context, id beta.GroupIdSiteIdListIdContentTypeId, options ListSiteListContentTypeColumnPositionsOperationOptions) (ListSiteListContentTypeColumnPositionsCompleteResult, error) {
+	return c.ListSiteListContentTypeColumnPositionsCompleteMatchingPredicate(ctx, id, options, ColumnDefinitionOperationPredicate{})
+}

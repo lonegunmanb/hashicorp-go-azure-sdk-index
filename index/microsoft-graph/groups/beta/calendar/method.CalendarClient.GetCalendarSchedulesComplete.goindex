@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendar
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c CalendarClient) GetCalendarSchedulesComplete(ctx context.Context, id beta.GroupId, input GetCalendarSchedulesRequest, options GetCalendarSchedulesOperationOptions) (GetCalendarSchedulesCompleteResult, error) {
+	return c.GetCalendarSchedulesCompleteMatchingPredicate(ctx, id, input, options, ScheduleInformationOperationPredicate{})
+}

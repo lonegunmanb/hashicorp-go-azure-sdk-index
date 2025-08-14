@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/deviceupdate/2023-07-01/deviceupdates
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSKU(input string) (*SKU, error) {
+	vals := map[string]SKU{
+		"free":     SKUFree,
+		"standard": SKUStandard,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SKU(input)
+	return &out, nil
+}

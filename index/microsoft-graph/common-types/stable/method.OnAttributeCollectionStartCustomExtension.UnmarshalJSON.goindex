@@ -1,0 +1,50 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *OnAttributeCollectionStartCustomExtension) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		ClientConfiguration *CustomExtensionClientConfiguration `json:"clientConfiguration,omitempty"`
+		Description         nullable.Type[string]               `json:"description,omitempty"`
+		DisplayName         nullable.Type[string]               `json:"displayName,omitempty"`
+		Id                  *string                             `json:"id,omitempty"`
+		ODataId             *string                             `json:"@odata.id,omitempty"`
+		ODataType           *string                             `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.ClientConfiguration = decoded.ClientConfiguration
+	s.Description = decoded.Description
+	s.DisplayName = decoded.DisplayName
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling OnAttributeCollectionStartCustomExtension into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["authenticationConfiguration"]; ok {
+		impl, err := UnmarshalCustomExtensionAuthenticationConfigurationImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'AuthenticationConfiguration' for 'OnAttributeCollectionStartCustomExtension': %+v", err)
+		}
+		s.AuthenticationConfiguration = impl
+	}
+
+	if v, ok := temp["endpointConfiguration"]; ok {
+		impl, err := UnmarshalCustomExtensionEndpointConfigurationImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'EndpointConfiguration' for 'OnAttributeCollectionStartCustomExtension': %+v", err)
+		}
+		s.EndpointConfiguration = impl
+	}
+
+	return nil
+}

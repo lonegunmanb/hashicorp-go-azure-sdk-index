@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hdinsight/2021-06-01/clusters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseJsonWebKeyEncryptionAlgorithm(input string) (*JsonWebKeyEncryptionAlgorithm, error) {
+	vals := map[string]JsonWebKeyEncryptionAlgorithm{
+		"rsa-oaep":     JsonWebKeyEncryptionAlgorithmRSANegativeOAEP,
+		"rsa-oaep-256": JsonWebKeyEncryptionAlgorithmRSANegativeOAEPNegativeTwoFiveSix,
+		"rsa1_5":       JsonWebKeyEncryptionAlgorithmRSAOneFive,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := JsonWebKeyEncryptionAlgorithm(input)
+	return &out, nil
+}

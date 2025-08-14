@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dashboard/2023-09-01/grafanaplugin
+
+func (p GrafanaAvailablePluginOperationPredicate) Matches(input GrafanaAvailablePlugin) bool {
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.PluginId != nil && (input.PluginId == nil || *p.PluginId != *input.PluginId) {
+		return false
+	}
+
+	return true
+}

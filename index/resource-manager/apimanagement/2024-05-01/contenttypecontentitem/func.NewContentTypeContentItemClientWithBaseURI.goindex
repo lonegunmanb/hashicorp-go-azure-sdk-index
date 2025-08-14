@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/contenttypecontentitem
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewContentTypeContentItemClientWithBaseURI(sdkApi sdkEnv.Api) (*ContentTypeContentItemClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "contenttypecontentitem", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ContentTypeContentItemClient: %+v", err)
+	}
+
+	return &ContentTypeContentItemClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/appconfiguration/2024-06-01/snapshots
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSnapshotStatus(input string) (*SnapshotStatus, error) {
+	vals := map[string]SnapshotStatus{
+		"archived":     SnapshotStatusArchived,
+		"failed":       SnapshotStatusFailed,
+		"provisioning": SnapshotStatusProvisioning,
+		"ready":        SnapshotStatusReady,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SnapshotStatus(input)
+	return &out, nil
+}

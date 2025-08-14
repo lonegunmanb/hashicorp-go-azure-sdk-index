@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/runbook
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *RunbookProperties) GetCreationTimeAsTime() (*time.Time, error) {
+	if o.CreationTime == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.CreationTime, "2006-01-02T15:04:05Z07:00")
+}

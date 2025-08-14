@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type SharePointIdentitySet struct {
+	// The group associated with this action. Optional.
+	Group Identity `json:"group"`
+
+	// The SharePoint group associated with this action. Optional.
+	SiteGroup *SharePointIdentity `json:"siteGroup,omitempty"`
+
+	// The SharePoint user associated with this action. Optional.
+	SiteUser *SharePointIdentity `json:"siteUser,omitempty"`
+
+	// Fields inherited from IdentitySet
+
+	// The Identity of the Application. This property is read-only.
+	Application Identity `json:"application"`
+
+	// The Identity of the Device. This property is read-only.
+	Device Identity `json:"device"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The Identity of the User. This property is read-only.
+	User Identity `json:"user"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

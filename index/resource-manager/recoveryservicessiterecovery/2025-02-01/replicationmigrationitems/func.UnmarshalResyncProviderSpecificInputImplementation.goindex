@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationmigrationitems
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalResyncProviderSpecificInputImplementation(input []byte) (ResyncProviderSpecificInput, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling ResyncProviderSpecificInput into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["instanceType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "VMwareCbt") {
+		var out VMwareCbtResyncInput
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into VMwareCbtResyncInput: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseResyncProviderSpecificInputImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseResyncProviderSpecificInputImpl: %+v", err)
+	}
+
+	return RawResyncProviderSpecificInputImpl{
+		resyncProviderSpecificInput: parent,
+		Type:                        value,
+		Values:                      temp,
+	}, nil
+
+}

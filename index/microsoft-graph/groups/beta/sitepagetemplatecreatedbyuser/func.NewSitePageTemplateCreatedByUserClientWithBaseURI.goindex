@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagetemplatecreatedbyuser
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSitePageTemplateCreatedByUserClientWithBaseURI(sdkApi sdkEnv.Api) (*SitePageTemplateCreatedByUserClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "sitepagetemplatecreatedbyuser", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SitePageTemplateCreatedByUserClient: %+v", err)
+	}
+
+	return &SitePageTemplateCreatedByUserClient{
+		Client: client,
+	}, nil
+}

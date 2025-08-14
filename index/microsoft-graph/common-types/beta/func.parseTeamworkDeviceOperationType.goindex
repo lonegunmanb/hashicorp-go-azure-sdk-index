@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTeamworkDeviceOperationType(input string) (*TeamworkDeviceOperationType, error) {
+	vals := map[string]TeamworkDeviceOperationType{
+		"configupdate":                      TeamworkDeviceOperationType_ConfigUpdate,
+		"devicediagnostics":                 TeamworkDeviceOperationType_DeviceDiagnostics,
+		"devicemanagementagentconfigupdate": TeamworkDeviceOperationType_DeviceManagementAgentConfigUpdate,
+		"devicerestart":                     TeamworkDeviceOperationType_DeviceRestart,
+		"remotelogin":                       TeamworkDeviceOperationType_RemoteLogin,
+		"remotelogout":                      TeamworkDeviceOperationType_RemoteLogout,
+		"softwareupdate":                    TeamworkDeviceOperationType_SoftwareUpdate,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TeamworkDeviceOperationType(input)
+	return &out, nil
+}

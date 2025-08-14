@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeviceManagementConfigurationSettingAccessTypes(input string) (*DeviceManagementConfigurationSettingAccessTypes, error) {
+	vals := map[string]DeviceManagementConfigurationSettingAccessTypes{
+		"add":     DeviceManagementConfigurationSettingAccessTypes_Add,
+		"copy":    DeviceManagementConfigurationSettingAccessTypes_Copy,
+		"delete":  DeviceManagementConfigurationSettingAccessTypes_Delete,
+		"execute": DeviceManagementConfigurationSettingAccessTypes_Execute,
+		"get":     DeviceManagementConfigurationSettingAccessTypes_Get,
+		"none":    DeviceManagementConfigurationSettingAccessTypes_None,
+		"replace": DeviceManagementConfigurationSettingAccessTypes_Replace,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceManagementConfigurationSettingAccessTypes(input)
+	return &out, nil
+}

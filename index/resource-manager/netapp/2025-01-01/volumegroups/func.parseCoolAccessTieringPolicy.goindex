@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-01-01/volumegroups
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCoolAccessTieringPolicy(input string) (*CoolAccessTieringPolicy, error) {
+	vals := map[string]CoolAccessTieringPolicy{
+		"auto":         CoolAccessTieringPolicyAuto,
+		"snapshotonly": CoolAccessTieringPolicySnapshotOnly,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CoolAccessTieringPolicy(input)
+	return &out, nil
+}

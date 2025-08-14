@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/streamanalytics/2021-10-01-preview/inputs
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEventGridEventSchemaType(input string) (*EventGridEventSchemaType, error) {
+	vals := map[string]EventGridEventSchemaType{
+		"cloudeventschema":     EventGridEventSchemaTypeCloudEventSchema,
+		"eventgrideventschema": EventGridEventSchemaTypeEventGridEventSchema,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EventGridEventSchemaType(input)
+	return &out, nil
+}

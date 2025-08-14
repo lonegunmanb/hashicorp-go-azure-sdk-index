@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/driverootlastmodifiedbyusermailboxsetting
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDriveRootLastModifiedByUserMailboxSettingClientWithBaseURI(sdkApi sdkEnv.Api) (*DriveRootLastModifiedByUserMailboxSettingClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "driverootlastmodifiedbyusermailboxsetting", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DriveRootLastModifiedByUserMailboxSettingClient: %+v", err)
+	}
+
+	return &DriveRootLastModifiedByUserMailboxSettingClient{
+		Client: client,
+	}, nil
+}

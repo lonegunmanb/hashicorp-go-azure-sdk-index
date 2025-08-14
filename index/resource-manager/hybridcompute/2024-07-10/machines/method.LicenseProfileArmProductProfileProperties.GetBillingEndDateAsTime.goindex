@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2024-07-10/machines
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *LicenseProfileArmProductProfileProperties) GetBillingEndDateAsTime() (*time.Time, error) {
+	if o.BillingEndDate == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.BillingEndDate, "2006-01-02T15:04:05Z07:00")
+}

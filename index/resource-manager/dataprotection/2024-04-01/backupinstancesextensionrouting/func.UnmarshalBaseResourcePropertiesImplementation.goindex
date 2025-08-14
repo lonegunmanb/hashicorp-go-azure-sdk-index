@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2024-04-01/backupinstancesextensionrouting
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalBaseResourcePropertiesImplementation(input []byte) (BaseResourceProperties, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling BaseResourceProperties into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["objectType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "DefaultResourceProperties") {
+		var out DefaultResourceProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DefaultResourceProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseBaseResourcePropertiesImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseBaseResourcePropertiesImpl: %+v", err)
+	}
+
+	return RawBaseResourcePropertiesImpl{
+		baseResourceProperties: parent,
+		Type:                   value,
+		Values:                 temp,
+	}, nil
+
+}

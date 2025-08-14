@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/syncgroups
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ListLogsOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.ContinuationToken != nil {
+		out.Append("continuationToken", fmt.Sprintf("%v", *o.ContinuationToken))
+	}
+	if o.EndTime != nil {
+		out.Append("endTime", fmt.Sprintf("%v", *o.EndTime))
+	}
+	if o.StartTime != nil {
+		out.Append("startTime", fmt.Sprintf("%v", *o.StartTime))
+	}
+	if o.Type != nil {
+		out.Append("type", fmt.Sprintf("%v", *o.Type))
+	}
+	return &out
+}

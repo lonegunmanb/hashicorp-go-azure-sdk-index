@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2023-03-11/datacollectionendpoints
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseKnownPublicNetworkAccessOptions(input string) (*KnownPublicNetworkAccessOptions, error) {
+	vals := map[string]KnownPublicNetworkAccessOptions{
+		"disabled":           KnownPublicNetworkAccessOptionsDisabled,
+		"enabled":            KnownPublicNetworkAccessOptionsEnabled,
+		"securedbyperimeter": KnownPublicNetworkAccessOptionsSecuredByPerimeter,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := KnownPublicNetworkAccessOptions(input)
+	return &out, nil
+}

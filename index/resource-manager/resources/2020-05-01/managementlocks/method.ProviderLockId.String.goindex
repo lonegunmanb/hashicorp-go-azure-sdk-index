@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-05-01/managementlocks
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ProviderLockId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Lock Name: %q", id.LockName),
+	}
+	return fmt.Sprintf("Provider Lock (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAuthenticationEventType(input string) (*AuthenticationEventType, error) {
+	vals := map[string]AuthenticationEventType{
+		"attributecollectionstart":  AuthenticationEventType_AttributeCollectionStart,
+		"attributecollectionsubmit": AuthenticationEventType_AttributeCollectionSubmit,
+		"emailotpsend":              AuthenticationEventType_EmailOtpSend,
+		"pagerenderstart":           AuthenticationEventType_PageRenderStart,
+		"tokenissuancestart":        AuthenticationEventType_TokenIssuanceStart,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AuthenticationEventType(input)
+	return &out, nil
+}

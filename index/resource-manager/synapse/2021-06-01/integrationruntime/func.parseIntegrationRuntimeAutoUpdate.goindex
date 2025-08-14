@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/integrationruntime
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseIntegrationRuntimeAutoUpdate(input string) (*IntegrationRuntimeAutoUpdate, error) {
+	vals := map[string]IntegrationRuntimeAutoUpdate{
+		"off": IntegrationRuntimeAutoUpdateOff,
+		"on":  IntegrationRuntimeAutoUpdateOn,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IntegrationRuntimeAutoUpdate(input)
+	return &out, nil
+}

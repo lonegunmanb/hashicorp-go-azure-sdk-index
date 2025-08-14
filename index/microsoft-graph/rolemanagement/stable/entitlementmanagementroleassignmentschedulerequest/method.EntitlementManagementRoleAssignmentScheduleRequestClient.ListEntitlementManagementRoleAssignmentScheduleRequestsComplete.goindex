@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/stable/entitlementmanagementroleassignmentschedulerequest
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c EntitlementManagementRoleAssignmentScheduleRequestClient) ListEntitlementManagementRoleAssignmentScheduleRequestsComplete(ctx context.Context, options ListEntitlementManagementRoleAssignmentScheduleRequestsOperationOptions) (ListEntitlementManagementRoleAssignmentScheduleRequestsCompleteResult, error) {
+	return c.ListEntitlementManagementRoleAssignmentScheduleRequestsCompleteMatchingPredicate(ctx, options, UnifiedRoleAssignmentScheduleRequestOperationPredicate{})
+}

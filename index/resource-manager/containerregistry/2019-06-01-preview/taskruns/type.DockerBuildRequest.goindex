@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerregistry/2019-06-01-preview/taskruns
+import (
+	"encoding/json"
+	"fmt"
+)
+type DockerBuildRequest struct {
+	AgentConfiguration *AgentProperties   `json:"agentConfiguration,omitempty"`
+	Arguments          *[]Argument        `json:"arguments,omitempty"`
+	Credentials        *Credentials       `json:"credentials,omitempty"`
+	DockerFilePath     string             `json:"dockerFilePath"`
+	ImageNames         *[]string          `json:"imageNames,omitempty"`
+	IsPushEnabled      *bool              `json:"isPushEnabled,omitempty"`
+	NoCache            *bool              `json:"noCache,omitempty"`
+	Platform           PlatformProperties `json:"platform"`
+	SourceLocation     *string            `json:"sourceLocation,omitempty"`
+	Target             *string            `json:"target,omitempty"`
+	Timeout            *int64             `json:"timeout,omitempty"`
+
+	// Fields inherited from RunRequest
+
+	AgentPoolName    *string `json:"agentPoolName,omitempty"`
+	IsArchiveEnabled *bool   `json:"isArchiveEnabled,omitempty"`
+	LogTemplate      *string `json:"logTemplate,omitempty"`
+	Type             string  `json:"type"`
+}

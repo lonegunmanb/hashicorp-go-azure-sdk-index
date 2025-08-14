@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/enterpriseapproleeligibilityschedule
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c EnterpriseAppRoleEligibilityScheduleClient) ListEnterpriseAppRoleEligibilitySchedulesComplete(ctx context.Context, id beta.RoleManagementEnterpriseAppId, options ListEnterpriseAppRoleEligibilitySchedulesOperationOptions) (ListEnterpriseAppRoleEligibilitySchedulesCompleteResult, error) {
+	return c.ListEnterpriseAppRoleEligibilitySchedulesCompleteMatchingPredicate(ctx, id, options, UnifiedRoleEligibilityScheduleOperationPredicate{})
+}

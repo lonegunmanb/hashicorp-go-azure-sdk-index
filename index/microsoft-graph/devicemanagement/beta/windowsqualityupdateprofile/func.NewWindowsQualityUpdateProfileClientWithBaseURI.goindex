@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/windowsqualityupdateprofile
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewWindowsQualityUpdateProfileClientWithBaseURI(sdkApi sdkEnv.Api) (*WindowsQualityUpdateProfileClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "windowsqualityupdateprofile", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating WindowsQualityUpdateProfileClient: %+v", err)
+	}
+
+	return &WindowsQualityUpdateProfileClient{
+		Client: client,
+	}, nil
+}

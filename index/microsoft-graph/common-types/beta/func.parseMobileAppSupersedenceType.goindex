@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMobileAppSupersedenceType(input string) (*MobileAppSupersedenceType, error) {
+	vals := map[string]MobileAppSupersedenceType{
+		"replace": MobileAppSupersedenceType_Replace,
+		"update":  MobileAppSupersedenceType_Update,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MobileAppSupersedenceType(input)
+	return &out, nil
+}

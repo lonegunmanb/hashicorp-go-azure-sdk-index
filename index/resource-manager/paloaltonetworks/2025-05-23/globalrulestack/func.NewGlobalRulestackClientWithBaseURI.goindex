@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-05-23/globalrulestack
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewGlobalRulestackClientWithBaseURI(sdkApi sdkEnv.Api) (*GlobalRulestackClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "globalrulestack", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating GlobalRulestackClient: %+v", err)
+	}
+
+	return &GlobalRulestackClient{
+		Client: client,
+	}, nil
+}

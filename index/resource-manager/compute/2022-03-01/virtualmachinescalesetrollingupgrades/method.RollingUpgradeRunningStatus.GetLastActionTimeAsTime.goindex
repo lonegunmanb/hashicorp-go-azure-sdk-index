@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2022-03-01/virtualmachinescalesetrollingupgrades
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *RollingUpgradeRunningStatus) GetLastActionTimeAsTime() (*time.Time, error) {
+	if o.LastActionTime == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.LastActionTime, "2006-01-02T15:04:05Z07:00")
+}

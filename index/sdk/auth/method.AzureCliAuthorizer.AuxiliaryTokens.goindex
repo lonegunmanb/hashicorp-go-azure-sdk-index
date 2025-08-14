@@ -1,0 +1,53 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"context"
+	"fmt"
+	"net/http"
+	"os"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	"github.com/hashicorp/go-azure-sdk/sdk/internal/azurecli"
+	"golang.org/x/oauth2"
+)
+func (a *AzureCliAuthorizer) AuxiliaryTokens(_ context.Context, _ *http.Request) ([]*oauth2.Token, error) {
+	if a.conf == nil {
+		return nil, fmt.Errorf("could not request token: conf is nil")
+	}
+
+	// Return early if no auxiliary tenants are configured
+	if len(a.conf.AuxiliaryTenantIDs) == 0 {
+		return []*oauth2.Token{}, nil
+	}
+
+	// Try to detect if we're running in Cloud Shell
+	if cloudShell := os.Getenv("AZUREPS_HOST_ENVIRONMENT"); strings.HasPrefix(cloudShell, "cloud-shell/") {
+		return nil, fmt.Errorf("auxiliary tokens not supported in Cloud Shell")
+	}
+
+	azArgs := []string{"account", "get-access-token"}
+
+	scope, err := environments.Scope(a.conf.Api)
+	if err != nil {
+		return nil, fmt.Errorf("determining scope for %q: %+v", a.conf.Api.Name(), err)
+	}
+	azArgs = append(azArgs, "--scope", *scope)
+
+	tokens := make([]*oauth2.Token, 0)
+	for _, tenantId := range a.conf.AuxiliaryTenantIDs {
+		argsWithTenant := append(azArgs, "--tenant", tenantId)
+
+		var token azureCliToken
+		if err = azurecli.JSONUnmarshalAzCmd(false, &token, argsWithTenant...); err != nil {
+			return nil, err
+		}
+
+		tokens = append(tokens, &oauth2.Token{
+			AccessToken: token.AccessToken,
+			TokenType:   token.TokenType,
+		})
+	}
+
+	return tokens, nil
+}

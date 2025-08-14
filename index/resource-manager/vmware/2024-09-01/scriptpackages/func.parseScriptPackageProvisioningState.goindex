@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2024-09-01/scriptpackages
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseScriptPackageProvisioningState(input string) (*ScriptPackageProvisioningState, error) {
+	vals := map[string]ScriptPackageProvisioningState{
+		"canceled":  ScriptPackageProvisioningStateCanceled,
+		"failed":    ScriptPackageProvisioningStateFailed,
+		"succeeded": ScriptPackageProvisioningStateSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ScriptPackageProvisioningState(input)
+	return &out, nil
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2024-09-01/provisionednetworks
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseProvisionedNetworkProvisioningState(input string) (*ProvisionedNetworkProvisioningState, error) {
+	vals := map[string]ProvisionedNetworkProvisioningState{
+		"canceled":  ProvisionedNetworkProvisioningStateCanceled,
+		"failed":    ProvisionedNetworkProvisioningStateFailed,
+		"succeeded": ProvisionedNetworkProvisioningStateSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ProvisionedNetworkProvisioningState(input)
+	return &out, nil
+}

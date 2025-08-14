@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/orbital/2022-11-01/spacecraft
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSpacecraftClientWithBaseURI(sdkApi sdkEnv.Api) (*SpacecraftClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "spacecraft", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SpacecraftClient: %+v", err)
+	}
+
+	return &SpacecraftClient{
+		Client: client,
+	}, nil
+}

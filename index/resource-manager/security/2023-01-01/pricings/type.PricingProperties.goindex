@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/security/2023-01-01/pricings
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type PricingProperties struct {
+	Deprecated             *bool        `json:"deprecated,omitempty"`
+	EnablementTime         *string      `json:"enablementTime,omitempty"`
+	Extensions             *[]Extension `json:"extensions,omitempty"`
+	FreeTrialRemainingTime *string      `json:"freeTrialRemainingTime,omitempty"`
+	PricingTier            PricingTier  `json:"pricingTier"`
+	ReplacedBy             *[]string    `json:"replacedBy,omitempty"`
+	SubPlan                *string      `json:"subPlan,omitempty"`
+}

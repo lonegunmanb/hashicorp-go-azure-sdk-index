@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/sitelistsubscription
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSiteListSubscriptionClientWithBaseURI(sdkApi sdkEnv.Api) (*SiteListSubscriptionClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "sitelistsubscription", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SiteListSubscriptionClient: %+v", err)
+	}
+
+	return &SiteListSubscriptionClient{
+		Client: client,
+	}, nil
+}

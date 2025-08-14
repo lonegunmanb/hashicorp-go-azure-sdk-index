@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/kusto/2024-04-13/dataconnections
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDataConnectionsClientWithBaseURI(sdkApi sdkEnv.Api) (*DataConnectionsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "dataconnections", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DataConnectionsClient: %+v", err)
+	}
+
+	return &DataConnectionsClient{
+		Client: client,
+	}, nil
+}

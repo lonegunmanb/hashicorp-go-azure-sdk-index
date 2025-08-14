@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamprimarychannelfilesfolder
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewJoinedTeamPrimaryChannelFilesFolderClientWithBaseURI(sdkApi sdkEnv.Api) (*JoinedTeamPrimaryChannelFilesFolderClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "joinedteamprimarychannelfilesfolder", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating JoinedTeamPrimaryChannelFilesFolderClient: %+v", err)
+	}
+
+	return &JoinedTeamPrimaryChannelFilesFolderClient{
+		Client: client,
+	}, nil
+}

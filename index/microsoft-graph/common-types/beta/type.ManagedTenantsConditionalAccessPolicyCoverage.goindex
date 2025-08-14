@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ManagedTenantsConditionalAccessPolicyCoverage struct {
+	// The state for the conditional access policy. Possible values are: enabled, disabled,
+	// enabledForReportingButNotEnforced. Required. Read-only.
+	ConditionalAccessPolicyState nullable.Type[string] `json:"conditionalAccessPolicyState,omitempty"`
+
+	// The date and time the conditional access policy was last modified. Required. Read-only.
+	LatestPolicyModifiedDateTime nullable.Type[string] `json:"latestPolicyModifiedDateTime,omitempty"`
+
+	// A flag indicating whether the conditional access policy requires device compliance. Required. Read-only.
+	RequiresDeviceCompliance nullable.Type[bool] `json:"requiresDeviceCompliance,omitempty"`
+
+	// The display name for the managed tenant. Required. Read-only.
+	TenantDisplayName nullable.Type[string] `json:"tenantDisplayName,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

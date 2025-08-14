@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type Command struct {
+	AppServiceName    nullable.Type[string] `json:"appServiceName,omitempty"`
+	Error             nullable.Type[string] `json:"error,omitempty"`
+	PackageFamilyName nullable.Type[string] `json:"packageFamilyName,omitempty"`
+	Payload           *PayloadRequest       `json:"payload,omitempty"`
+	PermissionTicket  nullable.Type[string] `json:"permissionTicket,omitempty"`
+	PostBackUri       nullable.Type[string] `json:"postBackUri,omitempty"`
+	Responsepayload   *PayloadResponse      `json:"responsepayload,omitempty"`
+	Status            nullable.Type[string] `json:"status,omitempty"`
+	Type              nullable.Type[string] `json:"type,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

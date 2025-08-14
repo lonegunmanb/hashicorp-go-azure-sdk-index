@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2024-02-01/metricdefinitions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMetricClass(input string) (*MetricClass, error) {
+	vals := map[string]MetricClass{
+		"availability": MetricClassAvailability,
+		"errors":       MetricClassErrors,
+		"latency":      MetricClassLatency,
+		"saturation":   MetricClassSaturation,
+		"transactions": MetricClassTransactions,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MetricClass(input)
+	return &out, nil
+}

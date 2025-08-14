@@ -1,0 +1,45 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/applicationgateways
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseApplicationGatewaySslCipherSuite(input string) (*ApplicationGatewaySslCipherSuite, error) {
+	vals := map[string]ApplicationGatewaySslCipherSuite{
+		"tls_dhe_dss_with_aes_128_cbc_sha":        ApplicationGatewaySslCipherSuiteTLSDHEDSSWITHAESOneTwoEightCBCSHA,
+		"tls_dhe_dss_with_aes_128_cbc_sha256":     ApplicationGatewaySslCipherSuiteTLSDHEDSSWITHAESOneTwoEightCBCSHATwoFiveSix,
+		"tls_dhe_dss_with_aes_256_cbc_sha":        ApplicationGatewaySslCipherSuiteTLSDHEDSSWITHAESTwoFiveSixCBCSHA,
+		"tls_dhe_dss_with_aes_256_cbc_sha256":     ApplicationGatewaySslCipherSuiteTLSDHEDSSWITHAESTwoFiveSixCBCSHATwoFiveSix,
+		"tls_dhe_dss_with_3des_ede_cbc_sha":       ApplicationGatewaySslCipherSuiteTLSDHEDSSWITHThreeDESEDECBCSHA,
+		"tls_dhe_rsa_with_aes_128_cbc_sha":        ApplicationGatewaySslCipherSuiteTLSDHERSAWITHAESOneTwoEightCBCSHA,
+		"tls_dhe_rsa_with_aes_128_gcm_sha256":     ApplicationGatewaySslCipherSuiteTLSDHERSAWITHAESOneTwoEightGCMSHATwoFiveSix,
+		"tls_dhe_rsa_with_aes_256_cbc_sha":        ApplicationGatewaySslCipherSuiteTLSDHERSAWITHAESTwoFiveSixCBCSHA,
+		"tls_dhe_rsa_with_aes_256_gcm_sha384":     ApplicationGatewaySslCipherSuiteTLSDHERSAWITHAESTwoFiveSixGCMSHAThreeEightFour,
+		"tls_ecdhe_ecdsa_with_aes_128_cbc_sha":    ApplicationGatewaySslCipherSuiteTLSECDHEECDSAWITHAESOneTwoEightCBCSHA,
+		"tls_ecdhe_ecdsa_with_aes_128_cbc_sha256": ApplicationGatewaySslCipherSuiteTLSECDHEECDSAWITHAESOneTwoEightCBCSHATwoFiveSix,
+		"tls_ecdhe_ecdsa_with_aes_128_gcm_sha256": ApplicationGatewaySslCipherSuiteTLSECDHEECDSAWITHAESOneTwoEightGCMSHATwoFiveSix,
+		"tls_ecdhe_ecdsa_with_aes_256_cbc_sha":    ApplicationGatewaySslCipherSuiteTLSECDHEECDSAWITHAESTwoFiveSixCBCSHA,
+		"tls_ecdhe_ecdsa_with_aes_256_cbc_sha384": ApplicationGatewaySslCipherSuiteTLSECDHEECDSAWITHAESTwoFiveSixCBCSHAThreeEightFour,
+		"tls_ecdhe_ecdsa_with_aes_256_gcm_sha384": ApplicationGatewaySslCipherSuiteTLSECDHEECDSAWITHAESTwoFiveSixGCMSHAThreeEightFour,
+		"tls_ecdhe_rsa_with_aes_128_cbc_sha":      ApplicationGatewaySslCipherSuiteTLSECDHERSAWITHAESOneTwoEightCBCSHA,
+		"tls_ecdhe_rsa_with_aes_128_cbc_sha256":   ApplicationGatewaySslCipherSuiteTLSECDHERSAWITHAESOneTwoEightCBCSHATwoFiveSix,
+		"tls_ecdhe_rsa_with_aes_128_gcm_sha256":   ApplicationGatewaySslCipherSuiteTLSECDHERSAWITHAESOneTwoEightGCMSHATwoFiveSix,
+		"tls_ecdhe_rsa_with_aes_256_cbc_sha":      ApplicationGatewaySslCipherSuiteTLSECDHERSAWITHAESTwoFiveSixCBCSHA,
+		"tls_ecdhe_rsa_with_aes_256_cbc_sha384":   ApplicationGatewaySslCipherSuiteTLSECDHERSAWITHAESTwoFiveSixCBCSHAThreeEightFour,
+		"tls_ecdhe_rsa_with_aes_256_gcm_sha384":   ApplicationGatewaySslCipherSuiteTLSECDHERSAWITHAESTwoFiveSixGCMSHAThreeEightFour,
+		"tls_rsa_with_aes_128_cbc_sha":            ApplicationGatewaySslCipherSuiteTLSRSAWITHAESOneTwoEightCBCSHA,
+		"tls_rsa_with_aes_128_cbc_sha256":         ApplicationGatewaySslCipherSuiteTLSRSAWITHAESOneTwoEightCBCSHATwoFiveSix,
+		"tls_rsa_with_aes_128_gcm_sha256":         ApplicationGatewaySslCipherSuiteTLSRSAWITHAESOneTwoEightGCMSHATwoFiveSix,
+		"tls_rsa_with_aes_256_cbc_sha":            ApplicationGatewaySslCipherSuiteTLSRSAWITHAESTwoFiveSixCBCSHA,
+		"tls_rsa_with_aes_256_cbc_sha256":         ApplicationGatewaySslCipherSuiteTLSRSAWITHAESTwoFiveSixCBCSHATwoFiveSix,
+		"tls_rsa_with_aes_256_gcm_sha384":         ApplicationGatewaySslCipherSuiteTLSRSAWITHAESTwoFiveSixGCMSHAThreeEightFour,
+		"tls_rsa_with_3des_ede_cbc_sha":           ApplicationGatewaySslCipherSuiteTLSRSAWITHThreeDESEDECBCSHA,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ApplicationGatewaySslCipherSuite(input)
+	return &out, nil
+}

@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2025-02-15/eventsubscriptions
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c EventSubscriptionsClient) DomainTopicEventSubscriptionsCreateOrUpdateThenPoll(ctx context.Context, id TopicEventSubscriptionId, input EventSubscription) error {
+	result, err := c.DomainTopicEventSubscriptionsCreateOrUpdate(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing DomainTopicEventSubscriptionsCreateOrUpdate: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after DomainTopicEventSubscriptionsCreateOrUpdate: %+v", err)
+	}
+
+	return nil
+}

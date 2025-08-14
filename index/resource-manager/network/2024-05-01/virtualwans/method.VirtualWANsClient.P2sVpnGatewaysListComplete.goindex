@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-05-01/virtualwans
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c VirtualWANsClient) P2sVpnGatewaysListComplete(ctx context.Context, id commonids.SubscriptionId) (P2sVpnGatewaysListCompleteResult, error) {
+	return c.P2sVpnGatewaysListCompleteMatchingPredicate(ctx, id, P2SVpnGatewayOperationPredicate{})
+}

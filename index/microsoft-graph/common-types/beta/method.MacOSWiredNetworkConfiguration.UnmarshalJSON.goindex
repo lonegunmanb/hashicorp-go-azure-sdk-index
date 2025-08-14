@@ -1,0 +1,90 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *MacOSWiredNetworkConfiguration) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AuthenticationMethod                        *WiFiAuthenticationMethod                    `json:"authenticationMethod,omitempty"`
+		DeploymentChannel                           *AppleDeploymentChannel                      `json:"deploymentChannel,omitempty"`
+		EapFastConfiguration                        *EapFastConfiguration                        `json:"eapFastConfiguration,omitempty"`
+		EapType                                     *EapType                                     `json:"eapType,omitempty"`
+		EnableOuterIdentityPrivacy                  nullable.Type[string]                        `json:"enableOuterIdentityPrivacy,omitempty"`
+		NetworkInterface                            *WiredNetworkInterface                       `json:"networkInterface,omitempty"`
+		NetworkName                                 *string                                      `json:"networkName,omitempty"`
+		NonEapAuthenticationMethodForEapTtls        *NonEapAuthenticationMethodForEapTtlsType    `json:"nonEapAuthenticationMethodForEapTtls,omitempty"`
+		RootCertificateForServerValidation          *MacOSTrustedRootCertificate                 `json:"rootCertificateForServerValidation,omitempty"`
+		TrustedServerCertificateNames               *[]string                                    `json:"trustedServerCertificateNames,omitempty"`
+		Assignments                                 *[]DeviceConfigurationAssignment             `json:"assignments,omitempty"`
+		CreatedDateTime                             *string                                      `json:"createdDateTime,omitempty"`
+		Description                                 nullable.Type[string]                        `json:"description,omitempty"`
+		DeviceManagementApplicabilityRuleDeviceMode *DeviceManagementApplicabilityRuleDeviceMode `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+		DeviceManagementApplicabilityRuleOsEdition  *DeviceManagementApplicabilityRuleOsEdition  `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+		DeviceManagementApplicabilityRuleOsVersion  *DeviceManagementApplicabilityRuleOsVersion  `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+		DeviceSettingStateSummaries                 *[]SettingStateDeviceSummary                 `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                        *DeviceConfigurationDeviceOverview           `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                              *[]DeviceConfigurationDeviceStatus           `json:"deviceStatuses,omitempty"`
+		DisplayName                                 *string                                      `json:"displayName,omitempty"`
+		GroupAssignments                            *[]DeviceConfigurationGroupAssignment        `json:"groupAssignments,omitempty"`
+		LastModifiedDateTime                        *string                                      `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                             *[]string                                    `json:"roleScopeTagIds,omitempty"`
+		SupportsScopeTags                           *bool                                        `json:"supportsScopeTags,omitempty"`
+		UserStatusOverview                          *DeviceConfigurationUserOverview             `json:"userStatusOverview,omitempty"`
+		UserStatuses                                *[]DeviceConfigurationUserStatus             `json:"userStatuses,omitempty"`
+		Version                                     *int64                                       `json:"version,omitempty"`
+		Id                                          *string                                      `json:"id,omitempty"`
+		ODataId                                     *string                                      `json:"@odata.id,omitempty"`
+		ODataType                                   *string                                      `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AuthenticationMethod = decoded.AuthenticationMethod
+	s.DeploymentChannel = decoded.DeploymentChannel
+	s.EapFastConfiguration = decoded.EapFastConfiguration
+	s.EapType = decoded.EapType
+	s.EnableOuterIdentityPrivacy = decoded.EnableOuterIdentityPrivacy
+	s.NetworkInterface = decoded.NetworkInterface
+	s.NetworkName = decoded.NetworkName
+	s.NonEapAuthenticationMethodForEapTtls = decoded.NonEapAuthenticationMethodForEapTtls
+	s.RootCertificateForServerValidation = decoded.RootCertificateForServerValidation
+	s.TrustedServerCertificateNames = decoded.TrustedServerCertificateNames
+	s.Assignments = decoded.Assignments
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Description = decoded.Description
+	s.DeviceManagementApplicabilityRuleDeviceMode = decoded.DeviceManagementApplicabilityRuleDeviceMode
+	s.DeviceManagementApplicabilityRuleOsEdition = decoded.DeviceManagementApplicabilityRuleOsEdition
+	s.DeviceManagementApplicabilityRuleOsVersion = decoded.DeviceManagementApplicabilityRuleOsVersion
+	s.DeviceSettingStateSummaries = decoded.DeviceSettingStateSummaries
+	s.DeviceStatusOverview = decoded.DeviceStatusOverview
+	s.DeviceStatuses = decoded.DeviceStatuses
+	s.DisplayName = decoded.DisplayName
+	s.GroupAssignments = decoded.GroupAssignments
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.RoleScopeTagIds = decoded.RoleScopeTagIds
+	s.SupportsScopeTags = decoded.SupportsScopeTags
+	s.UserStatusOverview = decoded.UserStatusOverview
+	s.UserStatuses = decoded.UserStatuses
+	s.Version = decoded.Version
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling MacOSWiredNetworkConfiguration into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["identityCertificateForClientAuthentication"]; ok {
+		impl, err := UnmarshalMacOSCertificateProfileBaseImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'IdentityCertificateForClientAuthentication' for 'MacOSWiredNetworkConfiguration': %+v", err)
+		}
+		s.IdentityCertificateForClientAuthentication = &impl
+	}
+
+	return nil
+}

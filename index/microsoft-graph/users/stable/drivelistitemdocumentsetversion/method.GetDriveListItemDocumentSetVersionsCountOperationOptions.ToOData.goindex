@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/drivelistitemdocumentsetversion
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o GetDriveListItemDocumentSetVersionsCountOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Filter != nil {
+		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	if o.Search != nil {
+		out.Search = *o.Search
+	}
+	return &out
+}

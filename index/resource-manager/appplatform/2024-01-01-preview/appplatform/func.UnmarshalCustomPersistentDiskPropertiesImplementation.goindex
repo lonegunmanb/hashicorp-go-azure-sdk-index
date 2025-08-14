@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/appplatform/2024-01-01-preview/appplatform
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalCustomPersistentDiskPropertiesImplementation(input []byte) (CustomPersistentDiskProperties, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling CustomPersistentDiskProperties into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "AzureFileVolume") {
+		var out AzureFileVolume
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureFileVolume: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseCustomPersistentDiskPropertiesImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseCustomPersistentDiskPropertiesImpl: %+v", err)
+	}
+
+	return RawCustomPersistentDiskPropertiesImpl{
+		customPersistentDiskProperties: parent,
+		Type:                           value,
+		Values:                         temp,
+	}, nil
+
+}

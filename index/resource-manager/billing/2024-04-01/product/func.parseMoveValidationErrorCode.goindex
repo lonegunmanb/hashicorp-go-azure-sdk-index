@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/product
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMoveValidationErrorCode(input string) (*MoveValidationErrorCode, error) {
+	vals := map[string]MoveValidationErrorCode{
+		"billingaccountinactive":              MoveValidationErrorCodeBillingAccountInactive,
+		"destinationbillingprofileinactive":   MoveValidationErrorCodeDestinationBillingProfileInactive,
+		"destinationbillingprofilenotfound":   MoveValidationErrorCodeDestinationBillingProfileNotFound,
+		"destinationbillingprofilepastdue":    MoveValidationErrorCodeDestinationBillingProfilePastDue,
+		"destinationinvoicesectioninactive":   MoveValidationErrorCodeDestinationInvoiceSectionInactive,
+		"destinationinvoicesectionnotfound":   MoveValidationErrorCodeDestinationInvoiceSectionNotFound,
+		"insufficientpermissionondestination": MoveValidationErrorCodeInsufficientPermissionOnDestination,
+		"insufficientpermissiononsource":      MoveValidationErrorCodeInsufficientPermissionOnSource,
+		"invaliddestination":                  MoveValidationErrorCodeInvalidDestination,
+		"invalidsource":                       MoveValidationErrorCodeInvalidSource,
+		"marketplacenotenabledondestination":  MoveValidationErrorCodeMarketplaceNotEnabledOnDestination,
+		"other":                               MoveValidationErrorCodeOther,
+		"productinactive":                     MoveValidationErrorCodeProductInactive,
+		"productnotfound":                     MoveValidationErrorCodeProductNotFound,
+		"producttypenotsupported":             MoveValidationErrorCodeProductTypeNotSupported,
+		"sourcebillingprofilepastdue":         MoveValidationErrorCodeSourceBillingProfilePastDue,
+		"sourceinvoicesectioninactive":        MoveValidationErrorCodeSourceInvoiceSectionInactive,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MoveValidationErrorCode(input)
+	return &out, nil
+}

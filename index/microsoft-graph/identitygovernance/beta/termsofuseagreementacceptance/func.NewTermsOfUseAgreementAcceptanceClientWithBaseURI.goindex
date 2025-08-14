@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/termsofuseagreementacceptance
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTermsOfUseAgreementAcceptanceClientWithBaseURI(sdkApi sdkEnv.Api) (*TermsOfUseAgreementAcceptanceClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "termsofuseagreementacceptance", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TermsOfUseAgreementAcceptanceClient: %+v", err)
+	}
+
+	return &TermsOfUseAgreementAcceptanceClient{
+		Client: client,
+	}, nil
+}

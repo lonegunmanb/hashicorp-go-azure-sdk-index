@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-12-01-preview/manualtrigger
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewManualTriggerClientWithBaseURI(sdkApi sdkEnv.Api) (*ManualTriggerClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "manualtrigger", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ManualTriggerClient: %+v", err)
+	}
+
+	return &ManualTriggerClient{
+		Client: client,
+	}, nil
+}

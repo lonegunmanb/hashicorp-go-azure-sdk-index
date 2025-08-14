@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2021-08-01/dataset
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDataSetKind(input string) (*DataSetKind, error) {
+	vals := map[string]DataSetKind{
+		"adlsgen1file":                 DataSetKindAdlsGenOneFile,
+		"adlsgen1folder":               DataSetKindAdlsGenOneFolder,
+		"adlsgen2file":                 DataSetKindAdlsGenTwoFile,
+		"adlsgen2filesystem":           DataSetKindAdlsGenTwoFileSystem,
+		"adlsgen2folder":               DataSetKindAdlsGenTwoFolder,
+		"blob":                         DataSetKindBlob,
+		"blobfolder":                   DataSetKindBlobFolder,
+		"container":                    DataSetKindContainer,
+		"kustocluster":                 DataSetKindKustoCluster,
+		"kustodatabase":                DataSetKindKustoDatabase,
+		"kustotable":                   DataSetKindKustoTable,
+		"sqldbtable":                   DataSetKindSqlDBTable,
+		"sqldwtable":                   DataSetKindSqlDWTable,
+		"synapseworkspacesqlpooltable": DataSetKindSynapseWorkspaceSqlPoolTable,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DataSetKind(input)
+	return &out, nil
+}

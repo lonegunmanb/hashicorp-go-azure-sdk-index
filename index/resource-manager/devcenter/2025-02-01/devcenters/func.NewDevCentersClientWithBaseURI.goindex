@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/devcenters
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDevCentersClientWithBaseURI(sdkApi sdkEnv.Api) (*DevCentersClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "devcenters", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DevCentersClient: %+v", err)
+	}
+
+	return &DevCentersClient{
+		Client: client,
+	}, nil
+}

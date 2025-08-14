@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/sdk/odata
+import (
+	"encoding/json"
+	"fmt"
+	"net/url"
+	"regexp"
+
+	"github.com/hashicorp/go-uuid"
+)
+func (id Id) MarshalJSON() ([]byte, error) {
+	id2 := regexp.MustCompile(`/v2/`).ReplaceAllString(string(id), `/v1.0/`)
+
+	// For MS Graph, fix invalid IDs by attempting to parse a UUID from them and constructing a valid URI
+	// TODO: improve logic here, currently assumes all invalid IDs are graph entities
+	u, err := url.Parse(id2)
+	if err != nil || u.Scheme == "" || u.Host == "" {
+		matches := regexp.MustCompile(`([^()'"]+)\(['"]([^'"]+)['"]\)`).FindStringSubmatch(id2)
+		if len(matches) != 3 {
+			return nil, fmt.Errorf("Marshaling odata.Id: could not match a GUID")
+		}
+
+		objectType := matches[1]
+		guid := matches[2]
+		if _, err = uuid.ParseUUID(guid); err != nil {
+			return nil, fmt.Errorf("Marshaling odata.Id: %+v", err)
+		}
+
+		// Although we're hard-coding `graph.microsoft.com` here, this doesn't _appear_ to be a problem
+		// The host can seemingly be anything, even complete nonsense, and the API will accept it provided
+		// it can parse out a version number, an object type and a GUID.
+		id2 = fmt.Sprintf("https://graph.microsoft.com/v1.0/%s/%s", objectType, guid)
+	}
+
+	return json.Marshal(id2)
+}

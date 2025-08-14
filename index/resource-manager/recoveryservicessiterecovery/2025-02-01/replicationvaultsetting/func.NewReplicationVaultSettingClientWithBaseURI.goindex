@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationvaultsetting
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewReplicationVaultSettingClientWithBaseURI(sdkApi sdkEnv.Api) (*ReplicationVaultSettingClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "replicationvaultsetting", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ReplicationVaultSettingClient: %+v", err)
+	}
+
+	return &ReplicationVaultSettingClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/addons
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c AddonsClient) ListByRoleCompleteMatchingPredicate(ctx context.Context, id RoleId, predicate AddonOperationPredicate) (result ListByRoleCompleteResult, err error) {
+	items := make([]Addon, 0)
+
+	resp, err := c.ListByRole(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByRoleCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

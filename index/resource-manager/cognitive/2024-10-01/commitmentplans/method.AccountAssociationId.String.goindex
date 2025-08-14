@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cognitive/2024-10-01/commitmentplans
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id AccountAssociationId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Commitment Plan Name: %q", id.CommitmentPlanName),
+		fmt.Sprintf("Account Association Name: %q", id.AccountAssociationName),
+	}
+	return fmt.Sprintf("Account Association (%s)", strings.Join(components, "\n"))
+}

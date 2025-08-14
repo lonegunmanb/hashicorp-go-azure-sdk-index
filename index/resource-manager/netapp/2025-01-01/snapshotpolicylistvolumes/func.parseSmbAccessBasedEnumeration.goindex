@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-01-01/snapshotpolicylistvolumes
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSmbAccessBasedEnumeration(input string) (*SmbAccessBasedEnumeration, error) {
+	vals := map[string]SmbAccessBasedEnumeration{
+		"disabled": SmbAccessBasedEnumerationDisabled,
+		"enabled":  SmbAccessBasedEnumerationEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SmbAccessBasedEnumeration(input)
+	return &out, nil
+}

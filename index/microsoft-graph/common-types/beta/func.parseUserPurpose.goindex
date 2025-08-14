@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseUserPurpose(input string) (*UserPurpose, error) {
+	vals := map[string]UserPurpose{
+		"equipment": UserPurpose_Equipment,
+		"linked":    UserPurpose_Linked,
+		"others":    UserPurpose_Others,
+		"room":      UserPurpose_Room,
+		"shared":    UserPurpose_Shared,
+		"unknown":   UserPurpose_Unknown,
+		"user":      UserPurpose_User,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UserPurpose(input)
+	return &out, nil
+}

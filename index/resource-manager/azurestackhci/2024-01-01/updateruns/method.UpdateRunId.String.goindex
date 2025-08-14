@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/azurestackhci/2024-01-01/updateruns
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id UpdateRunId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Cluster Name: %q", id.ClusterName),
+		fmt.Sprintf("Update Name: %q", id.UpdateName),
+		fmt.Sprintf("Update Run Name: %q", id.UpdateRunName),
+	}
+	return fmt.Sprintf("Update Run (%s)", strings.Join(components, "\n"))
+}

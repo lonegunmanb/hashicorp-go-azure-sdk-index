@@ -1,0 +1,50 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *AttendanceRecord) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AttendanceIntervals             *[]AttendanceInterval                        `json:"attendanceIntervals,omitempty"`
+		EmailAddress                    nullable.Type[string]                        `json:"emailAddress,omitempty"`
+		ExternalRegistrationInformation *VirtualEventExternalRegistrationInformation `json:"externalRegistrationInformation,omitempty"`
+		RegistrantId                    nullable.Type[string]                        `json:"registrantId,omitempty"`
+		RegistrationId                  nullable.Type[string]                        `json:"registrationId,omitempty"`
+		Role                            nullable.Type[string]                        `json:"role,omitempty"`
+		TotalAttendanceInSeconds        nullable.Type[int64]                         `json:"totalAttendanceInSeconds,omitempty"`
+		Id                              *string                                      `json:"id,omitempty"`
+		ODataId                         *string                                      `json:"@odata.id,omitempty"`
+		ODataType                       *string                                      `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AttendanceIntervals = decoded.AttendanceIntervals
+	s.EmailAddress = decoded.EmailAddress
+	s.ExternalRegistrationInformation = decoded.ExternalRegistrationInformation
+	s.RegistrantId = decoded.RegistrantId
+	s.RegistrationId = decoded.RegistrationId
+	s.Role = decoded.Role
+	s.TotalAttendanceInSeconds = decoded.TotalAttendanceInSeconds
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling AttendanceRecord into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["identity"]; ok {
+		impl, err := UnmarshalIdentityImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Identity' for 'AttendanceRecord': %+v", err)
+		}
+		s.Identity = impl
+	}
+
+	return nil
+}

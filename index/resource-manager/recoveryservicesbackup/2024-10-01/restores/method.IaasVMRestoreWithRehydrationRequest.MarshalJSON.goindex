@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2024-10-01/restores
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+func (s IaasVMRestoreWithRehydrationRequest) MarshalJSON() ([]byte, error) {
+	type wrapper IaasVMRestoreWithRehydrationRequest
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling IaasVMRestoreWithRehydrationRequest: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling IaasVMRestoreWithRehydrationRequest: %+v", err)
+	}
+
+	decoded["objectType"] = "IaasVMRestoreWithRehydrationRequest"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling IaasVMRestoreWithRehydrationRequest: %+v", err)
+	}
+
+	return encoded, nil
+}

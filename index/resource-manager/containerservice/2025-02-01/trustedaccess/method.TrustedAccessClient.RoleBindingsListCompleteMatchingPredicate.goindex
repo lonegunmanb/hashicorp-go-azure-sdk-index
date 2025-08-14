@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerservice/2025-02-01/trustedaccess
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c TrustedAccessClient) RoleBindingsListCompleteMatchingPredicate(ctx context.Context, id commonids.KubernetesClusterId, predicate TrustedAccessRoleBindingOperationPredicate) (result RoleBindingsListCompleteResult, err error) {
+	items := make([]TrustedAccessRoleBinding, 0)
+
+	resp, err := c.RoleBindingsList(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = RoleBindingsListCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

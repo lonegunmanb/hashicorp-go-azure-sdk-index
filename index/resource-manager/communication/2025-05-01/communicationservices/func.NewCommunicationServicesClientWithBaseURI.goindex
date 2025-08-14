@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/communication/2025-05-01/communicationservices
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewCommunicationServicesClientWithBaseURI(sdkApi sdkEnv.Api) (*CommunicationServicesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "communicationservices", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating CommunicationServicesClient: %+v", err)
+	}
+
+	return &CommunicationServicesClient{
+		Client: client,
+	}, nil
+}

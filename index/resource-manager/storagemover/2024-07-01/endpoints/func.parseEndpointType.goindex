@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagemover/2024-07-01/endpoints
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEndpointType(input string) (*EndpointType, error) {
+	vals := map[string]EndpointType{
+		"azurestorageblobcontainer": EndpointTypeAzureStorageBlobContainer,
+		"azurestoragesmbfileshare":  EndpointTypeAzureStorageSmbFileShare,
+		"nfsmount":                  EndpointTypeNfsMount,
+		"smbmount":                  EndpointTypeSmbMount,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EndpointType(input)
+	return &out, nil
+}

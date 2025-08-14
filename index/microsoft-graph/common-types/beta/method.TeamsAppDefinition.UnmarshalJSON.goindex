@@ -1,0 +1,64 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *TeamsAppDefinition) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AllowedInstallationScopes *TeamsAppInstallationScopes        `json:"allowedInstallationScopes,omitempty"`
+		Authorization             *TeamsAppAuthorization             `json:"authorization,omitempty"`
+		AzureADAppId              nullable.Type[string]              `json:"azureADAppId,omitempty"`
+		Bot                       *TeamworkBot                       `json:"bot,omitempty"`
+		ColorIcon                 *TeamsAppIcon                      `json:"colorIcon,omitempty"`
+		DashboardCards            *[]TeamsAppDashboardCardDefinition `json:"dashboardCards,omitempty"`
+		Description               nullable.Type[string]              `json:"description,omitempty"`
+		DisplayName               nullable.Type[string]              `json:"displayName,omitempty"`
+		LastModifiedDateTime      nullable.Type[string]              `json:"lastModifiedDateTime,omitempty"`
+		OutlineIcon               *TeamsAppIcon                      `json:"outlineIcon,omitempty"`
+		PublishingState           *TeamsAppPublishingState           `json:"publishingState,omitempty"`
+		Shortdescription          nullable.Type[string]              `json:"shortdescription,omitempty"`
+		TeamsAppId                nullable.Type[string]              `json:"teamsAppId,omitempty"`
+		Version                   nullable.Type[string]              `json:"version,omitempty"`
+		Id                        *string                            `json:"id,omitempty"`
+		ODataId                   *string                            `json:"@odata.id,omitempty"`
+		ODataType                 *string                            `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AllowedInstallationScopes = decoded.AllowedInstallationScopes
+	s.Authorization = decoded.Authorization
+	s.AzureADAppId = decoded.AzureADAppId
+	s.Bot = decoded.Bot
+	s.ColorIcon = decoded.ColorIcon
+	s.DashboardCards = decoded.DashboardCards
+	s.Description = decoded.Description
+	s.DisplayName = decoded.DisplayName
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.OutlineIcon = decoded.OutlineIcon
+	s.PublishingState = decoded.PublishingState
+	s.Shortdescription = decoded.Shortdescription
+	s.TeamsAppId = decoded.TeamsAppId
+	s.Version = decoded.Version
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling TeamsAppDefinition into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["createdBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'CreatedBy' for 'TeamsAppDefinition': %+v", err)
+		}
+		s.CreatedBy = impl
+	}
+
+	return nil
+}

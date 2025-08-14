@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicebus/2024-01-01/queuesauthorizationrule
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id QueueAuthorizationRuleId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Namespace Name: %q", id.NamespaceName),
+		fmt.Sprintf("Queue Name: %q", id.QueueName),
+		fmt.Sprintf("Authorization Rule Name: %q", id.AuthorizationRuleName),
+	}
+	return fmt.Sprintf("Queue Authorization Rule (%s)", strings.Join(components, "\n"))
+}

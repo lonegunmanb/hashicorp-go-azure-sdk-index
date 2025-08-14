@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRiskState(input string) (*RiskState, error) {
+	vals := map[string]RiskState{
+		"atrisk":               RiskState_AtRisk,
+		"confirmedcompromised": RiskState_ConfirmedCompromised,
+		"confirmedsafe":        RiskState_ConfirmedSafe,
+		"dismissed":            RiskState_Dismissed,
+		"none":                 RiskState_None,
+		"remediated":           RiskState_Remediated,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RiskState(input)
+	return &out, nil
+}

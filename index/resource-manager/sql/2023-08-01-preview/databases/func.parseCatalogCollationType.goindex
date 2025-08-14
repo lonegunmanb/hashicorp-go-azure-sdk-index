@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/databases
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCatalogCollationType(input string) (*CatalogCollationType, error) {
+	vals := map[string]CatalogCollationType{
+		"database_default":             CatalogCollationTypeDATABASEDEFAULT,
+		"sql_latin1_general_cp1_ci_as": CatalogCollationTypeSQLLatinOneGeneralCPOneCIAS,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CatalogCollationType(input)
+	return &out, nil
+}

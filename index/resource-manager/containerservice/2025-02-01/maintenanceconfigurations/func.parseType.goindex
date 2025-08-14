@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerservice/2025-02-01/maintenanceconfigurations
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseType(input string) (*Type, error) {
+	vals := map[string]Type{
+		"first":  TypeFirst,
+		"fourth": TypeFourth,
+		"last":   TypeLast,
+		"second": TypeSecond,
+		"third":  TypeThird,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Type(input)
+	return &out, nil
+}

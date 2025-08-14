@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/authenticationeventsflow
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAuthenticationEventsFlowClientWithBaseURI(sdkApi sdkEnv.Api) (*AuthenticationEventsFlowClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "authenticationeventsflow", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AuthenticationEventsFlowClient: %+v", err)
+	}
+
+	return &AuthenticationEventsFlowClient{
+		Client: client,
+	}, nil
+}

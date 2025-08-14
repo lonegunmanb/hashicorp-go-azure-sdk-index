@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2019-10-01/reservationsummaries
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ReservationId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.StaticSegment("staticProviders", "providers", "providers"),
+		resourceids.ResourceProviderSegment("staticMicrosoftCapacity", "Microsoft.Capacity", "Microsoft.Capacity"),
+		resourceids.StaticSegment("staticReservationOrders", "reservationOrders", "reservationOrders"),
+		resourceids.UserSpecifiedSegment("reservationOrderId", "reservationOrderId"),
+		resourceids.StaticSegment("staticReservations", "reservations", "reservations"),
+		resourceids.UserSpecifiedSegment("reservationId", "reservationId"),
+	}
+}

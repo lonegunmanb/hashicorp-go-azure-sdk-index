@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/credits
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id BillingProfileId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.StaticSegment("staticProviders", "providers", "providers"),
+		resourceids.ResourceProviderSegment("staticMicrosoftBilling", "Microsoft.Billing", "Microsoft.Billing"),
+		resourceids.StaticSegment("staticBillingAccounts", "billingAccounts", "billingAccounts"),
+		resourceids.UserSpecifiedSegment("billingAccountId", "billingAccountId"),
+		resourceids.StaticSegment("staticBillingProfiles", "billingProfiles", "billingProfiles"),
+		resourceids.UserSpecifiedSegment("billingProfileId", "billingProfileId"),
+	}
+}

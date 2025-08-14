@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/nginx/2024-11-01-preview/nginxcertificate
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewNginxCertificateClientWithBaseURI(sdkApi sdkEnv.Api) (*NginxCertificateClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "nginxcertificate", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating NginxCertificateClient: %+v", err)
+	}
+
+	return &NginxCertificateClient{
+		Client: client,
+	}, nil
+}

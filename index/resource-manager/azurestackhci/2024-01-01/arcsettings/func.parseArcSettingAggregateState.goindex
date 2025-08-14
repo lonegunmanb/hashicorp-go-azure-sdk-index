@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/azurestackhci/2024-01-01/arcsettings
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseArcSettingAggregateState(input string) (*ArcSettingAggregateState, error) {
+	vals := map[string]ArcSettingAggregateState{
+		"accepted":           ArcSettingAggregateStateAccepted,
+		"canceled":           ArcSettingAggregateStateCanceled,
+		"connected":          ArcSettingAggregateStateConnected,
+		"creating":           ArcSettingAggregateStateCreating,
+		"deleted":            ArcSettingAggregateStateDeleted,
+		"deleting":           ArcSettingAggregateStateDeleting,
+		"disableinprogress":  ArcSettingAggregateStateDisableInProgress,
+		"disconnected":       ArcSettingAggregateStateDisconnected,
+		"error":              ArcSettingAggregateStateError,
+		"failed":             ArcSettingAggregateStateFailed,
+		"inprogress":         ArcSettingAggregateStateInProgress,
+		"moving":             ArcSettingAggregateStateMoving,
+		"notspecified":       ArcSettingAggregateStateNotSpecified,
+		"partiallyconnected": ArcSettingAggregateStatePartiallyConnected,
+		"partiallysucceeded": ArcSettingAggregateStatePartiallySucceeded,
+		"provisioning":       ArcSettingAggregateStateProvisioning,
+		"succeeded":          ArcSettingAggregateStateSucceeded,
+		"updating":           ArcSettingAggregateStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ArcSettingAggregateState(input)
+	return &out, nil
+}

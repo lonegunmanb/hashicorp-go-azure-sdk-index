@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/mobiledevicemanagementpolicyincludedgroup
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewMobileDeviceManagementPolicyIncludedGroupClientWithBaseURI(sdkApi sdkEnv.Api) (*MobileDeviceManagementPolicyIncludedGroupClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "mobiledevicemanagementpolicyincludedgroup", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating MobileDeviceManagementPolicyIncludedGroupClient: %+v", err)
+	}
+
+	return &MobileDeviceManagementPolicyIncludedGroupClient{
+		Client: client,
+	}, nil
+}

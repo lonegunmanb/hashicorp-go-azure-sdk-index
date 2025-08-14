@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/integrationruntimeobjectmetadata
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s SsisPackage) MarshalJSON() ([]byte, error) {
+	type wrapper SsisPackage
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling SsisPackage: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling SsisPackage: %+v", err)
+	}
+
+	decoded["type"] = "Package"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling SsisPackage: %+v", err)
+	}
+
+	return encoded, nil
+}

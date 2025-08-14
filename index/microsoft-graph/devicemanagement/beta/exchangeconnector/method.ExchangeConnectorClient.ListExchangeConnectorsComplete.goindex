@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/exchangeconnector
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ExchangeConnectorClient) ListExchangeConnectorsComplete(ctx context.Context, options ListExchangeConnectorsOperationOptions) (ListExchangeConnectorsCompleteResult, error) {
+	return c.ListExchangeConnectorsCompleteMatchingPredicate(ctx, options, DeviceManagementExchangeConnectorOperationPredicate{})
+}

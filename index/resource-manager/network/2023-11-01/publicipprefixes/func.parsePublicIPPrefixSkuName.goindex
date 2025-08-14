@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-11-01/publicipprefixes
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePublicIPPrefixSkuName(input string) (*PublicIPPrefixSkuName, error) {
+	vals := map[string]PublicIPPrefixSkuName{
+		"standard": PublicIPPrefixSkuNameStandard,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PublicIPPrefixSkuName(input)
+	return &out, nil
+}

@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/entities
+import (
+	"encoding/json"
+	"fmt"
+)
+type AnomalyTimelineItem struct {
+	AzureResourceId string    `json:"azureResourceId"`
+	Description     *string   `json:"description,omitempty"`
+	DisplayName     string    `json:"displayName"`
+	EndTimeUtc      string    `json:"endTimeUtc"`
+	Intent          *string   `json:"intent,omitempty"`
+	ProductName     *string   `json:"productName,omitempty"`
+	Reasons         *[]string `json:"reasons,omitempty"`
+	StartTimeUtc    string    `json:"startTimeUtc"`
+	Techniques      *[]string `json:"techniques,omitempty"`
+	TimeGenerated   string    `json:"timeGenerated"`
+	Vendor          *string   `json:"vendor,omitempty"`
+
+	// Fields inherited from EntityTimelineItem
+
+	Kind EntityTimelineKind `json:"kind"`
+}

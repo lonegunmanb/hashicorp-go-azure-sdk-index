@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2025-06-01/contentpackages
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewContentPackagesClientWithBaseURI(sdkApi sdkEnv.Api) (*ContentPackagesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "contentpackages", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ContentPackagesClient: %+v", err)
+	}
+
+	return &ContentPackagesClient{
+		Client: client,
+	}, nil
+}

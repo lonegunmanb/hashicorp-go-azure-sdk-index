@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type RecommendLabelAction struct {
+	ActionSource *ActionSource `json:"actionSource,omitempty"`
+
+	// Actions to take if the label is accepted by the user.
+	Actions *[]InformationProtectionAction `json:"actions,omitempty"`
+
+	// The label that is being recommended.
+	Label *LabelDetails `json:"label,omitempty"`
+
+	// The sensitive information type GUIDs that caused the recommendation to be given.
+	ResponsibleSensitiveTypeIds *[]string `json:"responsibleSensitiveTypeIds,omitempty"`
+
+	// Fields inherited from InformationProtectionAction
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

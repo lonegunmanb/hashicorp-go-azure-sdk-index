@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseReferenceNumeric(input string) (*ReferenceNumeric, error) {
+	vals := map[string]ReferenceNumeric{
+		"inf": ReferenceNumeric_INF,
+		"nan": ReferenceNumeric_NaN,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ReferenceNumeric(input)
+	return &out, nil
+}

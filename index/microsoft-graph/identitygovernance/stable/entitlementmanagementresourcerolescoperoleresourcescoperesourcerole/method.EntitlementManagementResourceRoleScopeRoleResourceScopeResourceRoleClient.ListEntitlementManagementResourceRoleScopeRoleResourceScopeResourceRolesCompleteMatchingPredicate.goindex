@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerolescoperoleresourcescoperesourcerole
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c EntitlementManagementResourceRoleScopeRoleResourceScopeResourceRoleClient) ListEntitlementManagementResourceRoleScopeRoleResourceScopeResourceRolesCompleteMatchingPredicate(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRoleScopeIdRoleResourceScopeId, options ListEntitlementManagementResourceRoleScopeRoleResourceScopeResourceRolesOperationOptions, predicate AccessPackageResourceRoleOperationPredicate) (result ListEntitlementManagementResourceRoleScopeRoleResourceScopeResourceRolesCompleteResult, err error) {
+	items := make([]stable.AccessPackageResourceRole, 0)
+
+	resp, err := c.ListEntitlementManagementResourceRoleScopeRoleResourceScopeResourceRoles(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListEntitlementManagementResourceRoleScopeRoleResourceScopeResourceRolesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

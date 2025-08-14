@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type SolutionsRoot struct {
+	Approval      *ApprovalSolution  `json:"approval,omitempty"`
+	BackupRestore *BackupRestoreRoot `json:"backupRestore,omitempty"`
+
+	// A collection of businesses in Microsoft Bookings. Read-only. Nullable.
+	BookingBusinesses *[]BookingBusiness `json:"bookingBusinesses,omitempty"`
+
+	// A collection of monetary currencies supported by a bookingBusiness. Read-only. Nullable.
+	BookingCurrencies *[]BookingCurrency `json:"bookingCurrencies,omitempty"`
+
+	// A collection of scenarios that contain relevant data and configuration information for a specific problem domain.
+	BusinessScenarios *[]BusinessScenario `json:"businessScenarios,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// A collection of virtual events.
+	VirtualEvents *VirtualEventsRoot `json:"virtualEvents,omitempty"`
+}

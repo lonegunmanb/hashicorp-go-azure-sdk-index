@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEducationAssignmentStatus(input string) (*EducationAssignmentStatus, error) {
+	vals := map[string]EducationAssignmentStatus{
+		"assigned":  EducationAssignmentStatus_Assigned,
+		"draft":     EducationAssignmentStatus_Draft,
+		"inactive":  EducationAssignmentStatus_Inactive,
+		"published": EducationAssignmentStatus_Published,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EducationAssignmentStatus(input)
+	return &out, nil
+}

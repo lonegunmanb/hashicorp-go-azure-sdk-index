@@ -1,0 +1,72 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ProjectParticipation struct {
+	// Contains categories a user has associated with the project (for example, digital transformation, oil rig).
+	Categories *[]string `json:"categories,omitempty"`
+
+	// Contains detailed information about the client the project was for.
+	Client *CompanyDetail `json:"client,omitempty"`
+
+	// Contains experience scenario tags a user has associated with the interest. Allowed values in the collection are:
+	// askMeAbout, ableToMentor, wantsToLearn, wantsToImprove.
+	CollaborationTags *[]string `json:"collaborationTags,omitempty"`
+
+	// Lists people that also worked on the project.
+	Colleagues *[]RelatedPerson `json:"colleagues,omitempty"`
+
+	// Contains detail about the user's role on the project.
+	Detail *PositionDetail `json:"detail,omitempty"`
+
+	// Contains a friendly name for the project.
+	DisplayName *string `json:"displayName,omitempty"`
+
+	// The Person or people who sponsored the project.
+	Sponsors *[]RelatedPerson `json:"sponsors,omitempty"`
+
+	ThumbnailUrl nullable.Type[string] `json:"thumbnailUrl,omitempty"`
+
+	// Fields inherited from ItemFacet
+
+	// The audiences that are able to see the values contained within the associated entity. Possible values are: me,
+	// family, contacts, groupMembers, organization, federatedOrganizations, everyone, unknownFutureValue.
+	AllowedAudiences *AllowedAudiences `json:"allowedAudiences,omitempty"`
+
+	CreatedBy IdentitySet `json:"createdBy"`
+
+	// Provides the dateTimeOffset for when the entity was created.
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+
+	// Contains inference detail if the entity is inferred by the creating or modifying application.
+	Inference *InferenceData `json:"inference,omitempty"`
+
+	IsSearchable   nullable.Type[bool] `json:"isSearchable,omitempty"`
+	LastModifiedBy IdentitySet         `json:"lastModifiedBy"`
+
+	// Provides the dateTimeOffset for when the entity was created.
+	LastModifiedDateTime *string `json:"lastModifiedDateTime,omitempty"`
+
+	// Where the values within an entity originated if synced from another service.
+	Source *PersonDataSources `json:"source,omitempty"`
+
+	// Where the values within an entity originated if synced from another source.
+	Sources *[]ProfileSourceAnnotation `json:"sources,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

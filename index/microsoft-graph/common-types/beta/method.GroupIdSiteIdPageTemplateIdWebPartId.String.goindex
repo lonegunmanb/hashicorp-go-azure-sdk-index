@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id GroupIdSiteIdPageTemplateIdWebPartId) String() string {
+	components := []string{
+		fmt.Sprintf("Group: %q", id.GroupId),
+		fmt.Sprintf("Site: %q", id.SiteId),
+		fmt.Sprintf("Page Template: %q", id.PageTemplateId),
+		fmt.Sprintf("Web Part: %q", id.WebPartId),
+	}
+	return fmt.Sprintf("Group Id Site Id Page Template Id Web Part (%s)", strings.Join(components, "\n"))
+}

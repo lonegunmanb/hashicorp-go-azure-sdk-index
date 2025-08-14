@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicelinker/2024-04-01/connector
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDryrunActionName(input string) (*DryrunActionName, error) {
+	vals := map[string]DryrunActionName{
+		"createorupdate": DryrunActionNameCreateOrUpdate,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DryrunActionName(input)
+	return &out, nil
+}

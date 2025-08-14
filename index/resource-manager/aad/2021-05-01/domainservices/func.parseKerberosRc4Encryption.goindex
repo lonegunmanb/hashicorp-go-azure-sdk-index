@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/aad/2021-05-01/domainservices
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseKerberosRc4Encryption(input string) (*KerberosRc4Encryption, error) {
+	vals := map[string]KerberosRc4Encryption{
+		"disabled": KerberosRc4EncryptionDisabled,
+		"enabled":  KerberosRc4EncryptionEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := KerberosRc4Encryption(input)
+	return &out, nil
+}

@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/kubernetesconfiguration/2023-05-01/sourcecontrolconfiguration
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ScopedSourceControlConfigurationId) String() string {
+	components := []string{
+		fmt.Sprintf("Scope: %q", id.Scope),
+		fmt.Sprintf("Source Control Configuration Name: %q", id.SourceControlConfigurationName),
+	}
+	return fmt.Sprintf("Scoped Source Control Configuration (%s)", strings.Join(components, "\n"))
+}

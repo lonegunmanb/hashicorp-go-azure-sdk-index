@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/security/v2023_01_01
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/security/2023-01-01/pricings"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	pricingsClient, err := pricings.NewPricingsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Pricings client: %+v", err)
+	}
+	configureFunc(pricingsClient.Client)
+
+	return &Client{
+		Pricings: pricingsClient,
+	}, nil
+}

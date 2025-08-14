@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAndroidManagedStoreAccountAppSyncStatus(input string) (*AndroidManagedStoreAccountAppSyncStatus, error) {
+	vals := map[string]AndroidManagedStoreAccountAppSyncStatus{
+		"androidforworkapierror": AndroidManagedStoreAccountAppSyncStatus_AndroidForWorkApiError,
+		"credentialsnotvalid":    AndroidManagedStoreAccountAppSyncStatus_CredentialsNotValid,
+		"managementserviceerror": AndroidManagedStoreAccountAppSyncStatus_ManagementServiceError,
+		"none":                   AndroidManagedStoreAccountAppSyncStatus_None,
+		"success":                AndroidManagedStoreAccountAppSyncStatus_Success,
+		"unknownerror":           AndroidManagedStoreAccountAppSyncStatus_UnknownError,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AndroidManagedStoreAccountAppSyncStatus(input)
+	return &out, nil
+}

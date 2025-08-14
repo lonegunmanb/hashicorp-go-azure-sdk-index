@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNetworkaccessUsageStatus(input string) (*NetworkaccessUsageStatus, error) {
+	vals := map[string]NetworkaccessUsageStatus{
+		"frequentlyused": NetworkaccessUsageStatus_FrequentlyUsed,
+		"rarelyused":     NetworkaccessUsageStatus_RarelyUsed,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NetworkaccessUsageStatus(input)
+	return &out, nil
+}

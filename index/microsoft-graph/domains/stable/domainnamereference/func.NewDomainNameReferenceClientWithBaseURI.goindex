@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/domains/stable/domainnamereference
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDomainNameReferenceClientWithBaseURI(sdkApi sdkEnv.Api) (*DomainNameReferenceClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "domainnamereference", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DomainNameReferenceClient: %+v", err)
+	}
+
+	return &DomainNameReferenceClient{
+		Client: client,
+	}, nil
+}

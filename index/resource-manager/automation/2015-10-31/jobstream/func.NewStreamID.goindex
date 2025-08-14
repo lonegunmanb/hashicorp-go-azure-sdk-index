@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/jobstream
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func NewStreamID(subscriptionId string, resourceGroupName string, automationAccountName string, jobId string, jobStreamId string) StreamId {
+	return StreamId{
+		SubscriptionId:        subscriptionId,
+		ResourceGroupName:     resourceGroupName,
+		AutomationAccountName: automationAccountName,
+		JobId:                 jobId,
+		JobStreamId:           jobStreamId,
+	}
+}

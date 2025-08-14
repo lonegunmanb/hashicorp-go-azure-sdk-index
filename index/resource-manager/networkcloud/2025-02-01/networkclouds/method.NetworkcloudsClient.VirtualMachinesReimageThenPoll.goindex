@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/networkcloud/2025-02-01/networkclouds
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c NetworkcloudsClient) VirtualMachinesReimageThenPoll(ctx context.Context, id VirtualMachineId) error {
+	result, err := c.VirtualMachinesReimage(ctx, id)
+	if err != nil {
+		return fmt.Errorf("performing VirtualMachinesReimage: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after VirtualMachinesReimage: %+v", err)
+	}
+
+	return nil
+}

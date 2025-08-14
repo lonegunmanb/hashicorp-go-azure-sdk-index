@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/kusto/2024-04-13/dataconnections
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEventGridDataFormat(input string) (*EventGridDataFormat, error) {
+	vals := map[string]EventGridDataFormat{
+		"apacheavro": EventGridDataFormatAPACHEAVRO,
+		"avro":       EventGridDataFormatAVRO,
+		"csv":        EventGridDataFormatCSV,
+		"json":       EventGridDataFormatJSON,
+		"multijson":  EventGridDataFormatMULTIJSON,
+		"orc":        EventGridDataFormatORC,
+		"parquet":    EventGridDataFormatPARQUET,
+		"psv":        EventGridDataFormatPSV,
+		"raw":        EventGridDataFormatRAW,
+		"scsv":       EventGridDataFormatSCSV,
+		"singlejson": EventGridDataFormatSINGLEJSON,
+		"sohsv":      EventGridDataFormatSOHSV,
+		"tsv":        EventGridDataFormatTSV,
+		"tsve":       EventGridDataFormatTSVE,
+		"txt":        EventGridDataFormatTXT,
+		"w3clogfile": EventGridDataFormatWThreeCLOGFILE,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EventGridDataFormat(input)
+	return &out, nil
+}

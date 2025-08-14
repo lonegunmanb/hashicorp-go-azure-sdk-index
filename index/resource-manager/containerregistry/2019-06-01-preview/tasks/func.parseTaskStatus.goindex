@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerregistry/2019-06-01-preview/tasks
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTaskStatus(input string) (*TaskStatus, error) {
+	vals := map[string]TaskStatus{
+		"disabled": TaskStatusDisabled,
+		"enabled":  TaskStatusEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TaskStatus(input)
+	return &out, nil
+}

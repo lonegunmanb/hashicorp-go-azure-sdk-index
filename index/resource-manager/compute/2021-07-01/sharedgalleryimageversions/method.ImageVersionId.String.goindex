@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2021-07-01/sharedgalleryimageversions
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ImageVersionId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
+		fmt.Sprintf("Shared Gallery Name: %q", id.SharedGalleryName),
+		fmt.Sprintf("Image Name: %q", id.ImageName),
+		fmt.Sprintf("Version Name: %q", id.VersionName),
+	}
+	return fmt.Sprintf("Image Version (%s)", strings.Join(components, "\n"))
+}

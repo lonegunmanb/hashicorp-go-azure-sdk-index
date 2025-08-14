@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseScheduleEntityTheme(input string) (*ScheduleEntityTheme, error) {
+	vals := map[string]ScheduleEntityTheme{
+		"blue":       ScheduleEntityTheme_Blue,
+		"darkblue":   ScheduleEntityTheme_DarkBlue,
+		"darkgreen":  ScheduleEntityTheme_DarkGreen,
+		"darkpink":   ScheduleEntityTheme_DarkPink,
+		"darkpurple": ScheduleEntityTheme_DarkPurple,
+		"darkyellow": ScheduleEntityTheme_DarkYellow,
+		"gray":       ScheduleEntityTheme_Gray,
+		"green":      ScheduleEntityTheme_Green,
+		"pink":       ScheduleEntityTheme_Pink,
+		"purple":     ScheduleEntityTheme_Purple,
+		"white":      ScheduleEntityTheme_White,
+		"yellow":     ScheduleEntityTheme_Yellow,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ScheduleEntityTheme(input)
+	return &out, nil
+}

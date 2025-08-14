@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id IdentityConditionalAccessTemplateId) String() string {
+	components := []string{
+		fmt.Sprintf("Conditional Access Template: %q", id.ConditionalAccessTemplateId),
+	}
+	return fmt.Sprintf("Identity Conditional Access Template (%s)", strings.Join(components, "\n"))
+}

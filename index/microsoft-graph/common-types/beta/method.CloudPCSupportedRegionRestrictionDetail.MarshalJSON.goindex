@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s CloudPCSupportedRegionRestrictionDetail) MarshalJSON() ([]byte, error) {
+	type wrapper CloudPCSupportedRegionRestrictionDetail
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling CloudPCSupportedRegionRestrictionDetail: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling CloudPCSupportedRegionRestrictionDetail: %+v", err)
+	}
+
+	delete(decoded, "cPURestricted")
+	delete(decoded, "gPURestricted")
+	delete(decoded, "nestedVirtualizationRestricted")
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling CloudPCSupportedRegionRestrictionDetail: %+v", err)
+	}
+
+	return encoded, nil
+}

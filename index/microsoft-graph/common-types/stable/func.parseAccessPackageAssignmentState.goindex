@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAccessPackageAssignmentState(input string) (*AccessPackageAssignmentState, error) {
+	vals := map[string]AccessPackageAssignmentState{
+		"delivered":          AccessPackageAssignmentState_Delivered,
+		"delivering":         AccessPackageAssignmentState_Delivering,
+		"deliveryfailed":     AccessPackageAssignmentState_DeliveryFailed,
+		"expired":            AccessPackageAssignmentState_Expired,
+		"partiallydelivered": AccessPackageAssignmentState_PartiallyDelivered,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AccessPackageAssignmentState(input)
+	return &out, nil
+}

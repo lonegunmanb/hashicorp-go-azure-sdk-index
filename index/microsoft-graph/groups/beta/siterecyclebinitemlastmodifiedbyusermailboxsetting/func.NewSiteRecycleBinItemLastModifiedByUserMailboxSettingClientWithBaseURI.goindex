@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/siterecyclebinitemlastmodifiedbyusermailboxsetting
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSiteRecycleBinItemLastModifiedByUserMailboxSettingClientWithBaseURI(sdkApi sdkEnv.Api) (*SiteRecycleBinItemLastModifiedByUserMailboxSettingClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "siterecyclebinitemlastmodifiedbyusermailboxsetting", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SiteRecycleBinItemLastModifiedByUserMailboxSettingClient: %+v", err)
+	}
+
+	return &SiteRecycleBinItemLastModifiedByUserMailboxSettingClient{
+		Client: client,
+	}, nil
+}

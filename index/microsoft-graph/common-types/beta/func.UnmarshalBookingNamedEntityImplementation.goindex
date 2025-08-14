@@ -1,0 +1,57 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalBookingNamedEntityImplementation(input []byte) (BookingNamedEntity, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling BookingNamedEntity into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.bookingBusiness") {
+		var out BookingBusiness
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into BookingBusiness: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.bookingPerson") {
+		var out BookingPerson
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into BookingPerson: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.bookingService") {
+		var out BookingService
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into BookingService: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseBookingNamedEntityImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseBookingNamedEntityImpl: %+v", err)
+	}
+
+	return RawBookingNamedEntityImpl{
+		bookingNamedEntity: parent,
+		Type:               value,
+		Values:             temp,
+	}, nil
+
+}

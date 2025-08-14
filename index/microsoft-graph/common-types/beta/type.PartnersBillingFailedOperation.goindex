@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type PartnersBillingFailedOperation struct {
+	Error *PublicError `json:"error,omitempty"`
+
+	// Fields inherited from PartnersBillingOperation
+
+	// The start time of the operation. The timestamp type represents date and time information using ISO 8601 format and is
+	// always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+
+	// The time of the last action of the operation. The timestamp type represents date and time information using ISO 8601
+	// format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+	LastActionDateTime *string `json:"lastActionDateTime,omitempty"`
+
+	// The status of the operation. Possible values are: notStarted, running, completed, failed, unknownFutureValue.
+	Status *LongRunningOperationStatus `json:"status,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

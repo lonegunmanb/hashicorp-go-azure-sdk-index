@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2024-08-01/serverrestart
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseFailoverMode(input string) (*FailoverMode, error) {
+	vals := map[string]FailoverMode{
+		"forcedfailover":    FailoverModeForcedFailover,
+		"forcedswitchover":  FailoverModeForcedSwitchover,
+		"plannedfailover":   FailoverModePlannedFailover,
+		"plannedswitchover": FailoverModePlannedSwitchover,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FailoverMode(input)
+	return &out, nil
+}

@@ -1,0 +1,36 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type BaseWindowsUpdatesComplianceChangeImpl struct {
+	// The date and time when a compliance change was created.
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// True indicates that a compliance change is revoked, preventing further application. Revoking a compliance change is a
+	// final action.
+	IsRevoked nullable.Type[bool] `json:"isRevoked,omitempty"`
+
+	// The date and time when the compliance change was revoked.
+	RevokedDateTime nullable.Type[string] `json:"revokedDateTime,omitempty"`
+
+	// The policy this compliance change is a member of.
+	UpdatePolicy *WindowsUpdatesUpdatePolicy `json:"updatePolicy,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

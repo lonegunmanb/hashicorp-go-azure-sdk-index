@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/webapps
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type BackupSchedule struct {
+	FrequencyInterval     int64         `json:"frequencyInterval"`
+	FrequencyUnit         FrequencyUnit `json:"frequencyUnit"`
+	KeepAtLeastOneBackup  bool          `json:"keepAtLeastOneBackup"`
+	LastExecutionTime     *string       `json:"lastExecutionTime,omitempty"`
+	RetentionPeriodInDays int64         `json:"retentionPeriodInDays"`
+	StartTime             *string       `json:"startTime,omitempty"`
+}

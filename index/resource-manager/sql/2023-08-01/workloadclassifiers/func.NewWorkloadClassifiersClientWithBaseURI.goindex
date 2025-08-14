@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/workloadclassifiers
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewWorkloadClassifiersClientWithBaseURI(sdkApi sdkEnv.Api) (*WorkloadClassifiersClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "workloadclassifiers", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating WorkloadClassifiersClient: %+v", err)
+	}
+
+	return &WorkloadClassifiersClient{
+		Client: client,
+	}, nil
+}

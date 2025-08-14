@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/conditionalaccesspolicy
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ConditionalAccessPolicyClient) ListConditionalAccessPoliciesCompleteMatchingPredicate(ctx context.Context, options ListConditionalAccessPoliciesOperationOptions, predicate ConditionalAccessPolicyOperationPredicate) (result ListConditionalAccessPoliciesCompleteResult, err error) {
+	items := make([]stable.ConditionalAccessPolicy, 0)
+
+	resp, err := c.ListConditionalAccessPolicies(ctx, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListConditionalAccessPoliciesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

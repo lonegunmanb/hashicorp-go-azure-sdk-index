@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/driverootcreatedbyuserserviceprovisioningerror
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DriveRootCreatedByUserServiceProvisioningErrorClient) ListDriveRootCreatedByUserServiceProvisioningErrorsCompleteMatchingPredicate(ctx context.Context, id stable.UserIdDriveId, options ListDriveRootCreatedByUserServiceProvisioningErrorsOperationOptions, predicate ServiceProvisioningErrorOperationPredicate) (result ListDriveRootCreatedByUserServiceProvisioningErrorsCompleteResult, err error) {
+	items := make([]stable.ServiceProvisioningError, 0)
+
+	resp, err := c.ListDriveRootCreatedByUserServiceProvisioningErrors(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListDriveRootCreatedByUserServiceProvisioningErrorsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

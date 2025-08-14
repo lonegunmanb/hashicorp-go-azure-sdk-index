@@ -1,0 +1,36 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type SecurityCategoryTemplate struct {
+	// Represents all subcategories under a particular category.
+	Subcategories *[]SecuritySubcategoryTemplate `json:"subcategories,omitempty"`
+
+	// Fields inherited from SecurityFilePlanDescriptorTemplate
+
+	// Represents the user who created the filePlanDescriptorTemplate column.
+	CreatedBy IdentitySet `json:"createdBy"`
+
+	// Represents the date and time in which the filePlanDescriptorTemplate is created.
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// Unique string that defines a filePlanDescriptorTemplate name.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

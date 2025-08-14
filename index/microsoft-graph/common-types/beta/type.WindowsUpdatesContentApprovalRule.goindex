@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type WindowsUpdatesContentApprovalRule struct {
+	// A filter to determine which content matches the rule on an ongoing basis.
+	ContentFilter WindowsUpdatesContentFilter `json:"contentFilter"`
+
+	// The time before the deployment starts represented in ISO 8601 format for durations.
+	DurationBeforeDeploymentStart nullable.Type[string] `json:"durationBeforeDeploymentStart,omitempty"`
+
+	// Fields inherited from WindowsUpdatesComplianceChangeRule
+
+	// The date and time when the rule was created.
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// The date and time when the rule was last evaluated.
+	LastEvaluatedDateTime nullable.Type[string] `json:"lastEvaluatedDateTime,omitempty"`
+
+	// The date and time when the rule was last modified.
+	LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

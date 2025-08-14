@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resourcegraph/2024-04-01/resources
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseFacetSortOrder(input string) (*FacetSortOrder, error) {
+	vals := map[string]FacetSortOrder{
+		"asc":  FacetSortOrderAsc,
+		"desc": FacetSortOrderDesc,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FacetSortOrder(input)
+	return &out, nil
+}

@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/authorization/2020-10-01/roleeligibilityschedulerequests
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ScopedRoleEligibilityScheduleRequestId) String() string {
+	components := []string{
+		fmt.Sprintf("Scope: %q", id.Scope),
+		fmt.Sprintf("Role Eligibility Schedule Request Name: %q", id.RoleEligibilityScheduleRequestName),
+	}
+	return fmt.Sprintf("Scoped Role Eligibility Schedule Request (%s)", strings.Join(components, "\n"))
+}

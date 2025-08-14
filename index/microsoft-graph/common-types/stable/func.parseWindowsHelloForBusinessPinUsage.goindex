@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWindowsHelloForBusinessPinUsage(input string) (*WindowsHelloForBusinessPinUsage, error) {
+	vals := map[string]WindowsHelloForBusinessPinUsage{
+		"allowed":    WindowsHelloForBusinessPinUsage_Allowed,
+		"disallowed": WindowsHelloForBusinessPinUsage_Disallowed,
+		"required":   WindowsHelloForBusinessPinUsage_Required,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsHelloForBusinessPinUsage(input)
+	return &out, nil
+}

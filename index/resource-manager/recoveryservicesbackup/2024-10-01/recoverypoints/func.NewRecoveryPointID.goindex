@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2024-10-01/recoverypoints
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func NewRecoveryPointID(subscriptionId string, resourceGroupName string, vaultName string, backupFabricName string, protectionContainerName string, protectedItemName string, recoveryPointId string) RecoveryPointId {
+	return RecoveryPointId{
+		SubscriptionId:          subscriptionId,
+		ResourceGroupName:       resourceGroupName,
+		VaultName:               vaultName,
+		BackupFabricName:        backupFabricName,
+		ProtectionContainerName: protectionContainerName,
+		ProtectedItemName:       protectedItemName,
+		RecoveryPointId:         recoveryPointId,
+	}
+}

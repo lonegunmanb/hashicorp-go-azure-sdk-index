@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id MeAppRoleAssignedResourceId) String() string {
+	components := []string{
+		fmt.Sprintf("Service Principal: %q", id.ServicePrincipalId),
+	}
+	return fmt.Sprintf("Me App Role Assigned Resource (%s)", strings.Join(components, "\n"))
+}

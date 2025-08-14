@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/stable/dailyprintusagebyuser
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDailyPrintUsageByUserClientWithBaseURI(sdkApi sdkEnv.Api) (*DailyPrintUsageByUserClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "dailyprintusagebyuser", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DailyPrintUsageByUserClient: %+v", err)
+	}
+
+	return &DailyPrintUsageByUserClient{
+		Client: client,
+	}, nil
+}

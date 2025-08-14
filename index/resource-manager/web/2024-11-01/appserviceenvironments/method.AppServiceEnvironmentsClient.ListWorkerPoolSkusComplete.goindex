@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-11-01/appserviceenvironments
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c AppServiceEnvironmentsClient) ListWorkerPoolSkusComplete(ctx context.Context, id WorkerPoolId) (ListWorkerPoolSkusCompleteResult, error) {
+	return c.ListWorkerPoolSkusCompleteMatchingPredicate(ctx, id, SkuInfoOperationPredicate{})
+}

@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2024-04-01/replicationprotectionclusters
+import (
+	"encoding/json"
+	"fmt"
+)
+type A2ASharedDiskReplicationDetails struct {
+	FailoverRecoveryPointId        *string                           `json:"failoverRecoveryPointId,omitempty"`
+	LastRpoCalculatedTime          *string                           `json:"lastRpoCalculatedTime,omitempty"`
+	ManagementId                   *string                           `json:"managementId,omitempty"`
+	MonitoringJobType              *string                           `json:"monitoringJobType,omitempty"`
+	MonitoringPercentageCompletion *int64                            `json:"monitoringPercentageCompletion,omitempty"`
+	PrimaryFabricLocation          *string                           `json:"primaryFabricLocation,omitempty"`
+	ProtectedManagedDisks          *[]A2AProtectedManagedDiskDetails `json:"protectedManagedDisks,omitempty"`
+	RecoveryFabricLocation         *string                           `json:"recoveryFabricLocation,omitempty"`
+	RpoInSeconds                   *int64                            `json:"rpoInSeconds,omitempty"`
+	SharedDiskIRErrors             *[]A2ASharedDiskIRErrorDetails    `json:"sharedDiskIRErrors,omitempty"`
+	UnprotectedDisks               *[]A2AUnprotectedDiskDetails      `json:"unprotectedDisks,omitempty"`
+
+	// Fields inherited from SharedDiskReplicationProviderSpecificSettings
+
+	InstanceType string `json:"instanceType"`
+}

@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mysql/2023-12-30/locationbasedcapability
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id CapabilitySetId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
+		fmt.Sprintf("Capability Set Name: %q", id.CapabilitySetName),
+	}
+	return fmt.Sprintf("Capability Set (%s)", strings.Join(components, "\n"))
+}

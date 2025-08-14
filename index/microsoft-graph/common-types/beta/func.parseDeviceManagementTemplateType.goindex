@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeviceManagementTemplateType(input string) (*DeviceManagementTemplateType, error) {
+	vals := map[string]DeviceManagementTemplateType{
+		"advancedthreatprotectionsecuritybaseline": DeviceManagementTemplateType_AdvancedThreatProtectionSecurityBaseline,
+		"cloudpc":                                   DeviceManagementTemplateType_CloudPC,
+		"custom":                                    DeviceManagementTemplateType_Custom,
+		"devicecompliance":                          DeviceManagementTemplateType_DeviceCompliance,
+		"deviceconfiguration":                       DeviceManagementTemplateType_DeviceConfiguration,
+		"deviceconfigurationforoffice365":           DeviceManagementTemplateType_DeviceConfigurationForOffice365,
+		"firewallsharedsettings":                    DeviceManagementTemplateType_FirewallSharedSettings,
+		"microsoftedgesecuritybaseline":             DeviceManagementTemplateType_MicrosoftEdgeSecurityBaseline,
+		"microsoftoffice365proplussecuritybaseline": DeviceManagementTemplateType_MicrosoftOffice365ProPlusSecurityBaseline,
+		"securitybaseline":                          DeviceManagementTemplateType_SecurityBaseline,
+		"securitytemplate":                          DeviceManagementTemplateType_SecurityTemplate,
+		"specializeddevices":                        DeviceManagementTemplateType_SpecializedDevices,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceManagementTemplateType(input)
+	return &out, nil
+}

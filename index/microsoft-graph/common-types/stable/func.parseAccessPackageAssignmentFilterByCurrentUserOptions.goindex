@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAccessPackageAssignmentFilterByCurrentUserOptions(input string) (*AccessPackageAssignmentFilterByCurrentUserOptions, error) {
+	vals := map[string]AccessPackageAssignmentFilterByCurrentUserOptions{
+		"createdby": AccessPackageAssignmentFilterByCurrentUserOptions_CreatedBy,
+		"target":    AccessPackageAssignmentFilterByCurrentUserOptions_Target,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AccessPackageAssignmentFilterByCurrentUserOptions(input)
+	return &out, nil
+}

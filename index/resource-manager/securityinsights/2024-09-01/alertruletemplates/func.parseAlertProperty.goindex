@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2024-09-01/alertruletemplates
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAlertProperty(input string) (*AlertProperty, error) {
+	vals := map[string]AlertProperty{
+		"alertlink":            AlertPropertyAlertLink,
+		"confidencelevel":      AlertPropertyConfidenceLevel,
+		"confidencescore":      AlertPropertyConfidenceScore,
+		"extendedlinks":        AlertPropertyExtendedLinks,
+		"productcomponentname": AlertPropertyProductComponentName,
+		"productname":          AlertPropertyProductName,
+		"providername":         AlertPropertyProviderName,
+		"remediationsteps":     AlertPropertyRemediationSteps,
+		"techniques":           AlertPropertyTechniques,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AlertProperty(input)
+	return &out, nil
+}

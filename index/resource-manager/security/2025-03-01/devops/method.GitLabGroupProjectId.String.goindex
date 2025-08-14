@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/security/2025-03-01/devops
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id GitLabGroupProjectId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Security Connector Name: %q", id.SecurityConnectorName),
+		fmt.Sprintf("Git Lab Group Name: %q", id.GitLabGroupName),
+		fmt.Sprintf("Project Name: %q", id.ProjectName),
+	}
+	return fmt.Sprintf("Git Lab Group Project (%s)", strings.Join(components, "\n"))
+}

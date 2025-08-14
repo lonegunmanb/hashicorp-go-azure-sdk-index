@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeviceEnrollmentConfigurationType(input string) (*DeviceEnrollmentConfigurationType, error) {
+	vals := map[string]DeviceEnrollmentConfigurationType{
+		"defaultlimit":                DeviceEnrollmentConfigurationType_DefaultLimit,
+		"defaultplatformrestrictions": DeviceEnrollmentConfigurationType_DefaultPlatformRestrictions,
+		"defaultwindows10enrollmentcompletionpageconfiguration": DeviceEnrollmentConfigurationType_DefaultWindows10EnrollmentCompletionPageConfiguration,
+		"defaultwindowshelloforbusiness":                        DeviceEnrollmentConfigurationType_DefaultWindowsHelloForBusiness,
+		"devicecomanagementauthorityconfiguration":              DeviceEnrollmentConfigurationType_DeviceComanagementAuthorityConfiguration,
+		"enrollmentnotificationsconfiguration":                  DeviceEnrollmentConfigurationType_EnrollmentNotificationsConfiguration,
+		"limit":                                                 DeviceEnrollmentConfigurationType_Limit,
+		"platformrestrictions":                                  DeviceEnrollmentConfigurationType_PlatformRestrictions,
+		"singleplatformrestriction":                             DeviceEnrollmentConfigurationType_SinglePlatformRestriction,
+		"unknown":                                               DeviceEnrollmentConfigurationType_Unknown,
+		"windows10enrollmentcompletionpageconfiguration":        DeviceEnrollmentConfigurationType_Windows10EnrollmentCompletionPageConfiguration,
+		"windowshelloforbusiness":                               DeviceEnrollmentConfigurationType_WindowsHelloForBusiness,
+		"windowsrestore":                                        DeviceEnrollmentConfigurationType_WindowsRestore,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceEnrollmentConfigurationType(input)
+	return &out, nil
+}

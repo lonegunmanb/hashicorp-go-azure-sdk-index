@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2023-02-01/protectionpolicies
+import (
+	"context"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+)
+func (c ProtectionPoliciesClient) CreateOrUpdate(ctx context.Context, id BackupPolicyId, input ProtectionPolicyResource) (result CreateOrUpdateOperationResponse, err error) {
+	req, err := c.preparerForCreateOrUpdate(ctx, id, input)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "protectionpolicies.ProtectionPoliciesClient", "CreateOrUpdate", nil, "Failure preparing request")
+		return
+	}
+
+	result.HttpResponse, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "protectionpolicies.ProtectionPoliciesClient", "CreateOrUpdate", result.HttpResponse, "Failure sending request")
+		return
+	}
+
+	result, err = c.responderForCreateOrUpdate(result.HttpResponse)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "protectionpolicies.ProtectionPoliciesClient", "CreateOrUpdate", result.HttpResponse, "Failure responding to request")
+		return
+	}
+
+	return
+}

@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicefabric/2021-06-01/clusterversion
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ClusterVersionClient) GetComplete(ctx context.Context, id ClusterVersionId) (GetCompleteResult, error) {
+	return c.GetCompleteMatchingPredicate(ctx, id, ClusterCodeVersionsResultOperationPredicate{})
+}

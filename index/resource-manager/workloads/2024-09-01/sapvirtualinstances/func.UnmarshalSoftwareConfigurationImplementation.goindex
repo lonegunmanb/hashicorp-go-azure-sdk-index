@@ -1,0 +1,57 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/workloads/2024-09-01/sapvirtualinstances
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalSoftwareConfigurationImplementation(input []byte) (SoftwareConfiguration, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling SoftwareConfiguration into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["softwareInstallationType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "External") {
+		var out ExternalInstallationSoftwareConfiguration
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ExternalInstallationSoftwareConfiguration: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "SAPInstallWithoutOSConfig") {
+		var out SAPInstallWithoutOSConfigSoftwareConfiguration
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SAPInstallWithoutOSConfigSoftwareConfiguration: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "ServiceInitiated") {
+		var out ServiceInitiatedSoftwareConfiguration
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ServiceInitiatedSoftwareConfiguration: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseSoftwareConfigurationImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseSoftwareConfigurationImpl: %+v", err)
+	}
+
+	return RawSoftwareConfigurationImpl{
+		softwareConfiguration: parent,
+		Type:                  value,
+		Values:                temp,
+	}, nil
+
+}

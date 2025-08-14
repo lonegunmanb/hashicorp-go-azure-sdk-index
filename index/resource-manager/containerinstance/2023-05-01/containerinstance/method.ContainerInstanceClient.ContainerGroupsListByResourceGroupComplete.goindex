@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerinstance/2023-05-01/containerinstance
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ContainerInstanceClient) ContainerGroupsListByResourceGroupComplete(ctx context.Context, id commonids.ResourceGroupId) (ContainerGroupsListByResourceGroupCompleteResult, error) {
+	return c.ContainerGroupsListByResourceGroupCompleteMatchingPredicate(ctx, id, ListResultContainerGroupOperationPredicate{})
+}

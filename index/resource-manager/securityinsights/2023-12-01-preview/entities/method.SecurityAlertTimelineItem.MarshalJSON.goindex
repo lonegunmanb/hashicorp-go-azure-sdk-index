@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-12-01-preview/entities
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s SecurityAlertTimelineItem) MarshalJSON() ([]byte, error) {
+	type wrapper SecurityAlertTimelineItem
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling SecurityAlertTimelineItem: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling SecurityAlertTimelineItem: %+v", err)
+	}
+
+	decoded["kind"] = "SecurityAlert"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling SecurityAlertTimelineItem: %+v", err)
+	}
+
+	return encoded, nil
+}

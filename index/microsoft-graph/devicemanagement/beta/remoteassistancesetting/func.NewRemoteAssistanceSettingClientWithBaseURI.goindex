@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/remoteassistancesetting
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewRemoteAssistanceSettingClientWithBaseURI(sdkApi sdkEnv.Api) (*RemoteAssistanceSettingClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "remoteassistancesetting", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating RemoteAssistanceSettingClient: %+v", err)
+	}
+
+	return &RemoteAssistanceSettingClient{
+		Client: client,
+	}, nil
+}

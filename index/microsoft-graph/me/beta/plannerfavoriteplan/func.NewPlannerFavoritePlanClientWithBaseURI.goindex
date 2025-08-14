@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/plannerfavoriteplan
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPlannerFavoritePlanClientWithBaseURI(sdkApi sdkEnv.Api) (*PlannerFavoritePlanClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "plannerfavoriteplan", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PlannerFavoritePlanClient: %+v", err)
+	}
+
+	return &PlannerFavoritePlanClient{
+		Client: client,
+	}, nil
+}

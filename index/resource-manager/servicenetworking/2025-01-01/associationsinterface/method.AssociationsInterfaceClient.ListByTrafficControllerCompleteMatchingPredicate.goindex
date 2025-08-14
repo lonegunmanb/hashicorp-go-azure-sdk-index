@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicenetworking/2025-01-01/associationsinterface
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c AssociationsInterfaceClient) ListByTrafficControllerCompleteMatchingPredicate(ctx context.Context, id TrafficControllerId, predicate AssociationOperationPredicate) (result ListByTrafficControllerCompleteResult, err error) {
+	items := make([]Association, 0)
+
+	resp, err := c.ListByTrafficController(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByTrafficControllerCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/accessreviewpolicy
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAccessReviewPolicyClientWithBaseURI(sdkApi sdkEnv.Api) (*AccessReviewPolicyClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "accessreviewpolicy", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AccessReviewPolicyClient: %+v", err)
+	}
+
+	return &AccessReviewPolicyClient{
+		Client: client,
+	}, nil
+}

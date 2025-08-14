@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mobilenetwork/2024-04-01/sites
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSitesClientWithBaseURI(sdkApi sdkEnv.Api) (*SitesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "sites", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SitesClient: %+v", err)
+	}
+
+	return &SitesClient{
+		Client: client,
+	}, nil
+}

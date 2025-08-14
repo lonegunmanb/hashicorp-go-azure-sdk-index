@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resourcegraph/2024-04-01/graphqueries
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id QueryId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Query Name: %q", id.QueryName),
+	}
+	return fmt.Sprintf("Query (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/compliancemanagementpartner
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewComplianceManagementPartnerClientWithBaseURI(sdkApi sdkEnv.Api) (*ComplianceManagementPartnerClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "compliancemanagementpartner", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ComplianceManagementPartnerClient: %+v", err)
+	}
+
+	return &ComplianceManagementPartnerClient{
+		Client: client,
+	}, nil
+}

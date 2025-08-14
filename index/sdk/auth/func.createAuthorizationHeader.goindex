@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"bytes"
+	"context"
+	"crypto/hmac"
+	"crypto/sha256"
+	"encoding/base64"
+	"fmt"
+	"net/http"
+	"net/url"
+	"sort"
+	"strconv"
+	"strings"
+	"time"
+
+	"golang.org/x/oauth2"
+)
+func createAuthorizationHeader(accountName string, accountKey []byte, canonicalizedString string) string {
+	h := hmac.New(sha256.New, accountKey)
+	h.Write([]byte(canonicalizedString))
+	signature := base64.StdEncoding.EncodeToString(h.Sum(nil))
+	return fmt.Sprintf("%s:%s", getCanonicalizedAccountName(accountName), signature)
+}

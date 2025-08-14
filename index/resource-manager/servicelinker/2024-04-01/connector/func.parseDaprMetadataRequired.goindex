@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicelinker/2024-04-01/connector
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDaprMetadataRequired(input string) (*DaprMetadataRequired, error) {
+	vals := map[string]DaprMetadataRequired{
+		"false": DaprMetadataRequiredFalse,
+		"true":  DaprMetadataRequiredTrue,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DaprMetadataRequired(input)
+	return &out, nil
+}

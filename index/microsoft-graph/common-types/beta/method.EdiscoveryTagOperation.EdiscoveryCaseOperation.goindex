@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s EdiscoveryTagOperation) EdiscoveryCaseOperation() BaseEdiscoveryCaseOperationImpl {
+	return BaseEdiscoveryCaseOperationImpl{
+		Action:            s.Action,
+		CompletedDateTime: s.CompletedDateTime,
+		CreatedBy:         s.CreatedBy,
+		CreatedDateTime:   s.CreatedDateTime,
+		PercentProgress:   s.PercentProgress,
+		ResultInfo:        s.ResultInfo,
+		Status:            s.Status,
+		Id:                s.Id,
+		ODataId:           s.ODataId,
+		ODataType:         s.ODataType,
+	}
+}

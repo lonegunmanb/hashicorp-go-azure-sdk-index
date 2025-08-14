@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/permissionsanalyticawpermissionscreepindexdistributionauthorizationsystem
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPermissionsAnalyticAwPermissionsCreepIndexDistributionAuthorizationSystemClientWithBaseURI(sdkApi sdkEnv.Api) (*PermissionsAnalyticAwPermissionsCreepIndexDistributionAuthorizationSystemClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "permissionsanalyticawpermissionscreepindexdistributionauthorizationsystem", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PermissionsAnalyticAwPermissionsCreepIndexDistributionAuthorizationSystemClient: %+v", err)
+	}
+
+	return &PermissionsAnalyticAwPermissionsCreepIndexDistributionAuthorizationSystemClient{
+		Client: client,
+	}, nil
+}

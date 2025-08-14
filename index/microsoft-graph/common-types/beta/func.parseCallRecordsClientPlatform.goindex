@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCallRecordsClientPlatform(input string) (*CallRecordsClientPlatform, error) {
+	vals := map[string]CallRecordsClientPlatform{
+		"android":    CallRecordsClientPlatform_Android,
+		"hololens":   CallRecordsClientPlatform_HoloLens,
+		"ios":        CallRecordsClientPlatform_IOS,
+		"ipphone":    CallRecordsClientPlatform_IPPhone,
+		"macos":      CallRecordsClientPlatform_MacOS,
+		"roomsystem": CallRecordsClientPlatform_RoomSystem,
+		"surfacehub": CallRecordsClientPlatform_SurfaceHub,
+		"unknown":    CallRecordsClientPlatform_Unknown,
+		"web":        CallRecordsClientPlatform_Web,
+		"windows":    CallRecordsClientPlatform_Windows,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CallRecordsClientPlatform(input)
+	return &out, nil
+}

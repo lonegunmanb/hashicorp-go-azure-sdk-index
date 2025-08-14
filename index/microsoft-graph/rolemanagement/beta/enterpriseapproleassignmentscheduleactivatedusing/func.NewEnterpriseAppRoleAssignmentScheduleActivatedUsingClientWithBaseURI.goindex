@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/enterpriseapproleassignmentscheduleactivatedusing
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewEnterpriseAppRoleAssignmentScheduleActivatedUsingClientWithBaseURI(sdkApi sdkEnv.Api) (*EnterpriseAppRoleAssignmentScheduleActivatedUsingClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "enterpriseapproleassignmentscheduleactivatedusing", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating EnterpriseAppRoleAssignmentScheduleActivatedUsingClient: %+v", err)
+	}
+
+	return &EnterpriseAppRoleAssignmentScheduleActivatedUsingClient{
+		Client: client,
+	}, nil
+}

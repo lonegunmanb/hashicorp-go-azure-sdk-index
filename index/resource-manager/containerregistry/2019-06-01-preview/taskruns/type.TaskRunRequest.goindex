@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerregistry/2019-06-01-preview/taskruns
+import (
+	"encoding/json"
+	"fmt"
+)
+type TaskRunRequest struct {
+	OverrideTaskStepProperties *OverrideTaskStepProperties `json:"overrideTaskStepProperties,omitempty"`
+	TaskId                     string                      `json:"taskId"`
+
+	// Fields inherited from RunRequest
+
+	AgentPoolName    *string `json:"agentPoolName,omitempty"`
+	IsArchiveEnabled *bool   `json:"isArchiveEnabled,omitempty"`
+	LogTemplate      *string `json:"logTemplate,omitempty"`
+	Type             string  `json:"type"`
+}

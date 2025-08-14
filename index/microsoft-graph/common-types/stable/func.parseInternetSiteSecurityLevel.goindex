@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseInternetSiteSecurityLevel(input string) (*InternetSiteSecurityLevel, error) {
+	vals := map[string]InternetSiteSecurityLevel{
+		"high":        InternetSiteSecurityLevel_High,
+		"medium":      InternetSiteSecurityLevel_Medium,
+		"mediumhigh":  InternetSiteSecurityLevel_MediumHigh,
+		"userdefined": InternetSiteSecurityLevel_UserDefined,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := InternetSiteSecurityLevel(input)
+	return &out, nil
+}

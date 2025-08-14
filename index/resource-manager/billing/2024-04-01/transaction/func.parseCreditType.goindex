@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/transaction
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCreditType(input string) (*CreditType, error) {
+	vals := map[string]CreditType{
+		"azurecreditoffer":    CreditTypeAzureCreditOffer,
+		"azurefreecredit":     CreditTypeAzureFreeCredit,
+		"other":               CreditTypeOther,
+		"refund":              CreditTypeRefund,
+		"serviceinterruption": CreditTypeServiceInterruption,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CreditType(input)
+	return &out, nil
+}

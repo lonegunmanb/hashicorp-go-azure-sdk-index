@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelmessagereplyhostedcontent
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTeamPrimaryChannelMessageReplyHostedContentClientWithBaseURI(sdkApi sdkEnv.Api) (*TeamPrimaryChannelMessageReplyHostedContentClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "teamprimarychannelmessagereplyhostedcontent", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TeamPrimaryChannelMessageReplyHostedContentClient: %+v", err)
+	}
+
+	return &TeamPrimaryChannelMessageReplyHostedContentClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseIdentityGovernanceLifecycleTaskCategory(input string) (*IdentityGovernanceLifecycleTaskCategory, error) {
+	vals := map[string]IdentityGovernanceLifecycleTaskCategory{
+		"joiner": IdentityGovernanceLifecycleTaskCategory_Joiner,
+		"leaver": IdentityGovernanceLifecycleTaskCategory_Leaver,
+		"mover":  IdentityGovernanceLifecycleTaskCategory_Mover,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IdentityGovernanceLifecycleTaskCategory(input)
+	return &out, nil
+}

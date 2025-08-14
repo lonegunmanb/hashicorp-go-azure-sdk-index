@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/androiddeviceownerenrollmentprofile
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAndroidDeviceOwnerEnrollmentProfileClientWithBaseURI(sdkApi sdkEnv.Api) (*AndroidDeviceOwnerEnrollmentProfileClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "androiddeviceownerenrollmentprofile", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AndroidDeviceOwnerEnrollmentProfileClient: %+v", err)
+	}
+
+	return &AndroidDeviceOwnerEnrollmentProfileClient{
+		Client: client,
+	}, nil
+}

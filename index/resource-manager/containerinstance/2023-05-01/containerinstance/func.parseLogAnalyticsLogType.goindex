@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerinstance/2023-05-01/containerinstance
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseLogAnalyticsLogType(input string) (*LogAnalyticsLogType, error) {
+	vals := map[string]LogAnalyticsLogType{
+		"containerinsights":     LogAnalyticsLogTypeContainerInsights,
+		"containerinstancelogs": LogAnalyticsLogTypeContainerInstanceLogs,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := LogAnalyticsLogType(input)
+	return &out, nil
+}

@@ -1,0 +1,11 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ServicePrincipalIdEndpointId) ID() string {
+	fmtString := "/servicePrincipals/%s/endpoints/%s"
+	return fmt.Sprintf(fmtString, id.ServicePrincipalId, id.EndpointId)
+}

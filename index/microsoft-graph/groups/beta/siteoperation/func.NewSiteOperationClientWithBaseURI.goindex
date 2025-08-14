@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/siteoperation
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSiteOperationClientWithBaseURI(sdkApi sdkEnv.Api) (*SiteOperationClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "siteoperation", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SiteOperationClient: %+v", err)
+	}
+
+	return &SiteOperationClient{
+		Client: client,
+	}, nil
+}

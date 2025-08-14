@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/managedapplications/2021-07-01/jitrequests
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseJitRequestState(input string) (*JitRequestState, error) {
+	vals := map[string]JitRequestState{
+		"approved":     JitRequestStateApproved,
+		"canceled":     JitRequestStateCanceled,
+		"denied":       JitRequestStateDenied,
+		"expired":      JitRequestStateExpired,
+		"failed":       JitRequestStateFailed,
+		"notspecified": JitRequestStateNotSpecified,
+		"pending":      JitRequestStatePending,
+		"timeout":      JitRequestStateTimeout,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := JitRequestState(input)
+	return &out, nil
+}

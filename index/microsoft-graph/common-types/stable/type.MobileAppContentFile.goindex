@@ -1,0 +1,53 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type MobileAppContentFile struct {
+	// The Azure Storage URI.
+	AzureStorageUri nullable.Type[string] `json:"azureStorageUri,omitempty"`
+
+	// The time the Azure storage Uri expires.
+	AzureStorageUriExpirationDateTime nullable.Type[string] `json:"azureStorageUriExpirationDateTime,omitempty"`
+
+	// The time the file was created.
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+
+	// A value indicating whether the file is committed.
+	IsCommitted *bool `json:"isCommitted,omitempty"`
+
+	// Indicates whether this content file is a dependency for the main content file. TRUE means that the content file is a
+	// dependency, FALSE means that the content file is not a dependency and is the main content file. Defaults to FALSE.
+	IsDependency *bool `json:"isDependency,omitempty"`
+
+	// The manifest information.
+	Manifest nullable.Type[string] `json:"manifest,omitempty"`
+
+	// the file name.
+	Name nullable.Type[string] `json:"name,omitempty"`
+
+	// The size of the file prior to encryption.
+	Size *int64 `json:"size,omitempty"`
+
+	// The size of the file after encryption.
+	SizeEncrypted *int64 `json:"sizeEncrypted,omitempty"`
+
+	// Contains properties for upload request states.
+	UploadState *MobileAppContentFileUploadState `json:"uploadState,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

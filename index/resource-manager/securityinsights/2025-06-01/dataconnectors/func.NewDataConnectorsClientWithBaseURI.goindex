@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2025-06-01/dataconnectors
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDataConnectorsClientWithBaseURI(sdkApi sdkEnv.Api) (*DataConnectorsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "dataconnectors", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DataConnectorsClient: %+v", err)
+	}
+
+	return &DataConnectorsClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/job
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s BayesianSamplingAlgorithm) MarshalJSON() ([]byte, error) {
+	type wrapper BayesianSamplingAlgorithm
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling BayesianSamplingAlgorithm: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling BayesianSamplingAlgorithm: %+v", err)
+	}
+
+	decoded["samplingAlgorithmType"] = "Bayesian"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling BayesianSamplingAlgorithm: %+v", err)
+	}
+
+	return encoded, nil
+}

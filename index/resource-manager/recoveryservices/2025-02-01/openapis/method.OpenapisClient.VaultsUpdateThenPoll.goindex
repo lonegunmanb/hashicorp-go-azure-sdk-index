@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservices/2025-02-01/openapis
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c OpenapisClient) VaultsUpdateThenPoll(ctx context.Context, id VaultId, input PatchVault, options VaultsUpdateOperationOptions) error {
+	result, err := c.VaultsUpdate(ctx, id, input, options)
+	if err != nil {
+		return fmt.Errorf("performing VaultsUpdate: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after VaultsUpdate: %+v", err)
+	}
+
+	return nil
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-01-01/deletedaccounts
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DeletedAccountId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.StaticSegment("staticSubscriptions", "subscriptions", "subscriptions"),
+		resourceids.SubscriptionIdSegment("subscriptionId", "12345678-1234-9876-4563-123456789012"),
+		resourceids.StaticSegment("staticProviders", "providers", "providers"),
+		resourceids.ResourceProviderSegment("staticMicrosoftStorage", "Microsoft.Storage", "Microsoft.Storage"),
+		resourceids.StaticSegment("staticLocations", "locations", "locations"),
+		resourceids.UserSpecifiedSegment("locationName", "locationName"),
+		resourceids.StaticSegment("staticDeletedAccounts", "deletedAccounts", "deletedAccounts"),
+		resourceids.UserSpecifiedSegment("deletedAccountName", "deletedAccountName"),
+	}
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2023-06-01/deploymentinfo
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDeploymentInfoClientWithBaseURI(sdkApi sdkEnv.Api) (*DeploymentInfoClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "deploymentinfo", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DeploymentInfoClient: %+v", err)
+	}
+
+	return &DeploymentInfoClient{
+		Client: client,
+	}, nil
+}

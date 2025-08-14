@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/communication/2025-05-01/domains
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ValidateEmailServiceID(input interface{}, key string) (warnings []string, errors []error) {
+	v, ok := input.(string)
+	if !ok {
+		errors = append(errors, fmt.Errorf("expected %q to be a string", key))
+		return
+	}
+
+	if _, err := ParseEmailServiceID(v); err != nil {
+		errors = append(errors, err)
+	}
+
+	return
+}

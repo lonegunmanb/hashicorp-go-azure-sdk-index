@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cognitive/2024-10-01/commitmentplans
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewCommitmentPlansClientWithBaseURI(sdkApi sdkEnv.Api) (*CommitmentPlansClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "commitmentplans", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating CommitmentPlansClient: %+v", err)
+	}
+
+	return &CommitmentPlansClient{
+		Client: client,
+	}, nil
+}

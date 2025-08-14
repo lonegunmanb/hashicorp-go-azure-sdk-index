@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mysql/2017-12-01/recoverableservers
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewRecoverableServersClientWithBaseURI(sdkApi sdkEnv.Api) (*RecoverableServersClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "recoverableservers", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating RecoverableServersClient: %+v", err)
+	}
+
+	return &RecoverableServersClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *IdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalIdStageId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.ApprovalId, ok = input.Parsed["approvalId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "approvalId", input)
+	}
+
+	if id.ApprovalStageId, ok = input.Parsed["approvalStageId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "approvalStageId", input)
+	}
+
+	return nil
+}

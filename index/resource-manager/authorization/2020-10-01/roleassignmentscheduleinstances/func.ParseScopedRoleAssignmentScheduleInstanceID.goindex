@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/authorization/2020-10-01/roleassignmentscheduleinstances
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseScopedRoleAssignmentScheduleInstanceID(input string) (*ScopedRoleAssignmentScheduleInstanceId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&ScopedRoleAssignmentScheduleInstanceId{})
+	parsed, err := parser.Parse(input, false)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := ScopedRoleAssignmentScheduleInstanceId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/appconfiguration/2024-06-01/deletedconfigurationstores
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DeletedConfigurationStoreId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
+		fmt.Sprintf("Deleted Configuration Store Name: %q", id.DeletedConfigurationStoreName),
+	}
+	return fmt.Sprintf("Deleted Configuration Store (%s)", strings.Join(components, "\n"))
+}

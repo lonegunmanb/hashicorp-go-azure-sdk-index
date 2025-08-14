@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/virtualnetworkgateways
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o GetBgpPeerStatusOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.Peer != nil {
+		out.Append("peer", fmt.Sprintf("%v", *o.Peer))
+	}
+	return &out
+}

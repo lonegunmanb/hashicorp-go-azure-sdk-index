@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/healthcareapis/2022-12-01/iotconnectors
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseIotIdentityResolutionType(input string) (*IotIdentityResolutionType, error) {
+	vals := map[string]IotIdentityResolutionType{
+		"create": IotIdentityResolutionTypeCreate,
+		"lookup": IotIdentityResolutionTypeLookup,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IotIdentityResolutionType(input)
+	return &out, nil
+}

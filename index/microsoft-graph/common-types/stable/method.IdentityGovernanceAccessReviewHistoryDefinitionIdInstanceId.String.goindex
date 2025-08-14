@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id IdentityGovernanceAccessReviewHistoryDefinitionIdInstanceId) String() string {
+	components := []string{
+		fmt.Sprintf("Access Review History Definition: %q", id.AccessReviewHistoryDefinitionId),
+		fmt.Sprintf("Access Review History Instance: %q", id.AccessReviewHistoryInstanceId),
+	}
+	return fmt.Sprintf("Identity Governance Access Review History Definition Id Instance (%s)", strings.Join(components, "\n"))
+}

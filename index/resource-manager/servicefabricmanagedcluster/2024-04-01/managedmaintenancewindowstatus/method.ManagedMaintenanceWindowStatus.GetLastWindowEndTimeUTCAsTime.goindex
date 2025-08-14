@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicefabricmanagedcluster/2024-04-01/managedmaintenancewindowstatus
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *ManagedMaintenanceWindowStatus) GetLastWindowEndTimeUTCAsTime() (*time.Time, error) {
+	if o.LastWindowEndTimeUTC == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.LastWindowEndTimeUTC, "2006-01-02T15:04:05Z07:00")
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/qumulostorage/v2024_06_19
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/qumulostorage/2024-06-19/filesystems"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	fileSystemsClient, err := filesystems.NewFileSystemsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building FileSystems client: %+v", err)
+	}
+	configureFunc(fileSystemsClient.Client)
+
+	return &Client{
+		FileSystems: fileSystemsClient,
+	}, nil
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWindowsAutopilotSyncStatus(input string) (*WindowsAutopilotSyncStatus, error) {
+	vals := map[string]WindowsAutopilotSyncStatus{
+		"completed":  WindowsAutopilotSyncStatus_Completed,
+		"failed":     WindowsAutopilotSyncStatus_Failed,
+		"inprogress": WindowsAutopilotSyncStatus_InProgress,
+		"unknown":    WindowsAutopilotSyncStatus_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsAutopilotSyncStatus(input)
+	return &out, nil
+}

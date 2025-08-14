@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/botservice/2022-09-15/listserviceproviders
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewListServiceProvidersClientWithBaseURI(sdkApi sdkEnv.Api) (*ListServiceProvidersClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "listserviceproviders", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ListServiceProvidersClient: %+v", err)
+	}
+
+	return &ListServiceProvidersClient{
+		Client: client,
+	}, nil
+}

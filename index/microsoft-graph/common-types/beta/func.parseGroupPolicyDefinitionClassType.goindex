@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseGroupPolicyDefinitionClassType(input string) (*GroupPolicyDefinitionClassType, error) {
+	vals := map[string]GroupPolicyDefinitionClassType{
+		"machine": GroupPolicyDefinitionClassType_Machine,
+		"user":    GroupPolicyDefinitionClassType_User,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := GroupPolicyDefinitionClassType(input)
+	return &out, nil
+}

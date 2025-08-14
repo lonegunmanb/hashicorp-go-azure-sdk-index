@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/joinedgroup
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewJoinedGroupClientWithBaseURI(sdkApi sdkEnv.Api) (*JoinedGroupClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "joinedgroup", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating JoinedGroupClient: %+v", err)
+	}
+
+	return &JoinedGroupClient{
+		Client: client,
+	}, nil
+}

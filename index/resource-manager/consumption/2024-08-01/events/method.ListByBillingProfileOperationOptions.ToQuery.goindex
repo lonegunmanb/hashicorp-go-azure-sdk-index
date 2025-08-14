@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/events
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ListByBillingProfileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.EndDate != nil {
+		out.Append("endDate", fmt.Sprintf("%v", *o.EndDate))
+	}
+	if o.StartDate != nil {
+		out.Append("startDate", fmt.Sprintf("%v", *o.StartDate))
+	}
+	return &out
+}

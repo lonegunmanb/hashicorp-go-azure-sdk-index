@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/sdk/odata
+import (
+	"encoding/json"
+	"fmt"
+	"net/url"
+	"regexp"
+
+	"github.com/hashicorp/go-uuid"
+)
+func (id *Id) UnmarshalJSON(data []byte) error {
+	if id == nil {
+		return nil
+	}
+
+	var id2 string
+	if err := json.Unmarshal(data, &id2); err != nil {
+		return err
+	}
+	*id = Id(regexp.MustCompile(`/v2/`).ReplaceAllString(id2, `/v1.0/`))
+
+	return nil
+}

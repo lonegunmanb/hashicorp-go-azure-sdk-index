@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/siterecyclebincreatedbyuser
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSiteRecycleBinCreatedByUserClientWithBaseURI(sdkApi sdkEnv.Api) (*SiteRecycleBinCreatedByUserClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "siterecyclebincreatedbyuser", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SiteRecycleBinCreatedByUserClient: %+v", err)
+	}
+
+	return &SiteRecycleBinCreatedByUserClient{
+		Client: client,
+	}, nil
+}

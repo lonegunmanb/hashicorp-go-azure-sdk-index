@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAppLockerApplicationControlType(input string) (*AppLockerApplicationControlType, error) {
+	vals := map[string]AppLockerApplicationControlType{
+		"auditcomponentsandstoreapps":              AppLockerApplicationControlType_AuditComponentsAndStoreApps,
+		"auditcomponentsstoreappsandsmartlocker":   AppLockerApplicationControlType_AuditComponentsStoreAppsAndSmartlocker,
+		"enforcecomponentsandstoreapps":            AppLockerApplicationControlType_EnforceComponentsAndStoreApps,
+		"enforcecomponentsstoreappsandsmartlocker": AppLockerApplicationControlType_EnforceComponentsStoreAppsAndSmartlocker,
+		"notconfigured":                            AppLockerApplicationControlType_NotConfigured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AppLockerApplicationControlType(input)
+	return &out, nil
+}

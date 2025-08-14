@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2019-06-01/testjobstream
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseTestJobStreamIDInsensitively(input string) (*TestJobStreamId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&TestJobStreamId{})
+	parsed, err := parser.Parse(input, true)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := TestJobStreamId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

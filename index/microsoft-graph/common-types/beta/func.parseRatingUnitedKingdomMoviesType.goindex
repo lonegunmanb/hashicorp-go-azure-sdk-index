@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRatingUnitedKingdomMoviesType(input string) (*RatingUnitedKingdomMoviesType, error) {
+	vals := map[string]RatingUnitedKingdomMoviesType{
+		"adults":            RatingUnitedKingdomMoviesType_Adults,
+		"agesabove12cinema": RatingUnitedKingdomMoviesType_AgesAbove12Cinema,
+		"agesabove12video":  RatingUnitedKingdomMoviesType_AgesAbove12Video,
+		"agesabove15":       RatingUnitedKingdomMoviesType_AgesAbove15,
+		"allallowed":        RatingUnitedKingdomMoviesType_AllAllowed,
+		"allblocked":        RatingUnitedKingdomMoviesType_AllBlocked,
+		"general":           RatingUnitedKingdomMoviesType_General,
+		"parentalguidance":  RatingUnitedKingdomMoviesType_ParentalGuidance,
+		"universalchildren": RatingUnitedKingdomMoviesType_UniversalChildren,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RatingUnitedKingdomMoviesType(input)
+	return &out, nil
+}

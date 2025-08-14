@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/healthcareapis/2022-12-01/iotconnectors
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c IotConnectorsClient) IotConnectorFhirDestinationCreateOrUpdateThenPoll(ctx context.Context, id FhirDestinationId, input IotFhirDestination) error {
+	result, err := c.IotConnectorFhirDestinationCreateOrUpdate(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing IotConnectorFhirDestinationCreateOrUpdate: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after IotConnectorFhirDestinationCreateOrUpdate: %+v", err)
+	}
+
+	return nil
+}

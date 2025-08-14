@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/mailboxsetting
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewMailboxSettingClientWithBaseURI(sdkApi sdkEnv.Api) (*MailboxSettingClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "mailboxsetting", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating MailboxSettingClient: %+v", err)
+	}
+
+	return &MailboxSettingClient{
+		Client: client,
+	}, nil
+}

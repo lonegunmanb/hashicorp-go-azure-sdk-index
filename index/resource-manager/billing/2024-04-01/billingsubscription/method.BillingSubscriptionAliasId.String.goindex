@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingsubscription
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id BillingSubscriptionAliasId) String() string {
+	components := []string{
+		fmt.Sprintf("Billing Account Name: %q", id.BillingAccountName),
+		fmt.Sprintf("Billing Subscription Alias Name: %q", id.BillingSubscriptionAliasName),
+	}
+	return fmt.Sprintf("Billing Subscription Alias (%s)", strings.Join(components, "\n"))
+}

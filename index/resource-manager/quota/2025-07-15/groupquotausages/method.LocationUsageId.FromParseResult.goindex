@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-07-15/groupquotausages
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *LocationUsageId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.ManagementGroupId, ok = input.Parsed["managementGroupId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "managementGroupId", input)
+	}
+
+	if id.GroupQuotaName, ok = input.Parsed["groupQuotaName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "groupQuotaName", input)
+	}
+
+	if id.ResourceProviderName, ok = input.Parsed["resourceProviderName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceProviderName", input)
+	}
+
+	if id.LocationUsageName, ok = input.Parsed["locationUsageName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "locationUsageName", input)
+	}
+
+	return nil
+}

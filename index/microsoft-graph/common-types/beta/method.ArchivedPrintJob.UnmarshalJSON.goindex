@@ -1,0 +1,62 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *ArchivedPrintJob) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AcquiredByPrinter      *bool                    `json:"acquiredByPrinter,omitempty"`
+		AcquiredDateTime       nullable.Type[string]    `json:"acquiredDateTime,omitempty"`
+		BlackAndWhitePageCount *int64                   `json:"blackAndWhitePageCount,omitempty"`
+		ColorPageCount         *int64                   `json:"colorPageCount,omitempty"`
+		CompletionDateTime     nullable.Type[string]    `json:"completionDateTime,omitempty"`
+		CopiesPrinted          *int64                   `json:"copiesPrinted,omitempty"`
+		CreatedDateTime        *string                  `json:"createdDateTime,omitempty"`
+		DuplexPageCount        *int64                   `json:"duplexPageCount,omitempty"`
+		Id                     *string                  `json:"id,omitempty"`
+		ODataId                *string                  `json:"@odata.id,omitempty"`
+		ODataType              *string                  `json:"@odata.type,omitempty"`
+		PageCount              *int64                   `json:"pageCount,omitempty"`
+		PrinterId              nullable.Type[string]    `json:"printerId,omitempty"`
+		PrinterName            nullable.Type[string]    `json:"printerName,omitempty"`
+		ProcessingState        *PrintJobProcessingState `json:"processingState,omitempty"`
+		SimplexPageCount       *int64                   `json:"simplexPageCount,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AcquiredByPrinter = decoded.AcquiredByPrinter
+	s.AcquiredDateTime = decoded.AcquiredDateTime
+	s.BlackAndWhitePageCount = decoded.BlackAndWhitePageCount
+	s.ColorPageCount = decoded.ColorPageCount
+	s.CompletionDateTime = decoded.CompletionDateTime
+	s.CopiesPrinted = decoded.CopiesPrinted
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.DuplexPageCount = decoded.DuplexPageCount
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.PageCount = decoded.PageCount
+	s.PrinterId = decoded.PrinterId
+	s.PrinterName = decoded.PrinterName
+	s.ProcessingState = decoded.ProcessingState
+	s.SimplexPageCount = decoded.SimplexPageCount
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling ArchivedPrintJob into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["createdBy"]; ok {
+		impl, err := UnmarshalUserIdentityImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'CreatedBy' for 'ArchivedPrintJob': %+v", err)
+		}
+		s.CreatedBy = &impl
+	}
+
+	return nil
+}

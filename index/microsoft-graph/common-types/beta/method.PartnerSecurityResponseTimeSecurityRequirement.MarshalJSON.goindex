@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s PartnerSecurityResponseTimeSecurityRequirement) MarshalJSON() ([]byte, error) {
+	type wrapper PartnerSecurityResponseTimeSecurityRequirement
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling PartnerSecurityResponseTimeSecurityRequirement: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling PartnerSecurityResponseTimeSecurityRequirement: %+v", err)
+	}
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.partner.security.responseTimeSecurityRequirement"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling PartnerSecurityResponseTimeSecurityRequirement: %+v", err)
+	}
+
+	return encoded, nil
+}

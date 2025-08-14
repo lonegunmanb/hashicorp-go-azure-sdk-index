@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2025-06-01/incidentalerts
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewIncidentAlertsClientWithBaseURI(sdkApi sdkEnv.Api) (*IncidentAlertsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "incidentalerts", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating IncidentAlertsClient: %+v", err)
+	}
+
+	return &IncidentAlertsClient{
+		Client: client,
+	}, nil
+}

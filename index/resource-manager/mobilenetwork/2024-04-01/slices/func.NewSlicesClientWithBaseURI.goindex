@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mobilenetwork/2024-04-01/slices
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSlicesClientWithBaseURI(sdkApi sdkEnv.Api) (*SlicesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "slices", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SlicesClient: %+v", err)
+	}
+
+	return &SlicesClient{
+		Client: client,
+	}, nil
+}

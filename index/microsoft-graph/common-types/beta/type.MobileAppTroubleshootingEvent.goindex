@@ -1,0 +1,57 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type MobileAppTroubleshootingEvent struct {
+	// The collection property of AppLogUploadRequest.
+	AppLogCollectionRequests *[]AppLogCollectionRequest `json:"appLogCollectionRequests,omitempty"`
+
+	// Intune application identifier.
+	ApplicationId nullable.Type[string] `json:"applicationId,omitempty"`
+
+	// Device identifier created or collected by Intune.
+	DeviceId nullable.Type[string] `json:"deviceId,omitempty"`
+
+	// Intune Mobile Application Troubleshooting History Item
+	History *[]MobileAppTroubleshootingHistoryItem `json:"history,omitempty"`
+
+	// Device identifier created or collected by Intune.
+	ManagedDeviceIdentifier nullable.Type[string] `json:"managedDeviceIdentifier,omitempty"`
+
+	// Identifier for the user that tried to enroll the device.
+	UserId nullable.Type[string] `json:"userId,omitempty"`
+
+	// Fields inherited from DeviceManagementTroubleshootingEvent
+
+	// A set of string key and string value pairs which provides additional information on the Troubleshooting event
+	AdditionalInformation *[]KeyValuePair `json:"additionalInformation,omitempty"`
+
+	// Id used for tracing the failure in the service.
+	CorrelationId nullable.Type[string] `json:"correlationId,omitempty"`
+
+	// Time when the event occurred .
+	EventDateTime *string `json:"eventDateTime,omitempty"`
+
+	// Event Name corresponding to the Troubleshooting Event. It is an Optional field
+	EventName nullable.Type[string] `json:"eventName,omitempty"`
+
+	// Object containing detailed information about the error and its remediation.
+	TroubleshootingErrorDetails *DeviceManagementTroubleshootingErrorDetails `json:"troubleshootingErrorDetails,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

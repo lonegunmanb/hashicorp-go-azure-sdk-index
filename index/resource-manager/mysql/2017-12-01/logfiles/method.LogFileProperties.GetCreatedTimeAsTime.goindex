@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mysql/2017-12-01/logfiles
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *LogFileProperties) GetCreatedTimeAsTime() (*time.Time, error) {
+	if o.CreatedTime == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.CreatedTime, "2006-01-02T15:04:05Z07:00")
+}

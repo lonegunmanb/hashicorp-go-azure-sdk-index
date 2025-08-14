@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/signalr/2024-03-01/signalr
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseScaleType(input string) (*ScaleType, error) {
+	vals := map[string]ScaleType{
+		"automatic": ScaleTypeAutomatic,
+		"manual":    ScaleTypeManual,
+		"none":      ScaleTypeNone,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ScaleType(input)
+	return &out, nil
+}

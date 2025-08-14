@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/appconfiguration/2024-06-01/deletedconfigurationstores
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *DeletedConfigurationStoreProperties) GetScheduledPurgeDateAsTime() (*time.Time, error) {
+	if o.ScheduledPurgeDate == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.ScheduledPurgeDate, "2006-01-02T15:04:05Z07:00")
+}

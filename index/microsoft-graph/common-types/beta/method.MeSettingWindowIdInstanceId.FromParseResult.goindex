@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *MeSettingWindowIdInstanceId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.WindowsSettingId, ok = input.Parsed["windowsSettingId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "windowsSettingId", input)
+	}
+
+	if id.WindowsSettingInstanceId, ok = input.Parsed["windowsSettingInstanceId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "windowsSettingInstanceId", input)
+	}
+
+	return nil
+}

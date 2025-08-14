@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dashboard/2024-10-01/grafanaresource
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c GrafanaResourceClient) GrafanaDeleteThenPoll(ctx context.Context, id GrafanaId) error {
+	result, err := c.GrafanaDelete(ctx, id)
+	if err != nil {
+		return fmt.Errorf("performing GrafanaDelete: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after GrafanaDelete: %+v", err)
+	}
+
+	return nil
+}

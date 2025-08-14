@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-09-01/webapplicationfirewallpolicies
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseApplicationGatewaySslProtocol(input string) (*ApplicationGatewaySslProtocol, error) {
+	vals := map[string]ApplicationGatewaySslProtocol{
+		"tlsv1_1": ApplicationGatewaySslProtocolTLSvOneOne,
+		"tlsv1_3": ApplicationGatewaySslProtocolTLSvOneThree,
+		"tlsv1_2": ApplicationGatewaySslProtocolTLSvOneTwo,
+		"tlsv1_0": ApplicationGatewaySslProtocolTLSvOneZero,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ApplicationGatewaySslProtocol(input)
+	return &out, nil
+}

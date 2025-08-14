@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type DocumentProcessingJob struct {
+	// Date and time of item creation. Read-only.
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// The document processing job type. The possible values are: file, folder
+	JobType *DocumentProcessingJobType `json:"jobType,omitempty"`
+
+	// The listItemUniqueId of the file, or folder to process. Use GET driveItem resource operation and read sharepointIds
+	// property to get listItemUniqueId.
+	ListItemUniqueId *string `json:"listItemUniqueId,omitempty"`
+
+	// The document processing Job status. The possible values are: inProgress, completed, failed, unknownFutureValue.
+	Status *DocumentProcessingJobStatus `json:"status,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

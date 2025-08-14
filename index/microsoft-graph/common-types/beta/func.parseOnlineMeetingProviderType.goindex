@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseOnlineMeetingProviderType(input string) (*OnlineMeetingProviderType, error) {
+	vals := map[string]OnlineMeetingProviderType{
+		"skypeforbusiness": OnlineMeetingProviderType_SkypeForBusiness,
+		"skypeforconsumer": OnlineMeetingProviderType_SkypeForConsumer,
+		"teamsforbusiness": OnlineMeetingProviderType_TeamsForBusiness,
+		"unknown":          OnlineMeetingProviderType_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := OnlineMeetingProviderType(input)
+	return &out, nil
+}

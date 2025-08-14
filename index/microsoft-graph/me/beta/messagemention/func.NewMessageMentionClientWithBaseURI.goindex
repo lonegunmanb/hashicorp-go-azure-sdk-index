@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/messagemention
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewMessageMentionClientWithBaseURI(sdkApi sdkEnv.Api) (*MessageMentionClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "messagemention", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating MessageMentionClient: %+v", err)
+	}
+
+	return &MessageMentionClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicelinker/2024-04-01/connector
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalDryrunParametersImplementation(input []byte) (DryrunParameters, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling DryrunParameters into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["actionName"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "createOrUpdate") {
+		var out CreateOrUpdateDryrunParameters
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into CreateOrUpdateDryrunParameters: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseDryrunParametersImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseDryrunParametersImpl: %+v", err)
+	}
+
+	return RawDryrunParametersImpl{
+		dryrunParameters: parent,
+		Type:             value,
+		Values:           temp,
+	}, nil
+
+}

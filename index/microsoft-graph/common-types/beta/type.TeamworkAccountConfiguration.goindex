@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+
+type TeamworkAccountConfiguration struct {
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The account used to sync the calendar.
+	OnPremisesCalendarSyncConfiguration *TeamworkOnPremisesCalendarSyncConfiguration `json:"onPremisesCalendarSyncConfiguration,omitempty"`
+
+	// The supported client for Teams Rooms devices. The possible values are: unknown, skypeDefaultAndTeams,
+	// teamsDefaultAndSkype, skypeOnly, teamsOnly, unknownFutureValue.
+	SupportedClient *TeamworkSupportedClient `json:"supportedClient,omitempty"`
+}

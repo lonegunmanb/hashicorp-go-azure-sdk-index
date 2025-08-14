@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2021-08-01/synchronizationsetting
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSynchronizationSettingClientWithBaseURI(sdkApi sdkEnv.Api) (*SynchronizationSettingClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "synchronizationsetting", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SynchronizationSettingClient: %+v", err)
+	}
+
+	return &SynchronizationSettingClient{
+		Client: client,
+	}, nil
+}

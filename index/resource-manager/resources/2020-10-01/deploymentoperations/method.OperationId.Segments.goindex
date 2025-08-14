@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-10-01/deploymentoperations
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id OperationId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.StaticSegment("staticProviders", "providers", "providers"),
+		resourceids.ResourceProviderSegment("staticMicrosoftResources", "Microsoft.Resources", "Microsoft.Resources"),
+		resourceids.StaticSegment("staticDeployments", "deployments", "deployments"),
+		resourceids.UserSpecifiedSegment("deploymentName", "deploymentName"),
+		resourceids.StaticSegment("staticOperations", "operations", "operations"),
+		resourceids.UserSpecifiedSegment("operationId", "operationId"),
+	}
+}

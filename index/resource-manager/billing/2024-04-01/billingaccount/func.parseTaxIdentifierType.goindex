@@ -1,0 +1,37 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingaccount
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTaxIdentifierType(input string) (*TaxIdentifierType, error) {
+	vals := map[string]TaxIdentifierType{
+		"brazilccmid":                  TaxIdentifierTypeBrazilCcmId,
+		"brazilcnpjid":                 TaxIdentifierTypeBrazilCnpjId,
+		"brazilcpfid":                  TaxIdentifierTypeBrazilCpfId,
+		"canadianfederalexempt":        TaxIdentifierTypeCanadianFederalExempt,
+		"canadianprovinceexempt":       TaxIdentifierTypeCanadianProvinceExempt,
+		"externaltaxation":             TaxIdentifierTypeExternalTaxation,
+		"indiafederalservicetaxid":     TaxIdentifierTypeIndiaFederalServiceTaxId,
+		"indiafederaltanid":            TaxIdentifierTypeIndiaFederalTanId,
+		"indiapanid":                   TaxIdentifierTypeIndiaPanId,
+		"indiastatecstid":              TaxIdentifierTypeIndiaStateCstId,
+		"indiastategstinid":            TaxIdentifierTypeIndiaStateGstINId,
+		"indiastatevatid":              TaxIdentifierTypeIndiaStateVatId,
+		"intlexempt":                   TaxIdentifierTypeIntlExempt,
+		"lovecode":                     TaxIdentifierTypeLoveCode,
+		"mobilebarcode":                TaxIdentifierTypeMobileBarCode,
+		"nationalidentificationnumber": TaxIdentifierTypeNationalIdentificationNumber,
+		"other":                        TaxIdentifierTypeOther,
+		"publicsectorid":               TaxIdentifierTypePublicSectorId,
+		"usexempt":                     TaxIdentifierTypeUSExempt,
+		"vatid":                        TaxIdentifierTypeVatId,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TaxIdentifierType(input)
+	return &out, nil
+}

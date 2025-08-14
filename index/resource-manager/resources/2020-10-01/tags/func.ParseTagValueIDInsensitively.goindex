@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-10-01/tags
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseTagValueIDInsensitively(input string) (*TagValueId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&TagValueId{})
+	parsed, err := parser.Parse(input, true)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := TagValueId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/availablebalance
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePaymentMethodFamily(input string) (*PaymentMethodFamily, error) {
+	vals := map[string]PaymentMethodFamily{
+		"checkwire":   PaymentMethodFamilyCheckWire,
+		"creditcard":  PaymentMethodFamilyCreditCard,
+		"credits":     PaymentMethodFamilyCredits,
+		"directdebit": PaymentMethodFamilyDirectDebit,
+		"ewallet":     PaymentMethodFamilyEWallet,
+		"none":        PaymentMethodFamilyNone,
+		"other":       PaymentMethodFamilyOther,
+		"taskorder":   PaymentMethodFamilyTaskOrder,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PaymentMethodFamily(input)
+	return &out, nil
+}

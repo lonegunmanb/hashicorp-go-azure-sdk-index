@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-03-01/backups
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseBackupType(input string) (*BackupType, error) {
+	vals := map[string]BackupType{
+		"manual":    BackupTypeManual,
+		"scheduled": BackupTypeScheduled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := BackupType(input)
+	return &out, nil
+}

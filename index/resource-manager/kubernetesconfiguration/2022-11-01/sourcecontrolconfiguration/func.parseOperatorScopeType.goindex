@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/kubernetesconfiguration/2022-11-01/sourcecontrolconfiguration
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseOperatorScopeType(input string) (*OperatorScopeType, error) {
+	vals := map[string]OperatorScopeType{
+		"cluster":   OperatorScopeTypeCluster,
+		"namespace": OperatorScopeTypeNamespace,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := OperatorScopeType(input)
+	return &out, nil
+}

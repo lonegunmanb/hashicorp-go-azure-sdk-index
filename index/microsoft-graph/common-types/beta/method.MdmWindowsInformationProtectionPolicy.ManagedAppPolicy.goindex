@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s MdmWindowsInformationProtectionPolicy) ManagedAppPolicy() BaseManagedAppPolicyImpl {
+	return BaseManagedAppPolicyImpl{
+		CreatedDateTime:      s.CreatedDateTime,
+		Description:          s.Description,
+		DisplayName:          s.DisplayName,
+		LastModifiedDateTime: s.LastModifiedDateTime,
+		RoleScopeTagIds:      s.RoleScopeTagIds,
+		Version:              s.Version,
+		Id:                   s.Id,
+		ODataId:              s.ODataId,
+		ODataType:            s.ODataType,
+	}
+}

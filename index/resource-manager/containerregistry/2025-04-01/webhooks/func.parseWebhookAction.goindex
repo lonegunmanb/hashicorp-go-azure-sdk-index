@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerregistry/2025-04-01/webhooks
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWebhookAction(input string) (*WebhookAction, error) {
+	vals := map[string]WebhookAction{
+		"chart_delete": WebhookActionChartDelete,
+		"chart_push":   WebhookActionChartPush,
+		"delete":       WebhookActionDelete,
+		"push":         WebhookActionPush,
+		"quarantine":   WebhookActionQuarantine,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WebhookAction(input)
+	return &out, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/privilegedaccess
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPrivilegedAccessClientWithBaseURI(sdkApi sdkEnv.Api) (*PrivilegedAccessClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "privilegedaccess", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PrivilegedAccessClient: %+v", err)
+	}
+
+	return &PrivilegedAccessClient{
+		Client: client,
+	}, nil
+}

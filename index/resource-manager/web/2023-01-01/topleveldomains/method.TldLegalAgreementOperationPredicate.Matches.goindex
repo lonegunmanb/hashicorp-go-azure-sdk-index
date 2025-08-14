@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/topleveldomains
+
+func (p TldLegalAgreementOperationPredicate) Matches(input TldLegalAgreement) bool {
+
+	if p.AgreementKey != nil && *p.AgreementKey != input.AgreementKey {
+		return false
+	}
+
+	if p.Content != nil && *p.Content != input.Content {
+		return false
+	}
+
+	if p.Title != nil && *p.Title != input.Title {
+		return false
+	}
+
+	if p.Url != nil && (input.Url == nil || *p.Url != *input.Url) {
+		return false
+	}
+
+	return true
+}

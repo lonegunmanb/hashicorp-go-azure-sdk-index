@@ -1,0 +1,58 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *DocumentSetVersion) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		Comment                   nullable.Type[string]     `json:"comment,omitempty"`
+		CreatedDateTime           nullable.Type[string]     `json:"createdDateTime,omitempty"`
+		Items                     *[]DocumentSetVersionItem `json:"items,omitempty"`
+		ShouldCaptureMinorVersion nullable.Type[bool]       `json:"shouldCaptureMinorVersion,omitempty"`
+		Fields                    *FieldValueSet            `json:"fields,omitempty"`
+		LastModifiedDateTime      nullable.Type[string]     `json:"lastModifiedDateTime,omitempty"`
+		Publication               *PublicationFacet         `json:"publication,omitempty"`
+		Id                        *string                   `json:"id,omitempty"`
+		ODataId                   *string                   `json:"@odata.id,omitempty"`
+		ODataType                 *string                   `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.Comment = decoded.Comment
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Items = decoded.Items
+	s.ShouldCaptureMinorVersion = decoded.ShouldCaptureMinorVersion
+	s.Fields = decoded.Fields
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.Publication = decoded.Publication
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling DocumentSetVersion into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["createdBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'CreatedBy' for 'DocumentSetVersion': %+v", err)
+		}
+		s.CreatedBy = impl
+	}
+
+	if v, ok := temp["lastModifiedBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'LastModifiedBy' for 'DocumentSetVersion': %+v", err)
+		}
+		s.LastModifiedBy = &impl
+	}
+
+	return nil
+}

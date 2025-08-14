@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/security/2025-03-01/devops
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseInventoryKind(input string) (*InventoryKind, error) {
+	vals := map[string]InventoryKind{
+		"azuredevopsorganization": InventoryKindAzureDevOpsOrganization,
+		"azuredevopsproject":      InventoryKindAzureDevOpsProject,
+		"azuredevopsrepository":   InventoryKindAzureDevOpsRepository,
+		"githubowner":             InventoryKindGitHubOwner,
+		"githubrepository":        InventoryKindGitHubRepository,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := InventoryKind(input)
+	return &out, nil
+}

@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseUserExperienceAnalyticsAnomalyState(input string) (*UserExperienceAnalyticsAnomalyState, error) {
+	vals := map[string]UserExperienceAnalyticsAnomalyState{
+		"active":   UserExperienceAnalyticsAnomalyState_Active,
+		"disabled": UserExperienceAnalyticsAnomalyState_Disabled,
+		"new":      UserExperienceAnalyticsAnomalyState_New,
+		"other":    UserExperienceAnalyticsAnomalyState_Other,
+		"removed":  UserExperienceAnalyticsAnomalyState_Removed,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UserExperienceAnalyticsAnomalyState(input)
+	return &out, nil
+}

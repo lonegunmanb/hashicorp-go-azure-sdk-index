@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mobilenetwork/2024-04-01/diagnosticspackages
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DiagnosticsPackageId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Packet Core Control Plane Name: %q", id.PacketCoreControlPlaneName),
+		fmt.Sprintf("Diagnostics Package Name: %q", id.DiagnosticsPackageName),
+	}
+	return fmt.Sprintf("Diagnostics Package (%s)", strings.Join(components, "\n"))
+}

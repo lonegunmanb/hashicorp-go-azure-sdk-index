@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/insightshared
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewInsightSharedClientWithBaseURI(sdkApi sdkEnv.Api) (*InsightSharedClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "insightshared", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating InsightSharedClient: %+v", err)
+	}
+
+	return &InsightSharedClient{
+		Client: client,
+	}, nil
+}

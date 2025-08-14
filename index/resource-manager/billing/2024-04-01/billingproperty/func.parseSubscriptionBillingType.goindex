@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingproperty
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSubscriptionBillingType(input string) (*SubscriptionBillingType, error) {
+	vals := map[string]SubscriptionBillingType{
+		"benefit": SubscriptionBillingTypeBenefit,
+		"free":    SubscriptionBillingTypeFree,
+		"none":    SubscriptionBillingTypeNone,
+		"paid":    SubscriptionBillingTypePaid,
+		"prepaid": SubscriptionBillingTypePrePaid,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SubscriptionBillingType(input)
+	return &out, nil
+}

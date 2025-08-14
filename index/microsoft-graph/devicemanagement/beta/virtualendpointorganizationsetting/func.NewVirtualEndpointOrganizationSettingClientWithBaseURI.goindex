@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/virtualendpointorganizationsetting
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewVirtualEndpointOrganizationSettingClientWithBaseURI(sdkApi sdkEnv.Api) (*VirtualEndpointOrganizationSettingClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "virtualendpointorganizationsetting", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating VirtualEndpointOrganizationSettingClient: %+v", err)
+	}
+
+	return &VirtualEndpointOrganizationSettingClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityHostPortStatus(input string) (*SecurityHostPortStatus, error) {
+	vals := map[string]SecurityHostPortStatus{
+		"closed":   SecurityHostPortStatus_Closed,
+		"filtered": SecurityHostPortStatus_Filtered,
+		"open":     SecurityHostPortStatus_Open,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityHostPortStatus(input)
+	return &out, nil
+}

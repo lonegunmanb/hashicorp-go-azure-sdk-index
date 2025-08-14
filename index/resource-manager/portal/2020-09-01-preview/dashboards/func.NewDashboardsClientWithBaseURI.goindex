@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/portal/2020-09-01-preview/dashboards
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDashboardsClientWithBaseURI(sdkApi sdkEnv.Api) (*DashboardsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "dashboards", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DashboardsClient: %+v", err)
+	}
+
+	return &DashboardsClient{
+		Client: client,
+	}, nil
+}

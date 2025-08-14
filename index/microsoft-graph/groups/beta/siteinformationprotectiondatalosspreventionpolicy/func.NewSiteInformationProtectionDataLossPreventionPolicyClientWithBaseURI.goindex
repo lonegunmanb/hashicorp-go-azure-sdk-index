@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/siteinformationprotectiondatalosspreventionpolicy
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSiteInformationProtectionDataLossPreventionPolicyClientWithBaseURI(sdkApi sdkEnv.Api) (*SiteInformationProtectionDataLossPreventionPolicyClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "siteinformationprotectiondatalosspreventionpolicy", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SiteInformationProtectionDataLossPreventionPolicyClient: %+v", err)
+	}
+
+	return &SiteInformationProtectionDataLossPreventionPolicyClient{
+		Client: client,
+	}, nil
+}

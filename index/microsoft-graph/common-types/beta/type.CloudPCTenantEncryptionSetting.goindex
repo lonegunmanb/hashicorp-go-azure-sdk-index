@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type CloudPCTenantEncryptionSetting struct {
+	// Indicates the date and time when last sync tenant encryption setting.
+	LastSyncDateTime nullable.Type[string] `json:"lastSyncDateTime,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Indicates the Cloud PC disk encryption type for a tenant. It is a tenant-level setting that applies globally to all
+	// Cloud PCs in the tenant. Possible values are: platformManagedKey, customerManagedKey, unknownFutureValue. Read-only.
+	TenantDiskEncryptionType *CloudPCDiskEncryptionType `json:"tenantDiskEncryptionType,omitempty"`
+}

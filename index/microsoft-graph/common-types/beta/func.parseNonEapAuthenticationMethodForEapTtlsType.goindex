@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNonEapAuthenticationMethodForEapTtlsType(input string) (*NonEapAuthenticationMethodForEapTtlsType, error) {
+	vals := map[string]NonEapAuthenticationMethodForEapTtlsType{
+		"challengehandshakeauthenticationprotocol": NonEapAuthenticationMethodForEapTtlsType_ChallengeHandshakeAuthenticationProtocol,
+		"microsoftchap":           NonEapAuthenticationMethodForEapTtlsType_MicrosoftChap,
+		"microsoftchapversiontwo": NonEapAuthenticationMethodForEapTtlsType_MicrosoftChapVersionTwo,
+		"unencryptedpassword":     NonEapAuthenticationMethodForEapTtlsType_UnencryptedPassword,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NonEapAuthenticationMethodForEapTtlsType(input)
+	return &out, nil
+}

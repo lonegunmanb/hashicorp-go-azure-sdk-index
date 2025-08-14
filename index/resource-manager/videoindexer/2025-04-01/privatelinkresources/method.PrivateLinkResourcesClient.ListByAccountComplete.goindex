@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/videoindexer/2025-04-01/privatelinkresources
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c PrivateLinkResourcesClient) ListByAccountComplete(ctx context.Context, id AccountId) (ListByAccountCompleteResult, error) {
+	return c.ListByAccountCompleteMatchingPredicate(ctx, id, PrivateLinkResourceOperationPredicate{})
+}

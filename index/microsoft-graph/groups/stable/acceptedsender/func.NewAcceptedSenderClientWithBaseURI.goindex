@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/acceptedsender
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAcceptedSenderClientWithBaseURI(sdkApi sdkEnv.Api) (*AcceptedSenderClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "acceptedsender", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AcceptedSenderClient: %+v", err)
+	}
+
+	return &AcceptedSenderClient{
+		Client: client,
+	}, nil
+}

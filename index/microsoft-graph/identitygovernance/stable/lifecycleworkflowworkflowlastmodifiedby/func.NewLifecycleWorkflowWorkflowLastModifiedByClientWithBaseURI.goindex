@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/lifecycleworkflowworkflowlastmodifiedby
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewLifecycleWorkflowWorkflowLastModifiedByClientWithBaseURI(sdkApi sdkEnv.Api) (*LifecycleWorkflowWorkflowLastModifiedByClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "lifecycleworkflowworkflowlastmodifiedby", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating LifecycleWorkflowWorkflowLastModifiedByClient: %+v", err)
+	}
+
+	return &LifecycleWorkflowWorkflowLastModifiedByClient{
+		Client: client,
+	}, nil
+}

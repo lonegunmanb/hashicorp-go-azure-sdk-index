@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2024-09-01/origingroups
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewOriginGroupsClientWithBaseURI(sdkApi sdkEnv.Api) (*OriginGroupsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "origingroups", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating OriginGroupsClient: %+v", err)
+	}
+
+	return &OriginGroupsClient{
+		Client: client,
+	}, nil
+}

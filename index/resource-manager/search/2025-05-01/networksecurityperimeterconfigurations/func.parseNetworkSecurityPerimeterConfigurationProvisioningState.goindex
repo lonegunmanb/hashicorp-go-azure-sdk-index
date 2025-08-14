@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/search/2025-05-01/networksecurityperimeterconfigurations
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNetworkSecurityPerimeterConfigurationProvisioningState(input string) (*NetworkSecurityPerimeterConfigurationProvisioningState, error) {
+	vals := map[string]NetworkSecurityPerimeterConfigurationProvisioningState{
+		"accepted":  NetworkSecurityPerimeterConfigurationProvisioningStateAccepted,
+		"canceled":  NetworkSecurityPerimeterConfigurationProvisioningStateCanceled,
+		"creating":  NetworkSecurityPerimeterConfigurationProvisioningStateCreating,
+		"deleting":  NetworkSecurityPerimeterConfigurationProvisioningStateDeleting,
+		"failed":    NetworkSecurityPerimeterConfigurationProvisioningStateFailed,
+		"succeeded": NetworkSecurityPerimeterConfigurationProvisioningStateSucceeded,
+		"updating":  NetworkSecurityPerimeterConfigurationProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NetworkSecurityPerimeterConfigurationProvisioningState(input)
+	return &out, nil
+}

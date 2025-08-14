@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2024-09-01/alertrules
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c AlertRulesClient) ListComplete(ctx context.Context, id WorkspaceId) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, AlertRuleOperationPredicate{})
+}

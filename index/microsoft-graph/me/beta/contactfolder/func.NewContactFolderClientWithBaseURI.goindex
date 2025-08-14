@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/contactfolder
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewContactFolderClientWithBaseURI(sdkApi sdkEnv.Api) (*ContactFolderClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "contactfolder", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ContactFolderClient: %+v", err)
+	}
+
+	return &ContactFolderClient{
+		Client: client,
+	}, nil
+}

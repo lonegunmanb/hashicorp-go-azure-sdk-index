@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseExternalConnectorsAclType(input string) (*ExternalConnectorsAclType, error) {
+	vals := map[string]ExternalConnectorsAclType{
+		"everyone":             ExternalConnectorsAclType_Everyone,
+		"everyoneexceptguests": ExternalConnectorsAclType_EveryoneExceptGuests,
+		"externalgroup":        ExternalConnectorsAclType_ExternalGroup,
+		"group":                ExternalConnectorsAclType_Group,
+		"user":                 ExternalConnectorsAclType_User,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ExternalConnectorsAclType(input)
+	return &out, nil
+}

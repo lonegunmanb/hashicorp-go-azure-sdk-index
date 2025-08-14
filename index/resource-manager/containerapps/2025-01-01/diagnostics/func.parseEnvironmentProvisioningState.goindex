@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerapps/2025-01-01/diagnostics
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEnvironmentProvisioningState(input string) (*EnvironmentProvisioningState, error) {
+	vals := map[string]EnvironmentProvisioningState{
+		"canceled":                      EnvironmentProvisioningStateCanceled,
+		"failed":                        EnvironmentProvisioningStateFailed,
+		"infrastructuresetupcomplete":   EnvironmentProvisioningStateInfrastructureSetupComplete,
+		"infrastructuresetupinprogress": EnvironmentProvisioningStateInfrastructureSetupInProgress,
+		"initializationinprogress":      EnvironmentProvisioningStateInitializationInProgress,
+		"scheduledfordelete":            EnvironmentProvisioningStateScheduledForDelete,
+		"succeeded":                     EnvironmentProvisioningStateSucceeded,
+		"upgradefailed":                 EnvironmentProvisioningStateUpgradeFailed,
+		"upgraderequested":              EnvironmentProvisioningStateUpgradeRequested,
+		"waiting":                       EnvironmentProvisioningStateWaiting,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EnvironmentProvisioningState(input)
+	return &out, nil
+}

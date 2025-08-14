@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCertificateStatus(input string) (*CertificateStatus, error) {
+	vals := map[string]CertificateStatus{
+		"notprovisioned": CertificateStatus_NotProvisioned,
+		"provisioned":    CertificateStatus_Provisioned,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CertificateStatus(input)
+	return &out, nil
+}

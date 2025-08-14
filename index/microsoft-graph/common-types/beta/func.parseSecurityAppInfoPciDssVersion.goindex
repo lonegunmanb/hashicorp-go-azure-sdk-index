@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityAppInfoPciDssVersion(input string) (*SecurityAppInfoPciDssVersion, error) {
+	vals := map[string]SecurityAppInfoPciDssVersion{
+		"notsupported": SecurityAppInfoPciDssVersion_NotSupported,
+		"unknown":      SecurityAppInfoPciDssVersion_Unknown,
+		"v1":           SecurityAppInfoPciDssVersion_V1,
+		"v2":           SecurityAppInfoPciDssVersion_V2,
+		"v3":           SecurityAppInfoPciDssVersion_V3,
+		"v3_1":         SecurityAppInfoPciDssVersion_V31,
+		"v3_2":         SecurityAppInfoPciDssVersion_V32,
+		"v3_2_1":       SecurityAppInfoPciDssVersion_V321,
+		"v4":           SecurityAppInfoPciDssVersion_V4,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityAppInfoPciDssVersion(input)
+	return &out, nil
+}

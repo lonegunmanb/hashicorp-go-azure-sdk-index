@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/bigdatapools
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNodeSize(input string) (*NodeSize, error) {
+	vals := map[string]NodeSize{
+		"large":    NodeSizeLarge,
+		"medium":   NodeSizeMedium,
+		"none":     NodeSizeNone,
+		"small":    NodeSizeSmall,
+		"xlarge":   NodeSizeXLarge,
+		"xxlarge":  NodeSizeXXLarge,
+		"xxxlarge": NodeSizeXXXLarge,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NodeSize(input)
+	return &out, nil
+}

@@ -1,0 +1,107 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalAuthenticationEventListenerImplementation(input []byte) (AuthenticationEventListener, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling AuthenticationEventListener into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.onAttributeCollectionListener") {
+		var out OnAttributeCollectionListener
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into OnAttributeCollectionListener: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.onAttributeCollectionStartListener") {
+		var out OnAttributeCollectionStartListener
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into OnAttributeCollectionStartListener: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.onAttributeCollectionSubmitListener") {
+		var out OnAttributeCollectionSubmitListener
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into OnAttributeCollectionSubmitListener: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.onAuthenticationMethodLoadStartListener") {
+		var out OnAuthenticationMethodLoadStartListener
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into OnAuthenticationMethodLoadStartListener: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.onEmailOtpSendListener") {
+		var out OnEmailOtpSendListener
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into OnEmailOtpSendListener: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.onInteractiveAuthFlowStartListener") {
+		var out OnInteractiveAuthFlowStartListener
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into OnInteractiveAuthFlowStartListener: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.onPhoneMethodLoadStartListener") {
+		var out OnPhoneMethodLoadStartListener
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into OnPhoneMethodLoadStartListener: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.onTokenIssuanceStartListener") {
+		var out OnTokenIssuanceStartListener
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into OnTokenIssuanceStartListener: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.onUserCreateStartListener") {
+		var out OnUserCreateStartListener
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into OnUserCreateStartListener: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseAuthenticationEventListenerImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseAuthenticationEventListenerImpl: %+v", err)
+	}
+
+	return RawAuthenticationEventListenerImpl{
+		authenticationEventListener: parent,
+		Type:                        value,
+		Values:                      temp,
+	}, nil
+
+}

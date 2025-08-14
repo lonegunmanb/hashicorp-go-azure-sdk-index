@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/androiddeviceownerenrollmentprofile
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c AndroidDeviceOwnerEnrollmentProfileClient) ListAndroidDeviceOwnerEnrollmentProfilesComplete(ctx context.Context, options ListAndroidDeviceOwnerEnrollmentProfilesOperationOptions) (ListAndroidDeviceOwnerEnrollmentProfilesCompleteResult, error) {
+	return c.ListAndroidDeviceOwnerEnrollmentProfilesCompleteMatchingPredicate(ctx, options, AndroidDeviceOwnerEnrollmentProfileOperationPredicate{})
+}

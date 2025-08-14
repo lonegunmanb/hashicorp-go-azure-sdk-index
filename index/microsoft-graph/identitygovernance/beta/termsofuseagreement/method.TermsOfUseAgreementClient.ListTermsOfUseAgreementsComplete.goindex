@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/termsofuseagreement
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c TermsOfUseAgreementClient) ListTermsOfUseAgreementsComplete(ctx context.Context, options ListTermsOfUseAgreementsOperationOptions) (ListTermsOfUseAgreementsCompleteResult, error) {
+	return c.ListTermsOfUseAgreementsCompleteMatchingPredicate(ctx, options, AgreementOperationPredicate{})
+}

@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2025-01-01/policydefinitions
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ProviderPolicyDefinitionId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Policy Definition Name: %q", id.PolicyDefinitionName),
+	}
+	return fmt.Sprintf("Provider Policy Definition (%s)", strings.Join(components, "\n"))
+}

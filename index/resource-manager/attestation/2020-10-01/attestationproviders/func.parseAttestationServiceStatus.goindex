@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/attestation/2020-10-01/attestationproviders
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAttestationServiceStatus(input string) (*AttestationServiceStatus, error) {
+	vals := map[string]AttestationServiceStatus{
+		"error":    AttestationServiceStatusError,
+		"notready": AttestationServiceStatusNotReady,
+		"ready":    AttestationServiceStatusReady,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AttestationServiceStatus(input)
+	return &out, nil
+}

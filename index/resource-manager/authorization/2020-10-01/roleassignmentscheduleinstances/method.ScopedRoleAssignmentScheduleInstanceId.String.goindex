@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/authorization/2020-10-01/roleassignmentscheduleinstances
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ScopedRoleAssignmentScheduleInstanceId) String() string {
+	components := []string{
+		fmt.Sprintf("Scope: %q", id.Scope),
+		fmt.Sprintf("Role Assignment Schedule Instance Name: %q", id.RoleAssignmentScheduleInstanceName),
+	}
+	return fmt.Sprintf("Scoped Role Assignment Schedule Instance (%s)", strings.Join(components, "\n"))
+}

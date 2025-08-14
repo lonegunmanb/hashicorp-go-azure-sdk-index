@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2025-03-01/forecast
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseFunctionName(input string) (*FunctionName, error) {
+	vals := map[string]FunctionName{
+		"cost":          FunctionNameCost,
+		"costusd":       FunctionNameCostUSD,
+		"pretaxcost":    FunctionNamePreTaxCost,
+		"pretaxcostusd": FunctionNamePreTaxCostUSD,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FunctionName(input)
+	return &out, nil
+}

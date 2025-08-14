@@ -1,0 +1,40 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s ManagedTenantsTenantDetailedInformation) MarshalJSON() ([]byte, error) {
+	type wrapper ManagedTenantsTenantDetailedInformation
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ManagedTenantsTenantDetailedInformation: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ManagedTenantsTenantDetailedInformation: %+v", err)
+	}
+
+	delete(decoded, "city")
+	delete(decoded, "countryCode")
+	delete(decoded, "countryName")
+	delete(decoded, "defaultDomainName")
+	delete(decoded, "industryName")
+	delete(decoded, "region")
+	delete(decoded, "segmentName")
+	delete(decoded, "verticalName")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.managedTenants.tenantDetailedInformation"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ManagedTenantsTenantDetailedInformation: %+v", err)
+	}
+
+	return encoded, nil
+}

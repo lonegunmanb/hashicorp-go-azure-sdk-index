@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/notificationhubs/2023-09-01/namespaces
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseReplicationRegion(input string) (*ReplicationRegion, error) {
+	vals := map[string]ReplicationRegion{
+		"australiaeast":    ReplicationRegionAustraliaEast,
+		"brazilsouth":      ReplicationRegionBrazilSouth,
+		"default":          ReplicationRegionDefault,
+		"none":             ReplicationRegionNone,
+		"northeurope":      ReplicationRegionNorthEurope,
+		"southafricanorth": ReplicationRegionSouthAfricaNorth,
+		"southeastasia":    ReplicationRegionSouthEastAsia,
+		"westus2":          ReplicationRegionWestUsTwo,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ReplicationRegion(input)
+	return &out, nil
+}

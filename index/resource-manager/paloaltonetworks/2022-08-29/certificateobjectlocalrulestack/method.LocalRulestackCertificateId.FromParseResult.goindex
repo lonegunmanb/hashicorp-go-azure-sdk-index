@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2022-08-29/certificateobjectlocalrulestack
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *LocalRulestackCertificateId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.LocalRulestackName, ok = input.Parsed["localRulestackName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "localRulestackName", input)
+	}
+
+	if id.CertificateName, ok = input.Parsed["certificateName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "certificateName", input)
+	}
+
+	return nil
+}

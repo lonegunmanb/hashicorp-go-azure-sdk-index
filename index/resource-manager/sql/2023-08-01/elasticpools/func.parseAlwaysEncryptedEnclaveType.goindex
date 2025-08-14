@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/elasticpools
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAlwaysEncryptedEnclaveType(input string) (*AlwaysEncryptedEnclaveType, error) {
+	vals := map[string]AlwaysEncryptedEnclaveType{
+		"default": AlwaysEncryptedEnclaveTypeDefault,
+		"vbs":     AlwaysEncryptedEnclaveTypeVBS,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AlwaysEncryptedEnclaveType(input)
+	return &out, nil
+}

@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2022-03-01/virtualmachinescalesetvmextensions
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id VirtualMachineExtensionId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Virtual Machine Scale Set Name: %q", id.VirtualMachineScaleSetName),
+		fmt.Sprintf("Instance: %q", id.InstanceId),
+		fmt.Sprintf("Extension Name: %q", id.ExtensionName),
+	}
+	return fmt.Sprintf("Virtual Machine Extension (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/mobilethreatdefenseconnector
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewMobileThreatDefenseConnectorClientWithBaseURI(sdkApi sdkEnv.Api) (*MobileThreatDefenseConnectorClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "mobilethreatdefenseconnector", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating MobileThreatDefenseConnectorClient: %+v", err)
+	}
+
+	return &MobileThreatDefenseConnectorClient{
+		Client: client,
+	}, nil
+}

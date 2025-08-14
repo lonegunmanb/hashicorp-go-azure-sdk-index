@@ -1,0 +1,144 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client
+import (
+	"bytes"
+	"context"
+	"crypto/tls"
+	"encoding/json"
+	"encoding/xml"
+	"errors"
+	"fmt"
+	"io"
+	"log"
+	"math"
+	"net"
+	"net/http"
+	"net/url"
+	"regexp"
+	"runtime"
+	"strconv"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/auth"
+	"github.com/hashicorp/go-azure-sdk/sdk/internal/accept"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+	"github.com/hashicorp/go-retryablehttp"
+)
+func (r *Response) Unmarshal(model interface{}) error {
+	if model == nil {
+		return fmt.Errorf("model was nil")
+	}
+	if r.Response == nil {
+		return fmt.Errorf("could not unmarshal as the HTTP response was nil")
+	}
+
+	var contentType string
+	if r.Response.Header != nil {
+		contentType = strings.ToLower(r.Response.Header.Get("Content-Type"))
+
+		if contentType == "" {
+			// some APIs (e.g. Storage Data Plane) don't return a content type... so we'll assume from the Accept header
+			acc, err := accept.FromString(r.Request.Header.Get("Accept"))
+			if err != nil {
+				if preferred := acc.FirstChoice(); preferred != nil {
+					contentType = preferred.ContentType
+				}
+			}
+			if contentType == "" {
+				// fall back on request media type
+				contentType = strings.ToLower(r.Request.Header.Get("Content-Type"))
+			}
+		}
+	}
+
+	if contentType == "" {
+		return fmt.Errorf("could not determine Content-Type for response")
+	}
+
+	// Some APIs (e.g. Maintenance) return 200 without a body, don't unmarshal these
+	if r.ContentLength == 0 && (r.Body == nil || r.Body == http.NoBody) {
+		return nil
+	}
+
+	switch {
+	case strings.Contains(contentType, "application/json"):
+		// Read the response body and close it
+		respBody, err := io.ReadAll(r.Body)
+		if err != nil {
+			return fmt.Errorf("parsing response body: %+v", err)
+		}
+		r.Body.Close()
+
+		// Trim away a BOM if present
+		respBody = bytes.TrimPrefix(respBody, []byte("\xef\xbb\xbf"))
+
+		// In some cases the respBody is empty, but not nil, so don't attempt to unmarshal this
+		if len(respBody) == 0 {
+			return nil
+		}
+
+		// Unmarshal into provided model
+		if err := json.Unmarshal(respBody, model); err != nil {
+			return fmt.Errorf("unmarshaling response body: %+v", err)
+		}
+
+		// Reassign the response body as downstream code may expect it
+		r.Body = io.NopCloser(bytes.NewBuffer(respBody))
+
+		return nil
+
+	case strings.Contains(contentType, "application/xml") || strings.Contains(contentType, "text/xml"):
+		// Read the response body and close it
+		respBody, err := io.ReadAll(r.Body)
+		if err != nil {
+			return fmt.Errorf("could not parse response body")
+		}
+		r.Body.Close()
+
+		// Trim away a BOM if present
+		respBody = bytes.TrimPrefix(respBody, []byte("\xef\xbb\xbf"))
+
+		// In some cases the respBody is empty, but not nil, so don't attempt to unmarshal this
+		if len(respBody) == 0 {
+			return nil
+		}
+
+		// Unmarshal into provided model
+		if err := xml.Unmarshal(respBody, model); err != nil {
+			return err
+		}
+
+		// Reassign the response body as downstream code may expect it
+		r.Body = io.NopCloser(bytes.NewBuffer(respBody))
+
+		return nil
+
+	case strings.Contains(contentType, "application/octet-stream") || strings.Contains(contentType, "text/powershell"):
+		ptr, ok := model.(*[]byte)
+		if !ok || ptr == nil {
+			return fmt.Errorf("internal-error: `model` must be a non-nil `*[]byte` but got %[1]T: %+[1]v", model)
+		}
+
+		// Read the response body and close it
+		respBody, err := io.ReadAll(r.Body)
+		if err != nil {
+			return fmt.Errorf("could not parse response body")
+		}
+		r.Body.Close()
+
+		if strings.HasPrefix(contentType, "text/") {
+			// Trim away a BOM if present
+			respBody = bytes.TrimPrefix(respBody, []byte("\xef\xbb\xbf"))
+		}
+
+		// copy the byte stream across
+		*ptr = respBody
+
+		// Reassign the response body as downstream code may expect it
+		r.Body = io.NopCloser(bytes.NewBuffer(respBody))
+
+		return nil
+	}
+
+	return fmt.Errorf("internal-error: unimplemented unmarshal function for content type %q", contentType)
+}

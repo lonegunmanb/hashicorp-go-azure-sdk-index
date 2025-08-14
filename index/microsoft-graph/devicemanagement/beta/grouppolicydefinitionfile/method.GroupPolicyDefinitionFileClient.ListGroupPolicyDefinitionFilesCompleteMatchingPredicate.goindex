@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/grouppolicydefinitionfile
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c GroupPolicyDefinitionFileClient) ListGroupPolicyDefinitionFilesCompleteMatchingPredicate(ctx context.Context, options ListGroupPolicyDefinitionFilesOperationOptions, predicate GroupPolicyDefinitionFileOperationPredicate) (result ListGroupPolicyDefinitionFilesCompleteResult, err error) {
+	items := make([]beta.GroupPolicyDefinitionFile, 0)
+
+	resp, err := c.ListGroupPolicyDefinitionFiles(ctx, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListGroupPolicyDefinitionFilesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

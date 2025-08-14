@@ -1,0 +1,9 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2019-06-01/schedule
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *ScheduleCreateOrUpdateProperties) GetStartTimeAsTime() (*time.Time, error) {
+	return dates.ParseAsFormat(&o.StartTime, "2006-01-02T15:04:05Z07:00")
+}

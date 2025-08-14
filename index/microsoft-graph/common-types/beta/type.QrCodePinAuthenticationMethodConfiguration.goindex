@@ -1,0 +1,39 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type QrCodePinAuthenticationMethodConfiguration struct {
+	// A collection of groups that are enabled to use the authentication method.
+	IncludeTargets *[]AuthenticationMethodTarget `json:"includeTargets,omitempty"`
+
+	// A memorized alphanumeric secret code. Minimum length is 8 as per NIST 800-63B and can't be longer than 20 digits.
+	PinLength nullable.Type[int64] `json:"pinLength,omitempty"`
+
+	// The maximum value is 395 days and the default value is 365 days.
+	StandardQRCodeLifetimeInDays nullable.Type[int64] `json:"standardQRCodeLifetimeInDays,omitempty"`
+
+	// Fields inherited from AuthenticationMethodConfiguration
+
+	// Groups of users that are excluded from a policy.
+	ExcludeTargets *[]ExcludeTarget `json:"excludeTargets,omitempty"`
+
+	// The state of the policy. Possible values are: enabled, disabled.
+	State *AuthenticationMethodState `json:"state,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

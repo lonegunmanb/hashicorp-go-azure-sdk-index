@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWiredNetworkInterface(input string) (*WiredNetworkInterface, error) {
+	vals := map[string]WiredNetworkInterface{
+		"anyethernet":          WiredNetworkInterface_AnyEthernet,
+		"firstactiveethernet":  WiredNetworkInterface_FirstActiveEthernet,
+		"firstethernet":        WiredNetworkInterface_FirstEthernet,
+		"secondactiveethernet": WiredNetworkInterface_SecondActiveEthernet,
+		"secondethernet":       WiredNetworkInterface_SecondEthernet,
+		"thirdactiveethernet":  WiredNetworkInterface_ThirdActiveEthernet,
+		"thirdethernet":        WiredNetworkInterface_ThirdEthernet,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WiredNetworkInterface(input)
+	return &out, nil
+}

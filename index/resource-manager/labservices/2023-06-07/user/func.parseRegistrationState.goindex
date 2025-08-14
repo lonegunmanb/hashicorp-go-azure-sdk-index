@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/labservices/2023-06-07/user
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRegistrationState(input string) (*RegistrationState, error) {
+	vals := map[string]RegistrationState{
+		"notregistered": RegistrationStateNotRegistered,
+		"registered":    RegistrationStateRegistered,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RegistrationState(input)
+	return &out, nil
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/pool
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseComputeNodeDeallocationOption(input string) (*ComputeNodeDeallocationOption, error) {
+	vals := map[string]ComputeNodeDeallocationOption{
+		"requeue":        ComputeNodeDeallocationOptionRequeue,
+		"retaineddata":   ComputeNodeDeallocationOptionRetainedData,
+		"taskcompletion": ComputeNodeDeallocationOptionTaskCompletion,
+		"terminate":      ComputeNodeDeallocationOptionTerminate,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ComputeNodeDeallocationOption(input)
+	return &out, nil
+}

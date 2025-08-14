@@ -1,0 +1,95 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type Schedule struct {
+	// The day notes in the schedule.
+	DayNotes *[]DayNote `json:"dayNotes,omitempty"`
+
+	// Indicates whether the schedule is enabled for the team. Required.
+	Enabled nullable.Type[bool] `json:"enabled,omitempty"`
+
+	// Indicates whether copied shifts include activities from the original shift.
+	IsActivitiesIncludedWhenCopyingShiftsEnabled nullable.Type[bool] `json:"isActivitiesIncludedWhenCopyingShiftsEnabled,omitempty"`
+
+	// The offer requests for shifts in the schedule.
+	OfferShiftRequests *[]OfferShiftRequest `json:"offerShiftRequests,omitempty"`
+
+	// Indicates whether offer shift requests are enabled for the schedule.
+	OfferShiftRequestsEnabled nullable.Type[bool] `json:"offerShiftRequestsEnabled,omitempty"`
+
+	// The open shift requests in the schedule.
+	OpenShiftChangeRequests *[]OpenShiftChangeRequest `json:"openShiftChangeRequests,omitempty"`
+
+	// The set of open shifts in a scheduling group in the schedule.
+	OpenShifts *[]OpenShift `json:"openShifts,omitempty"`
+
+	// Indicates whether open shifts are enabled for the schedule.
+	OpenShiftsEnabled nullable.Type[bool] `json:"openShiftsEnabled,omitempty"`
+
+	// The status of the schedule provisioning. The possible values are notStarted, running, completed, failed.
+	ProvisionStatus *OperationStatus `json:"provisionStatus,omitempty"`
+
+	// Additional information about why schedule provisioning failed.
+	ProvisionStatusCode nullable.Type[string] `json:"provisionStatusCode,omitempty"`
+
+	// The logical grouping of users in the schedule (usually by role).
+	SchedulingGroups *[]SchedulingGroup `json:"schedulingGroups,omitempty"`
+
+	// The shifts in the schedule.
+	Shifts *[]Shift `json:"shifts,omitempty"`
+
+	// Indicates the start day of the week. The possible values are: sunday, monday, tuesday, wednesday, thursday, friday,
+	// saturday.
+	StartDayOfWeek *DayOfWeek `json:"startDayOfWeek,omitempty"`
+
+	// The swap requests for shifts in the schedule.
+	SwapShiftsChangeRequests *[]SwapShiftsChangeRequest `json:"swapShiftsChangeRequests,omitempty"`
+
+	// Indicates whether swap shifts requests are enabled for the schedule.
+	SwapShiftsRequestsEnabled nullable.Type[bool] `json:"swapShiftsRequestsEnabled,omitempty"`
+
+	// The time cards in the schedule.
+	TimeCards *[]TimeCard `json:"timeCards,omitempty"`
+
+	// Indicates whether time clock is enabled for the schedule.
+	TimeClockEnabled nullable.Type[bool] `json:"timeClockEnabled,omitempty"`
+
+	// The time clock location settings for this schedule.
+	TimeClockSettings *TimeClockSettings `json:"timeClockSettings,omitempty"`
+
+	// The set of reasons for a time off in the schedule.
+	TimeOffReasons *[]TimeOffReason `json:"timeOffReasons,omitempty"`
+
+	// The time off requests in the schedule.
+	TimeOffRequests *[]TimeOffRequest `json:"timeOffRequests,omitempty"`
+
+	// Indicates whether time off requests are enabled for the schedule.
+	TimeOffRequestsEnabled nullable.Type[bool] `json:"timeOffRequestsEnabled,omitempty"`
+
+	// Indicates the time zone of the schedule team using tz database format. Required.
+	TimeZone nullable.Type[string] `json:"timeZone,omitempty"`
+
+	// The instances of times off in the schedule.
+	TimesOff *[]TimeOff `json:"timesOff,omitempty"`
+
+	// The IDs for the workforce integrations associated with this schedule.
+	WorkforceIntegrationIds *[]string `json:"workforceIntegrationIds,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

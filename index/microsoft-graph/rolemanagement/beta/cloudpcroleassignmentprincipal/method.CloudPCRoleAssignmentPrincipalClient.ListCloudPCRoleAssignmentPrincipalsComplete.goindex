@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/cloudpcroleassignmentprincipal
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c CloudPCRoleAssignmentPrincipalClient) ListCloudPCRoleAssignmentPrincipalsComplete(ctx context.Context, id beta.RoleManagementCloudPCRoleAssignmentId, options ListCloudPCRoleAssignmentPrincipalsOperationOptions) (ListCloudPCRoleAssignmentPrincipalsCompleteResult, error) {
+	return c.ListCloudPCRoleAssignmentPrincipalsCompleteMatchingPredicate(ctx, id, options, DirectoryObjectOperationPredicate{})
+}

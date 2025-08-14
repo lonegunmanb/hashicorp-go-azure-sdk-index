@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-01-01/netappresource
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRegionStorageToNetworkProximity(input string) (*RegionStorageToNetworkProximity, error) {
+	vals := map[string]RegionStorageToNetworkProximity{
+		"acrosst2":           RegionStorageToNetworkProximityAcrossTTwo,
+		"default":            RegionStorageToNetworkProximityDefault,
+		"t1":                 RegionStorageToNetworkProximityTOne,
+		"t1andacrosst2":      RegionStorageToNetworkProximityTOneAndAcrossTTwo,
+		"t1andt2":            RegionStorageToNetworkProximityTOneAndTTwo,
+		"t1andt2andacrosst2": RegionStorageToNetworkProximityTOneAndTTwoAndAcrossTTwo,
+		"t2":                 RegionStorageToNetworkProximityTTwo,
+		"t2andacrosst2":      RegionStorageToNetworkProximityTTwoAndAcrossTTwo,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RegionStorageToNetworkProximity(input)
+	return &out, nil
+}

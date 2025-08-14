@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2024-08-01/migrations
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c MigrationsClient) ListByTargetServerComplete(ctx context.Context, id FlexibleServerId, options ListByTargetServerOperationOptions) (ListByTargetServerCompleteResult, error) {
+	return c.ListByTargetServerCompleteMatchingPredicate(ctx, id, options, MigrationResourceOperationPredicate{})
+}

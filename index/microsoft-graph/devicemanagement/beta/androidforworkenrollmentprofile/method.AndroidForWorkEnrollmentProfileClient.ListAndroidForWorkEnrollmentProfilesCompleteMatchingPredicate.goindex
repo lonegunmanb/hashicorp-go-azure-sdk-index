@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/androidforworkenrollmentprofile
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c AndroidForWorkEnrollmentProfileClient) ListAndroidForWorkEnrollmentProfilesCompleteMatchingPredicate(ctx context.Context, options ListAndroidForWorkEnrollmentProfilesOperationOptions, predicate AndroidForWorkEnrollmentProfileOperationPredicate) (result ListAndroidForWorkEnrollmentProfilesCompleteResult, err error) {
+	items := make([]beta.AndroidForWorkEnrollmentProfile, 0)
+
+	resp, err := c.ListAndroidForWorkEnrollmentProfiles(ctx, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListAndroidForWorkEnrollmentProfilesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

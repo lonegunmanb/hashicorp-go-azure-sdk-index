@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+)
+type ThumbnailSet struct {
+	// A 1920x1920 scaled thumbnail.
+	Large *Thumbnail `json:"large,omitempty"`
+
+	// A 176x176 scaled thumbnail.
+	Medium *Thumbnail `json:"medium,omitempty"`
+
+	// A 48x48 cropped thumbnail.
+	Small *Thumbnail `json:"small,omitempty"`
+
+	// A custom thumbnail image or the original image used to generate other thumbnails.
+	Source *Thumbnail `json:"source,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

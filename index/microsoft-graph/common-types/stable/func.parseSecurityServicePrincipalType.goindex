@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityServicePrincipalType(input string) (*SecurityServicePrincipalType, error) {
+	vals := map[string]SecurityServicePrincipalType{
+		"application":     SecurityServicePrincipalType_Application,
+		"legacy":          SecurityServicePrincipalType_Legacy,
+		"managedidentity": SecurityServicePrincipalType_ManagedIdentity,
+		"unknown":         SecurityServicePrincipalType_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityServicePrincipalType(input)
+	return &out, nil
+}

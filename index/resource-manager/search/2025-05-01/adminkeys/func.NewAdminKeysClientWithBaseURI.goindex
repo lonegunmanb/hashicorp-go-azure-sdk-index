@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/search/2025-05-01/adminkeys
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAdminKeysClientWithBaseURI(sdkApi sdkEnv.Api) (*AdminKeysClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "adminkeys", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AdminKeysClient: %+v", err)
+	}
+
+	return &AdminKeysClient{
+		Client: client,
+	}, nil
+}

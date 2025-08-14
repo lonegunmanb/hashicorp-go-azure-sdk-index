@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/provider
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o GetWebAppStacksForLocationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.StackOsType != nil {
+		out.Append("stackOsType", fmt.Sprintf("%v", *o.StackOsType))
+	}
+	return &out
+}

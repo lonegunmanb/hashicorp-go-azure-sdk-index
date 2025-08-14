@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEdiscoveryCaseOperationStatus(input string) (*EdiscoveryCaseOperationStatus, error) {
+	vals := map[string]EdiscoveryCaseOperationStatus{
+		"failed":             EdiscoveryCaseOperationStatus_Failed,
+		"notstarted":         EdiscoveryCaseOperationStatus_NotStarted,
+		"partiallysucceeded": EdiscoveryCaseOperationStatus_PartiallySucceeded,
+		"running":            EdiscoveryCaseOperationStatus_Running,
+		"submissionfailed":   EdiscoveryCaseOperationStatus_SubmissionFailed,
+		"succeeded":          EdiscoveryCaseOperationStatus_Succeeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EdiscoveryCaseOperationStatus(input)
+	return &out, nil
+}

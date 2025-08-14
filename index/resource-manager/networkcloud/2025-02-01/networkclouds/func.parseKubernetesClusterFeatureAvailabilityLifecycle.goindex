@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/networkcloud/2025-02-01/networkclouds
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseKubernetesClusterFeatureAvailabilityLifecycle(input string) (*KubernetesClusterFeatureAvailabilityLifecycle, error) {
+	vals := map[string]KubernetesClusterFeatureAvailabilityLifecycle{
+		"generallyavailable": KubernetesClusterFeatureAvailabilityLifecycleGenerallyAvailable,
+		"preview":            KubernetesClusterFeatureAvailabilityLifecyclePreview,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := KubernetesClusterFeatureAvailabilityLifecycle(input)
+	return &out, nil
+}

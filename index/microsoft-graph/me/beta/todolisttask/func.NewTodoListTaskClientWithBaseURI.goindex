@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/todolisttask
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTodoListTaskClientWithBaseURI(sdkApi sdkEnv.Api) (*TodoListTaskClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "todolisttask", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TodoListTaskClient: %+v", err)
+	}
+
+	return &TodoListTaskClient{
+		Client: client,
+	}, nil
+}

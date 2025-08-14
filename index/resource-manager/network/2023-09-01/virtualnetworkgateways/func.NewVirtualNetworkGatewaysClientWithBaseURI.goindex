@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-09-01/virtualnetworkgateways
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewVirtualNetworkGatewaysClientWithBaseURI(sdkApi sdkEnv.Api) (*VirtualNetworkGatewaysClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "virtualnetworkgateways", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating VirtualNetworkGatewaysClient: %+v", err)
+	}
+
+	return &VirtualNetworkGatewaysClient{
+		Client: client,
+	}, nil
+}

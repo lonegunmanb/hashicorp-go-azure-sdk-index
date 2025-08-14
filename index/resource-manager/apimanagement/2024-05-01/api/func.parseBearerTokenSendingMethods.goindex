@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/api
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseBearerTokenSendingMethods(input string) (*BearerTokenSendingMethods, error) {
+	vals := map[string]BearerTokenSendingMethods{
+		"authorizationheader": BearerTokenSendingMethodsAuthorizationHeader,
+		"query":               BearerTokenSendingMethodsQuery,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := BearerTokenSendingMethods(input)
+	return &out, nil
+}

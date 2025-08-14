@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2025-02-15/namespacetopics
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEventInputSchema(input string) (*EventInputSchema, error) {
+	vals := map[string]EventInputSchema{
+		"cloudeventschemav1_0": EventInputSchemaCloudEventSchemaVOneZero,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EventInputSchema(input)
+	return &out, nil
+}

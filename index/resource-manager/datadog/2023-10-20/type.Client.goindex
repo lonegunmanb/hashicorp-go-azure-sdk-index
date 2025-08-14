@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datadog/v2023_10_20
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/datadog/2023-10-20/agreements"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/datadog/2023-10-20/apikey"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/datadog/2023-10-20/connectedresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/datadog/2023-10-20/createresource"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/datadog/2023-10-20/hosts"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/datadog/2023-10-20/linkedresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/datadog/2023-10-20/monitoredresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/datadog/2023-10-20/monitoredsubscriptions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/datadog/2023-10-20/monitorsresource"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/datadog/2023-10-20/refreshsetpasswordlink"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/datadog/2023-10-20/rules"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/datadog/2023-10-20/singlesignon"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	Agreements             *agreements.AgreementsClient
+	ApiKey                 *apikey.ApiKeyClient
+	ConnectedResources     *connectedresources.ConnectedResourcesClient
+	CreateResource         *createresource.CreateResourceClient
+	Hosts                  *hosts.HostsClient
+	LinkedResources        *linkedresources.LinkedResourcesClient
+	MonitoredResources     *monitoredresources.MonitoredResourcesClient
+	MonitoredSubscriptions *monitoredsubscriptions.MonitoredSubscriptionsClient
+	MonitorsResource       *monitorsresource.MonitorsResourceClient
+	RefreshSetPasswordLink *refreshsetpasswordlink.RefreshSetPasswordLinkClient
+	Rules                  *rules.RulesClient
+	SingleSignOn           *singlesignon.SingleSignOnClient
+}

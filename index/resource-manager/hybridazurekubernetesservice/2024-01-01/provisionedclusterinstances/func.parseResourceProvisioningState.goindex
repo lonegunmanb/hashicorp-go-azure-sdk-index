@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hybridazurekubernetesservice/2024-01-01/provisionedclusterinstances
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseResourceProvisioningState(input string) (*ResourceProvisioningState, error) {
+	vals := map[string]ResourceProvisioningState{
+		"accepted":  ResourceProvisioningStateAccepted,
+		"canceled":  ResourceProvisioningStateCanceled,
+		"creating":  ResourceProvisioningStateCreating,
+		"deleting":  ResourceProvisioningStateDeleting,
+		"failed":    ResourceProvisioningStateFailed,
+		"pending":   ResourceProvisioningStatePending,
+		"succeeded": ResourceProvisioningStateSucceeded,
+		"updating":  ResourceProvisioningStateUpdating,
+		"upgrading": ResourceProvisioningStateUpgrading,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ResourceProvisioningState(input)
+	return &out, nil
+}

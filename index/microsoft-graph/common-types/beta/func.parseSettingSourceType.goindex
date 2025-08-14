@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSettingSourceType(input string) (*SettingSourceType, error) {
+	vals := map[string]SettingSourceType{
+		"deviceconfiguration": SettingSourceType_DeviceConfiguration,
+		"deviceintent":        SettingSourceType_DeviceIntent,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SettingSourceType(input)
+	return &out, nil
+}

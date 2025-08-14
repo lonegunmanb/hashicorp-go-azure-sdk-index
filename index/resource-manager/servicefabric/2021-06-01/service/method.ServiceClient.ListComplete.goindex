@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicefabric/2021-06-01/service
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ServiceClient) ListComplete(ctx context.Context, id ApplicationId) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, ServiceResourceOperationPredicate{})
+}

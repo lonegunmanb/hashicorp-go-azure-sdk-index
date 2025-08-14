@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client
+import (
+	"net/http"
+	"net/url"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+type Options interface {
+	// ToHeaders yields a custom Headers struct to be appended to the request
+	ToHeaders() *Headers
+
+	// ToOData yields a custom *odata.Query struct to be appended to the request
+	ToOData() *odata.Query
+
+	// ToQuery yields a custom *QueryParams struct to be appended to the request
+	ToQuery() *QueryParams
+}

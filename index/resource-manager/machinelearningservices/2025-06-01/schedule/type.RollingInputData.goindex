@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2025-06-01/schedule
+import (
+	"encoding/json"
+	"fmt"
+)
+type RollingInputData struct {
+	PreprocessingComponentId *string `json:"preprocessingComponentId,omitempty"`
+	WindowOffset             string  `json:"windowOffset"`
+	WindowSize               string  `json:"windowSize"`
+
+	// Fields inherited from MonitoringInputDataBase
+
+	Columns       *map[string]string      `json:"columns,omitempty"`
+	DataContext   *string                 `json:"dataContext,omitempty"`
+	InputDataType MonitoringInputDataType `json:"inputDataType"`
+	JobInputType  JobInputType            `json:"jobInputType"`
+	Uri           string                  `json:"uri"`
+}

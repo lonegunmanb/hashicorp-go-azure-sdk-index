@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/streamanalytics/2021-10-01-preview/streamingjobs
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewStreamingJobsClientWithBaseURI(sdkApi sdkEnv.Api) (*StreamingJobsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "streamingjobs", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating StreamingJobsClient: %+v", err)
+	}
+
+	return &StreamingJobsClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,65 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalWin32LobAppRuleImplementation(input []byte) (Win32LobAppRule, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling Win32LobAppRule into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.win32LobAppFileSystemRule") {
+		var out Win32LobAppFileSystemRule
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into Win32LobAppFileSystemRule: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.win32LobAppPowerShellScriptRule") {
+		var out Win32LobAppPowerShellScriptRule
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into Win32LobAppPowerShellScriptRule: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.win32LobAppProductCodeRule") {
+		var out Win32LobAppProductCodeRule
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into Win32LobAppProductCodeRule: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.win32LobAppRegistryRule") {
+		var out Win32LobAppRegistryRule
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into Win32LobAppRegistryRule: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseWin32LobAppRuleImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseWin32LobAppRuleImpl: %+v", err)
+	}
+
+	return RawWin32LobAppRuleImpl{
+		win32LobAppRule: parent,
+		Type:            value,
+		Values:          temp,
+	}, nil
+
+}

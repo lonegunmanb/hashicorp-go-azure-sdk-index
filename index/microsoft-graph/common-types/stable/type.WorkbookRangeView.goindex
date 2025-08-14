@@ -1,0 +1,60 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+)
+type WorkbookRangeView struct {
+	// The cell addresses.
+	CellAddresses *Json `json:"cellAddresses,omitempty"`
+
+	// The number of visible columns. Read-only.
+	ColumnCount *int64 `json:"columnCount,omitempty"`
+
+	// The formula in A1-style notation.
+	Formulas *Json `json:"formulas,omitempty"`
+
+	// The formula in A1-style notation, in the user's language and number-formatting locale. For example, the English
+	// '=SUM(A1, 1.5)' formula would become '=SUMME(A1; 1,5)' in German.
+	FormulasLocal *Json `json:"formulasLocal,omitempty"`
+
+	// Represents the formula in R1C1-style notation.
+	FormulasR1C1 *Json `json:"formulasR1C1,omitempty"`
+
+	// The index of the range.
+	Index *int64 `json:"index,omitempty"`
+
+	// Excel's number format code for the given cell. Read-only.
+	NumberFormat *Json `json:"numberFormat,omitempty"`
+
+	// The number of visible rows. Read-only.
+	RowCount *int64 `json:"rowCount,omitempty"`
+
+	// The collection of range views associated with the range. Read-only. Read-only.
+	Rows *[]WorkbookRangeView `json:"rows,omitempty"`
+
+	// The text values of the specified range. The Text value won't depend on the cell width. The # sign substitution that
+	// happens in Excel UI won't affect the text value returned by the API. Read-only.
+	Text *Json `json:"text,omitempty"`
+
+	// The type of data of each cell. Read-only. The possible values are: Unknown, Empty, String, Integer, Double, Boolean,
+	// Error.
+	ValueTypes *Json `json:"valueTypes,omitempty"`
+
+	// The raw values of the specified range view. The data returned could be of type string, number, or a Boolean. Cell
+	// that contains an error returns the error string.
+	Values *Json `json:"values,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

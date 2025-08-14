@@ -1,0 +1,52 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *EdiscoveryNoncustodialDataSource) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		ApplyHoldToSource    nullable.Type[bool]                  `json:"applyHoldToSource,omitempty"`
+		CreatedDateTime      nullable.Type[string]                `json:"createdDateTime,omitempty"`
+		DisplayName          nullable.Type[string]                `json:"displayName,omitempty"`
+		HoldStatus           *EdiscoveryDataSourceHoldStatus      `json:"holdStatus,omitempty"`
+		LastIndexOperation   *EdiscoveryCaseIndexOperation        `json:"lastIndexOperation,omitempty"`
+		LastModifiedDateTime nullable.Type[string]                `json:"lastModifiedDateTime,omitempty"`
+		ReleasedDateTime     nullable.Type[string]                `json:"releasedDateTime,omitempty"`
+		Status               *EdiscoveryDataSourceContainerStatus `json:"status,omitempty"`
+		Id                   *string                              `json:"id,omitempty"`
+		ODataId              *string                              `json:"@odata.id,omitempty"`
+		ODataType            *string                              `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.ApplyHoldToSource = decoded.ApplyHoldToSource
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.DisplayName = decoded.DisplayName
+	s.HoldStatus = decoded.HoldStatus
+	s.Id = decoded.Id
+	s.LastIndexOperation = decoded.LastIndexOperation
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.ReleasedDateTime = decoded.ReleasedDateTime
+	s.Status = decoded.Status
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling EdiscoveryNoncustodialDataSource into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["dataSource"]; ok {
+		impl, err := UnmarshalEdiscoveryDataSourceImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'DataSource' for 'EdiscoveryNoncustodialDataSource': %+v", err)
+		}
+		s.DataSource = &impl
+	}
+
+	return nil
+}

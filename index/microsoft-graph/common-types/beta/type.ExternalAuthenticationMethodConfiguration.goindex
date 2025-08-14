@@ -1,0 +1,40 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type ExternalAuthenticationMethodConfiguration struct {
+	// appId for the app registration in Microsoft Entra ID representing the integration with the external provider.
+	AppId *string `json:"appId,omitempty"`
+
+	// Display name for the external authentication method. This name is shown to users during sign-in.
+	DisplayName *string `json:"displayName,omitempty"`
+
+	// A collection of groups that are enabled to use an authentication method as part of an authentication method policy in
+	// Microsoft Entra ID.
+	IncludeTargets *[]AuthenticationMethodTarget `json:"includeTargets,omitempty"`
+
+	OpenIdConnectSetting *OpenIdConnectSetting `json:"openIdConnectSetting,omitempty"`
+
+	// Fields inherited from AuthenticationMethodConfiguration
+
+	// Groups of users that are excluded from a policy.
+	ExcludeTargets *[]ExcludeTarget `json:"excludeTargets,omitempty"`
+
+	// The state of the policy. Possible values are: enabled, disabled.
+	State *AuthenticationMethodState `json:"state,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

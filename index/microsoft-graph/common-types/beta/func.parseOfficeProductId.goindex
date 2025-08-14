@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseOfficeProductId(input string) (*OfficeProductId, error) {
+	vals := map[string]OfficeProductId{
+		"o365businessretail": OfficeProductId_O365BusinessRetail,
+		"o365proplusretail":  OfficeProductId_O365ProPlusRetail,
+		"projectproretail":   OfficeProductId_ProjectProRetail,
+		"visioproretail":     OfficeProductId_VisioProRetail,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := OfficeProductId(input)
+	return &out, nil
+}

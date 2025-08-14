@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+)
+type TermStoreStore struct {
+	// Default language of the term store.
+	DefaultLanguageTag *string `json:"defaultLanguageTag,omitempty"`
+
+	// Collection of all groups available in the term store.
+	Groups *[]TermStoreGroup `json:"groups,omitempty"`
+
+	// List of languages for the term store.
+	LanguageTags *[]string `json:"languageTags,omitempty"`
+
+	// Collection of all sets available in the term store. This relationship can only be used to load a specific term set.
+	Sets *[]TermStoreSet `json:"sets,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

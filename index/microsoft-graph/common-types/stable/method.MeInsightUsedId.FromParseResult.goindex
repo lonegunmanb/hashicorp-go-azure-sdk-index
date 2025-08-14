@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *MeInsightUsedId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.UsedInsightId, ok = input.Parsed["usedInsightId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "usedInsightId", input)
+	}
+
+	return nil
+}

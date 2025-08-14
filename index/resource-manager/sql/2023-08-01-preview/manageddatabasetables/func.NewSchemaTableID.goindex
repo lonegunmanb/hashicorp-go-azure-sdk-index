@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/manageddatabasetables
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func NewSchemaTableID(subscriptionId string, resourceGroupName string, managedInstanceName string, databaseName string, schemaName string, tableName string) SchemaTableId {
+	return SchemaTableId{
+		SubscriptionId:      subscriptionId,
+		ResourceGroupName:   resourceGroupName,
+		ManagedInstanceName: managedInstanceName,
+		DatabaseName:        databaseName,
+		SchemaName:          schemaName,
+		TableName:           tableName,
+	}
+}

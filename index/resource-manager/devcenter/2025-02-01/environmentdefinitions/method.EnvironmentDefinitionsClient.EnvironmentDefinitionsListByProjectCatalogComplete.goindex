@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/environmentdefinitions
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c EnvironmentDefinitionsClient) EnvironmentDefinitionsListByProjectCatalogComplete(ctx context.Context, id CatalogId) (EnvironmentDefinitionsListByProjectCatalogCompleteResult, error) {
+	return c.EnvironmentDefinitionsListByProjectCatalogCompleteMatchingPredicate(ctx, id, EnvironmentDefinitionOperationPredicate{})
+}

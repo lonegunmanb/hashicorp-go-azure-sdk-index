@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *DeviceManagementAppleUserInitiatedEnrollmentProfileId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.AppleUserInitiatedEnrollmentProfileId, ok = input.Parsed["appleUserInitiatedEnrollmentProfileId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "appleUserInitiatedEnrollmentProfileId", input)
+	}
+
+	return nil
+}

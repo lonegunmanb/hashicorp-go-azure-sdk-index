@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ProtectedApplicationMetadata struct {
+	// The Entra client (application) ID. Required.
+	ApplicationLocation PolicyLocation `json:"applicationLocation"`
+
+	// Fields inherited from IntegratedApplicationMetadata
+
+	// The name of the integrated application.
+	Name nullable.Type[string] `json:"name,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The version number of the integrated application.
+	Version nullable.Type[string] `json:"version,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

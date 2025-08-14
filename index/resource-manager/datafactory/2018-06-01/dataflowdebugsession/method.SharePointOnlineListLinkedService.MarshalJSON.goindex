@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/dataflowdebugsession
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s SharePointOnlineListLinkedService) MarshalJSON() ([]byte, error) {
+	type wrapper SharePointOnlineListLinkedService
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling SharePointOnlineListLinkedService: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling SharePointOnlineListLinkedService: %+v", err)
+	}
+
+	decoded["type"] = "SharePointOnlineList"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling SharePointOnlineListLinkedService: %+v", err)
+	}
+
+	return encoded, nil
+}

@@ -1,0 +1,59 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalAuthorizationSystemIdentityImplementation(input []byte) (AuthorizationSystemIdentity, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling AuthorizationSystemIdentity into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.awsIdentity") {
+		var out AwsIdentity
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AwsIdentity: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.azureIdentity") {
+		var out AzureIdentity
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureIdentity: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.gcpIdentity") {
+		var out GcpIdentity
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into GcpIdentity: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseAuthorizationSystemIdentityImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseAuthorizationSystemIdentityImpl: %+v", err)
+	}
+
+	return RawAuthorizationSystemIdentityImpl{
+		authorizationSystemIdentity: parent,
+		Type:                        value,
+		Values:                      temp,
+	}, nil
+
+}

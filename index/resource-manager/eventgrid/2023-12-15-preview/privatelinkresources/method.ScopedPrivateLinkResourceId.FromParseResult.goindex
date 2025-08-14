@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2023-12-15-preview/privatelinkresources
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *ScopedPrivateLinkResourceId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.Scope, ok = input.Parsed["scope"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "scope", input)
+	}
+
+	if id.PrivateLinkResourceName, ok = input.Parsed["privateLinkResourceName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "privateLinkResourceName", input)
+	}
+
+	return nil
+}

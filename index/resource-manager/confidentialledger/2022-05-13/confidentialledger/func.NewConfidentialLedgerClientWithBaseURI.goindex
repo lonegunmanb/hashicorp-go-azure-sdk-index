@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/confidentialledger/2022-05-13/confidentialledger
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewConfidentialLedgerClientWithBaseURI(sdkApi sdkEnv.Api) (*ConfidentialLedgerClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "confidentialledger", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ConfidentialLedgerClient: %+v", err)
+	}
+
+	return &ConfidentialLedgerClient{
+		Client: client,
+	}, nil
+}

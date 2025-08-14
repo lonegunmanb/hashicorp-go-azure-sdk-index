@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/directoryroleaccessreviewpolicy
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDirectoryRoleAccessReviewPolicyClientWithBaseURI(sdkApi sdkEnv.Api) (*DirectoryRoleAccessReviewPolicyClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "directoryroleaccessreviewpolicy", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DirectoryRoleAccessReviewPolicyClient: %+v", err)
+	}
+
+	return &DirectoryRoleAccessReviewPolicyClient{
+		Client: client,
+	}, nil
+}

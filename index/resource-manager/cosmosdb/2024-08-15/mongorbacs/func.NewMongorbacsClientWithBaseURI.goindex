@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cosmosdb/2024-08-15/mongorbacs
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewMongorbacsClientWithBaseURI(sdkApi sdkEnv.Api) (*MongorbacsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "mongorbacs", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating MongorbacsClient: %+v", err)
+	}
+
+	return &MongorbacsClient{
+		Client: client,
+	}, nil
+}

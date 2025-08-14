@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCloudPCProvisioningType(input string) (*CloudPCProvisioningType, error) {
+	vals := map[string]CloudPCProvisioningType{
+		"dedicated": CloudPCProvisioningType_Dedicated,
+		"shared":    CloudPCProvisioningType_Shared,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CloudPCProvisioningType(input)
+	return &out, nil
+}

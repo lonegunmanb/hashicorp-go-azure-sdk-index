@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/managednetwork
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ManagedNetworkClient) SettingsRuleCreateOrUpdateThenPoll(ctx context.Context, id OutboundRuleId, input OutboundRuleBasicResource) error {
+	result, err := c.SettingsRuleCreateOrUpdate(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing SettingsRuleCreateOrUpdate: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after SettingsRuleCreateOrUpdate: %+v", err)
+	}
+
+	return nil
+}

@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s GroupPolicyUploadedDefinitionFile) GroupPolicyDefinitionFile() BaseGroupPolicyDefinitionFileImpl {
+	return BaseGroupPolicyDefinitionFileImpl{
+		Definitions:          s.Definitions,
+		Description:          s.Description,
+		DisplayName:          s.DisplayName,
+		FileName:             s.FileName,
+		LanguageCodes:        s.LanguageCodes,
+		LastModifiedDateTime: s.LastModifiedDateTime,
+		PolicyType:           s.PolicyType,
+		Revision:             s.Revision,
+		TargetNamespace:      s.TargetNamespace,
+		TargetPrefix:         s.TargetPrefix,
+		Id:                   s.Id,
+		ODataId:              s.ODataId,
+		ODataType:            s.ODataType,
+	}
+}

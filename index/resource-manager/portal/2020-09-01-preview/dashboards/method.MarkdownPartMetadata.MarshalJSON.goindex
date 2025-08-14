@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/portal/2020-09-01-preview/dashboards
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s MarkdownPartMetadata) MarshalJSON() ([]byte, error) {
+	type wrapper MarkdownPartMetadata
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling MarkdownPartMetadata: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling MarkdownPartMetadata: %+v", err)
+	}
+
+	decoded["type"] = "Extension/HubsExtension/PartType/MarkdownPart"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling MarkdownPartMetadata: %+v", err)
+	}
+
+	return encoded, nil
+}

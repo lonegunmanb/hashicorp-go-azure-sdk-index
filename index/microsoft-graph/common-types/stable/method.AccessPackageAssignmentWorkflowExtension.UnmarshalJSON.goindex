@@ -1,0 +1,66 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *AccessPackageAssignmentWorkflowExtension) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		CreatedBy            nullable.Type[string]               `json:"createdBy,omitempty"`
+		CreatedDateTime      nullable.Type[string]               `json:"createdDateTime,omitempty"`
+		LastModifiedBy       nullable.Type[string]               `json:"lastModifiedBy,omitempty"`
+		LastModifiedDateTime nullable.Type[string]               `json:"lastModifiedDateTime,omitempty"`
+		ClientConfiguration  *CustomExtensionClientConfiguration `json:"clientConfiguration,omitempty"`
+		Description          nullable.Type[string]               `json:"description,omitempty"`
+		DisplayName          nullable.Type[string]               `json:"displayName,omitempty"`
+		Id                   *string                             `json:"id,omitempty"`
+		ODataId              *string                             `json:"@odata.id,omitempty"`
+		ODataType            *string                             `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.CreatedBy = decoded.CreatedBy
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.LastModifiedBy = decoded.LastModifiedBy
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ClientConfiguration = decoded.ClientConfiguration
+	s.Description = decoded.Description
+	s.DisplayName = decoded.DisplayName
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling AccessPackageAssignmentWorkflowExtension into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["authenticationConfiguration"]; ok {
+		impl, err := UnmarshalCustomExtensionAuthenticationConfigurationImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'AuthenticationConfiguration' for 'AccessPackageAssignmentWorkflowExtension': %+v", err)
+		}
+		s.AuthenticationConfiguration = impl
+	}
+
+	if v, ok := temp["callbackConfiguration"]; ok {
+		impl, err := UnmarshalCustomExtensionCallbackConfigurationImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'CallbackConfiguration' for 'AccessPackageAssignmentWorkflowExtension': %+v", err)
+		}
+		s.CallbackConfiguration = impl
+	}
+
+	if v, ok := temp["endpointConfiguration"]; ok {
+		impl, err := UnmarshalCustomExtensionEndpointConfigurationImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'EndpointConfiguration' for 'AccessPackageAssignmentWorkflowExtension': %+v", err)
+		}
+		s.EndpointConfiguration = impl
+	}
+
+	return nil
+}

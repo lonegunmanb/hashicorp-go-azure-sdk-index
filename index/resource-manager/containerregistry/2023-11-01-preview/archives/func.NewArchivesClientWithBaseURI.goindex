@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerregistry/2023-11-01-preview/archives
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewArchivesClientWithBaseURI(sdkApi sdkEnv.Api) (*ArchivesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "archives", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ArchivesClient: %+v", err)
+	}
+
+	return &ArchivesClient{
+		Client: client,
+	}, nil
+}

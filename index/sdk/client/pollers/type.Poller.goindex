@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client/pollers
+import (
+	"context"
+	"fmt"
+	"sync"
+	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+)
+type Poller struct {
+	// initialDelayDuration specifies the duration of the initial delay when polling
+	// this is also used for retries should a `latestResponse` not be available, for
+	// example when a connection is dropped.
+	initialDelayDuration time.Duration
+
+	// latestError contains the error returned from the latest poll.
+	latestError error
+
+	// latestResponse contains the polling status from the latest response.
+	latestResponse *PollResult
+
+	// maxNumberOfDroppedConnections specifies the maximum number of sequential dropped connections before an error is raised.
+	maxNumberOfDroppedConnections int
+
+	// poller is a reference to the PollerType, for example a LongRunningOperationPoller
+	// which should be polled to determine the latest state.
+	poller PollerType
+}

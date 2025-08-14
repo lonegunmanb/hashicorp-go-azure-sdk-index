@@ -1,0 +1,36 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s OutlookTask) MarshalJSON() ([]byte, error) {
+	type wrapper OutlookTask
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling OutlookTask: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling OutlookTask: %+v", err)
+	}
+
+	delete(decoded, "assignedTo")
+	delete(decoded, "attachments")
+	delete(decoded, "multiValueExtendedProperties")
+	delete(decoded, "singleValueExtendedProperties")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.outlookTask"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling OutlookTask: %+v", err)
+	}
+
+	return encoded, nil
+}

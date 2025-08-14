@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/frontdoor/2020-04-01/frontdoors
+import (
+	"strings"
+)
+func parseFrontDoorRedirectType(input string) (*FrontDoorRedirectType, error) {
+	vals := map[string]FrontDoorRedirectType{
+		"found":             FrontDoorRedirectTypeFound,
+		"moved":             FrontDoorRedirectTypeMoved,
+		"permanentredirect": FrontDoorRedirectTypePermanentRedirect,
+		"temporaryredirect": FrontDoorRedirectTypeTemporaryRedirect,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FrontDoorRedirectType(input)
+	return &out, nil
+}

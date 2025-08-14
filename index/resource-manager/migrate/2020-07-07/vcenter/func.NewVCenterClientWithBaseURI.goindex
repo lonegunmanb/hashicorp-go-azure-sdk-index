@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-07-07/vcenter
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewVCenterClientWithBaseURI(sdkApi sdkEnv.Api) (*VCenterClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "vcenter", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating VCenterClient: %+v", err)
+	}
+
+	return &VCenterClient{
+		Client: client,
+	}, nil
+}

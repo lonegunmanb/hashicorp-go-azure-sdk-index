@@ -1,0 +1,51 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalDeviceHealthScriptTimeScheduleImplementation(input []byte) (DeviceHealthScriptTimeSchedule, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling DeviceHealthScriptTimeSchedule into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.deviceHealthScriptDailySchedule") {
+		var out DeviceHealthScriptDailySchedule
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DeviceHealthScriptDailySchedule: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.deviceHealthScriptRunOnceSchedule") {
+		var out DeviceHealthScriptRunOnceSchedule
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DeviceHealthScriptRunOnceSchedule: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseDeviceHealthScriptTimeScheduleImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseDeviceHealthScriptTimeScheduleImpl: %+v", err)
+	}
+
+	return RawDeviceHealthScriptTimeScheduleImpl{
+		deviceHealthScriptTimeSchedule: parent,
+		Type:                           value,
+		Values:                         temp,
+	}, nil
+
+}

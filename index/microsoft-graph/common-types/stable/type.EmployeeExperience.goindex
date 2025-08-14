@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+)
+type EmployeeExperience struct {
+	// A collection of communities in Viva Engage.
+	Communities *[]Community `json:"communities,omitempty"`
+
+	// A collection of long-running, asynchronous operations related to Viva Engage.
+	EngagementAsyncOperations *[]EngagementAsyncOperation `json:"engagementAsyncOperations,omitempty"`
+
+	LearningCourseActivities *[]LearningCourseActivity `json:"learningCourseActivities,omitempty"`
+
+	// A collection of learning providers.
+	LearningProviders *[]LearningProvider `json:"learningProviders,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+}

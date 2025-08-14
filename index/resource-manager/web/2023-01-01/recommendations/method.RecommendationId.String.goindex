@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/recommendations
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id RecommendationId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Recommendation Name: %q", id.RecommendationName),
+	}
+	return fmt.Sprintf("Recommendation (%s)", strings.Join(components, "\n"))
+}

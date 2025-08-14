@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-09-01/expressroutecrossconnectionroutetablesummary
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id PeeringRouteTablesSummaryId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Express Route Cross Connection Name: %q", id.ExpressRouteCrossConnectionName),
+		fmt.Sprintf("Peering Name: %q", id.PeeringName),
+		fmt.Sprintf("Route Tables Summary Name: %q", id.RouteTablesSummaryName),
+	}
+	return fmt.Sprintf("Peering Route Tables Summary (%s)", strings.Join(components, "\n"))
+}

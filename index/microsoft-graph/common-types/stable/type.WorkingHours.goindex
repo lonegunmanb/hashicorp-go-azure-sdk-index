@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type WorkingHours struct {
+	// The days of the week on which the user works.
+	DaysOfWeek *[]DayOfWeek `json:"daysOfWeek,omitempty"`
+
+	// The time of the day that the user stops working.
+	EndTime nullable.Type[string] `json:"endTime,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The time of the day that the user starts working.
+	StartTime nullable.Type[string] `json:"startTime,omitempty"`
+
+	// The time zone to which the working hours apply.
+	TimeZone TimeZoneBase `json:"timeZone"`
+}

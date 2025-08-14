@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWindows10VpnProfileTarget(input string) (*Windows10VpnProfileTarget, error) {
+	vals := map[string]Windows10VpnProfileTarget{
+		"autopilotdevice": Windows10VpnProfileTarget_AutoPilotDevice,
+		"device":          Windows10VpnProfileTarget_Device,
+		"user":            Windows10VpnProfileTarget_User,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10VpnProfileTarget(input)
+	return &out, nil
+}

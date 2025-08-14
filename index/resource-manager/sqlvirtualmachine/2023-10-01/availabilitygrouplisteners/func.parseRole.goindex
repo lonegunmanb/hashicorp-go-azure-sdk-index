@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sqlvirtualmachine/2023-10-01/availabilitygrouplisteners
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRole(input string) (*Role, error) {
+	vals := map[string]Role{
+		"primary":   RolePrimary,
+		"secondary": RoleSecondary,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Role(input)
+	return &out, nil
+}

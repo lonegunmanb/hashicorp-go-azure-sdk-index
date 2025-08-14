@@ -1,0 +1,65 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/streamanalytics/2021-10-01-preview/functions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalFunctionRetrieveDefaultDefinitionParametersImplementation(input []byte) (FunctionRetrieveDefaultDefinitionParameters, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling FunctionRetrieveDefaultDefinitionParameters into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["bindingType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "Microsoft.MachineLearningServices") {
+		var out AzureMachineLearningServiceFunctionRetrieveDefaultDefinitionParameters
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureMachineLearningServiceFunctionRetrieveDefaultDefinitionParameters: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "Microsoft.MachineLearning/WebService") {
+		var out AzureMachineLearningStudioFunctionRetrieveDefaultDefinitionParameters
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureMachineLearningStudioFunctionRetrieveDefaultDefinitionParameters: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "Microsoft.StreamAnalytics/CLRUdf") {
+		var out CSharpFunctionRetrieveDefaultDefinitionParameters
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into CSharpFunctionRetrieveDefaultDefinitionParameters: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "Microsoft.StreamAnalytics/JavascriptUdf") {
+		var out JavaScriptFunctionRetrieveDefaultDefinitionParameters
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into JavaScriptFunctionRetrieveDefaultDefinitionParameters: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseFunctionRetrieveDefaultDefinitionParametersImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseFunctionRetrieveDefaultDefinitionParametersImpl: %+v", err)
+	}
+
+	return RawFunctionRetrieveDefaultDefinitionParametersImpl{
+		functionRetrieveDefaultDefinitionParameters: parent,
+		Type:   value,
+		Values: temp,
+	}, nil
+
+}

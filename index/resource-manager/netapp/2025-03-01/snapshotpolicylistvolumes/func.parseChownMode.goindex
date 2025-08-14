@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-03-01/snapshotpolicylistvolumes
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseChownMode(input string) (*ChownMode, error) {
+	vals := map[string]ChownMode{
+		"restricted":   ChownModeRestricted,
+		"unrestricted": ChownModeUnrestricted,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ChownMode(input)
+	return &out, nil
+}

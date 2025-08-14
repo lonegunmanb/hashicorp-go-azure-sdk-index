@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/machinelearningcomputes
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseImageType(input string) (*ImageType, error) {
+	vals := map[string]ImageType{
+		"azureml": ImageTypeAzureml,
+		"docker":  ImageTypeDocker,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ImageType(input)
+	return &out, nil
+}

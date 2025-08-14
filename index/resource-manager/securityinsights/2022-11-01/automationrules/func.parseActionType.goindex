@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-11-01/automationrules
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseActionType(input string) (*ActionType, error) {
+	vals := map[string]ActionType{
+		"modifyproperties": ActionTypeModifyProperties,
+		"runplaybook":      ActionTypeRunPlaybook,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ActionType(input)
+	return &out, nil
+}

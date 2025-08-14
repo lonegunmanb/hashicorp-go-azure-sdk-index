@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/graphservices/2023-04-13/graphservicesprods
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewGraphservicesprodsClientWithBaseURI(sdkApi sdkEnv.Api) (*GraphservicesprodsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "graphservicesprods", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating GraphservicesprodsClient: %+v", err)
+	}
+
+	return &GraphservicesprodsClient{
+		Client: client,
+	}, nil
+}

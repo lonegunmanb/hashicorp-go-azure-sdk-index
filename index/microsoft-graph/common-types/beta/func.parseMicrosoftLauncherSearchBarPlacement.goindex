@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMicrosoftLauncherSearchBarPlacement(input string) (*MicrosoftLauncherSearchBarPlacement, error) {
+	vals := map[string]MicrosoftLauncherSearchBarPlacement{
+		"bottom":        MicrosoftLauncherSearchBarPlacement_Bottom,
+		"hide":          MicrosoftLauncherSearchBarPlacement_Hide,
+		"notconfigured": MicrosoftLauncherSearchBarPlacement_NotConfigured,
+		"top":           MicrosoftLauncherSearchBarPlacement_Top,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MicrosoftLauncherSearchBarPlacement(input)
+	return &out, nil
+}

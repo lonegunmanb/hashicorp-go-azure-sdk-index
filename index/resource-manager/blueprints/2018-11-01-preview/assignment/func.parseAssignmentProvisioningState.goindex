@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/blueprints/2018-11-01-preview/assignment
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAssignmentProvisioningState(input string) (*AssignmentProvisioningState, error) {
+	vals := map[string]AssignmentProvisioningState{
+		"canceled":   AssignmentProvisioningStateCanceled,
+		"cancelling": AssignmentProvisioningStateCancelling,
+		"creating":   AssignmentProvisioningStateCreating,
+		"deleting":   AssignmentProvisioningStateDeleting,
+		"deploying":  AssignmentProvisioningStateDeploying,
+		"failed":     AssignmentProvisioningStateFailed,
+		"locking":    AssignmentProvisioningStateLocking,
+		"succeeded":  AssignmentProvisioningStateSucceeded,
+		"validating": AssignmentProvisioningStateValidating,
+		"waiting":    AssignmentProvisioningStateWaiting,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AssignmentProvisioningState(input)
+	return &out, nil
+}

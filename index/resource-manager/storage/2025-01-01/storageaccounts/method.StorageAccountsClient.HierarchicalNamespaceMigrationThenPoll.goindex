@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-01-01/storageaccounts
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c StorageAccountsClient) HierarchicalNamespaceMigrationThenPoll(ctx context.Context, id commonids.StorageAccountId, options HierarchicalNamespaceMigrationOperationOptions) error {
+	result, err := c.HierarchicalNamespaceMigration(ctx, id, options)
+	if err != nil {
+		return fmt.Errorf("performing HierarchicalNamespaceMigration: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after HierarchicalNamespaceMigration: %+v", err)
+	}
+
+	return nil
+}

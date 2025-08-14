@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/outlooktask
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c OutlookTaskClient) ListOutlookTasksComplete(ctx context.Context, options ListOutlookTasksOperationOptions) (ListOutlookTasksCompleteResult, error) {
+	return c.ListOutlookTasksCompleteMatchingPredicate(ctx, options, OutlookTaskOperationPredicate{})
+}

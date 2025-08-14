@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/security/2019-01-01-preview/subassessments
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ScopedAssessmentId) String() string {
+	components := []string{
+		fmt.Sprintf("Resource: %q", id.ResourceId),
+		fmt.Sprintf("Assessment Name: %q", id.AssessmentName),
+	}
+	return fmt.Sprintf("Scoped Assessment (%s)", strings.Join(components, "\n"))
+}

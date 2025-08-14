@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2022-09-01/providers
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseSubscriptionProviderID(input string) (*SubscriptionProviderId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&SubscriptionProviderId{})
+	parsed, err := parser.Parse(input, false)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := SubscriptionProviderId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

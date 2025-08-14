@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2025-03-01/alerts
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAlertTimeGrainType(input string) (*AlertTimeGrainType, error) {
+	vals := map[string]AlertTimeGrainType{
+		"annually":       AlertTimeGrainTypeAnnually,
+		"billingannual":  AlertTimeGrainTypeBillingAnnual,
+		"billingmonth":   AlertTimeGrainTypeBillingMonth,
+		"billingquarter": AlertTimeGrainTypeBillingQuarter,
+		"monthly":        AlertTimeGrainTypeMonthly,
+		"none":           AlertTimeGrainTypeNone,
+		"quarterly":      AlertTimeGrainTypeQuarterly,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AlertTimeGrainType(input)
+	return &out, nil
+}

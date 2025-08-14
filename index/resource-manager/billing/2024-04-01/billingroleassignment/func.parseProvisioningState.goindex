@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingroleassignment
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseProvisioningState(input string) (*ProvisioningState, error) {
+	vals := map[string]ProvisioningState{
+		"canceled":     ProvisioningStateCanceled,
+		"failed":       ProvisioningStateFailed,
+		"new":          ProvisioningStateNew,
+		"pending":      ProvisioningStatePending,
+		"provisioning": ProvisioningStateProvisioning,
+		"succeeded":    ProvisioningStateSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ProvisioningState(input)
+	return &out, nil
+}

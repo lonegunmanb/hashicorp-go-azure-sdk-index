@@ -1,0 +1,57 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/job
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalIdentityConfigurationImplementation(input []byte) (IdentityConfiguration, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling IdentityConfiguration into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["identityType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "AMLToken") {
+		var out AmlToken
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AmlToken: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "Managed") {
+		var out ManagedIdentity
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ManagedIdentity: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "UserIdentity") {
+		var out UserIdentity
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into UserIdentity: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseIdentityConfigurationImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseIdentityConfigurationImpl: %+v", err)
+	}
+
+	return RawIdentityConfigurationImpl{
+		identityConfiguration: parent,
+		Type:                  value,
+		Values:                temp,
+	}, nil
+
+}

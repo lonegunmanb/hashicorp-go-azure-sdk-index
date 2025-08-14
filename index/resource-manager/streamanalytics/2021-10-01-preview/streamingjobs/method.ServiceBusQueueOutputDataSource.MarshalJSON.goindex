@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/streamanalytics/2021-10-01-preview/streamingjobs
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s ServiceBusQueueOutputDataSource) MarshalJSON() ([]byte, error) {
+	type wrapper ServiceBusQueueOutputDataSource
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ServiceBusQueueOutputDataSource: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ServiceBusQueueOutputDataSource: %+v", err)
+	}
+
+	decoded["type"] = "Microsoft.ServiceBus/Queue"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ServiceBusQueueOutputDataSource: %+v", err)
+	}
+
+	return encoded, nil
+}

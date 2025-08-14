@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/serversecurityalertpolicies
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewServerSecurityAlertPoliciesClientWithBaseURI(sdkApi sdkEnv.Api) (*ServerSecurityAlertPoliciesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "serversecurityalertpolicies", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ServerSecurityAlertPoliciesClient: %+v", err)
+	}
+
+	return &ServerSecurityAlertPoliciesClient{
+		Client: client,
+	}, nil
+}

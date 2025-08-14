@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2023-11-01/testjobstream
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id TestJobStreamId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Automation Account Name: %q", id.AutomationAccountName),
+		fmt.Sprintf("Runbook Name: %q", id.RunbookName),
+		fmt.Sprintf("Job Stream: %q", id.JobStreamId),
+	}
+	return fmt.Sprintf("Test Job Stream (%s)", strings.Join(components, "\n"))
+}

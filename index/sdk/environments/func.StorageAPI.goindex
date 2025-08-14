@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/sdk/environments
+import "github.com/hashicorp/go-azure-helpers/lang/pointer"
+func StorageAPI(domainSuffix string) *ApiEndpoint {
+	// The default resource identifier for Azure Storage is the same for all public and sovereign clouds. This can be
+	// changed to scope the token for authorizing against a single storage account.
+	// https://learn.microsoft.com/en-us/azure/storage/blobs/authorize-access-azure-active-directory#microsoft-authentication-library-msal
+	return &ApiEndpoint{
+		domainSuffix:       pointer.To(domainSuffix),
+		endpoint:           nil,
+		appId:              pointer.To(storageAppId),
+		name:               "AzureStorage",
+		resourceIdentifier: pointer.To("https://storage.azure.com"),
+	}
+}

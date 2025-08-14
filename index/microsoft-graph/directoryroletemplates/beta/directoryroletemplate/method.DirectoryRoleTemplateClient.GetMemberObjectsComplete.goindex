@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/directoryroletemplates/beta/directoryroletemplate
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DirectoryRoleTemplateClient) GetMemberObjectsComplete(ctx context.Context, id beta.DirectoryRoleTemplateId, input GetMemberObjectsRequest, options GetMemberObjectsOperationOptions) (result GetMemberObjectsCompleteResult, err error) {
+	items := make([]string, 0)
+
+	resp, err := c.GetMemberObjects(ctx, id, input, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			items = append(items, v)
+		}
+	}
+
+	result = GetMemberObjectsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

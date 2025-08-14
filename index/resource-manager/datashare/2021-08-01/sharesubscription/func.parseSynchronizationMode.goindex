@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2021-08-01/sharesubscription
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSynchronizationMode(input string) (*SynchronizationMode, error) {
+	vals := map[string]SynchronizationMode{
+		"fullsync":    SynchronizationModeFullSync,
+		"incremental": SynchronizationModeIncremental,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SynchronizationMode(input)
+	return &out, nil
+}

@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DirectoryRoleIdScopedMemberId) String() string {
+	components := []string{
+		fmt.Sprintf("Directory Role: %q", id.DirectoryRoleId),
+		fmt.Sprintf("Scoped Role Membership: %q", id.ScopedRoleMembershipId),
+	}
+	return fmt.Sprintf("Directory Role Id Scoped Member (%s)", strings.Join(components, "\n"))
+}

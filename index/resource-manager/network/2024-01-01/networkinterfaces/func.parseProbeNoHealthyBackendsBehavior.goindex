@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-01-01/networkinterfaces
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseProbeNoHealthyBackendsBehavior(input string) (*ProbeNoHealthyBackendsBehavior, error) {
+	vals := map[string]ProbeNoHealthyBackendsBehavior{
+		"allprobeddown": ProbeNoHealthyBackendsBehaviorAllProbedDown,
+		"allprobedup":   ProbeNoHealthyBackendsBehaviorAllProbedUp,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ProbeNoHealthyBackendsBehavior(input)
+	return &out, nil
+}

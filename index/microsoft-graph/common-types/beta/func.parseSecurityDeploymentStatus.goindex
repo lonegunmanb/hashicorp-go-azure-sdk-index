@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityDeploymentStatus(input string) (*SecurityDeploymentStatus, error) {
+	vals := map[string]SecurityDeploymentStatus{
+		"disconnected":  SecurityDeploymentStatus_Disconnected,
+		"notconfigured": SecurityDeploymentStatus_NotConfigured,
+		"outdated":      SecurityDeploymentStatus_Outdated,
+		"startfailure":  SecurityDeploymentStatus_StartFailure,
+		"syncing":       SecurityDeploymentStatus_Syncing,
+		"unreachable":   SecurityDeploymentStatus_Unreachable,
+		"uptodate":      SecurityDeploymentStatus_UpToDate,
+		"updatefailed":  SecurityDeploymentStatus_UpdateFailed,
+		"updating":      SecurityDeploymentStatus_Updating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityDeploymentStatus(input)
+	return &out, nil
+}

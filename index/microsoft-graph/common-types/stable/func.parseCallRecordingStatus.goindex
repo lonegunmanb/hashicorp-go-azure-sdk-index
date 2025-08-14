@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCallRecordingStatus(input string) (*CallRecordingStatus, error) {
+	vals := map[string]CallRecordingStatus{
+		"chunkfinished": CallRecordingStatus_ChunkFinished,
+		"failure":       CallRecordingStatus_Failure,
+		"initial":       CallRecordingStatus_Initial,
+		"success":       CallRecordingStatus_Success,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CallRecordingStatus(input)
+	return &out, nil
+}

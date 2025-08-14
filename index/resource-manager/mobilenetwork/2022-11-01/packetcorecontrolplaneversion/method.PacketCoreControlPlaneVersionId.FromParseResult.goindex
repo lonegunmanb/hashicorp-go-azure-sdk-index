@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mobilenetwork/2022-11-01/packetcorecontrolplaneversion
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *PacketCoreControlPlaneVersionId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.PacketCoreControlPlaneVersionName, ok = input.Parsed["packetCoreControlPlaneVersionName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "packetCoreControlPlaneVersionName", input)
+	}
+
+	return nil
+}

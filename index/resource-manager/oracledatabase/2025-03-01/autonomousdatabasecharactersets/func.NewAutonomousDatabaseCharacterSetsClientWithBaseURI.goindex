@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/autonomousdatabasecharactersets
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAutonomousDatabaseCharacterSetsClientWithBaseURI(sdkApi sdkEnv.Api) (*AutonomousDatabaseCharacterSetsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "autonomousdatabasecharactersets", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AutonomousDatabaseCharacterSetsClient: %+v", err)
+	}
+
+	return &AutonomousDatabaseCharacterSetsClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingprofile
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSpendingLimitStatus(input string) (*SpendingLimitStatus, error) {
+	vals := map[string]SpendingLimitStatus{
+		"active":       SpendingLimitStatusActive,
+		"expired":      SpendingLimitStatusExpired,
+		"limitreached": SpendingLimitStatusLimitReached,
+		"limitremoved": SpendingLimitStatusLimitRemoved,
+		"none":         SpendingLimitStatusNone,
+		"other":        SpendingLimitStatusOther,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SpendingLimitStatus(input)
+	return &out, nil
+}

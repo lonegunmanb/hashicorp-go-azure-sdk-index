@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *ApplicationIdExtensionPropertyId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.ApplicationId, ok = input.Parsed["applicationId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "applicationId", input)
+	}
+
+	if id.ExtensionPropertyId, ok = input.Parsed["extensionPropertyId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "extensionPropertyId", input)
+	}
+
+	return nil
+}

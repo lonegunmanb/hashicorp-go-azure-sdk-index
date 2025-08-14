@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingsubscription
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSubscriptionStatusReason(input string) (*SubscriptionStatusReason, error) {
+	vals := map[string]SubscriptionStatusReason{
+		"cancelled":            SubscriptionStatusReasonCancelled,
+		"expired":              SubscriptionStatusReasonExpired,
+		"none":                 SubscriptionStatusReasonNone,
+		"other":                SubscriptionStatusReasonOther,
+		"pastdue":              SubscriptionStatusReasonPastDue,
+		"policyviolation":      SubscriptionStatusReasonPolicyViolation,
+		"spendinglimitreached": SubscriptionStatusReasonSpendingLimitReached,
+		"suspiciousactivity":   SubscriptionStatusReasonSuspiciousActivity,
+		"transferred":          SubscriptionStatusReasonTransferred,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SubscriptionStatusReason(input)
+	return &out, nil
+}

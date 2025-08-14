@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-12-01-preview/sourcecontrols
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseContentType(input string) (*ContentType, error) {
+	vals := map[string]ContentType{
+		"analyticsrule":  ContentTypeAnalyticsRule,
+		"automationrule": ContentTypeAutomationRule,
+		"huntingquery":   ContentTypeHuntingQuery,
+		"parser":         ContentTypeParser,
+		"playbook":       ContentTypePlaybook,
+		"workbook":       ContentTypeWorkbook,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ContentType(input)
+	return &out, nil
+}

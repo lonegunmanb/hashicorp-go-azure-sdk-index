@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"context"
+	"fmt"
+	"net/http"
+	"os"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	"github.com/hashicorp/go-azure-sdk/sdk/internal/azurecli"
+	"golang.org/x/oauth2"
+)
+type AzureCliAuthorizerOptions struct {
+	// Api describes the Azure API being used
+	Api environments.Api
+
+	// TenantId is the tenant to authenticate against
+	TenantId string
+
+	// AuxTenantIds lists additional tenants to authenticate against, currently only
+	// used for Resource Manager when auxiliary tenants are needed.
+	// e.g. https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/authenticate-multi-tenant
+	AuxTenantIds []string
+
+	// SubscriptionIdHint is the subscription to target when selecting an account with which to obtain an access token
+	// Used to hint to Azure CLI which of its signed-in accounts it should select, based on apparent access to the subscription.
+	SubscriptionIdHint string
+}

@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/permissionsanalyticgcpfinding
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c PermissionsAnalyticGcpFindingClient) ListPermissionsAnalyticGcpFindingsComplete(ctx context.Context, options ListPermissionsAnalyticGcpFindingsOperationOptions) (ListPermissionsAnalyticGcpFindingsCompleteResult, error) {
+	return c.ListPermissionsAnalyticGcpFindingsCompleteMatchingPredicate(ctx, options, FindingOperationPredicate{})
+}

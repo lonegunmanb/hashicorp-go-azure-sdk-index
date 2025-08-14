@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2022-03-01/containers
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ContainerId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Data Box Edge Device Name: %q", id.DataBoxEdgeDeviceName),
+		fmt.Sprintf("Storage Account Name: %q", id.StorageAccountName),
+		fmt.Sprintf("Container Name: %q", id.ContainerName),
+	}
+	return fmt.Sprintf("Container (%s)", strings.Join(components, "\n"))
+}

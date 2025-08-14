@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-11-01/serviceendpointpolicies
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNetworkInterfaceAuxiliaryMode(input string) (*NetworkInterfaceAuxiliaryMode, error) {
+	vals := map[string]NetworkInterfaceAuxiliaryMode{
+		"acceleratedconnections": NetworkInterfaceAuxiliaryModeAcceleratedConnections,
+		"floating":               NetworkInterfaceAuxiliaryModeFloating,
+		"maxconnections":         NetworkInterfaceAuxiliaryModeMaxConnections,
+		"none":                   NetworkInterfaceAuxiliaryModeNone,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NetworkInterfaceAuxiliaryMode(input)
+	return &out, nil
+}

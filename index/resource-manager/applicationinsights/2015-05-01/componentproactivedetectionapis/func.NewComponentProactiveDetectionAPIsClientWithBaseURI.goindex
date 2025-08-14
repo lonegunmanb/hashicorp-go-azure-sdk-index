@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/applicationinsights/2015-05-01/componentproactivedetectionapis
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewComponentProactiveDetectionAPIsClientWithBaseURI(sdkApi sdkEnv.Api) (*ComponentProactiveDetectionAPIsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "componentproactivedetectionapis", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ComponentProactiveDetectionAPIsClient: %+v", err)
+	}
+
+	return &ComponentProactiveDetectionAPIsClient{
+		Client: client,
+	}, nil
+}

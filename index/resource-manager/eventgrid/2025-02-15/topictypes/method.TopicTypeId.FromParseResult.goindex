@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2025-02-15/topictypes
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *TopicTypeId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.TopicTypeName, ok = input.Parsed["topicTypeName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "topicTypeName", input)
+	}
+
+	return nil
+}

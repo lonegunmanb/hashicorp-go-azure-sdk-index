@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/maintenance/2023-04-01/configurationassignments
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ConfigurationAssignmentId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Configuration Assignment Name: %q", id.ConfigurationAssignmentName),
+	}
+	return fmt.Sprintf("Configuration Assignment (%s)", strings.Join(components, "\n"))
+}

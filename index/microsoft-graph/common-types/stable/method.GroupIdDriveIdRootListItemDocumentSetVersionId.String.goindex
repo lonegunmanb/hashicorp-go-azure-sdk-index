@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id GroupIdDriveIdRootListItemDocumentSetVersionId) String() string {
+	components := []string{
+		fmt.Sprintf("Group: %q", id.GroupId),
+		fmt.Sprintf("Drive: %q", id.DriveId),
+		fmt.Sprintf("Document Set Version: %q", id.DocumentSetVersionId),
+	}
+	return fmt.Sprintf("Group Id Drive Id Root List Item Document Set Version (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/trafficmanager/2022-04-01/heatmaps
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o HeatMapGetOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.BotRight != nil {
+		out.Append("botRight", fmt.Sprintf("%v", *o.BotRight))
+	}
+	if o.TopLeft != nil {
+		out.Append("topLeft", fmt.Sprintf("%v", *o.TopLeft))
+	}
+	return &out
+}

@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2023-03-01/virtualmachinescalesets
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c VirtualMachineScaleSetsClient) ListSkusComplete(ctx context.Context, id VirtualMachineScaleSetId) (ListSkusCompleteResult, error) {
+	return c.ListSkusCompleteMatchingPredicate(ctx, id, VirtualMachineScaleSetSkuOperationPredicate{})
+}

@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type PublicationFacet struct {
+	// The user who checked out the file.
+	CheckedOutBy IdentitySet `json:"checkedOutBy"`
+
+	// The state of publication for this document. Either published or checkout. Read-only.
+	Level nullable.Type[string] `json:"level,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The unique identifier for the version that is visible to the current caller. Read-only.
+	VersionId nullable.Type[string] `json:"versionId,omitempty"`
+}

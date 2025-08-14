@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2025-02-15/eventsubscriptions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeliveryMode(input string) (*DeliveryMode, error) {
+	vals := map[string]DeliveryMode{
+		"push":  DeliveryModePush,
+		"queue": DeliveryModeQueue,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeliveryMode(input)
+	return &out, nil
+}

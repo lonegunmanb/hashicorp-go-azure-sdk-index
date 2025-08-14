@@ -1,0 +1,40 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2024-04-01/replicationprotectableitems
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s *ProtectableItemProperties) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		FriendlyName                  *string   `json:"friendlyName,omitempty"`
+		ProtectionReadinessErrors     *[]string `json:"protectionReadinessErrors,omitempty"`
+		ProtectionStatus              *string   `json:"protectionStatus,omitempty"`
+		RecoveryServicesProviderId    *string   `json:"recoveryServicesProviderId,omitempty"`
+		ReplicationProtectedItemId    *string   `json:"replicationProtectedItemId,omitempty"`
+		SupportedReplicationProviders *[]string `json:"supportedReplicationProviders,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.FriendlyName = decoded.FriendlyName
+	s.ProtectionReadinessErrors = decoded.ProtectionReadinessErrors
+	s.ProtectionStatus = decoded.ProtectionStatus
+	s.RecoveryServicesProviderId = decoded.RecoveryServicesProviderId
+	s.ReplicationProtectedItemId = decoded.ReplicationProtectedItemId
+	s.SupportedReplicationProviders = decoded.SupportedReplicationProviders
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling ProtectableItemProperties into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["customDetails"]; ok {
+		impl, err := UnmarshalConfigurationSettingsImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'CustomDetails' for 'ProtectableItemProperties': %+v", err)
+		}
+		s.CustomDetails = impl
+	}
+
+	return nil
+}

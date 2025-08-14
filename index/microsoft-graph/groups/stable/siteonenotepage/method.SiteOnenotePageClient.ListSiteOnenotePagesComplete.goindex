@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotepage
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SiteOnenotePageClient) ListSiteOnenotePagesComplete(ctx context.Context, id stable.GroupIdSiteId, options ListSiteOnenotePagesOperationOptions) (ListSiteOnenotePagesCompleteResult, error) {
+	return c.ListSiteOnenotePagesCompleteMatchingPredicate(ctx, id, options, OnenotePageOperationPredicate{})
+}

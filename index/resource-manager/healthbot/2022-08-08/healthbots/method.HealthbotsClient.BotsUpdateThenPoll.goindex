@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/healthbot/2022-08-08/healthbots
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c HealthbotsClient) BotsUpdateThenPoll(ctx context.Context, id HealthBotId, input HealthBotUpdateParameters) error {
+	result, err := c.BotsUpdate(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing BotsUpdate: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after BotsUpdate: %+v", err)
+	}
+
+	return nil
+}

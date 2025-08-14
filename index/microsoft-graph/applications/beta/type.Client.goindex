@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/beta
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/beta/application"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/beta/appmanagementpolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/beta/connectorgroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/beta/createdonbehalfof"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/beta/extensionproperty"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/beta/federatedidentitycredential"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/beta/homerealmdiscoverypolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/beta/logo"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/beta/owner"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/beta/synchronization"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/beta/synchronizationjob"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/beta/synchronizationjobbulkupload"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/beta/synchronizationjobschema"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/beta/synchronizationjobschemadirectory"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/beta/synchronizationsecret"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/beta/synchronizationtemplate"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/beta/synchronizationtemplateschema"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/beta/synchronizationtemplateschemadirectory"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/beta/tokenissuancepolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/beta/tokenlifetimepolicy"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	AppManagementPolicy                    *appmanagementpolicy.AppManagementPolicyClient
+	Application                            *application.ApplicationClient
+	ConnectorGroup                         *connectorgroup.ConnectorGroupClient
+	CreatedOnBehalfOf                      *createdonbehalfof.CreatedOnBehalfOfClient
+	ExtensionProperty                      *extensionproperty.ExtensionPropertyClient
+	FederatedIdentityCredential            *federatedidentitycredential.FederatedIdentityCredentialClient
+	HomeRealmDiscoveryPolicy               *homerealmdiscoverypolicy.HomeRealmDiscoveryPolicyClient
+	Logo                                   *logo.LogoClient
+	Owner                                  *owner.OwnerClient
+	Synchronization                        *synchronization.SynchronizationClient
+	SynchronizationJob                     *synchronizationjob.SynchronizationJobClient
+	SynchronizationJobBulkUpload           *synchronizationjobbulkupload.SynchronizationJobBulkUploadClient
+	SynchronizationJobSchema               *synchronizationjobschema.SynchronizationJobSchemaClient
+	SynchronizationJobSchemaDirectory      *synchronizationjobschemadirectory.SynchronizationJobSchemaDirectoryClient
+	SynchronizationSecret                  *synchronizationsecret.SynchronizationSecretClient
+	SynchronizationTemplate                *synchronizationtemplate.SynchronizationTemplateClient
+	SynchronizationTemplateSchema          *synchronizationtemplateschema.SynchronizationTemplateSchemaClient
+	SynchronizationTemplateSchemaDirectory *synchronizationtemplateschemadirectory.SynchronizationTemplateSchemaDirectoryClient
+	TokenIssuancePolicy                    *tokenissuancepolicy.TokenIssuancePolicyClient
+	TokenLifetimePolicy                    *tokenlifetimepolicy.TokenLifetimePolicyClient
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/operationalinsights/2023-09-01/tables
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseProvisioningStateEnum(input string) (*ProvisioningStateEnum, error) {
+	vals := map[string]ProvisioningStateEnum{
+		"deleting":   ProvisioningStateEnumDeleting,
+		"inprogress": ProvisioningStateEnumInProgress,
+		"succeeded":  ProvisioningStateEnumSucceeded,
+		"updating":   ProvisioningStateEnumUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ProvisioningStateEnum(input)
+	return &out, nil
+}

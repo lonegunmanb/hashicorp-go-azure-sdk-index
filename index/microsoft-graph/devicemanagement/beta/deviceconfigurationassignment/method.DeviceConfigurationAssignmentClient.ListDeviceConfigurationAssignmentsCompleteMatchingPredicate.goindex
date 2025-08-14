@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/deviceconfigurationassignment
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DeviceConfigurationAssignmentClient) ListDeviceConfigurationAssignmentsCompleteMatchingPredicate(ctx context.Context, id beta.DeviceManagementDeviceConfigurationId, options ListDeviceConfigurationAssignmentsOperationOptions, predicate DeviceConfigurationAssignmentOperationPredicate) (result ListDeviceConfigurationAssignmentsCompleteResult, err error) {
+	items := make([]beta.DeviceConfigurationAssignment, 0)
+
+	resp, err := c.ListDeviceConfigurationAssignments(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListDeviceConfigurationAssignmentsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

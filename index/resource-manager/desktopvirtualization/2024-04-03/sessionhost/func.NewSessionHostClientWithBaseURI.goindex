@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/desktopvirtualization/2024-04-03/sessionhost
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSessionHostClientWithBaseURI(sdkApi sdkEnv.Api) (*SessionHostClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "sessionhost", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SessionHostClient: %+v", err)
+	}
+
+	return &SessionHostClient{
+		Client: client,
+	}, nil
+}

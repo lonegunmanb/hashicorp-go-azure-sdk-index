@@ -1,0 +1,11 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id MeJoinedTeamIdScheduleTimeOffRequestId) ID() string {
+	fmtString := "/me/joinedTeams/%s/schedule/timeOffRequests/%s"
+	return fmt.Sprintf(fmtString, id.TeamId, id.TimeOffRequestId)
+}

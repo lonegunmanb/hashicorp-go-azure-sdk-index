@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-05-01/networkmanagers
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeploymentStatus(input string) (*DeploymentStatus, error) {
+	vals := map[string]DeploymentStatus{
+		"deployed":   DeploymentStatusDeployed,
+		"deploying":  DeploymentStatusDeploying,
+		"failed":     DeploymentStatusFailed,
+		"notstarted": DeploymentStatusNotStarted,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeploymentStatus(input)
+	return &out, nil
+}

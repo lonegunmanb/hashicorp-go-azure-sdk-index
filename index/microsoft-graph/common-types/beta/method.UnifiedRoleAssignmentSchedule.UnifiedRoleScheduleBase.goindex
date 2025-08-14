@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s UnifiedRoleAssignmentSchedule) UnifiedRoleScheduleBase() BaseUnifiedRoleScheduleBaseImpl {
+	return BaseUnifiedRoleScheduleBaseImpl{
+		AppScope:                 s.AppScope,
+		AppScopeId:               s.AppScopeId,
+		CreatedDateTime:          s.CreatedDateTime,
+		CreatedUsing:             s.CreatedUsing,
+		DirectoryScope:           s.DirectoryScope,
+		DirectoryScopeId:         s.DirectoryScopeId,
+		DirectoryScope_ODataBind: s.DirectoryScope_ODataBind,
+		ModifiedDateTime:         s.ModifiedDateTime,
+		Principal:                s.Principal,
+		PrincipalId:              s.PrincipalId,
+		Principal_ODataBind:      s.Principal_ODataBind,
+		RoleDefinition:           s.RoleDefinition,
+		RoleDefinitionId:         s.RoleDefinitionId,
+		Status:                   s.Status,
+		Id:                       s.Id,
+		ODataId:                  s.ODataId,
+		ODataType:                s.ODataType,
+	}
+}

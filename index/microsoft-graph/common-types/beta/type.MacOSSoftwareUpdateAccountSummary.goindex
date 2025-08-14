@@ -1,0 +1,55 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type MacOSSoftwareUpdateAccountSummary struct {
+	// Summary of the updates by category.
+	CategorySummaries *[]MacOSSoftwareUpdateCategorySummary `json:"categorySummaries,omitempty"`
+
+	// The device ID.
+	DeviceId nullable.Type[string] `json:"deviceId,omitempty"`
+
+	// The device name.
+	DeviceName nullable.Type[string] `json:"deviceName,omitempty"`
+
+	// The name of the report
+	DisplayName *string `json:"displayName,omitempty"`
+
+	// Number of failed updates on the device.
+	FailedUpdateCount *int64 `json:"failedUpdateCount,omitempty"`
+
+	// Last date time the report for this device was updated.
+	LastUpdatedDateTime *string `json:"lastUpdatedDateTime,omitempty"`
+
+	// The OS version.
+	OsVersion nullable.Type[string] `json:"osVersion,omitempty"`
+
+	// Number of successful updates on the device.
+	SuccessfulUpdateCount *int64 `json:"successfulUpdateCount,omitempty"`
+
+	// Number of total updates on the device.
+	TotalUpdateCount *int64 `json:"totalUpdateCount,omitempty"`
+
+	// The user ID.
+	UserId nullable.Type[string] `json:"userId,omitempty"`
+
+	// The user principal name
+	UserPrincipalName nullable.Type[string] `json:"userPrincipalName,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

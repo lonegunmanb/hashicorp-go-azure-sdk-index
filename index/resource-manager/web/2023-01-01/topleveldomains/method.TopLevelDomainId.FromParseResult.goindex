@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/topleveldomains
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *TopLevelDomainId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.TopLevelDomainName, ok = input.Parsed["topLevelDomainName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "topLevelDomainName", input)
+	}
+
+	return nil
+}

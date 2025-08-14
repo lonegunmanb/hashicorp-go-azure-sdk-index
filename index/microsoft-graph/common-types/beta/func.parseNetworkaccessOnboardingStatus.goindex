@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNetworkaccessOnboardingStatus(input string) (*NetworkaccessOnboardingStatus, error) {
+	vals := map[string]NetworkaccessOnboardingStatus{
+		"offboarded":               NetworkaccessOnboardingStatus_Offboarded,
+		"offboardingerroroccurred": NetworkaccessOnboardingStatus_OffboardingErrorOccurred,
+		"offboardinginprogress":    NetworkaccessOnboardingStatus_OffboardingInProgress,
+		"onboarded":                NetworkaccessOnboardingStatus_Onboarded,
+		"onboardingerroroccurred":  NetworkaccessOnboardingStatus_OnboardingErrorOccurred,
+		"onboardinginprogress":     NetworkaccessOnboardingStatus_OnboardingInProgress,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NetworkaccessOnboardingStatus(input)
+	return &out, nil
+}

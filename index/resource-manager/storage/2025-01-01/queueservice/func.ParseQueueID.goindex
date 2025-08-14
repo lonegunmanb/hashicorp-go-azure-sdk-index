@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-01-01/queueservice
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseQueueID(input string) (*QueueId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&QueueId{})
+	parsed, err := parser.Parse(input, false)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := QueueId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

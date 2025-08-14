@@ -1,0 +1,58 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *DeviceHealthScriptDeviceState) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AssignmentFilterIds                  *[]string             `json:"assignmentFilterIds,omitempty"`
+		DetectionState                       *RunState             `json:"detectionState,omitempty"`
+		ExpectedStateUpdateDateTime          nullable.Type[string] `json:"expectedStateUpdateDateTime,omitempty"`
+		LastStateUpdateDateTime              *string               `json:"lastStateUpdateDateTime,omitempty"`
+		LastSyncDateTime                     *string               `json:"lastSyncDateTime,omitempty"`
+		PostRemediationDetectionScriptError  nullable.Type[string] `json:"postRemediationDetectionScriptError,omitempty"`
+		PostRemediationDetectionScriptOutput nullable.Type[string] `json:"postRemediationDetectionScriptOutput,omitempty"`
+		PreRemediationDetectionScriptError   nullable.Type[string] `json:"preRemediationDetectionScriptError,omitempty"`
+		PreRemediationDetectionScriptOutput  nullable.Type[string] `json:"preRemediationDetectionScriptOutput,omitempty"`
+		RemediationScriptError               nullable.Type[string] `json:"remediationScriptError,omitempty"`
+		RemediationState                     *RemediationState     `json:"remediationState,omitempty"`
+		Id                                   *string               `json:"id,omitempty"`
+		ODataId                              *string               `json:"@odata.id,omitempty"`
+		ODataType                            *string               `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AssignmentFilterIds = decoded.AssignmentFilterIds
+	s.DetectionState = decoded.DetectionState
+	s.ExpectedStateUpdateDateTime = decoded.ExpectedStateUpdateDateTime
+	s.LastStateUpdateDateTime = decoded.LastStateUpdateDateTime
+	s.LastSyncDateTime = decoded.LastSyncDateTime
+	s.PostRemediationDetectionScriptError = decoded.PostRemediationDetectionScriptError
+	s.PostRemediationDetectionScriptOutput = decoded.PostRemediationDetectionScriptOutput
+	s.PreRemediationDetectionScriptError = decoded.PreRemediationDetectionScriptError
+	s.PreRemediationDetectionScriptOutput = decoded.PreRemediationDetectionScriptOutput
+	s.RemediationScriptError = decoded.RemediationScriptError
+	s.RemediationState = decoded.RemediationState
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling DeviceHealthScriptDeviceState into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["managedDevice"]; ok {
+		impl, err := UnmarshalManagedDeviceImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'ManagedDevice' for 'DeviceHealthScriptDeviceState': %+v", err)
+		}
+		s.ManagedDevice = &impl
+	}
+
+	return nil
+}

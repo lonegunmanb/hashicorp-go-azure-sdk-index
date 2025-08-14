@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cosmosdb/2024-08-15/materializedviewsbuilder
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (s MaterializedViewsBuilderServiceResourceProperties) MarshalJSON() ([]byte, error) {
+	type wrapper MaterializedViewsBuilderServiceResourceProperties
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling MaterializedViewsBuilderServiceResourceProperties: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling MaterializedViewsBuilderServiceResourceProperties: %+v", err)
+	}
+
+	decoded["serviceType"] = "MaterializedViewsBuilder"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling MaterializedViewsBuilderServiceResourceProperties: %+v", err)
+	}
+
+	return encoded, nil
+}

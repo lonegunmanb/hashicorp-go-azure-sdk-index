@@ -1,0 +1,48 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+)
+type ConversationThread struct {
+	// The Cc: recipients for the thread. Returned only on $select.
+	CcRecipients *[]Recipient `json:"ccRecipients,omitempty"`
+
+	// Indicates whether any of the posts within this thread has at least one attachment. Returned by default.
+	HasAttachments *bool `json:"hasAttachments,omitempty"`
+
+	// Indicates if the thread is locked. Returned by default.
+	IsLocked *bool `json:"isLocked,omitempty"`
+
+	// The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example,
+	// midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.Returned by default.
+	LastDeliveredDateTime *string `json:"lastDeliveredDateTime,omitempty"`
+
+	Posts *[]Post `json:"posts,omitempty"`
+
+	// A short summary from the body of the latest post in this conversation. Returned by default.
+	Preview *string `json:"preview,omitempty"`
+
+	// The To: recipients for the thread. Returned only on $select.
+	ToRecipients *[]Recipient `json:"toRecipients,omitempty"`
+
+	// The topic of the conversation. This property can be set when the conversation is created, but it cannot be updated.
+	// Returned by default.
+	Topic *string `json:"topic,omitempty"`
+
+	// All the users that sent a message to this thread. Returned by default.
+	UniqueSenders *[]string `json:"uniqueSenders,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

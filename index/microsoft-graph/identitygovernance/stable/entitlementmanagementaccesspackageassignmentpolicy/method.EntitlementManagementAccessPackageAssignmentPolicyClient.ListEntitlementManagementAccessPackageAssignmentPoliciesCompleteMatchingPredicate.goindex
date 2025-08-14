@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementaccesspackageassignmentpolicy
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c EntitlementManagementAccessPackageAssignmentPolicyClient) ListEntitlementManagementAccessPackageAssignmentPoliciesCompleteMatchingPredicate(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementAccessPackageId, options ListEntitlementManagementAccessPackageAssignmentPoliciesOperationOptions, predicate AccessPackageAssignmentPolicyOperationPredicate) (result ListEntitlementManagementAccessPackageAssignmentPoliciesCompleteResult, err error) {
+	items := make([]stable.AccessPackageAssignmentPolicy, 0)
+
+	resp, err := c.ListEntitlementManagementAccessPackageAssignmentPolicies(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListEntitlementManagementAccessPackageAssignmentPoliciesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

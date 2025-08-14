@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/systemcentervirtualmachinemanager/2023-10-07/vminstancehybrididentitymetadatas
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewVMInstanceHybridIdentityMetadatasClientWithBaseURI(sdkApi sdkEnv.Api) (*VMInstanceHybridIdentityMetadatasClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "vminstancehybrididentitymetadatas", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating VMInstanceHybridIdentityMetadatasClient: %+v", err)
+	}
+
+	return &VMInstanceHybridIdentityMetadatasClient{
+		Client: client,
+	}, nil
+}

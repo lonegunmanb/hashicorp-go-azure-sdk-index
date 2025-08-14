@@ -1,0 +1,38 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *PlannerArchivalInfo) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		Justification         nullable.Type[string] `json:"justification,omitempty"`
+		ODataId               *string               `json:"@odata.id,omitempty"`
+		ODataType             *string               `json:"@odata.type,omitempty"`
+		StatusChangedDateTime nullable.Type[string] `json:"statusChangedDateTime,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.Justification = decoded.Justification
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.StatusChangedDateTime = decoded.StatusChangedDateTime
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling PlannerArchivalInfo into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["statusChangedBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'StatusChangedBy' for 'PlannerArchivalInfo': %+v", err)
+		}
+		s.StatusChangedBy = &impl
+	}
+
+	return nil
+}

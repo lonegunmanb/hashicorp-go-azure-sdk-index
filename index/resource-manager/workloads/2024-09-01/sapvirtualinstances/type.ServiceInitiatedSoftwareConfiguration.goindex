@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/workloads/2024-09-01/sapvirtualinstances
+import (
+	"encoding/json"
+	"fmt"
+)
+type ServiceInitiatedSoftwareConfiguration struct {
+	BomURL                                string                                 `json:"bomUrl"`
+	HighAvailabilitySoftwareConfiguration *HighAvailabilitySoftwareConfiguration `json:"highAvailabilitySoftwareConfiguration,omitempty"`
+	SapBitsStorageAccountId               string                                 `json:"sapBitsStorageAccountId"`
+	SapFqdn                               string                                 `json:"sapFqdn"`
+	SoftwareVersion                       string                                 `json:"softwareVersion"`
+	SshPrivateKey                         string                                 `json:"sshPrivateKey"`
+
+	// Fields inherited from SoftwareConfiguration
+
+	SoftwareInstallationType SAPSoftwareInstallationType `json:"softwareInstallationType"`
+}

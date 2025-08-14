@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2019-06-01/runbook
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewRunbookClientWithBaseURI(sdkApi sdkEnv.Api) (*RunbookClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "runbook", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating RunbookClient: %+v", err)
+	}
+
+	return &RunbookClient{
+		Client: client,
+	}, nil
+}

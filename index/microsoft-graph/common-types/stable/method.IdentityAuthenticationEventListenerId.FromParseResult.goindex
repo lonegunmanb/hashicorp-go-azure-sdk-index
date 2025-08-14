@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *IdentityAuthenticationEventListenerId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.AuthenticationEventListenerId, ok = input.Parsed["authenticationEventListenerId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "authenticationEventListenerId", input)
+	}
+
+	return nil
+}

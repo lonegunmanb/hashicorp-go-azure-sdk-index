@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/redisenterprise/2024-10-01/databases
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DatabasesClient) ListByClusterComplete(ctx context.Context, id RedisEnterpriseId) (ListByClusterCompleteResult, error) {
+	return c.ListByClusterCompleteMatchingPredicate(ctx, id, DatabaseOperationPredicate{})
+}

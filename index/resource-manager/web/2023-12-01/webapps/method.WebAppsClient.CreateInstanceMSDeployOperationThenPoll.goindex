@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/webapps
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c WebAppsClient) CreateInstanceMSDeployOperationThenPoll(ctx context.Context, id InstanceId, input MSDeploy) error {
+	result, err := c.CreateInstanceMSDeployOperation(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing CreateInstanceMSDeployOperation: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after CreateInstanceMSDeployOperation: %+v", err)
+	}
+
+	return nil
+}

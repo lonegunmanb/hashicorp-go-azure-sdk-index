@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s *AttendeeAvailability) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		Availability *FreeBusyStatus `json:"availability,omitempty"`
+		ODataId      *string         `json:"@odata.id,omitempty"`
+		ODataType    *string         `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.Availability = decoded.Availability
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling AttendeeAvailability into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["attendee"]; ok {
+		impl, err := UnmarshalAttendeeBaseImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Attendee' for 'AttendeeAvailability': %+v", err)
+		}
+		s.Attendee = &impl
+	}
+
+	return nil
+}

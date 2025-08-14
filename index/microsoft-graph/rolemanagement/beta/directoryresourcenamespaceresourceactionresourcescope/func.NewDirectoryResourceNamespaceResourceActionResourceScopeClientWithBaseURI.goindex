@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/directoryresourcenamespaceresourceactionresourcescope
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDirectoryResourceNamespaceResourceActionResourceScopeClientWithBaseURI(sdkApi sdkEnv.Api) (*DirectoryResourceNamespaceResourceActionResourceScopeClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "directoryresourcenamespaceresourceactionresourcescope", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DirectoryResourceNamespaceResourceActionResourceScopeClient: %+v", err)
+	}
+
+	return &DirectoryResourceNamespaceResourceActionResourceScopeClient{
+		Client: client,
+	}, nil
+}

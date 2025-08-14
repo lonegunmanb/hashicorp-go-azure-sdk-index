@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityFileEntityIdentifier(input string) (*SecurityFileEntityIdentifier, error) {
+	vals := map[string]SecurityFileEntityIdentifier{
+		"initiatingprocesssha1":   SecurityFileEntityIdentifier_InitiatingProcessSHA1,
+		"initiatingprocesssha256": SecurityFileEntityIdentifier_InitiatingProcessSHA256,
+		"sha1":                    SecurityFileEntityIdentifier_Sha1,
+		"sha256":                  SecurityFileEntityIdentifier_Sha256,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityFileEntityIdentifier(input)
+	return &out, nil
+}

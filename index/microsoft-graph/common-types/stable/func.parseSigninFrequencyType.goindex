@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSigninFrequencyType(input string) (*SigninFrequencyType, error) {
+	vals := map[string]SigninFrequencyType{
+		"days":  SigninFrequencyType_Days,
+		"hours": SigninFrequencyType_Hours,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SigninFrequencyType(input)
+	return &out, nil
+}

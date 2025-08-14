@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2022-08-29/localrulestacks
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o GetSupportInfoOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.Email != nil {
+		out.Append("email", fmt.Sprintf("%v", *o.Email))
+	}
+	return &out
+}

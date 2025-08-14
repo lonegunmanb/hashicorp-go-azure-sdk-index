@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/outlooktaskgrouptaskfolder
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c OutlookTaskGroupTaskFolderClient) ListOutlookTaskGroupTaskFoldersComplete(ctx context.Context, id beta.UserIdOutlookTaskGroupId, options ListOutlookTaskGroupTaskFoldersOperationOptions) (ListOutlookTaskGroupTaskFoldersCompleteResult, error) {
+	return c.ListOutlookTaskGroupTaskFoldersCompleteMatchingPredicate(ctx, id, options, OutlookTaskFolderOperationPredicate{})
+}

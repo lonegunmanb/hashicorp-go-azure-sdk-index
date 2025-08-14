@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2021-08-01/synchronizationsetting
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSynchronizationSettingKind(input string) (*SynchronizationSettingKind, error) {
+	vals := map[string]SynchronizationSettingKind{
+		"schedulebased": SynchronizationSettingKindScheduleBased,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SynchronizationSettingKind(input)
+	return &out, nil
+}

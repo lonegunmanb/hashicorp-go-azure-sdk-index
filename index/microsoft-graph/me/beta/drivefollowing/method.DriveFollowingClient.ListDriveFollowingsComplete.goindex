@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/drivefollowing
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DriveFollowingClient) ListDriveFollowingsComplete(ctx context.Context, id beta.MeDriveId, options ListDriveFollowingsOperationOptions) (ListDriveFollowingsCompleteResult, error) {
+	return c.ListDriveFollowingsCompleteMatchingPredicate(ctx, id, options, DriveItemOperationPredicate{})
+}

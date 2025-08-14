@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s *AndroidDeviceOwnerDelegatedScopeAppSetting) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AppScopes *[]AndroidDeviceOwnerDelegatedAppScopeType `json:"appScopes,omitempty"`
+		ODataId   *string                                    `json:"@odata.id,omitempty"`
+		ODataType *string                                    `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AppScopes = decoded.AppScopes
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling AndroidDeviceOwnerDelegatedScopeAppSetting into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["appDetail"]; ok {
+		impl, err := UnmarshalAppListItemImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'AppDetail' for 'AndroidDeviceOwnerDelegatedScopeAppSetting': %+v", err)
+		}
+		s.AppDetail = impl
+	}
+
+	return nil
+}

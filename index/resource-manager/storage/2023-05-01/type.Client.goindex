@@ -1,0 +1,51 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storage/v2023_05_01
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/accountmigrations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/blobcontainers"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/blobinventorypolicies"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/blobservice"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/deletedaccounts"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/encryptionscopes"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/fileservice"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/fileshares"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/localusers"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/managementpolicies"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/objectreplicationpolicies"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/privateendpointconnections"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/privatelinkresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/queueservice"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/queueserviceproperties"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/skus"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/storageaccounts"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/storageaccountsnetworksecurityperimeterconfigurations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/storagetaskassignments"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/tableservice"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/tableserviceproperties"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	AccountMigrations                                     *accountmigrations.AccountMigrationsClient
+	BlobContainers                                        *blobcontainers.BlobContainersClient
+	BlobInventoryPolicies                                 *blobinventorypolicies.BlobInventoryPoliciesClient
+	BlobService                                           *blobservice.BlobServiceClient
+	DeletedAccounts                                       *deletedaccounts.DeletedAccountsClient
+	EncryptionScopes                                      *encryptionscopes.EncryptionScopesClient
+	FileService                                           *fileservice.FileServiceClient
+	FileShares                                            *fileshares.FileSharesClient
+	LocalUsers                                            *localusers.LocalUsersClient
+	ManagementPolicies                                    *managementpolicies.ManagementPoliciesClient
+	ObjectReplicationPolicies                             *objectreplicationpolicies.ObjectReplicationPoliciesClient
+	PrivateEndpointConnections                            *privateendpointconnections.PrivateEndpointConnectionsClient
+	PrivateLinkResources                                  *privatelinkresources.PrivateLinkResourcesClient
+	QueueService                                          *queueservice.QueueServiceClient
+	QueueServiceProperties                                *queueserviceproperties.QueueServicePropertiesClient
+	Skus                                                  *skus.SkusClient
+	StorageAccounts                                       *storageaccounts.StorageAccountsClient
+	StorageAccountsNetworkSecurityPerimeterConfigurations *storageaccountsnetworksecurityperimeterconfigurations.StorageAccountsNetworkSecurityPerimeterConfigurationsClient
+	StorageTaskAssignments                                *storagetaskassignments.StorageTaskAssignmentsClient
+	TableService                                          *tableservice.TableServiceClient
+	TableServiceProperties                                *tableserviceproperties.TableServicePropertiesClient
+}

@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apicenter/2024-03-01/apiversions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseLifecycleStage(input string) (*LifecycleStage, error) {
+	vals := map[string]LifecycleStage{
+		"deprecated":  LifecycleStageDeprecated,
+		"design":      LifecycleStageDesign,
+		"development": LifecycleStageDevelopment,
+		"preview":     LifecycleStagePreview,
+		"production":  LifecycleStageProduction,
+		"retired":     LifecycleStageRetired,
+		"testing":     LifecycleStageTesting,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := LifecycleStage(input)
+	return &out, nil
+}

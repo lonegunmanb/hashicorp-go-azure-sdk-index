@@ -1,0 +1,48 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s EducationSubmission) MarshalJSON() ([]byte, error) {
+	type wrapper EducationSubmission
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling EducationSubmission: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling EducationSubmission: %+v", err)
+	}
+
+	delete(decoded, "assignmentId")
+	delete(decoded, "excusedBy")
+	delete(decoded, "excusedDateTime")
+	delete(decoded, "lastModifiedBy")
+	delete(decoded, "lastModifiedDateTime")
+	delete(decoded, "reassignedBy")
+	delete(decoded, "reassignedDateTime")
+	delete(decoded, "resourcesFolderUrl")
+	delete(decoded, "returnedBy")
+	delete(decoded, "returnedDateTime")
+	delete(decoded, "status")
+	delete(decoded, "submittedBy")
+	delete(decoded, "submittedDateTime")
+	delete(decoded, "unsubmittedBy")
+	delete(decoded, "unsubmittedDateTime")
+	delete(decoded, "webUrl")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.educationSubmission"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling EducationSubmission: %+v", err)
+	}
+
+	return encoded, nil
+}

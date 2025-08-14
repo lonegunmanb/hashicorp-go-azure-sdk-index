@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2022-01-01-preview/authorizationrulesdisasterrecoveryconfigs
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAuthorizationRulesDisasterRecoveryConfigsClientWithBaseURI(sdkApi sdkEnv.Api) (*AuthorizationRulesDisasterRecoveryConfigsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "authorizationrulesdisasterrecoveryconfigs", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AuthorizationRulesDisasterRecoveryConfigsClient: %+v", err)
+	}
+
+	return &AuthorizationRulesDisasterRecoveryConfigsClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,59 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type DeviceManagementAbstractComplexSettingDefinition struct {
+	// List of definition IDs for all possible implementations of this abstract complex setting
+	Implementations *[]string `json:"implementations,omitempty"`
+
+	// Fields inherited from DeviceManagementSettingDefinition
+
+	// Collection of constraints for the setting value
+	Constraints *[]DeviceManagementConstraint `json:"constraints,omitempty"`
+
+	// Collection of dependencies on other settings
+	Dependencies *[]DeviceManagementSettingDependency `json:"dependencies,omitempty"`
+
+	// The setting's description
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// The setting's display name
+	DisplayName *string `json:"displayName,omitempty"`
+
+	// Url to setting documentation
+	DocumentationUrl nullable.Type[string] `json:"documentationUrl,omitempty"`
+
+	// subtitle of the setting header for more details about the category/section
+	HeaderSubtitle nullable.Type[string] `json:"headerSubtitle,omitempty"`
+
+	// title of the setting header represents a category/section of a setting/settings
+	HeaderTitle nullable.Type[string] `json:"headerTitle,omitempty"`
+
+	// If the setting is top level, it can be configured without the need to be wrapped in a collection or complex setting
+	IsTopLevel *bool `json:"isTopLevel,omitempty"`
+
+	// Keywords associated with the setting
+	Keywords *[]string `json:"keywords,omitempty"`
+
+	// Placeholder text as an example of valid input
+	PlaceholderText nullable.Type[string] `json:"placeholderText,omitempty"`
+
+	ValueType *DeviceManangementIntentValueType `json:"valueType,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

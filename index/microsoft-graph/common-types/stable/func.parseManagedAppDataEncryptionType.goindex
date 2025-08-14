@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseManagedAppDataEncryptionType(input string) (*ManagedAppDataEncryptionType, error) {
+	vals := map[string]ManagedAppDataEncryptionType{
+		"afterdevicerestart":              ManagedAppDataEncryptionType_AfterDeviceRestart,
+		"usedevicesettings":               ManagedAppDataEncryptionType_UseDeviceSettings,
+		"whendevicelocked":                ManagedAppDataEncryptionType_WhenDeviceLocked,
+		"whendevicelockedexceptopenfiles": ManagedAppDataEncryptionType_WhenDeviceLockedExceptOpenFiles,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagedAppDataEncryptionType(input)
+	return &out, nil
+}

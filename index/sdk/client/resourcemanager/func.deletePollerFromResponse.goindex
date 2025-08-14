@@ -1,0 +1,42 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager
+import (
+	"context"
+	"fmt"
+	"net/http"
+	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func deletePollerFromResponse(response *client.Response, client *Client, pollingInterval time.Duration) (*deletePoller, error) {
+	// if we've gotten to this point then we're polling against a Resource Manager resource/operation of some kind
+	// we next need to determine if the current URI is a Resource Manager resource, or if we should be polling on the
+	// resource (e.g. `/my/resource`) rather than an operation on the resource (e.g. `/my/resource/start`)
+	if response.Request == nil {
+		return nil, fmt.Errorf("request was nil")
+	}
+	originalUri := response.Request.URL.RequestURI()
+	if response.Request.URL == nil {
+		return nil, fmt.Errorf("request url was nil")
+	}
+
+	// all Resource Manager operations require the `api-version` querystring
+	apiVersion := response.Request.URL.Query().Get("api-version")
+	if apiVersion == "" {
+		return nil, fmt.Errorf("unable to determine `api-version` from %q", originalUri)
+	}
+
+	resourcePath, err := resourceManagerResourcePathFromUri(originalUri)
+	if err != nil {
+		return nil, fmt.Errorf("determining Resource Manager Resource Path from %q: %+v", originalUri, err)
+	}
+
+	return &deletePoller{
+		apiVersion:           apiVersion,
+		client:               client,
+		initialRetryDuration: pollingInterval,
+		originalUri:          originalUri,
+		resourcePath:         *resourcePath,
+	}, nil
+}

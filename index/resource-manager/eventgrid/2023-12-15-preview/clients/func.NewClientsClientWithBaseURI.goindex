@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2023-12-15-preview/clients
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewClientsClientWithBaseURI(sdkApi sdkEnv.Api) (*ClientsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "clients", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ClientsClient: %+v", err)
+	}
+
+	return &ClientsClient{
+		Client: client,
+	}, nil
+}

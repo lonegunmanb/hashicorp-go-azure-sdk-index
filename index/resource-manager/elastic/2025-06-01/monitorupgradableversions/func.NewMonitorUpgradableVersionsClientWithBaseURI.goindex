@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2025-06-01/monitorupgradableversions
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewMonitorUpgradableVersionsClientWithBaseURI(sdkApi sdkEnv.Api) (*MonitorUpgradableVersionsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "monitorupgradableversions", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating MonitorUpgradableVersionsClient: %+v", err)
+	}
+
+	return &MonitorUpgradableVersionsClient{
+		Client: client,
+	}, nil
+}

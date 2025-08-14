@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/diagnosticsettings
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DiagnosticSettingsClient) UpdateDiagnosticProactiveLogCollectionSettingsThenPoll(ctx context.Context, id DataBoxEdgeDeviceId, input DiagnosticProactiveLogCollectionSettings) error {
+	result, err := c.UpdateDiagnosticProactiveLogCollectionSettings(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing UpdateDiagnosticProactiveLogCollectionSettings: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after UpdateDiagnosticProactiveLogCollectionSettings: %+v", err)
+	}
+
+	return nil
+}

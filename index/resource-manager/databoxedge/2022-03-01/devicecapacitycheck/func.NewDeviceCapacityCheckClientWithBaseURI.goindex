@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2022-03-01/devicecapacitycheck
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDeviceCapacityCheckClientWithBaseURI(sdkApi sdkEnv.Api) (*DeviceCapacityCheckClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "devicecapacitycheck", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DeviceCapacityCheckClient: %+v", err)
+	}
+
+	return &DeviceCapacityCheckClient{
+		Client: client,
+	}, nil
+}

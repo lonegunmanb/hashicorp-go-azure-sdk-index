@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/catalogs
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCatalogSyncType(input string) (*CatalogSyncType, error) {
+	vals := map[string]CatalogSyncType{
+		"manual":    CatalogSyncTypeManual,
+		"scheduled": CatalogSyncTypeScheduled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CatalogSyncType(input)
+	return &out, nil
+}

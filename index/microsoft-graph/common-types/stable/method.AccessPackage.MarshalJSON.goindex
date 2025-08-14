@@ -1,0 +1,37 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s AccessPackage) MarshalJSON() ([]byte, error) {
+	type wrapper AccessPackage
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AccessPackage: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AccessPackage: %+v", err)
+	}
+
+	delete(decoded, "accessPackagesIncompatibleWith")
+	delete(decoded, "assignmentPolicies")
+	delete(decoded, "catalog")
+	delete(decoded, "createdDateTime")
+	delete(decoded, "modifiedDateTime")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.accessPackage"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AccessPackage: %+v", err)
+	}
+
+	return encoded, nil
+}

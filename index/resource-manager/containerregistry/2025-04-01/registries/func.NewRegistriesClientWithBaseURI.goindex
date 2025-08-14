@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerregistry/2025-04-01/registries
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewRegistriesClientWithBaseURI(sdkApi sdkEnv.Api) (*RegistriesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "registries", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating RegistriesClient: %+v", err)
+	}
+
+	return &RegistriesClient{
+		Client: client,
+	}, nil
+}

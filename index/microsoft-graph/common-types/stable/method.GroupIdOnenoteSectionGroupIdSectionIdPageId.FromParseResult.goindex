@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *GroupIdOnenoteSectionGroupIdSectionIdPageId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.GroupId, ok = input.Parsed["groupId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "groupId", input)
+	}
+
+	if id.SectionGroupId, ok = input.Parsed["sectionGroupId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "sectionGroupId", input)
+	}
+
+	if id.OnenoteSectionId, ok = input.Parsed["onenoteSectionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "onenoteSectionId", input)
+	}
+
+	if id.OnenotePageId, ok = input.Parsed["onenotePageId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "onenotePageId", input)
+	}
+
+	return nil
+}

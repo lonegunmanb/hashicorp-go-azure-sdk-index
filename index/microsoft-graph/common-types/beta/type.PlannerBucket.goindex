@@ -1,0 +1,44 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type PlannerBucket struct {
+	// Read-only. Nullable. Contains information about who archived or unarchived the bucket and why.
+	ArchivalInfo *PlannerArchivalInfo `json:"archivalInfo,omitempty"`
+
+	// Contains information about the origin of the bucket.
+	CreationSource PlannerBucketCreation `json:"creationSource"`
+
+	// Read-only. If set totrue, the bucket is archived. An archived bucket is read-only.
+	IsArchived nullable.Type[bool] `json:"isArchived,omitempty"`
+
+	// Name of the bucket.
+	Name *string `json:"name,omitempty"`
+
+	// Hint used to order items of this type in a list view. For details about the supported format, see Using order hints
+	// in Planner.
+	OrderHint nullable.Type[string] `json:"orderHint,omitempty"`
+
+	// Plan ID to which the bucket belongs.
+	PlanId nullable.Type[string] `json:"planId,omitempty"`
+
+	// Read-only. Nullable. The collection of tasks in the bucket.
+	Tasks *[]PlannerTask `json:"tasks,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

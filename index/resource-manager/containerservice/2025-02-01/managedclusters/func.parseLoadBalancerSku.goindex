@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerservice/2025-02-01/managedclusters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseLoadBalancerSku(input string) (*LoadBalancerSku, error) {
+	vals := map[string]LoadBalancerSku{
+		"basic":    LoadBalancerSkuBasic,
+		"standard": LoadBalancerSkuStandard,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := LoadBalancerSku(input)
+	return &out, nil
+}

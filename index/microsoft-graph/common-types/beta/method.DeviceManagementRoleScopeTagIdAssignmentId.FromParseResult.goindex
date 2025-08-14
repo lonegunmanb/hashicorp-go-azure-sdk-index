@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *DeviceManagementRoleScopeTagIdAssignmentId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.RoleScopeTagId, ok = input.Parsed["roleScopeTagId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "roleScopeTagId", input)
+	}
+
+	if id.RoleScopeTagAutoAssignmentId, ok = input.Parsed["roleScopeTagAutoAssignmentId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "roleScopeTagAutoAssignmentId", input)
+	}
+
+	return nil
+}

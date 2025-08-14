@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/environmentdefinitions
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c EnvironmentDefinitionsClient) EnvironmentDefinitionsListByProjectCatalogCompleteMatchingPredicate(ctx context.Context, id CatalogId, predicate EnvironmentDefinitionOperationPredicate) (result EnvironmentDefinitionsListByProjectCatalogCompleteResult, err error) {
+	items := make([]EnvironmentDefinition, 0)
+
+	resp, err := c.EnvironmentDefinitionsListByProjectCatalog(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = EnvironmentDefinitionsListByProjectCatalogCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

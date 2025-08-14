@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseX509CertificateAffinityLevel(input string) (*X509CertificateAffinityLevel, error) {
+	vals := map[string]X509CertificateAffinityLevel{
+		"high": X509CertificateAffinityLevel_High,
+		"low":  X509CertificateAffinityLevel_Low,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := X509CertificateAffinityLevel(input)
+	return &out, nil
+}

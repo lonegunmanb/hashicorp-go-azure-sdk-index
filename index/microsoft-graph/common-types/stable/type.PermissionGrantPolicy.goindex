@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type PermissionGrantPolicy struct {
+	// Condition sets that are excluded in this permission grant policy. Automatically expanded on GET.
+	Excludes *[]PermissionGrantConditionSet `json:"excludes,omitempty"`
+
+	// Condition sets that are included in this permission grant policy. Automatically expanded on GET.
+	Includes *[]PermissionGrantConditionSet `json:"includes,omitempty"`
+
+	// Fields inherited from PolicyBase
+
+	// Description for this policy. Required.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// Display name for this policy. Required.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// Fields inherited from DirectoryObject
+
+	// Date and time when this object was deleted. Always null when the object hasn't been deleted.
+	DeletedDateTime nullable.Type[string] `json:"deletedDateTime,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

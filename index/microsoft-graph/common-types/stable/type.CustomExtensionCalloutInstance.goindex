@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type CustomExtensionCalloutInstance struct {
+	// Identification of the custom extension that was triggered at this instance.
+	CustomExtensionId nullable.Type[string] `json:"customExtensionId,omitempty"`
+
+	// Details provided by the logic app during the callback of the request instance.
+	Detail nullable.Type[string] `json:"detail,omitempty"`
+
+	// The unique run identifier for the logic app.
+	ExternalCorrelationId nullable.Type[string] `json:"externalCorrelationId,omitempty"`
+
+	// Unique identifier for the callout instance. Read-only.
+	Id nullable.Type[string] `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The status of the request to the custom extension. The possible values are: calloutSent, callbackReceived,
+	// calloutFailed, callbackTimedOut, waitingForCallback, unknownFutureValue.
+	Status *CustomExtensionCalloutInstanceStatus `json:"status,omitempty"`
+}

@@ -1,0 +1,51 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/manageddatabasecolumns
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseColumnDataType(input string) (*ColumnDataType, error) {
+	vals := map[string]ColumnDataType{
+		"bigint":           ColumnDataTypeBigint,
+		"binary":           ColumnDataTypeBinary,
+		"bit":              ColumnDataTypeBit,
+		"char":             ColumnDataTypeChar,
+		"date":             ColumnDataTypeDate,
+		"datetime":         ColumnDataTypeDatetime,
+		"datetime2":        ColumnDataTypeDatetimeTwo,
+		"datetimeoffset":   ColumnDataTypeDatetimeoffset,
+		"decimal":          ColumnDataTypeDecimal,
+		"float":            ColumnDataTypeFloat,
+		"geography":        ColumnDataTypeGeography,
+		"geometry":         ColumnDataTypeGeometry,
+		"hierarchyid":      ColumnDataTypeHierarchyid,
+		"image":            ColumnDataTypeImage,
+		"int":              ColumnDataTypeInt,
+		"money":            ColumnDataTypeMoney,
+		"nchar":            ColumnDataTypeNchar,
+		"ntext":            ColumnDataTypeNtext,
+		"numeric":          ColumnDataTypeNumeric,
+		"nvarchar":         ColumnDataTypeNvarchar,
+		"real":             ColumnDataTypeReal,
+		"smalldatetime":    ColumnDataTypeSmalldatetime,
+		"smallint":         ColumnDataTypeSmallint,
+		"smallmoney":       ColumnDataTypeSmallmoney,
+		"sql_variant":      ColumnDataTypeSqlVariant,
+		"sysname":          ColumnDataTypeSysname,
+		"text":             ColumnDataTypeText,
+		"time":             ColumnDataTypeTime,
+		"timestamp":        ColumnDataTypeTimestamp,
+		"tinyint":          ColumnDataTypeTinyint,
+		"uniqueidentifier": ColumnDataTypeUniqueidentifier,
+		"varbinary":        ColumnDataTypeVarbinary,
+		"varchar":          ColumnDataTypeVarchar,
+		"xml":              ColumnDataTypeXml,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ColumnDataType(input)
+	return &out, nil
+}

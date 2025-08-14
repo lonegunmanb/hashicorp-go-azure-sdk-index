@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mariadb/2018-06-01/serverrestart
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ServerRestartClient) ServersRestartThenPoll(ctx context.Context, id ServerId) error {
+	result, err := c.ServersRestart(ctx, id)
+	if err != nil {
+		return fmt.Errorf("performing ServersRestart: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after ServersRestart: %+v", err)
+	}
+
+	return nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/voiceservices/2023-09-01/testlines
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTestLinesClientWithBaseURI(sdkApi sdkEnv.Api) (*TestLinesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "testlines", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TestLinesClient: %+v", err)
+	}
+
+	return &TestLinesClient{
+		Client: client,
+	}, nil
+}

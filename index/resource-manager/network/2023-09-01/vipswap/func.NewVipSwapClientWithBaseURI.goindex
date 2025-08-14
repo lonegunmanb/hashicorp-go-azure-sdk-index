@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-09-01/vipswap
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewVipSwapClientWithBaseURI(sdkApi sdkEnv.Api) (*VipSwapClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "vipswap", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating VipSwapClient: %+v", err)
+	}
+
+	return &VipSwapClient{
+		Client: client,
+	}, nil
+}

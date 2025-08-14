@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicelinker/2024-04-01/connector
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalDryrunPrerequisiteResultImplementation(input []byte) (DryrunPrerequisiteResult, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling DryrunPrerequisiteResult into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "basicError") {
+		var out BasicErrorDryrunPrerequisiteResult
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into BasicErrorDryrunPrerequisiteResult: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "permissionsMissing") {
+		var out PermissionsMissingDryrunPrerequisiteResult
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into PermissionsMissingDryrunPrerequisiteResult: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseDryrunPrerequisiteResultImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseDryrunPrerequisiteResultImpl: %+v", err)
+	}
+
+	return RawDryrunPrerequisiteResultImpl{
+		dryrunPrerequisiteResult: parent,
+		Type:                     value,
+		Values:                   temp,
+	}, nil
+
+}

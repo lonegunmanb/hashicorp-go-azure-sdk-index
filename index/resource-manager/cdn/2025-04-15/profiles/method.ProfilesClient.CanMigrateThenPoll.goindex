@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-04-15/profiles
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ProfilesClient) CanMigrateThenPoll(ctx context.Context, id commonids.ResourceGroupId, input CanMigrateParameters) error {
+	result, err := c.CanMigrate(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing CanMigrate: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after CanMigrate: %+v", err)
+	}
+
+	return nil
+}

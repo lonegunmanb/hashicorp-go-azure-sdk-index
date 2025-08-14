@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/communication/2025-05-01/domains
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVerificationStatus(input string) (*VerificationStatus, error) {
+	vals := map[string]VerificationStatus{
+		"cancellationrequested":  VerificationStatusCancellationRequested,
+		"notstarted":             VerificationStatusNotStarted,
+		"verificationfailed":     VerificationStatusVerificationFailed,
+		"verificationinprogress": VerificationStatusVerificationInProgress,
+		"verificationrequested":  VerificationStatusVerificationRequested,
+		"verified":               VerificationStatusVerified,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VerificationStatus(input)
+	return &out, nil
+}

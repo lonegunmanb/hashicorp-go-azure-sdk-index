@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type WindowsUpdatesQualityUpdateFilter struct {
+	// Specifies the cadence for publishing quality updates of the filter. The possible values are: monthly, outOfBand,
+	// unknownFutureValue.
+	Cadence *WindowsUpdatesQualityUpdateCadence `json:"cadence,omitempty"`
+
+	// Specifies the quality update classification of the filter. The possible values are: all, security, nonSecurity,
+	// unknownFutureValue.
+	Classification *WindowsUpdatesQualityUpdateClassification `json:"classification,omitempty"`
+
+	// Fields inherited from WindowsUpdatesContentFilter
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseUsageRightState(input string) (*UsageRightState, error) {
+	vals := map[string]UsageRightState{
+		"active":    UsageRightState_Active,
+		"inactive":  UsageRightState_Inactive,
+		"suspended": UsageRightState_Suspended,
+		"warning":   UsageRightState_Warning,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UsageRightState(input)
+	return &out, nil
+}

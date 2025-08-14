@@ -1,0 +1,114 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *WindowsDeliveryOptimizationConfiguration) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		BackgroundDownloadFromHttpDelayInSeconds                  *int64                                              `json:"backgroundDownloadFromHttpDelayInSeconds,omitempty"`
+		CacheServerBackgroundDownloadFallbackToHttpDelayInSeconds *int64                                              `json:"cacheServerBackgroundDownloadFallbackToHttpDelayInSeconds,omitempty"`
+		CacheServerForegroundDownloadFallbackToHttpDelayInSeconds *int64                                              `json:"cacheServerForegroundDownloadFallbackToHttpDelayInSeconds,omitempty"`
+		CacheServerHostNames                                      *[]string                                           `json:"cacheServerHostNames,omitempty"`
+		DeliveryOptimizationMode                                  *WindowsDeliveryOptimizationMode                    `json:"deliveryOptimizationMode,omitempty"`
+		ForegroundDownloadFromHttpDelayInSeconds                  nullable.Type[int64]                                `json:"foregroundDownloadFromHttpDelayInSeconds,omitempty"`
+		MaximumCacheAgeInDays                                     nullable.Type[int64]                                `json:"maximumCacheAgeInDays,omitempty"`
+		MinimumBatteryPercentageAllowedToUpload                   nullable.Type[int64]                                `json:"minimumBatteryPercentageAllowedToUpload,omitempty"`
+		MinimumDiskSizeAllowedToPeerInGigabytes                   nullable.Type[int64]                                `json:"minimumDiskSizeAllowedToPeerInGigabytes,omitempty"`
+		MinimumFileSizeToCacheInMegabytes                         nullable.Type[int64]                                `json:"minimumFileSizeToCacheInMegabytes,omitempty"`
+		MinimumRamAllowedToPeerInGigabytes                        nullable.Type[int64]                                `json:"minimumRamAllowedToPeerInGigabytes,omitempty"`
+		ModifyCacheLocation                                       nullable.Type[string]                               `json:"modifyCacheLocation,omitempty"`
+		RestrictPeerSelectionBy                                   *DeliveryOptimizationRestrictPeerSelectionByOptions `json:"restrictPeerSelectionBy,omitempty"`
+		VpnPeerCaching                                            *Enablement                                         `json:"vpnPeerCaching,omitempty"`
+		Assignments                                               *[]DeviceConfigurationAssignment                    `json:"assignments,omitempty"`
+		CreatedDateTime                                           *string                                             `json:"createdDateTime,omitempty"`
+		Description                                               nullable.Type[string]                               `json:"description,omitempty"`
+		DeviceManagementApplicabilityRuleDeviceMode               *DeviceManagementApplicabilityRuleDeviceMode        `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+		DeviceManagementApplicabilityRuleOsEdition                *DeviceManagementApplicabilityRuleOsEdition         `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+		DeviceManagementApplicabilityRuleOsVersion                *DeviceManagementApplicabilityRuleOsVersion         `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+		DeviceSettingStateSummaries                               *[]SettingStateDeviceSummary                        `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                                      *DeviceConfigurationDeviceOverview                  `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                                            *[]DeviceConfigurationDeviceStatus                  `json:"deviceStatuses,omitempty"`
+		DisplayName                                               *string                                             `json:"displayName,omitempty"`
+		GroupAssignments                                          *[]DeviceConfigurationGroupAssignment               `json:"groupAssignments,omitempty"`
+		LastModifiedDateTime                                      *string                                             `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                                           *[]string                                           `json:"roleScopeTagIds,omitempty"`
+		SupportsScopeTags                                         *bool                                               `json:"supportsScopeTags,omitempty"`
+		UserStatusOverview                                        *DeviceConfigurationUserOverview                    `json:"userStatusOverview,omitempty"`
+		UserStatuses                                              *[]DeviceConfigurationUserStatus                    `json:"userStatuses,omitempty"`
+		Version                                                   *int64                                              `json:"version,omitempty"`
+		Id                                                        *string                                             `json:"id,omitempty"`
+		ODataId                                                   *string                                             `json:"@odata.id,omitempty"`
+		ODataType                                                 *string                                             `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.BackgroundDownloadFromHttpDelayInSeconds = decoded.BackgroundDownloadFromHttpDelayInSeconds
+	s.CacheServerBackgroundDownloadFallbackToHttpDelayInSeconds = decoded.CacheServerBackgroundDownloadFallbackToHttpDelayInSeconds
+	s.CacheServerForegroundDownloadFallbackToHttpDelayInSeconds = decoded.CacheServerForegroundDownloadFallbackToHttpDelayInSeconds
+	s.CacheServerHostNames = decoded.CacheServerHostNames
+	s.DeliveryOptimizationMode = decoded.DeliveryOptimizationMode
+	s.ForegroundDownloadFromHttpDelayInSeconds = decoded.ForegroundDownloadFromHttpDelayInSeconds
+	s.MaximumCacheAgeInDays = decoded.MaximumCacheAgeInDays
+	s.MinimumBatteryPercentageAllowedToUpload = decoded.MinimumBatteryPercentageAllowedToUpload
+	s.MinimumDiskSizeAllowedToPeerInGigabytes = decoded.MinimumDiskSizeAllowedToPeerInGigabytes
+	s.MinimumFileSizeToCacheInMegabytes = decoded.MinimumFileSizeToCacheInMegabytes
+	s.MinimumRamAllowedToPeerInGigabytes = decoded.MinimumRamAllowedToPeerInGigabytes
+	s.ModifyCacheLocation = decoded.ModifyCacheLocation
+	s.RestrictPeerSelectionBy = decoded.RestrictPeerSelectionBy
+	s.VpnPeerCaching = decoded.VpnPeerCaching
+	s.Assignments = decoded.Assignments
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Description = decoded.Description
+	s.DeviceManagementApplicabilityRuleDeviceMode = decoded.DeviceManagementApplicabilityRuleDeviceMode
+	s.DeviceManagementApplicabilityRuleOsEdition = decoded.DeviceManagementApplicabilityRuleOsEdition
+	s.DeviceManagementApplicabilityRuleOsVersion = decoded.DeviceManagementApplicabilityRuleOsVersion
+	s.DeviceSettingStateSummaries = decoded.DeviceSettingStateSummaries
+	s.DeviceStatusOverview = decoded.DeviceStatusOverview
+	s.DeviceStatuses = decoded.DeviceStatuses
+	s.DisplayName = decoded.DisplayName
+	s.GroupAssignments = decoded.GroupAssignments
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.RoleScopeTagIds = decoded.RoleScopeTagIds
+	s.SupportsScopeTags = decoded.SupportsScopeTags
+	s.UserStatusOverview = decoded.UserStatusOverview
+	s.UserStatuses = decoded.UserStatuses
+	s.Version = decoded.Version
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling WindowsDeliveryOptimizationConfiguration into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["bandwidthMode"]; ok {
+		impl, err := UnmarshalDeliveryOptimizationBandwidthImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'BandwidthMode' for 'WindowsDeliveryOptimizationConfiguration': %+v", err)
+		}
+		s.BandwidthMode = impl
+	}
+
+	if v, ok := temp["groupIdSource"]; ok {
+		impl, err := UnmarshalDeliveryOptimizationGroupIdSourceImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'GroupIdSource' for 'WindowsDeliveryOptimizationConfiguration': %+v", err)
+		}
+		s.GroupIdSource = impl
+	}
+
+	if v, ok := temp["maximumCacheSize"]; ok {
+		impl, err := UnmarshalDeliveryOptimizationMaxCacheSizeImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'MaximumCacheSize' for 'WindowsDeliveryOptimizationConfiguration': %+v", err)
+		}
+		s.MaximumCacheSize = impl
+	}
+
+	return nil
+}

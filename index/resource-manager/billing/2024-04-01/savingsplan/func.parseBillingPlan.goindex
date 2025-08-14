@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/savingsplan
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseBillingPlan(input string) (*BillingPlan, error) {
+	vals := map[string]BillingPlan{
+		"p1m": BillingPlanPOneM,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := BillingPlan(input)
+	return &out, nil
+}

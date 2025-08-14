@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type CustomTimeZone struct {
+	// The time offset of the time zone from Coordinated Universal Time (UTC). This value is in minutes. Time zones that are
+	// ahead of UTC have a positive offset; time zones that are behind UTC have a negative offset.
+	Bias nullable.Type[int64] `json:"bias,omitempty"`
+
+	// Specifies when the time zone switches from standard time to daylight saving time.
+	DaylightOffset *DaylightTimeZoneOffset `json:"daylightOffset,omitempty"`
+
+	// Specifies when the time zone switches from daylight saving time to standard time.
+	StandardOffset StandardTimeZoneOffset `json:"standardOffset"`
+
+	// Fields inherited from TimeZoneBase
+
+	// The name of a time zone. It can be a standard time zone name such as 'Hawaii-Aleutian Standard Time', or 'Customized
+	// Time Zone' for a custom time zone.
+	Name nullable.Type[string] `json:"name,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2024-09-01/dataconnectors
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *TIDataConnectorProperties) GetTipLookbackPeriodAsTime() (*time.Time, error) {
+	if o.TipLookbackPeriod == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.TipLookbackPeriod, "2006-01-02T15:04:05Z07:00")
+}

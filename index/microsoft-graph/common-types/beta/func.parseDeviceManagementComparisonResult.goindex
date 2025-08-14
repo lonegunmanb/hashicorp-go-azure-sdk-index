@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeviceManagementComparisonResult(input string) (*DeviceManagementComparisonResult, error) {
+	vals := map[string]DeviceManagementComparisonResult{
+		"added":    DeviceManagementComparisonResult_Added,
+		"equal":    DeviceManagementComparisonResult_Equal,
+		"notequal": DeviceManagementComparisonResult_NotEqual,
+		"removed":  DeviceManagementComparisonResult_Removed,
+		"unknown":  DeviceManagementComparisonResult_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceManagementComparisonResult(input)
+	return &out, nil
+}

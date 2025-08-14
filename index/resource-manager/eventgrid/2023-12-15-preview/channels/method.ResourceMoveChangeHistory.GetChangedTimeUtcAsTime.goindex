@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2023-12-15-preview/channels
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *ResourceMoveChangeHistory) GetChangedTimeUtcAsTime() (*time.Time, error) {
+	if o.ChangedTimeUtc == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.ChangedTimeUtc, "2006-01-02T15:04:05Z07:00")
+}

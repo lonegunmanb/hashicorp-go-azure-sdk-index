@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-11-01/webapps
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeploymentBuildStatus(input string) (*DeploymentBuildStatus, error) {
+	vals := map[string]DeploymentBuildStatus{
+		"buildaborted":             DeploymentBuildStatusBuildAborted,
+		"buildfailed":              DeploymentBuildStatusBuildFailed,
+		"buildinprogress":          DeploymentBuildStatusBuildInProgress,
+		"buildpending":             DeploymentBuildStatusBuildPending,
+		"buildrequestreceived":     DeploymentBuildStatusBuildRequestReceived,
+		"buildsuccessful":          DeploymentBuildStatusBuildSuccessful,
+		"postbuildrestartrequired": DeploymentBuildStatusPostBuildRestartRequired,
+		"runtimefailed":            DeploymentBuildStatusRuntimeFailed,
+		"runtimestarting":          DeploymentBuildStatusRuntimeStarting,
+		"runtimesuccessful":        DeploymentBuildStatusRuntimeSuccessful,
+		"startpolling":             DeploymentBuildStatusStartPolling,
+		"startpollingwithrestart":  DeploymentBuildStatusStartPollingWithRestart,
+		"timedout":                 DeploymentBuildStatusTimedOut,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeploymentBuildStatus(input)
+	return &out, nil
+}

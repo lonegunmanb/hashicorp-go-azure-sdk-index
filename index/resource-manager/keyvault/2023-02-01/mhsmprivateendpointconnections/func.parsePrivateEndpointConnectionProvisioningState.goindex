@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2023-02-01/mhsmprivateendpointconnections
+import (
+	"strings"
+)
+func parsePrivateEndpointConnectionProvisioningState(input string) (*PrivateEndpointConnectionProvisioningState, error) {
+	vals := map[string]PrivateEndpointConnectionProvisioningState{
+		"creating":     PrivateEndpointConnectionProvisioningStateCreating,
+		"deleting":     PrivateEndpointConnectionProvisioningStateDeleting,
+		"disconnected": PrivateEndpointConnectionProvisioningStateDisconnected,
+		"failed":       PrivateEndpointConnectionProvisioningStateFailed,
+		"succeeded":    PrivateEndpointConnectionProvisioningStateSucceeded,
+		"updating":     PrivateEndpointConnectionProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PrivateEndpointConnectionProvisioningState(input)
+	return &out, nil
+}

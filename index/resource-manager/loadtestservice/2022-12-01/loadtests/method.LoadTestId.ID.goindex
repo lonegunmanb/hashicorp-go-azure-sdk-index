@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/loadtestservice/2022-12-01/loadtests
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id LoadTestId) ID() string {
+	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.LoadTestService/loadTests/%s"
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.LoadTestName)
+}

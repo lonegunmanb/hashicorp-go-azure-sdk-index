@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/directorytransitiveroleassignment
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DirectoryTransitiveRoleAssignmentClient) ListDirectoryTransitiveRoleAssignmentsCompleteMatchingPredicate(ctx context.Context, options ListDirectoryTransitiveRoleAssignmentsOperationOptions, predicate UnifiedRoleAssignmentOperationPredicate) (result ListDirectoryTransitiveRoleAssignmentsCompleteResult, err error) {
+	items := make([]beta.UnifiedRoleAssignment, 0)
+
+	resp, err := c.ListDirectoryTransitiveRoleAssignments(ctx, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListDirectoryTransitiveRoleAssignmentsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

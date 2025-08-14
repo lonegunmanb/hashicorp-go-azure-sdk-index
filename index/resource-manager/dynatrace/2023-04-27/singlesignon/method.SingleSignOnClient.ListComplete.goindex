@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dynatrace/2023-04-27/singlesignon
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SingleSignOnClient) ListComplete(ctx context.Context, id MonitorId) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, DynatraceSingleSignOnResourceOperationPredicate{})
+}

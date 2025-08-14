@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/aad/2021-05-01/domainservices
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseFilteredSync(input string) (*FilteredSync, error) {
+	vals := map[string]FilteredSync{
+		"disabled": FilteredSyncDisabled,
+		"enabled":  FilteredSyncEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FilteredSync(input)
+	return &out, nil
+}

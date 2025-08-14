@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/security/2019-01-01-preview/subassessments
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s OnPremiseResourceDetails) MarshalJSON() ([]byte, error) {
+	type wrapper OnPremiseResourceDetails
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling OnPremiseResourceDetails: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling OnPremiseResourceDetails: %+v", err)
+	}
+
+	decoded["source"] = "OnPremise"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling OnPremiseResourceDetails: %+v", err)
+	}
+
+	return encoded, nil
+}

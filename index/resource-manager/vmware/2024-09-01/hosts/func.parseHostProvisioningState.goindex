@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2024-09-01/hosts
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseHostProvisioningState(input string) (*HostProvisioningState, error) {
+	vals := map[string]HostProvisioningState{
+		"canceled":  HostProvisioningStateCanceled,
+		"failed":    HostProvisioningStateFailed,
+		"succeeded": HostProvisioningStateSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := HostProvisioningState(input)
+	return &out, nil
+}

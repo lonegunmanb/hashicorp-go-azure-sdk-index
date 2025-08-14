@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"io"
+	"net/http"
+	"strings"
+)
+type lroErrorType1 struct {
+	Error struct {
+		Code           string        `json:"code"`
+		Message        string        `json:"message"`
+		AdditionalInfo []interface{} `json:"additionalInfo"`
+	} `json:"error"`
+	Id     string `json:"id"`
+	Status string `json:"status"`
+}

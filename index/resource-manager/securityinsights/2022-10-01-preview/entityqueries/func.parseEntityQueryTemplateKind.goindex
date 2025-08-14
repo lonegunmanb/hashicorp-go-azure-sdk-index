@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/entityqueries
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEntityQueryTemplateKind(input string) (*EntityQueryTemplateKind, error) {
+	vals := map[string]EntityQueryTemplateKind{
+		"activity": EntityQueryTemplateKindActivity,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EntityQueryTemplateKind(input)
+	return &out, nil
+}

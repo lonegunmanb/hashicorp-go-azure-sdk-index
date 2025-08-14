@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/operationalinsights/2025-02-01/tables
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *RestoredLogs) GetEndRestoreTimeAsTime() (*time.Time, error) {
+	if o.EndRestoreTime == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.EndRestoreTime, "2006-01-02T15:04:05Z07:00")
+}

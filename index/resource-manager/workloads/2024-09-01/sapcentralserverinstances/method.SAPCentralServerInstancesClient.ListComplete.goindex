@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/workloads/2024-09-01/sapcentralserverinstances
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SAPCentralServerInstancesClient) ListComplete(ctx context.Context, id SapVirtualInstanceId) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, SAPCentralServerInstanceOperationPredicate{})
+}

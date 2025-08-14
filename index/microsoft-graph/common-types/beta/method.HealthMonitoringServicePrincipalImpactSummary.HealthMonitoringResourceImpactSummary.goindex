@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s HealthMonitoringServicePrincipalImpactSummary) HealthMonitoringResourceImpactSummary() BaseHealthMonitoringResourceImpactSummaryImpl {
+	return BaseHealthMonitoringResourceImpactSummaryImpl{
+		ImpactedCount:              s.ImpactedCount,
+		ImpactedCountLimitExceeded: s.ImpactedCountLimitExceeded,
+		ODataId:                    s.ODataId,
+		ODataType:                  s.ODataType,
+		ResourceType:               s.ResourceType,
+	}
+}

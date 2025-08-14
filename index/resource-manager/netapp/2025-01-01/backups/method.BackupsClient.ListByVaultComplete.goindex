@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-01-01/backups
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c BackupsClient) ListByVaultComplete(ctx context.Context, id BackupVaultId, options ListByVaultOperationOptions) (ListByVaultCompleteResult, error) {
+	return c.ListByVaultCompleteMatchingPredicate(ctx, id, options, BackupOperationPredicate{})
+}

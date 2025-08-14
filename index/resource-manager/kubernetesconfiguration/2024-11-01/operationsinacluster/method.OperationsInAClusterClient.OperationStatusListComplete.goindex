@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/kubernetesconfiguration/2024-11-01/operationsinacluster
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c OperationsInAClusterClient) OperationStatusListComplete(ctx context.Context, id commonids.ScopeId) (OperationStatusListCompleteResult, error) {
+	return c.OperationStatusListCompleteMatchingPredicate(ctx, id, OperationStatusResultOperationPredicate{})
+}

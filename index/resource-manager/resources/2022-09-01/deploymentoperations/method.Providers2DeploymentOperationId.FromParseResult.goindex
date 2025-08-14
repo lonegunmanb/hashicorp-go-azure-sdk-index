@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2022-09-01/deploymentoperations
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *Providers2DeploymentOperationId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.GroupId, ok = input.Parsed["groupId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "groupId", input)
+	}
+
+	if id.DeploymentName, ok = input.Parsed["deploymentName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "deploymentName", input)
+	}
+
+	if id.OperationId, ok = input.Parsed["operationId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "operationId", input)
+	}
+
+	return nil
+}

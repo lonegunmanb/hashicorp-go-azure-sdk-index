@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dynatrace/2023-04-27/monitors
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAvailabilityState(input string) (*AvailabilityState, error) {
+	vals := map[string]AvailabilityState{
+		"crashed":             AvailabilityStateCRASHED,
+		"lost":                AvailabilityStateLOST,
+		"monitored":           AvailabilityStateMONITORED,
+		"pre_monitored":       AvailabilityStatePREMONITORED,
+		"shutdown":            AvailabilityStateSHUTDOWN,
+		"unexpected_shutdown": AvailabilityStateUNEXPECTEDSHUTDOWN,
+		"unknown":             AvailabilityStateUNKNOWN,
+		"unmonitored":         AvailabilityStateUNMONITORED,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AvailabilityState(input)
+	return &out, nil
+}

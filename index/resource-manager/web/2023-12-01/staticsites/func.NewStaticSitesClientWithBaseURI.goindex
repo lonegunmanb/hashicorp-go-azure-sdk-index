@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/staticsites
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewStaticSitesClientWithBaseURI(sdkApi sdkEnv.Api) (*StaticSitesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "staticsites", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating StaticSitesClient: %+v", err)
+	}
+
+	return &StaticSitesClient{
+		Client: client,
+	}, nil
+}

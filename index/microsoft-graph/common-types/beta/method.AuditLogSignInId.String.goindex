@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id AuditLogSignInId) String() string {
+	components := []string{
+		fmt.Sprintf("Sign In: %q", id.SignInId),
+	}
+	return fmt.Sprintf("Audit Log Sign In (%s)", strings.Join(components, "\n"))
+}

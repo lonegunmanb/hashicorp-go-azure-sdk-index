@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCalendarColor(input string) (*CalendarColor, error) {
+	vals := map[string]CalendarColor{
+		"auto":        CalendarColor_Auto,
+		"lightblue":   CalendarColor_LightBlue,
+		"lightbrown":  CalendarColor_LightBrown,
+		"lightgray":   CalendarColor_LightGray,
+		"lightgreen":  CalendarColor_LightGreen,
+		"lightorange": CalendarColor_LightOrange,
+		"lightpink":   CalendarColor_LightPink,
+		"lightred":    CalendarColor_LightRed,
+		"lightteal":   CalendarColor_LightTeal,
+		"lightyellow": CalendarColor_LightYellow,
+		"maxcolor":    CalendarColor_MaxColor,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CalendarColor(input)
+	return &out, nil
+}

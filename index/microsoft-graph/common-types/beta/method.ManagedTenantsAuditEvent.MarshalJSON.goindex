@@ -1,0 +1,44 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s ManagedTenantsAuditEvent) MarshalJSON() ([]byte, error) {
+	type wrapper ManagedTenantsAuditEvent
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ManagedTenantsAuditEvent: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ManagedTenantsAuditEvent: %+v", err)
+	}
+
+	delete(decoded, "activity")
+	delete(decoded, "activityDateTime")
+	delete(decoded, "activityId")
+	delete(decoded, "category")
+	delete(decoded, "httpVerb")
+	delete(decoded, "initiatedByAppId")
+	delete(decoded, "initiatedByUpn")
+	delete(decoded, "initiatedByUserId")
+	delete(decoded, "ipAddress")
+	delete(decoded, "requestUrl")
+	delete(decoded, "tenantIds")
+	delete(decoded, "tenantNames")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.managedTenants.auditEvent"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ManagedTenantsAuditEvent: %+v", err)
+	}
+
+	return encoded, nil
+}

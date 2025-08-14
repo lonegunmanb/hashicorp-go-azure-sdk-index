@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/certificates
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewCertificatesClientWithBaseURI(sdkApi sdkEnv.Api) (*CertificatesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "certificates", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating CertificatesClient: %+v", err)
+	}
+
+	return &CertificatesClient{
+		Client: client,
+	}, nil
+}

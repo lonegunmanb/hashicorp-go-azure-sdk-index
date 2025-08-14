@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/codeversion
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c CodeVersionClient) RegistryCodeVersionsDeleteThenPoll(ctx context.Context, id RegistryCodeVersionId) error {
+	result, err := c.RegistryCodeVersionsDelete(ctx, id)
+	if err != nil {
+		return fmt.Errorf("performing RegistryCodeVersionsDelete: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after RegistryCodeVersionsDelete: %+v", err)
+	}
+
+	return nil
+}

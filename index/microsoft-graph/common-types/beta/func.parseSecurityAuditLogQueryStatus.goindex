@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityAuditLogQueryStatus(input string) (*SecurityAuditLogQueryStatus, error) {
+	vals := map[string]SecurityAuditLogQueryStatus{
+		"cancelled":  SecurityAuditLogQueryStatus_Cancelled,
+		"failed":     SecurityAuditLogQueryStatus_Failed,
+		"notstarted": SecurityAuditLogQueryStatus_NotStarted,
+		"running":    SecurityAuditLogQueryStatus_Running,
+		"succeeded":  SecurityAuditLogQueryStatus_Succeeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityAuditLogQueryStatus(input)
+	return &out, nil
+}

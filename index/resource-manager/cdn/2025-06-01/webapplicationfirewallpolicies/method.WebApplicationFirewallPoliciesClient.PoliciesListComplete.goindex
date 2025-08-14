@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/webapplicationfirewallpolicies
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c WebApplicationFirewallPoliciesClient) PoliciesListComplete(ctx context.Context, id commonids.ResourceGroupId) (PoliciesListCompleteResult, error) {
+	return c.PoliciesListCompleteMatchingPredicate(ctx, id, CdnWebApplicationFirewallPolicyOperationPredicate{})
+}

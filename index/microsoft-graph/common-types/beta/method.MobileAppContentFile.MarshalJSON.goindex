@@ -1,0 +1,36 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s MobileAppContentFile) MarshalJSON() ([]byte, error) {
+	type wrapper MobileAppContentFile
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling MobileAppContentFile: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling MobileAppContentFile: %+v", err)
+	}
+
+	delete(decoded, "azureStorageUri")
+	delete(decoded, "azureStorageUriExpirationDateTime")
+	delete(decoded, "createdDateTime")
+	delete(decoded, "isCommitted")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.mobileAppContentFile"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling MobileAppContentFile: %+v", err)
+	}
+
+	return encoded, nil
+}

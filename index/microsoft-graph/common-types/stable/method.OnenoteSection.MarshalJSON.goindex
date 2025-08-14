@@ -1,0 +1,37 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s OnenoteSection) MarshalJSON() ([]byte, error) {
+	type wrapper OnenoteSection
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling OnenoteSection: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling OnenoteSection: %+v", err)
+	}
+
+	delete(decoded, "isDefault")
+	delete(decoded, "pages")
+	delete(decoded, "pagesUrl")
+	delete(decoded, "parentNotebook")
+	delete(decoded, "parentSectionGroup")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.onenoteSection"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling OnenoteSection: %+v", err)
+	}
+
+	return encoded, nil
+}

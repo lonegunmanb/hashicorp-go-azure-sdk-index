@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type IdentityProtectionRoot struct {
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Risk detection in Microsoft Entra ID Protection and the associated information about the detection.
+	RiskDetections *[]RiskDetection `json:"riskDetections,omitempty"`
+
+	// Microsoft Entra service principals that are at risk.
+	RiskyServicePrincipals *[]RiskyServicePrincipal `json:"riskyServicePrincipals,omitempty"`
+
+	// Users that are flagged as at-risk by Microsoft Entra ID Protection.
+	RiskyUsers *[]RiskyUser `json:"riskyUsers,omitempty"`
+
+	// Represents information about detected at-risk service principals in a Microsoft Entra tenant.
+	ServicePrincipalRiskDetections *[]ServicePrincipalRiskDetection `json:"servicePrincipalRiskDetections,omitempty"`
+}

@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/frontdoor/2020-04-01/frontdoors
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/polling"
+)
+func (c FrontDoorsClient) RulesEnginesDeleteThenPoll(ctx context.Context, id RulesEngineId) error {
+	result, err := c.RulesEnginesDelete(ctx, id)
+	if err != nil {
+		return fmt.Errorf("performing RulesEnginesDelete: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(); err != nil {
+		return fmt.Errorf("polling after RulesEnginesDelete: %+v", err)
+	}
+
+	return nil
+}

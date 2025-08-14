@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s IosCompliancePolicy) DeviceCompliancePolicy() BaseDeviceCompliancePolicyImpl {
+	return BaseDeviceCompliancePolicyImpl{
+		Assignments:                 s.Assignments,
+		CreatedDateTime:             s.CreatedDateTime,
+		Description:                 s.Description,
+		DeviceSettingStateSummaries: s.DeviceSettingStateSummaries,
+		DeviceStatusOverview:        s.DeviceStatusOverview,
+		DeviceStatuses:              s.DeviceStatuses,
+		DisplayName:                 s.DisplayName,
+		LastModifiedDateTime:        s.LastModifiedDateTime,
+		ScheduledActionsForRule:     s.ScheduledActionsForRule,
+		UserStatusOverview:          s.UserStatusOverview,
+		UserStatuses:                s.UserStatuses,
+		Version:                     s.Version,
+		Id:                          s.Id,
+		ODataId:                     s.ODataId,
+		ODataType:                   s.ODataType,
+	}
+}

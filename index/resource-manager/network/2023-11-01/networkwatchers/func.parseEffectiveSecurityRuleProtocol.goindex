@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-11-01/networkwatchers
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEffectiveSecurityRuleProtocol(input string) (*EffectiveSecurityRuleProtocol, error) {
+	vals := map[string]EffectiveSecurityRuleProtocol{
+		"all": EffectiveSecurityRuleProtocolAll,
+		"tcp": EffectiveSecurityRuleProtocolTcp,
+		"udp": EffectiveSecurityRuleProtocolUdp,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EffectiveSecurityRuleProtocol(input)
+	return &out, nil
+}

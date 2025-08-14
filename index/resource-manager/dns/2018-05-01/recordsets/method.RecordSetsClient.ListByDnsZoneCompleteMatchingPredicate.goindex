@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dns/2018-05-01/recordsets
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c RecordSetsClient) ListByDnsZoneCompleteMatchingPredicate(ctx context.Context, id DnsZoneId, options ListByDnsZoneOperationOptions, predicate RecordSetOperationPredicate) (result ListByDnsZoneCompleteResult, err error) {
+	items := make([]RecordSet, 0)
+
+	resp, err := c.ListByDnsZone(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByDnsZoneCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

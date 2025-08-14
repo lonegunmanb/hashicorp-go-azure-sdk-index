@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagepool/2021-08-01/iscsitargets
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseIscsiTargetAclMode(input string) (*IscsiTargetAclMode, error) {
+	vals := map[string]IscsiTargetAclMode{
+		"dynamic": IscsiTargetAclModeDynamic,
+		"static":  IscsiTargetAclModeStatic,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IscsiTargetAclMode(input)
+	return &out, nil
+}

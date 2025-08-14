@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/networkfunction/2022-11-01/collectorpolicies
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDestinationType(input string) (*DestinationType, error) {
+	vals := map[string]DestinationType{
+		"azuremonitor": DestinationTypeAzureMonitor,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DestinationType(input)
+	return &out, nil
+}

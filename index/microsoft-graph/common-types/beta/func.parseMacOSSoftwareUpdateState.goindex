@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMacOSSoftwareUpdateState(input string) (*MacOSSoftwareUpdateState, error) {
+	vals := map[string]MacOSSoftwareUpdateState{
+		"available":                   MacOSSoftwareUpdateState_Available,
+		"commandfailed":               MacOSSoftwareUpdateState_CommandFailed,
+		"downloadfailed":              MacOSSoftwareUpdateState_DownloadFailed,
+		"downloadinsufficientnetwork": MacOSSoftwareUpdateState_DownloadInsufficientNetwork,
+		"downloadinsufficientpower":   MacOSSoftwareUpdateState_DownloadInsufficientPower,
+		"downloadinsufficientspace":   MacOSSoftwareUpdateState_DownloadInsufficientSpace,
+		"downloaded":                  MacOSSoftwareUpdateState_Downloaded,
+		"downloading":                 MacOSSoftwareUpdateState_Downloading,
+		"idle":                        MacOSSoftwareUpdateState_Idle,
+		"installfailed":               MacOSSoftwareUpdateState_InstallFailed,
+		"installinsufficientpower":    MacOSSoftwareUpdateState_InstallInsufficientPower,
+		"installinsufficientspace":    MacOSSoftwareUpdateState_InstallInsufficientSpace,
+		"installing":                  MacOSSoftwareUpdateState_Installing,
+		"scheduled":                   MacOSSoftwareUpdateState_Scheduled,
+		"success":                     MacOSSoftwareUpdateState_Success,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MacOSSoftwareUpdateState(input)
+	return &out, nil
+}

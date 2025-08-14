@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s BaseEducationResourceImpl) MarshalJSON() ([]byte, error) {
+	type wrapper BaseEducationResourceImpl
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling BaseEducationResourceImpl: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling BaseEducationResourceImpl: %+v", err)
+	}
+
+	delete(decoded, "createdBy")
+	delete(decoded, "createdDateTime")
+	delete(decoded, "lastModifiedBy")
+	delete(decoded, "lastModifiedDateTime")
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling BaseEducationResourceImpl: %+v", err)
+	}
+
+	return encoded, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/virtualendpointexternalpartnersetting
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewVirtualEndpointExternalPartnerSettingClientWithBaseURI(sdkApi sdkEnv.Api) (*VirtualEndpointExternalPartnerSettingClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "virtualendpointexternalpartnersetting", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating VirtualEndpointExternalPartnerSettingClient: %+v", err)
+	}
+
+	return &VirtualEndpointExternalPartnerSettingClient{
+		Client: client,
+	}, nil
+}

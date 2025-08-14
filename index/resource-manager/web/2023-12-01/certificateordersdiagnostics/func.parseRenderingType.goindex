@@ -1,0 +1,42 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/certificateordersdiagnostics
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRenderingType(input string) (*RenderingType, error) {
+	vals := map[string]RenderingType{
+		"appinsight":               RenderingTypeAppInsight,
+		"appinsightenablement":     RenderingTypeAppInsightEnablement,
+		"card":                     RenderingTypeCard,
+		"changeanalysisonboarding": RenderingTypeChangeAnalysisOnboarding,
+		"changesets":               RenderingTypeChangeSets,
+		"changesview":              RenderingTypeChangesView,
+		"datasummary":              RenderingTypeDataSummary,
+		"dependencygraph":          RenderingTypeDependencyGraph,
+		"detector":                 RenderingTypeDetector,
+		"downtime":                 RenderingTypeDownTime,
+		"dropdown":                 RenderingTypeDropDown,
+		"dynamicinsight":           RenderingTypeDynamicInsight,
+		"email":                    RenderingTypeEmail,
+		"form":                     RenderingTypeForm,
+		"guage":                    RenderingTypeGuage,
+		"insights":                 RenderingTypeInsights,
+		"markdown":                 RenderingTypeMarkdown,
+		"nograph":                  RenderingTypeNoGraph,
+		"piechart":                 RenderingTypePieChart,
+		"searchcomponent":          RenderingTypeSearchComponent,
+		"solution":                 RenderingTypeSolution,
+		"summarycard":              RenderingTypeSummaryCard,
+		"table":                    RenderingTypeTable,
+		"timeseries":               RenderingTypeTimeSeries,
+		"timeseriesperinstance":    RenderingTypeTimeSeriesPerInstance,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RenderingType(input)
+	return &out, nil
+}

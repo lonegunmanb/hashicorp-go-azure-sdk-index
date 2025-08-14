@@ -1,0 +1,99 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *Organization) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AssignedPlans                        *[]AssignedPlan                      `json:"assignedPlans,omitempty"`
+		Branding                             *OrganizationalBranding              `json:"branding,omitempty"`
+		BusinessPhones                       *[]string                            `json:"businessPhones,omitempty"`
+		CertificateBasedAuthConfiguration    *[]CertificateBasedAuthConfiguration `json:"certificateBasedAuthConfiguration,omitempty"`
+		City                                 nullable.Type[string]                `json:"city,omitempty"`
+		Country                              nullable.Type[string]                `json:"country,omitempty"`
+		CountryLetterCode                    nullable.Type[string]                `json:"countryLetterCode,omitempty"`
+		CreatedDateTime                      nullable.Type[string]                `json:"createdDateTime,omitempty"`
+		DefaultUsageLocation                 nullable.Type[string]                `json:"defaultUsageLocation,omitempty"`
+		DisplayName                          nullable.Type[string]                `json:"displayName,omitempty"`
+		MarketingNotificationEmails          *[]string                            `json:"marketingNotificationEmails,omitempty"`
+		MobileDeviceManagementAuthority      *MdmAuthority                        `json:"mobileDeviceManagementAuthority,omitempty"`
+		OnPremisesLastSyncDateTime           nullable.Type[string]                `json:"onPremisesLastSyncDateTime,omitempty"`
+		OnPremisesSyncEnabled                nullable.Type[bool]                  `json:"onPremisesSyncEnabled,omitempty"`
+		PartnerTenantType                    *PartnerTenantType                   `json:"partnerTenantType,omitempty"`
+		PostalCode                           nullable.Type[string]                `json:"postalCode,omitempty"`
+		PreferredLanguage                    nullable.Type[string]                `json:"preferredLanguage,omitempty"`
+		PrivacyProfile                       *PrivacyProfile                      `json:"privacyProfile,omitempty"`
+		ProvisionedPlans                     *[]ProvisionedPlan                   `json:"provisionedPlans,omitempty"`
+		SecurityComplianceNotificationMails  *[]string                            `json:"securityComplianceNotificationMails,omitempty"`
+		SecurityComplianceNotificationPhones *[]string                            `json:"securityComplianceNotificationPhones,omitempty"`
+		State                                nullable.Type[string]                `json:"state,omitempty"`
+		Street                               nullable.Type[string]                `json:"street,omitempty"`
+		TechnicalNotificationMails           *[]string                            `json:"technicalNotificationMails,omitempty"`
+		TenantType                           nullable.Type[string]                `json:"tenantType,omitempty"`
+		VerifiedDomains                      *[]VerifiedDomain                    `json:"verifiedDomains,omitempty"`
+		DeletedDateTime                      nullable.Type[string]                `json:"deletedDateTime,omitempty"`
+		Id                                   *string                              `json:"id,omitempty"`
+		ODataId                              *string                              `json:"@odata.id,omitempty"`
+		ODataType                            *string                              `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AssignedPlans = decoded.AssignedPlans
+	s.Branding = decoded.Branding
+	s.BusinessPhones = decoded.BusinessPhones
+	s.CertificateBasedAuthConfiguration = decoded.CertificateBasedAuthConfiguration
+	s.City = decoded.City
+	s.Country = decoded.Country
+	s.CountryLetterCode = decoded.CountryLetterCode
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.DefaultUsageLocation = decoded.DefaultUsageLocation
+	s.DisplayName = decoded.DisplayName
+	s.MarketingNotificationEmails = decoded.MarketingNotificationEmails
+	s.MobileDeviceManagementAuthority = decoded.MobileDeviceManagementAuthority
+	s.OnPremisesLastSyncDateTime = decoded.OnPremisesLastSyncDateTime
+	s.OnPremisesSyncEnabled = decoded.OnPremisesSyncEnabled
+	s.PartnerTenantType = decoded.PartnerTenantType
+	s.PostalCode = decoded.PostalCode
+	s.PreferredLanguage = decoded.PreferredLanguage
+	s.PrivacyProfile = decoded.PrivacyProfile
+	s.ProvisionedPlans = decoded.ProvisionedPlans
+	s.SecurityComplianceNotificationMails = decoded.SecurityComplianceNotificationMails
+	s.SecurityComplianceNotificationPhones = decoded.SecurityComplianceNotificationPhones
+	s.State = decoded.State
+	s.Street = decoded.Street
+	s.TechnicalNotificationMails = decoded.TechnicalNotificationMails
+	s.TenantType = decoded.TenantType
+	s.VerifiedDomains = decoded.VerifiedDomains
+	s.DeletedDateTime = decoded.DeletedDateTime
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling Organization into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["extensions"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling Extensions into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]Extension, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalExtensionImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'Extensions' for 'Organization': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.Extensions = &output
+	}
+
+	return nil
+}

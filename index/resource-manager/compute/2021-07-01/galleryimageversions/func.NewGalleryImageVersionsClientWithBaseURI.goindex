@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2021-07-01/galleryimageversions
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewGalleryImageVersionsClientWithBaseURI(sdkApi sdkEnv.Api) (*GalleryImageVersionsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "galleryimageversions", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating GalleryImageVersionsClient: %+v", err)
+	}
+
+	return &GalleryImageVersionsClient{
+		Client: client,
+	}, nil
+}

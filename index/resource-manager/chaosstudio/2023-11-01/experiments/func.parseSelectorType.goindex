@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2023-11-01/experiments
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSelectorType(input string) (*SelectorType, error) {
+	vals := map[string]SelectorType{
+		"list":  SelectorTypeList,
+		"query": SelectorTypeQuery,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SelectorType(input)
+	return &out, nil
+}

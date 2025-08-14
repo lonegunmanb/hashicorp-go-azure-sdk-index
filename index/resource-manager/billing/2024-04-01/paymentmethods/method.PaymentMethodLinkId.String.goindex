@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/paymentmethods
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id PaymentMethodLinkId) String() string {
+	components := []string{
+		fmt.Sprintf("Billing Account Name: %q", id.BillingAccountName),
+		fmt.Sprintf("Billing Profile Name: %q", id.BillingProfileName),
+		fmt.Sprintf("Payment Method Link Name: %q", id.PaymentMethodLinkName),
+	}
+	return fmt.Sprintf("Payment Method Link (%s)", strings.Join(components, "\n"))
+}

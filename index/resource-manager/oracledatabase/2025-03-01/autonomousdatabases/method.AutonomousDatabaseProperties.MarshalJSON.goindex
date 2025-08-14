@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/autonomousdatabases
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (s AutonomousDatabaseProperties) MarshalJSON() ([]byte, error) {
+	type wrapper AutonomousDatabaseProperties
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AutonomousDatabaseProperties: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AutonomousDatabaseProperties: %+v", err)
+	}
+
+	decoded["dataBaseType"] = "Regular"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AutonomousDatabaseProperties: %+v", err)
+	}
+
+	return encoded, nil
+}

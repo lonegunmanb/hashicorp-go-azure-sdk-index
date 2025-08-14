@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-01-01/volumesrevert
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseVolumeID(input string) (*VolumeId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&VolumeId{})
+	parsed, err := parser.Parse(input, false)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := VolumeId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

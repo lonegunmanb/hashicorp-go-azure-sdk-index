@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type ConditionalAccessRoot struct {
+	// Read-only. Nullable. Returns a collection of the specified authentication context class references.
+	AuthenticationContextClassReferences *[]AuthenticationContextClassReference `json:"authenticationContextClassReferences,omitempty"`
+
+	// Defines the authentication strength policies, valid authentication method combinations, and authentication method
+	// mode details that can be required by a conditional access policy.
+	AuthenticationStrength *AuthenticationStrengthRoot `json:"authenticationStrength,omitempty"`
+
+	// DEPRECATED. See the authenticationStrength relationship instead.
+	AuthenticationStrengths *AuthenticationStrengthRoot `json:"authenticationStrengths,omitempty"`
+
+	// Read-only. Nullable. Returns a collection of the specified Conditional Access templates.
+	Templates *[]ConditionalAccessTemplate `json:"templates,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

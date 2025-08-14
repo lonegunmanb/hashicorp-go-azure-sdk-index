@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/compliancepolicyscheduledactionsforrulescheduledactionconfiguration
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c CompliancePolicyScheduledActionsForRuleScheduledActionConfigurationClient) ListCompliancePolicyScheduledActionsForRuleConfigurationsCompleteMatchingPredicate(ctx context.Context, id beta.DeviceManagementCompliancePolicyIdScheduledActionsForRuleId, options ListCompliancePolicyScheduledActionsForRuleConfigurationsOperationOptions, predicate DeviceManagementComplianceActionItemOperationPredicate) (result ListCompliancePolicyScheduledActionsForRuleConfigurationsCompleteResult, err error) {
+	items := make([]beta.DeviceManagementComplianceActionItem, 0)
+
+	resp, err := c.ListCompliancePolicyScheduledActionsForRuleConfigurations(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListCompliancePolicyScheduledActionsForRuleConfigurationsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

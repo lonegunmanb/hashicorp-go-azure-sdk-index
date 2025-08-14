@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/portal/2020-09-01-preview/tenantconfigurations
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id TenantConfigurationId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.StaticSegment("staticProviders", "providers", "providers"),
+		resourceids.ResourceProviderSegment("staticMicrosoftPortal", "Microsoft.Portal", "Microsoft.Portal"),
+		resourceids.StaticSegment("staticTenantConfigurations", "tenantConfigurations", "tenantConfigurations"),
+		resourceids.UserSpecifiedSegment("tenantConfigurationName", "tenantConfigurationName"),
+	}
+}

@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type SecurityEdiscoveryCaseMember struct {
+	// The display name of the eDiscovery case member. Allowed only for case members of type roleGroup.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// Specifies the recipient type of the eDiscovery case member. The possible values are: user, roleGroup,
+	// unknownFutureValue.
+	RecipientType *SecurityRecipientType `json:"recipientType,omitempty"`
+
+	// The smtp address of the eDiscovery case member. Allowed only for case members of type user.
+	SmtpAddress nullable.Type[string] `json:"smtpAddress,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

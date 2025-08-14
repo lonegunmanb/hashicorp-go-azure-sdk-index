@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mysql/2023-12-30/servermigration
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseServerVersion(input string) (*ServerVersion, error) {
+	vals := map[string]ServerVersion{
+		"8.0.21": ServerVersionEightPointZeroPointTwoOne,
+		"5.7":    ServerVersionFivePointSeven,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ServerVersion(input)
+	return &out, nil
+}

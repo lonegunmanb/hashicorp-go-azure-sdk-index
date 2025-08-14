@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/databases
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCreateMode(input string) (*CreateMode, error) {
+	vals := map[string]CreateMode{
+		"copy":                           CreateModeCopy,
+		"default":                        CreateModeDefault,
+		"onlinesecondary":                CreateModeOnlineSecondary,
+		"pointintimerestore":             CreateModePointInTimeRestore,
+		"recovery":                       CreateModeRecovery,
+		"restore":                        CreateModeRestore,
+		"restoreexternalbackup":          CreateModeRestoreExternalBackup,
+		"restoreexternalbackupsecondary": CreateModeRestoreExternalBackupSecondary,
+		"restorelongtermretentionbackup": CreateModeRestoreLongTermRetentionBackup,
+		"secondary":                      CreateModeSecondary,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CreateMode(input)
+	return &out, nil
+}

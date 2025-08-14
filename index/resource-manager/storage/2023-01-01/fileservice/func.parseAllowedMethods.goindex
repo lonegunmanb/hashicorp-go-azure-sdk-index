@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-01-01/fileservice
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAllowedMethods(input string) (*AllowedMethods, error) {
+	vals := map[string]AllowedMethods{
+		"connect": AllowedMethodsCONNECT,
+		"delete":  AllowedMethodsDELETE,
+		"get":     AllowedMethodsGET,
+		"head":    AllowedMethodsHEAD,
+		"merge":   AllowedMethodsMERGE,
+		"options": AllowedMethodsOPTIONS,
+		"patch":   AllowedMethodsPATCH,
+		"post":    AllowedMethodsPOST,
+		"put":     AllowedMethodsPUT,
+		"trace":   AllowedMethodsTRACE,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AllowedMethods(input)
+	return &out, nil
+}

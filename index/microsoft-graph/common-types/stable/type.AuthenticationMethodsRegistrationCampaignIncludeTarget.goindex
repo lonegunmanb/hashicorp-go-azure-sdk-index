@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type AuthenticationMethodsRegistrationCampaignIncludeTarget struct {
+	// The object identifier of a Microsoft Entra user or group.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	TargetType *AuthenticationMethodTargetType `json:"targetType,omitempty"`
+
+	// The authentication method that the user is prompted to register. The value must be microsoftAuthenticator.
+	TargetedAuthenticationMethod nullable.Type[string] `json:"targetedAuthenticationMethod,omitempty"`
+}

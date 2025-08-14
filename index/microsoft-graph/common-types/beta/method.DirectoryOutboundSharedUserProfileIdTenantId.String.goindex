@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DirectoryOutboundSharedUserProfileIdTenantId) String() string {
+	components := []string{
+		fmt.Sprintf("Outbound Shared User Profile User: %q", id.OutboundSharedUserProfileUserId),
+		fmt.Sprintf("Tenant Reference Tenant: %q", id.TenantReferenceTenantId),
+	}
+	return fmt.Sprintf("Directory Outbound Shared User Profile Id Tenant (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicefabric/2021-06-01/service
+import (
+	"encoding/json"
+	"fmt"
+)
+type StatelessServiceUpdateProperties struct {
+	InstanceCloseDelayDuration *string `json:"instanceCloseDelayDuration,omitempty"`
+	InstanceCount              *int64  `json:"instanceCount,omitempty"`
+
+	// Fields inherited from ServiceResourceUpdateProperties
+
+	CorrelationScheme        *[]ServiceCorrelationDescription     `json:"correlationScheme,omitempty"`
+	DefaultMoveCost          *MoveCost                            `json:"defaultMoveCost,omitempty"`
+	PlacementConstraints     *string                              `json:"placementConstraints,omitempty"`
+	ServiceKind              ServiceKind                          `json:"serviceKind"`
+	ServiceLoadMetrics       *[]ServiceLoadMetricDescription      `json:"serviceLoadMetrics,omitempty"`
+	ServicePlacementPolicies *[]ServicePlacementPolicyDescription `json:"servicePlacementPolicies,omitempty"`
+}

@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type CopilotRoot struct {
+	// The Microsoft 365 Copilot admin who can add or modify Copilot settings. Read-only. Nullable.
+	Admin *CopilotAdmin `json:"admin,omitempty"`
+
+	// The history of interactions between AI agents and users.
+	InteractionHistory *AiInteractionHistory `json:"interactionHistory,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	Settings *CopilotSetting `json:"settings,omitempty"`
+
+	// The list of AI users or agents. Read-only. Nullable.
+	Users *[]AiUser `json:"users,omitempty"`
+}

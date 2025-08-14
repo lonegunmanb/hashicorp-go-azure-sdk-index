@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2022-05-01/placementpolicies
+import (
+	"encoding/json"
+	"fmt"
+)
+type VMHostPlacementPolicyProperties struct {
+	AffinityStrength       *AffinityStrength       `json:"affinityStrength,omitempty"`
+	AffinityType           AffinityType            `json:"affinityType"`
+	AzureHybridBenefitType *AzureHybridBenefitType `json:"azureHybridBenefitType,omitempty"`
+	HostMembers            []string                `json:"hostMembers"`
+	VMMembers              []string                `json:"vmMembers"`
+
+	// Fields inherited from PlacementPolicyProperties
+
+	DisplayName       *string                           `json:"displayName,omitempty"`
+	ProvisioningState *PlacementPolicyProvisioningState `json:"provisioningState,omitempty"`
+	State             *PlacementPolicyState             `json:"state,omitempty"`
+	Type              PlacementPolicyType               `json:"type"`
+}

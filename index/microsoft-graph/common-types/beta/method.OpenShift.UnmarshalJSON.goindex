@@ -1,0 +1,60 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *OpenShift) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		DraftOpenShift       *OpenShiftItem        `json:"draftOpenShift,omitempty"`
+		IsStagedForDeletion  nullable.Type[bool]   `json:"isStagedForDeletion,omitempty"`
+		SchedulingGroupId    nullable.Type[string] `json:"schedulingGroupId,omitempty"`
+		SchedulingGroupInfo  *SchedulingGroupInfo  `json:"schedulingGroupInfo,omitempty"`
+		SharedOpenShift      *OpenShiftItem        `json:"sharedOpenShift,omitempty"`
+		TeamInfo             *ShiftsTeamInfo       `json:"teamInfo,omitempty"`
+		CreatedDateTime      nullable.Type[string] `json:"createdDateTime,omitempty"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.DraftOpenShift = decoded.DraftOpenShift
+	s.IsStagedForDeletion = decoded.IsStagedForDeletion
+	s.SchedulingGroupId = decoded.SchedulingGroupId
+	s.SchedulingGroupInfo = decoded.SchedulingGroupInfo
+	s.SharedOpenShift = decoded.SharedOpenShift
+	s.TeamInfo = decoded.TeamInfo
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling OpenShift into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["createdBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'CreatedBy' for 'OpenShift': %+v", err)
+		}
+		s.CreatedBy = impl
+	}
+
+	if v, ok := temp["lastModifiedBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'LastModifiedBy' for 'OpenShift': %+v", err)
+		}
+		s.LastModifiedBy = &impl
+	}
+
+	return nil
+}

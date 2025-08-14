@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"context"
+	"fmt"
+	"net/http"
+	"os"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	"github.com/hashicorp/go-azure-sdk/sdk/internal/azurecli"
+	"golang.org/x/oauth2"
+)
+func (c *azureCliConfig) TokenSource(ctx context.Context) (Authorizer, error) {
+	// Cache access tokens internally to avoid unnecessary `az` invocations
+	return NewCachedAuthorizer(&AzureCliAuthorizer{
+		TenantID:              c.TenantID,
+		DefaultSubscriptionID: c.DefaultSubscriptionID,
+		SubscriptionIDHint:    c.SubscriptionIDHint,
+		conf:                  c,
+	})
+}

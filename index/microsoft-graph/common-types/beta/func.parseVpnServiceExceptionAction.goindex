@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVpnServiceExceptionAction(input string) (*VpnServiceExceptionAction, error) {
+	vals := map[string]VpnServiceExceptionAction{
+		"allowtrafficoutside": VpnServiceExceptionAction_AllowTrafficOutside,
+		"droptraffic":         VpnServiceExceptionAction_DropTraffic,
+		"forcetrafficviavpn":  VpnServiceExceptionAction_ForceTrafficViaVPN,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VpnServiceExceptionAction(input)
+	return &out, nil
+}

@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/budgets
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseBudgetOperatorType(input string) (*BudgetOperatorType, error) {
+	vals := map[string]BudgetOperatorType{
+		"in": BudgetOperatorTypeIn,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := BudgetOperatorType(input)
+	return &out, nil
+}

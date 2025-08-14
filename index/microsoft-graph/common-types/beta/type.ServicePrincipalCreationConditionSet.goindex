@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ServicePrincipalCreationConditionSet struct {
+	ApplicationIds                        *[]string           `json:"applicationIds,omitempty"`
+	ApplicationPublisherIds               *[]string           `json:"applicationPublisherIds,omitempty"`
+	ApplicationTenantIds                  *[]string           `json:"applicationTenantIds,omitempty"`
+	ApplicationsFromVerifiedPublisherOnly nullable.Type[bool] `json:"applicationsFromVerifiedPublisherOnly,omitempty"`
+	CertifiedApplicationsOnly             nullable.Type[bool] `json:"certifiedApplicationsOnly,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

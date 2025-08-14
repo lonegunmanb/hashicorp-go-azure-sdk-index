@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/schedule
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s AutoTargetLags) MarshalJSON() ([]byte, error) {
+	type wrapper AutoTargetLags
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AutoTargetLags: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AutoTargetLags: %+v", err)
+	}
+
+	decoded["mode"] = "Auto"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AutoTargetLags: %+v", err)
+	}
+
+	return encoded, nil
+}

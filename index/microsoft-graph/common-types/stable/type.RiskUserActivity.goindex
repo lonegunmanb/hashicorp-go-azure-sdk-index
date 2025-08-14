@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+
+type RiskUserActivity struct {
+	// Details of the detected risk. Possible values are: none, adminGeneratedTemporaryPassword,
+	// userPerformedSecuredPasswordChange, userPerformedSecuredPasswordReset, adminConfirmedSigninSafe,
+	// aiConfirmedSigninSafe, userPassedMFADrivenByRiskBasedPolicy, adminDismissedAllRiskForUser,
+	// adminConfirmedSigninCompromised, hidden, adminConfirmedUserCompromised, unknownFutureValue. For more information
+	// about each value, see Risk types and detection.
+	Detail *RiskDetail `json:"detail,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The type of risk event detected.
+	RiskEventTypes *[]string `json:"riskEventTypes,omitempty"`
+}

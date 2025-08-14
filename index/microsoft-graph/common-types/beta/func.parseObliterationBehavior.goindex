@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseObliterationBehavior(input string) (*ObliterationBehavior, error) {
+	vals := map[string]ObliterationBehavior{
+		"always":                ObliterationBehavior_Always,
+		"default":               ObliterationBehavior_Default,
+		"donotobliterate":       ObliterationBehavior_DoNotObliterate,
+		"obliteratewithwarning": ObliterationBehavior_ObliterateWithWarning,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ObliterationBehavior(input)
+	return &out, nil
+}

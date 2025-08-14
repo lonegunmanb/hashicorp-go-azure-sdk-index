@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWindowsUpdatesEnrollmentState(input string) (*WindowsUpdatesEnrollmentState, error) {
+	vals := map[string]WindowsUpdatesEnrollmentState{
+		"enrolled":           WindowsUpdatesEnrollmentState_Enrolled,
+		"enrolledwithpolicy": WindowsUpdatesEnrollmentState_EnrolledWithPolicy,
+		"enrolling":          WindowsUpdatesEnrollmentState_Enrolling,
+		"notenrolled":        WindowsUpdatesEnrollmentState_NotEnrolled,
+		"unenrolling":        WindowsUpdatesEnrollmentState_Unenrolling,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsUpdatesEnrollmentState(input)
+	return &out, nil
+}

@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/azurestackhci/2024-01-01/marketplacegalleryimages
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id MarketplaceGalleryImageId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Marketplace Gallery Image Name: %q", id.MarketplaceGalleryImageName),
+	}
+	return fmt.Sprintf("Marketplace Gallery Image (%s)", strings.Join(components, "\n"))
+}

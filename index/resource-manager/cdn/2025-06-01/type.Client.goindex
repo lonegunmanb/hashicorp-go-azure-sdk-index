@@ -1,0 +1,57 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/v2025_06_01
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/afdcustomdomains"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/afdendpoints"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/afdorigingroups"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/afdorigins"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/afdprofiles"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/checkendpointnameavailability"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/checknameavailability"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/checknameavailabilitywithsubscription"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/customdomains"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/edgenodes"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/endpoints"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/loganalytics"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/origingroups"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/origins"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/profiles"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/routes"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/rules"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/rulesets"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/secrets"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/securitypolicies"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/validateprobe"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/wafloganalytics"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/webapplicationfirewallmanagedrulesets"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/webapplicationfirewallpolicies"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	AFDCustomDomains                      *afdcustomdomains.AFDCustomDomainsClient
+	AFDEndpoints                          *afdendpoints.AFDEndpointsClient
+	AFDOriginGroups                       *afdorigingroups.AFDOriginGroupsClient
+	AFDOrigins                            *afdorigins.AFDOriginsClient
+	AFDProfiles                           *afdprofiles.AFDProfilesClient
+	CheckEndpointNameAvailability         *checkendpointnameavailability.CheckEndpointNameAvailabilityClient
+	CheckNameAvailability                 *checknameavailability.CheckNameAvailabilityClient
+	CheckNameAvailabilityWithSubscription *checknameavailabilitywithsubscription.CheckNameAvailabilityWithSubscriptionClient
+	CustomDomains                         *customdomains.CustomDomainsClient
+	Edgenodes                             *edgenodes.EdgenodesClient
+	Endpoints                             *endpoints.EndpointsClient
+	LogAnalytics                          *loganalytics.LogAnalyticsClient
+	OriginGroups                          *origingroups.OriginGroupsClient
+	Origins                               *origins.OriginsClient
+	Profiles                              *profiles.ProfilesClient
+	Routes                                *routes.RoutesClient
+	RuleSets                              *rulesets.RuleSetsClient
+	Rules                                 *rules.RulesClient
+	Secrets                               *secrets.SecretsClient
+	SecurityPolicies                      *securitypolicies.SecurityPoliciesClient
+	ValidateProbe                         *validateprobe.ValidateProbeClient
+	WafLogAnalytics                       *wafloganalytics.WafLogAnalyticsClient
+	WebApplicationFirewallManagedRuleSets *webapplicationfirewallmanagedrulesets.WebApplicationFirewallManagedRuleSetsClient
+	WebApplicationFirewallPolicies        *webapplicationfirewallpolicies.WebApplicationFirewallPoliciesClient
+}

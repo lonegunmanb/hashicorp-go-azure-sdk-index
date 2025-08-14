@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-07-15/quotarequests
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *ScopedQuotaRequestId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.Scope, ok = input.Parsed["scope"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "scope", input)
+	}
+
+	if id.QuotaRequestName, ok = input.Parsed["quotaRequestName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "quotaRequestName", input)
+	}
+
+	return nil
+}

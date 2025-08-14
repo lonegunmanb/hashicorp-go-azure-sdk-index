@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/authorization/2022-04-01/roleassignments
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o DeleteByIdOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.TenantId != nil {
+		out.Append("tenantId", fmt.Sprintf("%v", *o.TenantId))
+	}
+	return &out
+}

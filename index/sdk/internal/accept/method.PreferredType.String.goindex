@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/sdk/internal/accept
+import (
+	"fmt"
+	"sort"
+	"strconv"
+	"strings"
+)
+func (t PreferredType) String() string {
+	out := []string{t.ContentType}
+	for p, v := range t.Parameters {
+		out = append(out, fmt.Sprintf("%s=%s", p, v))
+	}
+	out = append(out, fmt.Sprintf("q=%s", t.Weight))
+
+	return strings.Join(out, "; ")
+}

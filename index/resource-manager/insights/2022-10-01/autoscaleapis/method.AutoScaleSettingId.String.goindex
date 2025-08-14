@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2022-10-01/autoscaleapis
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id AutoScaleSettingId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Auto Scale Setting Name: %q", id.AutoScaleSettingName),
+	}
+	return fmt.Sprintf("Auto Scale Setting (%s)", strings.Join(components, "\n"))
+}

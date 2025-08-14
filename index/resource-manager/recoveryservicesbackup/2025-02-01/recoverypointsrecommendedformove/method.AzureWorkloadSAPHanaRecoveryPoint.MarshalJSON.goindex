@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/recoverypointsrecommendedformove
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s AzureWorkloadSAPHanaRecoveryPoint) MarshalJSON() ([]byte, error) {
+	type wrapper AzureWorkloadSAPHanaRecoveryPoint
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AzureWorkloadSAPHanaRecoveryPoint: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AzureWorkloadSAPHanaRecoveryPoint: %+v", err)
+	}
+
+	decoded["objectType"] = "AzureWorkloadSAPHanaRecoveryPoint"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AzureWorkloadSAPHanaRecoveryPoint: %+v", err)
+	}
+
+	return encoded, nil
+}

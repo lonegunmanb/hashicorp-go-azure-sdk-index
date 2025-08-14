@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/pipelines
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWebActivityMethod(input string) (*WebActivityMethod, error) {
+	vals := map[string]WebActivityMethod{
+		"delete": WebActivityMethodDELETE,
+		"get":    WebActivityMethodGET,
+		"post":   WebActivityMethodPOST,
+		"put":    WebActivityMethodPUT,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WebActivityMethod(input)
+	return &out, nil
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s BaseDetectedSensitiveContentImpl) DetectedSensitiveContentBase() BaseDetectedSensitiveContentBaseImpl {
+	return BaseDetectedSensitiveContentBaseImpl{
+		Confidence:            s.Confidence,
+		DisplayName:           s.DisplayName,
+		Id:                    s.Id,
+		ODataId:               s.ODataId,
+		ODataType:             s.ODataType,
+		RecommendedConfidence: s.RecommendedConfidence,
+		UniqueCount:           s.UniqueCount,
+	}
+}

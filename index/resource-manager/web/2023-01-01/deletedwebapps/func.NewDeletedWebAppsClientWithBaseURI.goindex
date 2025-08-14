@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/deletedwebapps
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDeletedWebAppsClientWithBaseURI(sdkApi sdkEnv.Api) (*DeletedWebAppsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "deletedwebapps", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DeletedWebAppsClient: %+v", err)
+	}
+
+	return &DeletedWebAppsClient{
+		Client: client,
+	}, nil
+}

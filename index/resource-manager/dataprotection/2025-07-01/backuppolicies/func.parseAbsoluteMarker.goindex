@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2025-07-01/backuppolicies
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAbsoluteMarker(input string) (*AbsoluteMarker, error) {
+	vals := map[string]AbsoluteMarker{
+		"allbackup":    AbsoluteMarkerAllBackup,
+		"firstofday":   AbsoluteMarkerFirstOfDay,
+		"firstofmonth": AbsoluteMarkerFirstOfMonth,
+		"firstofweek":  AbsoluteMarkerFirstOfWeek,
+		"firstofyear":  AbsoluteMarkerFirstOfYear,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AbsoluteMarker(input)
+	return &out, nil
+}

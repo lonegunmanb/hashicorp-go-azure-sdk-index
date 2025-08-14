@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/reusablepolicysettingreferencingconfigurationpolicyassignment
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewReusablePolicySettingReferencingConfigurationPolicyAssignmentClientWithBaseURI(sdkApi sdkEnv.Api) (*ReusablePolicySettingReferencingConfigurationPolicyAssignmentClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "reusablepolicysettingreferencingconfigurationpolicyassignment", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ReusablePolicySettingReferencingConfigurationPolicyAssignmentClient: %+v", err)
+	}
+
+	return &ReusablePolicySettingReferencingConfigurationPolicyAssignmentClient{
+		Client: client,
+	}, nil
+}

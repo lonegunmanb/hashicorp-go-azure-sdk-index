@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/blueprints/2018-11-01-preview/artifact
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *ArtifactScopedId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.ResourceScope, ok = input.Parsed["resourceScope"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceScope", input)
+	}
+
+	if id.BlueprintName, ok = input.Parsed["blueprintName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "blueprintName", input)
+	}
+
+	if id.ArtifactName, ok = input.Parsed["artifactName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "artifactName", input)
+	}
+
+	return nil
+}

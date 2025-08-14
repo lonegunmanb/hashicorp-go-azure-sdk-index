@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/patch
+import (
+	"encoding/json"
+	"fmt"
+)
+type MySqlConnectionInfo struct {
+	EncryptConnection *bool  `json:"encryptConnection,omitempty"`
+	Port              int64  `json:"port"`
+	ServerName        string `json:"serverName"`
+
+	// Fields inherited from ConnectionInfo
+
+	Password *string `json:"password,omitempty"`
+	Type     string  `json:"type"`
+	UserName *string `json:"userName,omitempty"`
+}

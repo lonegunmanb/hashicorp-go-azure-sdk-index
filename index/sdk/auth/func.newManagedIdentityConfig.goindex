@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"io"
+	"log"
+	"net/http"
+	"net/url"
+	"strconv"
+	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	"golang.org/x/oauth2"
+)
+func newManagedIdentityConfig(resource, clientId, customManagedIdentityEndpoint string, customManagedIdentityAPIVersion string) (*managedIdentityConfig, error) {
+	endpoint := msiDefaultEndpoint
+	if customManagedIdentityEndpoint != "" {
+		endpoint = customManagedIdentityEndpoint
+	}
+
+	apiVersion := msiDefaultApiVersion
+	if customManagedIdentityAPIVersion != "" {
+		apiVersion = customManagedIdentityAPIVersion
+	}
+
+	return &managedIdentityConfig{
+		ClientID:      clientId,
+		Resource:      resource,
+		MsiApiVersion: apiVersion,
+		MsiEndpoint:   endpoint,
+	}, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2023-03-11/datacollectionendpoints
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDataCollectionEndpointsClientWithBaseURI(sdkApi sdkEnv.Api) (*DataCollectionEndpointsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "datacollectionendpoints", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DataCollectionEndpointsClient: %+v", err)
+	}
+
+	return &DataCollectionEndpointsClient{
+		Client: client,
+	}, nil
+}

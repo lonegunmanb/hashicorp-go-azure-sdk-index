@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseHealthMonitoringEnrichmentState(input string) (*HealthMonitoringEnrichmentState, error) {
+	vals := map[string]HealthMonitoringEnrichmentState{
+		"enriched":   HealthMonitoringEnrichmentState_Enriched,
+		"inprogress": HealthMonitoringEnrichmentState_InProgress,
+		"none":       HealthMonitoringEnrichmentState_None,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := HealthMonitoringEnrichmentState(input)
+	return &out, nil
+}

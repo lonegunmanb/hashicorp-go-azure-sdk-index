@@ -1,0 +1,80 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *BookingService) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AdditionalInformation            nullable.Type[string]        `json:"additionalInformation,omitempty"`
+		CreatedDateTime                  nullable.Type[string]        `json:"createdDateTime,omitempty"`
+		CustomQuestions                  *[]BookingQuestionAssignment `json:"customQuestions,omitempty"`
+		DefaultDuration                  *string                      `json:"defaultDuration,omitempty"`
+		DefaultPriceType                 *BookingPriceType            `json:"defaultPriceType,omitempty"`
+		DefaultReminders                 *[]BookingReminder           `json:"defaultReminders,omitempty"`
+		Description                      nullable.Type[string]        `json:"description,omitempty"`
+		DisplayName                      *string                      `json:"displayName,omitempty"`
+		IsAnonymousJoinEnabled           *bool                        `json:"isAnonymousJoinEnabled,omitempty"`
+		IsCustomerAllowedToManageBooking nullable.Type[bool]          `json:"isCustomerAllowedToManageBooking,omitempty"`
+		IsHiddenFromCustomers            *bool                        `json:"isHiddenFromCustomers,omitempty"`
+		IsLocationOnline                 *bool                        `json:"isLocationOnline,omitempty"`
+		LanguageTag                      *string                      `json:"languageTag,omitempty"`
+		LastUpdatedDateTime              nullable.Type[string]        `json:"lastUpdatedDateTime,omitempty"`
+		MaximumAttendeesCount            *int64                       `json:"maximumAttendeesCount,omitempty"`
+		Notes                            nullable.Type[string]        `json:"notes,omitempty"`
+		PostBuffer                       *string                      `json:"postBuffer,omitempty"`
+		PreBuffer                        *string                      `json:"preBuffer,omitempty"`
+		SchedulingPolicy                 *BookingSchedulingPolicy     `json:"schedulingPolicy,omitempty"`
+		SmsNotificationsEnabled          *bool                        `json:"smsNotificationsEnabled,omitempty"`
+		StaffMemberIds                   *[]string                    `json:"staffMemberIds,omitempty"`
+		WebUrl                           nullable.Type[string]        `json:"webUrl,omitempty"`
+		Id                               *string                      `json:"id,omitempty"`
+		ODataId                          *string                      `json:"@odata.id,omitempty"`
+		ODataType                        *string                      `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AdditionalInformation = decoded.AdditionalInformation
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.CustomQuestions = decoded.CustomQuestions
+	s.DefaultDuration = decoded.DefaultDuration
+	s.DefaultPriceType = decoded.DefaultPriceType
+	s.DefaultReminders = decoded.DefaultReminders
+	s.Description = decoded.Description
+	s.DisplayName = decoded.DisplayName
+	s.IsAnonymousJoinEnabled = decoded.IsAnonymousJoinEnabled
+	s.IsCustomerAllowedToManageBooking = decoded.IsCustomerAllowedToManageBooking
+	s.IsHiddenFromCustomers = decoded.IsHiddenFromCustomers
+	s.IsLocationOnline = decoded.IsLocationOnline
+	s.LanguageTag = decoded.LanguageTag
+	s.LastUpdatedDateTime = decoded.LastUpdatedDateTime
+	s.MaximumAttendeesCount = decoded.MaximumAttendeesCount
+	s.Notes = decoded.Notes
+	s.PostBuffer = decoded.PostBuffer
+	s.PreBuffer = decoded.PreBuffer
+	s.SchedulingPolicy = decoded.SchedulingPolicy
+	s.SmsNotificationsEnabled = decoded.SmsNotificationsEnabled
+	s.StaffMemberIds = decoded.StaffMemberIds
+	s.WebUrl = decoded.WebUrl
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling BookingService into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["defaultLocation"]; ok {
+		impl, err := UnmarshalLocationImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'DefaultLocation' for 'BookingService': %+v", err)
+		}
+		s.DefaultLocation = impl
+	}
+
+	return nil
+}

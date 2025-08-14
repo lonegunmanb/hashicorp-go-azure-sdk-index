@@ -1,0 +1,46 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *IdentityUserFlowAttributeAssignment) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		DisplayName          nullable.Type[string]               `json:"displayName,omitempty"`
+		IsOptional           *bool                               `json:"isOptional,omitempty"`
+		RequiresVerification *bool                               `json:"requiresVerification,omitempty"`
+		UserAttributeValues  *[]UserAttributeValuesItem          `json:"userAttributeValues,omitempty"`
+		UserInputType        *IdentityUserFlowAttributeInputType `json:"userInputType,omitempty"`
+		Id                   *string                             `json:"id,omitempty"`
+		ODataId              *string                             `json:"@odata.id,omitempty"`
+		ODataType            *string                             `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.DisplayName = decoded.DisplayName
+	s.IsOptional = decoded.IsOptional
+	s.RequiresVerification = decoded.RequiresVerification
+	s.UserAttributeValues = decoded.UserAttributeValues
+	s.UserInputType = decoded.UserInputType
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling IdentityUserFlowAttributeAssignment into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["userAttribute"]; ok {
+		impl, err := UnmarshalIdentityUserFlowAttributeImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'UserAttribute' for 'IdentityUserFlowAttributeAssignment': %+v", err)
+		}
+		s.UserAttribute = &impl
+	}
+
+	return nil
+}

@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-09-01/connectionmonitors
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ConnectionMonitorsClient) StartThenPoll(ctx context.Context, id ConnectionMonitorId) error {
+	result, err := c.Start(ctx, id)
+	if err != nil {
+		return fmt.Errorf("performing Start: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after Start: %+v", err)
+	}
+
+	return nil
+}

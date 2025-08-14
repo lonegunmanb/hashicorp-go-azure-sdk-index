@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2024-10-01/featuresupport
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalFeatureSupportRequestImplementation(input []byte) (FeatureSupportRequest, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling FeatureSupportRequest into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["featureType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "AzureBackupGoals") {
+		var out AzureBackupGoalFeatureSupportRequest
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureBackupGoalFeatureSupportRequest: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "AzureVMResourceBackup") {
+		var out AzureVMResourceFeatureSupportRequest
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureVMResourceFeatureSupportRequest: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseFeatureSupportRequestImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseFeatureSupportRequestImpl: %+v", err)
+	}
+
+	return RawFeatureSupportRequestImpl{
+		featureSupportRequest: parent,
+		Type:                  value,
+		Values:                temp,
+	}, nil
+
+}

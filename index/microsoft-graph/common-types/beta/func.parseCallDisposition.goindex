@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCallDisposition(input string) (*CallDisposition, error) {
+	vals := map[string]CallDisposition{
+		"default":          CallDisposition_Default,
+		"forward":          CallDisposition_Forward,
+		"simultaneousring": CallDisposition_SimultaneousRing,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CallDisposition(input)
+	return &out, nil
+}

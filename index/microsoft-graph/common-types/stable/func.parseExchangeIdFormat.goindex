@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseExchangeIdFormat(input string) (*ExchangeIdFormat, error) {
+	vals := map[string]ExchangeIdFormat{
+		"entryid":              ExchangeIdFormat_EntryId,
+		"ewsid":                ExchangeIdFormat_EwsId,
+		"immutableentryid":     ExchangeIdFormat_ImmutableEntryId,
+		"restid":               ExchangeIdFormat_RestId,
+		"restimmutableentryid": ExchangeIdFormat_RestImmutableEntryId,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ExchangeIdFormat(input)
+	return &out, nil
+}

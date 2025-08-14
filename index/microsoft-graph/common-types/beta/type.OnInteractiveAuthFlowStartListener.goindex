@@ -1,0 +1,37 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type OnInteractiveAuthFlowStartListener struct {
+	// Required. Configuration for what to invoke if the event resolves to this listener. You can use this handler to define
+	// potential handler configurations for specific events.
+	Handler OnInteractiveAuthFlowStartHandler `json:"handler"`
+
+	// Fields inherited from AuthenticationEventListener
+
+	// The identifier of the authenticationEventsFlow object.
+	AuthenticationEventsFlowId nullable.Type[string] `json:"authenticationEventsFlowId,omitempty"`
+
+	// The conditions on which this authenticationEventListener should trigger.
+	Conditions *AuthenticationConditions `json:"conditions,omitempty"`
+
+	// The priority of this handler. Between 0 (lower priority) and 1000 (higher priority).
+	Priority *int64 `json:"priority,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

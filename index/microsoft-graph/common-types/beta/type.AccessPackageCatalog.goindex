@@ -1,0 +1,68 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type AccessPackageCatalog struct {
+	// The attributes of a logic app, which can be called at various stages of an access package request and assignment
+	// cycle.
+	AccessPackageCustomWorkflowExtensions *[]CustomCalloutExtension `json:"accessPackageCustomWorkflowExtensions,omitempty"`
+
+	// The roles in each resource in a catalog. Read-only.
+	AccessPackageResourceRoles *[]AccessPackageResourceRole `json:"accessPackageResourceRoles,omitempty"`
+
+	AccessPackageResourceScopes *[]AccessPackageResourceScope `json:"accessPackageResourceScopes,omitempty"`
+	AccessPackageResources      *[]AccessPackageResource      `json:"accessPackageResources,omitempty"`
+
+	// The access packages in this catalog. Read-only. Nullable. Supports $expand.
+	AccessPackages *[]AccessPackage `json:"accessPackages,omitempty"`
+
+	// Has the value Published if the access packages are available for management.
+	CatalogStatus nullable.Type[string] `json:"catalogStatus,omitempty"`
+
+	// One of UserManaged or ServiceDefault.
+	CatalogType nullable.Type[string] `json:"catalogType,omitempty"`
+
+	// UPN of the user who created this resource. Read-only.
+	CreatedBy nullable.Type[string] `json:"createdBy,omitempty"`
+
+	// The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example,
+	// midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	CustomAccessPackageWorkflowExtensions *[]CustomAccessPackageWorkflowExtension `json:"customAccessPackageWorkflowExtensions,omitempty"`
+
+	// The description of the access package catalog.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// The display name of the access package catalog. Supports $filter (eq, contains).
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// Whether the access packages in this catalog can be requested by users outside of the tenant.
+	IsExternallyVisible nullable.Type[bool] `json:"isExternallyVisible,omitempty"`
+
+	// The UPN of the user who last modified this resource. Read-only.
+	ModifiedBy nullable.Type[string] `json:"modifiedBy,omitempty"`
+
+	// The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example,
+	// midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
+	ModifiedDateTime nullable.Type[string] `json:"modifiedDateTime,omitempty"`
+
+	UniqueName nullable.Type[string] `json:"uniqueName,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automanage/2022-05-04/bestpractices
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *BestPracticeId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.BestPracticeName, ok = input.Parsed["bestPracticeName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "bestPracticeName", input)
+	}
+
+	return nil
+}

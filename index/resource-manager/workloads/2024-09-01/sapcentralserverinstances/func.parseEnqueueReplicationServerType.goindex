@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/workloads/2024-09-01/sapcentralserverinstances
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEnqueueReplicationServerType(input string) (*EnqueueReplicationServerType, error) {
+	vals := map[string]EnqueueReplicationServerType{
+		"enqueuereplicator1": EnqueueReplicationServerTypeEnqueueReplicatorOne,
+		"enqueuereplicator2": EnqueueReplicationServerTypeEnqueueReplicatorTwo,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EnqueueReplicationServerType(input)
+	return &out, nil
+}

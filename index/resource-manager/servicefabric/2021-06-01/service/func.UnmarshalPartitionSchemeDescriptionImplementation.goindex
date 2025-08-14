@@ -1,0 +1,57 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicefabric/2021-06-01/service
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalPartitionSchemeDescriptionImplementation(input []byte) (PartitionSchemeDescription, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling PartitionSchemeDescription into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["partitionScheme"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "Named") {
+		var out NamedPartitionSchemeDescription
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into NamedPartitionSchemeDescription: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "Singleton") {
+		var out SingletonPartitionSchemeDescription
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SingletonPartitionSchemeDescription: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "UniformInt64Range") {
+		var out UniformInt64RangePartitionSchemeDescription
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into UniformInt64RangePartitionSchemeDescription: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BasePartitionSchemeDescriptionImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BasePartitionSchemeDescriptionImpl: %+v", err)
+	}
+
+	return RawPartitionSchemeDescriptionImpl{
+		partitionSchemeDescription: parent,
+		Type:                       value,
+		Values:                     temp,
+	}, nil
+
+}

@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s CopilotRoot) MarshalJSON() ([]byte, error) {
+	type wrapper CopilotRoot
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling CopilotRoot: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling CopilotRoot: %+v", err)
+	}
+
+	delete(decoded, "admin")
+	delete(decoded, "users")
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling CopilotRoot: %+v", err)
+	}
+
+	return encoded, nil
+}

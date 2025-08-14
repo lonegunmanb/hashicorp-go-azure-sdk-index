@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2025-06-01/dataconnectors
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s GitHubAuthModel) MarshalJSON() ([]byte, error) {
+	type wrapper GitHubAuthModel
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling GitHubAuthModel: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling GitHubAuthModel: %+v", err)
+	}
+
+	decoded["type"] = "GitHub"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling GitHubAuthModel: %+v", err)
+	}
+
+	return encoded, nil
+}

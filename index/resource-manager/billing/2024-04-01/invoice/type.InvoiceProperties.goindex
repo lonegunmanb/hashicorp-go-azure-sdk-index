@@ -1,0 +1,37 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/invoice
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type InvoiceProperties struct {
+	AmountDue                 *Amount               `json:"amountDue,omitempty"`
+	AzurePrepaymentApplied    *Amount               `json:"azurePrepaymentApplied,omitempty"`
+	BilledAmount              *Amount               `json:"billedAmount,omitempty"`
+	BilledDocumentId          *string               `json:"billedDocumentId,omitempty"`
+	BillingProfileDisplayName *string               `json:"billingProfileDisplayName,omitempty"`
+	BillingProfileId          *string               `json:"billingProfileId,omitempty"`
+	CreditAmount              *Amount               `json:"creditAmount,omitempty"`
+	CreditForDocumentId       *string               `json:"creditForDocumentId,omitempty"`
+	DocumentType              *InvoiceDocumentType  `json:"documentType,omitempty"`
+	Documents                 *[]InvoiceDocument    `json:"documents,omitempty"`
+	DueDate                   *string               `json:"dueDate,omitempty"`
+	FailedPayments            *[]FailedPayment      `json:"failedPayments,omitempty"`
+	FreeAzureCreditApplied    *Amount               `json:"freeAzureCreditApplied,omitempty"`
+	InvoiceDate               *string               `json:"invoiceDate,omitempty"`
+	InvoicePeriodEndDate      *string               `json:"invoicePeriodEndDate,omitempty"`
+	InvoicePeriodStartDate    *string               `json:"invoicePeriodStartDate,omitempty"`
+	InvoiceType               *InvoiceType          `json:"invoiceType,omitempty"`
+	IsMonthlyInvoice          *bool                 `json:"isMonthlyInvoice,omitempty"`
+	Payments                  *[]Payment            `json:"payments,omitempty"`
+	PurchaseOrderNumber       *string               `json:"purchaseOrderNumber,omitempty"`
+	RebillDetails             *RebillDetails        `json:"rebillDetails,omitempty"`
+	RefundDetails             *RefundDetailsSummary `json:"refundDetails,omitempty"`
+	SpecialTaxationType       *SpecialTaxationType  `json:"specialTaxationType,omitempty"`
+	Status                    *InvoiceStatus        `json:"status,omitempty"`
+	SubTotal                  *Amount               `json:"subTotal,omitempty"`
+	SubscriptionDisplayName   *string               `json:"subscriptionDisplayName,omitempty"`
+	SubscriptionId            *string               `json:"subscriptionId,omitempty"`
+	TaxAmount                 *Amount               `json:"taxAmount,omitempty"`
+	TotalAmount               *Amount               `json:"totalAmount,omitempty"`
+}

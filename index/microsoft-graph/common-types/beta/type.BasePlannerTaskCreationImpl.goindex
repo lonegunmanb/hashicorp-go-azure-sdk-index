@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+type BasePlannerTaskCreationImpl struct {
+	// Specifies what kind of creation source the task is created with. The possible values are: external, publication and
+	// unknownFutureValue.
+	CreationSourceKind *PlannerCreationSourceKind `json:"creationSourceKind,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Information about the publication process that created this task. This field is deprecated and clients should move to
+	// using the new inheritance model.
+	TeamsPublicationInfo *PlannerTeamsPublicationInfo `json:"teamsPublicationInfo,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-05-01/ipallocations
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewIPAllocationsClientWithBaseURI(sdkApi sdkEnv.Api) (*IPAllocationsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "ipallocations", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating IPAllocationsClient: %+v", err)
+	}
+
+	return &IPAllocationsClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s PrivilegedAccessGroupAssignmentScheduleCollectionResponse) MarshalJSON() ([]byte, error) {
+	type wrapper PrivilegedAccessGroupAssignmentScheduleCollectionResponse
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling PrivilegedAccessGroupAssignmentScheduleCollectionResponse: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling PrivilegedAccessGroupAssignmentScheduleCollectionResponse: %+v", err)
+	}
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.privilegedAccessGroupAssignmentScheduleCollectionResponse"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling PrivilegedAccessGroupAssignmentScheduleCollectionResponse: %+v", err)
+	}
+
+	return encoded, nil
+}

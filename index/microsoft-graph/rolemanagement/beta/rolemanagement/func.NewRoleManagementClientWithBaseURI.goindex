@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/rolemanagement
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewRoleManagementClientWithBaseURI(sdkApi sdkEnv.Api) (*RoleManagementClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "rolemanagement", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating RoleManagementClient: %+v", err)
+	}
+
+	return &RoleManagementClient{
+		Client: client,
+	}, nil
+}

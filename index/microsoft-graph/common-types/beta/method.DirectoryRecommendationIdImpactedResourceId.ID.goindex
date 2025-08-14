@@ -1,0 +1,11 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DirectoryRecommendationIdImpactedResourceId) ID() string {
+	fmtString := "/directory/recommendations/%s/impactedResources/%s"
+	return fmt.Sprintf(fmtString, id.RecommendationId, id.ImpactedResourceId)
+}

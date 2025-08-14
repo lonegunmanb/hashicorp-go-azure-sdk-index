@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseConnectedOrganizationState(input string) (*ConnectedOrganizationState, error) {
+	vals := map[string]ConnectedOrganizationState{
+		"configured": ConnectedOrganizationState_Configured,
+		"proposed":   ConnectedOrganizationState_Proposed,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ConnectedOrganizationState(input)
+	return &out, nil
+}

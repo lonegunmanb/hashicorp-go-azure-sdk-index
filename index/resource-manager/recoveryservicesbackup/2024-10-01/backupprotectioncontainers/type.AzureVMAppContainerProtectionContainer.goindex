@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2024-10-01/backupprotectioncontainers
+import (
+	"encoding/json"
+	"fmt"
+)
+type AzureVMAppContainerProtectionContainer struct {
+	ExtendedInfo     *AzureWorkloadContainerExtendedInfo `json:"extendedInfo,omitempty"`
+	LastUpdatedTime  *string                             `json:"lastUpdatedTime,omitempty"`
+	OperationType    *OperationType                      `json:"operationType,omitempty"`
+	SourceResourceId *string                             `json:"sourceResourceId,omitempty"`
+	WorkloadType     *WorkloadType                       `json:"workloadType,omitempty"`
+
+	// Fields inherited from ProtectionContainer
+
+	BackupManagementType  *BackupManagementType    `json:"backupManagementType,omitempty"`
+	ContainerType         ProtectableContainerType `json:"containerType"`
+	FriendlyName          *string                  `json:"friendlyName,omitempty"`
+	HealthStatus          *string                  `json:"healthStatus,omitempty"`
+	ProtectableObjectType *string                  `json:"protectableObjectType,omitempty"`
+	RegistrationStatus    *string                  `json:"registrationStatus,omitempty"`
+}

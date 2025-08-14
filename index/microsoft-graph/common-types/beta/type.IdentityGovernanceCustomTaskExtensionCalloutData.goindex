@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type IdentityGovernanceCustomTaskExtensionCalloutData struct {
+	Subject              *User                                   `json:"subject,omitempty"`
+	Task                 *IdentityGovernanceTask                 `json:"task,omitempty"`
+	TaskProcessingresult *IdentityGovernanceTaskProcessingResult `json:"taskProcessingresult,omitempty"`
+	Workflow             *IdentityGovernanceWorkflow             `json:"workflow,omitempty"`
+
+	// Fields inherited from CustomExtensionData
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

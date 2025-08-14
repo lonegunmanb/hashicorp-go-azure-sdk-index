@@ -1,0 +1,38 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s AccessReviewInstance) MarshalJSON() ([]byte, error) {
+	type wrapper AccessReviewInstance
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AccessReviewInstance: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AccessReviewInstance: %+v", err)
+	}
+
+	delete(decoded, "contactedReviewers")
+	delete(decoded, "endDateTime")
+	delete(decoded, "errors")
+	delete(decoded, "scope")
+	delete(decoded, "startDateTime")
+	delete(decoded, "status")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.accessReviewInstance"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AccessReviewInstance: %+v", err)
+	}
+
+	return encoded, nil
+}

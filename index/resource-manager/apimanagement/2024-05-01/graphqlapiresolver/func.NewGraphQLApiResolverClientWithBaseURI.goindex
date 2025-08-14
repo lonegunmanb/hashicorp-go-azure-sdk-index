@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/graphqlapiresolver
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewGraphQLApiResolverClientWithBaseURI(sdkApi sdkEnv.Api) (*GraphQLApiResolverClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "graphqlapiresolver", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating GraphQLApiResolverClient: %+v", err)
+	}
+
+	return &GraphQLApiResolverClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseBrowserSiteStatus(input string) (*BrowserSiteStatus, error) {
+	vals := map[string]BrowserSiteStatus{
+		"pendingadd":    BrowserSiteStatus_PendingAdd,
+		"pendingdelete": BrowserSiteStatus_PendingDelete,
+		"pendingedit":   BrowserSiteStatus_PendingEdit,
+		"published":     BrowserSiteStatus_Published,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := BrowserSiteStatus(input)
+	return &out, nil
+}

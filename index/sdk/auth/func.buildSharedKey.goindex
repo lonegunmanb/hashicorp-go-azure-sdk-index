@@ -1,0 +1,38 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"bytes"
+	"context"
+	"crypto/hmac"
+	"crypto/sha256"
+	"encoding/base64"
+	"fmt"
+	"net/http"
+	"net/url"
+	"sort"
+	"strconv"
+	"strings"
+	"time"
+
+	"golang.org/x/oauth2"
+)
+func buildSharedKey(accName string, accKey []byte, req *http.Request, keyType SharedKeyType) (string, error) {
+	canRes, err := buildCanonicalizedResource(accName, req.URL.String(), keyType)
+	if err != nil {
+		return "", err
+	}
+
+	if req.Header == nil {
+		req.Header = http.Header{}
+	}
+
+	// ensure date is set
+	if req.Header.Get(headerDate) == "" && req.Header.Get(headerXMSDate) == "" {
+		date := time.Now().UTC().Format(http.TimeFormat)
+		req.Header.Set(headerXMSDate, date)
+	}
+	canString, err := buildCanonicalizedString(req.Method, req.ContentLength, req.Header, canRes, keyType)
+	if err != nil {
+		return "", err
+	}
+	return createAuthorizationHeader(accName, accKey, canString), nil
+}

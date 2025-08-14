@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2025-06-01/schedule
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSparkJobEntryType(input string) (*SparkJobEntryType, error) {
+	vals := map[string]SparkJobEntryType{
+		"sparkjobpythonentry": SparkJobEntryTypeSparkJobPythonEntry,
+		"sparkjobscalaentry":  SparkJobEntryTypeSparkJobScalaEntry,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SparkJobEntryType(input)
+	return &out, nil
+}

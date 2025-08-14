@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/redis/2024-03-01/redis
+
+func (p UpgradeNotificationOperationPredicate) Matches(input UpgradeNotification) bool {
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.Timestamp != nil && (input.Timestamp == nil || *p.Timestamp != *input.Timestamp) {
+		return false
+	}
+
+	return true
+}

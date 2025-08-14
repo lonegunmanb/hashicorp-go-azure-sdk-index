@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCloudPCDeviceImageStatusDetails(input string) (*CloudPCDeviceImageStatusDetails, error) {
+	vals := map[string]CloudPCDeviceImageStatusDetails{
+		"internalservererror":                  CloudPCDeviceImageStatusDetails_InternalServerError,
+		"osversionnotsupported":                CloudPCDeviceImageStatusDetails_OsVersionNotSupported,
+		"paidsourceimagenotsupport":            CloudPCDeviceImageStatusDetails_PaidSourceImageNotSupport,
+		"sourceimageinvalid":                   CloudPCDeviceImageStatusDetails_SourceImageInvalid,
+		"sourceimagenotfound":                  CloudPCDeviceImageStatusDetails_SourceImageNotFound,
+		"sourceimagenotgeneralized":            CloudPCDeviceImageStatusDetails_SourceImageNotGeneralized,
+		"sourceimagenotsupportcustomizevmname": CloudPCDeviceImageStatusDetails_SourceImageNotSupportCustomizeVMName,
+		"sourceimagesizeexceedslimitation":     CloudPCDeviceImageStatusDetails_SourceImageSizeExceedsLimitation,
+		"vmalreadyazureadjoined":               CloudPCDeviceImageStatusDetails_VmAlreadyAzureAdjoined,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CloudPCDeviceImageStatusDetails(input)
+	return &out, nil
+}

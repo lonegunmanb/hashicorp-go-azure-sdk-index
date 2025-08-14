@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseIosUpdatesInstallStatus(input string) (*IosUpdatesInstallStatus, error) {
+	vals := map[string]IosUpdatesInstallStatus{
+		"available":                          IosUpdatesInstallStatus_Available,
+		"deviceoshigherthandesiredosversion": IosUpdatesInstallStatus_DeviceOsHigherThanDesiredOsVersion,
+		"downloadfailed":                     IosUpdatesInstallStatus_DownloadFailed,
+		"downloadinsufficientnetwork":        IosUpdatesInstallStatus_DownloadInsufficientNetwork,
+		"downloadinsufficientpower":          IosUpdatesInstallStatus_DownloadInsufficientPower,
+		"downloadinsufficientspace":          IosUpdatesInstallStatus_DownloadInsufficientSpace,
+		"downloadrequirescomputer":           IosUpdatesInstallStatus_DownloadRequiresComputer,
+		"downloading":                        IosUpdatesInstallStatus_Downloading,
+		"idle":                               IosUpdatesInstallStatus_Idle,
+		"installfailed":                      IosUpdatesInstallStatus_InstallFailed,
+		"installinsufficientpower":           IosUpdatesInstallStatus_InstallInsufficientPower,
+		"installinsufficientspace":           IosUpdatesInstallStatus_InstallInsufficientSpace,
+		"installphonecallinprogress":         IosUpdatesInstallStatus_InstallPhoneCallInProgress,
+		"installing":                         IosUpdatesInstallStatus_Installing,
+		"notsupportedoperation":              IosUpdatesInstallStatus_NotSupportedOperation,
+		"shareddeviceuserloggedinerror":      IosUpdatesInstallStatus_SharedDeviceUserLoggedInError,
+		"success":                            IosUpdatesInstallStatus_Success,
+		"unknown":                            IosUpdatesInstallStatus_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IosUpdatesInstallStatus(input)
+	return &out, nil
+}

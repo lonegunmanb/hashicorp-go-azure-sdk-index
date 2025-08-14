@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-04-15/afdcustomdomains
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAfdCipherSuiteSetType(input string) (*AfdCipherSuiteSetType, error) {
+	vals := map[string]AfdCipherSuiteSetType{
+		"customized": AfdCipherSuiteSetTypeCustomized,
+		"tls12_2023": AfdCipherSuiteSetTypeTLSOneTwoTwoZeroTwoThree,
+		"tls12_2022": AfdCipherSuiteSetTypeTLSOneTwoTwoZeroTwoTwo,
+		"tls10_2019": AfdCipherSuiteSetTypeTLSOneZeroTwoZeroOneNine,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AfdCipherSuiteSetType(input)
+	return &out, nil
+}

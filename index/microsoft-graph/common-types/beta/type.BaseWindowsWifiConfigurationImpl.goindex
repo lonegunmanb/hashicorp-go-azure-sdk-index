@@ -1,0 +1,121 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type BaseWindowsWifiConfigurationImpl struct {
+	// Specify whether the wifi connection should connect automatically when in range.
+	ConnectAutomatically nullable.Type[bool] `json:"connectAutomatically,omitempty"`
+
+	// Specify whether the wifi connection should connect to more preferred networks when already connected to this one.
+	// Requires ConnectAutomatically to be true.
+	ConnectToPreferredNetwork nullable.Type[bool] `json:"connectToPreferredNetwork,omitempty"`
+
+	// Specify whether the wifi connection should connect automatically even when the SSID is not broadcasting.
+	ConnectWhenNetworkNameIsHidden nullable.Type[bool] `json:"connectWhenNetworkNameIsHidden,omitempty"`
+
+	// Specify whether to force FIPS compliance.
+	ForceFIPSCompliance nullable.Type[bool] `json:"forceFIPSCompliance,omitempty"`
+
+	// Specify the metered connection limit type for the wifi connection. Possible values are: unrestricted, fixed,
+	// variable.
+	MeteredConnectionLimit *MeteredConnectionLimitType `json:"meteredConnectionLimit,omitempty"`
+
+	// Specify the network configuration name.
+	NetworkName nullable.Type[string] `json:"networkName,omitempty"`
+
+	// This is the pre-shared key for WPA Personal Wi-Fi network.
+	PreSharedKey nullable.Type[string] `json:"preSharedKey,omitempty"`
+
+	// Specify the URL for the proxy server configuration script.
+	ProxyAutomaticConfigurationUrl nullable.Type[string] `json:"proxyAutomaticConfigurationUrl,omitempty"`
+
+	// Specify the IP address for the proxy server.
+	ProxyManualAddress nullable.Type[string] `json:"proxyManualAddress,omitempty"`
+
+	// Specify the port for the proxy server.
+	ProxyManualPort nullable.Type[int64] `json:"proxyManualPort,omitempty"`
+
+	// Specify the proxy setting for Wi-Fi configuration. Possible values are: none, manual, automatic, unknownFutureValue.
+	ProxySetting *WiFiProxySetting `json:"proxySetting,omitempty"`
+
+	// Specify the SSID of the wifi connection.
+	Ssid nullable.Type[string] `json:"ssid,omitempty"`
+
+	// Specify the Wifi Security Type. Possible values are: open, wpaPersonal, wpaEnterprise, wep, wpa2Personal,
+	// wpa2Enterprise.
+	WifiSecurityType *WiFiSecurityType `json:"wifiSecurityType,omitempty"`
+
+	// Fields inherited from DeviceConfiguration
+
+	// The list of assignments for the device configuration profile.
+	Assignments *[]DeviceConfigurationAssignment `json:"assignments,omitempty"`
+
+	// DateTime the object was created.
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+
+	// Admin provided description of the Device Configuration.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// The device mode applicability rule for this Policy.
+	DeviceManagementApplicabilityRuleDeviceMode *DeviceManagementApplicabilityRuleDeviceMode `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+
+	// The OS edition applicability for this Policy.
+	DeviceManagementApplicabilityRuleOsEdition *DeviceManagementApplicabilityRuleOsEdition `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+
+	// The OS version applicability rule for this Policy.
+	DeviceManagementApplicabilityRuleOsVersion *DeviceManagementApplicabilityRuleOsVersion `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+
+	// Device Configuration Setting State Device Summary
+	DeviceSettingStateSummaries *[]SettingStateDeviceSummary `json:"deviceSettingStateSummaries,omitempty"`
+
+	// Device Configuration devices status overview
+	DeviceStatusOverview *DeviceConfigurationDeviceOverview `json:"deviceStatusOverview,omitempty"`
+
+	// Device configuration installation status by device.
+	DeviceStatuses *[]DeviceConfigurationDeviceStatus `json:"deviceStatuses,omitempty"`
+
+	// Admin provided name of the device configuration.
+	DisplayName *string `json:"displayName,omitempty"`
+
+	// The list of group assignments for the device configuration profile.
+	GroupAssignments *[]DeviceConfigurationGroupAssignment `json:"groupAssignments,omitempty"`
+
+	// DateTime the object was last modified.
+	LastModifiedDateTime *string `json:"lastModifiedDateTime,omitempty"`
+
+	// List of Scope Tags for this Entity instance.
+	RoleScopeTagIds *[]string `json:"roleScopeTagIds,omitempty"`
+
+	// Indicates whether or not the underlying Device Configuration supports the assignment of scope tags. Assigning to the
+	// ScopeTags property is not allowed when this value is false and entities will not be visible to scoped users. This
+	// occurs for Legacy policies created in Silverlight and can be resolved by deleting and recreating the policy in the
+	// Azure Portal. This property is read-only.
+	SupportsScopeTags *bool `json:"supportsScopeTags,omitempty"`
+
+	// Device Configuration users status overview
+	UserStatusOverview *DeviceConfigurationUserOverview `json:"userStatusOverview,omitempty"`
+
+	// Device configuration installation status by user.
+	UserStatuses *[]DeviceConfigurationUserStatus `json:"userStatuses,omitempty"`
+
+	// Version of the device configuration.
+	Version *int64 `json:"version,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

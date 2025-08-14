@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2023-02-01/managedhsms
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/polling"
+)
+func (c ManagedHsmsClient) CreateOrUpdate(ctx context.Context, id ManagedHSMId, input ManagedHsm) (result CreateOrUpdateOperationResponse, err error) {
+	req, err := c.preparerForCreateOrUpdate(ctx, id, input)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "managedhsms.ManagedHsmsClient", "CreateOrUpdate", nil, "Failure preparing request")
+		return
+	}
+
+	result, err = c.senderForCreateOrUpdate(ctx, req)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "managedhsms.ManagedHsmsClient", "CreateOrUpdate", result.HttpResponse, "Failure sending request")
+		return
+	}
+
+	return
+}

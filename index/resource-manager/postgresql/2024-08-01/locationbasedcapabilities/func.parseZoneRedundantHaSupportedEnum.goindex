@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2024-08-01/locationbasedcapabilities
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseZoneRedundantHaSupportedEnum(input string) (*ZoneRedundantHaSupportedEnum, error) {
+	vals := map[string]ZoneRedundantHaSupportedEnum{
+		"disabled": ZoneRedundantHaSupportedEnumDisabled,
+		"enabled":  ZoneRedundantHaSupportedEnumEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ZoneRedundantHaSupportedEnum(input)
+	return &out, nil
+}

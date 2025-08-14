@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalAndroidDeviceOwnerGlobalProxyImplementation(input []byte) (AndroidDeviceOwnerGlobalProxy, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling AndroidDeviceOwnerGlobalProxy into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.androidDeviceOwnerGlobalProxyAutoConfig") {
+		var out AndroidDeviceOwnerGlobalProxyAutoConfig
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AndroidDeviceOwnerGlobalProxyAutoConfig: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.androidDeviceOwnerGlobalProxyDirect") {
+		var out AndroidDeviceOwnerGlobalProxyDirect
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AndroidDeviceOwnerGlobalProxyDirect: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseAndroidDeviceOwnerGlobalProxyImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseAndroidDeviceOwnerGlobalProxyImpl: %+v", err)
+	}
+
+	return RawAndroidDeviceOwnerGlobalProxyImpl{
+		androidDeviceOwnerGlobalProxy: parent,
+		Type:                          value,
+		Values:                        temp,
+	}, nil
+
+}

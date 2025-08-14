@@ -1,0 +1,69 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type MobileAppInstallStatus struct {
+	// The navigation link to the mobile app.
+	App *MobileApp `json:"app,omitempty"`
+
+	// Device ID
+	DeviceId nullable.Type[string] `json:"deviceId,omitempty"`
+
+	// Device name
+	DeviceName nullable.Type[string] `json:"deviceName,omitempty"`
+
+	// Human readable version of the application
+	DisplayVersion nullable.Type[string] `json:"displayVersion,omitempty"`
+
+	// The error code for install or uninstall failures.
+	ErrorCode *int64 `json:"errorCode,omitempty"`
+
+	// A list of possible states for application status on an individual device. When devices contact the Intune service and
+	// find targeted application enforcement intent, the status of the enforcement is recorded and becomes accessible in the
+	// Graph API. Since the application status is identified during device interaction with the Intune service, status
+	// records do not immediately appear upon application group assignment; it is created only after the assignment is
+	// evaluated in the service and devices start receiving the policy during check-ins.
+	InstallState *ResultantAppState `json:"installState,omitempty"`
+
+	// Enum indicating additional details regarding why an application has a particular install state.
+	InstallStateDetail *ResultantAppStateDetail `json:"installStateDetail,omitempty"`
+
+	// Last sync date time
+	LastSyncDateTime *string `json:"lastSyncDateTime,omitempty"`
+
+	// A list of possible states for application status on an individual device. When devices contact the Intune service and
+	// find targeted application enforcement intent, the status of the enforcement is recorded and becomes accessible in the
+	// Graph API. Since the application status is identified during device interaction with the Intune service, status
+	// records do not immediately appear upon application group assignment; it is created only after the assignment is
+	// evaluated in the service and devices start receiving the policy during check-ins.
+	MobileAppInstallStatusValue *ResultantAppState `json:"mobileAppInstallStatusValue,omitempty"`
+
+	// OS Description
+	OsDescription nullable.Type[string] `json:"osDescription,omitempty"`
+
+	// OS Version
+	OsVersion nullable.Type[string] `json:"osVersion,omitempty"`
+
+	// Device User Name
+	UserName nullable.Type[string] `json:"userName,omitempty"`
+
+	// User Principal Name
+	UserPrincipalName nullable.Type[string] `json:"userPrincipalName,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/managementgroups/2020-05-01/managementgroups
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o GetOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.Expand != nil {
+		out.Append("$expand", fmt.Sprintf("%v", *o.Expand))
+	}
+	if o.Filter != nil {
+		out.Append("$filter", fmt.Sprintf("%v", *o.Filter))
+	}
+	if o.Recurse != nil {
+		out.Append("$recurse", fmt.Sprintf("%v", *o.Recurse))
+	}
+	return &out
+}

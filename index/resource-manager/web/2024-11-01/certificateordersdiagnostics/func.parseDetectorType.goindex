@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-11-01/certificateordersdiagnostics
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDetectorType(input string) (*DetectorType, error) {
+	vals := map[string]DetectorType{
+		"analysis":         DetectorTypeAnalysis,
+		"categoryoverview": DetectorTypeCategoryOverview,
+		"detector":         DetectorTypeDetector,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DetectorType(input)
+	return &out, nil
+}

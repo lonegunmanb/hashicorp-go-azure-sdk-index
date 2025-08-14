@@ -1,0 +1,50 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type OnPremisesPublishingProfile struct {
+	// List of existing onPremisesAgentGroup objects. Read-only. Nullable.
+	AgentGroups *[]OnPremisesAgentGroup `json:"agentGroups,omitempty"`
+
+	// List of existing onPremisesAgent objects. Read-only. Nullable.
+	Agents *[]OnPremisesAgent `json:"agents,omitempty"`
+
+	// Represents the segment configurations that are allowed for an on-premises non-web application published through
+	// Microsoft Entra application proxy.
+	ApplicationSegments *[]IPApplicationSegment `json:"applicationSegments,omitempty"`
+
+	// List of existing connectorGroup objects for applications published through Application Proxy. Read-only. Nullable.
+	ConnectorGroups *[]ConnectorGroup `json:"connectorGroups,omitempty"`
+
+	// List of existing connector objects for applications published through Application Proxy. Read-only. Nullable.
+	Connectors *[]Connector `json:"connectors,omitempty"`
+
+	// Represents a hybridAgentUpdaterConfiguration object.
+	HybridAgentUpdaterConfiguration *HybridAgentUpdaterConfiguration `json:"hybridAgentUpdaterConfiguration,omitempty"`
+
+	// Specifies whether default access for app proxy is enabled or disabled.
+	IsDefaultAccessEnabled nullable.Type[bool] `json:"isDefaultAccessEnabled,omitempty"`
+
+	// Represents if Microsoft Entra application proxy is enabled for the tenant.
+	IsEnabled nullable.Type[bool] `json:"isEnabled,omitempty"`
+
+	// List of existing publishedResource objects. Read-only. Nullable.
+	PublishedResources *[]PublishedResource `json:"publishedResources,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

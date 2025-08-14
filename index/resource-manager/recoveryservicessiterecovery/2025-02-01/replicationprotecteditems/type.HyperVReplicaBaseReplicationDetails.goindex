@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationprotecteditems
+import (
+	"encoding/json"
+	"fmt"
+)
+type HyperVReplicaBaseReplicationDetails struct {
+	InitialReplicationDetails    *InitialReplicationDetails `json:"initialReplicationDetails,omitempty"`
+	LastReplicatedTime           *string                    `json:"lastReplicatedTime,omitempty"`
+	VMDiskDetails                *[]DiskDetails             `json:"vMDiskDetails,omitempty"`
+	VMId                         *string                    `json:"vmId,omitempty"`
+	VMNics                       *[]VMNicDetails            `json:"vmNics,omitempty"`
+	VMProtectionState            *string                    `json:"vmProtectionState,omitempty"`
+	VMProtectionStateDescription *string                    `json:"vmProtectionStateDescription,omitempty"`
+
+	// Fields inherited from ReplicationProviderSpecificSettings
+
+	InstanceType string `json:"instanceType"`
+}

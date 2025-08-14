@@ -1,0 +1,80 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+)
+type BackupRestoreRoot struct {
+	// The list of drive inclusion rules applied to the tenant.
+	DriveInclusionRules *[]DriveProtectionRule `json:"driveInclusionRules,omitempty"`
+
+	// The list of drive protection units in the tenant.
+	DriveProtectionUnits *[]DriveProtectionUnit `json:"driveProtectionUnits,omitempty"`
+
+	DriveProtectionUnitsBulkAdditionJobs *[]DriveProtectionUnitsBulkAdditionJob `json:"driveProtectionUnitsBulkAdditionJobs,omitempty"`
+
+	// The list of Exchange protection policies in the tenant.
+	ExchangeProtectionPolicies *[]ExchangeProtectionPolicy `json:"exchangeProtectionPolicies,omitempty"`
+
+	// The list of Exchange restore sessions available in the tenant.
+	ExchangeRestoreSessions *[]ExchangeRestoreSession `json:"exchangeRestoreSessions,omitempty"`
+
+	// The list of mailbox inclusion rules applied to the tenant.
+	MailboxInclusionRules *[]MailboxProtectionRule `json:"mailboxInclusionRules,omitempty"`
+
+	// The list of mailbox protection units in the tenant.
+	MailboxProtectionUnits *[]MailboxProtectionUnit `json:"mailboxProtectionUnits,omitempty"`
+
+	MailboxProtectionUnitsBulkAdditionJobs *[]MailboxProtectionUnitsBulkAdditionJob `json:"mailboxProtectionUnitsBulkAdditionJobs,omitempty"`
+
+	// The list of OneDrive for Business protection policies in the tenant.
+	OneDriveForBusinessProtectionPolicies *[]OneDriveForBusinessProtectionPolicy `json:"oneDriveForBusinessProtectionPolicies,omitempty"`
+
+	// The list of OneDrive for Business restore sessions available in the tenant.
+	OneDriveForBusinessRestoreSessions *[]OneDriveForBusinessRestoreSession `json:"oneDriveForBusinessRestoreSessions,omitempty"`
+
+	// List of protection policies in the tenant.
+	ProtectionPolicies *[]ProtectionPolicyBase `json:"protectionPolicies,omitempty"`
+
+	// List of protection units in the tenant.
+	ProtectionUnits *[]ProtectionUnitBase `json:"protectionUnits,omitempty"`
+
+	// List of restore points in the tenant.
+	RestorePoints *[]RestorePoint `json:"restorePoints,omitempty"`
+
+	// List of restore sessions in the tenant.
+	RestoreSessions *[]RestoreSessionBase `json:"restoreSessions,omitempty"`
+
+	// List of Backup Storage apps in the tenant.
+	ServiceApps *[]ServiceApp `json:"serviceApps,omitempty"`
+
+	// Represents the tenant-level status of the Backup Storage service.
+	ServiceStatus *ServiceStatus `json:"serviceStatus,omitempty"`
+
+	// The list of SharePoint protection policies in the tenant.
+	SharePointProtectionPolicies *[]SharePointProtectionPolicy `json:"sharePointProtectionPolicies,omitempty"`
+
+	// The list of SharePoint restore sessions available in the tenant.
+	SharePointRestoreSessions *[]SharePointRestoreSession `json:"sharePointRestoreSessions,omitempty"`
+
+	// The list of site inclusion rules applied to the tenant.
+	SiteInclusionRules *[]SiteProtectionRule `json:"siteInclusionRules,omitempty"`
+
+	// The list of site protection units in the tenant.
+	SiteProtectionUnits *[]SiteProtectionUnit `json:"siteProtectionUnits,omitempty"`
+
+	SiteProtectionUnitsBulkAdditionJobs *[]SiteProtectionUnitsBulkAdditionJob `json:"siteProtectionUnitsBulkAdditionJobs,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

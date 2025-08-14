@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dynatrace/2023-04-27/monitors
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c MonitorsClient) ListAppServicesCompleteMatchingPredicate(ctx context.Context, id MonitorId, predicate AppServiceInfoOperationPredicate) (result ListAppServicesCompleteResult, err error) {
+	items := make([]AppServiceInfo, 0)
+
+	resp, err := c.ListAppServices(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListAppServicesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

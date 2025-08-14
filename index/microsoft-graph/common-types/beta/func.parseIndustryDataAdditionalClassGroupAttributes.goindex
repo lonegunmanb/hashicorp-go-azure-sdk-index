@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseIndustryDataAdditionalClassGroupAttributes(input string) (*IndustryDataAdditionalClassGroupAttributes, error) {
+	vals := map[string]IndustryDataAdditionalClassGroupAttributes{
+		"academicsessionexternalid": IndustryDataAdditionalClassGroupAttributes_AcademicSessionExternalId,
+		"academicsessiontitle":      IndustryDataAdditionalClassGroupAttributes_AcademicSessionTitle,
+		"classcode":                 IndustryDataAdditionalClassGroupAttributes_ClassCode,
+		"coursecode":                IndustryDataAdditionalClassGroupAttributes_CourseCode,
+		"courseexternalid":          IndustryDataAdditionalClassGroupAttributes_CourseExternalId,
+		"coursegradelevel":          IndustryDataAdditionalClassGroupAttributes_CourseGradeLevel,
+		"coursesubject":             IndustryDataAdditionalClassGroupAttributes_CourseSubject,
+		"coursetitle":               IndustryDataAdditionalClassGroupAttributes_CourseTitle,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IndustryDataAdditionalClassGroupAttributes(input)
+	return &out, nil
+}

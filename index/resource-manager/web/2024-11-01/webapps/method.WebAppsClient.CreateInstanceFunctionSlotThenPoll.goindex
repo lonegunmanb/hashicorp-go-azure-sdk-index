@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-11-01/webapps
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c WebAppsClient) CreateInstanceFunctionSlotThenPoll(ctx context.Context, id SlotFunctionId, input FunctionEnvelope) error {
+	result, err := c.CreateInstanceFunctionSlot(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing CreateInstanceFunctionSlot: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after CreateInstanceFunctionSlot: %+v", err)
+	}
+
+	return nil
+}

@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/informatica/2024-05-08/serverlessruntimes
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id OrganizationId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Organization Name: %q", id.OrganizationName),
+	}
+	return fmt.Sprintf("Organization (%s)", strings.Join(components, "\n"))
+}

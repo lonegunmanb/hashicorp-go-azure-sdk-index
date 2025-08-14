@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/cloudexadatainfrastructures
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePreference(input string) (*Preference, error) {
+	vals := map[string]Preference{
+		"custompreference": PreferenceCustomPreference,
+		"nopreference":     PreferenceNoPreference,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Preference(input)
+	return &out, nil
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/invoice
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseFailedPaymentReason(input string) (*FailedPaymentReason, error) {
+	vals := map[string]FailedPaymentReason{
+		"bankdeclined":         FailedPaymentReasonBankDeclined,
+		"cardexpired":          FailedPaymentReasonCardExpired,
+		"incorrectcarddetails": FailedPaymentReasonIncorrectCardDetails,
+		"other":                FailedPaymentReasonOther,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FailedPaymentReason(input)
+	return &out, nil
+}

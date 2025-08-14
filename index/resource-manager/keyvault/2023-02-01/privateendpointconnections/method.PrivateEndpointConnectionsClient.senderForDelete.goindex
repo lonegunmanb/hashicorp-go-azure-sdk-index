@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2023-02-01/privateendpointconnections
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/polling"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+)
+func (c PrivateEndpointConnectionsClient) senderForDelete(ctx context.Context, req *http.Request) (future DeleteOperationResponse, err error) {
+	var resp *http.Response
+	resp, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
+	if err != nil {
+		return
+	}
+
+	future.Poller, err = polling.NewPollerFromResponse(ctx, resp, c.Client, req.Method)
+	return
+}

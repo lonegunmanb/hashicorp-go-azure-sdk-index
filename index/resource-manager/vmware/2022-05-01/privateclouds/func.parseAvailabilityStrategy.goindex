@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2022-05-01/privateclouds
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAvailabilityStrategy(input string) (*AvailabilityStrategy, error) {
+	vals := map[string]AvailabilityStrategy{
+		"dualzone":   AvailabilityStrategyDualZone,
+		"singlezone": AvailabilityStrategySingleZone,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AvailabilityStrategy(input)
+	return &out, nil
+}

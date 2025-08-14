@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/computerps
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseUnit(input string) (*Unit, error) {
+	vals := map[string]Unit{
+		"count": UnitCount,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Unit(input)
+	return &out, nil
+}

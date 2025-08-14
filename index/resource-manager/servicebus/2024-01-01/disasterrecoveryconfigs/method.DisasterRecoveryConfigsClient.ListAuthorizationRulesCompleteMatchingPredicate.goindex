@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicebus/2024-01-01/disasterrecoveryconfigs
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DisasterRecoveryConfigsClient) ListAuthorizationRulesCompleteMatchingPredicate(ctx context.Context, id DisasterRecoveryConfigId, predicate SBAuthorizationRuleOperationPredicate) (result ListAuthorizationRulesCompleteResult, err error) {
+	items := make([]SBAuthorizationRule, 0)
+
+	resp, err := c.ListAuthorizationRules(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListAuthorizationRulesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

@@ -1,0 +1,99 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalSecurityCaseOperationImplementation(input []byte) (SecurityCaseOperation, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling SecurityCaseOperation into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.security.ediscoveryAddToReviewSetOperation") {
+		var out SecurityEdiscoveryAddToReviewSetOperation
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SecurityEdiscoveryAddToReviewSetOperation: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.security.ediscoveryEstimateOperation") {
+		var out SecurityEdiscoveryEstimateOperation
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SecurityEdiscoveryEstimateOperation: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.security.ediscoveryExportOperation") {
+		var out SecurityEdiscoveryExportOperation
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SecurityEdiscoveryExportOperation: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.security.ediscoveryHoldOperation") {
+		var out SecurityEdiscoveryHoldOperation
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SecurityEdiscoveryHoldOperation: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.security.ediscoveryIndexOperation") {
+		var out SecurityEdiscoveryIndexOperation
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SecurityEdiscoveryIndexOperation: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.security.ediscoveryPurgeDataOperation") {
+		var out SecurityEdiscoveryPurgeDataOperation
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SecurityEdiscoveryPurgeDataOperation: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.security.ediscoverySearchExportOperation") {
+		var out SecurityEdiscoverySearchExportOperation
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SecurityEdiscoverySearchExportOperation: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.security.ediscoveryTagOperation") {
+		var out SecurityEdiscoveryTagOperation
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SecurityEdiscoveryTagOperation: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseSecurityCaseOperationImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseSecurityCaseOperationImpl: %+v", err)
+	}
+
+	return RawSecurityCaseOperationImpl{
+		securityCaseOperation: parent,
+		Type:                  value,
+		Values:                temp,
+	}, nil
+
+}

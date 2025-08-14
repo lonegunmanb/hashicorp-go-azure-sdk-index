@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWorkforceIntegrationSupportedEntities(input string) (*WorkforceIntegrationSupportedEntities, error) {
+	vals := map[string]WorkforceIntegrationSupportedEntities{
+		"none":                 WorkforceIntegrationSupportedEntities_None,
+		"offershiftrequest":    WorkforceIntegrationSupportedEntities_OfferShiftRequest,
+		"openshift":            WorkforceIntegrationSupportedEntities_OpenShift,
+		"openshiftrequest":     WorkforceIntegrationSupportedEntities_OpenShiftRequest,
+		"shift":                WorkforceIntegrationSupportedEntities_Shift,
+		"swaprequest":          WorkforceIntegrationSupportedEntities_SwapRequest,
+		"timecard":             WorkforceIntegrationSupportedEntities_TimeCard,
+		"timeoff":              WorkforceIntegrationSupportedEntities_TimeOff,
+		"timeoffreason":        WorkforceIntegrationSupportedEntities_TimeOffReason,
+		"timeoffrequest":       WorkforceIntegrationSupportedEntities_TimeOffRequest,
+		"usershiftpreferences": WorkforceIntegrationSupportedEntities_UserShiftPreferences,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WorkforceIntegrationSupportedEntities(input)
+	return &out, nil
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSamlAttributeNameFormat(input string) (*SamlAttributeNameFormat, error) {
+	vals := map[string]SamlAttributeNameFormat{
+		"basic":       SamlAttributeNameFormat_Basic,
+		"unspecified": SamlAttributeNameFormat_Unspecified,
+		"uri":         SamlAttributeNameFormat_Uri,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SamlAttributeNameFormat(input)
+	return &out, nil
+}

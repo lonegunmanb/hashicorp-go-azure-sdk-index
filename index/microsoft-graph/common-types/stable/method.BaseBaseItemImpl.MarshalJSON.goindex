@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s BaseBaseItemImpl) MarshalJSON() ([]byte, error) {
+	type wrapper BaseBaseItemImpl
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling BaseBaseItemImpl: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling BaseBaseItemImpl: %+v", err)
+	}
+
+	delete(decoded, "createdBy")
+	delete(decoded, "createdByUser")
+	delete(decoded, "createdDateTime")
+	delete(decoded, "eTag")
+	delete(decoded, "lastModifiedBy")
+	delete(decoded, "lastModifiedByUser")
+	delete(decoded, "lastModifiedDateTime")
+	delete(decoded, "webUrl")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.baseItem"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling BaseBaseItemImpl: %+v", err)
+	}
+
+	return encoded, nil
+}

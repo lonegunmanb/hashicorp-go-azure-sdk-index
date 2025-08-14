@@ -1,0 +1,11 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id PolicyTokenLifetimePolicyIdAppliesToId) ID() string {
+	fmtString := "/policies/tokenLifetimePolicies/%s/appliesTo/%s"
+	return fmt.Sprintf(fmtString, id.TokenLifetimePolicyId, id.DirectoryObjectId)
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotenotebooksectionparentnotebook
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSiteOnenoteNotebookSectionParentNotebookClientWithBaseURI(sdkApi sdkEnv.Api) (*SiteOnenoteNotebookSectionParentNotebookClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "siteonenotenotebooksectionparentnotebook", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SiteOnenoteNotebookSectionParentNotebookClient: %+v", err)
+	}
+
+	return &SiteOnenoteNotebookSectionParentNotebookClient{
+		Client: client,
+	}, nil
+}

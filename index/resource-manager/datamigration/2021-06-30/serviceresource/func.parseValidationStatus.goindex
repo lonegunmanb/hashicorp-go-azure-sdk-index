@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/serviceresource
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseValidationStatus(input string) (*ValidationStatus, error) {
+	vals := map[string]ValidationStatus{
+		"completed":           ValidationStatusCompleted,
+		"completedwithissues": ValidationStatusCompletedWithIssues,
+		"default":             ValidationStatusDefault,
+		"failed":              ValidationStatusFailed,
+		"inprogress":          ValidationStatusInProgress,
+		"initialized":         ValidationStatusInitialized,
+		"notstarted":          ValidationStatusNotStarted,
+		"stopped":             ValidationStatusStopped,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ValidationStatus(input)
+	return &out, nil
+}

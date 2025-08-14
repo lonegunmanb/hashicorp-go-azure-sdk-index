@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id UserIdTeamworkInstalledAppId) String() string {
+	components := []string{
+		fmt.Sprintf("User: %q", id.UserId),
+		fmt.Sprintf("User Scope Teams App Installation: %q", id.UserScopeTeamsAppInstallationId),
+	}
+	return fmt.Sprintf("User Id Teamwork Installed App (%s)", strings.Join(components, "\n"))
+}

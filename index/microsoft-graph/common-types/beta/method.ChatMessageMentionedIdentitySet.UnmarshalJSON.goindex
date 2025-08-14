@@ -1,0 +1,52 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s *ChatMessageMentionedIdentitySet) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		Conversation *TeamworkConversationIdentity `json:"conversation,omitempty"`
+		Tag          *TeamworkTagIdentity          `json:"tag,omitempty"`
+		ODataId      *string                       `json:"@odata.id,omitempty"`
+		ODataType    *string                       `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.Conversation = decoded.Conversation
+	s.Tag = decoded.Tag
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling ChatMessageMentionedIdentitySet into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["application"]; ok {
+		impl, err := UnmarshalIdentityImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Application' for 'ChatMessageMentionedIdentitySet': %+v", err)
+		}
+		s.Application = impl
+	}
+
+	if v, ok := temp["device"]; ok {
+		impl, err := UnmarshalIdentityImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Device' for 'ChatMessageMentionedIdentitySet': %+v", err)
+		}
+		s.Device = impl
+	}
+
+	if v, ok := temp["user"]; ok {
+		impl, err := UnmarshalIdentityImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'User' for 'ChatMessageMentionedIdentitySet': %+v", err)
+		}
+		s.User = impl
+	}
+
+	return nil
+}

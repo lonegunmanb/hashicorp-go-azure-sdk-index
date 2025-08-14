@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeviceCleanupRulePlatformType(input string) (*DeviceCleanupRulePlatformType, error) {
+	vals := map[string]DeviceCleanupRulePlatformType{
+		"all":         DeviceCleanupRulePlatformType_All,
+		"androidaosp": DeviceCleanupRulePlatformType_AndroidAOSP,
+		"androiddedicatedandfullymanagedcorporateownedworkprofile": DeviceCleanupRulePlatformType_AndroidDedicatedAndFullyManagedCorporateOwnedWorkProfile,
+		"androiddeviceadministrator":                               DeviceCleanupRulePlatformType_AndroidDeviceAdministrator,
+		"androidpersonallyownedworkprofile":                        DeviceCleanupRulePlatformType_AndroidPersonallyOwnedWorkProfile,
+		"chromeos":                                                 DeviceCleanupRulePlatformType_ChromeOS,
+		"ios":                                                      DeviceCleanupRulePlatformType_Ios,
+		"macos":                                                    DeviceCleanupRulePlatformType_MacOS,
+		"windows":                                                  DeviceCleanupRulePlatformType_Windows,
+		"windowsholographic":                                       DeviceCleanupRulePlatformType_WindowsHolographic,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceCleanupRulePlatformType(input)
+	return &out, nil
+}

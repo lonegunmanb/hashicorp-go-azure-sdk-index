@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/authorization/2020-10-01/rolemanagementpolicyassignments
+import (
+	"encoding/json"
+	"fmt"
+)
+type RoleManagementPolicyExpirationRule struct {
+	IsExpirationRequired *bool   `json:"isExpirationRequired,omitempty"`
+	MaximumDuration      *string `json:"maximumDuration,omitempty"`
+
+	// Fields inherited from RoleManagementPolicyRule
+
+	Id       *string                         `json:"id,omitempty"`
+	RuleType RoleManagementPolicyRuleType    `json:"ruleType"`
+	Target   *RoleManagementPolicyRuleTarget `json:"target,omitempty"`
+}

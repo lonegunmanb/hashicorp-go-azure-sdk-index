@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/rebootdevicemanagementuserexperienceanalyticsbaselineanalyticsmetrics
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewRebootDeviceManagementUserExperienceAnalyticsBaselineAnalyticsMetricsClientWithBaseURI(sdkApi sdkEnv.Api) (*RebootDeviceManagementUserExperienceAnalyticsBaselineAnalyticsMetricsClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "rebootdevicemanagementuserexperienceanalyticsbaselineanalyticsmetrics", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating RebootDeviceManagementUserExperienceAnalyticsBaselineAnalyticsMetricsClient: %+v", err)
+	}
+
+	return &RebootDeviceManagementUserExperienceAnalyticsBaselineAnalyticsMetricsClient{
+		Client: client,
+	}, nil
+}

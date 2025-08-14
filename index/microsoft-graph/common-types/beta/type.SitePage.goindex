@@ -1,0 +1,94 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type SitePage struct {
+	// Indicates the layout of the content in a given SharePoint page, including horizontal sections and vertical sections.
+	CanvasLayout *CanvasLayout `json:"canvasLayout,omitempty"`
+
+	// Indicates the promotion kind of the sitePage. The possible values are: microsoftReserved, page, newsPost,
+	// unknownFutureValue.
+	PromotionKind *PagePromotionType `json:"promotionKind,omitempty"`
+
+	// Reactions information for the page.
+	Reactions *ReactionsFacet `json:"reactions,omitempty"`
+
+	// Determines whether or not to show comments at the bottom of the page.
+	ShowComments nullable.Type[bool] `json:"showComments,omitempty"`
+
+	// Determines whether or not to show recommended pages at the bottom of the page.
+	ShowRecommendedPages nullable.Type[bool] `json:"showRecommendedPages,omitempty"`
+
+	// Url of the sitePage's thumbnail image
+	ThumbnailWebUrl nullable.Type[string] `json:"thumbnailWebUrl,omitempty"`
+
+	// Title area on the SharePoint page.
+	TitleArea *TitleArea `json:"titleArea,omitempty"`
+
+	// Collection of webparts on the SharePoint page.
+	WebParts *[]WebPart `json:"webParts,omitempty"`
+
+	// Fields inherited from BaseSitePage
+
+	// The name of the page layout of the page. The possible values are: microsoftReserved, article, home,
+	// unknownFutureValue, newsLink. Use the Prefer: include-unknown-enum-members request header to get the following value
+	// in this evolvable enum: newsLink.
+	PageLayout *PageLayoutType `json:"pageLayout,omitempty"`
+
+	// The publishing status and the MM.mm version of the page.
+	PublishingState *PublicationFacet `json:"publishingState,omitempty"`
+
+	// Title of the sitePage.
+	Title nullable.Type[string] `json:"title,omitempty"`
+
+	// Fields inherited from BaseItem
+
+	// Identity of the user, device, or application that created the item. Read-only.
+	CreatedBy *IdentitySet `json:"createdBy,omitempty"`
+
+	CreatedByUser *User `json:"createdByUser,omitempty"`
+
+	// Date and time of item creation. Read-only.
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+
+	// The description of the item.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// ETag for the item. Read-only.
+	ETag nullable.Type[string] `json:"eTag,omitempty"`
+
+	// Identity of the user, device, and application that last modified the item. Read-only.
+	LastModifiedBy *IdentitySet `json:"lastModifiedBy,omitempty"`
+
+	LastModifiedByUser *User `json:"lastModifiedByUser,omitempty"`
+
+	// Date and time the item was last modified. Read-only.
+	LastModifiedDateTime *string `json:"lastModifiedDateTime,omitempty"`
+
+	// The name of the item. Read-write.
+	Name nullable.Type[string] `json:"name,omitempty"`
+
+	// Parent information, if the item has a parent. Read-write.
+	ParentReference *ItemReference `json:"parentReference,omitempty"`
+
+	// URL that either displays the resource in the browser (for Office file formats), or is a direct link to the file (for
+	// other formats). Read-only.
+	WebUrl nullable.Type[string] `json:"webUrl,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

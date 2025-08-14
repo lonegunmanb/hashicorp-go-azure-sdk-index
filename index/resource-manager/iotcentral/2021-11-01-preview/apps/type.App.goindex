@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/iotcentral/2021-11-01-preview/apps
+import (
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+)
+type App struct {
+	Id         *string                  `json:"id,omitempty"`
+	Identity   *identity.SystemAssigned `json:"identity,omitempty"`
+	Location   string                   `json:"location"`
+	Name       *string                  `json:"name,omitempty"`
+	Properties *AppProperties           `json:"properties,omitempty"`
+	Sku        AppSkuInfo               `json:"sku"`
+	SystemData *systemdata.SystemData   `json:"systemData,omitempty"`
+	Tags       *map[string]string       `json:"tags,omitempty"`
+	Type       *string                  `json:"type,omitempty"`
+}

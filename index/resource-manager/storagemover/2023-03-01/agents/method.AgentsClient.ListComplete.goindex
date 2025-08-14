@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagemover/2023-03-01/agents
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c AgentsClient) ListComplete(ctx context.Context, id StorageMoverId) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, AgentOperationPredicate{})
+}

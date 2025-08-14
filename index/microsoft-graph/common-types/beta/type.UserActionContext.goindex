@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type UserActionContext struct {
+	// Represents the user action that the authenticating identity is performing. The possible values are:
+	// registerSecurityInformation, registerOrJoinDevices, unknownFutureValue.
+	UserAction *UserAction `json:"userAction,omitempty"`
+
+	// Fields inherited from SignInContext
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

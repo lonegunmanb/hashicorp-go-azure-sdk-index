@@ -1,0 +1,51 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalSecurityWhoisBaseRecordImplementation(input []byte) (SecurityWhoisBaseRecord, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling SecurityWhoisBaseRecord into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.security.whoisHistoryRecord") {
+		var out SecurityWhoisHistoryRecord
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SecurityWhoisHistoryRecord: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.security.whoisRecord") {
+		var out SecurityWhoisRecord
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SecurityWhoisRecord: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseSecurityWhoisBaseRecordImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseSecurityWhoisBaseRecordImpl: %+v", err)
+	}
+
+	return RawSecurityWhoisBaseRecordImpl{
+		securityWhoisBaseRecord: parent,
+		Type:                    value,
+		Values:                  temp,
+	}, nil
+
+}

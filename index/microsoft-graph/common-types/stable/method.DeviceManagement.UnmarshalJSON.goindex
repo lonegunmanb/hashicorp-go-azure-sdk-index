@@ -1,0 +1,231 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s *DeviceManagement) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		ApplePushNotificationCertificate                                           *ApplePushNotificationCertificate                                     `json:"applePushNotificationCertificate,omitempty"`
+		AuditEvents                                                                *[]AuditEvent                                                         `json:"auditEvents,omitempty"`
+		ComplianceManagementPartners                                               *[]ComplianceManagementPartner                                        `json:"complianceManagementPartners,omitempty"`
+		ConditionalAccessSettings                                                  *OnPremisesConditionalAccessSettings                                  `json:"conditionalAccessSettings,omitempty"`
+		DetectedApps                                                               *[]DetectedApp                                                        `json:"detectedApps,omitempty"`
+		DeviceCategories                                                           *[]DeviceCategory                                                     `json:"deviceCategories,omitempty"`
+		DeviceCompliancePolicyDeviceStateSummary                                   *DeviceCompliancePolicyDeviceStateSummary                             `json:"deviceCompliancePolicyDeviceStateSummary,omitempty"`
+		DeviceCompliancePolicySettingStateSummaries                                *[]DeviceCompliancePolicySettingStateSummary                          `json:"deviceCompliancePolicySettingStateSummaries,omitempty"`
+		DeviceConfigurationDeviceStateSummaries                                    *DeviceConfigurationDeviceStateSummary                                `json:"deviceConfigurationDeviceStateSummaries,omitempty"`
+		DeviceManagementPartners                                                   *[]DeviceManagementPartner                                            `json:"deviceManagementPartners,omitempty"`
+		DeviceProtectionOverview                                                   *DeviceProtectionOverview                                             `json:"deviceProtectionOverview,omitempty"`
+		ExchangeConnectors                                                         *[]DeviceManagementExchangeConnector                                  `json:"exchangeConnectors,omitempty"`
+		ImportedWindowsAutopilotDeviceIdentities                                   *[]ImportedWindowsAutopilotDeviceIdentity                             `json:"importedWindowsAutopilotDeviceIdentities,omitempty"`
+		IntuneAccountId                                                            *string                                                               `json:"intuneAccountId,omitempty"`
+		IntuneBrand                                                                *IntuneBrand                                                          `json:"intuneBrand,omitempty"`
+		IosUpdateStatuses                                                          *[]IosUpdateDeviceStatus                                              `json:"iosUpdateStatuses,omitempty"`
+		ManagedDeviceOverview                                                      *ManagedDeviceOverview                                                `json:"managedDeviceOverview,omitempty"`
+		ManagedDevices                                                             *[]ManagedDevice                                                      `json:"managedDevices,omitempty"`
+		MobileAppTroubleshootingEvents                                             *[]MobileAppTroubleshootingEvent                                      `json:"mobileAppTroubleshootingEvents,omitempty"`
+		MobileThreatDefenseConnectors                                              *[]MobileThreatDefenseConnector                                       `json:"mobileThreatDefenseConnectors,omitempty"`
+		NotificationMessageTemplates                                               *[]NotificationMessageTemplate                                        `json:"notificationMessageTemplates,omitempty"`
+		RemoteAssistancePartners                                                   *[]RemoteAssistancePartner                                            `json:"remoteAssistancePartners,omitempty"`
+		Reports                                                                    *DeviceManagementReports                                              `json:"reports,omitempty"`
+		ResourceOperations                                                         *[]ResourceOperation                                                  `json:"resourceOperations,omitempty"`
+		RoleAssignments                                                            *[]DeviceAndAppManagementRoleAssignment                               `json:"roleAssignments,omitempty"`
+		Settings                                                                   *DeviceManagementSettings                                             `json:"settings,omitempty"`
+		SoftwareUpdateStatusSummary                                                *SoftwareUpdateStatusSummary                                          `json:"softwareUpdateStatusSummary,omitempty"`
+		SubscriptionState                                                          *DeviceManagementSubscriptionState                                    `json:"subscriptionState,omitempty"`
+		TelecomExpenseManagementPartners                                           *[]TelecomExpenseManagementPartner                                    `json:"telecomExpenseManagementPartners,omitempty"`
+		TermsAndConditions                                                         *[]TermsAndConditions                                                 `json:"termsAndConditions,omitempty"`
+		UserExperienceAnalyticsAppHealthApplicationPerformance                     *[]UserExperienceAnalyticsAppHealthApplicationPerformance             `json:"userExperienceAnalyticsAppHealthApplicationPerformance,omitempty"`
+		UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails  *[]UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails  `json:"userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails,omitempty"`
+		UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId *[]UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId `json:"userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId,omitempty"`
+		UserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersion          *[]UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion          `json:"userExperienceAnalyticsAppHealthApplicationPerformanceByOSVersion,omitempty"`
+		UserExperienceAnalyticsAppHealthDeviceModelPerformance                     *[]UserExperienceAnalyticsAppHealthDeviceModelPerformance             `json:"userExperienceAnalyticsAppHealthDeviceModelPerformance,omitempty"`
+		UserExperienceAnalyticsAppHealthDevicePerformance                          *[]UserExperienceAnalyticsAppHealthDevicePerformance                  `json:"userExperienceAnalyticsAppHealthDevicePerformance,omitempty"`
+		UserExperienceAnalyticsAppHealthDevicePerformanceDetails                   *[]UserExperienceAnalyticsAppHealthDevicePerformanceDetails           `json:"userExperienceAnalyticsAppHealthDevicePerformanceDetails,omitempty"`
+		UserExperienceAnalyticsAppHealthOSVersionPerformance                       *[]UserExperienceAnalyticsAppHealthOSVersionPerformance               `json:"userExperienceAnalyticsAppHealthOSVersionPerformance,omitempty"`
+		UserExperienceAnalyticsAppHealthOverview                                   *UserExperienceAnalyticsCategory                                      `json:"userExperienceAnalyticsAppHealthOverview,omitempty"`
+		UserExperienceAnalyticsBaselines                                           *[]UserExperienceAnalyticsBaseline                                    `json:"userExperienceAnalyticsBaselines,omitempty"`
+		UserExperienceAnalyticsCategories                                          *[]UserExperienceAnalyticsCategory                                    `json:"userExperienceAnalyticsCategories,omitempty"`
+		UserExperienceAnalyticsDevicePerformance                                   *[]UserExperienceAnalyticsDevicePerformance                           `json:"userExperienceAnalyticsDevicePerformance,omitempty"`
+		UserExperienceAnalyticsDeviceScores                                        *[]UserExperienceAnalyticsDeviceScores                                `json:"userExperienceAnalyticsDeviceScores,omitempty"`
+		UserExperienceAnalyticsDeviceStartupHistory                                *[]UserExperienceAnalyticsDeviceStartupHistory                        `json:"userExperienceAnalyticsDeviceStartupHistory,omitempty"`
+		UserExperienceAnalyticsDeviceStartupProcessPerformance                     *[]UserExperienceAnalyticsDeviceStartupProcessPerformance             `json:"userExperienceAnalyticsDeviceStartupProcessPerformance,omitempty"`
+		UserExperienceAnalyticsDeviceStartupProcesses                              *[]UserExperienceAnalyticsDeviceStartupProcess                        `json:"userExperienceAnalyticsDeviceStartupProcesses,omitempty"`
+		UserExperienceAnalyticsMetricHistory                                       *[]UserExperienceAnalyticsMetricHistory                               `json:"userExperienceAnalyticsMetricHistory,omitempty"`
+		UserExperienceAnalyticsModelScores                                         *[]UserExperienceAnalyticsModelScores                                 `json:"userExperienceAnalyticsModelScores,omitempty"`
+		UserExperienceAnalyticsOverview                                            *UserExperienceAnalyticsOverview                                      `json:"userExperienceAnalyticsOverview,omitempty"`
+		UserExperienceAnalyticsScoreHistory                                        *[]UserExperienceAnalyticsScoreHistory                                `json:"userExperienceAnalyticsScoreHistory,omitempty"`
+		UserExperienceAnalyticsSettings                                            *UserExperienceAnalyticsSettings                                      `json:"userExperienceAnalyticsSettings,omitempty"`
+		UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric             *UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric       `json:"userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric,omitempty"`
+		UserExperienceAnalyticsWorkFromAnywhereMetrics                             *[]UserExperienceAnalyticsWorkFromAnywhereMetric                      `json:"userExperienceAnalyticsWorkFromAnywhereMetrics,omitempty"`
+		UserExperienceAnalyticsWorkFromAnywhereModelPerformance                    *[]UserExperienceAnalyticsWorkFromAnywhereModelPerformance            `json:"userExperienceAnalyticsWorkFromAnywhereModelPerformance,omitempty"`
+		VirtualEndpoint                                                            *VirtualEndpoint                                                      `json:"virtualEndpoint,omitempty"`
+		WindowsAutopilotDeviceIdentities                                           *[]WindowsAutopilotDeviceIdentity                                     `json:"windowsAutopilotDeviceIdentities,omitempty"`
+		WindowsInformationProtectionAppLearningSummaries                           *[]WindowsInformationProtectionAppLearningSummary                     `json:"windowsInformationProtectionAppLearningSummaries,omitempty"`
+		WindowsInformationProtectionNetworkLearningSummaries                       *[]WindowsInformationProtectionNetworkLearningSummary                 `json:"windowsInformationProtectionNetworkLearningSummaries,omitempty"`
+		WindowsMalwareInformation                                                  *[]WindowsMalwareInformation                                          `json:"windowsMalwareInformation,omitempty"`
+		WindowsMalwareOverview                                                     *WindowsMalwareOverview                                               `json:"windowsMalwareOverview,omitempty"`
+		Id                                                                         *string                                                               `json:"id,omitempty"`
+		ODataId                                                                    *string                                                               `json:"@odata.id,omitempty"`
+		ODataType                                                                  *string                                                               `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.ApplePushNotificationCertificate = decoded.ApplePushNotificationCertificate
+	s.AuditEvents = decoded.AuditEvents
+	s.ComplianceManagementPartners = decoded.ComplianceManagementPartners
+	s.ConditionalAccessSettings = decoded.ConditionalAccessSettings
+	s.DetectedApps = decoded.DetectedApps
+	s.DeviceCategories = decoded.DeviceCategories
+	s.DeviceCompliancePolicyDeviceStateSummary = decoded.DeviceCompliancePolicyDeviceStateSummary
+	s.DeviceCompliancePolicySettingStateSummaries = decoded.DeviceCompliancePolicySettingStateSummaries
+	s.DeviceConfigurationDeviceStateSummaries = decoded.DeviceConfigurationDeviceStateSummaries
+	s.DeviceManagementPartners = decoded.DeviceManagementPartners
+	s.DeviceProtectionOverview = decoded.DeviceProtectionOverview
+	s.ExchangeConnectors = decoded.ExchangeConnectors
+	s.ImportedWindowsAutopilotDeviceIdentities = decoded.ImportedWindowsAutopilotDeviceIdentities
+	s.IntuneAccountId = decoded.IntuneAccountId
+	s.IntuneBrand = decoded.IntuneBrand
+	s.IosUpdateStatuses = decoded.IosUpdateStatuses
+	s.ManagedDeviceOverview = decoded.ManagedDeviceOverview
+	s.ManagedDevices = decoded.ManagedDevices
+	s.MobileAppTroubleshootingEvents = decoded.MobileAppTroubleshootingEvents
+	s.MobileThreatDefenseConnectors = decoded.MobileThreatDefenseConnectors
+	s.NotificationMessageTemplates = decoded.NotificationMessageTemplates
+	s.RemoteAssistancePartners = decoded.RemoteAssistancePartners
+	s.Reports = decoded.Reports
+	s.ResourceOperations = decoded.ResourceOperations
+	s.RoleAssignments = decoded.RoleAssignments
+	s.Settings = decoded.Settings
+	s.SoftwareUpdateStatusSummary = decoded.SoftwareUpdateStatusSummary
+	s.SubscriptionState = decoded.SubscriptionState
+	s.TelecomExpenseManagementPartners = decoded.TelecomExpenseManagementPartners
+	s.TermsAndConditions = decoded.TermsAndConditions
+	s.UserExperienceAnalyticsAppHealthApplicationPerformance = decoded.UserExperienceAnalyticsAppHealthApplicationPerformance
+	s.UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails = decoded.UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails
+	s.UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId = decoded.UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId
+	s.UserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersion = decoded.UserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersion
+	s.UserExperienceAnalyticsAppHealthDeviceModelPerformance = decoded.UserExperienceAnalyticsAppHealthDeviceModelPerformance
+	s.UserExperienceAnalyticsAppHealthDevicePerformance = decoded.UserExperienceAnalyticsAppHealthDevicePerformance
+	s.UserExperienceAnalyticsAppHealthDevicePerformanceDetails = decoded.UserExperienceAnalyticsAppHealthDevicePerformanceDetails
+	s.UserExperienceAnalyticsAppHealthOSVersionPerformance = decoded.UserExperienceAnalyticsAppHealthOSVersionPerformance
+	s.UserExperienceAnalyticsAppHealthOverview = decoded.UserExperienceAnalyticsAppHealthOverview
+	s.UserExperienceAnalyticsBaselines = decoded.UserExperienceAnalyticsBaselines
+	s.UserExperienceAnalyticsCategories = decoded.UserExperienceAnalyticsCategories
+	s.UserExperienceAnalyticsDevicePerformance = decoded.UserExperienceAnalyticsDevicePerformance
+	s.UserExperienceAnalyticsDeviceScores = decoded.UserExperienceAnalyticsDeviceScores
+	s.UserExperienceAnalyticsDeviceStartupHistory = decoded.UserExperienceAnalyticsDeviceStartupHistory
+	s.UserExperienceAnalyticsDeviceStartupProcessPerformance = decoded.UserExperienceAnalyticsDeviceStartupProcessPerformance
+	s.UserExperienceAnalyticsDeviceStartupProcesses = decoded.UserExperienceAnalyticsDeviceStartupProcesses
+	s.UserExperienceAnalyticsMetricHistory = decoded.UserExperienceAnalyticsMetricHistory
+	s.UserExperienceAnalyticsModelScores = decoded.UserExperienceAnalyticsModelScores
+	s.UserExperienceAnalyticsOverview = decoded.UserExperienceAnalyticsOverview
+	s.UserExperienceAnalyticsScoreHistory = decoded.UserExperienceAnalyticsScoreHistory
+	s.UserExperienceAnalyticsSettings = decoded.UserExperienceAnalyticsSettings
+	s.UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric = decoded.UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric
+	s.UserExperienceAnalyticsWorkFromAnywhereMetrics = decoded.UserExperienceAnalyticsWorkFromAnywhereMetrics
+	s.UserExperienceAnalyticsWorkFromAnywhereModelPerformance = decoded.UserExperienceAnalyticsWorkFromAnywhereModelPerformance
+	s.VirtualEndpoint = decoded.VirtualEndpoint
+	s.WindowsAutopilotDeviceIdentities = decoded.WindowsAutopilotDeviceIdentities
+	s.WindowsInformationProtectionAppLearningSummaries = decoded.WindowsInformationProtectionAppLearningSummaries
+	s.WindowsInformationProtectionNetworkLearningSummaries = decoded.WindowsInformationProtectionNetworkLearningSummaries
+	s.WindowsMalwareInformation = decoded.WindowsMalwareInformation
+	s.WindowsMalwareOverview = decoded.WindowsMalwareOverview
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling DeviceManagement into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["deviceCompliancePolicies"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling DeviceCompliancePolicies into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]DeviceCompliancePolicy, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalDeviceCompliancePolicyImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'DeviceCompliancePolicies' for 'DeviceManagement': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.DeviceCompliancePolicies = &output
+	}
+
+	if v, ok := temp["deviceConfigurations"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling DeviceConfigurations into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]DeviceConfiguration, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalDeviceConfigurationImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'DeviceConfigurations' for 'DeviceManagement': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.DeviceConfigurations = &output
+	}
+
+	if v, ok := temp["deviceEnrollmentConfigurations"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling DeviceEnrollmentConfigurations into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]DeviceEnrollmentConfiguration, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalDeviceEnrollmentConfigurationImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'DeviceEnrollmentConfigurations' for 'DeviceManagement': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.DeviceEnrollmentConfigurations = &output
+	}
+
+	if v, ok := temp["roleDefinitions"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling RoleDefinitions into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]RoleDefinition, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalRoleDefinitionImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'RoleDefinitions' for 'DeviceManagement': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.RoleDefinitions = &output
+	}
+
+	if v, ok := temp["troubleshootingEvents"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling TroubleshootingEvents into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]DeviceManagementTroubleshootingEvent, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalDeviceManagementTroubleshootingEventImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'TroubleshootingEvents' for 'DeviceManagement': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.TroubleshootingEvents = &output
+	}
+
+	return nil
+}

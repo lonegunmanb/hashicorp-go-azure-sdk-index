@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/rules
+import (
+	"encoding/json"
+	"fmt"
+)
+type SocketAddrMatchConditionParameters struct {
+	MatchValues     *[]string          `json:"matchValues,omitempty"`
+	NegateCondition *bool              `json:"negateCondition,omitempty"`
+	Operator        SocketAddrOperator `json:"operator"`
+	Transforms      *[]Transform       `json:"transforms,omitempty"`
+
+	// Fields inherited from DeliveryRuleConditionParameters
+
+	TypeName DeliveryRuleConditionParametersType `json:"typeName"`
+}

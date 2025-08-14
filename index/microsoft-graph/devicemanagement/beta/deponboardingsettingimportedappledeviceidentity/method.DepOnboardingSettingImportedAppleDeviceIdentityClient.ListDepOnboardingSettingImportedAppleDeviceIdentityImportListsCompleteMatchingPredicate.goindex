@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/deponboardingsettingimportedappledeviceidentity
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DepOnboardingSettingImportedAppleDeviceIdentityClient) ListDepOnboardingSettingImportedAppleDeviceIdentityImportListsCompleteMatchingPredicate(ctx context.Context, id beta.DeviceManagementDepOnboardingSettingId, input ListDepOnboardingSettingImportedAppleDeviceIdentityImportListsRequest, options ListDepOnboardingSettingImportedAppleDeviceIdentityImportListsOperationOptions, predicate ImportedAppleDeviceIdentityResultOperationPredicate) (result ListDepOnboardingSettingImportedAppleDeviceIdentityImportListsCompleteResult, err error) {
+	items := make([]beta.ImportedAppleDeviceIdentityResult, 0)
+
+	resp, err := c.ListDepOnboardingSettingImportedAppleDeviceIdentityImportLists(ctx, id, input, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListDepOnboardingSettingImportedAppleDeviceIdentityImportListsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

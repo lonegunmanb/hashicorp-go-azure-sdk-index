@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2023-02-01/backupengines
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalBackupEngineBaseImplementation(input []byte) (BackupEngineBase, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling BackupEngineBase into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["backupEngineType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "AzureBackupServerEngine") {
+		var out AzureBackupServerEngine
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureBackupServerEngine: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "DpmBackupEngine") {
+		var out DpmBackupEngine
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DpmBackupEngine: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseBackupEngineBaseImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseBackupEngineBaseImpl: %+v", err)
+	}
+
+	return RawBackupEngineBaseImpl{
+		backupEngineBase: parent,
+		Type:             value,
+		Values:           temp,
+	}, nil
+
+}

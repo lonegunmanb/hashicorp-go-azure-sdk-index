@@ -1,0 +1,36 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2024-09-01/endpoints
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMatchVariable(input string) (*MatchVariable, error) {
+	vals := map[string]MatchVariable{
+		"clientport":       MatchVariableClientPort,
+		"cookies":          MatchVariableCookies,
+		"httpversion":      MatchVariableHTTPVersion,
+		"hostname":         MatchVariableHostName,
+		"isdevice":         MatchVariableIsDevice,
+		"postargs":         MatchVariablePostArgs,
+		"querystring":      MatchVariableQueryString,
+		"remoteaddress":    MatchVariableRemoteAddress,
+		"requestbody":      MatchVariableRequestBody,
+		"requestheader":    MatchVariableRequestHeader,
+		"requestmethod":    MatchVariableRequestMethod,
+		"requestscheme":    MatchVariableRequestScheme,
+		"requesturi":       MatchVariableRequestUri,
+		"serverport":       MatchVariableServerPort,
+		"socketaddr":       MatchVariableSocketAddr,
+		"sslprotocol":      MatchVariableSslProtocol,
+		"urlfileextension": MatchVariableURLFileExtension,
+		"urlfilename":      MatchVariableURLFileName,
+		"urlpath":          MatchVariableURLPath,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MatchVariable(input)
+	return &out, nil
+}

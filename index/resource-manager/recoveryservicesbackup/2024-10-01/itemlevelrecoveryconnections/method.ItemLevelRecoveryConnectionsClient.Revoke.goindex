@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2024-10-01/itemlevelrecoveryconnections
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+)
+func (c ItemLevelRecoveryConnectionsClient) Revoke(ctx context.Context, id RecoveryPointId) (result RevokeOperationResponse, err error) {
+	req, err := c.preparerForRevoke(ctx, id)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "itemlevelrecoveryconnections.ItemLevelRecoveryConnectionsClient", "Revoke", nil, "Failure preparing request")
+		return
+	}
+
+	result.HttpResponse, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "itemlevelrecoveryconnections.ItemLevelRecoveryConnectionsClient", "Revoke", result.HttpResponse, "Failure sending request")
+		return
+	}
+
+	result, err = c.responderForRevoke(result.HttpResponse)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "itemlevelrecoveryconnections.ItemLevelRecoveryConnectionsClient", "Revoke", result.HttpResponse, "Failure responding to request")
+		return
+	}
+
+	return
+}

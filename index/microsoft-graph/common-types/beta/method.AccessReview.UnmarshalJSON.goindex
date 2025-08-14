@@ -1,0 +1,74 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *AccessReview) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		BusinessFlowTemplateId *string                 `json:"businessFlowTemplateId,omitempty"`
+		Decisions              *[]AccessReviewDecision `json:"decisions,omitempty"`
+		Description            nullable.Type[string]   `json:"description,omitempty"`
+		DisplayName            *string                 `json:"displayName,omitempty"`
+		EndDateTime            *string                 `json:"endDateTime,omitempty"`
+		Instances              *[]AccessReview         `json:"instances,omitempty"`
+		MyDecisions            *[]AccessReviewDecision `json:"myDecisions,omitempty"`
+		ReviewerType           nullable.Type[string]   `json:"reviewerType,omitempty"`
+		Reviewers              *[]AccessReviewReviewer `json:"reviewers,omitempty"`
+		StartDateTime          *string                 `json:"startDateTime,omitempty"`
+		Status                 nullable.Type[string]   `json:"status,omitempty"`
+		Id                     *string                 `json:"id,omitempty"`
+		ODataId                *string                 `json:"@odata.id,omitempty"`
+		ODataType              *string                 `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.BusinessFlowTemplateId = decoded.BusinessFlowTemplateId
+	s.Decisions = decoded.Decisions
+	s.Description = decoded.Description
+	s.DisplayName = decoded.DisplayName
+	s.EndDateTime = decoded.EndDateTime
+	s.Instances = decoded.Instances
+	s.MyDecisions = decoded.MyDecisions
+	s.ReviewerType = decoded.ReviewerType
+	s.Reviewers = decoded.Reviewers
+	s.StartDateTime = decoded.StartDateTime
+	s.Status = decoded.Status
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling AccessReview into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["createdBy"]; ok {
+		impl, err := UnmarshalUserIdentityImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'CreatedBy' for 'AccessReview': %+v", err)
+		}
+		s.CreatedBy = &impl
+	}
+
+	if v, ok := temp["reviewedEntity"]; ok {
+		impl, err := UnmarshalIdentityImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'ReviewedEntity' for 'AccessReview': %+v", err)
+		}
+		s.ReviewedEntity = impl
+	}
+
+	if v, ok := temp["settings"]; ok {
+		impl, err := UnmarshalAccessReviewSettingsImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Settings' for 'AccessReview': %+v", err)
+		}
+		s.Settings = impl
+	}
+
+	return nil
+}

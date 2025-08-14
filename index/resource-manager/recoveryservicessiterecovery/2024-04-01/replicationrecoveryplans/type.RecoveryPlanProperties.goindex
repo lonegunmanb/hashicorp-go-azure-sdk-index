@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2024-04-01/replicationrecoveryplans
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type RecoveryPlanProperties struct {
+	AllowedOperations                *[]string                              `json:"allowedOperations,omitempty"`
+	CurrentScenario                  *CurrentScenarioDetails                `json:"currentScenario,omitempty"`
+	CurrentScenarioStatus            *string                                `json:"currentScenarioStatus,omitempty"`
+	CurrentScenarioStatusDescription *string                                `json:"currentScenarioStatusDescription,omitempty"`
+	FailoverDeploymentModel          *string                                `json:"failoverDeploymentModel,omitempty"`
+	FriendlyName                     *string                                `json:"friendlyName,omitempty"`
+	Groups                           *[]RecoveryPlanGroup                   `json:"groups,omitempty"`
+	LastPlannedFailoverTime          *string                                `json:"lastPlannedFailoverTime,omitempty"`
+	LastTestFailoverTime             *string                                `json:"lastTestFailoverTime,omitempty"`
+	LastUnplannedFailoverTime        *string                                `json:"lastUnplannedFailoverTime,omitempty"`
+	PrimaryFabricFriendlyName        *string                                `json:"primaryFabricFriendlyName,omitempty"`
+	PrimaryFabricId                  *string                                `json:"primaryFabricId,omitempty"`
+	ProviderSpecificDetails          *[]RecoveryPlanProviderSpecificDetails `json:"providerSpecificDetails,omitempty"`
+	RecoveryFabricFriendlyName       *string                                `json:"recoveryFabricFriendlyName,omitempty"`
+	RecoveryFabricId                 *string                                `json:"recoveryFabricId,omitempty"`
+	ReplicationProviders             *[]string                              `json:"replicationProviders,omitempty"`
+}

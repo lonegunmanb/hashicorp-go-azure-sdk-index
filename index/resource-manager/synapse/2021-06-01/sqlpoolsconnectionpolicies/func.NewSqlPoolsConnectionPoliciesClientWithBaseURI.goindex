@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/sqlpoolsconnectionpolicies
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSqlPoolsConnectionPoliciesClientWithBaseURI(sdkApi sdkEnv.Api) (*SqlPoolsConnectionPoliciesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "sqlpoolsconnectionpolicies", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SqlPoolsConnectionPoliciesClient: %+v", err)
+	}
+
+	return &SqlPoolsConnectionPoliciesClient{
+		Client: client,
+	}, nil
+}

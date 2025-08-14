@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s Win32CatalogAppAssignmentSettings) Win32LobAppAssignmentSettings() BaseWin32LobAppAssignmentSettingsImpl {
+	return BaseWin32LobAppAssignmentSettingsImpl{
+		AutoUpdateSettings:           s.AutoUpdateSettings,
+		DeliveryOptimizationPriority: s.DeliveryOptimizationPriority,
+		InstallTimeSettings:          s.InstallTimeSettings,
+		Notifications:                s.Notifications,
+		RestartSettings:              s.RestartSettings,
+		ODataId:                      s.ODataId,
+		ODataType:                    s.ODataType,
+	}
+}

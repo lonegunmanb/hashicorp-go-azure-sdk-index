@@ -1,0 +1,63 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityAppCategory(input string) (*SecurityAppCategory, error) {
+	vals := map[string]SecurityAppCategory{
+		"accountingandfinance":     SecurityAppCategory_AccountingAndFinance,
+		"advertising":              SecurityAppCategory_Advertising,
+		"aimodelprovider":          SecurityAppCategory_AiModelProvider,
+		"businessintelligence":     SecurityAppCategory_BusinessIntelligence,
+		"businessmanagement":       SecurityAppCategory_BusinessManagement,
+		"clientaiapp":              SecurityAppCategory_ClientAiApp,
+		"cloudcomputingplatform":   SecurityAppCategory_CloudComputingPlatform,
+		"cloudstorage":             SecurityAppCategory_CloudStorage,
+		"codehosting":              SecurityAppCategory_CodeHosting,
+		"collaboration":            SecurityAppCategory_Collaboration,
+		"communications":           SecurityAppCategory_Communications,
+		"contentmanagement":        SecurityAppCategory_ContentManagement,
+		"contentsharing":           SecurityAppCategory_ContentSharing,
+		"crm":                      SecurityAppCategory_Crm,
+		"customersupport":          SecurityAppCategory_CustomerSupport,
+		"dataanalytics":            SecurityAppCategory_DataAnalytics,
+		"developmenttools":         SecurityAppCategory_DevelopmentTools,
+		"ecommerce":                SecurityAppCategory_ECommerce,
+		"education":                SecurityAppCategory_Education,
+		"forums":                   SecurityAppCategory_Forums,
+		"generativeai":             SecurityAppCategory_GenerativeAi,
+		"health":                   SecurityAppCategory_Health,
+		"hostingservices":          SecurityAppCategory_HostingServices,
+		"humanresourcemanagement":  SecurityAppCategory_HumanResourceManagement,
+		"internetofthings":         SecurityAppCategory_InternetOfThings,
+		"itservices":               SecurityAppCategory_ItServices,
+		"marketing":                SecurityAppCategory_Marketing,
+		"mcpserver":                SecurityAppCategory_McpServer,
+		"newsandentertainment":     SecurityAppCategory_NewsAndEntertainment,
+		"onlinemeetings":           SecurityAppCategory_OnlineMeetings,
+		"operationsmanagement":     SecurityAppCategory_OperationsManagement,
+		"personalinstantmessaging": SecurityAppCategory_PersonalInstantMessaging,
+		"productdesign":            SecurityAppCategory_ProductDesign,
+		"productivity":             SecurityAppCategory_Productivity,
+		"projectmanagement":        SecurityAppCategory_ProjectManagement,
+		"propertymanagement":       SecurityAppCategory_PropertyManagement,
+		"sales":                    SecurityAppCategory_Sales,
+		"security":                 SecurityAppCategory_Security,
+		"socialnetwork":            SecurityAppCategory_SocialNetwork,
+		"supplychainandlogistics":  SecurityAppCategory_SupplyChainAndLogistics,
+		"transportationandtravel":  SecurityAppCategory_TransportationAndTravel,
+		"unknown":                  SecurityAppCategory_Unknown,
+		"vendormanagementsystems":  SecurityAppCategory_VendorManagementSystems,
+		"webanalytics":             SecurityAppCategory_WebAnalytics,
+		"webemail":                 SecurityAppCategory_Webemail,
+		"websitemonitoring":        SecurityAppCategory_WebsiteMonitoring,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityAppCategory(input)
+	return &out, nil
+}

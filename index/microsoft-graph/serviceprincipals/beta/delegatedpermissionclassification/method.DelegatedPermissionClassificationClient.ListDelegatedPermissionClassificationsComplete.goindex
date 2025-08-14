@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/delegatedpermissionclassification
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DelegatedPermissionClassificationClient) ListDelegatedPermissionClassificationsComplete(ctx context.Context, id beta.ServicePrincipalId, options ListDelegatedPermissionClassificationsOperationOptions) (ListDelegatedPermissionClassificationsCompleteResult, error) {
+	return c.ListDelegatedPermissionClassificationsCompleteMatchingPredicate(ctx, id, options, DelegatedPermissionClassificationOperationPredicate{})
+}

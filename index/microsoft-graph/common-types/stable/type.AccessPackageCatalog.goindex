@@ -1,0 +1,58 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type AccessPackageCatalog struct {
+	// The access packages in this catalog. Read-only. Nullable.
+	AccessPackages *[]AccessPackage `json:"accessPackages,omitempty"`
+
+	// Whether the catalog is created by a user or entitlement management. The possible values are: userManaged,
+	// serviceDefault, serviceManaged, unknownFutureValue.
+	CatalogType *AccessPackageCatalogType `json:"catalogType,omitempty"`
+
+	// The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example,
+	// midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	CustomWorkflowExtensions *[]CustomCalloutExtension `json:"customWorkflowExtensions,omitempty"`
+
+	// The description of the access package catalog.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// The display name of the access package catalog.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// Whether the access packages in this catalog can be requested by users outside of the tenant.
+	IsExternallyVisible nullable.Type[bool] `json:"isExternallyVisible,omitempty"`
+
+	// The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example,
+	// midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.
+	ModifiedDateTime nullable.Type[string] `json:"modifiedDateTime,omitempty"`
+
+	ResourceRoles  *[]AccessPackageResourceRole  `json:"resourceRoles,omitempty"`
+	ResourceScopes *[]AccessPackageResourceScope `json:"resourceScopes,omitempty"`
+
+	// Access package resources in this catalog.
+	Resources *[]AccessPackageResource `json:"resources,omitempty"`
+
+	// Has the value published if the access packages are available for management. The possible values are: unpublished,
+	// published, unknownFutureValue.
+	State *AccessPackageCatalogState `json:"state,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

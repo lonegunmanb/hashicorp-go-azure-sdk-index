@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/hardwareconfigurationrunsummary
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewHardwareConfigurationRunSummaryClientWithBaseURI(sdkApi sdkEnv.Api) (*HardwareConfigurationRunSummaryClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "hardwareconfigurationrunsummary", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating HardwareConfigurationRunSummaryClient: %+v", err)
+	}
+
+	return &HardwareConfigurationRunSummaryClient{
+		Client: client,
+	}, nil
+}

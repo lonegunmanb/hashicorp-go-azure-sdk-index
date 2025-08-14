@@ -1,0 +1,118 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type Site struct {
+	// Analytics about the view activities that took place on this site.
+	Analytics *ItemAnalytics `json:"analytics,omitempty"`
+
+	// The collection of column definitions reusable across lists under this site.
+	Columns *[]ColumnDefinition `json:"columns,omitempty"`
+
+	// The collection of content types defined for this site.
+	ContentTypes *[]ContentType `json:"contentTypes,omitempty"`
+
+	// The full title for the site. Read-only.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// The default drive (document library) for this site.
+	Drive *Drive `json:"drive,omitempty"`
+
+	// The collection of drives (document libraries) under this site.
+	Drives *[]Drive `json:"drives,omitempty"`
+
+	Error           *PublicError        `json:"error,omitempty"`
+	ExternalColumns *[]ColumnDefinition `json:"externalColumns,omitempty"`
+
+	// Identifies whether the site is personal or not. Read-only.
+	IsPersonalSite nullable.Type[bool] `json:"isPersonalSite,omitempty"`
+
+	// Used to address any item contained in this site. This collection can't be enumerated.
+	Items *[]BaseItem `json:"items,omitempty"`
+
+	// The collection of lists under this site.
+	Lists *[]List `json:"lists,omitempty"`
+
+	// Calls the OneNote service for notebook related operations.
+	Onenote *Onenote `json:"onenote,omitempty"`
+
+	// The collection of long-running operations on the site.
+	Operations *[]RichLongRunningOperation `json:"operations,omitempty"`
+
+	// The collection of pages in the baseSitePages list in this site.
+	Pages *[]BaseSitePage `json:"pages,omitempty"`
+
+	// The permissions associated with the site. Nullable.
+	Permissions *[]Permission `json:"permissions,omitempty"`
+
+	// If present, provides the root site in the site collection. Read-only.
+	Root *Root `json:"root,omitempty"`
+
+	// Returns identifiers useful for SharePoint REST compatibility. Read-only.
+	SharepointIds *SharepointIds `json:"sharepointIds,omitempty"`
+
+	// Provides details about the site's site collection. Available only on the root site. Read-only.
+	SiteCollection *SiteCollection `json:"siteCollection,omitempty"`
+
+	// The collection of the sub-sites under this site.
+	Sites *[]Site `json:"sites,omitempty"`
+
+	// The default termStore under this site.
+	TermStore *TermStoreStore `json:"termStore,omitempty"`
+
+	// The collection of termStores under this site.
+	TermStores *[]TermStoreStore `json:"termStores,omitempty"`
+
+	// Fields inherited from BaseItem
+
+	// Identity of the user, device, or application that created the item. Read-only.
+	CreatedBy *IdentitySet `json:"createdBy,omitempty"`
+
+	// Identity of the user who created the item. Read-only.
+	CreatedByUser *User `json:"createdByUser,omitempty"`
+
+	// Date and time of item creation. Read-only.
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+
+	// Provides a user-visible description of the item. Optional.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// ETag for the item. Read-only.
+	ETag nullable.Type[string] `json:"eTag,omitempty"`
+
+	// Identity of the user, device, and application that last modified the item. Read-only.
+	LastModifiedBy *IdentitySet `json:"lastModifiedBy,omitempty"`
+
+	// Identity of the user who last modified the item. Read-only.
+	LastModifiedByUser *User `json:"lastModifiedByUser,omitempty"`
+
+	// Date and time the item was last modified. Read-only.
+	LastModifiedDateTime *string `json:"lastModifiedDateTime,omitempty"`
+
+	// The name of the item. Read-write.
+	Name nullable.Type[string] `json:"name,omitempty"`
+
+	// Parent information, if the item has a parent. Read-write.
+	ParentReference *ItemReference `json:"parentReference,omitempty"`
+
+	// URL that either displays the resource in the browser (for Office file formats), or is a direct link to the file (for
+	// other formats). Read-only.
+	WebUrl nullable.Type[string] `json:"webUrl,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

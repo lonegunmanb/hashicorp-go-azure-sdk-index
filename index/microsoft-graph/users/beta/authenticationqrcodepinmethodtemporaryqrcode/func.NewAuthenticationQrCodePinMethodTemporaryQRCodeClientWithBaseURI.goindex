@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authenticationqrcodepinmethodtemporaryqrcode
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAuthenticationQrCodePinMethodTemporaryQRCodeClientWithBaseURI(sdkApi sdkEnv.Api) (*AuthenticationQrCodePinMethodTemporaryQRCodeClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "authenticationqrcodepinmethodtemporaryqrcode", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AuthenticationQrCodePinMethodTemporaryQRCodeClient: %+v", err)
+	}
+
+	return &AuthenticationQrCodePinMethodTemporaryQRCodeClient{
+		Client: client,
+	}, nil
+}

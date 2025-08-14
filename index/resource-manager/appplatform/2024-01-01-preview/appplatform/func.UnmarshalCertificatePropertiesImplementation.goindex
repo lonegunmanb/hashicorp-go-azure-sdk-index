@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/appplatform/2024-01-01-preview/appplatform
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalCertificatePropertiesImplementation(input []byte) (CertificateProperties, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling CertificateProperties into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "ContentCertificate") {
+		var out ContentCertificateProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ContentCertificateProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "KeyVaultCertificate") {
+		var out KeyVaultCertificateProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into KeyVaultCertificateProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseCertificatePropertiesImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseCertificatePropertiesImpl: %+v", err)
+	}
+
+	return RawCertificatePropertiesImpl{
+		certificateProperties: parent,
+		Type:                  value,
+		Values:                temp,
+	}, nil
+
+}

@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/importeddeviceidentity
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ImportedDeviceIdentityClient) ListImportedDeviceIdentitySearchExistingIdentitiesCompleteMatchingPredicate(ctx context.Context, input ListImportedDeviceIdentitySearchExistingIdentitiesRequest, options ListImportedDeviceIdentitySearchExistingIdentitiesOperationOptions, predicate ImportedDeviceIdentityOperationPredicate) (result ListImportedDeviceIdentitySearchExistingIdentitiesCompleteResult, err error) {
+	items := make([]beta.ImportedDeviceIdentity, 0)
+
+	resp, err := c.ListImportedDeviceIdentitySearchExistingIdentities(ctx, input, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListImportedDeviceIdentitySearchExistingIdentitiesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/customdomains
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s CdnManagedHTTPSParameters) CustomDomainHTTPSParameters() BaseCustomDomainHTTPSParametersImpl {
+	return BaseCustomDomainHTTPSParametersImpl{
+		CertificateSource: s.CertificateSource,
+		MinimumTlsVersion: s.MinimumTlsVersion,
+		ProtocolType:      s.ProtocolType,
+	}
+}

@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamscheduletimesoff
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c JoinedTeamScheduleTimesOffClient) ListJoinedTeamScheduleTimesOffsComplete(ctx context.Context, id stable.UserIdJoinedTeamId, options ListJoinedTeamScheduleTimesOffsOperationOptions) (ListJoinedTeamScheduleTimesOffsCompleteResult, error) {
+	return c.ListJoinedTeamScheduleTimesOffsCompleteMatchingPredicate(ctx, id, options, TimeOffOperationPredicate{})
+}

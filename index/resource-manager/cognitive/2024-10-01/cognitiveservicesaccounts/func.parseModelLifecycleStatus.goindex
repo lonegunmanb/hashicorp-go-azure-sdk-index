@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cognitive/2024-10-01/cognitiveservicesaccounts
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseModelLifecycleStatus(input string) (*ModelLifecycleStatus, error) {
+	vals := map[string]ModelLifecycleStatus{
+		"deprecated":         ModelLifecycleStatusDeprecated,
+		"deprecating":        ModelLifecycleStatusDeprecating,
+		"generallyavailable": ModelLifecycleStatusGenerallyAvailable,
+		"preview":            ModelLifecycleStatusPreview,
+		"stable":             ModelLifecycleStatusStable,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ModelLifecycleStatus(input)
+	return &out, nil
+}

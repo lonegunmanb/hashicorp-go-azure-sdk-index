@@ -1,0 +1,55 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/security/2019-01-01-preview/subassessments
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (s *SecuritySubAssessmentProperties) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		Category      *string              `json:"category,omitempty"`
+		Description   *string              `json:"description,omitempty"`
+		DisplayName   *string              `json:"displayName,omitempty"`
+		Id            *string              `json:"id,omitempty"`
+		Impact        *string              `json:"impact,omitempty"`
+		Remediation   *string              `json:"remediation,omitempty"`
+		Status        *SubAssessmentStatus `json:"status,omitempty"`
+		TimeGenerated *string              `json:"timeGenerated,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.Category = decoded.Category
+	s.Description = decoded.Description
+	s.DisplayName = decoded.DisplayName
+	s.Id = decoded.Id
+	s.Impact = decoded.Impact
+	s.Remediation = decoded.Remediation
+	s.Status = decoded.Status
+	s.TimeGenerated = decoded.TimeGenerated
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling SecuritySubAssessmentProperties into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["additionalData"]; ok {
+		impl, err := UnmarshalAdditionalDataImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'AdditionalData' for 'SecuritySubAssessmentProperties': %+v", err)
+		}
+		s.AdditionalData = impl
+	}
+
+	if v, ok := temp["resourceDetails"]; ok {
+		impl, err := UnmarshalResourceDetailsImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'ResourceDetails' for 'SecuritySubAssessmentProperties': %+v", err)
+		}
+		s.ResourceDetails = impl
+	}
+
+	return nil
+}

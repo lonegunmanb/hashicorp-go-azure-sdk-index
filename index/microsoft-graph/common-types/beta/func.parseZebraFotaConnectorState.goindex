@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseZebraFotaConnectorState(input string) (*ZebraFotaConnectorState, error) {
+	vals := map[string]ZebraFotaConnectorState{
+		"connected":    ZebraFotaConnectorState_Connected,
+		"disconnected": ZebraFotaConnectorState_Disconnected,
+		"none":         ZebraFotaConnectorState_None,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ZebraFotaConnectorState(input)
+	return &out, nil
+}

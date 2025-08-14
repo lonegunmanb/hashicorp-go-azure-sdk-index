@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id UserIdJoinedTeamIdPrimaryChannelSharedWithTeamIdAllowedMemberId) String() string {
+	components := []string{
+		fmt.Sprintf("User: %q", id.UserId),
+		fmt.Sprintf("Team: %q", id.TeamId),
+		fmt.Sprintf("Shared With Channel Team Info: %q", id.SharedWithChannelTeamInfoId),
+		fmt.Sprintf("Conversation Member: %q", id.ConversationMemberId),
+	}
+	return fmt.Sprintf("User Id Joined Team Id Primary Channel Shared With Team Id Allowed Member (%s)", strings.Join(components, "\n"))
+}

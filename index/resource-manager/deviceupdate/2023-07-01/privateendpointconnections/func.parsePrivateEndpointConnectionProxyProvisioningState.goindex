@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/deviceupdate/2023-07-01/privateendpointconnections
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePrivateEndpointConnectionProxyProvisioningState(input string) (*PrivateEndpointConnectionProxyProvisioningState, error) {
+	vals := map[string]PrivateEndpointConnectionProxyProvisioningState{
+		"creating":  PrivateEndpointConnectionProxyProvisioningStateCreating,
+		"deleting":  PrivateEndpointConnectionProxyProvisioningStateDeleting,
+		"failed":    PrivateEndpointConnectionProxyProvisioningStateFailed,
+		"succeeded": PrivateEndpointConnectionProxyProvisioningStateSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PrivateEndpointConnectionProxyProvisioningState(input)
+	return &out, nil
+}

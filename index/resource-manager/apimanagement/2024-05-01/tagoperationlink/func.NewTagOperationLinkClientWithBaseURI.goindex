@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/tagoperationlink
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTagOperationLinkClientWithBaseURI(sdkApi sdkEnv.Api) (*TagOperationLinkClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "tagoperationlink", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TagOperationLinkClient: %+v", err)
+	}
+
+	return &TagOperationLinkClient{
+		Client: client,
+	}, nil
+}

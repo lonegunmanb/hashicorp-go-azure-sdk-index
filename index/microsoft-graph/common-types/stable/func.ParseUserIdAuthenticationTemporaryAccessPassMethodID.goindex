@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseUserIdAuthenticationTemporaryAccessPassMethodID(input string) (*UserIdAuthenticationTemporaryAccessPassMethodId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&UserIdAuthenticationTemporaryAccessPassMethodId{})
+	parsed, err := parser.Parse(input, false)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := UserIdAuthenticationTemporaryAccessPassMethodId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2024-07-10/machines
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVMGuestPatchClassificationLinux(input string) (*VMGuestPatchClassificationLinux, error) {
+	vals := map[string]VMGuestPatchClassificationLinux{
+		"critical": VMGuestPatchClassificationLinuxCritical,
+		"other":    VMGuestPatchClassificationLinuxOther,
+		"security": VMGuestPatchClassificationLinuxSecurity,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VMGuestPatchClassificationLinux(input)
+	return &out, nil
+}

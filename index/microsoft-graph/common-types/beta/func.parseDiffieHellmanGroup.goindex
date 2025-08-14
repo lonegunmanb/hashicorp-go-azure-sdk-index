@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDiffieHellmanGroup(input string) (*DiffieHellmanGroup, error) {
+	vals := map[string]DiffieHellmanGroup{
+		"ecp256":  DiffieHellmanGroup_Ecp256,
+		"ecp384":  DiffieHellmanGroup_Ecp384,
+		"group1":  DiffieHellmanGroup_Group1,
+		"group14": DiffieHellmanGroup_Group14,
+		"group2":  DiffieHellmanGroup_Group2,
+		"group24": DiffieHellmanGroup_Group24,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DiffieHellmanGroup(input)
+	return &out, nil
+}

@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-11-01/webapplicationfirewallpolicies
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWebApplicationFirewallOperator(input string) (*WebApplicationFirewallOperator, error) {
+	vals := map[string]WebApplicationFirewallOperator{
+		"any":                WebApplicationFirewallOperatorAny,
+		"beginswith":         WebApplicationFirewallOperatorBeginsWith,
+		"contains":           WebApplicationFirewallOperatorContains,
+		"endswith":           WebApplicationFirewallOperatorEndsWith,
+		"equal":              WebApplicationFirewallOperatorEqual,
+		"geomatch":           WebApplicationFirewallOperatorGeoMatch,
+		"greaterthan":        WebApplicationFirewallOperatorGreaterThan,
+		"greaterthanorequal": WebApplicationFirewallOperatorGreaterThanOrEqual,
+		"ipmatch":            WebApplicationFirewallOperatorIPMatch,
+		"lessthan":           WebApplicationFirewallOperatorLessThan,
+		"lessthanorequal":    WebApplicationFirewallOperatorLessThanOrEqual,
+		"regex":              WebApplicationFirewallOperatorRegex,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WebApplicationFirewallOperator(input)
+	return &out, nil
+}

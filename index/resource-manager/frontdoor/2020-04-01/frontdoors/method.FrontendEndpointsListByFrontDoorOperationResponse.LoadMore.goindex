@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/frontdoor/2020-04-01/frontdoors
+import (
+	"context"
+	"fmt"
+	"net/http"
+	"net/url"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+)
+func (r FrontendEndpointsListByFrontDoorOperationResponse) LoadMore(ctx context.Context) (resp FrontendEndpointsListByFrontDoorOperationResponse, err error) {
+	if !r.HasMore() {
+		err = fmt.Errorf("no more pages returned")
+		return
+	}
+	return r.nextPageFunc(ctx, *r.nextLink)
+}

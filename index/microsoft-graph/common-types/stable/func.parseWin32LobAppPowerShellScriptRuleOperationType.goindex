@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWin32LobAppPowerShellScriptRuleOperationType(input string) (*Win32LobAppPowerShellScriptRuleOperationType, error) {
+	vals := map[string]Win32LobAppPowerShellScriptRuleOperationType{
+		"boolean":       Win32LobAppPowerShellScriptRuleOperationType_Boolean,
+		"datetime":      Win32LobAppPowerShellScriptRuleOperationType_DateTime,
+		"float":         Win32LobAppPowerShellScriptRuleOperationType_Float,
+		"integer":       Win32LobAppPowerShellScriptRuleOperationType_Integer,
+		"notconfigured": Win32LobAppPowerShellScriptRuleOperationType_NotConfigured,
+		"string":        Win32LobAppPowerShellScriptRuleOperationType_String,
+		"version":       Win32LobAppPowerShellScriptRuleOperationType_Version,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Win32LobAppPowerShellScriptRuleOperationType(input)
+	return &out, nil
+}

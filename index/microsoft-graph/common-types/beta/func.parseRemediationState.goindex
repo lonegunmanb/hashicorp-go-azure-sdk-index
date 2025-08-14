@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRemediationState(input string) (*RemediationState, error) {
+	vals := map[string]RemediationState{
+		"remediationfailed": RemediationState_RemediationFailed,
+		"scripterror":       RemediationState_ScriptError,
+		"skipped":           RemediationState_Skipped,
+		"success":           RemediationState_Success,
+		"unknown":           RemediationState_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RemediationState(input)
+	return &out, nil
+}

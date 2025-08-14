@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2024-10-01/restores
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/polling"
+)
+func (c RestoresClient) Trigger(ctx context.Context, id RecoveryPointId, input RestoreRequestResource, options TriggerOperationOptions) (result TriggerOperationResponse, err error) {
+	req, err := c.preparerForTrigger(ctx, id, input, options)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "restores.RestoresClient", "Trigger", nil, "Failure preparing request")
+		return
+	}
+
+	result, err = c.senderForTrigger(ctx, req)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "restores.RestoresClient", "Trigger", result.HttpResponse, "Failure sending request")
+		return
+	}
+
+	return
+}

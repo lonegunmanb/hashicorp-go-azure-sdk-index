@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2025-01-13/networksecurityperimeterconfiguration
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAccessMode(input string) (*AccessMode, error) {
+	vals := map[string]AccessMode{
+		"audit":    AccessModeAudit,
+		"enforced": AccessModeEnforced,
+		"learning": AccessModeLearning,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AccessMode(input)
+	return &out, nil
+}

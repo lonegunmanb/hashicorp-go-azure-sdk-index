@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWiredNetworkAuthenticationMethod(input string) (*WiredNetworkAuthenticationMethod, error) {
+	vals := map[string]WiredNetworkAuthenticationMethod{
+		"certificate":         WiredNetworkAuthenticationMethod_Certificate,
+		"derivedcredential":   WiredNetworkAuthenticationMethod_DerivedCredential,
+		"usernameandpassword": WiredNetworkAuthenticationMethod_UsernameAndPassword,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WiredNetworkAuthenticationMethod(input)
+	return &out, nil
+}

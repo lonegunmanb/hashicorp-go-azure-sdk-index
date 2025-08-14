@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagepool/2021-08-01/diskpoolzones
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDiskPoolZonesClientWithBaseURI(sdkApi sdkEnv.Api) (*DiskPoolZonesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "diskpoolzones", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DiskPoolZonesClient: %+v", err)
+	}
+
+	return &DiskPoolZonesClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/eventinstance
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ListEventInstancesOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.EndDateTime != nil {
+		out.Append("endDateTime", fmt.Sprintf("%v", *o.EndDateTime))
+	}
+	if o.StartDateTime != nil {
+		out.Append("startDateTime", fmt.Sprintf("%v", *o.StartDateTime))
+	}
+	return &out
+}

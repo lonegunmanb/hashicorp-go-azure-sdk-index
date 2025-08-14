@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/conditionalaccesstemplate
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewConditionalAccessTemplateClientWithBaseURI(sdkApi sdkEnv.Api) (*ConditionalAccessTemplateClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "conditionalaccesstemplate", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ConditionalAccessTemplateClient: %+v", err)
+	}
+
+	return &ConditionalAccessTemplateClient{
+		Client: client,
+	}, nil
+}

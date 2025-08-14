@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/virtualnetworkgateways
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o GetFailoverSingleTestDetailsOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.FailoverTestId != nil {
+		out.Append("failoverTestId", fmt.Sprintf("%v", *o.FailoverTestId))
+	}
+	if o.PeeringLocation != nil {
+		out.Append("peeringLocation", fmt.Sprintf("%v", *o.PeeringLocation))
+	}
+	return &out
+}

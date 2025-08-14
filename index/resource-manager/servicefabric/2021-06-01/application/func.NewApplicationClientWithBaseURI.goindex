@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicefabric/2021-06-01/application
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewApplicationClientWithBaseURI(sdkApi sdkEnv.Api) (*ApplicationClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "application", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ApplicationClient: %+v", err)
+	}
+
+	return &ApplicationClient{
+		Client: client,
+	}, nil
+}

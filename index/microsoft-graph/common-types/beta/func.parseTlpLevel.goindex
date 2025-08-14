@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTlpLevel(input string) (*TlpLevel, error) {
+	vals := map[string]TlpLevel{
+		"amber":   TlpLevel_Amber,
+		"green":   TlpLevel_Green,
+		"red":     TlpLevel_Red,
+		"unknown": TlpLevel_Unknown,
+		"white":   TlpLevel_White,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TlpLevel(input)
+	return &out, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/security/2019-01-01-preview/subassessments
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSubAssessmentsClientWithBaseURI(sdkApi sdkEnv.Api) (*SubAssessmentsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "subassessments", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SubAssessmentsClient: %+v", err)
+	}
+
+	return &SubAssessmentsClient{
+		Client: client,
+	}, nil
+}

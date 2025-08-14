@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-05-01/subnets
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSubnetsClientWithBaseURI(sdkApi sdkEnv.Api) (*SubnetsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "subnets", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SubnetsClient: %+v", err)
+	}
+
+	return &SubnetsClient{
+		Client: client,
+	}, nil
+}

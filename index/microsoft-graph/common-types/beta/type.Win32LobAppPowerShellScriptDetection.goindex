@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type Win32LobAppPowerShellScriptDetection struct {
+	// A value indicating whether signature check is enforced
+	EnforceSignatureCheck *bool `json:"enforceSignatureCheck,omitempty"`
+
+	// A value indicating whether this script should run as 32-bit
+	RunAs32Bit *bool `json:"runAs32Bit,omitempty"`
+
+	// The base64 encoded script content to detect Win32 Line of Business (LoB) app
+	ScriptContent nullable.Type[string] `json:"scriptContent,omitempty"`
+
+	// Fields inherited from Win32LobAppDetection
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

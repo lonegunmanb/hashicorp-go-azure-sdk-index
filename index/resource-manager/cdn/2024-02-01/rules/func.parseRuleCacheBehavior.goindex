@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2024-02-01/rules
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRuleCacheBehavior(input string) (*RuleCacheBehavior, error) {
+	vals := map[string]RuleCacheBehavior{
+		"honororigin":             RuleCacheBehaviorHonorOrigin,
+		"overridealways":          RuleCacheBehaviorOverrideAlways,
+		"overrideiforiginmissing": RuleCacheBehaviorOverrideIfOriginMissing,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RuleCacheBehavior(input)
+	return &out, nil
+}

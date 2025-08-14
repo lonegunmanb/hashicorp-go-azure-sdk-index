@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/batchaccount
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAutoStorageAuthenticationMode(input string) (*AutoStorageAuthenticationMode, error) {
+	vals := map[string]AutoStorageAuthenticationMode{
+		"batchaccountmanagedidentity": AutoStorageAuthenticationModeBatchAccountManagedIdentity,
+		"storagekeys":                 AutoStorageAuthenticationModeStorageKeys,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AutoStorageAuthenticationMode(input)
+	return &out, nil
+}

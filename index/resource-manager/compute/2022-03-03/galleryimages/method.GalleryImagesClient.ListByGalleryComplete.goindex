@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2022-03-03/galleryimages
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c GalleryImagesClient) ListByGalleryComplete(ctx context.Context, id commonids.SharedImageGalleryId) (ListByGalleryCompleteResult, error) {
+	return c.ListByGalleryCompleteMatchingPredicate(ctx, id, GalleryImageOperationPredicate{})
+}

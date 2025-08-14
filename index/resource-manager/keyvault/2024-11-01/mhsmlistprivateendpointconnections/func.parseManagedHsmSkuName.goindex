@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2024-11-01/mhsmlistprivateendpointconnections
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseManagedHsmSkuName(input string) (*ManagedHsmSkuName, error) {
+	vals := map[string]ManagedHsmSkuName{
+		"custom_b6":   ManagedHsmSkuNameCustomBSix,
+		"custom_b32":  ManagedHsmSkuNameCustomBThreeTwo,
+		"custom_c42":  ManagedHsmSkuNameCustomCFourTwo,
+		"custom_c10":  ManagedHsmSkuNameCustomCOneZero,
+		"standard_b1": ManagedHsmSkuNameStandardBOne,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagedHsmSkuName(input)
+	return &out, nil
+}

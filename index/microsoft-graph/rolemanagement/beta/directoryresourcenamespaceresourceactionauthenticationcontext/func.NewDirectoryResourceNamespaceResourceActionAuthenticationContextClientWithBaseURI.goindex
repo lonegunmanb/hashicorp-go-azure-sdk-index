@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/directoryresourcenamespaceresourceactionauthenticationcontext
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDirectoryResourceNamespaceResourceActionAuthenticationContextClientWithBaseURI(sdkApi sdkEnv.Api) (*DirectoryResourceNamespaceResourceActionAuthenticationContextClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "directoryresourcenamespaceresourceactionauthenticationcontext", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DirectoryResourceNamespaceResourceActionAuthenticationContextClient: %+v", err)
+	}
+
+	return &DirectoryResourceNamespaceResourceActionAuthenticationContextClient{
+		Client: client,
+	}, nil
+}

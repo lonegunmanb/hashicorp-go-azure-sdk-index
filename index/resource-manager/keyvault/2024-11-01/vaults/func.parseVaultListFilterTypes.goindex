@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2024-11-01/vaults
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVaultListFilterTypes(input string) (*VaultListFilterTypes, error) {
+	vals := map[string]VaultListFilterTypes{
+		"resourcetype eq 'microsoft.keyvault/vaults'": VaultListFilterTypesResourceTypeEqMicrosoftPointKeyVaultVaults,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VaultListFilterTypes(input)
+	return &out, nil
+}

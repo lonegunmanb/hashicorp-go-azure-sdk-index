@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/drivespecial
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDriveSpecialClientWithBaseURI(sdkApi sdkEnv.Api) (*DriveSpecialClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "drivespecial", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DriveSpecialClient: %+v", err)
+	}
+
+	return &DriveSpecialClient{
+		Client: client,
+	}, nil
+}

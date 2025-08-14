@@ -1,0 +1,11 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id UserIdChatIdTabId) ID() string {
+	fmtString := "/users/%s/chats/%s/tabs/%s"
+	return fmt.Sprintf(fmtString, id.UserId, id.ChatId, id.TeamsTabId)
+}

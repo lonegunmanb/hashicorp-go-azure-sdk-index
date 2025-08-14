@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-05-01/flowlogs
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c FlowLogsClient) ListComplete(ctx context.Context, id NetworkWatcherId) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, FlowLogOperationPredicate{})
+}

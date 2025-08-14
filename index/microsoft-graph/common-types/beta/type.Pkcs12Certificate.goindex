@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type Pkcs12Certificate struct {
+	// Specifies the password for the pfx file. Required. If no password is used, must still provide a value of ''.
+	Password nullable.Type[string] `json:"password,omitempty"`
+
+	// Specifies the field for sending pfx content. The value should be a base-64 encoded version of the actual certificate
+	// content. Required.
+	Pkcs12Value nullable.Type[string] `json:"pkcs12Value,omitempty"`
+
+	// Fields inherited from ApiAuthenticationConfigurationBase
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

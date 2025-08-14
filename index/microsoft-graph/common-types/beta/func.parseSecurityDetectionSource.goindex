@@ -1,0 +1,53 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityDetectionSource(input string) (*SecurityDetectionSource, error) {
+	vals := map[string]SecurityDetectionSource{
+		"antivirus":                                    SecurityDetectionSource_Antivirus,
+		"appgovernancedetection":                       SecurityDetectionSource_AppGovernanceDetection,
+		"appgovernancepolicy":                          SecurityDetectionSource_AppGovernancePolicy,
+		"automatedinvestigation":                       SecurityDetectionSource_AutomatedInvestigation,
+		"azureadidentityprotection":                    SecurityDetectionSource_AzureAdIdentityProtection,
+		"builtinml":                                    SecurityDetectionSource_BuiltInMl,
+		"cloudappsecurity":                             SecurityDetectionSource_CloudAppSecurity,
+		"customdetection":                              SecurityDetectionSource_CustomDetection,
+		"customti":                                     SecurityDetectionSource_CustomTi,
+		"manual":                                       SecurityDetectionSource_Manual,
+		"microsoft365defender":                         SecurityDetectionSource_Microsoft365Defender,
+		"microsoftdatalossprevention":                  SecurityDetectionSource_MicrosoftDataLossPrevention,
+		"microsoftdefenderforapimanagement":            SecurityDetectionSource_MicrosoftDefenderForApiManagement,
+		"microsoftdefenderforappservice":               SecurityDetectionSource_MicrosoftDefenderForAppService,
+		"microsoftdefenderforcloud":                    SecurityDetectionSource_MicrosoftDefenderForCloud,
+		"microsoftdefenderforcontainers":               SecurityDetectionSource_MicrosoftDefenderForContainers,
+		"microsoftdefenderfordns":                      SecurityDetectionSource_MicrosoftDefenderForDNS,
+		"microsoftdefenderfordatabases":                SecurityDetectionSource_MicrosoftDefenderForDatabases,
+		"microsoftdefenderforendpoint":                 SecurityDetectionSource_MicrosoftDefenderForEndpoint,
+		"microsoftdefenderforidentity":                 SecurityDetectionSource_MicrosoftDefenderForIdentity,
+		"microsoftdefenderforiot":                      SecurityDetectionSource_MicrosoftDefenderForIoT,
+		"microsoftdefenderforkeyvault":                 SecurityDetectionSource_MicrosoftDefenderForKeyVault,
+		"microsoftdefenderfornetwork":                  SecurityDetectionSource_MicrosoftDefenderForNetwork,
+		"microsoftdefenderforoffice365":                SecurityDetectionSource_MicrosoftDefenderForOffice365,
+		"microsoftdefenderforresourcemanager":          SecurityDetectionSource_MicrosoftDefenderForResourceManager,
+		"microsoftdefenderforservers":                  SecurityDetectionSource_MicrosoftDefenderForServers,
+		"microsoftdefenderforstorage":                  SecurityDetectionSource_MicrosoftDefenderForStorage,
+		"microsoftdefenderthreatintelligenceanalytics": SecurityDetectionSource_MicrosoftDefenderThreatIntelligenceAnalytics,
+		"microsoftinsiderriskmanagement":               SecurityDetectionSource_MicrosoftInsiderRiskManagement,
+		"microsoftsentinel":                            SecurityDetectionSource_MicrosoftSentinel,
+		"microsoftthreatexperts":                       SecurityDetectionSource_MicrosoftThreatExperts,
+		"microsoftthreatintelligence":                  SecurityDetectionSource_MicrosoftThreatIntelligence,
+		"nrtalerts":                                    SecurityDetectionSource_NrtAlerts,
+		"scheduledalerts":                              SecurityDetectionSource_ScheduledAlerts,
+		"smartscreen":                                  SecurityDetectionSource_SmartScreen,
+		"unknown":                                      SecurityDetectionSource_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityDetectionSource(input)
+	return &out, nil
+}

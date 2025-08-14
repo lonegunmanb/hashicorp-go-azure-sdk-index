@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2023-06-01/vmcollectionupdate
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewVMCollectionUpdateClientWithBaseURI(sdkApi sdkEnv.Api) (*VMCollectionUpdateClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "vmcollectionupdate", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating VMCollectionUpdateClient: %+v", err)
+	}
+
+	return &VMCollectionUpdateClient{
+		Client: client,
+	}, nil
+}

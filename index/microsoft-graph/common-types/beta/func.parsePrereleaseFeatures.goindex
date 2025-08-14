@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePrereleaseFeatures(input string) (*PrereleaseFeatures, error) {
+	vals := map[string]PrereleaseFeatures{
+		"notallowed":                  PrereleaseFeatures_NotAllowed,
+		"settingsandexperimentations": PrereleaseFeatures_SettingsAndExperimentations,
+		"settingsonly":                PrereleaseFeatures_SettingsOnly,
+		"userdefined":                 PrereleaseFeatures_UserDefined,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PrereleaseFeatures(input)
+	return &out, nil
+}

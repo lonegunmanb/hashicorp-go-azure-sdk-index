@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/b2xuserflow
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewB2xUserFlowClientWithBaseURI(sdkApi sdkEnv.Api) (*B2xUserFlowClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "b2xuserflow", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating B2xUserFlowClient: %+v", err)
+	}
+
+	return &B2xUserFlowClient{
+		Client: client,
+	}, nil
+}

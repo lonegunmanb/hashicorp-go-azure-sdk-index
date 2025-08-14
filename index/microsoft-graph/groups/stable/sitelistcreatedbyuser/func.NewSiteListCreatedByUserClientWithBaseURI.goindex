@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/sitelistcreatedbyuser
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSiteListCreatedByUserClientWithBaseURI(sdkApi sdkEnv.Api) (*SiteListCreatedByUserClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "sitelistcreatedbyuser", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SiteListCreatedByUserClient: %+v", err)
+	}
+
+	return &SiteListCreatedByUserClient{
+		Client: client,
+	}, nil
+}

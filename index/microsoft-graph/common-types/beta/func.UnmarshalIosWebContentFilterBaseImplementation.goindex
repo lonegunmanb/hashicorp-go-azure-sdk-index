@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalIosWebContentFilterBaseImplementation(input []byte) (IosWebContentFilterBase, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling IosWebContentFilterBase into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.iosWebContentFilterAutoFilter") {
+		var out IosWebContentFilterAutoFilter
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into IosWebContentFilterAutoFilter: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.iosWebContentFilterSpecificWebsitesAccess") {
+		var out IosWebContentFilterSpecificWebsitesAccess
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into IosWebContentFilterSpecificWebsitesAccess: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseIosWebContentFilterBaseImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseIosWebContentFilterBaseImpl: %+v", err)
+	}
+
+	return RawIosWebContentFilterBaseImpl{
+		iosWebContentFilterBase: parent,
+		Type:                    value,
+		Values:                  temp,
+	}, nil
+
+}

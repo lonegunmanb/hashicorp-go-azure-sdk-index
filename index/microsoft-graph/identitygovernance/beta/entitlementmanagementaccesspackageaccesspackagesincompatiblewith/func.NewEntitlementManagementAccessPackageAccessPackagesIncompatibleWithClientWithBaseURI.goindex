@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/entitlementmanagementaccesspackageaccesspackagesincompatiblewith
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewEntitlementManagementAccessPackageAccessPackagesIncompatibleWithClientWithBaseURI(sdkApi sdkEnv.Api) (*EntitlementManagementAccessPackageAccessPackagesIncompatibleWithClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "entitlementmanagementaccesspackageaccesspackagesincompatiblewith", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating EntitlementManagementAccessPackageAccessPackagesIncompatibleWithClient: %+v", err)
+	}
+
+	return &EntitlementManagementAccessPackageAccessPackagesIncompatibleWithClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/redis/2024-11-01/redis
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c RedisClient) LinkedServerCreateThenPoll(ctx context.Context, id LinkedServerId, input RedisLinkedServerCreateParameters) error {
+	result, err := c.LinkedServerCreate(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing LinkedServerCreate: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after LinkedServerCreate: %+v", err)
+	}
+
+	return nil
+}

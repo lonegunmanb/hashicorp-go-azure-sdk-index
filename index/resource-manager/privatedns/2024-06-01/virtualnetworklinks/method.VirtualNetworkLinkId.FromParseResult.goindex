@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/privatedns/2024-06-01/virtualnetworklinks
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *VirtualNetworkLinkId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.PrivateDnsZoneName, ok = input.Parsed["privateDnsZoneName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "privateDnsZoneName", input)
+	}
+
+	if id.VirtualNetworkLinkName, ok = input.Parsed["virtualNetworkLinkName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "virtualNetworkLinkName", input)
+	}
+
+	return nil
+}

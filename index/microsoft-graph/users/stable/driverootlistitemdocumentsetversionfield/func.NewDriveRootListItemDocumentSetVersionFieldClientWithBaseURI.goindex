@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/driverootlistitemdocumentsetversionfield
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDriveRootListItemDocumentSetVersionFieldClientWithBaseURI(sdkApi sdkEnv.Api) (*DriveRootListItemDocumentSetVersionFieldClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "driverootlistitemdocumentsetversionfield", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DriveRootListItemDocumentSetVersionFieldClient: %+v", err)
+	}
+
+	return &DriveRootListItemDocumentSetVersionFieldClient{
+		Client: client,
+	}, nil
+}

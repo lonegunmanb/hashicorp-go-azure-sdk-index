@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/migrate/2020-07-07/privatelinkresources
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c PrivateLinkResourcesClient) GetPrivateLinkResourcesComplete(ctx context.Context, id MasterSiteId) (GetPrivateLinkResourcesCompleteResult, error) {
+	return c.GetPrivateLinkResourcesCompleteMatchingPredicate(ctx, id, PrivateLinkResourceOperationPredicate{})
+}

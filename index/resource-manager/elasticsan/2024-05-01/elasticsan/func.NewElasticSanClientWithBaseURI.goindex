@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/elasticsan/2024-05-01/elasticsan
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewElasticSanClientWithBaseURI(sdkApi sdkEnv.Api) (*ElasticSanClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "elasticsan", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ElasticSanClient: %+v", err)
+	}
+
+	return &ElasticSanClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datashare/v2019_11_01
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2019-11-01/account"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2019-11-01/consumerinvitation"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2019-11-01/dataset"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2019-11-01/datasetmapping"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2019-11-01/emailregistration"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2019-11-01/invitation"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2019-11-01/share"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2019-11-01/sharesubscription"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2019-11-01/synchronizationsetting"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2019-11-01/trigger"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	Account                *account.AccountClient
+	ConsumerInvitation     *consumerinvitation.ConsumerInvitationClient
+	DataSet                *dataset.DataSetClient
+	DataSetMapping         *datasetmapping.DataSetMappingClient
+	EmailRegistration      *emailregistration.EmailRegistrationClient
+	Invitation             *invitation.InvitationClient
+	Share                  *share.ShareClient
+	ShareSubscription      *sharesubscription.ShareSubscriptionClient
+	SynchronizationSetting *synchronizationsetting.SynchronizationSettingClient
+	Trigger                *trigger.TriggerClient
+}

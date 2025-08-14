@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingprofile
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewBillingProfileClientWithBaseURI(sdkApi sdkEnv.Api) (*BillingProfileClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "billingprofile", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating BillingProfileClient: %+v", err)
+	}
+
+	return &BillingProfileClient{
+		Client: client,
+	}, nil
+}

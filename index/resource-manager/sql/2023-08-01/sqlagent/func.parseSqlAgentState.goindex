@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/sqlagent
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSqlAgentState(input string) (*SqlAgentState, error) {
+	vals := map[string]SqlAgentState{
+		"disabled": SqlAgentStateDisabled,
+		"enabled":  SqlAgentStateEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SqlAgentState(input)
+	return &out, nil
+}

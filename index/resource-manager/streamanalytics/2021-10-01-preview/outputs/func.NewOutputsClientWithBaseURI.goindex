@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/streamanalytics/2021-10-01-preview/outputs
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewOutputsClientWithBaseURI(sdkApi sdkEnv.Api) (*OutputsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "outputs", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating OutputsClient: %+v", err)
+	}
+
+	return &OutputsClient{
+		Client: client,
+	}, nil
+}

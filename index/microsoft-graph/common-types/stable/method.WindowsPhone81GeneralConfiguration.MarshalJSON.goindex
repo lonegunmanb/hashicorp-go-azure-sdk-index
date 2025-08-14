@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s WindowsPhone81GeneralConfiguration) MarshalJSON() ([]byte, error) {
+	type wrapper WindowsPhone81GeneralConfiguration
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling WindowsPhone81GeneralConfiguration: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling WindowsPhone81GeneralConfiguration: %+v", err)
+	}
+
+	delete(decoded, "applyOnlyToWindowsPhone81")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.windowsPhone81GeneralConfiguration"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling WindowsPhone81GeneralConfiguration: %+v", err)
+	}
+
+	return encoded, nil
+}

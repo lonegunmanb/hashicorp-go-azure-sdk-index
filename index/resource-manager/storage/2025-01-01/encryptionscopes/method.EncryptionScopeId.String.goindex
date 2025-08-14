@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-01-01/encryptionscopes
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id EncryptionScopeId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Storage Account Name: %q", id.StorageAccountName),
+		fmt.Sprintf("Encryption Scope Name: %q", id.EncryptionScopeName),
+	}
+	return fmt.Sprintf("Encryption Scope (%s)", strings.Join(components, "\n"))
+}

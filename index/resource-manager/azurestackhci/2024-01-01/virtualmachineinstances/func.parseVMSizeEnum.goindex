@@ -1,0 +1,40 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/azurestackhci/2024-01-01/virtualmachineinstances
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVMSizeEnum(input string) (*VMSizeEnum, error) {
+	vals := map[string]VMSizeEnum{
+		"custom":           VMSizeEnumCustom,
+		"default":          VMSizeEnumDefault,
+		"standard_a4_v2":   VMSizeEnumStandardAFourVTwo,
+		"standard_a2_v2":   VMSizeEnumStandardATwoVTwo,
+		"standard_d8s_v3":  VMSizeEnumStandardDEightsVThree,
+		"standard_d4s_v3":  VMSizeEnumStandardDFoursVThree,
+		"standard_d16s_v3": VMSizeEnumStandardDOneSixsVThree,
+		"standard_ds5_v2":  VMSizeEnumStandardDSFiveVTwo,
+		"standard_ds4_v2":  VMSizeEnumStandardDSFourVTwo,
+		"standard_ds13_v2": VMSizeEnumStandardDSOneThreeVTwo,
+		"standard_ds3_v2":  VMSizeEnumStandardDSThreeVTwo,
+		"standard_ds2_v2":  VMSizeEnumStandardDSTwoVTwo,
+		"standard_d32s_v3": VMSizeEnumStandardDThreeTwosVThree,
+		"standard_d2s_v3":  VMSizeEnumStandardDTwosVThree,
+		"standard_k8s5_v1": VMSizeEnumStandardKEightSFiveVOne,
+		"standard_k8s4_v1": VMSizeEnumStandardKEightSFourVOne,
+		"standard_k8s3_v1": VMSizeEnumStandardKEightSThreeVOne,
+		"standard_k8s2_v1": VMSizeEnumStandardKEightSTwoVOne,
+		"standard_k8s_v1":  VMSizeEnumStandardKEightSVOne,
+		"standard_nk12":    VMSizeEnumStandardNKOneTwo,
+		"standard_nk6":     VMSizeEnumStandardNKSix,
+		"standard_nv12":    VMSizeEnumStandardNVOneTwo,
+		"standard_nv6":     VMSizeEnumStandardNVSix,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VMSizeEnum(input)
+	return &out, nil
+}

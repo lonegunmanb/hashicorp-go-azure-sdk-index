@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s IndustryDataFileUploadSession) MarshalJSON() ([]byte, error) {
+	type wrapper IndustryDataFileUploadSession
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling IndustryDataFileUploadSession: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling IndustryDataFileUploadSession: %+v", err)
+	}
+
+	delete(decoded, "containerExpirationDateTime")
+	delete(decoded, "containerId")
+	delete(decoded, "sessionExpirationDateTime")
+	delete(decoded, "sessionUrl")
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling IndustryDataFileUploadSession: %+v", err)
+	}
+
+	return encoded, nil
+}

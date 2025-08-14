@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/desktopvirtualization/2024-04-03/scalingplan
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDaysOfWeek(input string) (*DaysOfWeek, error) {
+	vals := map[string]DaysOfWeek{
+		"friday":    DaysOfWeekFriday,
+		"monday":    DaysOfWeekMonday,
+		"saturday":  DaysOfWeekSaturday,
+		"sunday":    DaysOfWeekSunday,
+		"thursday":  DaysOfWeekThursday,
+		"tuesday":   DaysOfWeekTuesday,
+		"wednesday": DaysOfWeekWednesday,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DaysOfWeek(input)
+	return &out, nil
+}

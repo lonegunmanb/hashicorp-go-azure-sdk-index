@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/plannerplantaskbuckettaskboardformat
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPlannerPlanTaskBucketTaskBoardFormatClientWithBaseURI(sdkApi sdkEnv.Api) (*PlannerPlanTaskBucketTaskBoardFormatClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "plannerplantaskbuckettaskboardformat", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PlannerPlanTaskBucketTaskBoardFormatClient: %+v", err)
+	}
+
+	return &PlannerPlanTaskBucketTaskBoardFormatClient{
+		Client: client,
+	}, nil
+}

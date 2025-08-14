@@ -1,0 +1,73 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalTrainingSettingImplementation(input []byte) (TrainingSetting, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling TrainingSetting into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.customTrainingSetting") {
+		var out CustomTrainingSetting
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into CustomTrainingSetting: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.microsoftCustomTrainingSetting") {
+		var out MicrosoftCustomTrainingSetting
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into MicrosoftCustomTrainingSetting: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.microsoftManagedTrainingSetting") {
+		var out MicrosoftManagedTrainingSetting
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into MicrosoftManagedTrainingSetting: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.microsoftTrainingAssignmentMapping") {
+		var out MicrosoftTrainingAssignmentMapping
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into MicrosoftTrainingAssignmentMapping: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.noTrainingSetting") {
+		var out NoTrainingSetting
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into NoTrainingSetting: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseTrainingSettingImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseTrainingSettingImpl: %+v", err)
+	}
+
+	return RawTrainingSettingImpl{
+		trainingSetting: parent,
+		Type:            value,
+		Values:          temp,
+	}, nil
+
+}

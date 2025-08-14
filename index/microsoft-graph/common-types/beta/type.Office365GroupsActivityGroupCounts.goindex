@@ -1,0 +1,39 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type Office365GroupsActivityGroupCounts struct {
+	// The number of active groups. A group is considered active if any of the following occurred: group mailbox received
+	// email, or a user viewed, edited, shared, or synced files in SharePoint document library, or a user viewed SharePoint
+	// pages, or a user posted, read, or liked messages in Yammer groups.
+	Active nullable.Type[int64] `json:"active,omitempty"`
+
+	// The date on which groups were active.
+	ReportDate nullable.Type[string] `json:"reportDate,omitempty"`
+
+	// The number of days the report covers.
+	ReportPeriod nullable.Type[string] `json:"reportPeriod,omitempty"`
+
+	// The latest date of the content.
+	ReportRefreshDate nullable.Type[string] `json:"reportRefreshDate,omitempty"`
+
+	// The total number of groups.
+	Total nullable.Type[int64] `json:"total,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

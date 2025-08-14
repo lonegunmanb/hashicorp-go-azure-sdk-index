@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/entitlementmanagementaccesspackageassignment
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c EntitlementManagementAccessPackageAssignmentClient) ListEntitlementManagementAccessPackageAssignmentsComplete(ctx context.Context, options ListEntitlementManagementAccessPackageAssignmentsOperationOptions) (ListEntitlementManagementAccessPackageAssignmentsCompleteResult, error) {
+	return c.ListEntitlementManagementAccessPackageAssignmentsCompleteMatchingPredicate(ctx, options, AccessPackageAssignmentOperationPredicate{})
+}

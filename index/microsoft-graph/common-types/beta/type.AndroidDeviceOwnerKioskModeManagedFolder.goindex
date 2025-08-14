@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type AndroidDeviceOwnerKioskModeManagedFolder struct {
+	// Unique identifier for the folder
+	FolderIdentifier nullable.Type[string] `json:"folderIdentifier,omitempty"`
+
+	// Display name for the folder
+	FolderName *string `json:"folderName,omitempty"`
+
+	// Items to be added to managed folder. This collection can contain a maximum of 500 elements.
+	Items *[]AndroidDeviceOwnerKioskModeFolderItem `json:"items,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+}

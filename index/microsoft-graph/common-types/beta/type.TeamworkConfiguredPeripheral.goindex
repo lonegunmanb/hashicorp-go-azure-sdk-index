@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type TeamworkConfiguredPeripheral struct {
+	// True if the current peripheral is optional. If set to false, this property is also used as part of the calculation of
+	// the health state for the device.
+	IsOptional nullable.Type[bool] `json:"isOptional,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	Peripheral *TeamworkPeripheral `json:"peripheral,omitempty"`
+}

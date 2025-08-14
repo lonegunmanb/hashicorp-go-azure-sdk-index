@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/siteonenotesectionpage
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSiteOnenoteSectionPageClientWithBaseURI(sdkApi sdkEnv.Api) (*SiteOnenoteSectionPageClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "siteonenotesectionpage", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SiteOnenoteSectionPageClient: %+v", err)
+	}
+
+	return &SiteOnenoteSectionPageClient{
+		Client: client,
+	}, nil
+}

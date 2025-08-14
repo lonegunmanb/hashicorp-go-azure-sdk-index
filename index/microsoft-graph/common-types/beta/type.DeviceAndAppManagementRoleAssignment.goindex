@@ -1,0 +1,56 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type DeviceAndAppManagementRoleAssignment struct {
+	// Indicates the list of role member security group Entra IDs. For example: {dec942f4-6777-4998-96b4-522e383b08e2}.
+	Members *[]string `json:"members,omitempty"`
+
+	// Indicates the set of role scope tag IDs for the role assignment. These scope tags will limit the visibility of any
+	// Intune resources to those that match any of the scope tags in this collection.
+	RoleScopeTagIds *[]string `json:"roleScopeTagIds,omitempty"`
+
+	// Indicates the set of scope tags for the role assignment. These scope tags will limit the visibility of any Intune
+	// resources to those that match any of the scope tags in this collection.
+	RoleScopeTags *[]RoleScopeTag `json:"roleScopeTags,omitempty"`
+
+	// Fields inherited from RoleAssignment
+
+	// Indicates the description of the role assignment. For example: 'All administrators, employees and scope tags
+	// associated with the Houston office.' Max length is 1024 characters.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// Indicates the display name of the role assignment. For example: 'Houston administrators and users'. Max length is 128
+	// characters.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// Indicates the list of resource scope security group Entra IDs. For example: {dec942f4-6777-4998-96b4-522e383b08e2}.
+	ResourceScopes *[]string `json:"resourceScopes,omitempty"`
+
+	// Indicates the role definition for this role assignment.
+	RoleDefinition *RoleDefinition `json:"roleDefinition,omitempty"`
+
+	// Indicates the list of role scope member security groups Entra IDs. For example,
+	// {dec942f4-6777-4998-96b4-522e383b08e2}.
+	ScopeMembers *[]string `json:"scopeMembers,omitempty"`
+
+	// Specifies the type of scope for a Role Assignment.
+	ScopeType *RoleAssignmentScopeType `json:"scopeType,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

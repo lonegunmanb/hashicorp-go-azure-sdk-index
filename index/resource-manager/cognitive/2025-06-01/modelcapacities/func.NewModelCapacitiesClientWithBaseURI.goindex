@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cognitive/2025-06-01/modelcapacities
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewModelCapacitiesClientWithBaseURI(sdkApi sdkEnv.Api) (*ModelCapacitiesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "modelcapacities", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ModelCapacitiesClient: %+v", err)
+	}
+
+	return &ModelCapacitiesClient{
+		Client: client,
+	}, nil
+}

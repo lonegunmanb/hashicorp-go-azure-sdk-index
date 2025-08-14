@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeviceManagementAutopilotPolicyType(input string) (*DeviceManagementAutopilotPolicyType, error) {
+	vals := map[string]DeviceManagementAutopilotPolicyType{
+		"appmodel":            DeviceManagementAutopilotPolicyType_AppModel,
+		"application":         DeviceManagementAutopilotPolicyType_Application,
+		"configurationpolicy": DeviceManagementAutopilotPolicyType_ConfigurationPolicy,
+		"unknown":             DeviceManagementAutopilotPolicyType_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceManagementAutopilotPolicyType(input)
+	return &out, nil
+}

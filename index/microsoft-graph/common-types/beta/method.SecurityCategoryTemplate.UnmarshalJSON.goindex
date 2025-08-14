@@ -1,0 +1,42 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *SecurityCategoryTemplate) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		Subcategories   *[]SecuritySubcategoryTemplate `json:"subcategories,omitempty"`
+		CreatedDateTime nullable.Type[string]          `json:"createdDateTime,omitempty"`
+		DisplayName     nullable.Type[string]          `json:"displayName,omitempty"`
+		Id              *string                        `json:"id,omitempty"`
+		ODataId         *string                        `json:"@odata.id,omitempty"`
+		ODataType       *string                        `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.Subcategories = decoded.Subcategories
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.DisplayName = decoded.DisplayName
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling SecurityCategoryTemplate into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["createdBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'CreatedBy' for 'SecurityCategoryTemplate': %+v", err)
+		}
+		s.CreatedBy = &impl
+	}
+
+	return nil
+}

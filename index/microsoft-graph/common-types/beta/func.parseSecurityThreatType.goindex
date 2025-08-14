@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityThreatType(input string) (*SecurityThreatType, error) {
+	vals := map[string]SecurityThreatType{
+		"malware": SecurityThreatType_Malware,
+		"none":    SecurityThreatType_None,
+		"phish":   SecurityThreatType_Phish,
+		"spam":    SecurityThreatType_Spam,
+		"unknown": SecurityThreatType_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityThreatType(input)
+	return &out, nil
+}

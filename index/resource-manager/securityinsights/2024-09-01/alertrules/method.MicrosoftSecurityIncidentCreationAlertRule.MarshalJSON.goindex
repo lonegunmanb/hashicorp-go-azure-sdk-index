@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2024-09-01/alertrules
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+)
+func (s MicrosoftSecurityIncidentCreationAlertRule) MarshalJSON() ([]byte, error) {
+	type wrapper MicrosoftSecurityIncidentCreationAlertRule
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling MicrosoftSecurityIncidentCreationAlertRule: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling MicrosoftSecurityIncidentCreationAlertRule: %+v", err)
+	}
+
+	decoded["kind"] = "MicrosoftSecurityIncidentCreation"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling MicrosoftSecurityIncidentCreationAlertRule: %+v", err)
+	}
+
+	return encoded, nil
+}

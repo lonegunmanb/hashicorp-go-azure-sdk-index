@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/kusto/2024-04-13/dataconnections
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseIotHubDataFormat(input string) (*IotHubDataFormat, error) {
+	vals := map[string]IotHubDataFormat{
+		"apacheavro": IotHubDataFormatAPACHEAVRO,
+		"avro":       IotHubDataFormatAVRO,
+		"csv":        IotHubDataFormatCSV,
+		"json":       IotHubDataFormatJSON,
+		"multijson":  IotHubDataFormatMULTIJSON,
+		"orc":        IotHubDataFormatORC,
+		"parquet":    IotHubDataFormatPARQUET,
+		"psv":        IotHubDataFormatPSV,
+		"raw":        IotHubDataFormatRAW,
+		"scsv":       IotHubDataFormatSCSV,
+		"singlejson": IotHubDataFormatSINGLEJSON,
+		"sohsv":      IotHubDataFormatSOHSV,
+		"tsv":        IotHubDataFormatTSV,
+		"tsve":       IotHubDataFormatTSVE,
+		"txt":        IotHubDataFormatTXT,
+		"w3clogfile": IotHubDataFormatWThreeCLOGFILE,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IotHubDataFormat(input)
+	return &out, nil
+}

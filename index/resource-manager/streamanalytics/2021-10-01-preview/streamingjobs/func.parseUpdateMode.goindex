@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/streamanalytics/2021-10-01-preview/streamingjobs
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseUpdateMode(input string) (*UpdateMode, error) {
+	vals := map[string]UpdateMode{
+		"refreshable": UpdateModeRefreshable,
+		"static":      UpdateModeStatic,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UpdateMode(input)
+	return &out, nil
+}

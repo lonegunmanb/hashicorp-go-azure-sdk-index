@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/azurestackhci/2024-01-01/arcsettings
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNodeArcState(input string) (*NodeArcState, error) {
+	vals := map[string]NodeArcState{
+		"accepted":           NodeArcStateAccepted,
+		"canceled":           NodeArcStateCanceled,
+		"connected":          NodeArcStateConnected,
+		"creating":           NodeArcStateCreating,
+		"deleted":            NodeArcStateDeleted,
+		"deleting":           NodeArcStateDeleting,
+		"disableinprogress":  NodeArcStateDisableInProgress,
+		"disconnected":       NodeArcStateDisconnected,
+		"error":              NodeArcStateError,
+		"failed":             NodeArcStateFailed,
+		"inprogress":         NodeArcStateInProgress,
+		"moving":             NodeArcStateMoving,
+		"notspecified":       NodeArcStateNotSpecified,
+		"partiallyconnected": NodeArcStatePartiallyConnected,
+		"partiallysucceeded": NodeArcStatePartiallySucceeded,
+		"provisioning":       NodeArcStateProvisioning,
+		"succeeded":          NodeArcStateSucceeded,
+		"updating":           NodeArcStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NodeArcState(input)
+	return &out, nil
+}

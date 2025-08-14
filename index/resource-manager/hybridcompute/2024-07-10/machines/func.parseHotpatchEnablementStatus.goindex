@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2024-07-10/machines
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseHotpatchEnablementStatus(input string) (*HotpatchEnablementStatus, error) {
+	vals := map[string]HotpatchEnablementStatus{
+		"actionrequired":    HotpatchEnablementStatusActionRequired,
+		"disabled":          HotpatchEnablementStatusDisabled,
+		"enabled":           HotpatchEnablementStatusEnabled,
+		"pendingevaluation": HotpatchEnablementStatusPendingEvaluation,
+		"unknown":           HotpatchEnablementStatusUnknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := HotpatchEnablementStatus(input)
+	return &out, nil
+}

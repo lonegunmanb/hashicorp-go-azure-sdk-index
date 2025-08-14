@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/v2024_11_01
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2024-11-01/keys"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2024-11-01/managedhsmkeys"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2024-11-01/managedhsms"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2024-11-01/mhsmlistprivateendpointconnections"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2024-11-01/mhsmlistregions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2024-11-01/mhsmprivateendpointconnections"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2024-11-01/mhsmprivatelinkresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2024-11-01/privateendpointconnections"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2024-11-01/privatelinkresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2024-11-01/secrets"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2024-11-01/vaults"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	Keys                               *keys.KeysClient
+	MHSMListPrivateEndpointConnections *mhsmlistprivateendpointconnections.MHSMListPrivateEndpointConnectionsClient
+	MHSMListRegions                    *mhsmlistregions.MHSMListRegionsClient
+	MHSMPrivateEndpointConnections     *mhsmprivateendpointconnections.MHSMPrivateEndpointConnectionsClient
+	MHSMPrivateLinkResources           *mhsmprivatelinkresources.MHSMPrivateLinkResourcesClient
+	ManagedHsmKeys                     *managedhsmkeys.ManagedHsmKeysClient
+	ManagedHsms                        *managedhsms.ManagedHsmsClient
+	PrivateEndpointConnections         *privateendpointconnections.PrivateEndpointConnectionsClient
+	PrivateLinkResources               *privatelinkresources.PrivateLinkResourcesClient
+	Secrets                            *secrets.SecretsClient
+	Vaults                             *vaults.VaultsClient
+}

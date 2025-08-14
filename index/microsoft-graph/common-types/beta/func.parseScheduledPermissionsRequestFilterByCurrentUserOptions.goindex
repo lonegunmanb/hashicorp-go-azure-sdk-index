@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseScheduledPermissionsRequestFilterByCurrentUserOptions(input string) (*ScheduledPermissionsRequestFilterByCurrentUserOptions, error) {
+	vals := map[string]ScheduledPermissionsRequestFilterByCurrentUserOptions{
+		"approver":  ScheduledPermissionsRequestFilterByCurrentUserOptions_Approver,
+		"createdby": ScheduledPermissionsRequestFilterByCurrentUserOptions_CreatedBy,
+		"principal": ScheduledPermissionsRequestFilterByCurrentUserOptions_Principal,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ScheduledPermissionsRequestFilterByCurrentUserOptions(input)
+	return &out, nil
+}

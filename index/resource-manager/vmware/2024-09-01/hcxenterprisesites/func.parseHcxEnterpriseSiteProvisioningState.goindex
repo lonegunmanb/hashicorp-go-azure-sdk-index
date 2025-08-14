@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2024-09-01/hcxenterprisesites
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseHcxEnterpriseSiteProvisioningState(input string) (*HcxEnterpriseSiteProvisioningState, error) {
+	vals := map[string]HcxEnterpriseSiteProvisioningState{
+		"canceled":  HcxEnterpriseSiteProvisioningStateCanceled,
+		"failed":    HcxEnterpriseSiteProvisioningStateFailed,
+		"succeeded": HcxEnterpriseSiteProvisioningStateSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := HcxEnterpriseSiteProvisioningState(input)
+	return &out, nil
+}

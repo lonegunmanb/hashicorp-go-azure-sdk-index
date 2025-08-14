@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMobileAppContentFileUploadState(input string) (*MobileAppContentFileUploadState, error) {
+	vals := map[string]MobileAppContentFileUploadState{
+		"azurestorageurirenewalfailed":   MobileAppContentFileUploadState_AzureStorageUriRenewalFailed,
+		"azurestorageurirenewalpending":  MobileAppContentFileUploadState_AzureStorageUriRenewalPending,
+		"azurestorageurirenewalsuccess":  MobileAppContentFileUploadState_AzureStorageUriRenewalSuccess,
+		"azurestorageurirenewaltimedout": MobileAppContentFileUploadState_AzureStorageUriRenewalTimedOut,
+		"azurestorageurirequestfailed":   MobileAppContentFileUploadState_AzureStorageUriRequestFailed,
+		"azurestorageurirequestpending":  MobileAppContentFileUploadState_AzureStorageUriRequestPending,
+		"azurestorageurirequestsuccess":  MobileAppContentFileUploadState_AzureStorageUriRequestSuccess,
+		"azurestorageurirequesttimedout": MobileAppContentFileUploadState_AzureStorageUriRequestTimedOut,
+		"commitfilefailed":               MobileAppContentFileUploadState_CommitFileFailed,
+		"commitfilepending":              MobileAppContentFileUploadState_CommitFilePending,
+		"commitfilesuccess":              MobileAppContentFileUploadState_CommitFileSuccess,
+		"commitfiletimedout":             MobileAppContentFileUploadState_CommitFileTimedOut,
+		"error":                          MobileAppContentFileUploadState_Error,
+		"success":                        MobileAppContentFileUploadState_Success,
+		"transienterror":                 MobileAppContentFileUploadState_TransientError,
+		"unknown":                        MobileAppContentFileUploadState_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MobileAppContentFileUploadState(input)
+	return &out, nil
+}

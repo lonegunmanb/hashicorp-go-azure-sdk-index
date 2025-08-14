@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-01-01/netappresource
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNetworkSiblingSetProvisioningState(input string) (*NetworkSiblingSetProvisioningState, error) {
+	vals := map[string]NetworkSiblingSetProvisioningState{
+		"canceled":  NetworkSiblingSetProvisioningStateCanceled,
+		"failed":    NetworkSiblingSetProvisioningStateFailed,
+		"succeeded": NetworkSiblingSetProvisioningStateSucceeded,
+		"updating":  NetworkSiblingSetProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NetworkSiblingSetProvisioningState(input)
+	return &out, nil
+}

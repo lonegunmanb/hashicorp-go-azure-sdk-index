@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id MeNotificationId) String() string {
+	components := []string{
+		fmt.Sprintf("Notification: %q", id.NotificationId),
+	}
+	return fmt.Sprintf("Me Notification (%s)", strings.Join(components, "\n"))
+}

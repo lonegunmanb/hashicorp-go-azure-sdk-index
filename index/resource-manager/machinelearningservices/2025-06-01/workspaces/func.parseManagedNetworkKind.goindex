@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2025-06-01/workspaces
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseManagedNetworkKind(input string) (*ManagedNetworkKind, error) {
+	vals := map[string]ManagedNetworkKind{
+		"v1": ManagedNetworkKindVOne,
+		"v2": ManagedNetworkKindVTwo,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagedNetworkKind(input)
+	return &out, nil
+}

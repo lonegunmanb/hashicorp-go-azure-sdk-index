@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2022-08-01/tenantconfigurationsyncstate
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTenantConfigurationSyncStateClientWithBaseURI(sdkApi sdkEnv.Api) (*TenantConfigurationSyncStateClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "tenantconfigurationsyncstate", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TenantConfigurationSyncStateClient: %+v", err)
+	}
+
+	return &TenantConfigurationSyncStateClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,11 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id UserIdChatIdMessageIdReplyIdHostedContentId) ID() string {
+	fmtString := "/users/%s/chats/%s/messages/%s/replies/%s/hostedContents/%s"
+	return fmt.Sprintf(fmtString, id.UserId, id.ChatId, id.ChatMessageId, id.ChatMessageId1, id.ChatMessageHostedContentId)
+}

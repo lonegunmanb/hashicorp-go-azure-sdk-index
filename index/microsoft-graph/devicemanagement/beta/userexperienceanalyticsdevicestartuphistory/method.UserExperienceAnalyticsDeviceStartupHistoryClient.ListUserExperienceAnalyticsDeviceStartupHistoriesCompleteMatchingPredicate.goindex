@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/userexperienceanalyticsdevicestartuphistory
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c UserExperienceAnalyticsDeviceStartupHistoryClient) ListUserExperienceAnalyticsDeviceStartupHistoriesCompleteMatchingPredicate(ctx context.Context, options ListUserExperienceAnalyticsDeviceStartupHistoriesOperationOptions, predicate UserExperienceAnalyticsDeviceStartupHistoryOperationPredicate) (result ListUserExperienceAnalyticsDeviceStartupHistoriesCompleteResult, err error) {
+	items := make([]beta.UserExperienceAnalyticsDeviceStartupHistory, 0)
+
+	resp, err := c.ListUserExperienceAnalyticsDeviceStartupHistories(ctx, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListUserExperienceAnalyticsDeviceStartupHistoriesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

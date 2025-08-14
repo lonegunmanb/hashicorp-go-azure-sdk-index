@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client/pollers
+import (
+	"context"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+)
+func (e PollingFailedError) Error() string {
+	if e.Message != "" {
+		return fmt.Sprintf("polling failed: %+v", e.Message)
+	}
+
+	return "polling failed"
+}

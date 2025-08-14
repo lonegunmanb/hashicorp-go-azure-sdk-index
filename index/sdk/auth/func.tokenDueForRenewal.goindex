@@ -1,0 +1,46 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"context"
+	"fmt"
+	"net/http"
+	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/claims"
+	"golang.org/x/oauth2"
+)
+func tokenDueForRenewal(token *oauth2.Token) bool {
+	if token == nil {
+		return true
+	}
+
+	// Some tokens may never expire
+	if token.Expiry.IsZero() {
+		return false
+	}
+
+	expiry := token.Expiry.Round(0)
+	delta := tokenExpiryDelta
+	now := time.Now()
+
+	// Always return early if the token validity doesn't extend past the expiry delta
+	if expiry.Add(-delta).Before(now) {
+		return true
+	}
+
+	// Try to parse the token claims to retrieve the issuedAt time
+	if claims, err := claims.ParseClaims(token); err == nil {
+		if claims.IssuedAt > 0 {
+			issued := time.Unix(claims.IssuedAt, 0)
+			validity := expiry.Sub(issued)
+
+			// If the validity period is less than double the expiry delta, then instead
+			// determine whether >50% of the validity period has elapsed
+			if validity < delta*2 {
+				halfValidityHasElapsed := issued.Add(validity / 2).Before(now)
+				return halfValidityHasElapsed
+			}
+		}
+	}
+
+	return false
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/templatecategorysettingdefinition
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTemplateCategorySettingDefinitionClientWithBaseURI(sdkApi sdkEnv.Api) (*TemplateCategorySettingDefinitionClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "templatecategorysettingdefinition", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TemplateCategorySettingDefinitionClient: %+v", err)
+	}
+
+	return &TemplateCategorySettingDefinitionClient{
+		Client: client,
+	}, nil
+}

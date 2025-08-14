@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s BaseOrganizationalBrandingPropertiesImpl) MarshalJSON() ([]byte, error) {
+	type wrapper BaseOrganizationalBrandingPropertiesImpl
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling BaseOrganizationalBrandingPropertiesImpl: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling BaseOrganizationalBrandingPropertiesImpl: %+v", err)
+	}
+
+	delete(decoded, "backgroundImageRelativeUrl")
+	delete(decoded, "bannerLogoRelativeUrl")
+	delete(decoded, "cdnList")
+	delete(decoded, "customCSSRelativeUrl")
+	delete(decoded, "faviconRelativeUrl")
+	delete(decoded, "headerLogoRelativeUrl")
+	delete(decoded, "squareLogoDarkRelativeUrl")
+	delete(decoded, "squareLogoRelativeUrl")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.organizationalBrandingProperties"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling BaseOrganizationalBrandingPropertiesImpl: %+v", err)
+	}
+
+	return encoded, nil
+}

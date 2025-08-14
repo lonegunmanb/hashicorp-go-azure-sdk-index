@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingroledefinition
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewBillingRoleDefinitionClientWithBaseURI(sdkApi sdkEnv.Api) (*BillingRoleDefinitionClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "billingroledefinition", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating BillingRoleDefinitionClient: %+v", err)
+	}
+
+	return &BillingRoleDefinitionClient{
+		Client: client,
+	}, nil
+}

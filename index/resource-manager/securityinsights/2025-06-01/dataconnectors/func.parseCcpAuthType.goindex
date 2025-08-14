@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2025-06-01/dataconnectors
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCcpAuthType(input string) (*CcpAuthType, error) {
+	vals := map[string]CcpAuthType{
+		"apikey":     CcpAuthTypeAPIKey,
+		"aws":        CcpAuthTypeAWS,
+		"basic":      CcpAuthTypeBasic,
+		"gcp":        CcpAuthTypeGCP,
+		"github":     CcpAuthTypeGitHub,
+		"jwttoken":   CcpAuthTypeJwtToken,
+		"none":       CcpAuthTypeNone,
+		"oauth2":     CcpAuthTypeOAuthTwo,
+		"oracle":     CcpAuthTypeOracle,
+		"servicebus": CcpAuthTypeServiceBus,
+		"session":    CcpAuthTypeSession,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CcpAuthType(input)
+	return &out, nil
+}

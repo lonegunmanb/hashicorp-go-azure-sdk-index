@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseResponseFeedbackType(input string) (*ResponseFeedbackType, error) {
+	vals := map[string]ResponseFeedbackType{
+		"neutral":        ResponseFeedbackType_Neutral,
+		"none":           ResponseFeedbackType_None,
+		"notdetected":    ResponseFeedbackType_NotDetected,
+		"pleasant":       ResponseFeedbackType_Pleasant,
+		"unpleasant":     ResponseFeedbackType_Unpleasant,
+		"verypleasant":   ResponseFeedbackType_VeryPleasant,
+		"veryunpleasant": ResponseFeedbackType_VeryUnpleasant,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ResponseFeedbackType(input)
+	return &out, nil
+}

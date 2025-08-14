@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/alertsmanagement/2023-03-01/prometheusrulegroups
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPrometheusRuleGroupsClientWithBaseURI(sdkApi sdkEnv.Api) (*PrometheusRuleGroupsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "prometheusrulegroups", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PrometheusRuleGroupsClient: %+v", err)
+	}
+
+	return &PrometheusRuleGroupsClient{
+		Client: client,
+	}, nil
+}

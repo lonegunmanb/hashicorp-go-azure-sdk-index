@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMacOSContentCachingType(input string) (*MacOSContentCachingType, error) {
+	vals := map[string]MacOSContentCachingType{
+		"notconfigured":     MacOSContentCachingType_NotConfigured,
+		"sharedcontentonly": MacOSContentCachingType_SharedContentOnly,
+		"usercontentonly":   MacOSContentCachingType_UserContentOnly,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MacOSContentCachingType(input)
+	return &out, nil
+}

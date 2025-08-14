@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id AuditLogProvisioningId) String() string {
+	components := []string{
+		fmt.Sprintf("Provisioning Object Summary: %q", id.ProvisioningObjectSummaryId),
+	}
+	return fmt.Sprintf("Audit Log Provisioning (%s)", strings.Join(components, "\n"))
+}

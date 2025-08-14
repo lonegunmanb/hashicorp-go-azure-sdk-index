@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/alertsmanagement/2019-06-01/smartdetectoralertrules
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSmartDetectorAlertRulesClientWithBaseURI(sdkApi sdkEnv.Api) (*SmartDetectorAlertRulesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "smartdetectoralertrules", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SmartDetectorAlertRulesClient: %+v", err)
+	}
+
+	return &SmartDetectorAlertRulesClient{
+		Client: client,
+	}, nil
+}

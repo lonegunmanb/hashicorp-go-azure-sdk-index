@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/driverootpermission
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DriveRootPermissionClient) ListDriveRootPermissionGrantsCompleteMatchingPredicate(ctx context.Context, id stable.UserIdDriveIdRootPermissionId, input ListDriveRootPermissionGrantsRequest, options ListDriveRootPermissionGrantsOperationOptions, predicate PermissionOperationPredicate) (result ListDriveRootPermissionGrantsCompleteResult, err error) {
+	items := make([]stable.Permission, 0)
+
+	resp, err := c.ListDriveRootPermissionGrants(ctx, id, input, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListDriveRootPermissionGrantsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2024-02-01/origins
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseOriginProvisioningState(input string) (*OriginProvisioningState, error) {
+	vals := map[string]OriginProvisioningState{
+		"creating":  OriginProvisioningStateCreating,
+		"deleting":  OriginProvisioningStateDeleting,
+		"failed":    OriginProvisioningStateFailed,
+		"succeeded": OriginProvisioningStateSucceeded,
+		"updating":  OriginProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := OriginProvisioningState(input)
+	return &out, nil
+}

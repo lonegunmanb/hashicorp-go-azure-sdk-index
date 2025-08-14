@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitelistitemfield
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSiteListItemFieldClientWithBaseURI(sdkApi sdkEnv.Api) (*SiteListItemFieldClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "sitelistitemfield", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SiteListItemFieldClient: %+v", err)
+	}
+
+	return &SiteListItemFieldClient{
+		Client: client,
+	}, nil
+}

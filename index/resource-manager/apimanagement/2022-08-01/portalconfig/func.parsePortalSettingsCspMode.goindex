@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2022-08-01/portalconfig
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePortalSettingsCspMode(input string) (*PortalSettingsCspMode, error) {
+	vals := map[string]PortalSettingsCspMode{
+		"disabled":   PortalSettingsCspModeDisabled,
+		"enabled":    PortalSettingsCspModeEnabled,
+		"reportonly": PortalSettingsCspModeReportOnly,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PortalSettingsCspMode(input)
+	return &out, nil
+}

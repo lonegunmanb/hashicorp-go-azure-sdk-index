@@ -1,0 +1,114 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *SubjectRightsRequest) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		Approvers              *[]User                            `json:"approvers,omitempty"`
+		ClosedDateTime         nullable.Type[string]              `json:"closedDateTime,omitempty"`
+		Collaborators          *[]User                            `json:"collaborators,omitempty"`
+		ContentQuery           nullable.Type[string]              `json:"contentQuery,omitempty"`
+		CreatedDateTime        nullable.Type[string]              `json:"createdDateTime,omitempty"`
+		DataSubject            *DataSubject                       `json:"dataSubject,omitempty"`
+		DataSubjectType        *DataSubjectType                   `json:"dataSubjectType,omitempty"`
+		Description            nullable.Type[string]              `json:"description,omitempty"`
+		DisplayName            nullable.Type[string]              `json:"displayName,omitempty"`
+		ExternalId             nullable.Type[string]              `json:"externalId,omitempty"`
+		History                *[]SubjectRightsRequestHistory     `json:"history,omitempty"`
+		IncludeAllVersions     nullable.Type[bool]                `json:"includeAllVersions,omitempty"`
+		IncludeAuthoredContent nullable.Type[bool]                `json:"includeAuthoredContent,omitempty"`
+		Insight                *SubjectRightsRequestDetail        `json:"insight,omitempty"`
+		InternalDueDateTime    nullable.Type[string]              `json:"internalDueDateTime,omitempty"`
+		LastModifiedDateTime   nullable.Type[string]              `json:"lastModifiedDateTime,omitempty"`
+		Notes                  *[]AuthoredNote                    `json:"notes,omitempty"`
+		PauseAfterEstimate     nullable.Type[bool]                `json:"pauseAfterEstimate,omitempty"`
+		Regulations            *[]string                          `json:"regulations,omitempty"`
+		Stages                 *[]SubjectRightsRequestStageDetail `json:"stages,omitempty"`
+		Status                 *SubjectRightsRequestStatus        `json:"status,omitempty"`
+		Team                   *Team                              `json:"team,omitempty"`
+		Type                   *SubjectRightsRequestType          `json:"type,omitempty"`
+		Id                     *string                            `json:"id,omitempty"`
+		ODataId                *string                            `json:"@odata.id,omitempty"`
+		ODataType              *string                            `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.Approvers = decoded.Approvers
+	s.ClosedDateTime = decoded.ClosedDateTime
+	s.Collaborators = decoded.Collaborators
+	s.ContentQuery = decoded.ContentQuery
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.DataSubject = decoded.DataSubject
+	s.DataSubjectType = decoded.DataSubjectType
+	s.Description = decoded.Description
+	s.DisplayName = decoded.DisplayName
+	s.ExternalId = decoded.ExternalId
+	s.History = decoded.History
+	s.IncludeAllVersions = decoded.IncludeAllVersions
+	s.IncludeAuthoredContent = decoded.IncludeAuthoredContent
+	s.Insight = decoded.Insight
+	s.InternalDueDateTime = decoded.InternalDueDateTime
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.Notes = decoded.Notes
+	s.PauseAfterEstimate = decoded.PauseAfterEstimate
+	s.Regulations = decoded.Regulations
+	s.Stages = decoded.Stages
+	s.Status = decoded.Status
+	s.Team = decoded.Team
+	s.Type = decoded.Type
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling SubjectRightsRequest into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["assignedTo"]; ok {
+		impl, err := UnmarshalIdentityImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'AssignedTo' for 'SubjectRightsRequest': %+v", err)
+		}
+		s.AssignedTo = impl
+	}
+
+	if v, ok := temp["createdBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'CreatedBy' for 'SubjectRightsRequest': %+v", err)
+		}
+		s.CreatedBy = impl
+	}
+
+	if v, ok := temp["lastModifiedBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'LastModifiedBy' for 'SubjectRightsRequest': %+v", err)
+		}
+		s.LastModifiedBy = impl
+	}
+
+	if v, ok := temp["mailboxLocations"]; ok {
+		impl, err := UnmarshalSubjectRightsRequestMailboxLocationImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'MailboxLocations' for 'SubjectRightsRequest': %+v", err)
+		}
+		s.MailboxLocations = impl
+	}
+
+	if v, ok := temp["siteLocations"]; ok {
+		impl, err := UnmarshalSubjectRightsRequestSiteLocationImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'SiteLocations' for 'SubjectRightsRequest': %+v", err)
+		}
+		s.SiteLocations = impl
+	}
+
+	return nil
+}

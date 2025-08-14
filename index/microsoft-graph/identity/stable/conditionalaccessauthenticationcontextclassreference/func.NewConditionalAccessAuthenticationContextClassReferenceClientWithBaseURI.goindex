@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/conditionalaccessauthenticationcontextclassreference
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewConditionalAccessAuthenticationContextClassReferenceClientWithBaseURI(sdkApi sdkEnv.Api) (*ConditionalAccessAuthenticationContextClassReferenceClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "conditionalaccessauthenticationcontextclassreference", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ConditionalAccessAuthenticationContextClassReferenceClient: %+v", err)
+	}
+
+	return &ConditionalAccessAuthenticationContextClassReferenceClient{
+		Client: client,
+	}, nil
+}

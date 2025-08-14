@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/driveitemchildcontentstream
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDriveItemChildContentStreamClientWithBaseURI(sdkApi sdkEnv.Api) (*DriveItemChildContentStreamClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "driveitemchildcontentstream", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DriveItemChildContentStreamClient: %+v", err)
+	}
+
+	return &DriveItemChildContentStreamClient{
+		Client: client,
+	}, nil
+}

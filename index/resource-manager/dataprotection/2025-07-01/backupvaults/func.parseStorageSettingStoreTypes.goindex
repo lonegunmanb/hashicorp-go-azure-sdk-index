@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2025-07-01/backupvaults
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseStorageSettingStoreTypes(input string) (*StorageSettingStoreTypes, error) {
+	vals := map[string]StorageSettingStoreTypes{
+		"archivestore":     StorageSettingStoreTypesArchiveStore,
+		"operationalstore": StorageSettingStoreTypesOperationalStore,
+		"vaultstore":       StorageSettingStoreTypesVaultStore,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := StorageSettingStoreTypes(input)
+	return &out, nil
+}

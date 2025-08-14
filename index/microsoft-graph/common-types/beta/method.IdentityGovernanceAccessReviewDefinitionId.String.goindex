@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id IdentityGovernanceAccessReviewDefinitionId) String() string {
+	components := []string{
+		fmt.Sprintf("Access Review Schedule Definition: %q", id.AccessReviewScheduleDefinitionId),
+	}
+	return fmt.Sprintf("Identity Governance Access Review Definition (%s)", strings.Join(components, "\n"))
+}

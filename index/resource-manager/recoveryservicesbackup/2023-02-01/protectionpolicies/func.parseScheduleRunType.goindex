@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2023-02-01/protectionpolicies
+import (
+	"strings"
+)
+func parseScheduleRunType(input string) (*ScheduleRunType, error) {
+	vals := map[string]ScheduleRunType{
+		"daily":   ScheduleRunTypeDaily,
+		"hourly":  ScheduleRunTypeHourly,
+		"invalid": ScheduleRunTypeInvalid,
+		"weekly":  ScheduleRunTypeWeekly,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ScheduleRunType(input)
+	return &out, nil
+}

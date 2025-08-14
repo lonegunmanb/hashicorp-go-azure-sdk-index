@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/managedapplications/2021-07-01/applications
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSubstatus(input string) (*Substatus, error) {
+	vals := map[string]Substatus{
+		"approved":     SubstatusApproved,
+		"denied":       SubstatusDenied,
+		"expired":      SubstatusExpired,
+		"failed":       SubstatusFailed,
+		"notspecified": SubstatusNotSpecified,
+		"timeout":      SubstatusTimeout,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Substatus(input)
+	return &out, nil
+}

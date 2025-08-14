@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-01-01/storageaccounts
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSkuConversionStatus(input string) (*SkuConversionStatus, error) {
+	vals := map[string]SkuConversionStatus{
+		"failed":     SkuConversionStatusFailed,
+		"inprogress": SkuConversionStatusInProgress,
+		"succeeded":  SkuConversionStatusSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SkuConversionStatus(input)
+	return &out, nil
+}

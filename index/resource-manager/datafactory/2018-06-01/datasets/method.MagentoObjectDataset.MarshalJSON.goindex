@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/datasets
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s MagentoObjectDataset) MarshalJSON() ([]byte, error) {
+	type wrapper MagentoObjectDataset
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling MagentoObjectDataset: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling MagentoObjectDataset: %+v", err)
+	}
+
+	decoded["type"] = "MagentoObject"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling MagentoObjectDataset: %+v", err)
+	}
+
+	return encoded, nil
+}

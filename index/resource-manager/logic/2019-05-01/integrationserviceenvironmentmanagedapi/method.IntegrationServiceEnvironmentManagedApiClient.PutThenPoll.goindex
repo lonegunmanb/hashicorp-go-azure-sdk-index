@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationserviceenvironmentmanagedapi
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c IntegrationServiceEnvironmentManagedApiClient) PutThenPoll(ctx context.Context, id ManagedApiId, input IntegrationServiceEnvironmentManagedApi) error {
+	result, err := c.Put(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing Put: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after Put: %+v", err)
+	}
+
+	return nil
+}

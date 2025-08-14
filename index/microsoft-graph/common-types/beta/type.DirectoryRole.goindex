@@ -1,0 +1,48 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type DirectoryRole struct {
+	// The description for the directory role. Read-only. Supports $filter (eq), $search, $select.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// The display name for the directory role. Read-only. Supports $filter (eq), $search, $select.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// Users that are members of this directory role. HTTP Methods: GET, POST, DELETE. Read-only. Nullable. Supports
+	// $expand.
+	Members *[]DirectoryObject `json:"members,omitempty"`
+
+	// List of OData IDs for `Members` to bind to this entity
+	Members_ODataBind *[]string `json:"members@odata.bind,omitempty"`
+
+	// The id of the directoryRoleTemplate that this role is based on. The property must be specified when activating a
+	// directory role in a tenant with a POST operation. After the directory role has been activated, the property is read
+	// only. Supports $filter (eq), $select.
+	RoleTemplateId nullable.Type[string] `json:"roleTemplateId,omitempty"`
+
+	// Members of this directory role that are scoped to administrative units. Read-only. Nullable.
+	ScopedMembers *[]ScopedRoleMembership `json:"scopedMembers,omitempty"`
+
+	// Fields inherited from DirectoryObject
+
+	// Date and time when this object was deleted. Always null when the object hasn't been deleted.
+	DeletedDateTime nullable.Type[string] `json:"deletedDateTime,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

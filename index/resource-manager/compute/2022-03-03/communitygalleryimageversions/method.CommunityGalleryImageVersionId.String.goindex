@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2022-03-03/communitygalleryimageversions
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id CommunityGalleryImageVersionId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
+		fmt.Sprintf("Community Gallery Name: %q", id.CommunityGalleryName),
+		fmt.Sprintf("Image Name: %q", id.ImageName),
+		fmt.Sprintf("Version Name: %q", id.VersionName),
+	}
+	return fmt.Sprintf("Community Gallery Image Version (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,46 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ManagedTenantsTenantTag struct {
+	// The identifier for the account that created the tenant tag. Required. Read-only.
+	CreatedByUserId nullable.Type[string] `json:"createdByUserId,omitempty"`
+
+	// The date and time when the tenant tag was created. Required. Read-only.
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// The date and time when the tenant tag was deleted. Required. Read-only.
+	DeletedDateTime nullable.Type[string] `json:"deletedDateTime,omitempty"`
+
+	// The description for the tenant tag. Optional. Read-only.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// The display name for the tenant tag. Required. Read-only.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// The identifier for the account that lasted on the tenant tag. Optional. Read-only.
+	LastActionByUserId nullable.Type[string] `json:"lastActionByUserId,omitempty"`
+
+	// The date and time the last action was performed against the tenant tag. Optional. Read-only.
+	LastActionDateTime nullable.Type[string] `json:"lastActionDateTime,omitempty"`
+
+	// The collection of managed tenants associated with the tenant tag. Optional.
+	Tenants *[]ManagedTenantsTenantInfo `json:"tenants,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

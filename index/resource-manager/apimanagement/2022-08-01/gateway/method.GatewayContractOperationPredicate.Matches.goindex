@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2022-08-01/gateway
+
+func (p GatewayContractOperationPredicate) Matches(input GatewayContract) bool {
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
+		return false
+	}
+
+	return true
+}

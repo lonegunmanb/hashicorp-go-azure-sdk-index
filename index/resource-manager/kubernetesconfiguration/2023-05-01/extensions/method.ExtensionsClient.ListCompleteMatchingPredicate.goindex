@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/kubernetesconfiguration/2023-05-01/extensions
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ExtensionsClient) ListCompleteMatchingPredicate(ctx context.Context, id commonids.ScopeId, predicate ExtensionOperationPredicate) (result ListCompleteResult, err error) {
+	items := make([]Extension, 0)
+
+	resp, err := c.List(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

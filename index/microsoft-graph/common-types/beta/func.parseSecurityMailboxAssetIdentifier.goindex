@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityMailboxAssetIdentifier(input string) (*SecurityMailboxAssetIdentifier, error) {
+	vals := map[string]SecurityMailboxAssetIdentifier{
+		"accountupn":                  SecurityMailboxAssetIdentifier_AccountUpn,
+		"fileownerupn":                SecurityMailboxAssetIdentifier_FileOwnerUpn,
+		"initiatingprocessaccountupn": SecurityMailboxAssetIdentifier_InitiatingProcessAccountUpn,
+		"lastmodifyingaccountupn":     SecurityMailboxAssetIdentifier_LastModifyingAccountUpn,
+		"recipientemailaddress":       SecurityMailboxAssetIdentifier_RecipientEmailAddress,
+		"senderdisplayname":           SecurityMailboxAssetIdentifier_SenderDisplayName,
+		"senderfromaddress":           SecurityMailboxAssetIdentifier_SenderFromAddress,
+		"sendermailfromaddress":       SecurityMailboxAssetIdentifier_SenderMailFromAddress,
+		"targetaccountupn":            SecurityMailboxAssetIdentifier_TargetAccountUpn,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityMailboxAssetIdentifier(input)
+	return &out, nil
+}

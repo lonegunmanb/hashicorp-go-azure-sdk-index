@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseOfficeUpdateChannel(input string) (*OfficeUpdateChannel, error) {
+	vals := map[string]OfficeUpdateChannel{
+		"current":              OfficeUpdateChannel_Current,
+		"deferred":             OfficeUpdateChannel_Deferred,
+		"firstreleasecurrent":  OfficeUpdateChannel_FirstReleaseCurrent,
+		"firstreleasedeferred": OfficeUpdateChannel_FirstReleaseDeferred,
+		"monthlyenterprise":    OfficeUpdateChannel_MonthlyEnterprise,
+		"none":                 OfficeUpdateChannel_None,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := OfficeUpdateChannel(input)
+	return &out, nil
+}

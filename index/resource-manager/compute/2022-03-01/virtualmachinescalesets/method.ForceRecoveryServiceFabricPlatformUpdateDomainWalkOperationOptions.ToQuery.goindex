@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2022-03-01/virtualmachinescalesets
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ForceRecoveryServiceFabricPlatformUpdateDomainWalkOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.PlacementGroupId != nil {
+		out.Append("placementGroupId", fmt.Sprintf("%v", *o.PlacementGroupId))
+	}
+	if o.PlatformUpdateDomain != nil {
+		out.Append("platformUpdateDomain", fmt.Sprintf("%v", *o.PlatformUpdateDomain))
+	}
+	if o.Zone != nil {
+		out.Append("zone", fmt.Sprintf("%v", *o.Zone))
+	}
+	return &out
+}

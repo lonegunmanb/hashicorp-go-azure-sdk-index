@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/maintenancewindowoptions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDayOfWeek(input string) (*DayOfWeek, error) {
+	vals := map[string]DayOfWeek{
+		"friday":    DayOfWeekFriday,
+		"monday":    DayOfWeekMonday,
+		"saturday":  DayOfWeekSaturday,
+		"sunday":    DayOfWeekSunday,
+		"thursday":  DayOfWeekThursday,
+		"tuesday":   DayOfWeekTuesday,
+		"wednesday": DayOfWeekWednesday,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DayOfWeek(input)
+	return &out, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2023-06-01/deploymentupdate
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDeploymentUpdateClientWithBaseURI(sdkApi sdkEnv.Api) (*DeploymentUpdateClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "deploymentupdate", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DeploymentUpdateClient: %+v", err)
+	}
+
+	return &DeploymentUpdateClient{
+		Client: client,
+	}, nil
+}

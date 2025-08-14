@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/databaseextensions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseOperationMode(input string) (*OperationMode, error) {
+	vals := map[string]OperationMode{
+		"export":         OperationModeExport,
+		"import":         OperationModeImport,
+		"polybaseimport": OperationModePolybaseImport,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := OperationMode(input)
+	return &out, nil
+}

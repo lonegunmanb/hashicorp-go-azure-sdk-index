@@ -1,0 +1,39 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type OpenShiftItem struct {
+	// Count of the number of slots for the given open shift.
+	OpenSlotCount *int64 `json:"openSlotCount,omitempty"`
+
+	// Fields inherited from ShiftItem
+
+	// An incremental part of a shift which can cover details of when and where an employee is during their shift. For
+	// example, an assignment or a scheduled break or lunch. Required.
+	Activities []ShiftActivity `json:"activities"`
+
+	// The shift label of the shiftItem.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// The shift notes for the shiftItem.
+	Notes nullable.Type[string] `json:"notes,omitempty"`
+
+	// Fields inherited from ScheduleEntity
+
+	EndDateTime nullable.Type[string] `json:"endDateTime,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	StartDateTime nullable.Type[string] `json:"startDateTime,omitempty"`
+	Theme         *ScheduleEntityTheme  `json:"theme,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

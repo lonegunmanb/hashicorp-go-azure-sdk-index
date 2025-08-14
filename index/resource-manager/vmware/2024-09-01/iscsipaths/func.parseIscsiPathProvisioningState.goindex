@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2024-09-01/iscsipaths
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseIscsiPathProvisioningState(input string) (*IscsiPathProvisioningState, error) {
+	vals := map[string]IscsiPathProvisioningState{
+		"building":  IscsiPathProvisioningStateBuilding,
+		"canceled":  IscsiPathProvisioningStateCanceled,
+		"deleting":  IscsiPathProvisioningStateDeleting,
+		"failed":    IscsiPathProvisioningStateFailed,
+		"pending":   IscsiPathProvisioningStatePending,
+		"succeeded": IscsiPathProvisioningStateSucceeded,
+		"updating":  IscsiPathProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IscsiPathProvisioningState(input)
+	return &out, nil
+}

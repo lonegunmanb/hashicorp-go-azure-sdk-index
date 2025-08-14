@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id IdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdUserProcessingResultId) String() string {
+	components := []string{
+		fmt.Sprintf("Workflow: %q", id.WorkflowId),
+		fmt.Sprintf("User Processing Result: %q", id.UserProcessingResultId),
+	}
+	return fmt.Sprintf("Identity Governance Lifecycle Workflow Deleted Item Workflow Id User Processing Result (%s)", strings.Join(components, "\n"))
+}

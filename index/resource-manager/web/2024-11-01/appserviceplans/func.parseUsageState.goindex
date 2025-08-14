@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-11-01/appserviceplans
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseUsageState(input string) (*UsageState, error) {
+	vals := map[string]UsageState{
+		"exceeded": UsageStateExceeded,
+		"normal":   UsageStateNormal,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UsageState(input)
+	return &out, nil
+}

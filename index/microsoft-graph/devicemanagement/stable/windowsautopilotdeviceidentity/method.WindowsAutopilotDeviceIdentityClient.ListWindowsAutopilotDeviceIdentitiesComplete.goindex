@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/windowsautopilotdeviceidentity
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c WindowsAutopilotDeviceIdentityClient) ListWindowsAutopilotDeviceIdentitiesComplete(ctx context.Context, options ListWindowsAutopilotDeviceIdentitiesOperationOptions) (ListWindowsAutopilotDeviceIdentitiesCompleteResult, error) {
+	return c.ListWindowsAutopilotDeviceIdentitiesCompleteMatchingPredicate(ctx, options, WindowsAutopilotDeviceIdentityOperationPredicate{})
+}

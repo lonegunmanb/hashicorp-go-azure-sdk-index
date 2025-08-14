@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+)
+type WindowsAppXAppAssignmentSettings struct {
+	// When TRUE, indicates that device execution context will be used for the AppX mobile app. When FALSE, indicates that
+	// user context will be used for the AppX mobile app. By default, this property is set to FALSE. Once this property has
+	// been set to TRUE it cannot be changed.
+	UseDeviceContext *bool `json:"useDeviceContext,omitempty"`
+
+	// Fields inherited from MobileAppAssignmentSettings
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

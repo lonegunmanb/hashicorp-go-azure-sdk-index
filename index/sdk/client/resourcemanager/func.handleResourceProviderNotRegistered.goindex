@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager
+import (
+	"fmt"
+	"net/http"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/internal/stringfmt"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func handleResourceProviderNotRegistered(r *http.Response, o *odata.OData) (bool, error) {
+	if o != nil && o.Error != nil && o.Error.Code != nil && strings.EqualFold(*o.Error.Code, "MissingSubscriptionRegistration") {
+		return false, resourceProviderNotRegisteredError(*o.Error.Message)
+	}
+
+	return false, nil
+}

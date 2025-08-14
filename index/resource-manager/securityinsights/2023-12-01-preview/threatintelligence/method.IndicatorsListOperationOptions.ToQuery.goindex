@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-12-01-preview/threatintelligence
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o IndicatorsListOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.Filter != nil {
+		out.Append("$filter", fmt.Sprintf("%v", *o.Filter))
+	}
+	if o.Orderby != nil {
+		out.Append("$orderby", fmt.Sprintf("%v", *o.Orderby))
+	}
+	if o.Top != nil {
+		out.Append("$top", fmt.Sprintf("%v", *o.Top))
+	}
+	return &out
+}

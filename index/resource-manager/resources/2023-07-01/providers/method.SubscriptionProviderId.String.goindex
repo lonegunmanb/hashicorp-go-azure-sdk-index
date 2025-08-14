@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2023-07-01/providers
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id SubscriptionProviderId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Provider Name: %q", id.ProviderName),
+	}
+	return fmt.Sprintf("Subscription Provider (%s)", strings.Join(components, "\n"))
+}

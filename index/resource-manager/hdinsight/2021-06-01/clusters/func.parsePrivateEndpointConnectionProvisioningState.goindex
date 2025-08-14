@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hdinsight/2021-06-01/clusters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePrivateEndpointConnectionProvisioningState(input string) (*PrivateEndpointConnectionProvisioningState, error) {
+	vals := map[string]PrivateEndpointConnectionProvisioningState{
+		"canceled":   PrivateEndpointConnectionProvisioningStateCanceled,
+		"deleting":   PrivateEndpointConnectionProvisioningStateDeleting,
+		"failed":     PrivateEndpointConnectionProvisioningStateFailed,
+		"inprogress": PrivateEndpointConnectionProvisioningStateInProgress,
+		"succeeded":  PrivateEndpointConnectionProvisioningStateSucceeded,
+		"updating":   PrivateEndpointConnectionProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PrivateEndpointConnectionProvisioningState(input)
+	return &out, nil
+}

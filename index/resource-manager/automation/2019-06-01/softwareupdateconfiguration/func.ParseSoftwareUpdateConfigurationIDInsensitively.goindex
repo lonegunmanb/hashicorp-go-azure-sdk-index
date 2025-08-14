@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2019-06-01/softwareupdateconfiguration
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseSoftwareUpdateConfigurationIDInsensitively(input string) (*SoftwareUpdateConfigurationId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&SoftwareUpdateConfigurationId{})
+	parsed, err := parser.Parse(input, true)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := SoftwareUpdateConfigurationId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/databaseoperations
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePhase(input string) (*Phase, error) {
+	vals := map[string]Phase{
+		"buildinghyperscalecomponents": PhaseBuildingHyperscaleComponents,
+		"catchup":                      PhaseCatchup,
+		"copying":                      PhaseCopying,
+		"cutoverinprogress":            PhaseCutoverInProgress,
+		"logtransitioninprogress":      PhaseLogTransitionInProgress,
+		"waitingforcutover":            PhaseWaitingForCutover,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Phase(input)
+	return &out, nil
+}

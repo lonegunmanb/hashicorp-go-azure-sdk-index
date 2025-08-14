@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityFileProcessingStatus(input string) (*SecurityFileProcessingStatus, error) {
+	vals := map[string]SecurityFileProcessingStatus{
+		"extractionexception":         SecurityFileProcessingStatus_ExtractionException,
+		"filebodyistoolong":           SecurityFileProcessingStatus_FileBodyIsTooLong,
+		"filedepthlimitexceeded":      SecurityFileProcessingStatus_FileDepthLimitExceeded,
+		"filesizeistoolarge":          SecurityFileProcessingStatus_FileSizeIsTooLarge,
+		"filesizeiszero":              SecurityFileProcessingStatus_FileSizeIsZero,
+		"filetypeisnotsupported":      SecurityFileProcessingStatus_FileTypeIsNotSupported,
+		"filetypeisunknown":           SecurityFileProcessingStatus_FileTypeIsUnknown,
+		"internalerror":               SecurityFileProcessingStatus_InternalError,
+		"invalidfileid":               SecurityFileProcessingStatus_InvalidFileId,
+		"malformedfile":               SecurityFileProcessingStatus_MalformedFile,
+		"noreviewsetsummarygenerated": SecurityFileProcessingStatus_NoReviewSetSummaryGenerated,
+		"ocrfilesizeexceedslimit":     SecurityFileProcessingStatus_OcrFileSizeExceedsLimit,
+		"ocrprocessingtimeout":        SecurityFileProcessingStatus_OcrProcessingTimeout,
+		"poisonfile":                  SecurityFileProcessingStatus_PoisonFile,
+		"processingtimeout":           SecurityFileProcessingStatus_ProcessingTimeout,
+		"protectedfile":               SecurityFileProcessingStatus_ProtectedFile,
+		"success":                     SecurityFileProcessingStatus_Success,
+		"unknownerror":                SecurityFileProcessingStatus_UnknownError,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityFileProcessingStatus(input)
+	return &out, nil
+}

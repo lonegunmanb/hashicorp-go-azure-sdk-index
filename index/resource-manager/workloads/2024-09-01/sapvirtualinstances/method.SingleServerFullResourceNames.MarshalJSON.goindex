@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/workloads/2024-09-01/sapvirtualinstances
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s SingleServerFullResourceNames) MarshalJSON() ([]byte, error) {
+	type wrapper SingleServerFullResourceNames
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling SingleServerFullResourceNames: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling SingleServerFullResourceNames: %+v", err)
+	}
+
+	decoded["namingPatternType"] = "FullResourceName"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling SingleServerFullResourceNames: %+v", err)
+	}
+
+	return encoded, nil
+}

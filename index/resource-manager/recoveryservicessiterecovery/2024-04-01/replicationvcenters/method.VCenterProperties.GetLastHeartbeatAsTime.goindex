@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2024-04-01/replicationvcenters
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *VCenterProperties) GetLastHeartbeatAsTime() (*time.Time, error) {
+	if o.LastHeartbeat == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.LastHeartbeat, "2006-01-02T15:04:05Z07:00")
+}

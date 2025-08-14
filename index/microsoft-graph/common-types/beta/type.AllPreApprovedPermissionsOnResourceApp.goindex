@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type AllPreApprovedPermissionsOnResourceApp struct {
+	// The appId of the resource application (the API). Required.
+	ResourceApplicationId nullable.Type[string] `json:"resourceApplicationId,omitempty"`
+
+	// Fields inherited from PreApprovedPermissions
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Indicates the scope of permissions that are included in this condition set. Possible values: all for all permissions,
+	// enumerated for a given list of permissions, or allPermissionsOnResourceApp for all permissions from a given API.
+	// Required.
+	PermissionKind PermissionKind `json:"permissionKind"`
+
+	// The type of permission being granted. Possible values: application for application permissions, or delegated for
+	// delegated permissions. Required.
+	PermissionType PermissionType `json:"permissionType"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

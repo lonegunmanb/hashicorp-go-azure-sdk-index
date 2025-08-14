@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cosmosdb/2022-05-15/services
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (s GraphAPIComputeServiceResourceProperties) MarshalJSON() ([]byte, error) {
+	type wrapper GraphAPIComputeServiceResourceProperties
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling GraphAPIComputeServiceResourceProperties: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling GraphAPIComputeServiceResourceProperties: %+v", err)
+	}
+
+	decoded["serviceType"] = "GraphAPICompute"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling GraphAPIComputeServiceResourceProperties: %+v", err)
+	}
+
+	return encoded, nil
+}

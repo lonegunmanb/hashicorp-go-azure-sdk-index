@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/security/2019-01-01-preview/subassessments
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type SecuritySubAssessmentProperties struct {
+	AdditionalData  AdditionalData       `json:"additionalData"`
+	Category        *string              `json:"category,omitempty"`
+	Description     *string              `json:"description,omitempty"`
+	DisplayName     *string              `json:"displayName,omitempty"`
+	Id              *string              `json:"id,omitempty"`
+	Impact          *string              `json:"impact,omitempty"`
+	Remediation     *string              `json:"remediation,omitempty"`
+	ResourceDetails ResourceDetails      `json:"resourceDetails"`
+	Status          *SubAssessmentStatus `json:"status,omitempty"`
+	TimeGenerated   *string              `json:"timeGenerated,omitempty"`
+}

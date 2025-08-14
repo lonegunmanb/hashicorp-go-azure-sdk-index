@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id IdentityGovernancePermissionsManagementScheduledPermissionsApprovalIdStepId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.StaticSegment("identityGovernance", "identityGovernance", "identityGovernance"),
+		resourceids.StaticSegment("permissionsManagement", "permissionsManagement", "permissionsManagement"),
+		resourceids.StaticSegment("scheduledPermissionsApprovals", "scheduledPermissionsApprovals", "scheduledPermissionsApprovals"),
+		resourceids.UserSpecifiedSegment("approvalId", "approvalId"),
+		resourceids.StaticSegment("steps", "steps", "steps"),
+		resourceids.UserSpecifiedSegment("approvalStepId", "approvalStepId"),
+	}
+}

@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/autonomousdatabases
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseOperationsInsightsStatusType(input string) (*OperationsInsightsStatusType, error) {
+	vals := map[string]OperationsInsightsStatusType{
+		"disabling":       OperationsInsightsStatusTypeDisabling,
+		"enabled":         OperationsInsightsStatusTypeEnabled,
+		"enabling":        OperationsInsightsStatusTypeEnabling,
+		"faileddisabling": OperationsInsightsStatusTypeFailedDisabling,
+		"failedenabling":  OperationsInsightsStatusTypeFailedEnabling,
+		"notenabled":      OperationsInsightsStatusTypeNotEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := OperationsInsightsStatusType(input)
+	return &out, nil
+}

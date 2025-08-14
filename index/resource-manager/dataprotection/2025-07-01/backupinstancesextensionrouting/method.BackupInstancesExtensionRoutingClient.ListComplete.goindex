@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2025-07-01/backupinstancesextensionrouting
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c BackupInstancesExtensionRoutingClient) ListComplete(ctx context.Context, id commonids.ScopeId) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, BackupInstanceResourceOperationPredicate{})
+}

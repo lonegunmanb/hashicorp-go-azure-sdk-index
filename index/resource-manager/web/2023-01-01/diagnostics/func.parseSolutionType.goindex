@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/diagnostics
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSolutionType(input string) (*SolutionType, error) {
+	vals := map[string]SolutionType{
+		"bestpractices":     SolutionTypeBestPractices,
+		"deepinvestigation": SolutionTypeDeepInvestigation,
+		"quicksolution":     SolutionTypeQuickSolution,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SolutionType(input)
+	return &out, nil
+}

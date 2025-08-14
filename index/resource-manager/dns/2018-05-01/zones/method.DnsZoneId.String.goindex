@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dns/2018-05-01/zones
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DnsZoneId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Dns Zone Name: %q", id.DnsZoneName),
+	}
+	return fmt.Sprintf("Dns Zone (%s)", strings.Join(components, "\n"))
+}

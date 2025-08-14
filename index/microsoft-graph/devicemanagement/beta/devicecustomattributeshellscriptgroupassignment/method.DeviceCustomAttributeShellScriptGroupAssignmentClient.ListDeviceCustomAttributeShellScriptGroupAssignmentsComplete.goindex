@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/devicecustomattributeshellscriptgroupassignment
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DeviceCustomAttributeShellScriptGroupAssignmentClient) ListDeviceCustomAttributeShellScriptGroupAssignmentsComplete(ctx context.Context, id beta.DeviceManagementDeviceCustomAttributeShellScriptId, options ListDeviceCustomAttributeShellScriptGroupAssignmentsOperationOptions) (ListDeviceCustomAttributeShellScriptGroupAssignmentsCompleteResult, error) {
+	return c.ListDeviceCustomAttributeShellScriptGroupAssignmentsCompleteMatchingPredicate(ctx, id, options, DeviceManagementScriptGroupAssignmentOperationPredicate{})
+}

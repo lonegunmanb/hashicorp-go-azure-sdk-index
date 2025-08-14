@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityDataSourceContainerStatus(input string) (*SecurityDataSourceContainerStatus, error) {
+	vals := map[string]SecurityDataSourceContainerStatus{
+		"active":   SecurityDataSourceContainerStatus_Active,
+		"released": SecurityDataSourceContainerStatus_Released,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityDataSourceContainerStatus(input)
+	return &out, nil
+}

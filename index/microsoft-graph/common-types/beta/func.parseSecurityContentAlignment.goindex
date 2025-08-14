@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityContentAlignment(input string) (*SecurityContentAlignment, error) {
+	vals := map[string]SecurityContentAlignment{
+		"center": SecurityContentAlignment_Center,
+		"left":   SecurityContentAlignment_Left,
+		"right":  SecurityContentAlignment_Right,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityContentAlignment(input)
+	return &out, nil
+}

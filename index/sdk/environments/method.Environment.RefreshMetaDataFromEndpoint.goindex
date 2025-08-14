@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/sdk/environments
+import (
+	"context"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/internal/metadata"
+)
+func (e *Environment) RefreshMetaDataFromEndpoint(ctx context.Context) error {
+	endpoint, ok := e.ResourceManager.Endpoint()
+	if !ok {
+		return fmt.Errorf("refreshing MetaData from Endpoint: no `ResourceManager` endpoint was defined")
+	}
+
+	client := metadata.NewClientWithEndpoint(*endpoint)
+	config, err := client.GetMetaData(ctx)
+	if err != nil {
+		return fmt.Errorf("retrieving MetaData from endpoint: %+v", err)
+	}
+
+	if err := e.updateFromMetaData(config); err != nil {
+		return fmt.Errorf("updating Environment from MetaData: %+v", err)
+	}
+
+	return nil
+}

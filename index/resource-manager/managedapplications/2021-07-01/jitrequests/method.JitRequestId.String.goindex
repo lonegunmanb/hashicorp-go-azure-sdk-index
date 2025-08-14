@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/managedapplications/2021-07-01/jitrequests
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id JitRequestId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Jit Request Name: %q", id.JitRequestName),
+	}
+	return fmt.Sprintf("Jit Request (%s)", strings.Join(components, "\n"))
+}

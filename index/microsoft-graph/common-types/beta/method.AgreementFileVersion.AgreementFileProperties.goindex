@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s AgreementFileVersion) AgreementFileProperties() BaseAgreementFilePropertiesImpl {
+	return BaseAgreementFilePropertiesImpl{
+		CreatedDateTime: s.CreatedDateTime,
+		DisplayName:     s.DisplayName,
+		FileData:        s.FileData,
+		FileName:        s.FileName,
+		IsDefault:       s.IsDefault,
+		IsMajorVersion:  s.IsMajorVersion,
+		Language:        s.Language,
+		Id:              s.Id,
+		ODataId:         s.ODataId,
+		ODataType:       s.ODataType,
+	}
+}

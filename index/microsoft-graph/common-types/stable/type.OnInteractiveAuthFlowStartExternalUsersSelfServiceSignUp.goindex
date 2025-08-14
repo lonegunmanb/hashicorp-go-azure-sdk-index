@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+)
+type OnInteractiveAuthFlowStartExternalUsersSelfServiceSignUp struct {
+	// Optional. Specifies whether the authentication flow includes an option to sign up (create account) and sign in.
+	// Default value is false meaning only sign in is enabled.
+	IsSignUpAllowed *bool `json:"isSignUpAllowed,omitempty"`
+
+	// Fields inherited from OnInteractiveAuthFlowStartHandler
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

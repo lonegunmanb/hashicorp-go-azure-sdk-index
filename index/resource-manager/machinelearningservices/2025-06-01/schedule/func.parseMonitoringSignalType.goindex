@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2025-06-01/schedule
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMonitoringSignalType(input string) (*MonitoringSignalType, error) {
+	vals := map[string]MonitoringSignalType{
+		"custom":                  MonitoringSignalTypeCustom,
+		"datadrift":               MonitoringSignalTypeDataDrift,
+		"dataquality":             MonitoringSignalTypeDataQuality,
+		"featureattributiondrift": MonitoringSignalTypeFeatureAttributionDrift,
+		"predictiondrift":         MonitoringSignalTypePredictionDrift,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MonitoringSignalType(input)
+	return &out, nil
+}

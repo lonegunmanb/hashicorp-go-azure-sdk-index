@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *DeviceManagementOperationApprovalRequestId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.OperationApprovalRequestId, ok = input.Parsed["operationApprovalRequestId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "operationApprovalRequestId", input)
+	}
+
+	return nil
+}

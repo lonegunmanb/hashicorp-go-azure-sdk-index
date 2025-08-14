@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/sdk/internal/azurecli
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"log"
+	"os/exec"
+	"regexp"
+	"strings"
+
+	"github.com/hashicorp/go-version"
+)
+func ValidateTenantID(tenantId string) (bool, error) {
+	validTenantId, err := regexp.MatchString("^[a-zA-Z0-9._-]+$", tenantId)
+	if err != nil {
+		return false, fmt.Errorf("could not parse tenant ID %q: %s", tenantId, err)
+	}
+
+	return validTenantId, nil
+}

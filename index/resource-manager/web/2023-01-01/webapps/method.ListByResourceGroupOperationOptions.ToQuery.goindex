@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/webapps
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ListByResourceGroupOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.IncludeSlots != nil {
+		out.Append("includeSlots", fmt.Sprintf("%v", *o.IncludeSlots))
+	}
+	return &out
+}

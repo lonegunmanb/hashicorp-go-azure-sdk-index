@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/formulas
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewFormulasClientWithBaseURI(sdkApi sdkEnv.Api) (*FormulasClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "formulas", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating FormulasClient: %+v", err)
+	}
+
+	return &FormulasClient{
+		Client: client,
+	}, nil
+}

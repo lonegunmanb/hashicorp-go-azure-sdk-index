@@ -1,0 +1,67 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalEnrollmentProfileImplementation(input []byte) (EnrollmentProfile, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling EnrollmentProfile into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.depEnrollmentBaseProfile") {
+		var out DepEnrollmentBaseProfile
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DepEnrollmentBaseProfile: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.depEnrollmentProfile") {
+		var out DepEnrollmentProfile
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DepEnrollmentProfile: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.depTvOSEnrollmentProfile") {
+		var out DepTvOSEnrollmentProfile
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DepTvOSEnrollmentProfile: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.depVisionOSEnrollmentProfile") {
+		var out DepVisionOSEnrollmentProfile
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DepVisionOSEnrollmentProfile: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseEnrollmentProfileImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseEnrollmentProfileImpl: %+v", err)
+	}
+
+	return RawEnrollmentProfileImpl{
+		enrollmentProfile: parent,
+		Type:              value,
+		Values:            temp,
+	}, nil
+
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/intentuserstatesummary
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewIntentUserStateSummaryClientWithBaseURI(sdkApi sdkEnv.Api) (*IntentUserStateSummaryClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "intentuserstatesummary", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating IntentUserStateSummaryClient: %+v", err)
+	}
+
+	return &IntentUserStateSummaryClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/tokenissuancepolicy
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTokenIssuancePolicyClientWithBaseURI(sdkApi sdkEnv.Api) (*TokenIssuancePolicyClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "tokenissuancepolicy", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TokenIssuancePolicyClient: %+v", err)
+	}
+
+	return &TokenIssuancePolicyClient{
+		Client: client,
+	}, nil
+}

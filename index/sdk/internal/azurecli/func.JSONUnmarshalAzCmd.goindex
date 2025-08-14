@@ -1,0 +1,62 @@
+package github.com/hashicorp/go-azure-sdk/sdk/internal/azurecli
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"log"
+	"os/exec"
+	"regexp"
+	"strings"
+
+	"github.com/hashicorp/go-version"
+)
+func JSONUnmarshalAzCmd(cacheable bool, i interface{}, arg ...string) error {
+	var stderr bytes.Buffer
+	var stdout bytes.Buffer
+
+	arg = append(arg, "-o=json")
+	argstring := strings.Join(arg, " ")
+
+	var result []byte
+	if cacheable {
+		if cachedResult, ok := cache.Get(argstring); ok {
+			result = cachedResult
+		}
+	}
+
+	if result == nil {
+		log.Printf("[DEBUG] az-cli invocation: az %s", argstring)
+
+		cmd := exec.Command("az", arg...)
+		cmd.Stderr = &stderr
+		cmd.Stdout = &stdout
+
+		if err := cmd.Start(); err != nil {
+			err := fmt.Errorf("launching Azure CLI: %+v", err)
+			if stdErrStr := stderr.String(); stdErrStr != "" {
+				err = fmt.Errorf("%s: %s", err, strings.TrimSpace(stdErrStr))
+			}
+			return err
+		}
+
+		if err := cmd.Wait(); err != nil {
+			err := fmt.Errorf("running Azure CLI: %+v", err)
+			if stdErrStr := stderr.String(); stdErrStr != "" {
+				err = fmt.Errorf("%s: %s", err, strings.TrimSpace(stdErrStr))
+			}
+			return err
+		}
+
+		result = stdout.Bytes()
+
+		if cacheable {
+			cache.Set(argstring, result)
+		}
+	}
+
+	if err := json.Unmarshal(result, &i); err != nil {
+		return fmt.Errorf("unmarshaling the output of Azure CLI: %v", err)
+	}
+
+	return nil
+}

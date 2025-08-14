@@ -1,0 +1,55 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type BaseBaseItemImpl struct {
+	// Identity of the user, device, or application that created the item. Read-only.
+	CreatedBy *IdentitySet `json:"createdBy,omitempty"`
+
+	CreatedByUser *User `json:"createdByUser,omitempty"`
+
+	// Date and time of item creation. Read-only.
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+
+	// The description of the item.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// ETag for the item. Read-only.
+	ETag nullable.Type[string] `json:"eTag,omitempty"`
+
+	// Identity of the user, device, and application that last modified the item. Read-only.
+	LastModifiedBy *IdentitySet `json:"lastModifiedBy,omitempty"`
+
+	LastModifiedByUser *User `json:"lastModifiedByUser,omitempty"`
+
+	// Date and time the item was last modified. Read-only.
+	LastModifiedDateTime *string `json:"lastModifiedDateTime,omitempty"`
+
+	// The name of the item. Read-write.
+	Name nullable.Type[string] `json:"name,omitempty"`
+
+	// Parent information, if the item has a parent. Read-write.
+	ParentReference *ItemReference `json:"parentReference,omitempty"`
+
+	// URL that either displays the resource in the browser (for Office file formats), or is a direct link to the file (for
+	// other formats). Read-only.
+	WebUrl nullable.Type[string] `json:"webUrl,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

@@ -1,0 +1,57 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalNetworkaccessForwardingRuleImplementation(input []byte) (NetworkaccessForwardingRule, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling NetworkaccessForwardingRule into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.networkaccess.internetAccessForwardingRule") {
+		var out NetworkaccessInternetAccessForwardingRule
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into NetworkaccessInternetAccessForwardingRule: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.networkaccess.m365ForwardingRule") {
+		var out NetworkaccessM365ForwardingRule
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into NetworkaccessM365ForwardingRule: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.networkaccess.privateAccessForwardingRule") {
+		var out NetworkaccessPrivateAccessForwardingRule
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into NetworkaccessPrivateAccessForwardingRule: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseNetworkaccessForwardingRuleImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseNetworkaccessForwardingRuleImpl: %+v", err)
+	}
+
+	return RawNetworkaccessForwardingRuleImpl{
+		networkaccessForwardingRule: parent,
+		Type:                        value,
+		Values:                      temp,
+	}, nil
+
+}

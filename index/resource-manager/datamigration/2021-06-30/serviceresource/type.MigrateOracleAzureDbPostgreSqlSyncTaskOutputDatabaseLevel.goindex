@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/serviceresource
+import (
+	"encoding/json"
+	"fmt"
+)
+type MigrateOracleAzureDbPostgreSqlSyncTaskOutputDatabaseLevel struct {
+	AppliedChanges          *int64                               `json:"appliedChanges,omitempty"`
+	CdcDeleteCounter        *int64                               `json:"cdcDeleteCounter,omitempty"`
+	CdcInsertCounter        *int64                               `json:"cdcInsertCounter,omitempty"`
+	CdcUpdateCounter        *int64                               `json:"cdcUpdateCounter,omitempty"`
+	DatabaseName            *string                              `json:"databaseName,omitempty"`
+	EndedOn                 *string                              `json:"endedOn,omitempty"`
+	FullLoadCompletedTables *int64                               `json:"fullLoadCompletedTables,omitempty"`
+	FullLoadErroredTables   *int64                               `json:"fullLoadErroredTables,omitempty"`
+	FullLoadLoadingTables   *int64                               `json:"fullLoadLoadingTables,omitempty"`
+	FullLoadQueuedTables    *int64                               `json:"fullLoadQueuedTables,omitempty"`
+	IncomingChanges         *int64                               `json:"incomingChanges,omitempty"`
+	InitializationCompleted *bool                                `json:"initializationCompleted,omitempty"`
+	Latency                 *int64                               `json:"latency,omitempty"`
+	MigrationState          *SyncDatabaseMigrationReportingState `json:"migrationState,omitempty"`
+	StartedOn               *string                              `json:"startedOn,omitempty"`
+
+	// Fields inherited from MigrateOracleAzureDbPostgreSqlSyncTaskOutput
+
+	Id         *string `json:"id,omitempty"`
+	ResultType string  `json:"resultType"`
+}

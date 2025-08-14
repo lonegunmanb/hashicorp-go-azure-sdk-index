@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseConnectionOperationStatus(input string) (*ConnectionOperationStatus, error) {
+	vals := map[string]ConnectionOperationStatus{
+		"completed":   ConnectionOperationStatus_Completed,
+		"failed":      ConnectionOperationStatus_Failed,
+		"inprogress":  ConnectionOperationStatus_Inprogress,
+		"unspecified": ConnectionOperationStatus_Unspecified,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ConnectionOperationStatus(input)
+	return &out, nil
+}

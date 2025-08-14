@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/sensitivitylabels
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSensitivityLabelsClientWithBaseURI(sdkApi sdkEnv.Api) (*SensitivityLabelsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "sensitivitylabels", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SensitivityLabelsClient: %+v", err)
+	}
+
+	return &SensitivityLabelsClient{
+		Client: client,
+	}, nil
+}

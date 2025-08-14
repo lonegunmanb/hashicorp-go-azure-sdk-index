@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2023-06-01/deploymentupdate
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DeploymentUpdateClient) MonitorUpgradeThenPoll(ctx context.Context, id MonitorId, input ElasticMonitorUpgrade) error {
+	result, err := c.MonitorUpgrade(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing MonitorUpgrade: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after MonitorUpgrade: %+v", err)
+	}
+
+	return nil
+}

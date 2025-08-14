@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2025-06-01/operationalizationclusters
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (s SynapseSpark) MarshalJSON() ([]byte, error) {
+	type wrapper SynapseSpark
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling SynapseSpark: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling SynapseSpark: %+v", err)
+	}
+
+	decoded["computeType"] = "SynapseSpark"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling SynapseSpark: %+v", err)
+	}
+
+	return encoded, nil
+}

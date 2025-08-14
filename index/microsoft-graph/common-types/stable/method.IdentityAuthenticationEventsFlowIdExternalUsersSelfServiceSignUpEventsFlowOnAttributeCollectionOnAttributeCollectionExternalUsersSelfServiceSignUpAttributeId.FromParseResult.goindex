@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *IdentityAuthenticationEventsFlowIdExternalUsersSelfServiceSignUpEventsFlowOnAttributeCollectionOnAttributeCollectionExternalUsersSelfServiceSignUpAttributeId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.AuthenticationEventsFlowId, ok = input.Parsed["authenticationEventsFlowId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "authenticationEventsFlowId", input)
+	}
+
+	if id.IdentityUserFlowAttributeId, ok = input.Parsed["identityUserFlowAttributeId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "identityUserFlowAttributeId", input)
+	}
+
+	return nil
+}

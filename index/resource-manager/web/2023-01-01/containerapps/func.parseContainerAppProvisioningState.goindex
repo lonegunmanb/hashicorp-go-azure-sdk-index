@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/containerapps
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseContainerAppProvisioningState(input string) (*ContainerAppProvisioningState, error) {
+	vals := map[string]ContainerAppProvisioningState{
+		"canceled":   ContainerAppProvisioningStateCanceled,
+		"failed":     ContainerAppProvisioningStateFailed,
+		"inprogress": ContainerAppProvisioningStateInProgress,
+		"succeeded":  ContainerAppProvisioningStateSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ContainerAppProvisioningState(input)
+	return &out, nil
+}

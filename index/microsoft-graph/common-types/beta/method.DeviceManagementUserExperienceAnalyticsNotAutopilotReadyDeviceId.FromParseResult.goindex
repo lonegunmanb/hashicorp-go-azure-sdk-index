@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *DeviceManagementUserExperienceAnalyticsNotAutopilotReadyDeviceId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.UserExperienceAnalyticsNotAutopilotReadyDeviceId, ok = input.Parsed["userExperienceAnalyticsNotAutopilotReadyDeviceId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "userExperienceAnalyticsNotAutopilotReadyDeviceId", input)
+	}
+
+	return nil
+}

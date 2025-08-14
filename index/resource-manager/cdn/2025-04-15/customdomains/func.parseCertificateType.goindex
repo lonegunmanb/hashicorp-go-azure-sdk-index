@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-04-15/customdomains
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCertificateType(input string) (*CertificateType, error) {
+	vals := map[string]CertificateType{
+		"dedicated": CertificateTypeDedicated,
+		"shared":    CertificateTypeShared,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CertificateType(input)
+	return &out, nil
+}

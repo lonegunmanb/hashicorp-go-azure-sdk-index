@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-05-01/networkprofiles
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNetworkInterfaceNicType(input string) (*NetworkInterfaceNicType, error) {
+	vals := map[string]NetworkInterfaceNicType{
+		"elastic":  NetworkInterfaceNicTypeElastic,
+		"standard": NetworkInterfaceNicTypeStandard,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NetworkInterfaceNicType(input)
+	return &out, nil
+}

@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2024-02-01/rules
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRequestBodyOperator(input string) (*RequestBodyOperator, error) {
+	vals := map[string]RequestBodyOperator{
+		"any":                RequestBodyOperatorAny,
+		"beginswith":         RequestBodyOperatorBeginsWith,
+		"contains":           RequestBodyOperatorContains,
+		"endswith":           RequestBodyOperatorEndsWith,
+		"equal":              RequestBodyOperatorEqual,
+		"greaterthan":        RequestBodyOperatorGreaterThan,
+		"greaterthanorequal": RequestBodyOperatorGreaterThanOrEqual,
+		"lessthan":           RequestBodyOperatorLessThan,
+		"lessthanorequal":    RequestBodyOperatorLessThanOrEqual,
+		"regex":              RequestBodyOperatorRegEx,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RequestBodyOperator(input)
+	return &out, nil
+}

@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2025-01-01/experiments
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTargetReferenceType(input string) (*TargetReferenceType, error) {
+	vals := map[string]TargetReferenceType{
+		"chaostarget": TargetReferenceTypeChaosTarget,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TargetReferenceType(input)
+	return &out, nil
+}

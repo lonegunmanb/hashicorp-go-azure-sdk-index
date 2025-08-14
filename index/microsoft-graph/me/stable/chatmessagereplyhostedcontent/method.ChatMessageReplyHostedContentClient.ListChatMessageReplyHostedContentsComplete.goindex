@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/chatmessagereplyhostedcontent
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ChatMessageReplyHostedContentClient) ListChatMessageReplyHostedContentsComplete(ctx context.Context, id stable.MeChatIdMessageIdReplyId, options ListChatMessageReplyHostedContentsOperationOptions) (ListChatMessageReplyHostedContentsCompleteResult, error) {
+	return c.ListChatMessageReplyHostedContentsCompleteMatchingPredicate(ctx, id, options, ChatMessageHostedContentOperationPredicate{})
+}

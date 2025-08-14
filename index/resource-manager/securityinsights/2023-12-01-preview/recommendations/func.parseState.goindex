@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-12-01-preview/recommendations
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseState(input string) (*State, error) {
+	vals := map[string]State{
+		"active":            StateActive,
+		"completedbyaction": StateCompletedByAction,
+		"completedbyuser":   StateCompletedByUser,
+		"disabled":          StateDisabled,
+		"hidden":            StateHidden,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := State(input)
+	return &out, nil
+}

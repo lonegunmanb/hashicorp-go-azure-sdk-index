@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/sdk/internal/test
+import (
+	"context"
+	"net/http"
+	"os"
+	"testing"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/auth"
+	"github.com/hashicorp/go-azure-sdk/sdk/claims"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Connection struct {
+	AuthConfig auth.Credentials
+	Authorizer auth.Authorizer
+	Claims     *claims.Claims
+}

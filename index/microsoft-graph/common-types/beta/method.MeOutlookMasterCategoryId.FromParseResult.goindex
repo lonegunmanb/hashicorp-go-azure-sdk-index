@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *MeOutlookMasterCategoryId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.OutlookCategoryId, ok = input.Parsed["outlookCategoryId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "outlookCategoryId", input)
+	}
+
+	return nil
+}

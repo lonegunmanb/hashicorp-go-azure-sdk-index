@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/frontdoor/2020-04-01/frontdoors
+import (
+	"strings"
+)
+func parseRulesEngineMatchVariable(input string) (*RulesEngineMatchVariable, error) {
+	vals := map[string]RulesEngineMatchVariable{
+		"ismobile":                 RulesEngineMatchVariableIsMobile,
+		"postargs":                 RulesEngineMatchVariablePostArgs,
+		"querystring":              RulesEngineMatchVariableQueryString,
+		"remoteaddr":               RulesEngineMatchVariableRemoteAddr,
+		"requestbody":              RulesEngineMatchVariableRequestBody,
+		"requestfilename":          RulesEngineMatchVariableRequestFilename,
+		"requestfilenameextension": RulesEngineMatchVariableRequestFilenameExtension,
+		"requestheader":            RulesEngineMatchVariableRequestHeader,
+		"requestmethod":            RulesEngineMatchVariableRequestMethod,
+		"requestpath":              RulesEngineMatchVariableRequestPath,
+		"requestscheme":            RulesEngineMatchVariableRequestScheme,
+		"requesturi":               RulesEngineMatchVariableRequestUri,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RulesEngineMatchVariable(input)
+	return &out, nil
+}

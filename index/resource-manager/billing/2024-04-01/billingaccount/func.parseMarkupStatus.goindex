@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingaccount
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMarkupStatus(input string) (*MarkupStatus, error) {
+	vals := map[string]MarkupStatus{
+		"disabled":  MarkupStatusDisabled,
+		"locked":    MarkupStatusLocked,
+		"other":     MarkupStatusOther,
+		"preview":   MarkupStatusPreview,
+		"published": MarkupStatusPublished,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MarkupStatus(input)
+	return &out, nil
+}

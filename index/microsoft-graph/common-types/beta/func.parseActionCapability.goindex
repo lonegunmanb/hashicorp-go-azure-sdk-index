@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseActionCapability(input string) (*ActionCapability, error) {
+	vals := map[string]ActionCapability{
+		"disabled": ActionCapability_Disabled,
+		"enabled":  ActionCapability_Enabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ActionCapability(input)
+	return &out, nil
+}

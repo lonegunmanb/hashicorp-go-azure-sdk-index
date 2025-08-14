@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-03-01/virtualmachines
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSettingNames(input string) (*SettingNames, error) {
+	vals := map[string]SettingNames{
+		"autologon":          SettingNamesAutoLogon,
+		"firstlogoncommands": SettingNamesFirstLogonCommands,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SettingNames(input)
+	return &out, nil
+}

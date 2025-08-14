@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/deviceconfiguration
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDeviceConfigurationClientWithBaseURI(sdkApi sdkEnv.Api) (*DeviceConfigurationClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "deviceconfiguration", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DeviceConfigurationClient: %+v", err)
+	}
+
+	return &DeviceConfigurationClient{
+		Client: client,
+	}, nil
+}

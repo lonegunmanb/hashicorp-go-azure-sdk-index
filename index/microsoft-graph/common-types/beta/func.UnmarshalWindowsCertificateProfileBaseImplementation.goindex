@@ -1,0 +1,67 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalWindowsCertificateProfileBaseImplementation(input []byte) (WindowsCertificateProfileBase, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling WindowsCertificateProfileBase into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.windows10CertificateProfileBase") {
+		var out Windows10CertificateProfileBase
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into Windows10CertificateProfileBase: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.windows10ImportedPFXCertificateProfile") {
+		var out Windows10ImportedPFXCertificateProfile
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into Windows10ImportedPFXCertificateProfile: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.windows81CertificateProfileBase") {
+		var out Windows81CertificateProfileBase
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into Windows81CertificateProfileBase: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.windowsPhone81ImportedPFXCertificateProfile") {
+		var out WindowsPhone81ImportedPFXCertificateProfile
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into WindowsPhone81ImportedPFXCertificateProfile: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseWindowsCertificateProfileBaseImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseWindowsCertificateProfileBaseImpl: %+v", err)
+	}
+
+	return RawWindowsCertificateProfileBaseImpl{
+		windowsCertificateProfileBase: parent,
+		Type:                          value,
+		Values:                        temp,
+	}, nil
+
+}

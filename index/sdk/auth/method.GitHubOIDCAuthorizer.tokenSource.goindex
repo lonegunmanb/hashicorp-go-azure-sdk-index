@@ -1,0 +1,38 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"io"
+	"net/http"
+	"net/url"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	"golang.org/x/oauth2"
+)
+func (a *GitHubOIDCAuthorizer) tokenSource(ctx context.Context, req *http.Request) (Authorizer, error) {
+	assertion, err := a.githubAssertion(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+	if assertion == nil {
+		return nil, fmt.Errorf("GitHubOIDCAuthorizer: nil JWT assertion received from GitHub")
+	}
+
+	conf := clientCredentialsConfig{
+		Environment:        a.conf.Environment,
+		TenantID:           a.conf.TenantID,
+		AuxiliaryTenantIDs: a.conf.AuxiliaryTenantIDs,
+		ClientID:           a.conf.ClientID,
+		FederatedAssertion: *assertion,
+		Scopes:             a.conf.Scopes,
+		TokenURL:           a.conf.TokenURL,
+		Audience:           a.conf.Audience,
+	}
+
+	source, err := conf.TokenSource(ctx, clientCredentialsAssertionType)
+	if err != nil {
+		return nil, fmt.Errorf("GitHubOIDCAuthorizer: building Authorizer: %+v", err)
+	}
+	return source, nil
+}

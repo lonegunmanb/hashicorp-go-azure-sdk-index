@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/voiceservices/2023-09-01/communicationsgateways
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCommunicationsPlatform(input string) (*CommunicationsPlatform, error) {
+	vals := map[string]CommunicationsPlatform{
+		"operatorconnect":    CommunicationsPlatformOperatorConnect,
+		"teamsdirectrouting": CommunicationsPlatformTeamsDirectRouting,
+		"teamsphonemobile":   CommunicationsPlatformTeamsPhoneMobile,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CommunicationsPlatform(input)
+	return &out, nil
+}

@@ -1,0 +1,38 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/domains
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDomainStatus(input string) (*DomainStatus, error) {
+	vals := map[string]DomainStatus{
+		"active":              DomainStatusActive,
+		"awaiting":            DomainStatusAwaiting,
+		"cancelled":           DomainStatusCancelled,
+		"confiscated":         DomainStatusConfiscated,
+		"disabled":            DomainStatusDisabled,
+		"excluded":            DomainStatusExcluded,
+		"expired":             DomainStatusExpired,
+		"failed":              DomainStatusFailed,
+		"held":                DomainStatusHeld,
+		"jsonconverterfailed": DomainStatusJsonConverterFailed,
+		"locked":              DomainStatusLocked,
+		"parked":              DomainStatusParked,
+		"pending":             DomainStatusPending,
+		"reserved":            DomainStatusReserved,
+		"reverted":            DomainStatusReverted,
+		"suspended":           DomainStatusSuspended,
+		"transferred":         DomainStatusTransferred,
+		"unknown":             DomainStatusUnknown,
+		"unlocked":            DomainStatusUnlocked,
+		"unparked":            DomainStatusUnparked,
+		"updated":             DomainStatusUpdated,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DomainStatus(input)
+	return &out, nil
+}

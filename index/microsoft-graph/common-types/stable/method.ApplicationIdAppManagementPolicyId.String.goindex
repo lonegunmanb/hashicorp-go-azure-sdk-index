@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ApplicationIdAppManagementPolicyId) String() string {
+	components := []string{
+		fmt.Sprintf("Application: %q", id.ApplicationId),
+		fmt.Sprintf("App Management Policy: %q", id.AppManagementPolicyId),
+	}
+	return fmt.Sprintf("Application Id App Management Policy (%s)", strings.Join(components, "\n"))
+}

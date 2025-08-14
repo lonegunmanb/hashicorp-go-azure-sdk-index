@@ -1,0 +1,73 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2025-06-01/job
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalJobBaseImplementation(input []byte) (JobBase, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling JobBase into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["jobType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "AutoML") {
+		var out AutoMLJob
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AutoMLJob: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "Command") {
+		var out CommandJob
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into CommandJob: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "Pipeline") {
+		var out PipelineJob
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into PipelineJob: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "Spark") {
+		var out SparkJob
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SparkJob: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "Sweep") {
+		var out SweepJob
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SweepJob: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseJobBaseImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseJobBaseImpl: %+v", err)
+	}
+
+	return RawJobBaseImpl{
+		jobBase: parent,
+		Type:    value,
+		Values:  temp,
+	}, nil
+
+}

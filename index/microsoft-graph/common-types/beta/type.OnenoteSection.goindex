@@ -1,0 +1,56 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type OnenoteSection struct {
+	// Indicates whether this is the user's default section. Read-only.
+	IsDefault nullable.Type[bool] `json:"isDefault,omitempty"`
+
+	// Links for opening the section. The oneNoteClientURL link opens the section in the OneNote native client if it's
+	// installed. The oneNoteWebURL link opens the section in OneNote on the web.
+	Links *SectionLinks `json:"links,omitempty"`
+
+	// The collection of pages in the section. Read-only. Nullable.
+	Pages *[]OnenotePage `json:"pages,omitempty"`
+
+	// The pages endpoint where you can get details for all the pages in the section. Read-only.
+	PagesUrl nullable.Type[string] `json:"pagesUrl,omitempty"`
+
+	// The notebook that contains the section. Read-only.
+	ParentNotebook *Notebook `json:"parentNotebook,omitempty"`
+
+	// The section group that contains the section. Read-only.
+	ParentSectionGroup *SectionGroup `json:"parentSectionGroup,omitempty"`
+
+	// Fields inherited from OnenoteEntityHierarchyModel
+
+	CreatedBy            IdentitySet           `json:"createdBy"`
+	DisplayName          nullable.Type[string] `json:"displayName,omitempty"`
+	LastModifiedBy       IdentitySet           `json:"lastModifiedBy"`
+	LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+
+	// Fields inherited from OnenoteEntitySchemaObjectModel
+
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// Fields inherited from OnenoteEntityBaseModel
+
+	Self nullable.Type[string] `json:"self,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

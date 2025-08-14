@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type AccessPackageAssignmentRequestRequirements struct {
+	// Answers that have already been provided.
+	ExistingAnswers *[]AccessPackageAnswer `json:"existingAnswers,omitempty"`
+
+	// Indicates whether a request must be approved by an approver.
+	IsApprovalRequired nullable.Type[bool] `json:"isApprovalRequired,omitempty"`
+
+	// Indicates whether approval is required when a user tries to extend their access.
+	IsApprovalRequiredForExtension nullable.Type[bool] `json:"isApprovalRequiredForExtension,omitempty"`
+
+	// Indicates whether the requestor is allowed to set a custom schedule.
+	IsCustomAssignmentScheduleAllowed nullable.Type[bool] `json:"isCustomAssignmentScheduleAllowed,omitempty"`
+
+	// Indicates whether a requestor must supply justification when submitting an assignment request.
+	IsRequestorJustificationRequired nullable.Type[bool] `json:"isRequestorJustificationRequired,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The description of the policy that the user is trying to request access using.
+	PolicyDescription nullable.Type[string] `json:"policyDescription,omitempty"`
+
+	// The display name of the policy that the user is trying to request access using.
+	PolicyDisplayName nullable.Type[string] `json:"policyDisplayName,omitempty"`
+
+	// The identifier of the policy that these requirements are associated with. This identifier can be used when creating a
+	// new assignment request.
+	PolicyId nullable.Type[string] `json:"policyId,omitempty"`
+
+	// Questions that are configured on the policy. The questions can be required or optional; callers can determine whether
+	// a question is required or optional based on the isRequired property on accessPackageQuestion.
+	Questions *[]AccessPackageQuestion `json:"questions,omitempty"`
+
+	// Schedule restrictions enforced, if any.
+	Schedule *RequestSchedule `json:"schedule,omitempty"`
+
+	// The status of the process to process the verifiable credential, if any.
+	VerifiableCredentialRequirementStatus VerifiableCredentialRequirementStatus `json:"verifiableCredentialRequirementStatus"`
+}

@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2023-11-01/softwareupdateconfigurationmachinerun
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ListOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+	if o.ClientRequestId != nil {
+		out.Append("clientRequestId", fmt.Sprintf("%v", *o.ClientRequestId))
+	}
+	return &out
+}

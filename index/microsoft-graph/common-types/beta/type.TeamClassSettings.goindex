@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type TeamClassSettings struct {
+	// If set to true, enables sending of weekly assignments digest emails to parents/guardians, provided the tenant admin
+	// has enabled the setting globally.
+	NotifyGuardiansAboutAssignments nullable.Type[bool] `json:"notifyGuardiansAboutAssignments,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+}

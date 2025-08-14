@@ -1,0 +1,122 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type SubjectRightsRequest struct {
+	// Collection of users who can approve the request. Currently only supported for requests of type delete.
+	Approvers *[]User `json:"approvers,omitempty"`
+
+	// Identity that the request is assigned to.
+	AssignedTo Identity `json:"assignedTo"`
+
+	// The date and time when the request was closed. The timestamp type represents date and time information using ISO 8601
+	// format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+	ClosedDateTime nullable.Type[string] `json:"closedDateTime,omitempty"`
+
+	// Collection of users who can collaborate on the request.
+	Collaborators *[]User `json:"collaborators,omitempty"`
+
+	// KQL based content query that should be used for search. This property is defined only for APIs accessed using the
+	// /security query path and not the /privacy query path.
+	ContentQuery nullable.Type[string] `json:"contentQuery,omitempty"`
+
+	// Identity information for the entity that created the request.
+	CreatedBy IdentitySet `json:"createdBy"`
+
+	// The date and time when the request was created. The timestamp type represents date and time information using ISO
+	// 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// Information about the data subject.
+	DataSubject *DataSubject `json:"dataSubject,omitempty"`
+
+	// The type of the data subject. Possible values are: customer, currentEmployee, formerEmployee, prospectiveEmployee,
+	// student, teacher, faculty, other, unknownFutureValue.
+	DataSubjectType *DataSubjectType `json:"dataSubjectType,omitempty"`
+
+	// Description for the request.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// The name of the request.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// The external ID for the request that is immutable after creation and is used for tracking the request for the
+	// external system. This property is defined only for APIs accessed using the /security query path and not the /privacy
+	// query path.
+	ExternalId nullable.Type[string] `json:"externalId,omitempty"`
+
+	// Collection of history change events.
+	History *[]SubjectRightsRequestHistory `json:"history,omitempty"`
+
+	// Include all versions of the documents. By default, the current copies of the documents are returned. If SharePoint
+	// sites have versioning enabled, including all versions includes the historical copies of the documents. This property
+	// is defined only for APIs accessed using the /security query path and not the /privacy query path.
+	IncludeAllVersions nullable.Type[bool] `json:"includeAllVersions,omitempty"`
+
+	// Include content authored by the data subject. This property is defined only for APIs accessed using the /security
+	// query path and not the /privacy query path.
+	IncludeAuthoredContent nullable.Type[bool] `json:"includeAuthoredContent,omitempty"`
+
+	// Insight about the request.
+	Insight *SubjectRightsRequestDetail `json:"insight,omitempty"`
+
+	// The date and time when the request is internally due. The timestamp type represents date and time information using
+	// ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+	InternalDueDateTime nullable.Type[string] `json:"internalDueDateTime,omitempty"`
+
+	// Identity information for the entity that last modified the request.
+	LastModifiedBy IdentitySet `json:"lastModifiedBy"`
+
+	// The date and time when the request was last modified. The timestamp type represents date and time information using
+	// ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+	LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+
+	// The mailbox locations that should be searched. This property is defined only for APIs accessed using the /security
+	// query path and not the /privacy query path.
+	MailboxLocations SubjectRightsRequestMailboxLocation `json:"mailboxLocations"`
+
+	// List of notes associated with the request.
+	Notes *[]AuthoredNote `json:"notes,omitempty"`
+
+	// Pause the request after estimate has finished. By default, the data estimate runs and then pauses, allowing you to
+	// preview results and then select the option to retrieve data in the UI. You can set this property to false if you want
+	// it to perform the estimate and then automatically begin with the retrieval of the content. This property is defined
+	// only for APIs accessed using the /security query path and not the /privacy query path.
+	PauseAfterEstimate nullable.Type[bool] `json:"pauseAfterEstimate,omitempty"`
+
+	// List of regulations that this request fulfill.
+	Regulations *[]string `json:"regulations,omitempty"`
+
+	// The SharePoint and OneDrive site locations that should be searched. This property is defined only for APIs accessed
+	// using the /security query path and not the /privacy query path.
+	SiteLocations SubjectRightsRequestSiteLocation `json:"siteLocations"`
+
+	// Information about the different stages for the request.
+	Stages *[]SubjectRightsRequestStageDetail `json:"stages,omitempty"`
+
+	// The status of the request. Possible values are: active, closed, unknownFutureValue.
+	Status *SubjectRightsRequestStatus `json:"status,omitempty"`
+
+	// Information about the Microsoft Teams team that was created for the request.
+	Team *Team `json:"team,omitempty"`
+
+	// The type of the request. Possible values are: export, delete, access, tagForAction, unknownFutureValue.
+	Type *SubjectRightsRequestType `json:"type,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

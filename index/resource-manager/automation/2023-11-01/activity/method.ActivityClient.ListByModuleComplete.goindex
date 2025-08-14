@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2023-11-01/activity
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ActivityClient) ListByModuleComplete(ctx context.Context, id ModuleId) (ListByModuleCompleteResult, error) {
+	return c.ListByModuleCompleteMatchingPredicate(ctx, id, ActivityOperationPredicate{})
+}

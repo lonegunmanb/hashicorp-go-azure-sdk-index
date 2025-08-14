@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/directoryroleassignmentapprovalstep
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDirectoryRoleAssignmentApprovalStepClientWithBaseURI(sdkApi sdkEnv.Api) (*DirectoryRoleAssignmentApprovalStepClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "directoryroleassignmentapprovalstep", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DirectoryRoleAssignmentApprovalStepClient: %+v", err)
+	}
+
+	return &DirectoryRoleAssignmentApprovalStepClient{
+		Client: client,
+	}, nil
+}

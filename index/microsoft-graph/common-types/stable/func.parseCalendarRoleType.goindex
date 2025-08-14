@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCalendarRoleType(input string) (*CalendarRoleType, error) {
+	vals := map[string]CalendarRoleType{
+		"custom":                            CalendarRoleType_Custom,
+		"delegatewithprivateeventaccess":    CalendarRoleType_DelegateWithPrivateEventAccess,
+		"delegatewithoutprivateeventaccess": CalendarRoleType_DelegateWithoutPrivateEventAccess,
+		"freebusyread":                      CalendarRoleType_FreeBusyRead,
+		"limitedread":                       CalendarRoleType_LimitedRead,
+		"none":                              CalendarRoleType_None,
+		"read":                              CalendarRoleType_Read,
+		"write":                             CalendarRoleType_Write,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CalendarRoleType(input)
+	return &out, nil
+}

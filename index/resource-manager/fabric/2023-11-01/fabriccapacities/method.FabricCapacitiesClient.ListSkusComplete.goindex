@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/fabric/2023-11-01/fabriccapacities
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c FabricCapacitiesClient) ListSkusComplete(ctx context.Context, id commonids.SubscriptionId) (ListSkusCompleteResult, error) {
+	return c.ListSkusCompleteMatchingPredicate(ctx, id, RpSkuDetailsForNewResourceOperationPredicate{})
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/cloudendpointresource
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCloudEndpointChangeEnumerationActivityState(input string) (*CloudEndpointChangeEnumerationActivityState, error) {
+	vals := map[string]CloudEndpointChangeEnumerationActivityState{
+		"enumerationinprogress":        CloudEndpointChangeEnumerationActivityStateEnumerationInProgress,
+		"initialenumerationinprogress": CloudEndpointChangeEnumerationActivityStateInitialEnumerationInProgress,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CloudEndpointChangeEnumerationActivityState(input)
+	return &out, nil
+}

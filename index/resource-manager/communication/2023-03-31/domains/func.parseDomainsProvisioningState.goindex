@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/communication/2023-03-31/domains
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDomainsProvisioningState(input string) (*DomainsProvisioningState, error) {
+	vals := map[string]DomainsProvisioningState{
+		"canceled":  DomainsProvisioningStateCanceled,
+		"creating":  DomainsProvisioningStateCreating,
+		"deleting":  DomainsProvisioningStateDeleting,
+		"failed":    DomainsProvisioningStateFailed,
+		"moving":    DomainsProvisioningStateMoving,
+		"running":   DomainsProvisioningStateRunning,
+		"succeeded": DomainsProvisioningStateSucceeded,
+		"unknown":   DomainsProvisioningStateUnknown,
+		"updating":  DomainsProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DomainsProvisioningState(input)
+	return &out, nil
+}

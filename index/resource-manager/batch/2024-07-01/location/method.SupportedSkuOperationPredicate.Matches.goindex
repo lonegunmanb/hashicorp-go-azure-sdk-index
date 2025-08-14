@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/location
+
+func (p SupportedSkuOperationPredicate) Matches(input SupportedSku) bool {
+
+	if p.BatchSupportEndOfLife != nil && (input.BatchSupportEndOfLife == nil || *p.BatchSupportEndOfLife != *input.BatchSupportEndOfLife) {
+		return false
+	}
+
+	if p.FamilyName != nil && (input.FamilyName == nil || *p.FamilyName != *input.FamilyName) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	return true
+}

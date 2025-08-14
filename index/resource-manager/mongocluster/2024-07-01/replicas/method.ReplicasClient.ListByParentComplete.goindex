@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mongocluster/2024-07-01/replicas
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ReplicasClient) ListByParentComplete(ctx context.Context, id MongoClusterId) (ListByParentCompleteResult, error) {
+	return c.ListByParentCompleteMatchingPredicate(ctx, id, ReplicaOperationPredicate{})
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/workspaces
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDiagnoseResultLevel(input string) (*DiagnoseResultLevel, error) {
+	vals := map[string]DiagnoseResultLevel{
+		"error":       DiagnoseResultLevelError,
+		"information": DiagnoseResultLevelInformation,
+		"warning":     DiagnoseResultLevelWarning,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DiagnoseResultLevel(input)
+	return &out, nil
+}

@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/fetchtieringcost
+import (
+	"encoding/json"
+	"fmt"
+)
+type TieringCostSavingInfo struct {
+	RetailSourceTierCostPerGBPerMonth float64 `json:"retailSourceTierCostPerGBPerMonth"`
+	RetailTargetTierCostPerGBPerMonth float64 `json:"retailTargetTierCostPerGBPerMonth"`
+	SourceTierSizeReductionInBytes    int64   `json:"sourceTierSizeReductionInBytes"`
+	TargetTierSizeIncreaseInBytes     int64   `json:"targetTierSizeIncreaseInBytes"`
+
+	// Fields inherited from TieringCostInfo
+
+	ObjectType string `json:"objectType"`
+}

@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2024-04-01/replicationprotecteditems
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s HyperVReplicaAzureUpdateReplicationProtectedItemInput) MarshalJSON() ([]byte, error) {
+	type wrapper HyperVReplicaAzureUpdateReplicationProtectedItemInput
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling HyperVReplicaAzureUpdateReplicationProtectedItemInput: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling HyperVReplicaAzureUpdateReplicationProtectedItemInput: %+v", err)
+	}
+
+	decoded["instanceType"] = "HyperVReplicaAzure"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling HyperVReplicaAzureUpdateReplicationProtectedItemInput: %+v", err)
+	}
+
+	return encoded, nil
+}

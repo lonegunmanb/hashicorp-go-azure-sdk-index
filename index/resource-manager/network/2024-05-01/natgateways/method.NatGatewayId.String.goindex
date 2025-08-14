@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-05-01/natgateways
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id NatGatewayId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Nat Gateway Name: %q", id.NatGatewayName),
+	}
+	return fmt.Sprintf("Nat Gateway (%s)", strings.Join(components, "\n"))
+}

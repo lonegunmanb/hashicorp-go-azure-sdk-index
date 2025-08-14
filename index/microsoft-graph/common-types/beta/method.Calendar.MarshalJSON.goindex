@@ -1,0 +1,43 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s Calendar) MarshalJSON() ([]byte, error) {
+	type wrapper Calendar
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling Calendar: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling Calendar: %+v", err)
+	}
+
+	delete(decoded, "calendarView")
+	delete(decoded, "canEdit")
+	delete(decoded, "canShare")
+	delete(decoded, "canViewPrivateItems")
+	delete(decoded, "changeKey")
+	delete(decoded, "events")
+	delete(decoded, "isShared")
+	delete(decoded, "isSharedWithMe")
+	delete(decoded, "multiValueExtendedProperties")
+	delete(decoded, "owner")
+	delete(decoded, "singleValueExtendedProperties")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.calendar"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling Calendar: %+v", err)
+	}
+
+	return encoded, nil
+}

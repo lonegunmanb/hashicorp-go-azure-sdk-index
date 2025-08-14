@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/privatedns/2024-06-01/privatedns
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c PrivateDNSClient) RecordSetsListByTypeCompleteMatchingPredicate(ctx context.Context, id PrivateZoneId, options RecordSetsListByTypeOperationOptions, predicate RecordSetOperationPredicate) (result RecordSetsListByTypeCompleteResult, err error) {
+	items := make([]RecordSet, 0)
+
+	resp, err := c.RecordSetsListByType(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = RecordSetsListByTypeCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

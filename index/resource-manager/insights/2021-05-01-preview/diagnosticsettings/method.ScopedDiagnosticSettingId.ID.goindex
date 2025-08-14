@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2021-05-01-preview/diagnosticsettings
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ScopedDiagnosticSettingId) ID() string {
+	fmtString := "/%s/providers/Microsoft.Insights/diagnosticSettings/%s"
+	return fmt.Sprintf(fmtString, strings.TrimPrefix(id.ResourceUri, "/"), id.DiagnosticSettingName)
+}

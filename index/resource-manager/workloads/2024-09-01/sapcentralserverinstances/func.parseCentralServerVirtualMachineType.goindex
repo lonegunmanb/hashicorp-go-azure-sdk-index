@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/workloads/2024-09-01/sapcentralserverinstances
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCentralServerVirtualMachineType(input string) (*CentralServerVirtualMachineType, error) {
+	vals := map[string]CentralServerVirtualMachineType{
+		"ascs":        CentralServerVirtualMachineTypeASCS,
+		"ers":         CentralServerVirtualMachineTypeERS,
+		"ersinactive": CentralServerVirtualMachineTypeERSInactive,
+		"primary":     CentralServerVirtualMachineTypePrimary,
+		"secondary":   CentralServerVirtualMachineTypeSecondary,
+		"standby":     CentralServerVirtualMachineTypeStandby,
+		"unknown":     CentralServerVirtualMachineTypeUnknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CentralServerVirtualMachineType(input)
+	return &out, nil
+}

@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2023-02-01/recoverypoints
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+func (s IaasVMRecoveryPoint) MarshalJSON() ([]byte, error) {
+	type wrapper IaasVMRecoveryPoint
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling IaasVMRecoveryPoint: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling IaasVMRecoveryPoint: %+v", err)
+	}
+
+	decoded["objectType"] = "IaasVMRecoveryPoint"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling IaasVMRecoveryPoint: %+v", err)
+	}
+
+	return encoded, nil
+}

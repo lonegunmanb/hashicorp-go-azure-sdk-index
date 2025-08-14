@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mariadb/2018-06-01/servers
+import (
+	"encoding/json"
+	"fmt"
+)
+type ServerPropertiesForRestore struct {
+	RestorePointInTime string `json:"restorePointInTime"`
+	SourceServerId     string `json:"sourceServerId"`
+
+	// Fields inherited from ServerPropertiesForCreate
+
+	CreateMode          CreateMode               `json:"createMode"`
+	MinimalTlsVersion   *MinimalTlsVersionEnum   `json:"minimalTlsVersion,omitempty"`
+	PublicNetworkAccess *PublicNetworkAccessEnum `json:"publicNetworkAccess,omitempty"`
+	SslEnforcement      *SslEnforcementEnum      `json:"sslEnforcement,omitempty"`
+	StorageProfile      *StorageProfile          `json:"storageProfile,omitempty"`
+	Version             *ServerVersion           `json:"version,omitempty"`
+}

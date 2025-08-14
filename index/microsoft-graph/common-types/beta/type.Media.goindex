@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type Media struct {
+	// If a file has a transcript, this setting controls if the closed captions / transcription for the media file should be
+	// shown to people during viewing. Read-Write.
+	IsTranscriptionShown nullable.Type[bool] `json:"isTranscriptionShown,omitempty"`
+
+	// Information about the source of media. Read-only.
+	MediaSource *MediaSource `json:"mediaSource,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+}

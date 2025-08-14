@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/sourcecontrolsyncjobstreams
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSourceControlSyncJobStreamsClientWithBaseURI(sdkApi sdkEnv.Api) (*SourceControlSyncJobStreamsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "sourcecontrolsyncjobstreams", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SourceControlSyncJobStreamsClient: %+v", err)
+	}
+
+	return &SourceControlSyncJobStreamsClient{
+		Client: client,
+	}, nil
+}

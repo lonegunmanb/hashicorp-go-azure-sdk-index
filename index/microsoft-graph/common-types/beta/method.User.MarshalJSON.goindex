@@ -1,0 +1,79 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s User) MarshalJSON() ([]byte, error) {
+	type wrapper User
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling User: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling User: %+v", err)
+	}
+
+	delete(decoded, "activities")
+	delete(decoded, "agreementAcceptances")
+	delete(decoded, "assignedPlans")
+	delete(decoded, "calendar")
+	delete(decoded, "calendarGroups")
+	delete(decoded, "calendarView")
+	delete(decoded, "calendars")
+	delete(decoded, "contactFolders")
+	delete(decoded, "contacts")
+	delete(decoded, "createdDateTime")
+	delete(decoded, "createdObjects")
+	delete(decoded, "creationType")
+	delete(decoded, "dataSecurityAndGovernance")
+	delete(decoded, "directReports")
+	delete(decoded, "drive")
+	delete(decoded, "drives")
+	delete(decoded, "events")
+	delete(decoded, "imAddresses")
+	delete(decoded, "insights")
+	delete(decoded, "isLicenseReconciliationNeeded")
+	delete(decoded, "isManagementRestricted")
+	delete(decoded, "joinedTeams")
+	delete(decoded, "lastPasswordChangeDateTime")
+	delete(decoded, "licenseAssignmentStates")
+	delete(decoded, "mailFolders")
+	delete(decoded, "manager")
+	delete(decoded, "memberOf")
+	delete(decoded, "messages")
+	delete(decoded, "onPremisesLastSyncDateTime")
+	delete(decoded, "onPremisesSipInfo")
+	delete(decoded, "onPremisesSyncEnabled")
+	delete(decoded, "outlook")
+	delete(decoded, "ownedDevices")
+	delete(decoded, "ownedObjects")
+	delete(decoded, "people")
+	delete(decoded, "photo")
+	delete(decoded, "photos")
+	delete(decoded, "planner")
+	delete(decoded, "provisionedPlans")
+	delete(decoded, "refreshTokensValidFromDateTime")
+	delete(decoded, "registeredDevices")
+	delete(decoded, "scopedRoleMemberOf")
+	delete(decoded, "securityIdentifier")
+	delete(decoded, "signInActivity")
+	delete(decoded, "signInSessionsValidFromDateTime")
+	delete(decoded, "teamwork")
+	delete(decoded, "transitiveReports")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.user"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling User: %+v", err)
+	}
+
+	return encoded, nil
+}

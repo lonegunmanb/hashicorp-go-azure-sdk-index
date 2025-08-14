@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/permissionsanalyticawfinding
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c PermissionsAnalyticAwFindingClient) ListPermissionsAnalyticAwFindingsComplete(ctx context.Context, options ListPermissionsAnalyticAwFindingsOperationOptions) (ListPermissionsAnalyticAwFindingsCompleteResult, error) {
+	return c.ListPermissionsAnalyticAwFindingsCompleteMatchingPredicate(ctx, options, FindingOperationPredicate{})
+}

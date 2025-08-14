@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2023-02-01/mhsmprivatelinkresources
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+)
+func (c MHSMPrivateLinkResourcesClient) ListByMHSMResource(ctx context.Context, id ManagedHSMId) (result ListByMHSMResourceOperationResponse, err error) {
+	req, err := c.preparerForListByMHSMResource(ctx, id)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "mhsmprivatelinkresources.MHSMPrivateLinkResourcesClient", "ListByMHSMResource", nil, "Failure preparing request")
+		return
+	}
+
+	result.HttpResponse, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "mhsmprivatelinkresources.MHSMPrivateLinkResourcesClient", "ListByMHSMResource", result.HttpResponse, "Failure sending request")
+		return
+	}
+
+	result, err = c.responderForListByMHSMResource(result.HttpResponse)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "mhsmprivatelinkresources.MHSMPrivateLinkResourcesClient", "ListByMHSMResource", result.HttpResponse, "Failure responding to request")
+		return
+	}
+
+	return
+}

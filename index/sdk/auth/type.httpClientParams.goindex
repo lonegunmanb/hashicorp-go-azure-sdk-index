@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"context"
+	"crypto/tls"
+	"log"
+	"math"
+	"net"
+	"net/http"
+	"net/url"
+	"runtime"
+	"strconv"
+	"time"
+
+	"github.com/hashicorp/go-retryablehttp"
+)
+type httpClientParams struct {
+	instanceMetadataService bool
+
+	retryWaitMin  time.Duration
+	retryWaitMax  time.Duration
+	retryMaxCount int
+	useProxy      bool
+}

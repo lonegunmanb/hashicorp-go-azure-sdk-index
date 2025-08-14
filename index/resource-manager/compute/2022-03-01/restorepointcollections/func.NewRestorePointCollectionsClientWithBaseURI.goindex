@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2022-03-01/restorepointcollections
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewRestorePointCollectionsClientWithBaseURI(sdkApi sdkEnv.Api) (*RestorePointCollectionsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "restorepointcollections", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating RestorePointCollectionsClient: %+v", err)
+	}
+
+	return &RestorePointCollectionsClient{
+		Client: client,
+	}, nil
+}

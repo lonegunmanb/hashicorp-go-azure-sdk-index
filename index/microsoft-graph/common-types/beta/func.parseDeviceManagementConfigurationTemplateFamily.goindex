@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeviceManagementConfigurationTemplateFamily(input string) (*DeviceManagementConfigurationTemplateFamily, error) {
+	vals := map[string]DeviceManagementConfigurationTemplateFamily{
+		"appquiettime":                                 DeviceManagementConfigurationTemplateFamily_AppQuietTime,
+		"baseline":                                     DeviceManagementConfigurationTemplateFamily_Baseline,
+		"companyportal":                                DeviceManagementConfigurationTemplateFamily_CompanyPortal,
+		"deviceconfigurationpolicies":                  DeviceManagementConfigurationTemplateFamily_DeviceConfigurationPolicies,
+		"deviceconfigurationscripts":                   DeviceManagementConfigurationTemplateFamily_DeviceConfigurationScripts,
+		"endpointsecurityaccountprotection":            DeviceManagementConfigurationTemplateFamily_EndpointSecurityAccountProtection,
+		"endpointsecurityantivirus":                    DeviceManagementConfigurationTemplateFamily_EndpointSecurityAntivirus,
+		"endpointsecurityapplicationcontrol":           DeviceManagementConfigurationTemplateFamily_EndpointSecurityApplicationControl,
+		"endpointsecurityattacksurfacereduction":       DeviceManagementConfigurationTemplateFamily_EndpointSecurityAttackSurfaceReduction,
+		"endpointsecuritydiskencryption":               DeviceManagementConfigurationTemplateFamily_EndpointSecurityDiskEncryption,
+		"endpointsecurityendpointdetectionandresponse": DeviceManagementConfigurationTemplateFamily_EndpointSecurityEndpointDetectionAndResponse,
+		"endpointsecurityendpointprivilegemanagement":  DeviceManagementConfigurationTemplateFamily_EndpointSecurityEndpointPrivilegeManagement,
+		"endpointsecurityfirewall":                     DeviceManagementConfigurationTemplateFamily_EndpointSecurityFirewall,
+		"enrollmentconfiguration":                      DeviceManagementConfigurationTemplateFamily_EnrollmentConfiguration,
+		"none":                                         DeviceManagementConfigurationTemplateFamily_None,
+		"windowsosrecoverypolicies":                    DeviceManagementConfigurationTemplateFamily_WindowsOsRecoveryPolicies,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceManagementConfigurationTemplateFamily(input)
+	return &out, nil
+}

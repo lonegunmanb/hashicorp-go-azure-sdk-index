@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/workspaces
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseActualState(input string) (*ActualState, error) {
+	vals := map[string]ActualState{
+		"disabled":  ActualStateDisabled,
+		"disabling": ActualStateDisabling,
+		"enabled":   ActualStateEnabled,
+		"enabling":  ActualStateEnabling,
+		"unknown":   ActualStateUnknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ActualState(input)
+	return &out, nil
+}

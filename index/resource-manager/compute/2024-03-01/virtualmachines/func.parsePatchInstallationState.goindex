@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-03-01/virtualmachines
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePatchInstallationState(input string) (*PatchInstallationState, error) {
+	vals := map[string]PatchInstallationState{
+		"excluded":    PatchInstallationStateExcluded,
+		"failed":      PatchInstallationStateFailed,
+		"installed":   PatchInstallationStateInstalled,
+		"notselected": PatchInstallationStateNotSelected,
+		"pending":     PatchInstallationStatePending,
+		"unknown":     PatchInstallationStateUnknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PatchInstallationState(input)
+	return &out, nil
+}

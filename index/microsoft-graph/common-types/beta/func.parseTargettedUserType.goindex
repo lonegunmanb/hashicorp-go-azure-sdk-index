@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTargettedUserType(input string) (*TargettedUserType, error) {
+	vals := map[string]TargettedUserType{
+		"allusers":    TargettedUserType_AllUsers,
+		"clicked":     TargettedUserType_Clicked,
+		"compromised": TargettedUserType_Compromised,
+		"unknown":     TargettedUserType_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TargettedUserType(input)
+	return &out, nil
+}

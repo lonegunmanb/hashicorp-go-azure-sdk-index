@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/serviceresource
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s MigrateOracleAzureDbPostgreSqlSyncTaskOutputDatabaseLevel) MarshalJSON() ([]byte, error) {
+	type wrapper MigrateOracleAzureDbPostgreSqlSyncTaskOutputDatabaseLevel
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling MigrateOracleAzureDbPostgreSqlSyncTaskOutputDatabaseLevel: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling MigrateOracleAzureDbPostgreSqlSyncTaskOutputDatabaseLevel: %+v", err)
+	}
+
+	decoded["resultType"] = "DatabaseLevelOutput"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling MigrateOracleAzureDbPostgreSqlSyncTaskOutputDatabaseLevel: %+v", err)
+	}
+
+	return encoded, nil
+}

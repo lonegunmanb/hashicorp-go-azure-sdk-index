@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/globalschedules
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewGlobalSchedulesClientWithBaseURI(sdkApi sdkEnv.Api) (*GlobalSchedulesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "globalschedules", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating GlobalSchedulesClient: %+v", err)
+	}
+
+	return &GlobalSchedulesClient{
+		Client: client,
+	}, nil
+}

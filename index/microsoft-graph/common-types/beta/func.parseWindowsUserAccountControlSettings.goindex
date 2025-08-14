@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWindowsUserAccountControlSettings(input string) (*WindowsUserAccountControlSettings, error) {
+	vals := map[string]WindowsUserAccountControlSettings{
+		"alwaysnotify":                     WindowsUserAccountControlSettings_AlwaysNotify,
+		"nevernotify":                      WindowsUserAccountControlSettings_NeverNotify,
+		"notifyonappchanges":               WindowsUserAccountControlSettings_NotifyOnAppChanges,
+		"notifyonappchangeswithoutdimming": WindowsUserAccountControlSettings_NotifyOnAppChangesWithoutDimming,
+		"userdefined":                      WindowsUserAccountControlSettings_UserDefined,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsUserAccountControlSettings(input)
+	return &out, nil
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2025-01-13/licenseprofiles
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEsuKeyState(input string) (*EsuKeyState, error) {
+	vals := map[string]EsuKeyState{
+		"active":   EsuKeyStateActive,
+		"inactive": EsuKeyStateInactive,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EsuKeyState(input)
+	return &out, nil
+}

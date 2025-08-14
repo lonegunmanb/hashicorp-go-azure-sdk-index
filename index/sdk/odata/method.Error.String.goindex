@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/sdk/odata
+import (
+	"encoding/json"
+	"fmt"
+	"regexp"
+	"strings"
+)
+func (e Error) String() string {
+	sl := make([]string, 0)
+	if e.Code != nil {
+		sl = append(sl, *e.Code)
+	}
+	if e.Message != nil {
+		sl = append(sl, *e.Message)
+	}
+	if e.InnerError != nil {
+		if is := e.InnerError.String(); is != "" {
+			sl = append(sl, is)
+		}
+	}
+	return strings.Join(sl, ": ")
+}

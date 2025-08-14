@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onlinemeetingregistrationregistrant
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewOnlineMeetingRegistrationRegistrantClientWithBaseURI(sdkApi sdkEnv.Api) (*OnlineMeetingRegistrationRegistrantClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "onlinemeetingregistrationregistrant", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating OnlineMeetingRegistrationRegistrantClient: %+v", err)
+	}
+
+	return &OnlineMeetingRegistrationRegistrantClient{
+		Client: client,
+	}, nil
+}

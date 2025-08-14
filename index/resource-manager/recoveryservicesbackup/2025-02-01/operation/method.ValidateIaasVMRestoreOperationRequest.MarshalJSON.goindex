@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/operation
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s ValidateIaasVMRestoreOperationRequest) MarshalJSON() ([]byte, error) {
+	type wrapper ValidateIaasVMRestoreOperationRequest
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ValidateIaasVMRestoreOperationRequest: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ValidateIaasVMRestoreOperationRequest: %+v", err)
+	}
+
+	decoded["objectType"] = "ValidateIaasVMRestoreOperationRequest"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ValidateIaasVMRestoreOperationRequest: %+v", err)
+	}
+
+	return encoded, nil
+}

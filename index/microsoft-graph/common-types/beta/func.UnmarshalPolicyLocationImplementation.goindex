@@ -1,0 +1,57 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalPolicyLocationImplementation(input []byte) (PolicyLocation, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling PolicyLocation into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.policyLocationApplication") {
+		var out PolicyLocationApplication
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into PolicyLocationApplication: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.policyLocationDomain") {
+		var out PolicyLocationDomain
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into PolicyLocationDomain: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.policyLocationUrl") {
+		var out PolicyLocationUrl
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into PolicyLocationUrl: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BasePolicyLocationImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BasePolicyLocationImpl: %+v", err)
+	}
+
+	return RawPolicyLocationImpl{
+		policyLocation: parent,
+		Type:           value,
+		Values:         temp,
+	}, nil
+
+}

@@ -1,0 +1,59 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalWindowsUpdatesGradualRolloutSettingsImplementation(input []byte) (WindowsUpdatesGradualRolloutSettings, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling WindowsUpdatesGradualRolloutSettings into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.windowsUpdates.dateDrivenRolloutSettings") {
+		var out WindowsUpdatesDateDrivenRolloutSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into WindowsUpdatesDateDrivenRolloutSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.windowsUpdates.durationDrivenRolloutSettings") {
+		var out WindowsUpdatesDurationDrivenRolloutSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into WindowsUpdatesDurationDrivenRolloutSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.windowsUpdates.rateDrivenRolloutSettings") {
+		var out WindowsUpdatesRateDrivenRolloutSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into WindowsUpdatesRateDrivenRolloutSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseWindowsUpdatesGradualRolloutSettingsImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseWindowsUpdatesGradualRolloutSettingsImpl: %+v", err)
+	}
+
+	return RawWindowsUpdatesGradualRolloutSettingsImpl{
+		windowsUpdatesGradualRolloutSettings: parent,
+		Type:                                 value,
+		Values:                               temp,
+	}, nil
+
+}

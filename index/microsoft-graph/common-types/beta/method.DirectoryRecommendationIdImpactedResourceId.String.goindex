@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DirectoryRecommendationIdImpactedResourceId) String() string {
+	components := []string{
+		fmt.Sprintf("Recommendation: %q", id.RecommendationId),
+		fmt.Sprintf("Impacted Resource: %q", id.ImpactedResourceId),
+	}
+	return fmt.Sprintf("Directory Recommendation Id Impacted Resource (%s)", strings.Join(components, "\n"))
+}

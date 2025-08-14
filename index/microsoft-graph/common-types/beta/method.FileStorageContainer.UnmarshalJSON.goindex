@@ -1,0 +1,87 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *FileStorageContainer) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		ArchivalDetails          *SiteArchivalDetails                          `json:"archivalDetails,omitempty"`
+		AssignedSensitivityLabel *AssignedLabel                                `json:"assignedSensitivityLabel,omitempty"`
+		Columns                  *[]ColumnDefinition                           `json:"columns,omitempty"`
+		ContainerTypeId          *string                                       `json:"containerTypeId,omitempty"`
+		CreatedDateTime          *string                                       `json:"createdDateTime,omitempty"`
+		CustomProperties         *FileStorageContainerCustomPropertyDictionary `json:"customProperties,omitempty"`
+		Description              nullable.Type[string]                         `json:"description,omitempty"`
+		DisplayName              *string                                       `json:"displayName,omitempty"`
+		Drive                    *Drive                                        `json:"drive,omitempty"`
+		ExternalGroupId          nullable.Type[string]                         `json:"externalGroupId,omitempty"`
+		IsItemVersioningEnabled  nullable.Type[bool]                           `json:"isItemVersioningEnabled,omitempty"`
+		ItemMajorVersionLimit    nullable.Type[int64]                          `json:"itemMajorVersionLimit,omitempty"`
+		LockState                *SiteLockState                                `json:"lockState,omitempty"`
+		OwnershipType            *FileStorageContainerOwnershipType            `json:"ownershipType,omitempty"`
+		Permissions              *[]Permission                                 `json:"permissions,omitempty"`
+		RecycleBin               *RecycleBin                                   `json:"recycleBin,omitempty"`
+		Settings                 *FileStorageContainerSettings                 `json:"settings,omitempty"`
+		SharePointGroups         *[]SharePointGroup                            `json:"sharePointGroups,omitempty"`
+		Status                   *FileStorageContainerStatus                   `json:"status,omitempty"`
+		StorageUsedInBytes       nullable.Type[int64]                          `json:"storageUsedInBytes,omitempty"`
+		Viewpoint                *FileStorageContainerViewpoint                `json:"viewpoint,omitempty"`
+		Id                       *string                                       `json:"id,omitempty"`
+		ODataId                  *string                                       `json:"@odata.id,omitempty"`
+		ODataType                *string                                       `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.ArchivalDetails = decoded.ArchivalDetails
+	s.AssignedSensitivityLabel = decoded.AssignedSensitivityLabel
+	s.Columns = decoded.Columns
+	s.ContainerTypeId = decoded.ContainerTypeId
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.CustomProperties = decoded.CustomProperties
+	s.Description = decoded.Description
+	s.DisplayName = decoded.DisplayName
+	s.Drive = decoded.Drive
+	s.ExternalGroupId = decoded.ExternalGroupId
+	s.IsItemVersioningEnabled = decoded.IsItemVersioningEnabled
+	s.ItemMajorVersionLimit = decoded.ItemMajorVersionLimit
+	s.LockState = decoded.LockState
+	s.OwnershipType = decoded.OwnershipType
+	s.Permissions = decoded.Permissions
+	s.RecycleBin = decoded.RecycleBin
+	s.Settings = decoded.Settings
+	s.SharePointGroups = decoded.SharePointGroups
+	s.Status = decoded.Status
+	s.StorageUsedInBytes = decoded.StorageUsedInBytes
+	s.Viewpoint = decoded.Viewpoint
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling FileStorageContainer into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["owners"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling Owners into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]UserIdentity, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalUserIdentityImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'Owners' for 'FileStorageContainer': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.Owners = &output
+	}
+
+	return nil
+}

@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationprotecteditems
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s InMageRcmFailbackPlannedFailoverProviderInput) MarshalJSON() ([]byte, error) {
+	type wrapper InMageRcmFailbackPlannedFailoverProviderInput
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling InMageRcmFailbackPlannedFailoverProviderInput: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling InMageRcmFailbackPlannedFailoverProviderInput: %+v", err)
+	}
+
+	decoded["instanceType"] = "InMageRcmFailback"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling InMageRcmFailbackPlannedFailoverProviderInput: %+v", err)
+	}
+
+	return encoded, nil
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2017-12-01/servers
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSslEnforcementEnum(input string) (*SslEnforcementEnum, error) {
+	vals := map[string]SslEnforcementEnum{
+		"disabled": SslEnforcementEnumDisabled,
+		"enabled":  SslEnforcementEnumEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SslEnforcementEnum(input)
+	return &out, nil
+}

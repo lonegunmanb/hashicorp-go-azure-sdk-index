@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DirectoryExternalUserProfileId) String() string {
+	components := []string{
+		fmt.Sprintf("External User Profile: %q", id.ExternalUserProfileId),
+	}
+	return fmt.Sprintf("Directory External User Profile (%s)", strings.Join(components, "\n"))
+}

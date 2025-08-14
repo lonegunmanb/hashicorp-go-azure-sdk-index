@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/frontdoor/2020-04-01/checkfrontdoornameavailabilitywithsubscription
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+)
+func (c CheckFrontDoorNameAvailabilityWithSubscriptionClient) CheckFrontDoorNameAvailabilityWithSubscription(ctx context.Context, id commonids.SubscriptionId, input CheckNameAvailabilityInput) (result CheckFrontDoorNameAvailabilityWithSubscriptionOperationResponse, err error) {
+	req, err := c.preparerForCheckFrontDoorNameAvailabilityWithSubscription(ctx, id, input)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "checkfrontdoornameavailabilitywithsubscription.CheckFrontDoorNameAvailabilityWithSubscriptionClient", "CheckFrontDoorNameAvailabilityWithSubscription", nil, "Failure preparing request")
+		return
+	}
+
+	result.HttpResponse, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "checkfrontdoornameavailabilitywithsubscription.CheckFrontDoorNameAvailabilityWithSubscriptionClient", "CheckFrontDoorNameAvailabilityWithSubscription", result.HttpResponse, "Failure sending request")
+		return
+	}
+
+	result, err = c.responderForCheckFrontDoorNameAvailabilityWithSubscription(result.HttpResponse)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "checkfrontdoornameavailabilitywithsubscription.CheckFrontDoorNameAvailabilityWithSubscriptionClient", "CheckFrontDoorNameAvailabilityWithSubscription", result.HttpResponse, "Failure responding to request")
+		return
+	}
+
+	return
+}

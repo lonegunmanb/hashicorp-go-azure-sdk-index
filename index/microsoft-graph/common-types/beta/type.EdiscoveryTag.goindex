@@ -1,0 +1,44 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type EdiscoveryTag struct {
+	// Indicates whether a single or multiple child tags can be associated with a document. Possible values are: One, Many.
+	// This value controls whether the UX presents the tags as checkboxes or a radio button group.
+	ChildSelectability *EdiscoveryChildSelectability `json:"childSelectability,omitempty"`
+
+	// Returns the tags that are a child of a tag.
+	ChildTags *[]EdiscoveryTag `json:"childTags,omitempty"`
+
+	// The user who created the tag.
+	CreatedBy IdentitySet `json:"createdBy"`
+
+	// The description for the tag.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// Display name of the tag.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// The date and time the tag was last modified.
+	LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+
+	// Returns the parent tag of the specified tag.
+	Parent *EdiscoveryTag `json:"parent,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

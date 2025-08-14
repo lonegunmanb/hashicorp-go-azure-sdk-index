@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s *MembersDeletedEventMessageDetail) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		Members   *[]TeamworkUserIdentity `json:"members,omitempty"`
+		ODataId   *string                 `json:"@odata.id,omitempty"`
+		ODataType *string                 `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.Members = decoded.Members
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling MembersDeletedEventMessageDetail into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["initiator"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Initiator' for 'MembersDeletedEventMessageDetail': %+v", err)
+		}
+		s.Initiator = impl
+	}
+
+	return nil
+}

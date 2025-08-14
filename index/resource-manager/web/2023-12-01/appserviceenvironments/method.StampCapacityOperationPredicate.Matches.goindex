@@ -1,0 +1,42 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/appserviceenvironments
+
+func (p StampCapacityOperationPredicate) Matches(input StampCapacity) bool {
+
+	if p.AvailableCapacity != nil && (input.AvailableCapacity == nil || *p.AvailableCapacity != *input.AvailableCapacity) {
+		return false
+	}
+
+	if p.ExcludeFromCapacityAllocation != nil && (input.ExcludeFromCapacityAllocation == nil || *p.ExcludeFromCapacityAllocation != *input.ExcludeFromCapacityAllocation) {
+		return false
+	}
+
+	if p.IsApplicableForAllComputeModes != nil && (input.IsApplicableForAllComputeModes == nil || *p.IsApplicableForAllComputeModes != *input.IsApplicableForAllComputeModes) {
+		return false
+	}
+
+	if p.IsLinux != nil && (input.IsLinux == nil || *p.IsLinux != *input.IsLinux) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.SiteMode != nil && (input.SiteMode == nil || *p.SiteMode != *input.SiteMode) {
+		return false
+	}
+
+	if p.TotalCapacity != nil && (input.TotalCapacity == nil || *p.TotalCapacity != *input.TotalCapacity) {
+		return false
+	}
+
+	if p.Unit != nil && (input.Unit == nil || *p.Unit != *input.Unit) {
+		return false
+	}
+
+	if p.WorkerSizeId != nil && (input.WorkerSizeId == nil || *p.WorkerSizeId != *input.WorkerSizeId) {
+		return false
+	}
+
+	return true
+}

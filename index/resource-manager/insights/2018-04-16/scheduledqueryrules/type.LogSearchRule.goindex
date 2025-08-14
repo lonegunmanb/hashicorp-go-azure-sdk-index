@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2018-04-16/scheduledqueryrules
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type LogSearchRule struct {
+	Action                   Action             `json:"action"`
+	AutoMitigate             *bool              `json:"autoMitigate,omitempty"`
+	CreatedWithApiVersion    *string            `json:"createdWithApiVersion,omitempty"`
+	Description              *string            `json:"description,omitempty"`
+	DisplayName              *string            `json:"displayName,omitempty"`
+	Enabled                  *Enabled           `json:"enabled,omitempty"`
+	IsLegacyLogAnalyticsRule *bool              `json:"isLegacyLogAnalyticsRule,omitempty"`
+	LastUpdatedTime          *string            `json:"lastUpdatedTime,omitempty"`
+	ProvisioningState        *ProvisioningState `json:"provisioningState,omitempty"`
+	Schedule                 *Schedule          `json:"schedule,omitempty"`
+	Source                   Source             `json:"source"`
+}

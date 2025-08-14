@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/shares
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMountType(input string) (*MountType, error) {
+	vals := map[string]MountType{
+		"hostpath": MountTypeHostPath,
+		"volume":   MountTypeVolume,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MountType(input)
+	return &out, nil
+}

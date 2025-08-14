@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2024-09-01/dataconnectors
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDataConnectorKind(input string) (*DataConnectorKind, error) {
+	vals := map[string]DataConnectorKind{
+		"amazonwebservicescloudtrail":                   DataConnectorKindAmazonWebServicesCloudTrail,
+		"azureactivedirectory":                          DataConnectorKindAzureActiveDirectory,
+		"azureadvancedthreatprotection":                 DataConnectorKindAzureAdvancedThreatProtection,
+		"azuresecuritycenter":                           DataConnectorKindAzureSecurityCenter,
+		"microsoftcloudappsecurity":                     DataConnectorKindMicrosoftCloudAppSecurity,
+		"microsoftdefenderadvancedthreatprotection":     DataConnectorKindMicrosoftDefenderAdvancedThreatProtection,
+		"microsoftthreatintelligence":                   DataConnectorKindMicrosoftThreatIntelligence,
+		"office365":                                     DataConnectorKindOfficeThreeSixFive,
+		"premiummicrosoftdefenderforthreatintelligence": DataConnectorKindPremiumMicrosoftDefenderForThreatIntelligence,
+		"restapipoller":                                 DataConnectorKindRestApiPoller,
+		"threatintelligence":                            DataConnectorKindThreatIntelligence,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DataConnectorKind(input)
+	return &out, nil
+}

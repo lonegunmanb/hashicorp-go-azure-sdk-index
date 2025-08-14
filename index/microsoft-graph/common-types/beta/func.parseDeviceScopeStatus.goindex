@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeviceScopeStatus(input string) (*DeviceScopeStatus, error) {
+	vals := map[string]DeviceScopeStatus{
+		"completed":        DeviceScopeStatus_Completed,
+		"computing":        DeviceScopeStatus_Computing,
+		"insufficientdata": DeviceScopeStatus_InsufficientData,
+		"none":             DeviceScopeStatus_None,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceScopeStatus(input)
+	return &out, nil
+}

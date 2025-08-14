@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2022-06-15/systemtopics
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSystemTopicsClientWithBaseURI(sdkApi sdkEnv.Api) (*SystemTopicsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "systemtopics", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SystemTopicsClient: %+v", err)
+	}
+
+	return &SystemTopicsClient{
+		Client: client,
+	}, nil
+}

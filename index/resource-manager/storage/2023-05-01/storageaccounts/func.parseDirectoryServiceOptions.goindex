@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/storageaccounts
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDirectoryServiceOptions(input string) (*DirectoryServiceOptions, error) {
+	vals := map[string]DirectoryServiceOptions{
+		"aadds":   DirectoryServiceOptionsAADDS,
+		"aadkerb": DirectoryServiceOptionsAADKERB,
+		"ad":      DirectoryServiceOptionsAD,
+		"none":    DirectoryServiceOptionsNone,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DirectoryServiceOptions(input)
+	return &out, nil
+}

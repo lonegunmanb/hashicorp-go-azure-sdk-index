@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/devicehealthscriptdevicerunstatemanageddevice
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDeviceHealthScriptDeviceRunStateManagedDeviceClientWithBaseURI(sdkApi sdkEnv.Api) (*DeviceHealthScriptDeviceRunStateManagedDeviceClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "devicehealthscriptdevicerunstatemanageddevice", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DeviceHealthScriptDeviceRunStateManagedDeviceClient: %+v", err)
+	}
+
+	return &DeviceHealthScriptDeviceRunStateManagedDeviceClient{
+		Client: client,
+	}, nil
+}

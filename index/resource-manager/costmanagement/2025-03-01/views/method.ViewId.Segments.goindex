@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2025-03-01/views
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ViewId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.StaticSegment("staticProviders", "providers", "providers"),
+		resourceids.ResourceProviderSegment("staticMicrosoftCostManagement", "Microsoft.CostManagement", "Microsoft.CostManagement"),
+		resourceids.StaticSegment("staticViews", "views", "views"),
+		resourceids.UserSpecifiedSegment("viewName", "viewName"),
+	}
+}

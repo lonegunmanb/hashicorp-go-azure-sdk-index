@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/blueprints/2018-11-01-preview/publishedartifact
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s PolicyAssignmentArtifact) MarshalJSON() ([]byte, error) {
+	type wrapper PolicyAssignmentArtifact
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling PolicyAssignmentArtifact: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling PolicyAssignmentArtifact: %+v", err)
+	}
+
+	decoded["kind"] = "policyAssignment"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling PolicyAssignmentArtifact: %+v", err)
+	}
+
+	return encoded, nil
+}

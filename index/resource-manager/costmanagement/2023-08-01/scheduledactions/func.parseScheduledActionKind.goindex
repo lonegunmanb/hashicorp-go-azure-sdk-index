@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-08-01/scheduledactions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseScheduledActionKind(input string) (*ScheduledActionKind, error) {
+	vals := map[string]ScheduledActionKind{
+		"email":        ScheduledActionKindEmail,
+		"insightalert": ScheduledActionKindInsightAlert,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ScheduledActionKind(input)
+	return &out, nil
+}

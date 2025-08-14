@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationrecoveryplans
+import (
+	"encoding/json"
+	"fmt"
+)
+type CreateRecoveryPlanInputProperties struct {
+	FailoverDeploymentModel *FailoverDeploymentModel             `json:"failoverDeploymentModel,omitempty"`
+	Groups                  []RecoveryPlanGroup                  `json:"groups"`
+	PrimaryFabricId         string                               `json:"primaryFabricId"`
+	ProviderSpecificInput   *[]RecoveryPlanProviderSpecificInput `json:"providerSpecificInput,omitempty"`
+	RecoveryFabricId        string                               `json:"recoveryFabricId"`
+}

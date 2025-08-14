@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-08-01/costallocationrules
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewCostAllocationRulesClientWithBaseURI(sdkApi sdkEnv.Api) (*CostAllocationRulesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "costallocationrules", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating CostAllocationRulesClient: %+v", err)
+	}
+
+	return &CostAllocationRulesClient{
+		Client: client,
+	}, nil
+}

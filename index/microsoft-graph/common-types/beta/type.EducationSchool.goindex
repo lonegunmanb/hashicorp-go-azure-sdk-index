@@ -1,0 +1,75 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type EducationSchool struct {
+	// Address of the school.
+	Address *PhysicalAddress `json:"address,omitempty"`
+
+	AdministrativeUnit *AdministrativeUnit `json:"administrativeUnit,omitempty"`
+
+	// Classes taught at the school. Nullable.
+	Classes *[]EducationClass `json:"classes,omitempty"`
+
+	// Entity who created the school.
+	CreatedBy IdentitySet `json:"createdBy"`
+
+	// ID of school in syncing system.
+	ExternalId nullable.Type[string] `json:"externalId,omitempty"`
+
+	// ID of principal in syncing system.
+	ExternalPrincipalId nullable.Type[string] `json:"externalPrincipalId,omitempty"`
+
+	Fax nullable.Type[string] `json:"fax,omitempty"`
+
+	// Highest grade taught.
+	HighestGrade nullable.Type[string] `json:"highestGrade,omitempty"`
+
+	// Lowest grade taught.
+	LowestGrade nullable.Type[string] `json:"lowestGrade,omitempty"`
+
+	// Phone number of school.
+	Phone nullable.Type[string] `json:"phone,omitempty"`
+
+	// Email address of the principal.
+	PrincipalEmail nullable.Type[string] `json:"principalEmail,omitempty"`
+
+	// Name of the principal.
+	PrincipalName nullable.Type[string] `json:"principalName,omitempty"`
+
+	// School Number.
+	SchoolNumber nullable.Type[string] `json:"schoolNumber,omitempty"`
+
+	// Users in the school. Nullable.
+	Users *[]EducationUser `json:"users,omitempty"`
+
+	// Fields inherited from EducationOrganization
+
+	// Organization description.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// Organization display name.
+	DisplayName *string `json:"displayName,omitempty"`
+
+	// Where this user was created from. Possible values are: sis, lms, or manual.
+	ExternalSource *EducationExternalSource `json:"externalSource,omitempty"`
+
+	ExternalSourceDetail nullable.Type[string] `json:"externalSourceDetail,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

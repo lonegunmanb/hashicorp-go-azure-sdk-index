@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2023-02-01/recoverypoint
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/polling"
+)
+func (c RecoveryPointClient) senderForMoveRecoveryPoint(ctx context.Context, req *http.Request) (future MoveRecoveryPointOperationResponse, err error) {
+	var resp *http.Response
+	resp, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
+	if err != nil {
+		return
+	}
+
+	future.Poller, err = polling.NewPollerFromResponse(ctx, resp, c.Client, req.Method)
+	return
+}

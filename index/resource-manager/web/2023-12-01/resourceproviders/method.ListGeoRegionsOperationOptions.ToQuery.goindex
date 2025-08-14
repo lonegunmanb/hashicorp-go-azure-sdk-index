@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/resourceproviders
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ListGeoRegionsOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.LinuxDynamicWorkersEnabled != nil {
+		out.Append("linuxDynamicWorkersEnabled", fmt.Sprintf("%v", *o.LinuxDynamicWorkersEnabled))
+	}
+	if o.LinuxWorkersEnabled != nil {
+		out.Append("linuxWorkersEnabled", fmt.Sprintf("%v", *o.LinuxWorkersEnabled))
+	}
+	if o.Sku != nil {
+		out.Append("sku", fmt.Sprintf("%v", *o.Sku))
+	}
+	if o.XenonWorkersEnabled != nil {
+		out.Append("xenonWorkersEnabled", fmt.Sprintf("%v", *o.XenonWorkersEnabled))
+	}
+	return &out
+}

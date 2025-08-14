@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingproperty
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseBillingSubscriptionStatus(input string) (*BillingSubscriptionStatus, error) {
+	vals := map[string]BillingSubscriptionStatus{
+		"active":    BillingSubscriptionStatusActive,
+		"autorenew": BillingSubscriptionStatusAutoRenew,
+		"cancelled": BillingSubscriptionStatusCancelled,
+		"deleted":   BillingSubscriptionStatusDeleted,
+		"disabled":  BillingSubscriptionStatusDisabled,
+		"expired":   BillingSubscriptionStatusExpired,
+		"expiring":  BillingSubscriptionStatusExpiring,
+		"failed":    BillingSubscriptionStatusFailed,
+		"other":     BillingSubscriptionStatusOther,
+		"suspended": BillingSubscriptionStatusSuspended,
+		"unknown":   BillingSubscriptionStatusUnknown,
+		"warned":    BillingSubscriptionStatusWarned,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := BillingSubscriptionStatus(input)
+	return &out, nil
+}

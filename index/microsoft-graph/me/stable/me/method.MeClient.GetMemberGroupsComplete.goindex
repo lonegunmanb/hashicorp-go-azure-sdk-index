@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/me
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c MeClient) GetMemberGroupsComplete(ctx context.Context, input GetMemberGroupsRequest, options GetMemberGroupsOperationOptions) (result GetMemberGroupsCompleteResult, err error) {
+	items := make([]string, 0)
+
+	resp, err := c.GetMemberGroups(ctx, input, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			items = append(items, v)
+		}
+	}
+
+	result = GetMemberGroupsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

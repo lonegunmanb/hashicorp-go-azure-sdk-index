@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/schedule
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s BanditPolicy) MarshalJSON() ([]byte, error) {
+	type wrapper BanditPolicy
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling BanditPolicy: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling BanditPolicy: %+v", err)
+	}
+
+	decoded["policyType"] = "Bandit"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling BanditPolicy: %+v", err)
+	}
+
+	return encoded, nil
+}

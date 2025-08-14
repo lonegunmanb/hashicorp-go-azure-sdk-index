@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2025-07-01/azurebackupjob
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAzureBackupJobClientWithBaseURI(sdkApi sdkEnv.Api) (*AzureBackupJobClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "azurebackupjob", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AzureBackupJobClient: %+v", err)
+	}
+
+	return &AzureBackupJobClient{
+		Client: client,
+	}, nil
+}

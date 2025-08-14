@@ -1,0 +1,46 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeviceType(input string) (*DeviceType, error) {
+	vals := map[string]DeviceType{
+		"android":           DeviceType_Android,
+		"androidenterprise": DeviceType_AndroidEnterprise,
+		"androidforwork":    DeviceType_AndroidForWork,
+		"androidngms":       DeviceType_AndroidnGMS,
+		"blackberry":        DeviceType_Blackberry,
+		"chromeos":          DeviceType_ChromeOS,
+		"cloudpc":           DeviceType_CloudPC,
+		"desktop":           DeviceType_Desktop,
+		"hololens":          DeviceType_HoloLens,
+		"ipad":              DeviceType_IPad,
+		"iphone":            DeviceType_IPhone,
+		"ipod":              DeviceType_IPod,
+		"isocconsumer":      DeviceType_ISocConsumer,
+		"linux":             DeviceType_Linux,
+		"mac":               DeviceType_Mac,
+		"macmdm":            DeviceType_MacMDM,
+		"nokia":             DeviceType_Nokia,
+		"palm":              DeviceType_Palm,
+		"surfacehub":        DeviceType_SurfaceHub,
+		"tvos":              DeviceType_TvOS,
+		"unix":              DeviceType_Unix,
+		"unknown":           DeviceType_Unknown,
+		"visionos":          DeviceType_VisionOS,
+		"wince":             DeviceType_WinCE,
+		"winembedded":       DeviceType_WinEmbedded,
+		"winmo6":            DeviceType_WinMO6,
+		"windows10x":        DeviceType_Windows10x,
+		"windowsphone":      DeviceType_WindowsPhone,
+		"windowsrt":         DeviceType_WindowsRT,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceType(input)
+	return &out, nil
+}

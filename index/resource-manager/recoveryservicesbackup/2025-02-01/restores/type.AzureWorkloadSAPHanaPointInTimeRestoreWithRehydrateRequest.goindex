@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/restores
+import (
+	"encoding/json"
+	"fmt"
+)
+type AzureWorkloadSAPHanaPointInTimeRestoreWithRehydrateRequest struct {
+	PointInTime                        *string                             `json:"pointInTime,omitempty"`
+	PropertyBag                        *map[string]string                  `json:"propertyBag,omitempty"`
+	RecoveryMode                       *RecoveryMode                       `json:"recoveryMode,omitempty"`
+	RecoveryPointRehydrationInfo       *RecoveryPointRehydrationInfo       `json:"recoveryPointRehydrationInfo,omitempty"`
+	RecoveryType                       *RecoveryType                       `json:"recoveryType,omitempty"`
+	SnapshotRestoreParameters          *SnapshotRestoreParameters          `json:"snapshotRestoreParameters,omitempty"`
+	SourceResourceId                   *string                             `json:"sourceResourceId,omitempty"`
+	TargetInfo                         *TargetRestoreInfo                  `json:"targetInfo,omitempty"`
+	TargetResourceGroupName            *string                             `json:"targetResourceGroupName,omitempty"`
+	TargetVirtualMachineId             *string                             `json:"targetVirtualMachineId,omitempty"`
+	UserAssignedManagedIdentityDetails *UserAssignedManagedIdentityDetails `json:"userAssignedManagedIdentityDetails,omitempty"`
+
+	// Fields inherited from RestoreRequest
+
+	ObjectType                     string    `json:"objectType"`
+	ResourceGuardOperationRequests *[]string `json:"resourceGuardOperationRequests,omitempty"`
+}

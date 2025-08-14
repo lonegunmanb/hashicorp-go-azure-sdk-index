@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/aggregatedcost
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id Providers2BillingPeriodId) String() string {
+	components := []string{
+		fmt.Sprintf("Management Group: %q", id.ManagementGroupId),
+		fmt.Sprintf("Billing Period Name: %q", id.BillingPeriodName),
+	}
+	return fmt.Sprintf("Providers 2 Billing Period (%s)", strings.Join(components, "\n"))
+}

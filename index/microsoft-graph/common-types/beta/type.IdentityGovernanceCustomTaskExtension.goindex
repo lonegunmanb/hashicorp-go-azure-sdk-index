@@ -1,0 +1,57 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type IdentityGovernanceCustomTaskExtension struct {
+	// The callback configuration for a custom task extension.
+	CallbackConfiguration CustomExtensionCallbackConfiguration `json:"callbackConfiguration"`
+
+	// The unique identifier of the Microsoft Entra user that created the custom task extension.Supports $filter(eq, ne) and
+	// $expand.
+	CreatedBy *User `json:"createdBy,omitempty"`
+
+	// When the custom task extension was created.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// The unique identifier of the Microsoft Entra user that modified the custom task extension last.Supports $filter(eq,
+	// ne) and $expand.
+	LastModifiedBy *User `json:"lastModifiedBy,omitempty"`
+
+	// When the custom extension was last modified.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.
+	LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+
+	// Fields inherited from CustomCalloutExtension
+
+	// Configuration for securing the API call to the logic app. For example, using OAuth client credentials flow.
+	AuthenticationConfiguration CustomExtensionAuthenticationConfiguration `json:"authenticationConfiguration"`
+
+	// HTTP connection settings that define how long Microsoft Entra ID can wait for a connection to a logic app, how many
+	// times you can retry a timed-out connection and the exception scenarios when retries are allowed.
+	ClientConfiguration *CustomExtensionClientConfiguration `json:"clientConfiguration,omitempty"`
+
+	// Description for the customCalloutExtension object.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// Display name for the customCalloutExtension object.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// The type and details for configuring the endpoint to call the logic app's workflow.
+	EndpointConfiguration CustomExtensionEndpointConfiguration `json:"endpointConfiguration"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

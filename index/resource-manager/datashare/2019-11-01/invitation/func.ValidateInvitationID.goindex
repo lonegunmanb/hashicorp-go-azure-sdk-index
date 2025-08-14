@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2019-11-01/invitation
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ValidateInvitationID(input interface{}, key string) (warnings []string, errors []error) {
+	v, ok := input.(string)
+	if !ok {
+		errors = append(errors, fmt.Errorf("expected %q to be a string", key))
+		return
+	}
+
+	if _, err := ParseInvitationID(v); err != nil {
+		errors = append(errors, err)
+	}
+
+	return
+}

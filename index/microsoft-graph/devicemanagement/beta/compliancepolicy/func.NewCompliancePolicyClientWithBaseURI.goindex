@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/compliancepolicy
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewCompliancePolicyClientWithBaseURI(sdkApi sdkEnv.Api) (*CompliancePolicyClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "compliancepolicy", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating CompliancePolicyClient: %+v", err)
+	}
+
+	return &CompliancePolicyClient{
+		Client: client,
+	}, nil
+}

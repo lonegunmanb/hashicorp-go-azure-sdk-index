@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamgroupserviceprovisioningerror
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c JoinedTeamGroupServiceProvisioningErrorClient) ListJoinedTeamGroupServiceProvisioningErrorsComplete(ctx context.Context, id stable.UserIdJoinedTeamId, options ListJoinedTeamGroupServiceProvisioningErrorsOperationOptions) (ListJoinedTeamGroupServiceProvisioningErrorsCompleteResult, error) {
+	return c.ListJoinedTeamGroupServiceProvisioningErrorsCompleteMatchingPredicate(ctx, id, options, ServiceProvisioningErrorOperationPredicate{})
+}

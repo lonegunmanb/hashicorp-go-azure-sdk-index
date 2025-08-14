@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationappliances
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRcmComponentStatus(input string) (*RcmComponentStatus, error) {
+	vals := map[string]RcmComponentStatus{
+		"critical": RcmComponentStatusCritical,
+		"healthy":  RcmComponentStatusHealthy,
+		"unknown":  RcmComponentStatusUnknown,
+		"warning":  RcmComponentStatusWarning,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RcmComponentStatus(input)
+	return &out, nil
+}

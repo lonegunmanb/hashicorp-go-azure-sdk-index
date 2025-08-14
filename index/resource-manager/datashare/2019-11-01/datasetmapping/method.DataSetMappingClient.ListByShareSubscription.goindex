@@ -1,0 +1,59 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2019-11-01/datasetmapping
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DataSetMappingClient) ListByShareSubscription(ctx context.Context, id ShareSubscriptionId, options ListByShareSubscriptionOperationOptions) (result ListByShareSubscriptionOperationResponse, err error) {
+	opts := client.RequestOptions{
+		ContentType: "application/json; charset=utf-8",
+		ExpectedStatusCodes: []int{
+			http.StatusOK,
+		},
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Pager:         &ListByShareSubscriptionCustomPager{},
+		Path:          fmt.Sprintf("%s/dataSetMappings", id.ID()),
+	}
+
+	req, err := c.Client.NewRequest(ctx, opts)
+	if err != nil {
+		return
+	}
+
+	var resp *client.Response
+	resp, err = req.ExecutePaged(ctx)
+	if resp != nil {
+		result.OData = resp.OData
+		result.HttpResponse = resp.Response
+	}
+	if err != nil {
+		return
+	}
+
+	var values struct {
+		Values *[]json.RawMessage `json:"value"`
+	}
+	if err = resp.Unmarshal(&values); err != nil {
+		return
+	}
+
+	temp := make([]DataSetMapping, 0)
+	if values.Values != nil {
+		for i, v := range *values.Values {
+			val, err := UnmarshalDataSetMappingImplementation(v)
+			if err != nil {
+				err = fmt.Errorf("unmarshalling item %d for DataSetMapping (%q): %+v", i, v, err)
+				return result, err
+			}
+			temp = append(temp, val)
+		}
+	}
+	result.Model = &temp
+
+	return
+}

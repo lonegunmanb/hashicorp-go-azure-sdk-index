@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNetworkSingleSignOnType(input string) (*NetworkSingleSignOnType, error) {
+	vals := map[string]NetworkSingleSignOnType{
+		"disabled":  NetworkSingleSignOnType_Disabled,
+		"postlogon": NetworkSingleSignOnType_Postlogon,
+		"prelogon":  NetworkSingleSignOnType_Prelogon,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NetworkSingleSignOnType(input)
+	return &out, nil
+}

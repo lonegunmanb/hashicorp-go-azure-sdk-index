@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type UnifiedRoleManagementPolicyRuleTarget struct {
+	// The type of caller that's the target of the policy rule. Allowed values are: None, Admin, EndUser.
+	Caller nullable.Type[string] `json:"caller,omitempty"`
+
+	// The list of role settings that are enforced and cannot be overridden by child scopes. Use All for all settings.
+	EnforcedSettings *[]string `json:"enforcedSettings,omitempty"`
+
+	// The list of role settings that can be inherited by child scopes. Use All for all settings.
+	InheritableSettings *[]string `json:"inheritableSettings,omitempty"`
+
+	// The role assignment type that's the target of policy rule. Allowed values are: Eligibility, Assignment.
+	Level nullable.Type[string] `json:"level,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The role management operations that are the target of the policy rule. Allowed values are: All, Activate, Deactivate,
+	// Assign, Update, Remove, Extend, Renew.
+	Operations *[]string `json:"operations,omitempty"`
+
+	TargetObjects *[]DirectoryObject `json:"targetObjects,omitempty"`
+
+	// List of OData IDs for `TargetObjects` to bind to this entity
+	TargetObjects_ODataBind *[]string `json:"targetObjects@odata.bind,omitempty"`
+}

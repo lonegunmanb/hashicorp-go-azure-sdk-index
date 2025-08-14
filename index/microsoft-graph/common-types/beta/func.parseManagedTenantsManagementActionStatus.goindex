@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseManagedTenantsManagementActionStatus(input string) (*ManagedTenantsManagementActionStatus, error) {
+	vals := map[string]ManagedTenantsManagementActionStatus{
+		"completed":                          ManagedTenantsManagementActionStatus_Completed,
+		"error":                              ManagedTenantsManagementActionStatus_Error,
+		"inprogress":                         ManagedTenantsManagementActionStatus_InProgress,
+		"planned":                            ManagedTenantsManagementActionStatus_Planned,
+		"resolvedby3rdparty":                 ManagedTenantsManagementActionStatus_ResolvedBy3rdParty,
+		"resolvedthroughalternatemitigation": ManagedTenantsManagementActionStatus_ResolvedThroughAlternateMitigation,
+		"riskaccepted":                       ManagedTenantsManagementActionStatus_RiskAccepted,
+		"timeout":                            ManagedTenantsManagementActionStatus_TimeOut,
+		"toaddress":                          ManagedTenantsManagementActionStatus_ToAddress,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagedTenantsManagementActionStatus(input)
+	return &out, nil
+}

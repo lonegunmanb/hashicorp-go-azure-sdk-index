@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/exascaledbnodes
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDbNodeProvisioningState(input string) (*DbNodeProvisioningState, error) {
+	vals := map[string]DbNodeProvisioningState{
+		"available":    DbNodeProvisioningStateAvailable,
+		"failed":       DbNodeProvisioningStateFailed,
+		"provisioning": DbNodeProvisioningStateProvisioning,
+		"starting":     DbNodeProvisioningStateStarting,
+		"stopped":      DbNodeProvisioningStateStopped,
+		"stopping":     DbNodeProvisioningStateStopping,
+		"terminated":   DbNodeProvisioningStateTerminated,
+		"terminating":  DbNodeProvisioningStateTerminating,
+		"updating":     DbNodeProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DbNodeProvisioningState(input)
+	return &out, nil
+}

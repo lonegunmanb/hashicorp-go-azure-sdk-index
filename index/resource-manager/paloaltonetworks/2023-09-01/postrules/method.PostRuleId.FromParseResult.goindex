@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2023-09-01/postrules
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *PostRuleId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.GlobalRulestackName, ok = input.Parsed["globalRulestackName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "globalRulestackName", input)
+	}
+
+	if id.PostRuleName, ok = input.Parsed["postRuleName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "postRuleName", input)
+	}
+
+	return nil
+}

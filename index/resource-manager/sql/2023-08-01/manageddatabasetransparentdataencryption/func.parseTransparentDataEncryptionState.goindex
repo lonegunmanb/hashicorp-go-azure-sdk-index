@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/manageddatabasetransparentdataencryption
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTransparentDataEncryptionState(input string) (*TransparentDataEncryptionState, error) {
+	vals := map[string]TransparentDataEncryptionState{
+		"disabled": TransparentDataEncryptionStateDisabled,
+		"enabled":  TransparentDataEncryptionStateEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TransparentDataEncryptionState(input)
+	return &out, nil
+}

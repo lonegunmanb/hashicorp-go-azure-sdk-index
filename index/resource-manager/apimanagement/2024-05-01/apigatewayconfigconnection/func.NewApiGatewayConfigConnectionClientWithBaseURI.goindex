@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/apigatewayconfigconnection
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewApiGatewayConfigConnectionClientWithBaseURI(sdkApi sdkEnv.Api) (*ApiGatewayConfigConnectionClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "apigatewayconfigconnection", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ApiGatewayConfigConnectionClient: %+v", err)
+	}
+
+	return &ApiGatewayConfigConnectionClient{
+		Client: client,
+	}, nil
+}

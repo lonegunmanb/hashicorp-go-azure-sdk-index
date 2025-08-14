@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerapps/2023-05-01/jobs
+
+type JobConfiguration struct {
+	EventTriggerConfig    *JobConfigurationEventTriggerConfig    `json:"eventTriggerConfig,omitempty"`
+	ManualTriggerConfig   *JobConfigurationManualTriggerConfig   `json:"manualTriggerConfig,omitempty"`
+	Registries            *[]RegistryCredentials                 `json:"registries,omitempty"`
+	ReplicaRetryLimit     *int64                                 `json:"replicaRetryLimit,omitempty"`
+	ReplicaTimeout        int64                                  `json:"replicaTimeout"`
+	ScheduleTriggerConfig *JobConfigurationScheduleTriggerConfig `json:"scheduleTriggerConfig,omitempty"`
+	Secrets               *[]Secret                              `json:"secrets,omitempty"`
+	TriggerType           TriggerType                            `json:"triggerType"`
+}

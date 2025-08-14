@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2023-12-15-preview/partnerregistrations
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPartnerRegistrationsClientWithBaseURI(sdkApi sdkEnv.Api) (*PartnerRegistrationsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "partnerregistrations", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PartnerRegistrationsClient: %+v", err)
+	}
+
+	return &PartnerRegistrationsClient{
+		Client: client,
+	}, nil
+}

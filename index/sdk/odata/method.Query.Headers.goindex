@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/sdk/odata
+import (
+	"fmt"
+	"net/http"
+	"net/url"
+	"strconv"
+	"strings"
+)
+func (q Query) Headers() http.Header {
+	// Take extra care over canonicalization of header names
+	headers := http.Header{}
+	headers.Set("Odata-Maxversion", ODataVersion)
+	headers.Set("Odata-Version", ODataVersion)
+
+	accept := "application/json; charset=utf-8; IEEE754Compatible=false"
+	if q.Metadata != "" {
+		accept = fmt.Sprintf("%s; odata.metadata=%s", accept, q.Metadata)
+	}
+	headers.Set("Accept", accept)
+
+	if q.ConsistencyLevel != "" {
+		headers.Set("Consistencylevel", string(q.ConsistencyLevel))
+	}
+
+	return headers
+}

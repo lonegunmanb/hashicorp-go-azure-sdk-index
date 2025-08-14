@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2016-06-01/managedapis
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseConnectionParameterType(input string) (*ConnectionParameterType, error) {
+	vals := map[string]ConnectionParameterType{
+		"array":        ConnectionParameterTypeArray,
+		"bool":         ConnectionParameterTypeBool,
+		"connection":   ConnectionParameterTypeConnection,
+		"int":          ConnectionParameterTypeInt,
+		"oauthsetting": ConnectionParameterTypeOauthSetting,
+		"object":       ConnectionParameterTypeObject,
+		"secureobject": ConnectionParameterTypeSecureobject,
+		"securestring": ConnectionParameterTypeSecurestring,
+		"string":       ConnectionParameterTypeString,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ConnectionParameterType(input)
+	return &out, nil
+}

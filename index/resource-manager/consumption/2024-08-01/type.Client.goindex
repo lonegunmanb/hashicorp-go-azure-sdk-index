@@ -1,0 +1,37 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/consumption/v2024_08_01
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/aggregatedcost"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/balances"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/budgets"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/charges"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/credits"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/events"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/lots"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/marketplaces"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/pricesheet"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/reservationdetails"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/reservationrecommendationdetails"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/reservationrecommendations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/reservationsummaries"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/reservationtransactions"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	AggregatedCost                   *aggregatedcost.AggregatedCostClient
+	Balances                         *balances.BalancesClient
+	Budgets                          *budgets.BudgetsClient
+	Charges                          *charges.ChargesClient
+	Credits                          *credits.CreditsClient
+	Events                           *events.EventsClient
+	Lots                             *lots.LotsClient
+	Marketplaces                     *marketplaces.MarketplacesClient
+	PriceSheet                       *pricesheet.PriceSheetClient
+	ReservationDetails               *reservationdetails.ReservationDetailsClient
+	ReservationRecommendationDetails *reservationrecommendationdetails.ReservationRecommendationDetailsClient
+	ReservationRecommendations       *reservationrecommendations.ReservationRecommendationsClient
+	ReservationSummaries             *reservationsummaries.ReservationSummariesClient
+	ReservationTransactions          *reservationtransactions.ReservationTransactionsClient
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/informationprotectionsensitivitypolicysetting
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewInformationProtectionSensitivityPolicySettingClientWithBaseURI(sdkApi sdkEnv.Api) (*InformationProtectionSensitivityPolicySettingClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "informationprotectionsensitivitypolicysetting", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating InformationProtectionSensitivityPolicySettingClient: %+v", err)
+	}
+
+	return &InformationProtectionSensitivityPolicySettingClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagepool/2021-08-01/diskpoolzones
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DiskPoolZonesClient) ListComplete(ctx context.Context, id LocationId) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, DiskPoolZoneInfoOperationPredicate{})
+}

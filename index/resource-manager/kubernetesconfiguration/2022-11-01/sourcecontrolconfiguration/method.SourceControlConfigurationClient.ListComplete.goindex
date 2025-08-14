@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/kubernetesconfiguration/2022-11-01/sourcecontrolconfiguration
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SourceControlConfigurationClient) ListComplete(ctx context.Context, id commonids.ScopeId) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, SourceControlConfigurationOperationPredicate{})
+}

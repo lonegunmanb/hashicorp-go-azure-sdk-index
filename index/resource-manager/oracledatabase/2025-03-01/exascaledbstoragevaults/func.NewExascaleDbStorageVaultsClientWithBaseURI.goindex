@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/exascaledbstoragevaults
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewExascaleDbStorageVaultsClientWithBaseURI(sdkApi sdkEnv.Api) (*ExascaleDbStorageVaultsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "exascaledbstoragevaults", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ExascaleDbStorageVaultsClient: %+v", err)
+	}
+
+	return &ExascaleDbStorageVaultsClient{
+		Client: client,
+	}, nil
+}

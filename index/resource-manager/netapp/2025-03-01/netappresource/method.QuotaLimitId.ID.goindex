@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-03-01/netappresource
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id QuotaLimitId) ID() string {
+	fmtString := "/subscriptions/%s/providers/Microsoft.NetApp/locations/%s/quotaLimits/%s"
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.LocationName, id.QuotaLimitName)
+}

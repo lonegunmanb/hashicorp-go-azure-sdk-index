@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type ExternalConnectorsExternal struct {
+	// Represents an onboarded Amazon Web Services (AWS) account, Azure subscription, or Google Cloud Platform (GCP) project
+	// that Microsoft Entra Permissions Management collects and analyzes permissions and actions on.
+	AuthorizationSystems *[]AuthorizationSystem `json:"authorizationSystems,omitempty"`
+
+	Connections  *[]ExternalConnectorsExternalConnection `json:"connections,omitempty"`
+	IndustryData *IndustryDataIndustryDataRoot           `json:"industryData,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+}

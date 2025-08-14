@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRecurrencePatternType(input string) (*RecurrencePatternType, error) {
+	vals := map[string]RecurrencePatternType{
+		"absolutemonthly": RecurrencePatternType_AbsoluteMonthly,
+		"absoluteyearly":  RecurrencePatternType_AbsoluteYearly,
+		"daily":           RecurrencePatternType_Daily,
+		"relativemonthly": RecurrencePatternType_RelativeMonthly,
+		"relativeyearly":  RecurrencePatternType_RelativeYearly,
+		"weekly":          RecurrencePatternType_Weekly,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RecurrencePatternType(input)
+	return &out, nil
+}

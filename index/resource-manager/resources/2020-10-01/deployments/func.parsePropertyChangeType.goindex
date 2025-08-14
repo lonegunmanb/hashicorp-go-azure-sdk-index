@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-10-01/deployments
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePropertyChangeType(input string) (*PropertyChangeType, error) {
+	vals := map[string]PropertyChangeType{
+		"array":  PropertyChangeTypeArray,
+		"create": PropertyChangeTypeCreate,
+		"delete": PropertyChangeTypeDelete,
+		"modify": PropertyChangeTypeModify,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PropertyChangeType(input)
+	return &out, nil
+}

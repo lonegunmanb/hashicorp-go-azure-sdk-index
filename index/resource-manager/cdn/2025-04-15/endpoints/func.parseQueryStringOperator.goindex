@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-04-15/endpoints
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseQueryStringOperator(input string) (*QueryStringOperator, error) {
+	vals := map[string]QueryStringOperator{
+		"any":                QueryStringOperatorAny,
+		"beginswith":         QueryStringOperatorBeginsWith,
+		"contains":           QueryStringOperatorContains,
+		"endswith":           QueryStringOperatorEndsWith,
+		"equal":              QueryStringOperatorEqual,
+		"greaterthan":        QueryStringOperatorGreaterThan,
+		"greaterthanorequal": QueryStringOperatorGreaterThanOrEqual,
+		"lessthan":           QueryStringOperatorLessThan,
+		"lessthanorequal":    QueryStringOperatorLessThanOrEqual,
+		"regex":              QueryStringOperatorRegEx,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := QueryStringOperator(input)
+	return &out, nil
+}

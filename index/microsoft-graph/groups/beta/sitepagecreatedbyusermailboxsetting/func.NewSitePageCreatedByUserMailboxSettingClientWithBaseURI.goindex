@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitepagecreatedbyusermailboxsetting
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSitePageCreatedByUserMailboxSettingClientWithBaseURI(sdkApi sdkEnv.Api) (*SitePageCreatedByUserMailboxSettingClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "sitepagecreatedbyusermailboxsetting", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SitePageCreatedByUserMailboxSettingClient: %+v", err)
+	}
+
+	return &SitePageCreatedByUserMailboxSettingClient{
+		Client: client,
+	}, nil
+}

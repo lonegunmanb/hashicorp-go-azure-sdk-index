@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-12-01-preview/entities
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *EntityExpandParameters) GetEndTimeAsTime() (*time.Time, error) {
+	if o.EndTime == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.EndTime, "2006-01-02T15:04:05Z07:00")
+}

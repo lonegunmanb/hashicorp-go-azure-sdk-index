@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type AuthenticationFlowsPolicy struct {
+	// Inherited property. A description of the policy. This property isn't a key. Optional. Read-only.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// Inherited property. The human-readable name of the policy. This property isn't a key. Optional. Read-only.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// Contains selfServiceSignUpAuthenticationFlowConfiguration settings that convey whether self-service sign-up is
+	// enabled or disabled. This property isn't a key. Optional. Read-only.
+	SelfServiceSignUp *SelfServiceSignUpAuthenticationFlowConfiguration `json:"selfServiceSignUp,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

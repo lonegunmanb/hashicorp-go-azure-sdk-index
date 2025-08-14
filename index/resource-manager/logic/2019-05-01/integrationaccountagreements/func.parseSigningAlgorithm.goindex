@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationaccountagreements
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSigningAlgorithm(input string) (*SigningAlgorithm, error) {
+	vals := map[string]SigningAlgorithm{
+		"default":      SigningAlgorithmDefault,
+		"notspecified": SigningAlgorithmNotSpecified,
+		"sha1":         SigningAlgorithmSHAOne,
+		"sha2512":      SigningAlgorithmSHATwoFiveOneTwo,
+		"sha2384":      SigningAlgorithmSHATwoThreeEightFour,
+		"sha2256":      SigningAlgorithmSHATwoTwoFiveSix,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SigningAlgorithm(input)
+	return &out, nil
+}

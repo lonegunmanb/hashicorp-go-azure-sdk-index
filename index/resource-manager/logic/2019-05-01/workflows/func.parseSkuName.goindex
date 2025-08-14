@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/workflows
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSkuName(input string) (*SkuName, error) {
+	vals := map[string]SkuName{
+		"basic":        SkuNameBasic,
+		"free":         SkuNameFree,
+		"notspecified": SkuNameNotSpecified,
+		"premium":      SkuNamePremium,
+		"shared":       SkuNameShared,
+		"standard":     SkuNameStandard,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SkuName(input)
+	return &out, nil
+}

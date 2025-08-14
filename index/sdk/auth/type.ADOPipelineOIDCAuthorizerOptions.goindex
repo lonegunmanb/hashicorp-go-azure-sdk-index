@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"io"
+	"net/http"
+	"net/url"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	"golang.org/x/oauth2"
+)
+type ADOPipelineOIDCAuthorizerOptions struct {
+	// Api describes the Azure API being used
+	Api environments.Api
+
+	// ClientId is the client ID used when authenticating
+	ClientId string
+
+	// ServiceConnectionId is the ADO service connection ID used when authenticating
+	ServiceConnectionId string
+
+	// Environment is the Azure environment/cloud being targeted
+	Environment environments.Environment
+
+	// TenantId is the tenant to authenticate against
+	TenantId string
+
+	// AuxiliaryTenantIds lists additional tenants to authenticate against, currently only
+	// used for Resource Manager when auxiliary tenants are needed.
+	// e.g. https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/authenticate-multi-tenant
+	AuxiliaryTenantIds []string
+
+	// IdTokenRequestUrl is the URL for the OIDC provider from which to request an ID token.
+	// Usually exposed via the SYSTEM_OIDCREQUESTURI environment variable when running in ADO Pipelines
+	IdTokenRequestUrl string
+
+	// IdTokenRequestToken is the bearer token for the request to the OIDC provider.
+	// Usually exposed via the SYSTEM_ACCESSTOKEN environment variable when running in ADO Pipelines
+	IdTokenRequestToken string
+}

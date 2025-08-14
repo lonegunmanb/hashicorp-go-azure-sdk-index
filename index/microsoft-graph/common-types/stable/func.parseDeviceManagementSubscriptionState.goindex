@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeviceManagementSubscriptionState(input string) (*DeviceManagementSubscriptionState, error) {
+	vals := map[string]DeviceManagementSubscriptionState{
+		"active":    DeviceManagementSubscriptionState_Active,
+		"blocked":   DeviceManagementSubscriptionState_Blocked,
+		"deleted":   DeviceManagementSubscriptionState_Deleted,
+		"disabled":  DeviceManagementSubscriptionState_Disabled,
+		"lockedout": DeviceManagementSubscriptionState_LockedOut,
+		"pending":   DeviceManagementSubscriptionState_Pending,
+		"warning":   DeviceManagementSubscriptionState_Warning,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceManagementSubscriptionState(input)
+	return &out, nil
+}

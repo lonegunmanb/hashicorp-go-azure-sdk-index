@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/stable/application
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ListGetsAvailableExtensionPropertiesOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	if o.Skip != nil {
+		out.Skip = int(*o.Skip)
+	}
+	if o.Top != nil {
+		out.Top = int(*o.Top)
+	}
+	return &out
+}

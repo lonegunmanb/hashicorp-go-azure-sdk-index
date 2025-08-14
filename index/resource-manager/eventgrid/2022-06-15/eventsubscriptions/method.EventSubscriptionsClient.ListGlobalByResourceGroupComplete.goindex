@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2022-06-15/eventsubscriptions
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c EventSubscriptionsClient) ListGlobalByResourceGroupComplete(ctx context.Context, id commonids.ResourceGroupId, options ListGlobalByResourceGroupOperationOptions) (ListGlobalByResourceGroupCompleteResult, error) {
+	return c.ListGlobalByResourceGroupCompleteMatchingPredicate(ctx, id, options, EventSubscriptionOperationPredicate{})
+}

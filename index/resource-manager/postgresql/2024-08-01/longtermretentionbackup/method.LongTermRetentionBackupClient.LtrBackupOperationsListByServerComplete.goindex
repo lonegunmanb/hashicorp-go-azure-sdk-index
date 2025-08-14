@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2024-08-01/longtermretentionbackup
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c LongTermRetentionBackupClient) LtrBackupOperationsListByServerComplete(ctx context.Context, id FlexibleServerId) (LtrBackupOperationsListByServerCompleteResult, error) {
+	return c.LtrBackupOperationsListByServerCompleteMatchingPredicate(ctx, id, LtrServerBackupOperationOperationPredicate{})
+}

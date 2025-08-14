@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/nginx/2024-11-01-preview/nginxconfigurationanalysis
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseLevel(input string) (*Level, error) {
+	vals := map[string]Level{
+		"info":    LevelInfo,
+		"warning": LevelWarning,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Level(input)
+	return &out, nil
+}

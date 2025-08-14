@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2023-02-01/protecteditems
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/polling"
+)
+func (c ProtectedItemsClient) CreateOrUpdate(ctx context.Context, id ProtectedItemId, input ProtectedItemResource) (result CreateOrUpdateOperationResponse, err error) {
+	req, err := c.preparerForCreateOrUpdate(ctx, id, input)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "protecteditems.ProtectedItemsClient", "CreateOrUpdate", nil, "Failure preparing request")
+		return
+	}
+
+	result, err = c.senderForCreateOrUpdate(ctx, req)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "protecteditems.ProtectedItemsClient", "CreateOrUpdate", result.HttpResponse, "Failure sending request")
+		return
+	}
+
+	return
+}

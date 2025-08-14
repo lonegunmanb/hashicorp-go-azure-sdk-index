@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2023-07-01/managedhsms
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewManagedHsmsClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedHsmsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "managedhsms", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ManagedHsmsClient: %+v", err)
+	}
+
+	return &ManagedHsmsClient{
+		Client: client,
+	}, nil
+}

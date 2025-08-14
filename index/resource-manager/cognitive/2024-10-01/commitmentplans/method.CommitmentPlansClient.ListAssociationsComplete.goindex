@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cognitive/2024-10-01/commitmentplans
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c CommitmentPlansClient) ListAssociationsComplete(ctx context.Context, id CommitmentPlanId) (ListAssociationsCompleteResult, error) {
+	return c.ListAssociationsCompleteMatchingPredicate(ctx, id, CommitmentPlanAccountAssociationOperationPredicate{})
+}

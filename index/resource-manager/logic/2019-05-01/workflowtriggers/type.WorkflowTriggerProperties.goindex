@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/workflowtriggers
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type WorkflowTriggerProperties struct {
+	ChangedTime       *string                           `json:"changedTime,omitempty"`
+	CreatedTime       *string                           `json:"createdTime,omitempty"`
+	LastExecutionTime *string                           `json:"lastExecutionTime,omitempty"`
+	NextExecutionTime *string                           `json:"nextExecutionTime,omitempty"`
+	ProvisioningState *WorkflowTriggerProvisioningState `json:"provisioningState,omitempty"`
+	Recurrence        *WorkflowTriggerRecurrence        `json:"recurrence,omitempty"`
+	State             *WorkflowState                    `json:"state,omitempty"`
+	Status            *WorkflowStatus                   `json:"status,omitempty"`
+	Workflow          *ResourceReference                `json:"workflow,omitempty"`
+}

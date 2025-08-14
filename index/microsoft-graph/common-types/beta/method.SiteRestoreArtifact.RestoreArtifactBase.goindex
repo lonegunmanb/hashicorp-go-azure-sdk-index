@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s SiteRestoreArtifact) RestoreArtifactBase() BaseRestoreArtifactBaseImpl {
+	return BaseRestoreArtifactBaseImpl{
+		CompletionDateTime: s.CompletionDateTime,
+		DestinationType:    s.DestinationType,
+		Error:              s.Error,
+		RestorePoint:       s.RestorePoint,
+		StartDateTime:      s.StartDateTime,
+		Status:             s.Status,
+		Id:                 s.Id,
+		ODataId:            s.ODataId,
+		ODataType:          s.ODataType,
+	}
+}

@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DirectoryAdministrativeUnitIdScopedRoleMemberId) String() string {
+	components := []string{
+		fmt.Sprintf("Administrative Unit: %q", id.AdministrativeUnitId),
+		fmt.Sprintf("Scoped Role Membership: %q", id.ScopedRoleMembershipId),
+	}
+	return fmt.Sprintf("Directory Administrative Unit Id Scoped Role Member (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2025-06-01/machinelearningcomputes
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseProvisioningStatus(input string) (*ProvisioningStatus, error) {
+	vals := map[string]ProvisioningStatus{
+		"completed":    ProvisioningStatusCompleted,
+		"failed":       ProvisioningStatusFailed,
+		"provisioning": ProvisioningStatusProvisioning,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ProvisioningStatus(input)
+	return &out, nil
+}

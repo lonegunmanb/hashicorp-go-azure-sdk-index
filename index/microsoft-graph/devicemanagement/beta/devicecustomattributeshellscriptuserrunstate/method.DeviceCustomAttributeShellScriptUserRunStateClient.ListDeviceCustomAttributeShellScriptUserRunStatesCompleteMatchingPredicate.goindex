@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/devicecustomattributeshellscriptuserrunstate
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DeviceCustomAttributeShellScriptUserRunStateClient) ListDeviceCustomAttributeShellScriptUserRunStatesCompleteMatchingPredicate(ctx context.Context, id beta.DeviceManagementDeviceCustomAttributeShellScriptId, options ListDeviceCustomAttributeShellScriptUserRunStatesOperationOptions, predicate DeviceManagementScriptUserStateOperationPredicate) (result ListDeviceCustomAttributeShellScriptUserRunStatesCompleteResult, err error) {
+	items := make([]beta.DeviceManagementScriptUserState, 0)
+
+	resp, err := c.ListDeviceCustomAttributeShellScriptUserRunStates(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListDeviceCustomAttributeShellScriptUserRunStatesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

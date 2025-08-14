@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeviceManagementConfigurationAzureAdTrustType(input string) (*DeviceManagementConfigurationAzureAdTrustType, error) {
+	vals := map[string]DeviceManagementConfigurationAzureAdTrustType{
+		"addworkaccount": DeviceManagementConfigurationAzureAdTrustType_AddWorkAccount,
+		"azureadjoined":  DeviceManagementConfigurationAzureAdTrustType_AzureAdJoined,
+		"mdmonly":        DeviceManagementConfigurationAzureAdTrustType_MdmOnly,
+		"none":           DeviceManagementConfigurationAzureAdTrustType_None,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceManagementConfigurationAzureAdTrustType(input)
+	return &out, nil
+}

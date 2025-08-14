@@ -1,0 +1,42 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type IdentityUserFlowAttributeAssignment struct {
+	// The display name of the identityUserFlowAttribute within a user flow.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// Determines whether the identityUserFlowAttribute is optional. true means the user doesn't have to provide a value.
+	// false means the user can't complete sign-up without providing a value.
+	IsOptional *bool `json:"isOptional,omitempty"`
+
+	// Determines whether the identityUserFlowAttribute requires verification. This is only used for verifying the user's
+	// phone number or email address.
+	RequiresVerification *bool `json:"requiresVerification,omitempty"`
+
+	// The user attribute that you want to add to your user flow.
+	UserAttribute *IdentityUserFlowAttribute `json:"userAttribute,omitempty"`
+
+	// The input options for the user flow attribute. Only applicable when the userInputType is radioSingleSelect,
+	// dropdownSingleSelect, or checkboxMultiSelect.
+	UserAttributeValues *[]UserAttributeValuesItem `json:"userAttributeValues,omitempty"`
+
+	UserInputType *IdentityUserFlowAttributeInputType `json:"userInputType,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

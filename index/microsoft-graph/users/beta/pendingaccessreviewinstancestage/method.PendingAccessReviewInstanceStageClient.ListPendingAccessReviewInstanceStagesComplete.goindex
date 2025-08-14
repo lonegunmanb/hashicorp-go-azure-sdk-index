@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/pendingaccessreviewinstancestage
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c PendingAccessReviewInstanceStageClient) ListPendingAccessReviewInstanceStagesComplete(ctx context.Context, id beta.UserIdPendingAccessReviewInstanceId, options ListPendingAccessReviewInstanceStagesOperationOptions) (ListPendingAccessReviewInstanceStagesCompleteResult, error) {
+	return c.ListPendingAccessReviewInstanceStagesCompleteMatchingPredicate(ctx, id, options, AccessReviewStageOperationPredicate{})
+}

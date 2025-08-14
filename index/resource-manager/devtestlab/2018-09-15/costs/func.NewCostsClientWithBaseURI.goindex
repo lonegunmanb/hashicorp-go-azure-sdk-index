@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/costs
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewCostsClientWithBaseURI(sdkApi sdkEnv.Api) (*CostsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "costs", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating CostsClient: %+v", err)
+	}
+
+	return &CostsClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id UserIdPlannerRecentPlanId) String() string {
+	components := []string{
+		fmt.Sprintf("User: %q", id.UserId),
+		fmt.Sprintf("Planner Plan: %q", id.PlannerPlanId),
+	}
+	return fmt.Sprintf("User Id Planner Recent Plan (%s)", strings.Join(components, "\n"))
+}

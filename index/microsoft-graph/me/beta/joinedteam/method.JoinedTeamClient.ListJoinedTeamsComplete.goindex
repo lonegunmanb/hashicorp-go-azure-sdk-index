@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/joinedteam
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c JoinedTeamClient) ListJoinedTeamsComplete(ctx context.Context, options ListJoinedTeamsOperationOptions) (ListJoinedTeamsCompleteResult, error) {
+	return c.ListJoinedTeamsCompleteMatchingPredicate(ctx, options, TeamOperationPredicate{})
+}

@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/datastore
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s AzureDataLakeGen2Datastore) MarshalJSON() ([]byte, error) {
+	type wrapper AzureDataLakeGen2Datastore
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AzureDataLakeGen2Datastore: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AzureDataLakeGen2Datastore: %+v", err)
+	}
+
+	decoded["datastoreType"] = "AzureDataLakeGen2"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AzureDataLakeGen2Datastore: %+v", err)
+	}
+
+	return encoded, nil
+}

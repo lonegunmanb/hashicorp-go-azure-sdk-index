@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/servicetaskresource
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewServiceTaskResourceClientWithBaseURI(sdkApi sdkEnv.Api) (*ServiceTaskResourceClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "servicetaskresource", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ServiceTaskResourceClient: %+v", err)
+	}
+
+	return &ServiceTaskResourceClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-11-01/virtualnetworktaps
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSyncMode(input string) (*SyncMode, error) {
+	vals := map[string]SyncMode{
+		"automatic": SyncModeAutomatic,
+		"manual":    SyncModeManual,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SyncMode(input)
+	return &out, nil
+}

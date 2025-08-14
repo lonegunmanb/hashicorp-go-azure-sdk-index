@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type Shared struct {
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The identity of the owner of the shared item. Read-only.
+	Owner *IdentitySet `json:"owner,omitempty"`
+
+	// Indicates the scope of how the item is shared. The possible values are: anonymous, organization, or users. Read-only.
+	Scope nullable.Type[string] `json:"scope,omitempty"`
+
+	// The identity of the user who shared the item. Read-only.
+	SharedBy *IdentitySet `json:"sharedBy,omitempty"`
+
+	// The UTC date and time when the item was shared. Read-only.
+	SharedDateTime nullable.Type[string] `json:"sharedDateTime,omitempty"`
+}

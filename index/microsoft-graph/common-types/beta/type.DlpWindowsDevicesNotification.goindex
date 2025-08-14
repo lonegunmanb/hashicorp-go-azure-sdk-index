@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type DlpWindowsDevicesNotification struct {
+	ContentName   nullable.Type[string] `json:"contentName,omitempty"`
+	LastModfiedBy nullable.Type[string] `json:"lastModfiedBy,omitempty"`
+
+	// Fields inherited from DlpNotification
+
+	Author nullable.Type[string] `json:"author,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

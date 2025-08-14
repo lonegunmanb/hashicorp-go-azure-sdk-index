@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityExportOptions(input string) (*SecurityExportOptions, error) {
+	vals := map[string]SecurityExportOptions{
+		"condensepaths":          SecurityExportOptions_CondensePaths,
+		"fileinfo":               SecurityExportOptions_FileInfo,
+		"friendlyname":           SecurityExportOptions_FriendlyName,
+		"includefolderandpath":   SecurityExportOptions_IncludeFolderAndPath,
+		"optimizedpartitionsize": SecurityExportOptions_OptimizedPartitionSize,
+		"originalfiles":          SecurityExportOptions_OriginalFiles,
+		"pdfreplacement":         SecurityExportOptions_PdfReplacement,
+		"splitsource":            SecurityExportOptions_SplitSource,
+		"tags":                   SecurityExportOptions_Tags,
+		"text":                   SecurityExportOptions_Text,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityExportOptions(input)
+	return &out, nil
+}

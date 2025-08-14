@@ -1,0 +1,75 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"bytes"
+	"context"
+	"crypto/hmac"
+	"crypto/sha256"
+	"encoding/base64"
+	"fmt"
+	"net/http"
+	"net/url"
+	"sort"
+	"strconv"
+	"strings"
+	"time"
+
+	"golang.org/x/oauth2"
+)
+func buildCanonicalizedResource(accountName, uri string, keyType SharedKeyType) (string, error) {
+	errMsg := "buildCanonicalizedResource error: %s"
+	u, err := url.Parse(uri)
+	if err != nil {
+		return "", fmt.Errorf(errMsg, err.Error())
+	}
+
+	cr := bytes.NewBufferString("")
+	if accountName != storageEmulatorAccountName {
+		cr.WriteString("/")
+		cr.WriteString(getCanonicalizedAccountName(accountName))
+	}
+
+	if len(u.Path) > 0 {
+		// Any portion of the CanonicalizedResource string that is derived from
+		// the resource's URI should be encoded exactly as it is in the URI.
+		// -- https://msdn.microsoft.com/en-gb/library/azure/dd179428.aspx
+		cr.WriteString(u.EscapedPath())
+	} else {
+		// a slash is required to indicate the root path
+		cr.WriteString("/")
+	}
+
+	params, err := url.ParseQuery(u.RawQuery)
+	if err != nil {
+		return "", fmt.Errorf(errMsg, err.Error())
+	}
+
+	// See https://github.com/Azure/azure-storage-net/blob/master/Lib/Common/Core/Util/AuthenticationUtility.cs#L277
+	if keyType == SharedKey {
+		if len(params) > 0 {
+			cr.WriteString("\n")
+
+			keys := []string{}
+			for key := range params {
+				keys = append(keys, key)
+			}
+			sort.Strings(keys)
+
+			completeParams := []string{}
+			for _, key := range keys {
+				if len(params[key]) > 1 {
+					sort.Strings(params[key])
+				}
+
+				completeParams = append(completeParams, fmt.Sprintf("%s:%s", key, strings.Join(params[key], ",")))
+			}
+			cr.WriteString(strings.Join(completeParams, "\n"))
+		}
+	} else {
+		// search for "comp" parameter, if exists then add it to canonicalizedresource
+		if v, ok := params["comp"]; ok {
+			cr.WriteString("?comp=" + v[0])
+		}
+	}
+
+	return cr.String(), nil
+}

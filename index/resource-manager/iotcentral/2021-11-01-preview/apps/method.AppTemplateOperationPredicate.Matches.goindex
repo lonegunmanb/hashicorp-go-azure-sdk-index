@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/iotcentral/2021-11-01-preview/apps
+
+func (p AppTemplateOperationPredicate) Matches(input AppTemplate) bool {
+
+	if p.Description != nil && (input.Description == nil || *p.Description != *input.Description) {
+		return false
+	}
+
+	if p.Industry != nil && (input.Industry == nil || *p.Industry != *input.Industry) {
+		return false
+	}
+
+	if p.ManifestId != nil && (input.ManifestId == nil || *p.ManifestId != *input.ManifestId) {
+		return false
+	}
+
+	if p.ManifestVersion != nil && (input.ManifestVersion == nil || *p.ManifestVersion != *input.ManifestVersion) {
+		return false
+	}
+
+	if p.Name != nil && (input.Name == nil || *p.Name != *input.Name) {
+		return false
+	}
+
+	if p.Order != nil && (input.Order == nil || *p.Order != *input.Order) {
+		return false
+	}
+
+	if p.Title != nil && (input.Title == nil || *p.Title != *input.Title) {
+		return false
+	}
+
+	return true
+}

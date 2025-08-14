@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseUnifiedRoleManagementPolicyRuleTargetOperations(input string) (*UnifiedRoleManagementPolicyRuleTargetOperations, error) {
+	vals := map[string]UnifiedRoleManagementPolicyRuleTargetOperations{
+		"activate":   UnifiedRoleManagementPolicyRuleTargetOperations_Activate,
+		"all":        UnifiedRoleManagementPolicyRuleTargetOperations_All,
+		"assign":     UnifiedRoleManagementPolicyRuleTargetOperations_Assign,
+		"deactivate": UnifiedRoleManagementPolicyRuleTargetOperations_Deactivate,
+		"extend":     UnifiedRoleManagementPolicyRuleTargetOperations_Extend,
+		"remove":     UnifiedRoleManagementPolicyRuleTargetOperations_Remove,
+		"renew":      UnifiedRoleManagementPolicyRuleTargetOperations_Renew,
+		"update":     UnifiedRoleManagementPolicyRuleTargetOperations_Update,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UnifiedRoleManagementPolicyRuleTargetOperations(input)
+	return &out, nil
+}

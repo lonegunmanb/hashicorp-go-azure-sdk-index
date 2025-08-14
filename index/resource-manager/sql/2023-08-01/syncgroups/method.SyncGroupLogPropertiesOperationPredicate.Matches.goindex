@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/syncgroups
+
+func (p SyncGroupLogPropertiesOperationPredicate) Matches(input SyncGroupLogProperties) bool {
+
+	if p.Details != nil && (input.Details == nil || *p.Details != *input.Details) {
+		return false
+	}
+
+	if p.OperationStatus != nil && (input.OperationStatus == nil || *p.OperationStatus != *input.OperationStatus) {
+		return false
+	}
+
+	if p.Source != nil && (input.Source == nil || *p.Source != *input.Source) {
+		return false
+	}
+
+	if p.Timestamp != nil && (input.Timestamp == nil || *p.Timestamp != *input.Timestamp) {
+		return false
+	}
+
+	if p.TracingId != nil && (input.TracingId == nil || *p.TracingId != *input.TracingId) {
+		return false
+	}
+
+	return true
+}

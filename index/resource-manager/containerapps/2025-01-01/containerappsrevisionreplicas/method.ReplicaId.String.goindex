@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerapps/2025-01-01/containerappsrevisionreplicas
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ReplicaId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Container App Name: %q", id.ContainerAppName),
+		fmt.Sprintf("Revision Name: %q", id.RevisionName),
+		fmt.Sprintf("Replica Name: %q", id.ReplicaName),
+	}
+	return fmt.Sprintf("Replica (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/appconsentappconsentrequest
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c AppConsentAppConsentRequestClient) ListAppConsentRequestsCompleteMatchingPredicate(ctx context.Context, options ListAppConsentRequestsOperationOptions, predicate AppConsentRequestOperationPredicate) (result ListAppConsentRequestsCompleteResult, err error) {
+	items := make([]beta.AppConsentRequest, 0)
+
+	resp, err := c.ListAppConsentRequests(ctx, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListAppConsentRequestsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

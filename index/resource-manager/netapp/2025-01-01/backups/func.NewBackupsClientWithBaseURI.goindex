@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-01-01/backups
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewBackupsClientWithBaseURI(sdkApi sdkEnv.Api) (*BackupsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "backups", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating BackupsClient: %+v", err)
+	}
+
+	return &BackupsClient{
+		Client: client,
+	}, nil
+}

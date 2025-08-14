@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationaccounts
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type TrackingEvent struct {
+	Error      *TrackingEventErrorInfo `json:"error,omitempty"`
+	EventLevel EventLevel              `json:"eventLevel"`
+	EventTime  string                  `json:"eventTime"`
+	Record     *interface{}            `json:"record,omitempty"`
+	RecordType TrackingRecordType      `json:"recordType"`
+}

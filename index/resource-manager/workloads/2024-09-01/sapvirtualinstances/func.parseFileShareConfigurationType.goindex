@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/workloads/2024-09-01/sapvirtualinstances
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseFileShareConfigurationType(input string) (*FileShareConfigurationType, error) {
+	vals := map[string]FileShareConfigurationType{
+		"createandmount": FileShareConfigurationTypeCreateAndMount,
+		"mount":          FileShareConfigurationTypeMount,
+		"skip":           FileShareConfigurationTypeSkip,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FileShareConfigurationType(input)
+	return &out, nil
+}

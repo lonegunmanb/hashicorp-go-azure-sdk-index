@@ -1,0 +1,38 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s PlannerTeamsPublicationInfo) MarshalJSON() ([]byte, error) {
+	type wrapper PlannerTeamsPublicationInfo
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling PlannerTeamsPublicationInfo: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling PlannerTeamsPublicationInfo: %+v", err)
+	}
+
+	delete(decoded, "lastModifiedDateTime")
+	delete(decoded, "publicationId")
+	delete(decoded, "publicationName")
+	delete(decoded, "publishedToPlanId")
+	delete(decoded, "publishingTeamId")
+	delete(decoded, "publishingTeamName")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.plannerTeamsPublicationInfo"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling PlannerTeamsPublicationInfo: %+v", err)
+	}
+
+	return encoded, nil
+}

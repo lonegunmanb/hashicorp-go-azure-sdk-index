@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type CallRecordsUserIdentity struct {
+	UserPrincipalName nullable.Type[string] `json:"userPrincipalName,omitempty"`
+
+	// Fields inherited from Identity
+
+	// The display name of the identity. This property is read-only.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// The identifier of the identity. This property is read-only.
+	Id nullable.Type[string] `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

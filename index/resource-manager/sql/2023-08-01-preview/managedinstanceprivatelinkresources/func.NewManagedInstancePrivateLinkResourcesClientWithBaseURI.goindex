@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/managedinstanceprivatelinkresources
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewManagedInstancePrivateLinkResourcesClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagedInstancePrivateLinkResourcesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "managedinstanceprivatelinkresources", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ManagedInstancePrivateLinkResourcesClient: %+v", err)
+	}
+
+	return &ManagedInstancePrivateLinkResourcesClient{
+		Client: client,
+	}, nil
+}

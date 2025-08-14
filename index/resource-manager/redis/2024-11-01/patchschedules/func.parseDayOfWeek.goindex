@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/redis/2024-11-01/patchschedules
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDayOfWeek(input string) (*DayOfWeek, error) {
+	vals := map[string]DayOfWeek{
+		"everyday":  DayOfWeekEveryday,
+		"friday":    DayOfWeekFriday,
+		"monday":    DayOfWeekMonday,
+		"saturday":  DayOfWeekSaturday,
+		"sunday":    DayOfWeekSunday,
+		"thursday":  DayOfWeekThursday,
+		"tuesday":   DayOfWeekTuesday,
+		"wednesday": DayOfWeekWednesday,
+		"weekend":   DayOfWeekWeekend,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DayOfWeek(input)
+	return &out, nil
+}

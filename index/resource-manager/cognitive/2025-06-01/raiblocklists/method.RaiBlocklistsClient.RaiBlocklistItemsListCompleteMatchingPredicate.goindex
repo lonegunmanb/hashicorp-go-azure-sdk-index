@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cognitive/2025-06-01/raiblocklists
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c RaiBlocklistsClient) RaiBlocklistItemsListCompleteMatchingPredicate(ctx context.Context, id RaiBlocklistId, predicate RaiBlocklistItemOperationPredicate) (result RaiBlocklistItemsListCompleteResult, err error) {
+	items := make([]RaiBlocklistItem, 0)
+
+	resp, err := c.RaiBlocklistItemsList(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = RaiBlocklistItemsListCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

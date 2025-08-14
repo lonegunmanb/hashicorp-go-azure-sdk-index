@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/siteonenoteresourcecontent
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSiteOnenoteResourceContentClientWithBaseURI(sdkApi sdkEnv.Api) (*SiteOnenoteResourceContentClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "siteonenoteresourcecontent", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SiteOnenoteResourceContentClient: %+v", err)
+	}
+
+	return &SiteOnenoteResourceContentClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseReferenceAttachmentPermission(input string) (*ReferenceAttachmentPermission, error) {
+	vals := map[string]ReferenceAttachmentPermission{
+		"anonymousedit":    ReferenceAttachmentPermission_AnonymousEdit,
+		"anonymousview":    ReferenceAttachmentPermission_AnonymousView,
+		"edit":             ReferenceAttachmentPermission_Edit,
+		"organizationedit": ReferenceAttachmentPermission_OrganizationEdit,
+		"organizationview": ReferenceAttachmentPermission_OrganizationView,
+		"other":            ReferenceAttachmentPermission_Other,
+		"view":             ReferenceAttachmentPermission_View,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ReferenceAttachmentPermission(input)
+	return &out, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2025-06-01/vmhhostlist
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewVMHHostListClientWithBaseURI(sdkApi sdkEnv.Api) (*VMHHostListClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "vmhhostlist", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating VMHHostListClient: %+v", err)
+	}
+
+	return &VMHHostListClient{
+		Client: client,
+	}, nil
+}

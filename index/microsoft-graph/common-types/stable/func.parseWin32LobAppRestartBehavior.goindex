@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWin32LobAppRestartBehavior(input string) (*Win32LobAppRestartBehavior, error) {
+	vals := map[string]Win32LobAppRestartBehavior{
+		"allow":             Win32LobAppRestartBehavior_Allow,
+		"basedonreturncode": Win32LobAppRestartBehavior_BasedOnReturnCode,
+		"force":             Win32LobAppRestartBehavior_Force,
+		"suppress":          Win32LobAppRestartBehavior_Suppress,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Win32LobAppRestartBehavior(input)
+	return &out, nil
+}

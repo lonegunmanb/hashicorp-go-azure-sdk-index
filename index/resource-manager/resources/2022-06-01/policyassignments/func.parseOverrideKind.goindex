@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2022-06-01/policyassignments
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseOverrideKind(input string) (*OverrideKind, error) {
+	vals := map[string]OverrideKind{
+		"policyeffect": OverrideKindPolicyEffect,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := OverrideKind(input)
+	return &out, nil
+}

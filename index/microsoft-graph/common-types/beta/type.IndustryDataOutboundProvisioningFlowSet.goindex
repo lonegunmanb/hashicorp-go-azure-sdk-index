@@ -1,0 +1,39 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type IndustryDataOutboundProvisioningFlowSet struct {
+	// The date and time when the flowSet was created. The timestamp type represents date and time information using ISO
+	// 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// The display name of the flowSet provided by the caller.
+	DisplayName *string `json:"displayName,omitempty"`
+
+	// The collection of provisioning filters applicable to all the flows under the given flowSet.
+	Filter IndustryDataFilter `json:"filter"`
+
+	// The date and time when the flowSet was most recently changed. The timestamp type represents date and time information
+	// using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.
+	LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+
+	// A flow that provisions relevant records of a given entity type in the Microsoft 365 tenant.
+	ProvisioningFlows *[]IndustryDataProvisioningFlow `json:"provisioningFlows,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

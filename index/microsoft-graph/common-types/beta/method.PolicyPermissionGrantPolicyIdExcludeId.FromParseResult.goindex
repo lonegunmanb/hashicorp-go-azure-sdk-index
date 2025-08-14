@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *PolicyPermissionGrantPolicyIdExcludeId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.PermissionGrantPolicyId, ok = input.Parsed["permissionGrantPolicyId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "permissionGrantPolicyId", input)
+	}
+
+	if id.PermissionGrantConditionSetId, ok = input.Parsed["permissionGrantConditionSetId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "permissionGrantConditionSetId", input)
+	}
+
+	return nil
+}

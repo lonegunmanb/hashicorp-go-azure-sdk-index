@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/elasticsan/2023-01-01/volumegroups
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAction(input string) (*Action, error) {
+	vals := map[string]Action{
+		"allow": ActionAllow,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Action(input)
+	return &out, nil
+}

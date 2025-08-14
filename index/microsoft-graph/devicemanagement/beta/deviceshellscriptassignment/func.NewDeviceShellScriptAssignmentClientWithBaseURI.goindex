@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/deviceshellscriptassignment
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDeviceShellScriptAssignmentClientWithBaseURI(sdkApi sdkEnv.Api) (*DeviceShellScriptAssignmentClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "deviceshellscriptassignment", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DeviceShellScriptAssignmentClient: %+v", err)
+	}
+
+	return &DeviceShellScriptAssignmentClient{
+		Client: client,
+	}, nil
+}

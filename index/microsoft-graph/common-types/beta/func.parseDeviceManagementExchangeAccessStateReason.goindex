@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeviceManagementExchangeAccessStateReason(input string) (*DeviceManagementExchangeAccessStateReason, error) {
+	vals := map[string]DeviceManagementExchangeAccessStateReason{
+		"azureadblockduetoaccesspolicy": DeviceManagementExchangeAccessStateReason_AzureADBlockDueToAccessPolicy,
+		"compliant":                     DeviceManagementExchangeAccessStateReason_Compliant,
+		"compromisedpassword":           DeviceManagementExchangeAccessStateReason_CompromisedPassword,
+		"devicenotknownwithmanagedapp":  DeviceManagementExchangeAccessStateReason_DeviceNotKnownWithManagedApp,
+		"exchangedevicerule":            DeviceManagementExchangeAccessStateReason_ExchangeDeviceRule,
+		"exchangeglobalrule":            DeviceManagementExchangeAccessStateReason_ExchangeGlobalRule,
+		"exchangeindividualrule":        DeviceManagementExchangeAccessStateReason_ExchangeIndividualRule,
+		"exchangemailboxpolicy":         DeviceManagementExchangeAccessStateReason_ExchangeMailboxPolicy,
+		"exchangeupgrade":               DeviceManagementExchangeAccessStateReason_ExchangeUpgrade,
+		"mfarequired":                   DeviceManagementExchangeAccessStateReason_MfaRequired,
+		"none":                          DeviceManagementExchangeAccessStateReason_None,
+		"notcompliant":                  DeviceManagementExchangeAccessStateReason_NotCompliant,
+		"notenrolled":                   DeviceManagementExchangeAccessStateReason_NotEnrolled,
+		"other":                         DeviceManagementExchangeAccessStateReason_Other,
+		"unknown":                       DeviceManagementExchangeAccessStateReason_Unknown,
+		"unknownlocation":               DeviceManagementExchangeAccessStateReason_UnknownLocation,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceManagementExchangeAccessStateReason(input)
+	return &out, nil
+}

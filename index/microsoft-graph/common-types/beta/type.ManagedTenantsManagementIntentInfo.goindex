@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ManagedTenantsManagementIntentInfo struct {
+	// The display name for the management intent. Optional. Read-only.
+	ManagementIntentDisplayName nullable.Type[string] `json:"managementIntentDisplayName,omitempty"`
+
+	// The identifier for the management intent. Required. Read-only.
+	ManagementIntentId *string `json:"managementIntentId,omitempty"`
+
+	// The collection of management template information associated with the management intent. Optional. Read-only.
+	ManagementTemplates *[]ManagedTenantsManagementTemplateDetailedInfo `json:"managementTemplates,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+}

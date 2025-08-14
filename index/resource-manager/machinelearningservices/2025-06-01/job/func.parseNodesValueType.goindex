@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2025-06-01/job
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNodesValueType(input string) (*NodesValueType, error) {
+	vals := map[string]NodesValueType{
+		"all": NodesValueTypeAll,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NodesValueType(input)
+	return &out, nil
+}

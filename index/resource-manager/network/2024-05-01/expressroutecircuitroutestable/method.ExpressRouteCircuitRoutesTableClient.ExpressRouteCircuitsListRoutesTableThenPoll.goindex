@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-05-01/expressroutecircuitroutestable
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ExpressRouteCircuitRoutesTableClient) ExpressRouteCircuitsListRoutesTableThenPoll(ctx context.Context, id PeeringRouteTableId) error {
+	result, err := c.ExpressRouteCircuitsListRoutesTable(ctx, id)
+	if err != nil {
+		return fmt.Errorf("performing ExpressRouteCircuitsListRoutesTable: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after ExpressRouteCircuitsListRoutesTable: %+v", err)
+	}
+
+	return nil
+}

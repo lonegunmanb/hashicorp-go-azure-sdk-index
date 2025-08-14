@@ -1,0 +1,56 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRecommendationType(input string) (*RecommendationType, error) {
+	vals := map[string]RecommendationType{
+		"aadconnectdeprecated":                RecommendationType_AadConnectDeprecated,
+		"aadgraphdeprecationapplication":      RecommendationType_AadGraphDeprecationApplication,
+		"aadgraphdeprecationserviceprincipal": RecommendationType_AadGraphDeprecationServicePrincipal,
+		"adaltomsalmigration":                 RecommendationType_AdalToMsalMigration,
+		"adfsappsmigration":                   RecommendationType_AdfsAppsMigration,
+		"adminmfav2":                          RecommendationType_AdminMFAV2,
+		"approleassignmentsgroups":            RecommendationType_AppRoleAssignmentsGroups,
+		"approleassignmentsusers":             RecommendationType_AppRoleAssignmentsUsers,
+		"applicationcredentialexpiry":         RecommendationType_ApplicationCredentialExpiry,
+		"blocklegacyauthentication":           RecommendationType_BlockLegacyAuthentication,
+		"enabledesktopsso":                    RecommendationType_EnableDesktopSSO,
+		"enablephs":                           RecommendationType_EnablePHS,
+		"enableprovisioning":                  RecommendationType_EnableProvisioning,
+		"inactiveguests":                      RecommendationType_InactiveGuests,
+		"integratedapps":                      RecommendationType_IntegratedApps,
+		"longlivedcredentials":                RecommendationType_LongLivedCredentials,
+		"managedidentity":                     RecommendationType_ManagedIdentity,
+		"mfaregistrationv2":                   RecommendationType_MfaRegistrationV2,
+		"mfaserverdeprecation":                RecommendationType_MfaServerDeprecation,
+		"oneadmin":                            RecommendationType_OneAdmin,
+		"overprivilegedapps":                  RecommendationType_OverprivilegedApps,
+		"ownerlessapps":                       RecommendationType_OwnerlessApps,
+		"passwordhashsync":                    RecommendationType_PasswordHashSync,
+		"privatelinkforaad":                   RecommendationType_PrivateLinkForAAD,
+		"pwagepolicynew":                      RecommendationType_PwagePolicyNew,
+		"roleoverlap":                         RecommendationType_RoleOverlap,
+		"selfservicepasswordreset":            RecommendationType_SelfServicePasswordReset,
+		"serviceprincipalkeyexpiry":           RecommendationType_ServicePrincipalKeyExpiry,
+		"signinriskpolicy":                    RecommendationType_SigninRiskPolicy,
+		"staleappcreds":                       RecommendationType_StaleAppCreds,
+		"staleapps":                           RecommendationType_StaleApps,
+		"switchfromperusermfa":                RecommendationType_SwitchFromPerUserMFA,
+		"tenantmfa":                           RecommendationType_TenantMFA,
+		"thirdpartyapps":                      RecommendationType_ThirdPartyApps,
+		"turnoffperusermfa":                   RecommendationType_TurnOffPerUserMFA,
+		"useauthenticatorapp":                 RecommendationType_UseAuthenticatorApp,
+		"usemyapps":                           RecommendationType_UseMyApps,
+		"userriskpolicy":                      RecommendationType_UserRiskPolicy,
+		"verifyapppublisher":                  RecommendationType_VerifyAppPublisher,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RecommendationType(input)
+	return &out, nil
+}

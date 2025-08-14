@@ -1,0 +1,42 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeviceComplianceScriptRulOperator(input string) (*DeviceComplianceScriptRulOperator, error) {
+	vals := map[string]DeviceComplianceScriptRulOperator{
+		"allof":            DeviceComplianceScriptRulOperator_AllOf,
+		"and":              DeviceComplianceScriptRulOperator_And,
+		"beginswith":       DeviceComplianceScriptRulOperator_BeginsWith,
+		"between":          DeviceComplianceScriptRulOperator_Between,
+		"contains":         DeviceComplianceScriptRulOperator_Contains,
+		"daytimebetween":   DeviceComplianceScriptRulOperator_DayTimeBetween,
+		"endswith":         DeviceComplianceScriptRulOperator_EndsWith,
+		"excludesall":      DeviceComplianceScriptRulOperator_ExcludesAll,
+		"greaterequals":    DeviceComplianceScriptRulOperator_GreaterEquals,
+		"greaterthan":      DeviceComplianceScriptRulOperator_GreaterThan,
+		"isequals":         DeviceComplianceScriptRulOperator_IsEquals,
+		"lessequals":       DeviceComplianceScriptRulOperator_LessEquals,
+		"lessthan":         DeviceComplianceScriptRulOperator_LessThan,
+		"none":             DeviceComplianceScriptRulOperator_None,
+		"noneof":           DeviceComplianceScriptRulOperator_NoneOf,
+		"notbeginswith":    DeviceComplianceScriptRulOperator_NotBeginsWith,
+		"notbetween":       DeviceComplianceScriptRulOperator_NotBetween,
+		"notcontains":      DeviceComplianceScriptRulOperator_NotContains,
+		"notendswith":      DeviceComplianceScriptRulOperator_NotEndsWith,
+		"notequals":        DeviceComplianceScriptRulOperator_NotEquals,
+		"oneof":            DeviceComplianceScriptRulOperator_OneOf,
+		"or":               DeviceComplianceScriptRulOperator_Or,
+		"orderedsetequals": DeviceComplianceScriptRulOperator_OrderedSetEquals,
+		"setequals":        DeviceComplianceScriptRulOperator_SetEquals,
+		"subsetof":         DeviceComplianceScriptRulOperator_SubsetOf,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceComplianceScriptRulOperator(input)
+	return &out, nil
+}

@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicefabric/2021-06-01/cluster
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseReliabilityLevel(input string) (*ReliabilityLevel, error) {
+	vals := map[string]ReliabilityLevel{
+		"bronze":   ReliabilityLevelBronze,
+		"gold":     ReliabilityLevelGold,
+		"none":     ReliabilityLevelNone,
+		"platinum": ReliabilityLevelPlatinum,
+		"silver":   ReliabilityLevelSilver,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ReliabilityLevel(input)
+	return &out, nil
+}

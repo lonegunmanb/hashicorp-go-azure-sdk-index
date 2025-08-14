@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/extendedlocation/2021-08-15/customlocations
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c CustomLocationsClient) ListEnabledResourceTypesComplete(ctx context.Context, id CustomLocationId) (ListEnabledResourceTypesCompleteResult, error) {
+	return c.ListEnabledResourceTypesCompleteMatchingPredicate(ctx, id, EnabledResourceTypeOperationPredicate{})
+}

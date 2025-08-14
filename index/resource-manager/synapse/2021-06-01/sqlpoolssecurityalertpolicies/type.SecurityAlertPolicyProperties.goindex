@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/sqlpoolssecurityalertpolicies
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type SecurityAlertPolicyProperties struct {
+	CreationTime            *string                  `json:"creationTime,omitempty"`
+	DisabledAlerts          *[]string                `json:"disabledAlerts,omitempty"`
+	EmailAccountAdmins      *bool                    `json:"emailAccountAdmins,omitempty"`
+	EmailAddresses          *[]string                `json:"emailAddresses,omitempty"`
+	RetentionDays           *int64                   `json:"retentionDays,omitempty"`
+	State                   SecurityAlertPolicyState `json:"state"`
+	StorageAccountAccessKey *string                  `json:"storageAccountAccessKey,omitempty"`
+	StorageEndpoint         *string                  `json:"storageEndpoint,omitempty"`
+}

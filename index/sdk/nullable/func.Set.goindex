@@ -1,0 +1,8 @@
+package github.com/hashicorp/go-azure-sdk/sdk/nullable
+import (
+	"bytes"
+	"encoding/json"
+)
+func (t *Type[T]) Set(value T) {
+	*t = map[bool]T{true: value}
+}

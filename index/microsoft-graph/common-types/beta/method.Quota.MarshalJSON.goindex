@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s Quota) MarshalJSON() ([]byte, error) {
+	type wrapper Quota
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling Quota: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling Quota: %+v", err)
+	}
+
+	delete(decoded, "deleted")
+	delete(decoded, "remaining")
+	delete(decoded, "state")
+	delete(decoded, "total")
+	delete(decoded, "used")
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling Quota: %+v", err)
+	}
+
+	return encoded, nil
+}

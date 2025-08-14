@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2024-10-01/protecteditems
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *DPMProtectedItem) GetLastRecoveryPointAsTime() (*time.Time, error) {
+	if o.LastRecoveryPoint == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.LastRecoveryPoint, "2006-01-02T15:04:05Z07:00")
+}

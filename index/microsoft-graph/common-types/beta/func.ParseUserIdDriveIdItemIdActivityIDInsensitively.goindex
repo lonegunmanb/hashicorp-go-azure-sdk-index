@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseUserIdDriveIdItemIdActivityIDInsensitively(input string) (*UserIdDriveIdItemIdActivityId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&UserIdDriveIdItemIdActivityId{})
+	parsed, err := parser.Parse(input, true)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := UserIdDriveIdItemIdActivityId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

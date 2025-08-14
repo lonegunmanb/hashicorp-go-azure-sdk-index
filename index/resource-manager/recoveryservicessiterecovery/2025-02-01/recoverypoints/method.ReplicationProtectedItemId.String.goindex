@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/recoverypoints
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ReplicationProtectedItemId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Vault Name: %q", id.VaultName),
+		fmt.Sprintf("Replication Fabric Name: %q", id.ReplicationFabricName),
+		fmt.Sprintf("Replication Protection Container Name: %q", id.ReplicationProtectionContainerName),
+		fmt.Sprintf("Replication Protected Item Name: %q", id.ReplicationProtectedItemName),
+	}
+	return fmt.Sprintf("Replication Protected Item (%s)", strings.Join(components, "\n"))
+}

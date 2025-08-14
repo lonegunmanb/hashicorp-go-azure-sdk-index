@@ -1,0 +1,73 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalHealthMonitoringDirectoryObjectImpactSummaryImplementation(input []byte) (HealthMonitoringDirectoryObjectImpactSummary, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling HealthMonitoringDirectoryObjectImpactSummary into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.healthMonitoring.applicationImpactSummary") {
+		var out HealthMonitoringApplicationImpactSummary
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into HealthMonitoringApplicationImpactSummary: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.healthMonitoring.deviceImpactSummary") {
+		var out HealthMonitoringDeviceImpactSummary
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into HealthMonitoringDeviceImpactSummary: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.healthMonitoring.groupImpactSummary") {
+		var out HealthMonitoringGroupImpactSummary
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into HealthMonitoringGroupImpactSummary: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.healthMonitoring.servicePrincipalImpactSummary") {
+		var out HealthMonitoringServicePrincipalImpactSummary
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into HealthMonitoringServicePrincipalImpactSummary: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.healthMonitoring.userImpactSummary") {
+		var out HealthMonitoringUserImpactSummary
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into HealthMonitoringUserImpactSummary: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseHealthMonitoringDirectoryObjectImpactSummaryImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseHealthMonitoringDirectoryObjectImpactSummaryImpl: %+v", err)
+	}
+
+	return RawHealthMonitoringDirectoryObjectImpactSummaryImpl{
+		healthMonitoringDirectoryObjectImpactSummary: parent,
+		Type:   value,
+		Values: temp,
+	}, nil
+
+}

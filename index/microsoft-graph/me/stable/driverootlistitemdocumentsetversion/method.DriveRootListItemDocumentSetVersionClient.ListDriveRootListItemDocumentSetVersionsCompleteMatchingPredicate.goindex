@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootlistitemdocumentsetversion
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DriveRootListItemDocumentSetVersionClient) ListDriveRootListItemDocumentSetVersionsCompleteMatchingPredicate(ctx context.Context, id stable.MeDriveId, options ListDriveRootListItemDocumentSetVersionsOperationOptions, predicate DocumentSetVersionOperationPredicate) (result ListDriveRootListItemDocumentSetVersionsCompleteResult, err error) {
+	items := make([]stable.DocumentSetVersion, 0)
+
+	resp, err := c.ListDriveRootListItemDocumentSetVersions(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListDriveRootListItemDocumentSetVersionsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

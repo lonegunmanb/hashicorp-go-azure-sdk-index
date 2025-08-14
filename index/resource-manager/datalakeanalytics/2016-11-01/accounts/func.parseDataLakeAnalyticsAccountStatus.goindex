@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datalakeanalytics/2016-11-01/accounts
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDataLakeAnalyticsAccountStatus(input string) (*DataLakeAnalyticsAccountStatus, error) {
+	vals := map[string]DataLakeAnalyticsAccountStatus{
+		"canceled":   DataLakeAnalyticsAccountStatusCanceled,
+		"creating":   DataLakeAnalyticsAccountStatusCreating,
+		"deleted":    DataLakeAnalyticsAccountStatusDeleted,
+		"deleting":   DataLakeAnalyticsAccountStatusDeleting,
+		"failed":     DataLakeAnalyticsAccountStatusFailed,
+		"patching":   DataLakeAnalyticsAccountStatusPatching,
+		"resuming":   DataLakeAnalyticsAccountStatusResuming,
+		"running":    DataLakeAnalyticsAccountStatusRunning,
+		"succeeded":  DataLakeAnalyticsAccountStatusSucceeded,
+		"suspending": DataLakeAnalyticsAccountStatusSuspending,
+		"undeleting": DataLakeAnalyticsAccountStatusUndeleting,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DataLakeAnalyticsAccountStatus(input)
+	return &out, nil
+}

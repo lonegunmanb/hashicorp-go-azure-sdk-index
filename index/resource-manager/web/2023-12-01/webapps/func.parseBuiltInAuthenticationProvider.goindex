@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/webapps
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseBuiltInAuthenticationProvider(input string) (*BuiltInAuthenticationProvider, error) {
+	vals := map[string]BuiltInAuthenticationProvider{
+		"azureactivedirectory": BuiltInAuthenticationProviderAzureActiveDirectory,
+		"facebook":             BuiltInAuthenticationProviderFacebook,
+		"github":               BuiltInAuthenticationProviderGithub,
+		"google":               BuiltInAuthenticationProviderGoogle,
+		"microsoftaccount":     BuiltInAuthenticationProviderMicrosoftAccount,
+		"twitter":              BuiltInAuthenticationProviderTwitter,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := BuiltInAuthenticationProvider(input)
+	return &out, nil
+}

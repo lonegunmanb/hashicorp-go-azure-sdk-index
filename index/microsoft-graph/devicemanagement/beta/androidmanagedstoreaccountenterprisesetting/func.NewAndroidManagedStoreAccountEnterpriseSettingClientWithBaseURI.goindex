@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/androidmanagedstoreaccountenterprisesetting
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAndroidManagedStoreAccountEnterpriseSettingClientWithBaseURI(sdkApi sdkEnv.Api) (*AndroidManagedStoreAccountEnterpriseSettingClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "androidmanagedstoreaccountenterprisesetting", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AndroidManagedStoreAccountEnterpriseSettingClient: %+v", err)
+	}
+
+	return &AndroidManagedStoreAccountEnterpriseSettingClient{
+		Client: client,
+	}, nil
+}

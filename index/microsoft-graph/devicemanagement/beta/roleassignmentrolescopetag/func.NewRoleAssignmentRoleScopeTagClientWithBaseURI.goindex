@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/roleassignmentrolescopetag
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewRoleAssignmentRoleScopeTagClientWithBaseURI(sdkApi sdkEnv.Api) (*RoleAssignmentRoleScopeTagClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "roleassignmentrolescopetag", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating RoleAssignmentRoleScopeTagClient: %+v", err)
+	}
+
+	return &RoleAssignmentRoleScopeTagClient{
+		Client: client,
+	}, nil
+}

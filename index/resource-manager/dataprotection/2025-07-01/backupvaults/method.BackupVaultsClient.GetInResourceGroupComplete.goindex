@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2025-07-01/backupvaults
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c BackupVaultsClient) GetInResourceGroupComplete(ctx context.Context, id commonids.ResourceGroupId) (GetInResourceGroupCompleteResult, error) {
+	return c.GetInResourceGroupCompleteMatchingPredicate(ctx, id, BackupVaultResourceOperationPredicate{})
+}

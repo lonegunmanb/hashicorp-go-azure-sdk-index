@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/stable/crosstenantaccesspolicy
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewCrossTenantAccessPolicyClientWithBaseURI(sdkApi sdkEnv.Api) (*CrossTenantAccessPolicyClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "crosstenantaccesspolicy", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating CrossTenantAccessPolicyClient: %+v", err)
+	}
+
+	return &CrossTenantAccessPolicyClient{
+		Client: client,
+	}, nil
+}

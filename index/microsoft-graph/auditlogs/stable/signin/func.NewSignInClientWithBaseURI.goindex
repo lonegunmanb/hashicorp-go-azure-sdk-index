@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/auditlogs/stable/signin
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSignInClientWithBaseURI(sdkApi sdkEnv.Api) (*SignInClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "signin", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SignInClient: %+v", err)
+	}
+
+	return &SignInClient{
+		Client: client,
+	}, nil
+}

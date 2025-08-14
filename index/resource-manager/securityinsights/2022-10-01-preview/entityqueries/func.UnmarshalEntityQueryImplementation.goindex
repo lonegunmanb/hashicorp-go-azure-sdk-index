@@ -1,0 +1,51 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/entityqueries
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+)
+func UnmarshalEntityQueryImplementation(input []byte) (EntityQuery, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling EntityQuery into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["kind"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "Activity") {
+		var out ActivityEntityQuery
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ActivityEntityQuery: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "Expansion") {
+		var out ExpansionEntityQuery
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ExpansionEntityQuery: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseEntityQueryImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseEntityQueryImpl: %+v", err)
+	}
+
+	return RawEntityQueryImpl{
+		entityQuery: parent,
+		Type:        value,
+		Values:      temp,
+	}, nil
+
+}

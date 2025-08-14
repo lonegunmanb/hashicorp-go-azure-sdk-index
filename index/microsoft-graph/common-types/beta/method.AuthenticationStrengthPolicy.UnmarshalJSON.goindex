@@ -1,0 +1,59 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *AuthenticationStrengthPolicy) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AllowedCombinations   *[]AuthenticationMethodModes        `json:"allowedCombinations,omitempty"`
+		CreatedDateTime       *string                             `json:"createdDateTime,omitempty"`
+		Description           nullable.Type[string]               `json:"description,omitempty"`
+		DisplayName           *string                             `json:"displayName,omitempty"`
+		ModifiedDateTime      *string                             `json:"modifiedDateTime,omitempty"`
+		PolicyType            *AuthenticationStrengthPolicyType   `json:"policyType,omitempty"`
+		RequirementsSatisfied *AuthenticationStrengthRequirements `json:"requirementsSatisfied,omitempty"`
+		Id                    *string                             `json:"id,omitempty"`
+		ODataId               *string                             `json:"@odata.id,omitempty"`
+		ODataType             *string                             `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AllowedCombinations = decoded.AllowedCombinations
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Description = decoded.Description
+	s.DisplayName = decoded.DisplayName
+	s.ModifiedDateTime = decoded.ModifiedDateTime
+	s.PolicyType = decoded.PolicyType
+	s.RequirementsSatisfied = decoded.RequirementsSatisfied
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling AuthenticationStrengthPolicy into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["combinationConfigurations"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling CombinationConfigurations into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]AuthenticationCombinationConfiguration, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalAuthenticationCombinationConfigurationImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'CombinationConfigurations' for 'AuthenticationStrengthPolicy': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.CombinationConfigurations = &output
+	}
+
+	return nil
+}

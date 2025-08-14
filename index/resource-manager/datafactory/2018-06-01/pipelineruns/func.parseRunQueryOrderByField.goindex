@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/pipelineruns
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRunQueryOrderByField(input string) (*RunQueryOrderByField, error) {
+	vals := map[string]RunQueryOrderByField{
+		"activityname":        RunQueryOrderByFieldActivityName,
+		"activityrunend":      RunQueryOrderByFieldActivityRunEnd,
+		"activityrunstart":    RunQueryOrderByFieldActivityRunStart,
+		"pipelinename":        RunQueryOrderByFieldPipelineName,
+		"runend":              RunQueryOrderByFieldRunEnd,
+		"runstart":            RunQueryOrderByFieldRunStart,
+		"status":              RunQueryOrderByFieldStatus,
+		"triggername":         RunQueryOrderByFieldTriggerName,
+		"triggerruntimestamp": RunQueryOrderByFieldTriggerRunTimestamp,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RunQueryOrderByField(input)
+	return &out, nil
+}

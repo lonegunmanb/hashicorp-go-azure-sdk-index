@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ServicePrincipalIdentity struct {
+	// The application identifier of the service principal.
+	AppId nullable.Type[string] `json:"appId,omitempty"`
+
+	// Fields inherited from Identity
+
+	// The display name of the identity.For drive items, the display name might not always be available or up to date. For
+	// example, if a user changes their display name the API might show the new value in a future response, but the items
+	// associated with the user don't show up as changed when using delta.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// Unique identifier for the identity or actor. For example, in the access reviews decisions API, this property might
+	// record the id of the principal, that is, the group, user, or application that's subject to review.
+	Id nullable.Type[string] `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

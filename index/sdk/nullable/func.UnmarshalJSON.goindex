@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/sdk/nullable
+import (
+	"bytes"
+	"encoding/json"
+)
+func (t *Type[T]) UnmarshalJSON(data []byte) error {
+	// note: if value is unspecified, UnmarshalJSON won't be called
+	// if value is specified and `null`
+	if bytes.Equal(data, []byte("null")) {
+		t.SetNull()
+		return nil
+	}
+	// otherwise, we have an actual value, so parse it
+	var val T
+	if err := json.Unmarshal(data, &val); err != nil {
+		return err
+	}
+	t.Set(val)
+	return nil
+}

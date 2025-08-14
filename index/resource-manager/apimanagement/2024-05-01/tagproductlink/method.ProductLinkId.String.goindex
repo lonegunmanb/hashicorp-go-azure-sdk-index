@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/tagproductlink
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ProductLinkId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Service Name: %q", id.ServiceName),
+		fmt.Sprintf("Tag: %q", id.TagId),
+		fmt.Sprintf("Product Link: %q", id.ProductLinkId),
+	}
+	return fmt.Sprintf("Product Link (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type MobileAppTroubleshootingDeviceCheckinHistory struct {
+
+	// Fields inherited from MobileAppTroubleshootingHistoryItem
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Time when the history item occurred.
+	OccurrenceDateTime *string `json:"occurrenceDateTime,omitempty"`
+
+	// Object containing detailed information about the error and its remediation.
+	TroubleshootingErrorDetails *DeviceManagementTroubleshootingErrorDetails `json:"troubleshootingErrorDetails,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

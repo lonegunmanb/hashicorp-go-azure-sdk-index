@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationprotectionintents
+import (
+	"encoding/json"
+	"fmt"
+)
+type A2ACreateProtectionIntentInput struct {
+	AgentAutoUpdateStatus                      *AgentAutoUpdateStatus                        `json:"agentAutoUpdateStatus,omitempty"`
+	AutoProtectionOfDataDisk                   *AutoProtectionOfDataDisk                     `json:"autoProtectionOfDataDisk,omitempty"`
+	AutomationAccountArmId                     *string                                       `json:"automationAccountArmId,omitempty"`
+	AutomationAccountAuthenticationType        *AutomationAccountAuthenticationType          `json:"automationAccountAuthenticationType,omitempty"`
+	DiskEncryptionInfo                         *DiskEncryptionInfo                           `json:"diskEncryptionInfo,omitempty"`
+	FabricObjectId                             string                                        `json:"fabricObjectId"`
+	MultiVMGroupId                             *string                                       `json:"multiVmGroupId,omitempty"`
+	MultiVMGroupName                           *string                                       `json:"multiVmGroupName,omitempty"`
+	PrimaryLocation                            string                                        `json:"primaryLocation"`
+	PrimaryStagingStorageAccountCustomInput    StorageAccountCustomDetails                   `json:"primaryStagingStorageAccountCustomInput"`
+	ProtectionProfileCustomInput               ProtectionProfileCustomDetails                `json:"protectionProfileCustomInput"`
+	RecoveryAvailabilitySetCustomInput         RecoveryAvailabilitySetCustomDetails          `json:"recoveryAvailabilitySetCustomInput"`
+	RecoveryAvailabilityType                   A2ARecoveryAvailabilityType                   `json:"recoveryAvailabilityType"`
+	RecoveryAvailabilityZone                   *string                                       `json:"recoveryAvailabilityZone,omitempty"`
+	RecoveryBootDiagStorageAccount             StorageAccountCustomDetails                   `json:"recoveryBootDiagStorageAccount"`
+	RecoveryLocation                           string                                        `json:"recoveryLocation"`
+	RecoveryProximityPlacementGroupCustomInput RecoveryProximityPlacementGroupCustomDetails  `json:"recoveryProximityPlacementGroupCustomInput"`
+	RecoveryResourceGroupId                    string                                        `json:"recoveryResourceGroupId"`
+	RecoverySubscriptionId                     string                                        `json:"recoverySubscriptionId"`
+	RecoveryVirtualNetworkCustomInput          RecoveryVirtualNetworkCustomDetails           `json:"recoveryVirtualNetworkCustomInput"`
+	VMDisks                                    *[]A2AProtectionIntentDiskInputDetails        `json:"vmDisks,omitempty"`
+	VMManagedDisks                             *[]A2AProtectionIntentManagedDiskInputDetails `json:"vmManagedDisks,omitempty"`
+
+	// Fields inherited from CreateProtectionIntentProviderSpecificDetails
+
+	InstanceType string `json:"instanceType"`
+}

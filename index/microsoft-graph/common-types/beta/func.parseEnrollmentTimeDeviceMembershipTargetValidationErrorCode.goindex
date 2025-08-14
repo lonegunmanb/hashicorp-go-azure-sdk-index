@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEnrollmentTimeDeviceMembershipTargetValidationErrorCode(input string) (*EnrollmentTimeDeviceMembershipTargetValidationErrorCode, error) {
+	vals := map[string]EnrollmentTimeDeviceMembershipTargetValidationErrorCode{
+		"firstpartyappnotanowner":       EnrollmentTimeDeviceMembershipTargetValidationErrorCode_FirstPartyAppNotAnOwner,
+		"notsecuritygroup":              EnrollmentTimeDeviceMembershipTargetValidationErrorCode_NotSecurityGroup,
+		"notstaticsecuritygroup":        EnrollmentTimeDeviceMembershipTargetValidationErrorCode_NotStaticSecurityGroup,
+		"securitygroupnotfound":         EnrollmentTimeDeviceMembershipTargetValidationErrorCode_SecurityGroupNotFound,
+		"securitygroupnotincallerscope": EnrollmentTimeDeviceMembershipTargetValidationErrorCode_SecurityGroupNotInCallerScope,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EnrollmentTimeDeviceMembershipTargetValidationErrorCode(input)
+	return &out, nil
+}

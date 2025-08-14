@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsdevicestartuphistory
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewUserExperienceAnalyticsDeviceStartupHistoryClientWithBaseURI(sdkApi sdkEnv.Api) (*UserExperienceAnalyticsDeviceStartupHistoryClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "userexperienceanalyticsdevicestartuphistory", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating UserExperienceAnalyticsDeviceStartupHistoryClient: %+v", err)
+	}
+
+	return &UserExperienceAnalyticsDeviceStartupHistoryClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/privateendpointconnection
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/polling"
+)
+func (c PrivateEndpointConnectionClient) Delete(ctx context.Context, id PrivateEndpointConnectionId) (result DeleteOperationResponse, err error) {
+	req, err := c.preparerForDelete(ctx, id)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "privateendpointconnection.PrivateEndpointConnectionClient", "Delete", nil, "Failure preparing request")
+		return
+	}
+
+	result, err = c.senderForDelete(ctx, req)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "privateendpointconnection.PrivateEndpointConnectionClient", "Delete", result.HttpResponse, "Failure sending request")
+		return
+	}
+
+	return
+}

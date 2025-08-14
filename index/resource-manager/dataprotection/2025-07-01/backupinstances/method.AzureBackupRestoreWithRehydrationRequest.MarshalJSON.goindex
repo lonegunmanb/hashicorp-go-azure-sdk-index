@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2025-07-01/backupinstances
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s AzureBackupRestoreWithRehydrationRequest) MarshalJSON() ([]byte, error) {
+	type wrapper AzureBackupRestoreWithRehydrationRequest
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AzureBackupRestoreWithRehydrationRequest: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AzureBackupRestoreWithRehydrationRequest: %+v", err)
+	}
+
+	decoded["objectType"] = "AzureBackupRestoreWithRehydrationRequest"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AzureBackupRestoreWithRehydrationRequest: %+v", err)
+	}
+
+	return encoded, nil
+}

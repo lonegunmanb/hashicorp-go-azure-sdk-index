@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-01-01/localusers
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *LocalUserId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.StorageAccountName, ok = input.Parsed["storageAccountName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "storageAccountName", input)
+	}
+
+	if id.LocalUserName, ok = input.Parsed["localUserName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "localUserName", input)
+	}
+
+	return nil
+}

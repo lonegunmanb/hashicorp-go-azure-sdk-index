@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/settingwindow
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SettingWindowClient) ListSettingWindowsComplete(ctx context.Context, id stable.UserId, options ListSettingWindowsOperationOptions) (ListSettingWindowsCompleteResult, error) {
+	return c.ListSettingWindowsCompleteMatchingPredicate(ctx, id, options, WindowsSettingOperationPredicate{})
+}

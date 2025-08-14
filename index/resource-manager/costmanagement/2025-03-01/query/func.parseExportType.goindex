@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2025-03-01/query
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseExportType(input string) (*ExportType, error) {
+	vals := map[string]ExportType{
+		"actualcost":    ExportTypeActualCost,
+		"amortizedcost": ExportTypeAmortizedCost,
+		"usage":         ExportTypeUsage,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ExportType(input)
+	return &out, nil
+}

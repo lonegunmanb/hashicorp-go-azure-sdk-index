@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cognitive/2025-06-01/projectconnectionresource
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ProjectConnectionsListOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.Category != nil {
+		out.Append("category", fmt.Sprintf("%v", *o.Category))
+	}
+	if o.IncludeAll != nil {
+		out.Append("includeAll", fmt.Sprintf("%v", *o.IncludeAll))
+	}
+	if o.Target != nil {
+		out.Append("target", fmt.Sprintf("%v", *o.Target))
+	}
+	return &out
+}

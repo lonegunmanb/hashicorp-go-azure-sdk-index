@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/frontdoor/2020-04-01/frontdoors
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *RulesEngineId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.FrontDoorName, ok = input.Parsed["frontDoorName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "frontDoorName", input)
+	}
+
+	if id.RulesEngineName, ok = input.Parsed["rulesEngineName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "rulesEngineName", input)
+	}
+
+	return nil
+}

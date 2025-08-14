@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *DeviceManagementMacOSSoftwareUpdateAccountSummaryIdCategorySummaryIdUpdateStateSummaryId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.MacOSSoftwareUpdateAccountSummaryId, ok = input.Parsed["macOSSoftwareUpdateAccountSummaryId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "macOSSoftwareUpdateAccountSummaryId", input)
+	}
+
+	if id.MacOSSoftwareUpdateCategorySummaryId, ok = input.Parsed["macOSSoftwareUpdateCategorySummaryId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "macOSSoftwareUpdateCategorySummaryId", input)
+	}
+
+	if id.MacOSSoftwareUpdateStateSummaryId, ok = input.Parsed["macOSSoftwareUpdateStateSummaryId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "macOSSoftwareUpdateStateSummaryId", input)
+	}
+
+	return nil
+}

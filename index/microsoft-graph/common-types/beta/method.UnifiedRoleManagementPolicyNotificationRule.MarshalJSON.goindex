@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s UnifiedRoleManagementPolicyNotificationRule) MarshalJSON() ([]byte, error) {
+	type wrapper UnifiedRoleManagementPolicyNotificationRule
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling UnifiedRoleManagementPolicyNotificationRule: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling UnifiedRoleManagementPolicyNotificationRule: %+v", err)
+	}
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.unifiedRoleManagementPolicyNotificationRule"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling UnifiedRoleManagementPolicyNotificationRule: %+v", err)
+	}
+
+	return encoded, nil
+}

@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/pipelines
+import (
+	"encoding/json"
+	"fmt"
+)
+type AzureDataLakeStoreReadSettings struct {
+	DeleteFilesAfterCompletion *bool        `json:"deleteFilesAfterCompletion,omitempty"`
+	EnablePartitionDiscovery   *bool        `json:"enablePartitionDiscovery,omitempty"`
+	FileListPath               *interface{} `json:"fileListPath,omitempty"`
+	ListAfter                  *interface{} `json:"listAfter,omitempty"`
+	ListBefore                 *interface{} `json:"listBefore,omitempty"`
+	ModifiedDatetimeEnd        *interface{} `json:"modifiedDatetimeEnd,omitempty"`
+	ModifiedDatetimeStart      *interface{} `json:"modifiedDatetimeStart,omitempty"`
+	PartitionRootPath          *interface{} `json:"partitionRootPath,omitempty"`
+	Recursive                  *bool        `json:"recursive,omitempty"`
+	WildcardFileName           *interface{} `json:"wildcardFileName,omitempty"`
+	WildcardFolderPath         *interface{} `json:"wildcardFolderPath,omitempty"`
+
+	// Fields inherited from StoreReadSettings
+
+	DisableMetricsCollection *bool  `json:"disableMetricsCollection,omitempty"`
+	MaxConcurrentConnections *int64 `json:"maxConcurrentConnections,omitempty"`
+	Type                     string `json:"type"`
+}

@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingaccount
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAgreementType(input string) (*AgreementType, error) {
+	vals := map[string]AgreementType{
+		"enterpriseagreement":            AgreementTypeEnterpriseAgreement,
+		"microsoftcustomeragreement":     AgreementTypeMicrosoftCustomerAgreement,
+		"microsoftonlineservicesprogram": AgreementTypeMicrosoftOnlineServicesProgram,
+		"microsoftpartneragreement":      AgreementTypeMicrosoftPartnerAgreement,
+		"other":                          AgreementTypeOther,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AgreementType(input)
+	return &out, nil
+}

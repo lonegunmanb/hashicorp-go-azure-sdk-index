@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/databricks/2024-05-01/workspaces
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAutomaticClusterUpdateValue(input string) (*AutomaticClusterUpdateValue, error) {
+	vals := map[string]AutomaticClusterUpdateValue{
+		"disabled": AutomaticClusterUpdateValueDisabled,
+		"enabled":  AutomaticClusterUpdateValueEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AutomaticClusterUpdateValue(input)
+	return &out, nil
+}

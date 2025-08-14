@@ -1,0 +1,81 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/pipelines
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalFormatWriteSettingsImplementation(input []byte) (FormatWriteSettings, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling FormatWriteSettings into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "AvroWriteSettings") {
+		var out AvroWriteSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AvroWriteSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "DelimitedTextWriteSettings") {
+		var out DelimitedTextWriteSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DelimitedTextWriteSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "IcebergWriteSettings") {
+		var out IcebergWriteSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into IcebergWriteSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "JsonWriteSettings") {
+		var out JsonWriteSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into JsonWriteSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "OrcWriteSettings") {
+		var out OrcWriteSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into OrcWriteSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "ParquetWriteSettings") {
+		var out ParquetWriteSettings
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ParquetWriteSettings: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseFormatWriteSettingsImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseFormatWriteSettingsImpl: %+v", err)
+	}
+
+	return RawFormatWriteSettingsImpl{
+		formatWriteSettings: parent,
+		Type:                value,
+		Values:              temp,
+	}, nil
+
+}

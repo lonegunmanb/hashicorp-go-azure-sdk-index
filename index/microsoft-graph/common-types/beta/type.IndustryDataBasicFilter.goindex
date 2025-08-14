@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type IndustryDataBasicFilter struct {
+	Attribute *IndustryDataFilterOptions `json:"attribute,omitempty"`
+
+	// The condition to filter with.
+	In *[]string `json:"in,omitempty"`
+
+	// Fields inherited from IndustryDataFilter
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

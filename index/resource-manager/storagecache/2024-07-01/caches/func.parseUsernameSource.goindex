@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagecache/2024-07-01/caches
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseUsernameSource(input string) (*UsernameSource, error) {
+	vals := map[string]UsernameSource{
+		"ad":   UsernameSourceAD,
+		"file": UsernameSourceFile,
+		"ldap": UsernameSourceLDAP,
+		"none": UsernameSourceNone,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UsernameSource(input)
+	return &out, nil
+}

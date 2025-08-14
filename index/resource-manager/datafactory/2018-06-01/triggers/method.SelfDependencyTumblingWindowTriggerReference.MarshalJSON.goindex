@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/triggers
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s SelfDependencyTumblingWindowTriggerReference) MarshalJSON() ([]byte, error) {
+	type wrapper SelfDependencyTumblingWindowTriggerReference
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling SelfDependencyTumblingWindowTriggerReference: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling SelfDependencyTumblingWindowTriggerReference: %+v", err)
+	}
+
+	decoded["type"] = "SelfDependencyTumblingWindowTriggerReference"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling SelfDependencyTumblingWindowTriggerReference: %+v", err)
+	}
+
+	return encoded, nil
+}

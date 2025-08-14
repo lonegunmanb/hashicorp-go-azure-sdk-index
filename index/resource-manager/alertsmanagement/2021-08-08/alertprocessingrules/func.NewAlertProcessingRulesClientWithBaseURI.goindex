@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/alertsmanagement/2021-08-08/alertprocessingrules
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAlertProcessingRulesClientWithBaseURI(sdkApi sdkEnv.Api) (*AlertProcessingRulesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "alertprocessingrules", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AlertProcessingRulesClient: %+v", err)
+	}
+
+	return &AlertProcessingRulesClient{
+		Client: client,
+	}, nil
+}

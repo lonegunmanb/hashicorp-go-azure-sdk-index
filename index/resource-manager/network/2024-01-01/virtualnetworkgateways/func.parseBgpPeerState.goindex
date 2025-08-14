@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-01-01/virtualnetworkgateways
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseBgpPeerState(input string) (*BgpPeerState, error) {
+	vals := map[string]BgpPeerState{
+		"connected":  BgpPeerStateConnected,
+		"connecting": BgpPeerStateConnecting,
+		"idle":       BgpPeerStateIdle,
+		"stopped":    BgpPeerStateStopped,
+		"unknown":    BgpPeerStateUnknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := BgpPeerState(input)
+	return &out, nil
+}

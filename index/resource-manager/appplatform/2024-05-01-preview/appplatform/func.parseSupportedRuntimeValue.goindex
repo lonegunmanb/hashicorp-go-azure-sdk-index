@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/appplatform/2024-05-01-preview/appplatform
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSupportedRuntimeValue(input string) (*SupportedRuntimeValue, error) {
+	vals := map[string]SupportedRuntimeValue{
+		"java_8":     SupportedRuntimeValueJavaEight,
+		"java_11":    SupportedRuntimeValueJavaOneOne,
+		"java_17":    SupportedRuntimeValueJavaOneSeven,
+		"java_21":    SupportedRuntimeValueJavaTwoOne,
+		"netcore_31": SupportedRuntimeValueNetCoreThreeOne,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SupportedRuntimeValue(input)
+	return &out, nil
+}

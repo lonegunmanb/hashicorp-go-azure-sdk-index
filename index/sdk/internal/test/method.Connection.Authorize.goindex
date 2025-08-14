@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/sdk/internal/test
+import (
+	"context"
+	"net/http"
+	"os"
+	"testing"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/auth"
+	"github.com/hashicorp/go-azure-sdk/sdk/claims"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func (c *Connection) Authorize(ctx context.Context, t *testing.T, api environments.Api) {
+	var err error
+	c.Authorizer, err = auth.NewAuthorizerFromCredentials(ctx, c.AuthConfig, api)
+	if err != nil {
+		t.Fatalf("building authorizer from credentials: %+v", err)
+	}
+	token, err := c.Authorizer.Token(ctx, &http.Request{})
+	if err != nil {
+		t.Fatalf("acquiring access token: %v", err)
+	}
+	c.Claims, err = claims.ParseClaims(token)
+	if err != nil {
+		t.Fatalf("parsing token claims: %v", err)
+	}
+}

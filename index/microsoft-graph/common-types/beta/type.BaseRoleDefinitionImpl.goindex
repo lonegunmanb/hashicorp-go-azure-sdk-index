@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type BaseRoleDefinitionImpl struct {
+	// Description of the Role definition.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// Display Name of the Role definition.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// Type of Role. Set to True if it is built-in, or set to False if it is a custom role definition.
+	IsBuiltIn *bool `json:"isBuiltIn,omitempty"`
+
+	// Type of Role. Set to True if it is built-in, or set to False if it is a custom role definition.
+	IsBuiltInRoleDefinition *bool `json:"isBuiltInRoleDefinition,omitempty"`
+
+	// List of Role Permissions this role is allowed to perform. These must match the actionName that is defined as part of
+	// the rolePermission.
+	Permissions *[]RolePermission `json:"permissions,omitempty"`
+
+	// List of Role assignments for this role definition.
+	RoleAssignments *[]RoleAssignment `json:"roleAssignments,omitempty"`
+
+	// List of Role Permissions this role is allowed to perform. These must match the actionName that is defined as part of
+	// the rolePermission.
+	RolePermissions *[]RolePermission `json:"rolePermissions,omitempty"`
+
+	// List of Scope Tags for this Entity instance.
+	RoleScopeTagIds *[]string `json:"roleScopeTagIds,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

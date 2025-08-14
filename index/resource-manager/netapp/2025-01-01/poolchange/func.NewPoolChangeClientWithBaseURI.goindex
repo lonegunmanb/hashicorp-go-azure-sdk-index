@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-01-01/poolchange
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPoolChangeClientWithBaseURI(sdkApi sdkEnv.Api) (*PoolChangeClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "poolchange", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PoolChangeClient: %+v", err)
+	}
+
+	return &PoolChangeClient{
+		Client: client,
+	}, nil
+}

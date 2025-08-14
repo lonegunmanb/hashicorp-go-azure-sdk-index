@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"bytes"
+	"context"
+	"crypto/hmac"
+	"crypto/sha256"
+	"encoding/base64"
+	"fmt"
+	"net/http"
+	"net/url"
+	"sort"
+	"strconv"
+	"strings"
+	"time"
+
+	"golang.org/x/oauth2"
+)
+func NewSharedKeyAuthorizer(accountName string, accountKey string, keyType SharedKeyType) (*SharedKeyAuthorizer, error) {
+	key, err := base64.StdEncoding.DecodeString(accountKey)
+	if err != nil {
+		return nil, fmt.Errorf("decoding accountKey: %+v", err)
+	}
+	return &SharedKeyAuthorizer{
+		accountName: accountName,
+		accountKey:  key,
+		keyType:     keyType,
+	}, nil
+}

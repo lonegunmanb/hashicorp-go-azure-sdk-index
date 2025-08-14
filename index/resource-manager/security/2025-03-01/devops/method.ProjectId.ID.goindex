@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/security/2025-03-01/devops
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ProjectId) ID() string {
+	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Security/securityConnectors/%s/devops/default/azureDevOpsOrgs/%s/projects/%s"
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.SecurityConnectorName, id.AzureDevOpsOrgName, id.ProjectName)
+}

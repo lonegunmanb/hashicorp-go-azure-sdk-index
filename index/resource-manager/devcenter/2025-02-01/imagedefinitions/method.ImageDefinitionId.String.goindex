@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/imagedefinitions
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ImageDefinitionId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Project Name: %q", id.ProjectName),
+		fmt.Sprintf("Catalog Name: %q", id.CatalogName),
+		fmt.Sprintf("Image Definition Name: %q", id.ImageDefinitionName),
+	}
+	return fmt.Sprintf("Image Definition (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/userexperienceanalyticsscorehistory
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewUserExperienceAnalyticsScoreHistoryClientWithBaseURI(sdkApi sdkEnv.Api) (*UserExperienceAnalyticsScoreHistoryClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "userexperienceanalyticsscorehistory", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating UserExperienceAnalyticsScoreHistoryClient: %+v", err)
+	}
+
+	return &UserExperienceAnalyticsScoreHistoryClient{
+		Client: client,
+	}, nil
+}

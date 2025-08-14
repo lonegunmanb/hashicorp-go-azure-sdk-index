@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-11-01/provider
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o GetAvailableStacksOnPremOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.OsTypeSelected != nil {
+		out.Append("osTypeSelected", fmt.Sprintf("%v", *o.OsTypeSelected))
+	}
+	return &out
+}

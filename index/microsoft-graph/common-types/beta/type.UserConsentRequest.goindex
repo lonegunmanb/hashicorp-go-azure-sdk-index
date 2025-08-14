@@ -1,0 +1,50 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type UserConsentRequest struct {
+	// Approval decisions associated with a request.
+	Approval *Approval `json:"approval,omitempty"`
+
+	// The user's justification for requiring access to the app. Supports $filter (eq only) and $orderby.
+	Reason nullable.Type[string] `json:"reason,omitempty"`
+
+	// Fields inherited from Request
+
+	// The identifier of the approval of the request.
+	ApprovalId nullable.Type[string] `json:"approvalId,omitempty"`
+
+	// The request completion date time.
+	CompletedDateTime nullable.Type[string] `json:"completedDateTime,omitempty"`
+
+	// The principal that created the request.
+	CreatedBy IdentitySet `json:"createdBy"`
+
+	// The request creation date time.
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// Free text field to define any custom data for the request. Not used.
+	CustomData nullable.Type[string] `json:"customData,omitempty"`
+
+	// The status of the request. Not nullable. The possible values are: Canceled, Denied, Failed, Granted,
+	// PendingAdminDecision, PendingApproval, PendingProvisioning, PendingScheduleCreation, Provisioned, Revoked, and
+	// ScheduleCreated. Not nullable.
+	Status *string `json:"status,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

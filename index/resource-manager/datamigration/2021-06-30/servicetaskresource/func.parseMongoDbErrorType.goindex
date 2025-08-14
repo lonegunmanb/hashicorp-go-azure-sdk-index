@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/servicetaskresource
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMongoDbErrorType(input string) (*MongoDbErrorType, error) {
+	vals := map[string]MongoDbErrorType{
+		"error":           MongoDbErrorTypeError,
+		"validationerror": MongoDbErrorTypeValidationError,
+		"warning":         MongoDbErrorTypeWarning,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MongoDbErrorType(input)
+	return &out, nil
+}

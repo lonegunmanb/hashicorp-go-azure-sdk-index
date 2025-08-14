@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *DeviceManagementDeviceConfigurationsAllManagedDeviceCertificateStateId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.ManagedAllDeviceCertificateStateId, ok = input.Parsed["managedAllDeviceCertificateStateId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "managedAllDeviceCertificateStateId", input)
+	}
+
+	return nil
+}

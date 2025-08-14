@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *PolicyRoleManagementPolicyIdRuleId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.UnifiedRoleManagementPolicyId, ok = input.Parsed["unifiedRoleManagementPolicyId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "unifiedRoleManagementPolicyId", input)
+	}
+
+	if id.UnifiedRoleManagementPolicyRuleId, ok = input.Parsed["unifiedRoleManagementPolicyRuleId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "unifiedRoleManagementPolicyRuleId", input)
+	}
+
+	return nil
+}

@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2015-04-01/autoscalesettings
+
+type MetricTrigger struct {
+	Dimensions             *[]ScaleRuleMetricDimension `json:"dimensions,omitempty"`
+	DividePerInstance      *bool                       `json:"dividePerInstance,omitempty"`
+	MetricName             string                      `json:"metricName"`
+	MetricNamespace        *string                     `json:"metricNamespace,omitempty"`
+	MetricResourceLocation *string                     `json:"metricResourceLocation,omitempty"`
+	MetricResourceUri      string                      `json:"metricResourceUri"`
+	Operator               ComparisonOperationType     `json:"operator"`
+	Statistic              MetricStatisticType         `json:"statistic"`
+	Threshold              float64                     `json:"threshold"`
+	TimeAggregation        TimeAggregationType         `json:"timeAggregation"`
+	TimeGrain              string                      `json:"timeGrain"`
+	TimeWindow             string                      `json:"timeWindow"`
+}

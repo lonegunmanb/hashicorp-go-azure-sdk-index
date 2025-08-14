@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/autonomousdatabasebackups
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id AutonomousDatabaseBackupId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Autonomous Database Name: %q", id.AutonomousDatabaseName),
+		fmt.Sprintf("Autonomous Database Backup Name: %q", id.AutonomousDatabaseBackupName),
+	}
+	return fmt.Sprintf("Autonomous Database Backup (%s)", strings.Join(components, "\n"))
+}

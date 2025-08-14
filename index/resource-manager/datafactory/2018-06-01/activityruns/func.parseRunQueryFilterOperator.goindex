@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/activityruns
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRunQueryFilterOperator(input string) (*RunQueryFilterOperator, error) {
+	vals := map[string]RunQueryFilterOperator{
+		"equals":    RunQueryFilterOperatorEquals,
+		"in":        RunQueryFilterOperatorIn,
+		"notequals": RunQueryFilterOperatorNotEquals,
+		"notin":     RunQueryFilterOperatorNotIn,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RunQueryFilterOperator(input)
+	return &out, nil
+}

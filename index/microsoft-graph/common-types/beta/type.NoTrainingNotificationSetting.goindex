@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type NoTrainingNotificationSetting struct {
+	// The notification for the user who is part of the simulation.
+	SimulationNotification *SimulationNotification `json:"simulationNotification,omitempty"`
+
+	// Fields inherited from EndUserNotificationSetting
+
+	// Notification preference. Possible values are: unknown, microsoft, custom, unknownFutureValue.
+	NotificationPreference *EndUserNotificationPreference `json:"notificationPreference,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Positive reinforcement detail.
+	PositiveReinforcement *PositiveReinforcementNotification `json:"positiveReinforcement,omitempty"`
+
+	// End user notification type. Possible values are: unknown, noTraining, trainingSelected, noNotification,
+	// unknownFutureValue.
+	SettingType *EndUserNotificationSettingType `json:"settingType,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

@@ -1,0 +1,36 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s WorkbookRangeView) MarshalJSON() ([]byte, error) {
+	type wrapper WorkbookRangeView
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling WorkbookRangeView: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling WorkbookRangeView: %+v", err)
+	}
+
+	delete(decoded, "columnCount")
+	delete(decoded, "numberFormat")
+	delete(decoded, "rowCount")
+	delete(decoded, "rows")
+	delete(decoded, "text")
+	delete(decoded, "valueTypes")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.workbookRangeView"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling WorkbookRangeView: %+v", err)
+	}
+
+	return encoded, nil
+}

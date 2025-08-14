@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/deponboardingsettingenrollmentprofile
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDepOnboardingSettingEnrollmentProfileClientWithBaseURI(sdkApi sdkEnv.Api) (*DepOnboardingSettingEnrollmentProfileClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "deponboardingsettingenrollmentprofile", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DepOnboardingSettingEnrollmentProfileClient: %+v", err)
+	}
+
+	return &DepOnboardingSettingEnrollmentProfileClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2023-02-01/backupresourcestorageconfigsnoncrr
+import (
+	"strings"
+)
+func parseDedupState(input string) (*DedupState, error) {
+	vals := map[string]DedupState{
+		"disabled": DedupStateDisabled,
+		"enabled":  DedupStateEnabled,
+		"invalid":  DedupStateInvalid,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DedupState(input)
+	return &out, nil
+}

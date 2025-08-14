@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/reservationrecommendations
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseReservationRecommendationKind(input string) (*ReservationRecommendationKind, error) {
+	vals := map[string]ReservationRecommendationKind{
+		"legacy": ReservationRecommendationKindLegacy,
+		"modern": ReservationRecommendationKindModern,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ReservationRecommendationKind(input)
+	return &out, nil
+}

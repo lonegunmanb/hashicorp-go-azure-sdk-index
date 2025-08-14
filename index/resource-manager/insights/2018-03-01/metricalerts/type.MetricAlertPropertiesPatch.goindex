@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2018-03-01/metricalerts
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type MetricAlertPropertiesPatch struct {
+	Actions              *[]MetricAlertAction `json:"actions,omitempty"`
+	AutoMitigate         *bool                `json:"autoMitigate,omitempty"`
+	Criteria             MetricAlertCriteria  `json:"criteria"`
+	Description          *string              `json:"description,omitempty"`
+	Enabled              *bool                `json:"enabled,omitempty"`
+	EvaluationFrequency  *string              `json:"evaluationFrequency,omitempty"`
+	IsMigrated           *bool                `json:"isMigrated,omitempty"`
+	LastUpdatedTime      *string              `json:"lastUpdatedTime,omitempty"`
+	Scopes               *[]string            `json:"scopes,omitempty"`
+	Severity             *int64               `json:"severity,omitempty"`
+	TargetResourceRegion *string              `json:"targetResourceRegion,omitempty"`
+	TargetResourceType   *string              `json:"targetResourceType,omitempty"`
+	WindowSize           *string              `json:"windowSize,omitempty"`
+}

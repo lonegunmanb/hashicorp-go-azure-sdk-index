@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/python2package
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParsePython2PackageID(input string) (*Python2PackageId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&Python2PackageId{})
+	parsed, err := parser.Parse(input, false)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := Python2PackageId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

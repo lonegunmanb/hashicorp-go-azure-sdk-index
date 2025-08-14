@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2025-07-01/recoverypoint
+import (
+	"encoding/json"
+	"fmt"
+)
+type AzureBackupDiscreteRecoveryPoint struct {
+	ExpiryTime                     *string                          `json:"expiryTime,omitempty"`
+	FriendlyName                   *string                          `json:"friendlyName,omitempty"`
+	PolicyName                     *string                          `json:"policyName,omitempty"`
+	PolicyVersion                  *string                          `json:"policyVersion,omitempty"`
+	RecoveryPointDataStoresDetails *[]RecoveryPointDataStoreDetails `json:"recoveryPointDataStoresDetails,omitempty"`
+	RecoveryPointId                *string                          `json:"recoveryPointId,omitempty"`
+	RecoveryPointState             *RecoveryPointCompletionState    `json:"recoveryPointState,omitempty"`
+	RecoveryPointTime              string                           `json:"recoveryPointTime"`
+	RecoveryPointType              *string                          `json:"recoveryPointType,omitempty"`
+	RetentionTagName               *string                          `json:"retentionTagName,omitempty"`
+	RetentionTagVersion            *string                          `json:"retentionTagVersion,omitempty"`
+
+	// Fields inherited from AzureBackupRecoveryPoint
+
+	ObjectType string `json:"objectType"`
+}

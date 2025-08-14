@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/operationalinsights/2023-09-01/tables
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTablesClientWithBaseURI(sdkApi sdkEnv.Api) (*TablesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "tables", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TablesClient: %+v", err)
+	}
+
+	return &TablesClient{
+		Client: client,
+	}, nil
+}

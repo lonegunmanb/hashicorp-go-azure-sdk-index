@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagecache/2023-05-01/amlfilesystems
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseArchiveStatusType(input string) (*ArchiveStatusType, error) {
+	vals := map[string]ArchiveStatusType{
+		"canceled":         ArchiveStatusTypeCanceled,
+		"cancelling":       ArchiveStatusTypeCancelling,
+		"completed":        ArchiveStatusTypeCompleted,
+		"fsscaninprogress": ArchiveStatusTypeFSScanInProgress,
+		"failed":           ArchiveStatusTypeFailed,
+		"idle":             ArchiveStatusTypeIdle,
+		"inprogress":       ArchiveStatusTypeInProgress,
+		"notconfigured":    ArchiveStatusTypeNotConfigured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ArchiveStatusType(input)
+	return &out, nil
+}

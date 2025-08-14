@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"context"
+	"fmt"
+	"net/http"
+	"sync"
+	"time"
+
+	"golang.org/x/oauth2"
+)
+func (c *CachedAuthorizer) Token(ctx context.Context, req *http.Request) (*oauth2.Token, error) {
+	c.mutex.RLock()
+	dueForRenewal := tokenDueForRenewal(c.token)
+	c.mutex.RUnlock()
+
+	if dueForRenewal {
+		c.mutex.Lock()
+		defer c.mutex.Unlock()
+		var err error
+		c.token, err = c.Source.Token(ctx, req)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	return c.token, nil
+}

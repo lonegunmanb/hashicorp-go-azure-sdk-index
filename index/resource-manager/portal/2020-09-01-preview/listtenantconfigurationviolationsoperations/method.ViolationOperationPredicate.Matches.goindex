@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/portal/2020-09-01-preview/listtenantconfigurationviolationsoperations
+
+func (p ViolationOperationPredicate) Matches(input Violation) bool {
+
+	if p.ErrorMessage != nil && (input.ErrorMessage == nil || *p.ErrorMessage != *input.ErrorMessage) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.UserId != nil && (input.UserId == nil || *p.UserId != *input.UserId) {
+		return false
+	}
+
+	return true
+}

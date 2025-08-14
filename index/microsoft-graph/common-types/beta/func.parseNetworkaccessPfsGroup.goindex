@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNetworkaccessPfsGroup(input string) (*NetworkaccessPfsGroup, error) {
+	vals := map[string]NetworkaccessPfsGroup{
+		"ecp256":  NetworkaccessPfsGroup_Ecp256,
+		"ecp384":  NetworkaccessPfsGroup_Ecp384,
+		"none":    NetworkaccessPfsGroup_None,
+		"pfs1":    NetworkaccessPfsGroup_Pfs1,
+		"pfs14":   NetworkaccessPfsGroup_Pfs14,
+		"pfs2":    NetworkaccessPfsGroup_Pfs2,
+		"pfs2048": NetworkaccessPfsGroup_Pfs2048,
+		"pfs24":   NetworkaccessPfsGroup_Pfs24,
+		"pfsmm":   NetworkaccessPfsGroup_Pfsmm,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NetworkaccessPfsGroup(input)
+	return &out, nil
+}

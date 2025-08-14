@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-11-01/applicationgateways
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseApplicationGatewayProtocol(input string) (*ApplicationGatewayProtocol, error) {
+	vals := map[string]ApplicationGatewayProtocol{
+		"http":  ApplicationGatewayProtocolHTTP,
+		"https": ApplicationGatewayProtocolHTTPS,
+		"tcp":   ApplicationGatewayProtocolTcp,
+		"tls":   ApplicationGatewayProtocolTls,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ApplicationGatewayProtocol(input)
+	return &out, nil
+}

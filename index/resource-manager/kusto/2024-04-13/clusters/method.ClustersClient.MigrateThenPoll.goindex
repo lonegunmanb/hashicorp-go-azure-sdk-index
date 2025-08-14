@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/kusto/2024-04-13/clusters
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ClustersClient) MigrateThenPoll(ctx context.Context, id commonids.KustoClusterId, input ClusterMigrateRequest) error {
+	result, err := c.Migrate(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing Migrate: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after Migrate: %+v", err)
+	}
+
+	return nil
+}

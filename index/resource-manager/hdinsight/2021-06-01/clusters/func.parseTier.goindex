@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hdinsight/2021-06-01/clusters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTier(input string) (*Tier, error) {
+	vals := map[string]Tier{
+		"premium":  TierPremium,
+		"standard": TierStandard,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Tier(input)
+	return &out, nil
+}

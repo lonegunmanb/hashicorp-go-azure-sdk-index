@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-12-01-preview/billingstatistics
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewBillingStatisticsClientWithBaseURI(sdkApi sdkEnv.Api) (*BillingStatisticsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "billingstatistics", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating BillingStatisticsClient: %+v", err)
+	}
+
+	return &BillingStatisticsClient{
+		Client: client,
+	}, nil
+}

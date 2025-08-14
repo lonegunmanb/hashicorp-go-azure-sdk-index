@@ -1,0 +1,60 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s *SharePointIdentitySet) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		SiteGroup *SharePointIdentity `json:"siteGroup,omitempty"`
+		SiteUser  *SharePointIdentity `json:"siteUser,omitempty"`
+		ODataId   *string             `json:"@odata.id,omitempty"`
+		ODataType *string             `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.SiteGroup = decoded.SiteGroup
+	s.SiteUser = decoded.SiteUser
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling SharePointIdentitySet into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["application"]; ok {
+		impl, err := UnmarshalIdentityImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Application' for 'SharePointIdentitySet': %+v", err)
+		}
+		s.Application = impl
+	}
+
+	if v, ok := temp["device"]; ok {
+		impl, err := UnmarshalIdentityImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Device' for 'SharePointIdentitySet': %+v", err)
+		}
+		s.Device = impl
+	}
+
+	if v, ok := temp["group"]; ok {
+		impl, err := UnmarshalIdentityImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Group' for 'SharePointIdentitySet': %+v", err)
+		}
+		s.Group = impl
+	}
+
+	if v, ok := temp["user"]; ok {
+		impl, err := UnmarshalIdentityImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'User' for 'SharePointIdentitySet': %+v", err)
+		}
+		s.User = impl
+	}
+
+	return nil
+}

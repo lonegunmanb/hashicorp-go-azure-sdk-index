@@ -1,0 +1,38 @@
+package github.com/hashicorp/go-azure-sdk/sdk/internal/test
+import (
+	"context"
+	"net/http"
+	"os"
+	"testing"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/auth"
+	"github.com/hashicorp/go-azure-sdk/sdk/claims"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewConnection(t *testing.T) *Connection {
+	env, err := environments.FromName(Environment)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	return &Connection{
+		AuthConfig: auth.Credentials{
+			Environment:                                *env,
+			TenantID:                                   TenantId,
+			ClientID:                                   ClientId,
+			ClientCertificateData:                      Base64DecodeCertificate(t, ClientCertificate),
+			ClientCertificatePath:                      ClientCertificatePath,
+			ClientCertificatePassword:                  ClientCertPassword,
+			ClientSecret:                               ClientSecret,
+			OIDCTokenRequestURL:                        OIDCRequestURL,
+			OIDCTokenRequestToken:                      OIDCRequestToken,
+			OIDCAssertionToken:                         IdToken,
+			ADOPipelineServiceConnectionID:             ADOServiceConnectionId,
+			CustomManagedIdentityEndpoint:              CustomManagedIdentityEndpoint,
+			EnableAuthenticatingUsingClientCertificate: true,
+			EnableAuthenticatingUsingClientSecret:      true,
+			EnableAuthenticationUsingGitHubOIDC:        true,
+			EnableAuthenticationUsingADOPipelineOIDC:   true,
+		},
+	}
+}

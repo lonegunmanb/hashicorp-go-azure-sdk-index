@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/expressroutelinks
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseLinkID(input string) (*LinkId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&LinkId{})
+	parsed, err := parser.Parse(input, false)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := LinkId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

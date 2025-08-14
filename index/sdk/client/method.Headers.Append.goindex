@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client
+import (
+	"net/http"
+	"net/url"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (h *Headers) Append(key, value string) {
+	if h.vals == nil {
+		h.vals = map[string]string{}
+	}
+	h.vals[key] = value
+}

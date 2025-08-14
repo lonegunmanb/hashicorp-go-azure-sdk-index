@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicefabricmanagedcluster/2024-04-01/application
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ApplicationClient) StartRollbackThenPoll(ctx context.Context, id ApplicationId) error {
+	result, err := c.StartRollback(ctx, id)
+	if err != nil {
+		return fmt.Errorf("performing StartRollback: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after StartRollback: %+v", err)
+	}
+
+	return nil
+}

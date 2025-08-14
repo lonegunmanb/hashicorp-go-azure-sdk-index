@@ -1,0 +1,44 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecuritySubmissionResultCategory(input string) (*SecuritySubmissionResultCategory, error) {
+	vals := map[string]SecuritySubmissionResultCategory{
+		"allowedbypolicy":                  SecuritySubmissionResultCategory_AllowedByPolicy,
+		"allowedduetoorganizationoverride": SecuritySubmissionResultCategory_AllowedDueToOrganizationOverride,
+		"allowedduetouseroverride":         SecuritySubmissionResultCategory_AllowedDueToUserOverride,
+		"authenticationfailure":            SecuritySubmissionResultCategory_AuthenticationFailure,
+		"beinganalyzed":                    SecuritySubmissionResultCategory_BeingAnalyzed,
+		"blockedbypolicy":                  SecuritySubmissionResultCategory_BlockedByPolicy,
+		"blockedduetoorganizationoverride": SecuritySubmissionResultCategory_BlockedDueToOrganizationOverride,
+		"blockedduetouseroverride":         SecuritySubmissionResultCategory_BlockedDueToUserOverride,
+		"brandimpersonation":               SecuritySubmissionResultCategory_BrandImpersonation,
+		"bulk":                             SecuritySubmissionResultCategory_Bulk,
+		"domainimpersonation":              SecuritySubmissionResultCategory_DomainImpersonation,
+		"itemnotfound":                     SecuritySubmissionResultCategory_ItemNotfound,
+		"malware":                          SecuritySubmissionResultCategory_Malware,
+		"noresultavailable":                SecuritySubmissionResultCategory_NoResultAvailable,
+		"nothreatsfound":                   SecuritySubmissionResultCategory_NoThreatsFound,
+		"notjunk":                          SecuritySubmissionResultCategory_NotJunk,
+		"notsubmittedtomicrosoft":          SecuritySubmissionResultCategory_NotSubmittedToMicrosoft,
+		"phishing":                         SecuritySubmissionResultCategory_Phishing,
+		"phishingsimulation":               SecuritySubmissionResultCategory_PhishingSimulation,
+		"reasonlostintransit":              SecuritySubmissionResultCategory_ReasonLostInTransit,
+		"spam":                             SecuritySubmissionResultCategory_Spam,
+		"spoof":                            SecuritySubmissionResultCategory_Spoof,
+		"spoofedallowed":                   SecuritySubmissionResultCategory_SpoofedAllowed,
+		"spoofedblocked":                   SecuritySubmissionResultCategory_SpoofedBlocked,
+		"threatsfound":                     SecuritySubmissionResultCategory_ThreatsFound,
+		"unknown":                          SecuritySubmissionResultCategory_Unknown,
+		"userimpersonation":                SecuritySubmissionResultCategory_UserImpersonation,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecuritySubmissionResultCategory(input)
+	return &out, nil
+}

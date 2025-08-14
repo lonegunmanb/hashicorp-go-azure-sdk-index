@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/api
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o WorkspaceApiListByServiceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.ExpandApiVersionSet != nil {
+		out.Append("expandApiVersionSet", fmt.Sprintf("%v", *o.ExpandApiVersionSet))
+	}
+	if o.Filter != nil {
+		out.Append("$filter", fmt.Sprintf("%v", *o.Filter))
+	}
+	if o.Skip != nil {
+		out.Append("$skip", fmt.Sprintf("%v", *o.Skip))
+	}
+	if o.Tags != nil {
+		out.Append("tags", fmt.Sprintf("%v", *o.Tags))
+	}
+	if o.Top != nil {
+		out.Append("$top", fmt.Sprintf("%v", *o.Top))
+	}
+	return &out
+}

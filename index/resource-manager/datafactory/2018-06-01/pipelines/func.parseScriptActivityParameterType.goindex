@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/pipelines
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseScriptActivityParameterType(input string) (*ScriptActivityParameterType, error) {
+	vals := map[string]ScriptActivityParameterType{
+		"boolean":        ScriptActivityParameterTypeBoolean,
+		"datetime":       ScriptActivityParameterTypeDateTime,
+		"datetimeoffset": ScriptActivityParameterTypeDateTimeOffset,
+		"decimal":        ScriptActivityParameterTypeDecimal,
+		"double":         ScriptActivityParameterTypeDouble,
+		"guid":           ScriptActivityParameterTypeGuid,
+		"int16":          ScriptActivityParameterTypeIntOneSix,
+		"int64":          ScriptActivityParameterTypeIntSixFour,
+		"int32":          ScriptActivityParameterTypeIntThreeTwo,
+		"single":         ScriptActivityParameterTypeSingle,
+		"string":         ScriptActivityParameterTypeString,
+		"timespan":       ScriptActivityParameterTypeTimespan,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ScriptActivityParameterType(input)
+	return &out, nil
+}

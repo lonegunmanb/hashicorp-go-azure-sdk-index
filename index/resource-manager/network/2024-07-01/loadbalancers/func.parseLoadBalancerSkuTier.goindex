@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/loadbalancers
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseLoadBalancerSkuTier(input string) (*LoadBalancerSkuTier, error) {
+	vals := map[string]LoadBalancerSkuTier{
+		"global":   LoadBalancerSkuTierGlobal,
+		"regional": LoadBalancerSkuTierRegional,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := LoadBalancerSkuTier(input)
+	return &out, nil
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWindowsQualityUpdatePolicyActionType(input string) (*WindowsQualityUpdatePolicyActionType, error) {
+	vals := map[string]WindowsQualityUpdatePolicyActionType{
+		"approve": WindowsQualityUpdatePolicyActionType_Approve,
+		"suspend": WindowsQualityUpdatePolicyActionType_Suspend,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsQualityUpdatePolicyActionType(input)
+	return &out, nil
+}

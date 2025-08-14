@@ -1,0 +1,72 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type MailSearchFolder struct {
+	// The OData query to filter the messages.
+	FilterQuery nullable.Type[string] `json:"filterQuery,omitempty"`
+
+	// Indicates how the mailbox folder hierarchy should be traversed in the search. true means that a deep search should be
+	// done to include child folders in the hierarchy of each folder explicitly specified in sourceFolderIds. false means a
+	// shallow search of only each of the folders explicitly specified in sourceFolderIds.
+	IncludeNestedFolders nullable.Type[bool] `json:"includeNestedFolders,omitempty"`
+
+	// Indicates whether a search folder is editable using REST APIs.
+	IsSupported nullable.Type[bool] `json:"isSupported,omitempty"`
+
+	// The mailbox folders that should be mined.
+	SourceFolderIds *[]string `json:"sourceFolderIds,omitempty"`
+
+	// Fields inherited from MailFolder
+
+	// The number of immediate child mailFolders in the current mailFolder.
+	ChildFolderCount nullable.Type[int64] `json:"childFolderCount,omitempty"`
+
+	// The collection of child folders in the mailFolder.
+	ChildFolders *[]MailFolder `json:"childFolders,omitempty"`
+
+	// The mailFolder's display name.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// Indicates whether the mailFolder is hidden. This property can be set only when creating the folder. Find more
+	// information in Hidden mail folders.
+	IsHidden nullable.Type[bool] `json:"isHidden,omitempty"`
+
+	// The collection of rules that apply to the user's Inbox folder.
+	MessageRules *[]MessageRule `json:"messageRules,omitempty"`
+
+	// The collection of messages in the mailFolder.
+	Messages *[]Message `json:"messages,omitempty"`
+
+	// The collection of multi-value extended properties defined for the mailFolder. Read-only. Nullable.
+	MultiValueExtendedProperties *[]MultiValueLegacyExtendedProperty `json:"multiValueExtendedProperties,omitempty"`
+
+	// The unique identifier for the mailFolder's parent mailFolder.
+	ParentFolderId nullable.Type[string] `json:"parentFolderId,omitempty"`
+
+	// The collection of single-value extended properties defined for the mailFolder. Read-only. Nullable.
+	SingleValueExtendedProperties *[]SingleValueLegacyExtendedProperty `json:"singleValueExtendedProperties,omitempty"`
+
+	// The number of items in the mailFolder.
+	TotalItemCount nullable.Type[int64] `json:"totalItemCount,omitempty"`
+
+	// The number of items in the mailFolder marked as unread.
+	UnreadItemCount nullable.Type[int64] `json:"unreadItemCount,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

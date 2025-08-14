@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type TeamDescriptionUpdatedEventMessageDetail struct {
+	// Initiator of the event.
+	Initiator IdentitySet `json:"initiator"`
+
+	// The updated description for the team.
+	TeamDescription nullable.Type[string] `json:"teamDescription,omitempty"`
+
+	// Unique identifier of the team.
+	TeamId nullable.Type[string] `json:"teamId,omitempty"`
+
+	// Fields inherited from EventMessageDetail
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

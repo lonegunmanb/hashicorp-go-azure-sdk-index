@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cognitive/2025-06-01/cognitiveservicesprojects
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c CognitiveServicesProjectsClient) ProjectsUpdateThenPoll(ctx context.Context, id ProjectId, input Project) error {
+	result, err := c.ProjectsUpdate(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing ProjectsUpdate: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after ProjectsUpdate: %+v", err)
+	}
+
+	return nil
+}

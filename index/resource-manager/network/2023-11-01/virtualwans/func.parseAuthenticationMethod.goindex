@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-11-01/virtualwans
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAuthenticationMethod(input string) (*AuthenticationMethod, error) {
+	vals := map[string]AuthenticationMethod{
+		"eapmschapv2": AuthenticationMethodEAPMSCHAPvTwo,
+		"eaptls":      AuthenticationMethodEAPTLS,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AuthenticationMethod(input)
+	return &out, nil
+}

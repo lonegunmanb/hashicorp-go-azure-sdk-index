@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/contactfolderchildfolder
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewContactFolderChildFolderClientWithBaseURI(sdkApi sdkEnv.Api) (*ContactFolderChildFolderClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "contactfolderchildfolder", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ContactFolderChildFolderClient: %+v", err)
+	}
+
+	return &ContactFolderChildFolderClient{
+		Client: client,
+	}, nil
+}

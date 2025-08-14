@@ -1,0 +1,99 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalDeviceCompliancePolicyImplementation(input []byte) (DeviceCompliancePolicy, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling DeviceCompliancePolicy into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.androidCompliancePolicy") {
+		var out AndroidCompliancePolicy
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AndroidCompliancePolicy: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.androidWorkProfileCompliancePolicy") {
+		var out AndroidWorkProfileCompliancePolicy
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AndroidWorkProfileCompliancePolicy: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.iosCompliancePolicy") {
+		var out IosCompliancePolicy
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into IosCompliancePolicy: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.macOSCompliancePolicy") {
+		var out MacOSCompliancePolicy
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into MacOSCompliancePolicy: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.windows10CompliancePolicy") {
+		var out Windows10CompliancePolicy
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into Windows10CompliancePolicy: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.windows10MobileCompliancePolicy") {
+		var out Windows10MobileCompliancePolicy
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into Windows10MobileCompliancePolicy: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.windows81CompliancePolicy") {
+		var out Windows81CompliancePolicy
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into Windows81CompliancePolicy: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.windowsPhone81CompliancePolicy") {
+		var out WindowsPhone81CompliancePolicy
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into WindowsPhone81CompliancePolicy: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseDeviceCompliancePolicyImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseDeviceCompliancePolicyImpl: %+v", err)
+	}
+
+	return RawDeviceCompliancePolicyImpl{
+		deviceCompliancePolicy: parent,
+		Type:                   value,
+		Values:                 temp,
+	}, nil
+
+}

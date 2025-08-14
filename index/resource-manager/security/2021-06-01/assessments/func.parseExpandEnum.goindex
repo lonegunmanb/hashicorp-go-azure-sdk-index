@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/security/2021-06-01/assessments
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseExpandEnum(input string) (*ExpandEnum, error) {
+	vals := map[string]ExpandEnum{
+		"links":    ExpandEnumLinks,
+		"metadata": ExpandEnumMetadata,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ExpandEnum(input)
+	return &out, nil
+}

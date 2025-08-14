@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityAdditionalOptions(input string) (*SecurityAdditionalOptions, error) {
+	vals := map[string]SecurityAdditionalOptions{
+		"advancedindexing":            SecurityAdditionalOptions_AdvancedIndexing,
+		"alldocumentversions":         SecurityAdditionalOptions_AllDocumentVersions,
+		"allitemsinfolder":            SecurityAdditionalOptions_AllItemsInFolder,
+		"cloudattachments":            SecurityAdditionalOptions_CloudAttachments,
+		"condensepaths":               SecurityAdditionalOptions_CondensePaths,
+		"friendlyname":                SecurityAdditionalOptions_FriendlyName,
+		"htmltranscripts":             SecurityAdditionalOptions_HtmlTranscripts,
+		"includefolderandpath":        SecurityAdditionalOptions_IncludeFolderAndPath,
+		"includereport":               SecurityAdditionalOptions_IncludeReport,
+		"listattachments":             SecurityAdditionalOptions_ListAttachments,
+		"none":                        SecurityAdditionalOptions_None,
+		"splitsource":                 SecurityAdditionalOptions_SplitSource,
+		"subfoldercontents":           SecurityAdditionalOptions_SubfolderContents,
+		"teamsandyammerconversations": SecurityAdditionalOptions_TeamsAndYammerConversations,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityAdditionalOptions(input)
+	return &out, nil
+}

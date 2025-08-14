@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/cloudpcroleassignmentdirectoryscope
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c CloudPCRoleAssignmentDirectoryScopeClient) ListCloudPCRoleAssignmentDirectoryScopesComplete(ctx context.Context, id beta.RoleManagementCloudPCRoleAssignmentId, options ListCloudPCRoleAssignmentDirectoryScopesOperationOptions) (ListCloudPCRoleAssignmentDirectoryScopesCompleteResult, error) {
+	return c.ListCloudPCRoleAssignmentDirectoryScopesCompleteMatchingPredicate(ctx, id, options, DirectoryObjectOperationPredicate{})
+}

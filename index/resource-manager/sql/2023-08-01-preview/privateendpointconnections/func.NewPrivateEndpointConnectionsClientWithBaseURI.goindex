@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/privateendpointconnections
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPrivateEndpointConnectionsClientWithBaseURI(sdkApi sdkEnv.Api) (*PrivateEndpointConnectionsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "privateendpointconnections", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PrivateEndpointConnectionsClient: %+v", err)
+	}
+
+	return &PrivateEndpointConnectionsClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,59 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s UserExperienceAnalyticsWorkFromAnywhereDevice) MarshalJSON() ([]byte, error) {
+	type wrapper UserExperienceAnalyticsWorkFromAnywhereDevice
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling UserExperienceAnalyticsWorkFromAnywhereDevice: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling UserExperienceAnalyticsWorkFromAnywhereDevice: %+v", err)
+	}
+
+	delete(decoded, "autoPilotProfileAssigned")
+	delete(decoded, "autoPilotRegistered")
+	delete(decoded, "azureAdDeviceId")
+	delete(decoded, "azureAdJoinType")
+	delete(decoded, "azureAdRegistered")
+	delete(decoded, "compliancePolicySetToIntune")
+	delete(decoded, "deviceId")
+	delete(decoded, "deviceName")
+	delete(decoded, "isCloudManagedGatewayEnabled")
+	delete(decoded, "managedBy")
+	delete(decoded, "manufacturer")
+	delete(decoded, "model")
+	delete(decoded, "osCheckFailed")
+	delete(decoded, "osDescription")
+	delete(decoded, "osVersion")
+	delete(decoded, "otherWorkloadsSetToIntune")
+	delete(decoded, "ownership")
+	delete(decoded, "processor64BitCheckFailed")
+	delete(decoded, "processorCoreCountCheckFailed")
+	delete(decoded, "processorFamilyCheckFailed")
+	delete(decoded, "processorSpeedCheckFailed")
+	delete(decoded, "ramCheckFailed")
+	delete(decoded, "secureBootCheckFailed")
+	delete(decoded, "serialNumber")
+	delete(decoded, "storageCheckFailed")
+	delete(decoded, "tenantAttached")
+	delete(decoded, "tpmCheckFailed")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.userExperienceAnalyticsWorkFromAnywhereDevice"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling UserExperienceAnalyticsWorkFromAnywhereDevice: %+v", err)
+	}
+
+	return encoded, nil
+}

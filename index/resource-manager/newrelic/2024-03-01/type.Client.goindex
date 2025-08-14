@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/newrelic/v2024_03_01
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/newrelic/2024-03-01/accounts"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/newrelic/2024-03-01/connectedresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/newrelic/2024-03-01/linkedresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/newrelic/2024-03-01/monitoredsubscriptions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/newrelic/2024-03-01/monitors"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/newrelic/2024-03-01/organizations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/newrelic/2024-03-01/plan"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/newrelic/2024-03-01/tagrules"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	Accounts               *accounts.AccountsClient
+	ConnectedResources     *connectedresources.ConnectedResourcesClient
+	LinkedResources        *linkedresources.LinkedResourcesClient
+	MonitoredSubscriptions *monitoredsubscriptions.MonitoredSubscriptionsClient
+	Monitors               *monitors.MonitorsClient
+	Organizations          *organizations.OrganizationsClient
+	Plan                   *plan.PlanClient
+	TagRules               *tagrules.TagRulesClient
+}

@@ -1,0 +1,83 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalDeviceManagementSettingInstanceImplementation(input []byte) (DeviceManagementSettingInstance, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling DeviceManagementSettingInstance into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.deviceManagementAbstractComplexSettingInstance") {
+		var out DeviceManagementAbstractComplexSettingInstance
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DeviceManagementAbstractComplexSettingInstance: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.deviceManagementBooleanSettingInstance") {
+		var out DeviceManagementBooleanSettingInstance
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DeviceManagementBooleanSettingInstance: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.deviceManagementCollectionSettingInstance") {
+		var out DeviceManagementCollectionSettingInstance
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DeviceManagementCollectionSettingInstance: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.deviceManagementComplexSettingInstance") {
+		var out DeviceManagementComplexSettingInstance
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DeviceManagementComplexSettingInstance: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.deviceManagementIntegerSettingInstance") {
+		var out DeviceManagementIntegerSettingInstance
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DeviceManagementIntegerSettingInstance: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.deviceManagementStringSettingInstance") {
+		var out DeviceManagementStringSettingInstance
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DeviceManagementStringSettingInstance: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseDeviceManagementSettingInstanceImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseDeviceManagementSettingInstanceImpl: %+v", err)
+	}
+
+	return RawDeviceManagementSettingInstanceImpl{
+		deviceManagementSettingInstance: parent,
+		Type:                            value,
+		Values:                          temp,
+	}, nil
+
+}

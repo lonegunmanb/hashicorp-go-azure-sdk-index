@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityAlertDetermination(input string) (*SecurityAlertDetermination, error) {
+	vals := map[string]SecurityAlertDetermination{
+		"apt":                       SecurityAlertDetermination_Apt,
+		"compromisedaccount":        SecurityAlertDetermination_CompromisedAccount,
+		"confirmedactivity":         SecurityAlertDetermination_ConfirmedActivity,
+		"lineofbusinessapplication": SecurityAlertDetermination_LineOfBusinessApplication,
+		"malicioususeractivity":     SecurityAlertDetermination_MaliciousUserActivity,
+		"malware":                   SecurityAlertDetermination_Malware,
+		"multistagedattack":         SecurityAlertDetermination_MultiStagedAttack,
+		"notenoughdatatovalidate":   SecurityAlertDetermination_NotEnoughDataToValidate,
+		"notmalicious":              SecurityAlertDetermination_NotMalicious,
+		"other":                     SecurityAlertDetermination_Other,
+		"phishing":                  SecurityAlertDetermination_Phishing,
+		"securitypersonnel":         SecurityAlertDetermination_SecurityPersonnel,
+		"securitytesting":           SecurityAlertDetermination_SecurityTesting,
+		"unknown":                   SecurityAlertDetermination_Unknown,
+		"unwantedsoftware":          SecurityAlertDetermination_UnwantedSoftware,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityAlertDetermination(input)
+	return &out, nil
+}

@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/v2workspaceconnectionresource
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseConnectionAuthType(input string) (*ConnectionAuthType, error) {
+	vals := map[string]ConnectionAuthType{
+		"aad":              ConnectionAuthTypeAAD,
+		"accesskey":        ConnectionAuthTypeAccessKey,
+		"accountkey":       ConnectionAuthTypeAccountKey,
+		"apikey":           ConnectionAuthTypeApiKey,
+		"customkeys":       ConnectionAuthTypeCustomKeys,
+		"managedidentity":  ConnectionAuthTypeManagedIdentity,
+		"none":             ConnectionAuthTypeNone,
+		"oauth2":           ConnectionAuthTypeOAuthTwo,
+		"pat":              ConnectionAuthTypePAT,
+		"sas":              ConnectionAuthTypeSAS,
+		"serviceprincipal": ConnectionAuthTypeServicePrincipal,
+		"usernamepassword": ConnectionAuthTypeUsernamePassword,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ConnectionAuthType(input)
+	return &out, nil
+}

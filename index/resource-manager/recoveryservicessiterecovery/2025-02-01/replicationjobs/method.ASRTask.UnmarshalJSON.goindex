@@ -1,0 +1,59 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationjobs
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (s *ASRTask) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AllowedActions   *[]string          `json:"allowedActions,omitempty"`
+		EndTime          *string            `json:"endTime,omitempty"`
+		Errors           *[]JobErrorDetails `json:"errors,omitempty"`
+		FriendlyName     *string            `json:"friendlyName,omitempty"`
+		Name             *string            `json:"name,omitempty"`
+		StartTime        *string            `json:"startTime,omitempty"`
+		State            *string            `json:"state,omitempty"`
+		StateDescription *string            `json:"stateDescription,omitempty"`
+		TaskId           *string            `json:"taskId,omitempty"`
+		TaskType         *string            `json:"taskType,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AllowedActions = decoded.AllowedActions
+	s.EndTime = decoded.EndTime
+	s.Errors = decoded.Errors
+	s.FriendlyName = decoded.FriendlyName
+	s.Name = decoded.Name
+	s.StartTime = decoded.StartTime
+	s.State = decoded.State
+	s.StateDescription = decoded.StateDescription
+	s.TaskId = decoded.TaskId
+	s.TaskType = decoded.TaskType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling ASRTask into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["customDetails"]; ok {
+		impl, err := UnmarshalTaskTypeDetailsImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'CustomDetails' for 'ASRTask': %+v", err)
+		}
+		s.CustomDetails = impl
+	}
+
+	if v, ok := temp["groupTaskCustomDetails"]; ok {
+		impl, err := UnmarshalGroupTaskDetailsImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'GroupTaskCustomDetails' for 'ASRTask': %+v", err)
+		}
+		s.GroupTaskCustomDetails = impl
+	}
+
+	return nil
+}

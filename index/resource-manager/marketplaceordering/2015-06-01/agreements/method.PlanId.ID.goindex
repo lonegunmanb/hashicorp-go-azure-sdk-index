@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/marketplaceordering/2015-06-01/agreements
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id PlanId) ID() string {
+	fmtString := "/subscriptions/%s/providers/Microsoft.MarketplaceOrdering/agreements/%s/offers/%s/plans/%s"
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.PublisherId, id.OfferId, id.PlanId)
+}

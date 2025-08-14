@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/azureactivedirectory/2020-03-01/privateendpointconnections
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c PrivateEndpointConnectionsClient) ListByPolicyNameComplete(ctx context.Context, id PrivateLinkForAzureAdId) (ListByPolicyNameCompleteResult, error) {
+	return c.ListByPolicyNameCompleteMatchingPredicate(ctx, id, PrivateEndpointConnectionOperationPredicate{})
+}

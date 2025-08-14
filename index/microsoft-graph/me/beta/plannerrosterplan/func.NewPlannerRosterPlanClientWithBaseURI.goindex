@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/plannerrosterplan
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPlannerRosterPlanClientWithBaseURI(sdkApi sdkEnv.Api) (*PlannerRosterPlanClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "plannerrosterplan", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PlannerRosterPlanClient: %+v", err)
+	}
+
+	return &PlannerRosterPlanClient{
+		Client: client,
+	}, nil
+}

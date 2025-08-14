@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/frontdoor/2020-05-01/frontdoors
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/polling"
+)
+func (c FrontDoorsClient) EndpointsPurgeContentThenPoll(ctx context.Context, id FrontDoorId, input PurgeParameters) error {
+	result, err := c.EndpointsPurgeContent(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing EndpointsPurgeContent: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(); err != nil {
+		return fmt.Errorf("polling after EndpointsPurgeContent: %+v", err)
+	}
+
+	return nil
+}

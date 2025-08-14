@@ -1,0 +1,11 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id UserIdManagedDeviceIdLogCollectionRequestId) ID() string {
+	fmtString := "/users/%s/managedDevices/%s/logCollectionRequests/%s"
+	return fmt.Sprintf(fmtString, id.UserId, id.ManagedDeviceId, id.DeviceLogCollectionResponseId)
+}

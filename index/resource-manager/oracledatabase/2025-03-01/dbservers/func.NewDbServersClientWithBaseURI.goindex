@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/dbservers
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDbServersClientWithBaseURI(sdkApi sdkEnv.Api) (*DbServersClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "dbservers", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DbServersClient: %+v", err)
+	}
+
+	return &DbServersClient{
+		Client: client,
+	}, nil
+}

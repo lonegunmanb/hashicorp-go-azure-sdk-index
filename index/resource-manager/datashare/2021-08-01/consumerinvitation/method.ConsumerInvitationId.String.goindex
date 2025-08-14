@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2021-08-01/consumerinvitation
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ConsumerInvitationId) String() string {
+	components := []string{
+		fmt.Sprintf("Location Name: %q", id.LocationName),
+		fmt.Sprintf("Invitation: %q", id.InvitationId),
+	}
+	return fmt.Sprintf("Consumer Invitation (%s)", strings.Join(components, "\n"))
+}

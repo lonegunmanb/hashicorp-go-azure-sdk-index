@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-11-01/provider
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ProviderClient) GetFunctionAppStacksComplete(ctx context.Context, options GetFunctionAppStacksOperationOptions) (GetFunctionAppStacksCompleteResult, error) {
+	return c.GetFunctionAppStacksCompleteMatchingPredicate(ctx, options, FunctionAppStackOperationPredicate{})
+}

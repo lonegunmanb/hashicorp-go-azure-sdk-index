@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2021-11-01/authorizationrulesnamespaces
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAuthorizationRulesNamespacesClientWithBaseURI(sdkApi sdkEnv.Api) (*AuthorizationRulesNamespacesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "authorizationrulesnamespaces", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AuthorizationRulesNamespacesClient: %+v", err)
+	}
+
+	return &AuthorizationRulesNamespacesClient{
+		Client: client,
+	}, nil
+}

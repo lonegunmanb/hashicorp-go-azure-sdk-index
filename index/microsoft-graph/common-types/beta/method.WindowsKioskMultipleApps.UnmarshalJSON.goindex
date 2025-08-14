@@ -1,0 +1,51 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *WindowsKioskMultipleApps) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AllowAccessToDownloadsFolder *bool                 `json:"allowAccessToDownloadsFolder,omitempty"`
+		DisallowDesktopApps          *bool                 `json:"disallowDesktopApps,omitempty"`
+		ShowTaskBar                  *bool                 `json:"showTaskBar,omitempty"`
+		StartMenuLayoutXml           nullable.Type[string] `json:"startMenuLayoutXml,omitempty"`
+		ODataId                      *string               `json:"@odata.id,omitempty"`
+		ODataType                    *string               `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AllowAccessToDownloadsFolder = decoded.AllowAccessToDownloadsFolder
+	s.DisallowDesktopApps = decoded.DisallowDesktopApps
+	s.ShowTaskBar = decoded.ShowTaskBar
+	s.StartMenuLayoutXml = decoded.StartMenuLayoutXml
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling WindowsKioskMultipleApps into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["apps"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling Apps into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]WindowsKioskAppBase, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalWindowsKioskAppBaseImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'Apps' for 'WindowsKioskMultipleApps': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.Apps = &output
+	}
+
+	return nil
+}

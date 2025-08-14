@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNativeAuthenticationApisEnabled(input string) (*NativeAuthenticationApisEnabled, error) {
+	vals := map[string]NativeAuthenticationApisEnabled{
+		"all":  NativeAuthenticationApisEnabled_All,
+		"none": NativeAuthenticationApisEnabled_None,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NativeAuthenticationApisEnabled(input)
+	return &out, nil
+}

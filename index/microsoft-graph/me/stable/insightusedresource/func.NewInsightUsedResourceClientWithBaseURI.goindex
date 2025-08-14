@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/insightusedresource
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewInsightUsedResourceClientWithBaseURI(sdkApi sdkEnv.Api) (*InsightUsedResourceClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "insightusedresource", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating InsightUsedResourceClient: %+v", err)
+	}
+
+	return &InsightUsedResourceClient{
+		Client: client,
+	}, nil
+}

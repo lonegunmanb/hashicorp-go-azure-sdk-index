@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2025-01-13/extensions
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *VersionId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.LocationName, ok = input.Parsed["locationName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "locationName", input)
+	}
+
+	if id.PublisherName, ok = input.Parsed["publisherName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "publisherName", input)
+	}
+
+	if id.ExtensionTypeName, ok = input.Parsed["extensionTypeName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "extensionTypeName", input)
+	}
+
+	if id.VersionName, ok = input.Parsed["versionName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "versionName", input)
+	}
+
+	return nil
+}

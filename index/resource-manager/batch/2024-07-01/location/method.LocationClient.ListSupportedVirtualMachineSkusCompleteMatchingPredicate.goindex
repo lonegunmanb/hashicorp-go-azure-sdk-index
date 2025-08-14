@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/location
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c LocationClient) ListSupportedVirtualMachineSkusCompleteMatchingPredicate(ctx context.Context, id LocationId, options ListSupportedVirtualMachineSkusOperationOptions, predicate SupportedSkuOperationPredicate) (result ListSupportedVirtualMachineSkusCompleteResult, err error) {
+	items := make([]SupportedSku, 0)
+
+	resp, err := c.ListSupportedVirtualMachineSkus(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListSupportedVirtualMachineSkusCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

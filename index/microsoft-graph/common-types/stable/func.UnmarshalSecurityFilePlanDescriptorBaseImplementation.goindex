@@ -1,0 +1,83 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalSecurityFilePlanDescriptorBaseImplementation(input []byte) (SecurityFilePlanDescriptorBase, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling SecurityFilePlanDescriptorBase into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.security.filePlanAppliedCategory") {
+		var out SecurityFilePlanAppliedCategory
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SecurityFilePlanAppliedCategory: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.security.filePlanAuthority") {
+		var out SecurityFilePlanAuthority
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SecurityFilePlanAuthority: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.security.filePlanCitation") {
+		var out SecurityFilePlanCitation
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SecurityFilePlanCitation: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.security.filePlanDepartment") {
+		var out SecurityFilePlanDepartment
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SecurityFilePlanDepartment: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.security.filePlanReference") {
+		var out SecurityFilePlanReference
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SecurityFilePlanReference: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.security.filePlanSubcategory") {
+		var out SecurityFilePlanSubcategory
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SecurityFilePlanSubcategory: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseSecurityFilePlanDescriptorBaseImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseSecurityFilePlanDescriptorBaseImpl: %+v", err)
+	}
+
+	return RawSecurityFilePlanDescriptorBaseImpl{
+		securityFilePlanDescriptorBase: parent,
+		Type:                           value,
+		Values:                         temp,
+	}, nil
+
+}

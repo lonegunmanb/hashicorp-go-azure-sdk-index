@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2024-09-01/customdomains
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s CdnCertificateSourceParameters) MarshalJSON() ([]byte, error) {
+	type wrapper CdnCertificateSourceParameters
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling CdnCertificateSourceParameters: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling CdnCertificateSourceParameters: %+v", err)
+	}
+
+	decoded["typeName"] = "CdnCertificateSourceParameters"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling CdnCertificateSourceParameters: %+v", err)
+	}
+
+	return encoded, nil
+}

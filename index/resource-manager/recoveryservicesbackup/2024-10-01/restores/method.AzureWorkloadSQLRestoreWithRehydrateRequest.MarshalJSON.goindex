@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2024-10-01/restores
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s AzureWorkloadSQLRestoreWithRehydrateRequest) MarshalJSON() ([]byte, error) {
+	type wrapper AzureWorkloadSQLRestoreWithRehydrateRequest
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AzureWorkloadSQLRestoreWithRehydrateRequest: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AzureWorkloadSQLRestoreWithRehydrateRequest: %+v", err)
+	}
+
+	decoded["objectType"] = "AzureWorkloadSQLRestoreWithRehydrateRequest"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AzureWorkloadSQLRestoreWithRehydrateRequest: %+v", err)
+	}
+
+	return encoded, nil
+}

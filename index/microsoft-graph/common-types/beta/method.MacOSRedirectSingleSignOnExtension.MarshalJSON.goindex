@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s MacOSRedirectSingleSignOnExtension) MarshalJSON() ([]byte, error) {
+	type wrapper MacOSRedirectSingleSignOnExtension
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling MacOSRedirectSingleSignOnExtension: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling MacOSRedirectSingleSignOnExtension: %+v", err)
+	}
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.macOSRedirectSingleSignOnExtension"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling MacOSRedirectSingleSignOnExtension: %+v", err)
+	}
+
+	return encoded, nil
+}

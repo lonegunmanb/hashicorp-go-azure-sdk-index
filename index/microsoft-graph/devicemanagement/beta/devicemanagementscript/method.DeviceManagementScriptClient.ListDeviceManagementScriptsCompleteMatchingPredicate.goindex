@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/devicemanagementscript
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DeviceManagementScriptClient) ListDeviceManagementScriptsCompleteMatchingPredicate(ctx context.Context, options ListDeviceManagementScriptsOperationOptions, predicate DeviceManagementScriptOperationPredicate) (result ListDeviceManagementScriptsCompleteResult, err error) {
+	items := make([]beta.DeviceManagementScript, 0)
+
+	resp, err := c.ListDeviceManagementScripts(ctx, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListDeviceManagementScriptsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

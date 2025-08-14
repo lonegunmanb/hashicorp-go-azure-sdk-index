@@ -1,0 +1,9 @@
+package github.com/hashicorp/go-azure-sdk/sdk/environments
+import (
+	"github.com/hashicorp/go-azure-helpers/lang/pointer"
+)
+func (e *ApiEndpoint) WithResourceIdentifier(identifier string) Api {
+	newApi := *e
+	newApi.resourceIdentifier = pointer.To(identifier)
+	return &newApi
+}

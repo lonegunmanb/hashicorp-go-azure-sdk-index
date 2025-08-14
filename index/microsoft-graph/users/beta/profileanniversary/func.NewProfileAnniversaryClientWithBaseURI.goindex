@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/profileanniversary
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewProfileAnniversaryClientWithBaseURI(sdkApi sdkEnv.Api) (*ProfileAnniversaryClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "profileanniversary", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ProfileAnniversaryClient: %+v", err)
+	}
+
+	return &ProfileAnniversaryClient{
+		Client: client,
+	}, nil
+}

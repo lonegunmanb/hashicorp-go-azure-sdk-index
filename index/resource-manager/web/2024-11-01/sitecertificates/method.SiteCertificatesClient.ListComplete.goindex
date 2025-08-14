@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-11-01/sitecertificates
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SiteCertificatesClient) ListComplete(ctx context.Context, id commonids.AppServiceId) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, CertificateOperationPredicate{})
+}

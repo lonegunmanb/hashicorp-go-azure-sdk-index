@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamownerserviceprovisioningerror
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c TeamOwnerServiceProvisioningErrorClient) ListTeamOwnerServiceProvisioningErrorsComplete(ctx context.Context, id beta.GroupIdTeamOwnerId, options ListTeamOwnerServiceProvisioningErrorsOperationOptions) (ListTeamOwnerServiceProvisioningErrorsCompleteResult, error) {
+	return c.ListTeamOwnerServiceProvisioningErrorsCompleteMatchingPredicate(ctx, id, options, ServiceProvisioningErrorOperationPredicate{})
+}

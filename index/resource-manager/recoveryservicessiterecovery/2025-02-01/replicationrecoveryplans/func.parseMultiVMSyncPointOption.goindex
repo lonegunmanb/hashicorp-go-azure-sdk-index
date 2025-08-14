@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationrecoveryplans
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMultiVMSyncPointOption(input string) (*MultiVMSyncPointOption, error) {
+	vals := map[string]MultiVMSyncPointOption{
+		"usemultivmsyncrecoverypoint": MultiVMSyncPointOptionUseMultiVMSyncRecoveryPoint,
+		"usepervmrecoverypoint":       MultiVMSyncPointOptionUsePerVMRecoveryPoint,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MultiVMSyncPointOption(input)
+	return &out, nil
+}

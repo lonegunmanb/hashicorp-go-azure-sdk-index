@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseDeviceManagementHardwareConfigurationIdUserRunStateID(input string) (*DeviceManagementHardwareConfigurationIdUserRunStateId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&DeviceManagementHardwareConfigurationIdUserRunStateId{})
+	parsed, err := parser.Parse(input, false)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := DeviceManagementHardwareConfigurationIdUserRunStateId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

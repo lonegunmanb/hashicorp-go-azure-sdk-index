@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/manager
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o GetManagerOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.ConsistencyLevel != nil {
+		out.ConsistencyLevel = *o.ConsistencyLevel
+	}
+	if o.Expand != nil {
+		out.Expand = *o.Expand
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	if o.Select != nil {
+		out.Select = *o.Select
+	}
+	return &out
+}

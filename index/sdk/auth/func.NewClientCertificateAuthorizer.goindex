@@ -1,0 +1,42 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"context"
+	"fmt"
+	"os"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	"software.sslmate.com/src/go-pkcs12"
+)
+func NewClientCertificateAuthorizer(ctx context.Context, options ClientCertificateAuthorizerOptions) (Authorizer, error) {
+	if len(options.Pkcs12Data) == 0 {
+		var err error
+		options.Pkcs12Data, err = os.ReadFile(options.Pkcs12Path)
+		if err != nil {
+			return nil, fmt.Errorf("could not read PKCS#12 archive at %q: %s", options.Pkcs12Path, err)
+		}
+	}
+
+	// we aren't interested in the issuer chain, but we use the DecodeChain method to parse them out in case they are present
+	key, cert, _, err := pkcs12.DecodeChain(options.Pkcs12Data, options.Pkcs12Pass)
+	if err != nil {
+		return nil, fmt.Errorf("could not decode PKCS#12 archive: %s", err)
+	}
+
+	scope, err := environments.Scope(options.Api)
+	if err != nil {
+		return nil, fmt.Errorf("determining scope for %q: %+v", options.Api.Name(), err)
+	}
+
+	conf := clientCredentialsConfig{
+		Environment:        options.Environment,
+		TenantID:           options.TenantId,
+		AuxiliaryTenantIDs: options.AuxTenantIds,
+		ClientID:           options.ClientId,
+		PrivateKey:         key,
+		Certificate:        cert,
+		Scopes: []string{
+			*scope,
+		},
+	}
+	return conf.TokenSource(ctx, clientCredentialsAssertionType)
+}

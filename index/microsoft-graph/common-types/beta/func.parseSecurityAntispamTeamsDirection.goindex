@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityAntispamTeamsDirection(input string) (*SecurityAntispamTeamsDirection, error) {
+	vals := map[string]SecurityAntispamTeamsDirection{
+		"inbound":  SecurityAntispamTeamsDirection_Inbound,
+		"intraorg": SecurityAntispamTeamsDirection_Intraorg,
+		"outbound": SecurityAntispamTeamsDirection_Outbound,
+		"unknown":  SecurityAntispamTeamsDirection_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityAntispamTeamsDirection(input)
+	return &out, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2024-03-01/elasticversions
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewElasticVersionsClientWithBaseURI(sdkApi sdkEnv.Api) (*ElasticVersionsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "elasticversions", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ElasticVersionsClient: %+v", err)
+	}
+
+	return &ElasticVersionsClient{
+		Client: client,
+	}, nil
+}

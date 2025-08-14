@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/applicationgateways
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id PredefinedPolicyId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Predefined Policy Name: %q", id.PredefinedPolicyName),
+	}
+	return fmt.Sprintf("Predefined Policy (%s)", strings.Join(components, "\n"))
+}

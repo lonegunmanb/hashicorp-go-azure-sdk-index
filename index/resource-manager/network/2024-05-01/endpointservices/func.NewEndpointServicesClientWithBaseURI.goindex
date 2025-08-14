@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-05-01/endpointservices
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewEndpointServicesClientWithBaseURI(sdkApi sdkEnv.Api) (*EndpointServicesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "endpointservices", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating EndpointServicesClient: %+v", err)
+	}
+
+	return &EndpointServicesClient{
+		Client: client,
+	}, nil
+}

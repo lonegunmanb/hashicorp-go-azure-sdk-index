@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2024-04-01/replicationappliances
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s InMageRcmApplianceSpecificDetails) MarshalJSON() ([]byte, error) {
+	type wrapper InMageRcmApplianceSpecificDetails
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling InMageRcmApplianceSpecificDetails: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling InMageRcmApplianceSpecificDetails: %+v", err)
+	}
+
+	decoded["instanceType"] = "InMageRcm"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling InMageRcmApplianceSpecificDetails: %+v", err)
+	}
+
+	return encoded, nil
+}

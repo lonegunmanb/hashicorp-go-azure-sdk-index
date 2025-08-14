@@ -1,0 +1,11 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id MeAppConsentRequestsForApprovalIdUserConsentRequestIdApprovalStepId) ID() string {
+	fmtString := "/me/appConsentRequestsForApproval/%s/userConsentRequests/%s/approval/steps/%s"
+	return fmt.Sprintf(fmtString, id.AppConsentRequestId, id.UserConsentRequestId, id.ApprovalStepId)
+}

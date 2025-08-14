@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-11-01/cloudservicepublicipaddresses
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c CloudServicePublicIPAddressesClient) PublicIPAddressesListCloudServicePublicIPAddressesComplete(ctx context.Context, id ProviderCloudServiceId) (PublicIPAddressesListCloudServicePublicIPAddressesCompleteResult, error) {
+	return c.PublicIPAddressesListCloudServicePublicIPAddressesCompleteMatchingPredicate(ctx, id, PublicIPAddressOperationPredicate{})
+}

@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/accountmigrations
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMigrationStatus(input string) (*MigrationStatus, error) {
+	vals := map[string]MigrationStatus{
+		"complete":               MigrationStatusComplete,
+		"failed":                 MigrationStatusFailed,
+		"inprogress":             MigrationStatusInProgress,
+		"invalid":                MigrationStatusInvalid,
+		"submittedforconversion": MigrationStatusSubmittedForConversion,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MigrationStatus(input)
+	return &out, nil
+}

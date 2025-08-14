@@ -1,0 +1,37 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWindows10EditionType(input string) (*Windows10EditionType, error) {
+	vals := map[string]Windows10EditionType{
+		"notconfigured":                     Windows10EditionType_NotConfigured,
+		"windows10education":                Windows10EditionType_Windows10Education,
+		"windows10educationn":               Windows10EditionType_Windows10EducationN,
+		"windows10enterprise":               Windows10EditionType_Windows10Enterprise,
+		"windows10enterprisen":              Windows10EditionType_Windows10EnterpriseN,
+		"windows10holographicenterprise":    Windows10EditionType_Windows10HolographicEnterprise,
+		"windows10home":                     Windows10EditionType_Windows10Home,
+		"windows10homechina":                Windows10EditionType_Windows10HomeChina,
+		"windows10homen":                    Windows10EditionType_Windows10HomeN,
+		"windows10homesinglelanguage":       Windows10EditionType_Windows10HomeSingleLanguage,
+		"windows10iotcore":                  Windows10EditionType_Windows10IoTCore,
+		"windows10iotcorecommercial":        Windows10EditionType_Windows10IoTCoreCommercial,
+		"windows10mobile":                   Windows10EditionType_Windows10Mobile,
+		"windows10mobileenterprise":         Windows10EditionType_Windows10MobileEnterprise,
+		"windows10professional":             Windows10EditionType_Windows10Professional,
+		"windows10professionaleducation":    Windows10EditionType_Windows10ProfessionalEducation,
+		"windows10professionaleducationn":   Windows10EditionType_Windows10ProfessionalEducationN,
+		"windows10professionaln":            Windows10EditionType_Windows10ProfessionalN,
+		"windows10professionalworkstation":  Windows10EditionType_Windows10ProfessionalWorkstation,
+		"windows10professionalworkstationn": Windows10EditionType_Windows10ProfessionalWorkstationN,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10EditionType(input)
+	return &out, nil
+}

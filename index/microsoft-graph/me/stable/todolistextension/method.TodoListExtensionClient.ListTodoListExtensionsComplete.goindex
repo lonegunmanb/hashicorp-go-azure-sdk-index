@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/todolistextension
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c TodoListExtensionClient) ListTodoListExtensionsComplete(ctx context.Context, id stable.MeTodoListId, options ListTodoListExtensionsOperationOptions) (ListTodoListExtensionsCompleteResult, error) {
+	return c.ListTodoListExtensionsCompleteMatchingPredicate(ctx, id, options, ExtensionOperationPredicate{})
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseFrontlineCloudPCAvailability(input string) (*FrontlineCloudPCAvailability, error) {
+	vals := map[string]FrontlineCloudPCAvailability{
+		"available":     FrontlineCloudPCAvailability_Available,
+		"notapplicable": FrontlineCloudPCAvailability_NotApplicable,
+		"notavailable":  FrontlineCloudPCAvailability_NotAvailable,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FrontlineCloudPCAvailability(input)
+	return &out, nil
+}

@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type SamlNameIdClaim struct {
+	NameIdFormat *SamlNameIDFormat `json:"nameIdFormat,omitempty"`
+
+	// Allows the specification of a service provider name qualifier reflected in the sAML response. The value provided must
+	// match one of the service provider names configured for the application and is only applicable for IdP-initiated
+	// applications (the sign-on URL should be empty for the IdP-initiated applications), in all other cases this value is
+	// ignored.
+	ServiceProviderNameQualifier nullable.Type[string] `json:"serviceProviderNameQualifier,omitempty"`
+
+	// Fields inherited from CustomClaimBase
+
+	// One or more configurations that describe how the claim is sourced and under what conditions.
+	Configurations *[]CustomClaimConfiguration `json:"configurations,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

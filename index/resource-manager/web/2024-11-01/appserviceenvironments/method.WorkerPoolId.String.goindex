@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-11-01/appserviceenvironments
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id WorkerPoolId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Hosting Environment Name: %q", id.HostingEnvironmentName),
+		fmt.Sprintf("Worker Pool Name: %q", id.WorkerPoolName),
+	}
+	return fmt.Sprintf("Worker Pool (%s)", strings.Join(components, "\n"))
+}

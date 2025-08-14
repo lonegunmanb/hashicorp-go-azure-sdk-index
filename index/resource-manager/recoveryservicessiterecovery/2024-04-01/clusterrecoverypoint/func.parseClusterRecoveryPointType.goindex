@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2024-04-01/clusterrecoverypoint
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseClusterRecoveryPointType(input string) (*ClusterRecoveryPointType, error) {
+	vals := map[string]ClusterRecoveryPointType{
+		"applicationconsistent": ClusterRecoveryPointTypeApplicationConsistent,
+		"crashconsistent":       ClusterRecoveryPointTypeCrashConsistent,
+		"notspecified":          ClusterRecoveryPointTypeNotSpecified,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ClusterRecoveryPointType(input)
+	return &out, nil
+}

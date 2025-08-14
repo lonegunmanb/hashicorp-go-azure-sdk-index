@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/schemaextensions/beta/schemaextension
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SchemaExtensionClient) ListSchemaExtensionsComplete(ctx context.Context, options ListSchemaExtensionsOperationOptions) (ListSchemaExtensionsCompleteResult, error) {
+	return c.ListSchemaExtensionsCompleteMatchingPredicate(ctx, options, SchemaExtensionOperationPredicate{})
+}

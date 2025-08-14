@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamincomingchannel
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTeamIncomingChannelClientWithBaseURI(sdkApi sdkEnv.Api) (*TeamIncomingChannelClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "teamincomingchannel", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TeamIncomingChannelClient: %+v", err)
+	}
+
+	return &TeamIncomingChannelClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/redisenterprise/2024-10-01/redisenterprise
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSkuName(input string) (*SkuName, error) {
+	vals := map[string]SkuName{
+		"enterprise_e5":         SkuNameEnterpriseEFive,
+		"enterprise_e50":        SkuNameEnterpriseEFiveZero,
+		"enterprise_e400":       SkuNameEnterpriseEFourHundred,
+		"enterprise_e1":         SkuNameEnterpriseEOne,
+		"enterprise_e100":       SkuNameEnterpriseEOneHundred,
+		"enterprise_e10":        SkuNameEnterpriseEOneZero,
+		"enterprise_e200":       SkuNameEnterpriseETwoHundred,
+		"enterprise_e20":        SkuNameEnterpriseETwoZero,
+		"enterpriseflash_f1500": SkuNameEnterpriseFlashFOneFiveHundred,
+		"enterpriseflash_f700":  SkuNameEnterpriseFlashFSevenHundred,
+		"enterpriseflash_f300":  SkuNameEnterpriseFlashFThreeHundred,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SkuName(input)
+	return &out, nil
+}

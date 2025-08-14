@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id MeOnlineMeetingIdTranscriptId) String() string {
+	components := []string{
+		fmt.Sprintf("Online Meeting: %q", id.OnlineMeetingId),
+		fmt.Sprintf("Call Transcript: %q", id.CallTranscriptId),
+	}
+	return fmt.Sprintf("Me Online Meeting Id Transcript (%s)", strings.Join(components, "\n"))
+}

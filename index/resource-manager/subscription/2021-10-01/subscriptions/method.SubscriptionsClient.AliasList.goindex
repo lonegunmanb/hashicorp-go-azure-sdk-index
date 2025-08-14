@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/subscription/2021-10-01/subscriptions
+import (
+	"context"
+	"fmt"
+	"net/http"
+	"net/url"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+)
+func (c SubscriptionsClient) AliasList(ctx context.Context) (resp AliasListOperationResponse, err error) {
+	req, err := c.preparerForAliasList(ctx)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "subscriptions.SubscriptionsClient", "AliasList", nil, "Failure preparing request")
+		return
+	}
+
+	resp.HttpResponse, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "subscriptions.SubscriptionsClient", "AliasList", resp.HttpResponse, "Failure sending request")
+		return
+	}
+
+	resp, err = c.responderForAliasList(resp.HttpResponse)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "subscriptions.SubscriptionsClient", "AliasList", resp.HttpResponse, "Failure responding to request")
+		return
+	}
+	return
+}

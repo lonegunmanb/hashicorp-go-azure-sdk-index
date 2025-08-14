@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/privatedns/2024-06-01/privatedns
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id PrivateZoneId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Private Dns Zone Name: %q", id.PrivateDnsZoneName),
+		fmt.Sprintf("Record Type: %q", string(id.RecordType)),
+	}
+	return fmt.Sprintf("Private Zone (%s)", strings.Join(components, "\n"))
+}

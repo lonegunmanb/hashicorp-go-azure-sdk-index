@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/policyinsights/2024-10-01/policystates
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParsePolicyDefinitionProviders2PolicyStatePolicyStatesResourceIDInsensitively(input string) (*PolicyDefinitionProviders2PolicyStatePolicyStatesResourceId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&PolicyDefinitionProviders2PolicyStatePolicyStatesResourceId{})
+	parsed, err := parser.Parse(input, true)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := PolicyDefinitionProviders2PolicyStatePolicyStatesResourceId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

@@ -1,0 +1,43 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s AccessReviewInstanceDecisionItem) MarshalJSON() ([]byte, error) {
+	type wrapper AccessReviewInstanceDecisionItem
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AccessReviewInstanceDecisionItem: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AccessReviewInstanceDecisionItem: %+v", err)
+	}
+
+	delete(decoded, "accessReviewId")
+	delete(decoded, "appliedBy")
+	delete(decoded, "appliedDateTime")
+	delete(decoded, "applyResult")
+	delete(decoded, "principal")
+	delete(decoded, "principalLink")
+	delete(decoded, "recommendation")
+	delete(decoded, "resource")
+	delete(decoded, "resourceLink")
+	delete(decoded, "reviewedBy")
+	delete(decoded, "reviewedDateTime")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.accessReviewInstanceDecisionItem"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AccessReviewInstanceDecisionItem: %+v", err)
+	}
+
+	return encoded, nil
+}

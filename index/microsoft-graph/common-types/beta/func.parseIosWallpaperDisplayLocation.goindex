@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseIosWallpaperDisplayLocation(input string) (*IosWallpaperDisplayLocation, error) {
+	vals := map[string]IosWallpaperDisplayLocation{
+		"homescreen":         IosWallpaperDisplayLocation_HomeScreen,
+		"lockandhomescreens": IosWallpaperDisplayLocation_LockAndHomeScreens,
+		"lockscreen":         IosWallpaperDisplayLocation_LockScreen,
+		"notconfigured":      IosWallpaperDisplayLocation_NotConfigured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IosWallpaperDisplayLocation(input)
+	return &out, nil
+}

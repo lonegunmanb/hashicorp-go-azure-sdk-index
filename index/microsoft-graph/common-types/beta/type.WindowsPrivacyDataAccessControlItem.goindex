@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type WindowsPrivacyDataAccessControlItem struct {
+	// Determine the access level to specific Windows privacy data category.
+	AccessLevel *WindowsPrivacyDataAccessLevel `json:"accessLevel,omitempty"`
+
+	// The Package Family Name of a Windows app. When set, the access level applies to the specified application.
+	AppDisplayName nullable.Type[string] `json:"appDisplayName,omitempty"`
+
+	// The Package Family Name of a Windows app. When set, the access level applies to the specified application.
+	AppPackageFamilyName nullable.Type[string] `json:"appPackageFamilyName,omitempty"`
+
+	// Windows privacy data category specifier for privacy data access.
+	DataCategory *WindowsPrivacyDataCategory `json:"dataCategory,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

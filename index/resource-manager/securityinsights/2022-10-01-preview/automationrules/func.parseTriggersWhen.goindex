@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/automationrules
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTriggersWhen(input string) (*TriggersWhen, error) {
+	vals := map[string]TriggersWhen{
+		"created": TriggersWhenCreated,
+		"updated": TriggersWhenUpdated,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TriggersWhen(input)
+	return &out, nil
+}

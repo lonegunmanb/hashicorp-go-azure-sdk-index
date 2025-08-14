@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootanalyticsitemactivitystatactivitydriveitem
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDriveRootAnalyticsItemActivityStatActivityDriveItemClientWithBaseURI(sdkApi sdkEnv.Api) (*DriveRootAnalyticsItemActivityStatActivityDriveItemClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "driverootanalyticsitemactivitystatactivitydriveitem", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DriveRootAnalyticsItemActivityStatActivityDriveItemClient: %+v", err)
+	}
+
+	return &DriveRootAnalyticsItemActivityStatActivityDriveItemClient{
+		Client: client,
+	}, nil
+}

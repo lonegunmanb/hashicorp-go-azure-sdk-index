@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/invoice
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id InvoiceId) String() string {
+	components := []string{
+		fmt.Sprintf("Invoice Name: %q", id.InvoiceName),
+	}
+	return fmt.Sprintf("Invoice (%s)", strings.Join(components, "\n"))
+}

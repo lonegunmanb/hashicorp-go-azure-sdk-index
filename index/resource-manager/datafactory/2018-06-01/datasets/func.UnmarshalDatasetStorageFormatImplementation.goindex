@@ -1,0 +1,73 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/datasets
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalDatasetStorageFormatImplementation(input []byte) (DatasetStorageFormat, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling DatasetStorageFormat into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "AvroFormat") {
+		var out AvroFormat
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AvroFormat: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "JsonFormat") {
+		var out JsonFormat
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into JsonFormat: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "OrcFormat") {
+		var out OrcFormat
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into OrcFormat: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "ParquetFormat") {
+		var out ParquetFormat
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ParquetFormat: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "TextFormat") {
+		var out TextFormat
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into TextFormat: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseDatasetStorageFormatImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseDatasetStorageFormatImpl: %+v", err)
+	}
+
+	return RawDatasetStorageFormatImpl{
+		datasetStorageFormat: parent,
+		Type:                 value,
+		Values:               temp,
+	}, nil
+
+}

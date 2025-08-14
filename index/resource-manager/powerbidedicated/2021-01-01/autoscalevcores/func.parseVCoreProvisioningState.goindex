@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/powerbidedicated/2021-01-01/autoscalevcores
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVCoreProvisioningState(input string) (*VCoreProvisioningState, error) {
+	vals := map[string]VCoreProvisioningState{
+		"succeeded": VCoreProvisioningStateSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VCoreProvisioningState(input)
+	return &out, nil
+}

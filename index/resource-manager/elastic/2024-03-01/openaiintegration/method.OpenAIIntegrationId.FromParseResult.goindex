@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2024-03-01/openaiintegration
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *OpenAIIntegrationId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.MonitorName, ok = input.Parsed["monitorName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "monitorName", input)
+	}
+
+	if id.OpenAIIntegrationName, ok = input.Parsed["openAIIntegrationName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "openAIIntegrationName", input)
+	}
+
+	return nil
+}

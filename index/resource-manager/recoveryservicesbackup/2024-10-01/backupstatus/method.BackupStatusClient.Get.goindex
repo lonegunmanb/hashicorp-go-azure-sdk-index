@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2024-10-01/backupstatus
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+)
+func (c BackupStatusClient) Get(ctx context.Context, id LocationId, input BackupStatusRequest) (result GetOperationResponse, err error) {
+	req, err := c.preparerForGet(ctx, id, input)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "backupstatus.BackupStatusClient", "Get", nil, "Failure preparing request")
+		return
+	}
+
+	result.HttpResponse, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "backupstatus.BackupStatusClient", "Get", result.HttpResponse, "Failure sending request")
+		return
+	}
+
+	result, err = c.responderForGet(result.HttpResponse)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "backupstatus.BackupStatusClient", "Get", result.HttpResponse, "Failure responding to request")
+		return
+	}
+
+	return
+}

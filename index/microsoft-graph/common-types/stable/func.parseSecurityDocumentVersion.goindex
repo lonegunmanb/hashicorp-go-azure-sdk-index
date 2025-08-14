@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityDocumentVersion(input string) (*SecurityDocumentVersion, error) {
+	vals := map[string]SecurityDocumentVersion{
+		"all":       SecurityDocumentVersion_All,
+		"latest":    SecurityDocumentVersion_Latest,
+		"recent10":  SecurityDocumentVersion_Recent10,
+		"recent100": SecurityDocumentVersion_Recent100,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityDocumentVersion(input)
+	return &out, nil
+}

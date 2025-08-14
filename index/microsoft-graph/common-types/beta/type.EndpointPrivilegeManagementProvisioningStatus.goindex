@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type EndpointPrivilegeManagementProvisioningStatus struct {
+	// Indicates whether tenant has a valid Intune Endpoint Privilege Management license. Possible value are : 0 - notPaid,
+	// 1 - paid, 2 - trial. See LicenseType enum for more details. Default notPaid .
+	LicenseType *LicenseType `json:"licenseType,omitempty"`
+
+	// Indicates whether tenant is onboarded to Microsoft Managed Platform - Cloud (MMPC). When set to true, implies tenant
+	// is onboarded and when set to false, implies tenant is not onboarded. Default set to false.
+	OnboardedToMicrosoftManagedPlatform *bool `json:"onboardedToMicrosoftManagedPlatform,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

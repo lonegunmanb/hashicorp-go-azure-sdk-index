@@ -1,0 +1,57 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type UnmanagedDeviceDiscoveryTask struct {
+	// Unmanaged devices discovered in the network.
+	UnmanagedDevices *[]UnmanagedDevice `json:"unmanagedDevices,omitempty"`
+
+	// Fields inherited from DeviceAppManagementTask
+
+	// The name or email of the admin this task is assigned to.
+	AssignedTo nullable.Type[string] `json:"assignedTo,omitempty"`
+
+	// Device app management task category.
+	Category *DeviceAppManagementTaskCategory `json:"category,omitempty"`
+
+	// The created date.
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+
+	// The email address of the creator.
+	Creator nullable.Type[string] `json:"creator,omitempty"`
+
+	// Notes from the creator.
+	CreatorNotes nullable.Type[string] `json:"creatorNotes,omitempty"`
+
+	// The description.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// The name.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// The due date.
+	DueDateTime *string `json:"dueDateTime,omitempty"`
+
+	// Device app management task priority.
+	Priority *DeviceAppManagementTaskPriority `json:"priority,omitempty"`
+
+	// Device app management task status.
+	Status *DeviceAppManagementTaskStatus `json:"status,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

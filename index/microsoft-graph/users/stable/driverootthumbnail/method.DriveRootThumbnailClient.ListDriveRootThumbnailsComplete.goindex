@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/driverootthumbnail
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DriveRootThumbnailClient) ListDriveRootThumbnailsComplete(ctx context.Context, id stable.UserIdDriveId, options ListDriveRootThumbnailsOperationOptions) (ListDriveRootThumbnailsCompleteResult, error) {
+	return c.ListDriveRootThumbnailsCompleteMatchingPredicate(ctx, id, options, ThumbnailSetOperationPredicate{})
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/transitivereport
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTransitiveReportClientWithBaseURI(sdkApi sdkEnv.Api) (*TransitiveReportClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "transitivereport", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TransitiveReportClient: %+v", err)
+	}
+
+	return &TransitiveReportClient{
+		Client: client,
+	}, nil
+}

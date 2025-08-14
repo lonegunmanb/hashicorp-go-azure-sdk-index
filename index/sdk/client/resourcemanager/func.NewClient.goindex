@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager
+import (
+	"context"
+	"fmt"
+	"net/url"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewClient(api environments.Api, serviceName, apiVersion string) (*Client, error) {
+	endpoint, ok := api.Endpoint()
+	if !ok {
+		return nil, fmt.Errorf("no `endpoint` was returned for this environment")
+	}
+
+	baseClient := client.NewClient(*endpoint, serviceName, apiVersion)
+	baseClient.AuthorizeRequest = AuthorizeResourceManagerRequest
+
+	return &Client{
+		Client:     baseClient,
+		apiVersion: apiVersion,
+	}, nil
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mobilenetwork/2024-04-01/diagnosticspackages
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDiagnosticsPackageStatus(input string) (*DiagnosticsPackageStatus, error) {
+	vals := map[string]DiagnosticsPackageStatus{
+		"collected":  DiagnosticsPackageStatusCollected,
+		"collecting": DiagnosticsPackageStatusCollecting,
+		"error":      DiagnosticsPackageStatusError,
+		"notstarted": DiagnosticsPackageStatusNotStarted,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DiagnosticsPackageStatus(input)
+	return &out, nil
+}

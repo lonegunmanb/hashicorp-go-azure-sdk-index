@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/comanageddevicemanageddevicemobileappconfigurationstate
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ComanagedDeviceManagedDeviceMobileAppConfigurationStateClient) ListComanagedDeviceManagedDeviceMobileAppConfigurationStatesCompleteMatchingPredicate(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, options ListComanagedDeviceManagedDeviceMobileAppConfigurationStatesOperationOptions, predicate ManagedDeviceMobileAppConfigurationStateOperationPredicate) (result ListComanagedDeviceManagedDeviceMobileAppConfigurationStatesCompleteResult, err error) {
+	items := make([]beta.ManagedDeviceMobileAppConfigurationState, 0)
+
+	resp, err := c.ListComanagedDeviceManagedDeviceMobileAppConfigurationStates(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListComanagedDeviceManagedDeviceMobileAppConfigurationStatesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

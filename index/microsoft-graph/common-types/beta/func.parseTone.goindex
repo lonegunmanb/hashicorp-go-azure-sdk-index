@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTone(input string) (*Tone, error) {
+	vals := map[string]Tone{
+		"a":     Tone_A,
+		"b":     Tone_B,
+		"c":     Tone_C,
+		"d":     Tone_D,
+		"flash": Tone_Flash,
+		"pound": Tone_Pound,
+		"star":  Tone_Star,
+		"tone0": Tone_Tone0,
+		"tone1": Tone_Tone1,
+		"tone2": Tone_Tone2,
+		"tone3": Tone_Tone3,
+		"tone4": Tone_Tone4,
+		"tone5": Tone_Tone5,
+		"tone6": Tone_Tone6,
+		"tone7": Tone_Tone7,
+		"tone8": Tone_Tone8,
+		"tone9": Tone_Tone9,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Tone(input)
+	return &out, nil
+}

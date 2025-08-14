@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/plannerfavoriteplan
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c PlannerFavoritePlanClient) ListPlannerFavoritePlansCompleteMatchingPredicate(ctx context.Context, options ListPlannerFavoritePlansOperationOptions, predicate PlannerPlanOperationPredicate) (result ListPlannerFavoritePlansCompleteResult, err error) {
+	items := make([]beta.PlannerPlan, 0)
+
+	resp, err := c.ListPlannerFavoritePlans(ctx, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListPlannerFavoritePlansCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

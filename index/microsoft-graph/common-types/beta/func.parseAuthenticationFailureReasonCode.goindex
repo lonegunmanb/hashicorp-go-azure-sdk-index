@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAuthenticationFailureReasonCode(input string) (*AuthenticationFailureReasonCode, error) {
+	vals := map[string]AuthenticationFailureReasonCode{
+		"badrequest":    AuthenticationFailureReasonCode_BadRequest,
+		"configerror":   AuthenticationFailureReasonCode_ConfigError,
+		"denied":        AuthenticationFailureReasonCode_Denied,
+		"incomplete":    AuthenticationFailureReasonCode_Incomplete,
+		"other":         AuthenticationFailureReasonCode_Other,
+		"systemfailure": AuthenticationFailureReasonCode_SystemFailure,
+		"usererror":     AuthenticationFailureReasonCode_UserError,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AuthenticationFailureReasonCode(input)
+	return &out, nil
+}

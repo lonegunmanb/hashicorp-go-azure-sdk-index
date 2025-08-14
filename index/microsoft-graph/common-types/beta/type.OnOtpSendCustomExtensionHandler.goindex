@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type OnOtpSendCustomExtensionHandler struct {
+	// Configuration regarding properties of the custom extension that are can be overwritten for the onEmailOtpSendListener
+	// event listener.
+	Configuration *CustomExtensionOverwriteConfiguration `json:"configuration,omitempty"`
+
+	CustomExtension *OnOtpSendCustomExtension `json:"customExtension,omitempty"`
+
+	// Fields inherited from OnOtpSendHandler
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

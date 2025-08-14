@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSimulationAttackTechnique(input string) (*SimulationAttackTechnique, error) {
+	vals := map[string]SimulationAttackTechnique{
+		"attachmentmalware":    SimulationAttackTechnique_AttachmentMalware,
+		"credentialharvesting": SimulationAttackTechnique_CredentialHarvesting,
+		"drivebyurl":           SimulationAttackTechnique_DriveByUrl,
+		"linkinattachment":     SimulationAttackTechnique_LinkInAttachment,
+		"linktomalwarefile":    SimulationAttackTechnique_LinkToMalwareFile,
+		"unknown":              SimulationAttackTechnique_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SimulationAttackTechnique(input)
+	return &out, nil
+}

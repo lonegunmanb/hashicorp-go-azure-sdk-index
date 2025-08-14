@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/conversationthread
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewConversationThreadClientWithBaseURI(sdkApi sdkEnv.Api) (*ConversationThreadClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "conversationthread", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ConversationThreadClient: %+v", err)
+	}
+
+	return &ConversationThreadClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/advisor/2023-01-01/suppressions
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ScopedSuppressionId) ID() string {
+	fmtString := "/%s/providers/Microsoft.Advisor/recommendations/%s/suppressions/%s"
+	return fmt.Sprintf(fmtString, strings.TrimPrefix(id.ResourceUri, "/"), id.RecommendationId, id.SuppressionName)
+}

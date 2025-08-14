@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-11-01/bastionhosts
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c BastionHostsClient) GetBastionShareableLinkComplete(ctx context.Context, id BastionHostId, input BastionShareableLinkListRequest) (GetBastionShareableLinkCompleteResult, error) {
+	return c.GetBastionShareableLinkCompleteMatchingPredicate(ctx, id, input, BastionShareableLinkOperationPredicate{})
+}

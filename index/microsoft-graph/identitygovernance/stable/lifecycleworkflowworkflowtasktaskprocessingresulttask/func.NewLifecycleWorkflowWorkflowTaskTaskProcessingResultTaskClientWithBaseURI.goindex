@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/lifecycleworkflowworkflowtasktaskprocessingresulttask
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewLifecycleWorkflowWorkflowTaskTaskProcessingResultTaskClientWithBaseURI(sdkApi sdkEnv.Api) (*LifecycleWorkflowWorkflowTaskTaskProcessingResultTaskClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "lifecycleworkflowworkflowtasktaskprocessingresulttask", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating LifecycleWorkflowWorkflowTaskTaskProcessingResultTaskClient: %+v", err)
+	}
+
+	return &LifecycleWorkflowWorkflowTaskTaskProcessingResultTaskClient{
+		Client: client,
+	}, nil
+}

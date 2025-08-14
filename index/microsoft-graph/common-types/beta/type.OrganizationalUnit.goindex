@@ -1,0 +1,42 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type OrganizationalUnit struct {
+	Children                 *[]OrganizationalUnit `json:"children,omitempty"`
+	Description              nullable.Type[string] `json:"description,omitempty"`
+	DisplayName              nullable.Type[string] `json:"displayName,omitempty"`
+	OrganizationalUnitParent *OrganizationalUnit   `json:"organizationalUnitParent,omitempty"`
+	Resources                *[]DirectoryObject    `json:"resources,omitempty"`
+
+	// List of OData IDs for `Resources` to bind to this entity
+	Resources_ODataBind *[]string `json:"resources@odata.bind,omitempty"`
+
+	TransitiveChildren  *[]OrganizationalUnit `json:"transitiveChildren,omitempty"`
+	TransitiveResources *[]DirectoryObject    `json:"transitiveResources,omitempty"`
+
+	// List of OData IDs for `TransitiveResources` to bind to this entity
+	TransitiveResources_ODataBind *[]string `json:"transitiveResources@odata.bind,omitempty"`
+
+	// Fields inherited from DirectoryObject
+
+	// Date and time when this object was deleted. Always null when the object hasn't been deleted.
+	DeletedDateTime nullable.Type[string] `json:"deletedDateTime,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client/dataplane/storage
+import (
+	"bytes"
+	"encoding/xml"
+	"fmt"
+	"io"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+)
+func (e *storageError) Error() string {
+	out := e.Message
+	if e.Code != "" {
+		out = fmt.Sprintf("%s: %s", e.Code, out)
+	}
+	return out
+}

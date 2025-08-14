@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id PolicyServicePrincipalCreationPolicyIdIncludeId) String() string {
+	components := []string{
+		fmt.Sprintf("Service Principal Creation Policy: %q", id.ServicePrincipalCreationPolicyId),
+		fmt.Sprintf("Service Principal Creation Condition Set: %q", id.ServicePrincipalCreationConditionSetId),
+	}
+	return fmt.Sprintf("Policy Service Principal Creation Policy Id Include (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalDictionaryImplementation(input []byte) (Dictionary, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling Dictionary into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.fileStorageContainerCustomPropertyDictionary") {
+		var out FileStorageContainerCustomPropertyDictionary
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into FileStorageContainerCustomPropertyDictionary: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.resultTemplateDictionary") {
+		var out ResultTemplateDictionary
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ResultTemplateDictionary: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseDictionaryImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseDictionaryImpl: %+v", err)
+	}
+
+	return RawDictionaryImpl{
+		dictionary: parent,
+		Type:       value,
+		Values:     temp,
+	}, nil
+
+}

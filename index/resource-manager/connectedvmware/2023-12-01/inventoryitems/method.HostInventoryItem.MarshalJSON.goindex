@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/connectedvmware/2023-12-01/inventoryitems
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s HostInventoryItem) MarshalJSON() ([]byte, error) {
+	type wrapper HostInventoryItem
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling HostInventoryItem: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling HostInventoryItem: %+v", err)
+	}
+
+	decoded["inventoryType"] = "Host"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling HostInventoryItem: %+v", err)
+	}
+
+	return encoded, nil
+}

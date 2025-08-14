@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2022-08-01/apipolicy
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewApiPolicyClientWithBaseURI(sdkApi sdkEnv.Api) (*ApiPolicyClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "apipolicy", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ApiPolicyClient: %+v", err)
+	}
+
+	return &ApiPolicyClient{
+		Client: client,
+	}, nil
+}

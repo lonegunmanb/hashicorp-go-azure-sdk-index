@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/driveitemchild
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DriveItemChildClient) ListDriveItemChildrenComplete(ctx context.Context, id stable.GroupIdDriveIdItemId, options ListDriveItemChildrenOperationOptions) (ListDriveItemChildrenCompleteResult, error) {
+	return c.ListDriveItemChildrenCompleteMatchingPredicate(ctx, id, options, DriveItemOperationPredicate{})
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/deleteditem
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDeletedItemClientWithBaseURI(sdkApi sdkEnv.Api) (*DeletedItemClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "deleteditem", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DeletedItemClient: %+v", err)
+	}
+
+	return &DeletedItemClient{
+		Client: client,
+	}, nil
+}

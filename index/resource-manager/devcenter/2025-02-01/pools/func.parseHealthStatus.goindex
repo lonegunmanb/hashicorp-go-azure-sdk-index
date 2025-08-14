@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/pools
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseHealthStatus(input string) (*HealthStatus, error) {
+	vals := map[string]HealthStatus{
+		"healthy":   HealthStatusHealthy,
+		"pending":   HealthStatusPending,
+		"unhealthy": HealthStatusUnhealthy,
+		"unknown":   HealthStatusUnknown,
+		"warning":   HealthStatusWarning,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := HealthStatus(input)
+	return &out, nil
+}

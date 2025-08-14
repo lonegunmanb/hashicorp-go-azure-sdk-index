@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/domains/beta
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/domains/beta/domain"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/domains/beta/domainnamereference"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/domains/beta/federationconfiguration"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/domains/beta/rootdomain"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/domains/beta/serviceconfigurationrecord"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/domains/beta/sharedemaildomaininvitation"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/domains/beta/verificationdnsrecord"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	Domain                      *domain.DomainClient
+	DomainNameReference         *domainnamereference.DomainNameReferenceClient
+	FederationConfiguration     *federationconfiguration.FederationConfigurationClient
+	RootDomain                  *rootdomain.RootDomainClient
+	ServiceConfigurationRecord  *serviceconfigurationrecord.ServiceConfigurationRecordClient
+	SharedEmailDomainInvitation *sharedemaildomaininvitation.SharedEmailDomainInvitationClient
+	VerificationDnsRecord       *verificationdnsrecord.VerificationDnsRecordClient
+}

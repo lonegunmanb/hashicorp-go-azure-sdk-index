@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMacOSPriority(input string) (*MacOSPriority, error) {
+	vals := map[string]MacOSPriority{
+		"high": MacOSPriority_High,
+		"low":  MacOSPriority_Low,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MacOSPriority(input)
+	return &out, nil
+}

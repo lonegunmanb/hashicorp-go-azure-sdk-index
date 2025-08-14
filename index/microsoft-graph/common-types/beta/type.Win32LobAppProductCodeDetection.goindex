@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type Win32LobAppProductCodeDetection struct {
+	// The product code of Win32 Line of Business (LoB) app.
+	ProductCode nullable.Type[string] `json:"productCode,omitempty"`
+
+	// The product version of Win32 Line of Business (LoB) app.
+	ProductVersion nullable.Type[string] `json:"productVersion,omitempty"`
+
+	// Contains properties for detection operator.
+	ProductVersionOperator *Win32LobAppDetectionOperator `json:"productVersionOperator,omitempty"`
+
+	// Fields inherited from Win32LobAppDetection
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

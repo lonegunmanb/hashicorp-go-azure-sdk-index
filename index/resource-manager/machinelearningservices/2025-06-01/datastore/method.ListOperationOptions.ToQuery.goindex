@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2025-06-01/datastore
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ListOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.Count != nil {
+		out.Append("count", fmt.Sprintf("%v", *o.Count))
+	}
+	if o.IsDefault != nil {
+		out.Append("isDefault", fmt.Sprintf("%v", *o.IsDefault))
+	}
+	if o.Names != nil {
+		out.Append("names", fmt.Sprintf("%v", *o.Names))
+	}
+	if o.OrderBy != nil {
+		out.Append("orderBy", fmt.Sprintf("%v", *o.OrderBy))
+	}
+	if o.OrderByAsc != nil {
+		out.Append("orderByAsc", fmt.Sprintf("%v", *o.OrderByAsc))
+	}
+	if o.SearchText != nil {
+		out.Append("searchText", fmt.Sprintf("%v", *o.SearchText))
+	}
+	if o.Skip != nil {
+		out.Append("$skip", fmt.Sprintf("%v", *o.Skip))
+	}
+	return &out
+}

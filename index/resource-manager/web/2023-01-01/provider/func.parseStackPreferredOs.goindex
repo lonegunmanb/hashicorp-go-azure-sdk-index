@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/provider
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseStackPreferredOs(input string) (*StackPreferredOs, error) {
+	vals := map[string]StackPreferredOs{
+		"linux":   StackPreferredOsLinux,
+		"windows": StackPreferredOsWindows,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := StackPreferredOs(input)
+	return &out, nil
+}

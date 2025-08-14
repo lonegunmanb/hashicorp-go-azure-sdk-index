@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementaccesspackageincompatiblegroupserviceprovisioningerror
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c EntitlementManagementAccessPackageIncompatibleGroupServiceProvisioningErrorClient) ListEntitlementManagementAccessPackageIncompatibleGroupServiceProvisioningErrorsCompleteMatchingPredicate(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementAccessPackageIdIncompatibleGroupId, options ListEntitlementManagementAccessPackageIncompatibleGroupServiceProvisioningErrorsOperationOptions, predicate ServiceProvisioningErrorOperationPredicate) (result ListEntitlementManagementAccessPackageIncompatibleGroupServiceProvisioningErrorsCompleteResult, err error) {
+	items := make([]stable.ServiceProvisioningError, 0)
+
+	resp, err := c.ListEntitlementManagementAccessPackageIncompatibleGroupServiceProvisioningErrors(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListEntitlementManagementAccessPackageIncompatibleGroupServiceProvisioningErrorsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/search/2024-06-01-preview/adminkeys
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAdminKeyKind(input string) (*AdminKeyKind, error) {
+	vals := map[string]AdminKeyKind{
+		"primary":   AdminKeyKindPrimary,
+		"secondary": AdminKeyKindSecondary,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AdminKeyKind(input)
+	return &out, nil
+}

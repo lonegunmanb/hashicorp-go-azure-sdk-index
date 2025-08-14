@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type SourcedAttribute struct {
+	// The identifier of the attribute on the specified source.
+	Id *string `json:"id,omitempty"`
+
+	// A flag that indicates if the name specified is that of an extension attribute.
+	IsExtensionAttribute *bool `json:"isExtensionAttribute,omitempty"`
+
+	// The source where the claim is going to retrieve its value. Valid sources include user, application, resource,
+	// audience and company.
+	Source nullable.Type[string] `json:"source,omitempty"`
+
+	// Fields inherited from CustomClaimAttributeBase
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

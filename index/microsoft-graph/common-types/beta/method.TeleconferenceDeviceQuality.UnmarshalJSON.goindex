@@ -1,0 +1,61 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *TeleconferenceDeviceQuality) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		CallChainId                       *string               `json:"callChainId,omitempty"`
+		CloudServiceDeploymentEnvironment nullable.Type[string] `json:"cloudServiceDeploymentEnvironment,omitempty"`
+		CloudServiceDeploymentId          nullable.Type[string] `json:"cloudServiceDeploymentId,omitempty"`
+		CloudServiceInstanceName          nullable.Type[string] `json:"cloudServiceInstanceName,omitempty"`
+		CloudServiceName                  nullable.Type[string] `json:"cloudServiceName,omitempty"`
+		DeviceDescription                 *string               `json:"deviceDescription,omitempty"`
+		DeviceName                        *string               `json:"deviceName,omitempty"`
+		MediaLegId                        *string               `json:"mediaLegId,omitempty"`
+		ODataId                           *string               `json:"@odata.id,omitempty"`
+		ODataType                         *string               `json:"@odata.type,omitempty"`
+		ParticipantId                     *string               `json:"participantId,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.CallChainId = decoded.CallChainId
+	s.CloudServiceDeploymentEnvironment = decoded.CloudServiceDeploymentEnvironment
+	s.CloudServiceDeploymentId = decoded.CloudServiceDeploymentId
+	s.CloudServiceInstanceName = decoded.CloudServiceInstanceName
+	s.CloudServiceName = decoded.CloudServiceName
+	s.DeviceDescription = decoded.DeviceDescription
+	s.DeviceName = decoded.DeviceName
+	s.MediaLegId = decoded.MediaLegId
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.ParticipantId = decoded.ParticipantId
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling TeleconferenceDeviceQuality into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["mediaQualityList"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling MediaQualityList into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]TeleconferenceDeviceMediaQuality, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalTeleconferenceDeviceMediaQualityImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'MediaQualityList' for 'TeleconferenceDeviceQuality': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.MediaQualityList = &output
+	}
+
+	return nil
+}

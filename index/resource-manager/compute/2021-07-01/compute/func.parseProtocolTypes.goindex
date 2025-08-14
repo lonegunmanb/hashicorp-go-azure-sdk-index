@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2021-07-01/compute
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseProtocolTypes(input string) (*ProtocolTypes, error) {
+	vals := map[string]ProtocolTypes{
+		"http":  ProtocolTypesHTTP,
+		"https": ProtocolTypesHTTPS,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ProtocolTypes(input)
+	return &out, nil
+}

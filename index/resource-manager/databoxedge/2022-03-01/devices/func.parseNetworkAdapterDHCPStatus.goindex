@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2022-03-01/devices
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNetworkAdapterDHCPStatus(input string) (*NetworkAdapterDHCPStatus, error) {
+	vals := map[string]NetworkAdapterDHCPStatus{
+		"disabled": NetworkAdapterDHCPStatusDisabled,
+		"enabled":  NetworkAdapterDHCPStatusEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NetworkAdapterDHCPStatus(input)
+	return &out, nil
+}

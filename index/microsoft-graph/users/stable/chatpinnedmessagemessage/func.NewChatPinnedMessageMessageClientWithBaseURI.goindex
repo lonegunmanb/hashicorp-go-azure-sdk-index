@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/chatpinnedmessagemessage
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewChatPinnedMessageMessageClientWithBaseURI(sdkApi sdkEnv.Api) (*ChatPinnedMessageMessageClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "chatpinnedmessagemessage", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ChatPinnedMessageMessageClient: %+v", err)
+	}
+
+	return &ChatPinnedMessageMessageClient{
+		Client: client,
+	}, nil
+}

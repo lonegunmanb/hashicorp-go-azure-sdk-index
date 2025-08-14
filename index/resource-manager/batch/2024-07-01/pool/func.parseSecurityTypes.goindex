@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/pool
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityTypes(input string) (*SecurityTypes, error) {
+	vals := map[string]SecurityTypes{
+		"confidentialvm": SecurityTypesConfidentialVM,
+		"trustedlaunch":  SecurityTypesTrustedLaunch,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityTypes(input)
+	return &out, nil
+}

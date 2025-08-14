@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-01-01/recommendations
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c RecommendationsClient) ListRecommendedRulesForWebAppCompleteMatchingPredicate(ctx context.Context, id commonids.AppServiceId, options ListRecommendedRulesForWebAppOperationOptions, predicate RecommendationOperationPredicate) (result ListRecommendedRulesForWebAppCompleteResult, err error) {
+	items := make([]Recommendation, 0)
+
+	resp, err := c.ListRecommendedRulesForWebApp(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListRecommendedRulesForWebAppCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/userexperienceanalyticsbatteryhealthmodelperformance
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewUserExperienceAnalyticsBatteryHealthModelPerformanceClientWithBaseURI(sdkApi sdkEnv.Api) (*UserExperienceAnalyticsBatteryHealthModelPerformanceClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "userexperienceanalyticsbatteryhealthmodelperformance", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating UserExperienceAnalyticsBatteryHealthModelPerformanceClient: %+v", err)
+	}
+
+	return &UserExperienceAnalyticsBatteryHealthModelPerformanceClient{
+		Client: client,
+	}, nil
+}

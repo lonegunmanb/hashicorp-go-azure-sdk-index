@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/datasecurityandgovernancesensitivitylabelright
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDataSecurityAndGovernanceSensitivityLabelRightClientWithBaseURI(sdkApi sdkEnv.Api) (*DataSecurityAndGovernanceSensitivityLabelRightClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "datasecurityandgovernancesensitivitylabelright", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DataSecurityAndGovernanceSensitivityLabelRightClient: %+v", err)
+	}
+
+	return &DataSecurityAndGovernanceSensitivityLabelRightClient{
+		Client: client,
+	}, nil
+}

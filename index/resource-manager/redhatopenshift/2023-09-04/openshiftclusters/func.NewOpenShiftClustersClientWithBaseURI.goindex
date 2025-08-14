@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/redhatopenshift/2023-09-04/openshiftclusters
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewOpenShiftClustersClientWithBaseURI(sdkApi sdkEnv.Api) (*OpenShiftClustersClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "openshiftclusters", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating OpenShiftClustersClient: %+v", err)
+	}
+
+	return &OpenShiftClustersClient{
+		Client: client,
+	}, nil
+}

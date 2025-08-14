@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2022-08-08/activity
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ActivityId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Automation Account Name: %q", id.AutomationAccountName),
+		fmt.Sprintf("Module Name: %q", id.ModuleName),
+		fmt.Sprintf("Activity Name: %q", id.ActivityName),
+	}
+	return fmt.Sprintf("Activity (%s)", strings.Join(components, "\n"))
+}

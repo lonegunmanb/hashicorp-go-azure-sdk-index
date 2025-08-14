@@ -1,0 +1,59 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalOnenoteEntityHierarchyModelImplementation(input []byte) (OnenoteEntityHierarchyModel, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling OnenoteEntityHierarchyModel into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.notebook") {
+		var out Notebook
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into Notebook: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.onenoteSection") {
+		var out OnenoteSection
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into OnenoteSection: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.sectionGroup") {
+		var out SectionGroup
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SectionGroup: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseOnenoteEntityHierarchyModelImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseOnenoteEntityHierarchyModelImpl: %+v", err)
+	}
+
+	return RawOnenoteEntityHierarchyModelImpl{
+		onenoteEntityHierarchyModel: parent,
+		Type:                        value,
+		Values:                      temp,
+	}, nil
+
+}

@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2024-08-01/replicas
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAzureManagedDiskPerformanceTiers(input string) (*AzureManagedDiskPerformanceTiers, error) {
+	vals := map[string]AzureManagedDiskPerformanceTiers{
+		"p80": AzureManagedDiskPerformanceTiersPEightZero,
+		"p50": AzureManagedDiskPerformanceTiersPFiveZero,
+		"p4":  AzureManagedDiskPerformanceTiersPFour,
+		"p40": AzureManagedDiskPerformanceTiersPFourZero,
+		"p1":  AzureManagedDiskPerformanceTiersPOne,
+		"p15": AzureManagedDiskPerformanceTiersPOneFive,
+		"p10": AzureManagedDiskPerformanceTiersPOneZero,
+		"p70": AzureManagedDiskPerformanceTiersPSevenZero,
+		"p6":  AzureManagedDiskPerformanceTiersPSix,
+		"p60": AzureManagedDiskPerformanceTiersPSixZero,
+		"p3":  AzureManagedDiskPerformanceTiersPThree,
+		"p30": AzureManagedDiskPerformanceTiersPThreeZero,
+		"p2":  AzureManagedDiskPerformanceTiersPTwo,
+		"p20": AzureManagedDiskPerformanceTiersPTwoZero,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AzureManagedDiskPerformanceTiers(input)
+	return &out, nil
+}

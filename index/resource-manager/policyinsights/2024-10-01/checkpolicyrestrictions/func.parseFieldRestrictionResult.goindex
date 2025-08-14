@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/policyinsights/2024-10-01/checkpolicyrestrictions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseFieldRestrictionResult(input string) (*FieldRestrictionResult, error) {
+	vals := map[string]FieldRestrictionResult{
+		"audit":    FieldRestrictionResultAudit,
+		"deny":     FieldRestrictionResultDeny,
+		"removed":  FieldRestrictionResultRemoved,
+		"required": FieldRestrictionResultRequired,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FieldRestrictionResult(input)
+	return &out, nil
+}

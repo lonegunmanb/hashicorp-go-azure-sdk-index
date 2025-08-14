@@ -1,0 +1,53 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/logic/v2019_05_01
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationaccountagreements"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationaccountassemblies"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationaccountbatchconfigurations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationaccountcertificates"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationaccountmaps"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationaccountpartners"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationaccounts"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationaccountschemas"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationaccountsessions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationserviceenvironmentmanagedapi"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationserviceenvironmentmanagedapis"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationserviceenvironmentnetworkhealth"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationserviceenvironmentrestart"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationserviceenvironments"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationserviceenvironmentskus"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/workflowrunactions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/workflowrunoperations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/workflowruns"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/workflows"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/workflowtriggerhistories"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/workflowtriggers"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/workflowversions"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	IntegrationAccountAgreements               *integrationaccountagreements.IntegrationAccountAgreementsClient
+	IntegrationAccountAssemblies               *integrationaccountassemblies.IntegrationAccountAssembliesClient
+	IntegrationAccountBatchConfigurations      *integrationaccountbatchconfigurations.IntegrationAccountBatchConfigurationsClient
+	IntegrationAccountCertificates             *integrationaccountcertificates.IntegrationAccountCertificatesClient
+	IntegrationAccountMaps                     *integrationaccountmaps.IntegrationAccountMapsClient
+	IntegrationAccountPartners                 *integrationaccountpartners.IntegrationAccountPartnersClient
+	IntegrationAccountSchemas                  *integrationaccountschemas.IntegrationAccountSchemasClient
+	IntegrationAccountSessions                 *integrationaccountsessions.IntegrationAccountSessionsClient
+	IntegrationAccounts                        *integrationaccounts.IntegrationAccountsClient
+	IntegrationServiceEnvironmentManagedApi    *integrationserviceenvironmentmanagedapi.IntegrationServiceEnvironmentManagedApiClient
+	IntegrationServiceEnvironmentManagedApis   *integrationserviceenvironmentmanagedapis.IntegrationServiceEnvironmentManagedApisClient
+	IntegrationServiceEnvironmentNetworkHealth *integrationserviceenvironmentnetworkhealth.IntegrationServiceEnvironmentNetworkHealthClient
+	IntegrationServiceEnvironmentRestart       *integrationserviceenvironmentrestart.IntegrationServiceEnvironmentRestartClient
+	IntegrationServiceEnvironmentSkus          *integrationserviceenvironmentskus.IntegrationServiceEnvironmentSkusClient
+	IntegrationServiceEnvironments             *integrationserviceenvironments.IntegrationServiceEnvironmentsClient
+	WorkflowRunActions                         *workflowrunactions.WorkflowRunActionsClient
+	WorkflowRunOperations                      *workflowrunoperations.WorkflowRunOperationsClient
+	WorkflowRuns                               *workflowruns.WorkflowRunsClient
+	WorkflowTriggerHistories                   *workflowtriggerhistories.WorkflowTriggerHistoriesClient
+	WorkflowTriggers                           *workflowtriggers.WorkflowTriggersClient
+	WorkflowVersions                           *workflowversions.WorkflowVersionsClient
+	Workflows                                  *workflows.WorkflowsClient
+}

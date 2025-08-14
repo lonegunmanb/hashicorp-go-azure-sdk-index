@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMailFolderOperationStatus(input string) (*MailFolderOperationStatus, error) {
+	vals := map[string]MailFolderOperationStatus{
+		"failed":     MailFolderOperationStatus_Failed,
+		"notstarted": MailFolderOperationStatus_NotStarted,
+		"running":    MailFolderOperationStatus_Running,
+		"succeeded":  MailFolderOperationStatus_Succeeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MailFolderOperationStatus(input)
+	return &out, nil
+}

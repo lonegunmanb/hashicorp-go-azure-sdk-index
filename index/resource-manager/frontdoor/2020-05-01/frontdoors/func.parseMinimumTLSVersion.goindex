@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/frontdoor/2020-05-01/frontdoors
+import (
+	"strings"
+)
+func parseMinimumTLSVersion(input string) (*MinimumTLSVersion, error) {
+	vals := map[string]MinimumTLSVersion{
+		"1.2": MinimumTLSVersionOnePointTwo,
+		"1.0": MinimumTLSVersionOnePointZero,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MinimumTLSVersion(input)
+	return &out, nil
+}

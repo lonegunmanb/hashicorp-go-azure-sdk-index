@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *DeviceManagementCloudCertificationAuthorityIdCloudCertificationAuthorityLeafCertificateId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.CloudCertificationAuthorityId, ok = input.Parsed["cloudCertificationAuthorityId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "cloudCertificationAuthorityId", input)
+	}
+
+	if id.CloudCertificationAuthorityLeafCertificateId, ok = input.Parsed["cloudCertificationAuthorityLeafCertificateId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "cloudCertificationAuthorityLeafCertificateId", input)
+	}
+
+	return nil
+}

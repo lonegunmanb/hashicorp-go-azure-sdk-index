@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/member
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c MemberClient) ListMemberApplicationsComplete(ctx context.Context, id stable.GroupId, options ListMemberApplicationsOperationOptions) (ListMemberApplicationsCompleteResult, error) {
+	return c.ListMemberApplicationsCompleteMatchingPredicate(ctx, id, options, ApplicationOperationPredicate{})
+}

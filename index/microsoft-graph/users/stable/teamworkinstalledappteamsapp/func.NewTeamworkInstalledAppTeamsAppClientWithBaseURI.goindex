@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/teamworkinstalledappteamsapp
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTeamworkInstalledAppTeamsAppClientWithBaseURI(sdkApi sdkEnv.Api) (*TeamworkInstalledAppTeamsAppClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "teamworkinstalledappteamsapp", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TeamworkInstalledAppTeamsAppClient: %+v", err)
+	}
+
+	return &TeamworkInstalledAppTeamsAppClient{
+		Client: client,
+	}, nil
+}

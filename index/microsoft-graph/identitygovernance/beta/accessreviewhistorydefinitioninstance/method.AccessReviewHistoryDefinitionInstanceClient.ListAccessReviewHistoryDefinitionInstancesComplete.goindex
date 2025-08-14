@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/accessreviewhistorydefinitioninstance
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c AccessReviewHistoryDefinitionInstanceClient) ListAccessReviewHistoryDefinitionInstancesComplete(ctx context.Context, id beta.IdentityGovernanceAccessReviewHistoryDefinitionId, options ListAccessReviewHistoryDefinitionInstancesOperationOptions) (ListAccessReviewHistoryDefinitionInstancesCompleteResult, error) {
+	return c.ListAccessReviewHistoryDefinitionInstancesCompleteMatchingPredicate(ctx, id, options, AccessReviewHistoryInstanceOperationPredicate{})
+}

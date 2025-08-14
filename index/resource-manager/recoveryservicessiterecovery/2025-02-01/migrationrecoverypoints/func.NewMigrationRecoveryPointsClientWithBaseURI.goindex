@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/migrationrecoverypoints
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewMigrationRecoveryPointsClientWithBaseURI(sdkApi sdkEnv.Api) (*MigrationRecoveryPointsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "migrationrecoverypoints", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating MigrationRecoveryPointsClient: %+v", err)
+	}
+
+	return &MigrationRecoveryPointsClient{
+		Client: client,
+	}, nil
+}

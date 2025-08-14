@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/streamanalytics/2020-03-01/inputs
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s BlobReferenceInputDataSource) MarshalJSON() ([]byte, error) {
+	type wrapper BlobReferenceInputDataSource
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling BlobReferenceInputDataSource: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling BlobReferenceInputDataSource: %+v", err)
+	}
+
+	decoded["type"] = "Microsoft.Storage/Blob"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling BlobReferenceInputDataSource: %+v", err)
+	}
+
+	return encoded, nil
+}

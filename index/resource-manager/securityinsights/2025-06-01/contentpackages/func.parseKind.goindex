@@ -1,0 +1,38 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2025-06-01/contentpackages
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseKind(input string) (*Kind, error) {
+	vals := map[string]Kind{
+		"analyticsrule":            KindAnalyticsRule,
+		"analyticsruletemplate":    KindAnalyticsRuleTemplate,
+		"automationrule":           KindAutomationRule,
+		"azurefunction":            KindAzureFunction,
+		"dataconnector":            KindDataConnector,
+		"datatype":                 KindDataType,
+		"huntingquery":             KindHuntingQuery,
+		"investigationquery":       KindInvestigationQuery,
+		"logicappscustomconnector": KindLogicAppsCustomConnector,
+		"notebook":                 KindNotebook,
+		"parser":                   KindParser,
+		"playbook":                 KindPlaybook,
+		"playbooktemplate":         KindPlaybookTemplate,
+		"resourcesdataconnector":   KindResourcesDataConnector,
+		"solution":                 KindSolution,
+		"standalone":               KindStandalone,
+		"summaryrule":              KindSummaryRule,
+		"watchlist":                KindWatchlist,
+		"watchlisttemplate":        KindWatchlistTemplate,
+		"workbook":                 KindWorkbook,
+		"workbooktemplate":         KindWorkbookTemplate,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Kind(input)
+	return &out, nil
+}

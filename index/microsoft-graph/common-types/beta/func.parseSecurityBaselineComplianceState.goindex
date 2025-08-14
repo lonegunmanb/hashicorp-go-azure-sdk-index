@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityBaselineComplianceState(input string) (*SecurityBaselineComplianceState, error) {
+	vals := map[string]SecurityBaselineComplianceState{
+		"conflict":      SecurityBaselineComplianceState_Conflict,
+		"error":         SecurityBaselineComplianceState_Error,
+		"notapplicable": SecurityBaselineComplianceState_NotApplicable,
+		"notsecure":     SecurityBaselineComplianceState_NotSecure,
+		"secure":        SecurityBaselineComplianceState_Secure,
+		"unknown":       SecurityBaselineComplianceState_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityBaselineComplianceState(input)
+	return &out, nil
+}

@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resourcegraph/2024-04-01/resources
+import (
+	"encoding/json"
+	"fmt"
+)
+type QueryResponse struct {
+	Count           int64           `json:"count"`
+	Data            interface{}     `json:"data"`
+	Facets          *[]Facet        `json:"facets,omitempty"`
+	ResultTruncated ResultTruncated `json:"resultTruncated"`
+	SkipToken       *string         `json:"$skipToken,omitempty"`
+	TotalRecords    int64           `json:"totalRecords"`
+}

@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id IdentityIdentityProviderId) String() string {
+	components := []string{
+		fmt.Sprintf("Identity Provider Base: %q", id.IdentityProviderBaseId),
+	}
+	return fmt.Sprintf("Identity Identity Provider (%s)", strings.Join(components, "\n"))
+}

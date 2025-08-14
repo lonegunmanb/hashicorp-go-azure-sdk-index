@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/applicationinsights/2015-05-01/webtestlocationsapis
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewWebTestLocationsAPIsClientWithBaseURI(sdkApi sdkEnv.Api) (*WebTestLocationsAPIsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "webtestlocationsapis", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating WebTestLocationsAPIsClient: %+v", err)
+	}
+
+	return &WebTestLocationsAPIsClient{
+		Client: client,
+	}, nil
+}

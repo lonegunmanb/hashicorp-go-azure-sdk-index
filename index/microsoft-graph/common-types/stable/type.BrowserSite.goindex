@@ -1,0 +1,53 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type BrowserSite struct {
+	// Controls the behavior of redirected sites. If true, indicates that the site will open in Internet Explorer 11 or
+	// Microsoft Edge even if the site is navigated to as part of a HTTP or meta refresh redirection chain.
+	AllowRedirect *bool `json:"allowRedirect,omitempty"`
+
+	// The comment for the site.
+	Comment *string `json:"comment,omitempty"`
+
+	CompatibilityMode *BrowserSiteCompatibilityMode `json:"compatibilityMode,omitempty"`
+
+	// The date and time when the site was created.
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+
+	// The date and time when the site was deleted.
+	DeletedDateTime nullable.Type[string] `json:"deletedDateTime,omitempty"`
+
+	// The history of modifications applied to the site.
+	History *[]BrowserSiteHistory `json:"history,omitempty"`
+
+	// The user who last modified the site.
+	LastModifiedBy IdentitySet `json:"lastModifiedBy"`
+
+	// The date and time when the site was last modified.
+	LastModifiedDateTime *string `json:"lastModifiedDateTime,omitempty"`
+
+	MergeType         *BrowserSiteMergeType         `json:"mergeType,omitempty"`
+	Status            *BrowserSiteStatus            `json:"status,omitempty"`
+	TargetEnvironment *BrowserSiteTargetEnvironment `json:"targetEnvironment,omitempty"`
+
+	// The URL of the site.
+	WebUrl *string `json:"webUrl,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

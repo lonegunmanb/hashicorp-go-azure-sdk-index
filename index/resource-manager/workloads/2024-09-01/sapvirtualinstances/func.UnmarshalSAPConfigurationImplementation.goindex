@@ -1,0 +1,57 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/workloads/2024-09-01/sapvirtualinstances
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalSAPConfigurationImplementation(input []byte) (SAPConfiguration, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling SAPConfiguration into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["configurationType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "Deployment") {
+		var out DeploymentConfiguration
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DeploymentConfiguration: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "DeploymentWithOSConfig") {
+		var out DeploymentWithOSConfiguration
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DeploymentWithOSConfiguration: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "Discovery") {
+		var out DiscoveryConfiguration
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DiscoveryConfiguration: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseSAPConfigurationImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseSAPConfigurationImpl: %+v", err)
+	}
+
+	return RawSAPConfigurationImpl{
+		sAPConfiguration: parent,
+		Type:             value,
+		Values:           temp,
+	}, nil
+
+}

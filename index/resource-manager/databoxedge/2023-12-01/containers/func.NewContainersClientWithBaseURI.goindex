@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/containers
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewContainersClientWithBaseURI(sdkApi sdkEnv.Api) (*ContainersClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "containers", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ContainersClient: %+v", err)
+	}
+
+	return &ContainersClient{
+		Client: client,
+	}, nil
+}

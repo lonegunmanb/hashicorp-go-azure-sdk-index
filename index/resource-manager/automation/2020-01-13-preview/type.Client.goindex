@@ -1,0 +1,69 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/v2020_01_13_preview
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/activity"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/agentregistrationinformation"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/automationaccount"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/certificate"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/connection"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/connectiontype"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/credential"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/dsccompilationjob"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/dscnode"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/dscnodeconfiguration"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/hybridrunbookworkergroup"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/jobschedule"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/linkedworkspace"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/listkeys"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/module"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/nodecountinformation"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/nodereports"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/objectdatatypes"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/privateendpointconnections"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/privatelinkresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/python2package"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/schedule"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/sourcecontrol"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/sourcecontrolsyncjob"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/sourcecontrolsyncjobstreams"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/statistics"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/typefields"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/usages"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/variable"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/automation/2020-01-13-preview/watcher"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	Activity                     *activity.ActivityClient
+	AgentRegistrationInformation *agentregistrationinformation.AgentRegistrationInformationClient
+	AutomationAccount            *automationaccount.AutomationAccountClient
+	Certificate                  *certificate.CertificateClient
+	Connection                   *connection.ConnectionClient
+	ConnectionType               *connectiontype.ConnectionTypeClient
+	Credential                   *credential.CredentialClient
+	DscCompilationJob            *dsccompilationjob.DscCompilationJobClient
+	DscNode                      *dscnode.DscNodeClient
+	DscNodeConfiguration         *dscnodeconfiguration.DscNodeConfigurationClient
+	HybridRunbookWorkerGroup     *hybridrunbookworkergroup.HybridRunbookWorkerGroupClient
+	JobSchedule                  *jobschedule.JobScheduleClient
+	LinkedWorkspace              *linkedworkspace.LinkedWorkspaceClient
+	ListKeys                     *listkeys.ListKeysClient
+	Module                       *module.ModuleClient
+	NodeCountInformation         *nodecountinformation.NodeCountInformationClient
+	NodeReports                  *nodereports.NodeReportsClient
+	ObjectDataTypes              *objectdatatypes.ObjectDataTypesClient
+	PrivateEndpointConnections   *privateendpointconnections.PrivateEndpointConnectionsClient
+	PrivateLinkResources         *privatelinkresources.PrivateLinkResourcesClient
+	Python2Package               *python2package.Python2PackageClient
+	Schedule                     *schedule.ScheduleClient
+	SourceControl                *sourcecontrol.SourceControlClient
+	SourceControlSyncJob         *sourcecontrolsyncjob.SourceControlSyncJobClient
+	SourceControlSyncJobStreams  *sourcecontrolsyncjobstreams.SourceControlSyncJobStreamsClient
+	Statistics                   *statistics.StatisticsClient
+	TypeFields                   *typefields.TypeFieldsClient
+	Usages                       *usages.UsagesClient
+	Variable                     *variable.VariableClient
+	Watcher                      *watcher.WatcherClient
+}

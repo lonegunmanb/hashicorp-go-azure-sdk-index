@@ -1,0 +1,42 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s *PermissionsCreepIndexDistribution) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		CreatedDateTime   *string      `json:"createdDateTime,omitempty"`
+		HighRiskProfile   *RiskProfile `json:"highRiskProfile,omitempty"`
+		LowRiskProfile    *RiskProfile `json:"lowRiskProfile,omitempty"`
+		MediumRiskProfile *RiskProfile `json:"mediumRiskProfile,omitempty"`
+		Id                *string      `json:"id,omitempty"`
+		ODataId           *string      `json:"@odata.id,omitempty"`
+		ODataType         *string      `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.HighRiskProfile = decoded.HighRiskProfile
+	s.LowRiskProfile = decoded.LowRiskProfile
+	s.MediumRiskProfile = decoded.MediumRiskProfile
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling PermissionsCreepIndexDistribution into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["authorizationSystem"]; ok {
+		impl, err := UnmarshalAuthorizationSystemImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'AuthorizationSystem' for 'PermissionsCreepIndexDistribution': %+v", err)
+		}
+		s.AuthorizationSystem = &impl
+	}
+
+	return nil
+}

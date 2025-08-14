@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/recoverypoints
+import (
+	"encoding/json"
+	"fmt"
+)
+type AzureWorkloadSAPAsePointInTimeRecoveryPoint struct {
+	RecoveryPointMoveReadinessInfo *map[string]RecoveryPointMoveReadinessInfo `json:"recoveryPointMoveReadinessInfo,omitempty"`
+	RecoveryPointProperties        *RecoveryPointProperties                   `json:"recoveryPointProperties,omitempty"`
+	RecoveryPointTierDetails       *[]RecoveryPointTierInformationV2          `json:"recoveryPointTierDetails,omitempty"`
+	RecoveryPointTimeInUTC         *string                                    `json:"recoveryPointTimeInUTC,omitempty"`
+	TimeRanges                     *[]PointInTimeRange                        `json:"timeRanges,omitempty"`
+	Type                           *RestorePointType                          `json:"type,omitempty"`
+
+	// Fields inherited from RecoveryPoint
+
+	ObjectType string `json:"objectType"`
+}

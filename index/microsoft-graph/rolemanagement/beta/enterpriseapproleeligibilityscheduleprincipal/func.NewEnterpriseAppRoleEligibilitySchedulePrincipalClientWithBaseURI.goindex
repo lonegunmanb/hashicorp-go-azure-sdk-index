@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/enterpriseapproleeligibilityscheduleprincipal
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewEnterpriseAppRoleEligibilitySchedulePrincipalClientWithBaseURI(sdkApi sdkEnv.Api) (*EnterpriseAppRoleEligibilitySchedulePrincipalClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "enterpriseapproleeligibilityscheduleprincipal", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating EnterpriseAppRoleEligibilitySchedulePrincipalClient: %+v", err)
+	}
+
+	return &EnterpriseAppRoleEligibilitySchedulePrincipalClient{
+		Client: client,
+	}, nil
+}

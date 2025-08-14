@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/workflowrunoperations
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewWorkflowRunOperationsClientWithBaseURI(sdkApi sdkEnv.Api) (*WorkflowRunOperationsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "workflowrunoperations", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating WorkflowRunOperationsClient: %+v", err)
+	}
+
+	return &WorkflowRunOperationsClient{
+		Client: client,
+	}, nil
+}

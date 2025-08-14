@@ -1,0 +1,11 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id MePendingAccessReviewInstanceIdContactedReviewerId) ID() string {
+	fmtString := "/me/pendingAccessReviewInstances/%s/contactedReviewers/%s"
+	return fmt.Sprintf(fmtString, id.AccessReviewInstanceId, id.AccessReviewReviewerId)
+}

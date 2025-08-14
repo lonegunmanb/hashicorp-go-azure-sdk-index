@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/attachednetworkconnections
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAttachedNetworkConnectionsClientWithBaseURI(sdkApi sdkEnv.Api) (*AttachedNetworkConnectionsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "attachednetworkconnections", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AttachedNetworkConnectionsClient: %+v", err)
+	}
+
+	return &AttachedNetworkConnectionsClient{
+		Client: client,
+	}, nil
+}

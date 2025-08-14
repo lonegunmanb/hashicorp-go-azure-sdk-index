@@ -1,0 +1,116 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *MessageRulePredicates) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		BodyContains           *[]string           `json:"bodyContains,omitempty"`
+		BodyOrSubjectContains  *[]string           `json:"bodyOrSubjectContains,omitempty"`
+		Categories             *[]string           `json:"categories,omitempty"`
+		HasAttachments         nullable.Type[bool] `json:"hasAttachments,omitempty"`
+		HeaderContains         *[]string           `json:"headerContains,omitempty"`
+		Importance             *Importance         `json:"importance,omitempty"`
+		IsApprovalRequest      nullable.Type[bool] `json:"isApprovalRequest,omitempty"`
+		IsAutomaticForward     nullable.Type[bool] `json:"isAutomaticForward,omitempty"`
+		IsAutomaticReply       nullable.Type[bool] `json:"isAutomaticReply,omitempty"`
+		IsEncrypted            nullable.Type[bool] `json:"isEncrypted,omitempty"`
+		IsMeetingRequest       nullable.Type[bool] `json:"isMeetingRequest,omitempty"`
+		IsMeetingResponse      nullable.Type[bool] `json:"isMeetingResponse,omitempty"`
+		IsNonDeliveryReport    nullable.Type[bool] `json:"isNonDeliveryReport,omitempty"`
+		IsPermissionControlled nullable.Type[bool] `json:"isPermissionControlled,omitempty"`
+		IsReadReceipt          nullable.Type[bool] `json:"isReadReceipt,omitempty"`
+		IsSigned               nullable.Type[bool] `json:"isSigned,omitempty"`
+		IsVoicemail            nullable.Type[bool] `json:"isVoicemail,omitempty"`
+		MessageActionFlag      *MessageActionFlag  `json:"messageActionFlag,omitempty"`
+		NotSentToMe            nullable.Type[bool] `json:"notSentToMe,omitempty"`
+		ODataId                *string             `json:"@odata.id,omitempty"`
+		ODataType              *string             `json:"@odata.type,omitempty"`
+		RecipientContains      *[]string           `json:"recipientContains,omitempty"`
+		SenderContains         *[]string           `json:"senderContains,omitempty"`
+		Sensitivity            *Sensitivity        `json:"sensitivity,omitempty"`
+		SentCcMe               nullable.Type[bool] `json:"sentCcMe,omitempty"`
+		SentOnlyToMe           nullable.Type[bool] `json:"sentOnlyToMe,omitempty"`
+		SentToMe               nullable.Type[bool] `json:"sentToMe,omitempty"`
+		SentToOrCcMe           nullable.Type[bool] `json:"sentToOrCcMe,omitempty"`
+		SubjectContains        *[]string           `json:"subjectContains,omitempty"`
+		WithinSizeRange        *SizeRange          `json:"withinSizeRange,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.BodyContains = decoded.BodyContains
+	s.BodyOrSubjectContains = decoded.BodyOrSubjectContains
+	s.Categories = decoded.Categories
+	s.HasAttachments = decoded.HasAttachments
+	s.HeaderContains = decoded.HeaderContains
+	s.Importance = decoded.Importance
+	s.IsApprovalRequest = decoded.IsApprovalRequest
+	s.IsAutomaticForward = decoded.IsAutomaticForward
+	s.IsAutomaticReply = decoded.IsAutomaticReply
+	s.IsEncrypted = decoded.IsEncrypted
+	s.IsMeetingRequest = decoded.IsMeetingRequest
+	s.IsMeetingResponse = decoded.IsMeetingResponse
+	s.IsNonDeliveryReport = decoded.IsNonDeliveryReport
+	s.IsPermissionControlled = decoded.IsPermissionControlled
+	s.IsReadReceipt = decoded.IsReadReceipt
+	s.IsSigned = decoded.IsSigned
+	s.IsVoicemail = decoded.IsVoicemail
+	s.MessageActionFlag = decoded.MessageActionFlag
+	s.NotSentToMe = decoded.NotSentToMe
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.RecipientContains = decoded.RecipientContains
+	s.SenderContains = decoded.SenderContains
+	s.Sensitivity = decoded.Sensitivity
+	s.SentCcMe = decoded.SentCcMe
+	s.SentOnlyToMe = decoded.SentOnlyToMe
+	s.SentToMe = decoded.SentToMe
+	s.SentToOrCcMe = decoded.SentToOrCcMe
+	s.SubjectContains = decoded.SubjectContains
+	s.WithinSizeRange = decoded.WithinSizeRange
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling MessageRulePredicates into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["fromAddresses"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling FromAddresses into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]Recipient, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalRecipientImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'FromAddresses' for 'MessageRulePredicates': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.FromAddresses = &output
+	}
+
+	if v, ok := temp["sentToAddresses"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling SentToAddresses into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]Recipient, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalRecipientImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'SentToAddresses' for 'MessageRulePredicates': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.SentToAddresses = &output
+	}
+
+	return nil
+}

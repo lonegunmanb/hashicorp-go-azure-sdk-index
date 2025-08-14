@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2024-04-01/clusterrecoverypoints
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewClusterRecoveryPointsClientWithBaseURI(sdkApi sdkEnv.Api) (*ClusterRecoveryPointsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "clusterrecoverypoints", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ClusterRecoveryPointsClient: %+v", err)
+	}
+
+	return &ClusterRecoveryPointsClient{
+		Client: client,
+	}, nil
+}

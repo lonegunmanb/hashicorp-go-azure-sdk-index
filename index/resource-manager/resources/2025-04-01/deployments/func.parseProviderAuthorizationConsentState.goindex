@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2025-04-01/deployments
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseProviderAuthorizationConsentState(input string) (*ProviderAuthorizationConsentState, error) {
+	vals := map[string]ProviderAuthorizationConsentState{
+		"consented":    ProviderAuthorizationConsentStateConsented,
+		"notrequired":  ProviderAuthorizationConsentStateNotRequired,
+		"notspecified": ProviderAuthorizationConsentStateNotSpecified,
+		"required":     ProviderAuthorizationConsentStateRequired,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ProviderAuthorizationConsentState(input)
+	return &out, nil
+}

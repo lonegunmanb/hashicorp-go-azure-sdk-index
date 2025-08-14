@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type WindowsUpdatesApplicableContent struct {
+	// Catalog entry for the update or content.
+	CatalogEntry *WindowsUpdatesCatalogEntry `json:"catalogEntry,omitempty"`
+
+	// ID of the catalog entry for the applicable content.
+	CatalogEntryId *string `json:"catalogEntryId,omitempty"`
+
+	// Collection of devices and recommendations for applicable catalog content.
+	MatchedDevices *[]WindowsUpdatesApplicableContentDeviceMatch `json:"matchedDevices,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+}

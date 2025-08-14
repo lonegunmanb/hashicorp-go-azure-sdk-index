@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseMePendingAccessReviewInstanceIdDecisionIdInstanceStageIDInsensitively(input string) (*MePendingAccessReviewInstanceIdDecisionIdInstanceStageId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&MePendingAccessReviewInstanceIdDecisionIdInstanceStageId{})
+	parsed, err := parser.Parse(input, true)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := MePendingAccessReviewInstanceIdDecisionIdInstanceStageId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

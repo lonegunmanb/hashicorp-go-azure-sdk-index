@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/sqlpoolsgeobackuppolicies
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSqlPoolsGeoBackupPoliciesClientWithBaseURI(sdkApi sdkEnv.Api) (*SqlPoolsGeoBackupPoliciesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "sqlpoolsgeobackuppolicies", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SqlPoolsGeoBackupPoliciesClient: %+v", err)
+	}
+
+	return &SqlPoolsGeoBackupPoliciesClient{
+		Client: client,
+	}, nil
+}

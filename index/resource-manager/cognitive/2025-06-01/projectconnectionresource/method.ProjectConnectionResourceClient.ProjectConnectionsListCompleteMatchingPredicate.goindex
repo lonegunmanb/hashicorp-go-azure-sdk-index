@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cognitive/2025-06-01/projectconnectionresource
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ProjectConnectionResourceClient) ProjectConnectionsListCompleteMatchingPredicate(ctx context.Context, id ProjectId, options ProjectConnectionsListOperationOptions, predicate ConnectionPropertiesV2BasicResourceOperationPredicate) (result ProjectConnectionsListCompleteResult, err error) {
+	items := make([]ConnectionPropertiesV2BasicResource, 0)
+
+	resp, err := c.ProjectConnectionsList(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ProjectConnectionsListCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

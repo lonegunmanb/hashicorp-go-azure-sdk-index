@@ -1,0 +1,36 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWindowsPrivacyDataCategory(input string) (*WindowsPrivacyDataCategory, error) {
+	vals := map[string]WindowsPrivacyDataCategory{
+		"accountinfo":         WindowsPrivacyDataCategory_AccountInfo,
+		"appsruninbackground": WindowsPrivacyDataCategory_AppsRunInBackground,
+		"calendar":            WindowsPrivacyDataCategory_Calendar,
+		"callhistory":         WindowsPrivacyDataCategory_CallHistory,
+		"camera":              WindowsPrivacyDataCategory_Camera,
+		"contacts":            WindowsPrivacyDataCategory_Contacts,
+		"diagnosticsinfo":     WindowsPrivacyDataCategory_DiagnosticsInfo,
+		"email":               WindowsPrivacyDataCategory_Email,
+		"location":            WindowsPrivacyDataCategory_Location,
+		"messaging":           WindowsPrivacyDataCategory_Messaging,
+		"microphone":          WindowsPrivacyDataCategory_Microphone,
+		"motion":              WindowsPrivacyDataCategory_Motion,
+		"notconfigured":       WindowsPrivacyDataCategory_NotConfigured,
+		"notifications":       WindowsPrivacyDataCategory_Notifications,
+		"phone":               WindowsPrivacyDataCategory_Phone,
+		"radios":              WindowsPrivacyDataCategory_Radios,
+		"syncwithdevices":     WindowsPrivacyDataCategory_SyncWithDevices,
+		"tasks":               WindowsPrivacyDataCategory_Tasks,
+		"trusteddevices":      WindowsPrivacyDataCategory_TrustedDevices,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsPrivacyDataCategory(input)
+	return &out, nil
+}

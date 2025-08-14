@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/operationalinsights/2023-09-01/clusters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseClusterEntityStatus(input string) (*ClusterEntityStatus, error) {
+	vals := map[string]ClusterEntityStatus{
+		"canceled":            ClusterEntityStatusCanceled,
+		"creating":            ClusterEntityStatusCreating,
+		"deleting":            ClusterEntityStatusDeleting,
+		"failed":              ClusterEntityStatusFailed,
+		"provisioningaccount": ClusterEntityStatusProvisioningAccount,
+		"succeeded":           ClusterEntityStatusSucceeded,
+		"updating":            ClusterEntityStatusUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ClusterEntityStatus(input)
+	return &out, nil
+}

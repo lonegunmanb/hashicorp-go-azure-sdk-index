@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/networkwatchers
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c NetworkWatchersClient) GetFlowLogStatusThenPoll(ctx context.Context, id NetworkWatcherId, input FlowLogStatusParameters) error {
+	result, err := c.GetFlowLogStatus(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing GetFlowLogStatus: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after GetFlowLogStatus: %+v", err)
+	}
+
+	return nil
+}

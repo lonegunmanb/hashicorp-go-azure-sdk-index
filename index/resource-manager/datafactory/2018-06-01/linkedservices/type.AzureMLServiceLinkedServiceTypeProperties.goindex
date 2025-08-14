@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/linkedservices
+import (
+	"encoding/json"
+	"fmt"
+)
+type AzureMLServiceLinkedServiceTypeProperties struct {
+	Authentication      *interface{} `json:"authentication,omitempty"`
+	EncryptedCredential *string      `json:"encryptedCredential,omitempty"`
+	MlWorkspaceName     interface{}  `json:"mlWorkspaceName"`
+	ResourceGroupName   interface{}  `json:"resourceGroupName"`
+	ServicePrincipalId  *interface{} `json:"servicePrincipalId,omitempty"`
+	ServicePrincipalKey SecretBase   `json:"servicePrincipalKey"`
+	SubscriptionId      interface{}  `json:"subscriptionId"`
+	Tenant              *interface{} `json:"tenant,omitempty"`
+}

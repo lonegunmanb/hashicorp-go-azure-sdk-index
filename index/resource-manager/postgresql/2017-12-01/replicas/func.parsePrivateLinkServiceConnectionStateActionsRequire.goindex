@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2017-12-01/replicas
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePrivateLinkServiceConnectionStateActionsRequire(input string) (*PrivateLinkServiceConnectionStateActionsRequire, error) {
+	vals := map[string]PrivateLinkServiceConnectionStateActionsRequire{
+		"none": PrivateLinkServiceConnectionStateActionsRequireNone,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PrivateLinkServiceConnectionStateActionsRequire(input)
+	return &out, nil
+}

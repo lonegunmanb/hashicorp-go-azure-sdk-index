@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2019-06-01/hybridrunbookworkergroup
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewHybridRunbookWorkerGroupClientWithBaseURI(sdkApi sdkEnv.Api) (*HybridRunbookWorkerGroupClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "hybridrunbookworkergroup", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating HybridRunbookWorkerGroupClient: %+v", err)
+	}
+
+	return &HybridRunbookWorkerGroupClient{
+		Client: client,
+	}, nil
+}

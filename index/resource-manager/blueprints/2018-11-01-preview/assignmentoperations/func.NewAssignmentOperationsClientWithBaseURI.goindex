@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/blueprints/2018-11-01-preview/assignmentoperations
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAssignmentOperationsClientWithBaseURI(sdkApi sdkEnv.Api) (*AssignmentOperationsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "assignmentoperations", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AssignmentOperationsClient: %+v", err)
+	}
+
+	return &AssignmentOperationsClient{
+		Client: client,
+	}, nil
+}

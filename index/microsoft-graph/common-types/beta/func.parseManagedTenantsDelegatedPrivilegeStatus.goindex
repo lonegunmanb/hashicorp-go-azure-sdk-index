@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseManagedTenantsDelegatedPrivilegeStatus(input string) (*ManagedTenantsDelegatedPrivilegeStatus, error) {
+	vals := map[string]ManagedTenantsDelegatedPrivilegeStatus{
+		"delegatedadminprivileges":                     ManagedTenantsDelegatedPrivilegeStatus_DelegatedAdminPrivileges,
+		"delegatedandgranulardelegetedadminprivileges": ManagedTenantsDelegatedPrivilegeStatus_DelegatedAndGranularDelegetedAdminPrivileges,
+		"granulardelegatedadminprivileges":             ManagedTenantsDelegatedPrivilegeStatus_GranularDelegatedAdminPrivileges,
+		"none":                                         ManagedTenantsDelegatedPrivilegeStatus_None,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagedTenantsDelegatedPrivilegeStatus(input)
+	return &out, nil
+}

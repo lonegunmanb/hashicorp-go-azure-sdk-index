@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datadog/2021-03-01/monitoredresources
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c MonitoredResourcesClient) MonitorsListMonitoredResourcesComplete(ctx context.Context, id MonitorId) (MonitorsListMonitoredResourcesCompleteResult, error) {
+	return c.MonitorsListMonitoredResourcesCompleteMatchingPredicate(ctx, id, MonitoredResourceOperationPredicate{})
+}

@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type PlannerArchivalInfo struct {
+	// Read-only. Reason why the entity was archived or unarchived.
+	Justification nullable.Type[string] `json:"justification,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Read-only. Identity of the user who archived or unarchived the entity
+	StatusChangedBy *IdentitySet `json:"statusChangedBy,omitempty"`
+
+	// Read-only. Date and time at which the entity's archive status changed.
+	StatusChangedDateTime nullable.Type[string] `json:"statusChangedDateTime,omitempty"`
+}

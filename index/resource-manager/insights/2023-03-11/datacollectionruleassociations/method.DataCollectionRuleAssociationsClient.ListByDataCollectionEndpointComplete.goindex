@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2023-03-11/datacollectionruleassociations
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DataCollectionRuleAssociationsClient) ListByDataCollectionEndpointComplete(ctx context.Context, id DataCollectionEndpointId) (ListByDataCollectionEndpointCompleteResult, error) {
+	return c.ListByDataCollectionEndpointCompleteMatchingPredicate(ctx, id, DataCollectionRuleAssociationProxyOnlyResourceOperationPredicate{})
+}

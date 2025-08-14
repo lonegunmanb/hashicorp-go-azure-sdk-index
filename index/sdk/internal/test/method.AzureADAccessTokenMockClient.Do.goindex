@@ -1,0 +1,53 @@
+package github.com/hashicorp/go-azure-sdk/sdk/internal/test
+import (
+	"bytes"
+	"fmt"
+	"io"
+	"net/http"
+	"net/url"
+	"regexp"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func (c *AzureADAccessTokenMockClient) Do(r *http.Request) (resp *http.Response, err error) {
+	if r == nil {
+		return nil, fmt.Errorf("request was nil")
+	}
+
+	resp = &http.Response{
+		Proto:      "HTTP/1.1",
+		ProtoMajor: 1,
+		ProtoMinor: 1,
+		StatusCode: http.StatusOK,
+		Header: http.Header{
+			"Content-Type": []string{"application/json; charset=utf-8"},
+		},
+		Request: r,
+	}
+
+	if err = resp.Request.ParseForm(); err != nil {
+		return nil, err
+	}
+
+	u, err := url.Parse(c.Authorization.LoginEndpoint)
+	if err != nil {
+		return nil, err
+	}
+
+	loginHost := u.Host
+	if p := u.Port(); p != "" {
+		loginHost = fmt.Sprintf("%s:%s", loginHost, p)
+	}
+
+	metadataHost := "169.254.169.254"
+
+	switch r.Host {
+	case loginHost:
+		return c.tokenFromLoginEndpoint(resp)
+	case metadataHost:
+		return c.tokenFromInstanceMetadataService(resp)
+	}
+
+	return nil, fmt.Errorf("unexpected Host header, expected %q, received %q", u.Host, r.Host)
+
+}

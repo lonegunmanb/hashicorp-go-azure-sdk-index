@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dnsresolver/2025-05-01/forwardingrules
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewForwardingRulesClientWithBaseURI(sdkApi sdkEnv.Api) (*ForwardingRulesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "forwardingrules", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ForwardingRulesClient: %+v", err)
+	}
+
+	return &ForwardingRulesClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2023-04-02/snapshots
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCopyCompletionErrorReason(input string) (*CopyCompletionErrorReason, error) {
+	vals := map[string]CopyCompletionErrorReason{
+		"copysourcenotfound": CopyCompletionErrorReasonCopySourceNotFound,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CopyCompletionErrorReason(input)
+	return &out, nil
+}

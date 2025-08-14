@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/endpoints
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRedirectType(input string) (*RedirectType, error) {
+	vals := map[string]RedirectType{
+		"found":             RedirectTypeFound,
+		"moved":             RedirectTypeMoved,
+		"permanentredirect": RedirectTypePermanentRedirect,
+		"temporaryredirect": RedirectTypeTemporaryRedirect,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RedirectType(input)
+	return &out, nil
+}

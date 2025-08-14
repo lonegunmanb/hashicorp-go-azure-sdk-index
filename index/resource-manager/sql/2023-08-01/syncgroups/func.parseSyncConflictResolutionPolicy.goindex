@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/syncgroups
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSyncConflictResolutionPolicy(input string) (*SyncConflictResolutionPolicy, error) {
+	vals := map[string]SyncConflictResolutionPolicy{
+		"hubwin":    SyncConflictResolutionPolicyHubWin,
+		"memberwin": SyncConflictResolutionPolicyMemberWin,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SyncConflictResolutionPolicy(input)
+	return &out, nil
+}

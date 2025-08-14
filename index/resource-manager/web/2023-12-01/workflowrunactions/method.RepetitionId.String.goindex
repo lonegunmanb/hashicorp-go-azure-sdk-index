@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/workflowrunactions
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id RepetitionId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Site Name: %q", id.SiteName),
+		fmt.Sprintf("Workflow Name: %q", id.WorkflowName),
+		fmt.Sprintf("Run Name: %q", id.RunName),
+		fmt.Sprintf("Action Name: %q", id.ActionName),
+		fmt.Sprintf("Repetition Name: %q", id.RepetitionName),
+	}
+	return fmt.Sprintf("Repetition (%s)", strings.Join(components, "\n"))
+}

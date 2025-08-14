@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/invoice
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id BillingSubscriptionInvoiceId) ID() string {
+	fmtString := "/providers/Microsoft.Billing/billingAccounts/default/billingSubscriptions/%s/invoices/%s"
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.InvoiceName)
+}

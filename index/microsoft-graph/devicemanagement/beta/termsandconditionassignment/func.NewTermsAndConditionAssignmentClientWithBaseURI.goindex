@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/termsandconditionassignment
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTermsAndConditionAssignmentClientWithBaseURI(sdkApi sdkEnv.Api) (*TermsAndConditionAssignmentClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "termsandconditionassignment", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TermsAndConditionAssignmentClient: %+v", err)
+	}
+
+	return &TermsAndConditionAssignmentClient{
+		Client: client,
+	}, nil
+}

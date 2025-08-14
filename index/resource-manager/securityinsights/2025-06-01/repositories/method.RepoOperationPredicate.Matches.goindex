@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2025-06-01/repositories
+
+func (p RepoOperationPredicate) Matches(input Repo) bool {
+
+	if p.FullName != nil && (input.FullName == nil || *p.FullName != *input.FullName) {
+		return false
+	}
+
+	if p.InstallationId != nil && (input.InstallationId == nil || *p.InstallationId != *input.InstallationId) {
+		return false
+	}
+
+	if p.Url != nil && (input.Url == nil || *p.Url != *input.Url) {
+		return false
+	}
+
+	return true
+}

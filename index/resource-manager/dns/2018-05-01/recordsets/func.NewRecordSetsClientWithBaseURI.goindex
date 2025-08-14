@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dns/2018-05-01/recordsets
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewRecordSetsClientWithBaseURI(sdkApi sdkEnv.Api) (*RecordSetsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "recordsets", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating RecordSetsClient: %+v", err)
+	}
+
+	return &RecordSetsClient{
+		Client: client,
+	}, nil
+}

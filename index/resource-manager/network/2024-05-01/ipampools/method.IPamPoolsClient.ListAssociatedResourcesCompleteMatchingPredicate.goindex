@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-05-01/ipampools
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c IPamPoolsClient) ListAssociatedResourcesCompleteMatchingPredicate(ctx context.Context, id IPamPoolId, predicate PoolAssociationOperationPredicate) (result ListAssociatedResourcesCompleteResult, err error) {
+	items := make([]PoolAssociation, 0)
+
+	resp, err := c.ListAssociatedResources(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListAssociatedResourcesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

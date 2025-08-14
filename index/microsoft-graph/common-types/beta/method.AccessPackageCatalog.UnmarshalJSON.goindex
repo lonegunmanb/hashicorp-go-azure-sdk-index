@@ -1,0 +1,75 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *AccessPackageCatalog) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AccessPackageResourceRoles            *[]AccessPackageResourceRole            `json:"accessPackageResourceRoles,omitempty"`
+		AccessPackageResourceScopes           *[]AccessPackageResourceScope           `json:"accessPackageResourceScopes,omitempty"`
+		AccessPackageResources                *[]AccessPackageResource                `json:"accessPackageResources,omitempty"`
+		AccessPackages                        *[]AccessPackage                        `json:"accessPackages,omitempty"`
+		CatalogStatus                         nullable.Type[string]                   `json:"catalogStatus,omitempty"`
+		CatalogType                           nullable.Type[string]                   `json:"catalogType,omitempty"`
+		CreatedBy                             nullable.Type[string]                   `json:"createdBy,omitempty"`
+		CreatedDateTime                       nullable.Type[string]                   `json:"createdDateTime,omitempty"`
+		CustomAccessPackageWorkflowExtensions *[]CustomAccessPackageWorkflowExtension `json:"customAccessPackageWorkflowExtensions,omitempty"`
+		Description                           nullable.Type[string]                   `json:"description,omitempty"`
+		DisplayName                           nullable.Type[string]                   `json:"displayName,omitempty"`
+		IsExternallyVisible                   nullable.Type[bool]                     `json:"isExternallyVisible,omitempty"`
+		ModifiedBy                            nullable.Type[string]                   `json:"modifiedBy,omitempty"`
+		ModifiedDateTime                      nullable.Type[string]                   `json:"modifiedDateTime,omitempty"`
+		UniqueName                            nullable.Type[string]                   `json:"uniqueName,omitempty"`
+		Id                                    *string                                 `json:"id,omitempty"`
+		ODataId                               *string                                 `json:"@odata.id,omitempty"`
+		ODataType                             *string                                 `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AccessPackageResourceRoles = decoded.AccessPackageResourceRoles
+	s.AccessPackageResourceScopes = decoded.AccessPackageResourceScopes
+	s.AccessPackageResources = decoded.AccessPackageResources
+	s.AccessPackages = decoded.AccessPackages
+	s.CatalogStatus = decoded.CatalogStatus
+	s.CatalogType = decoded.CatalogType
+	s.CreatedBy = decoded.CreatedBy
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.CustomAccessPackageWorkflowExtensions = decoded.CustomAccessPackageWorkflowExtensions
+	s.Description = decoded.Description
+	s.DisplayName = decoded.DisplayName
+	s.IsExternallyVisible = decoded.IsExternallyVisible
+	s.ModifiedBy = decoded.ModifiedBy
+	s.ModifiedDateTime = decoded.ModifiedDateTime
+	s.UniqueName = decoded.UniqueName
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling AccessPackageCatalog into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["accessPackageCustomWorkflowExtensions"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling AccessPackageCustomWorkflowExtensions into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]CustomCalloutExtension, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalCustomCalloutExtensionImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'AccessPackageCustomWorkflowExtensions' for 'AccessPackageCatalog': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.AccessPackageCustomWorkflowExtensions = &output
+	}
+
+	return nil
+}

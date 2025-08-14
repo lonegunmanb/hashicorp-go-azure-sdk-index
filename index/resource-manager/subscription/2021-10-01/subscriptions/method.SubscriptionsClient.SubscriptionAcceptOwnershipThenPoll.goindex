@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/subscription/2021-10-01/subscriptions
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/polling"
+)
+func (c SubscriptionsClient) SubscriptionAcceptOwnershipThenPoll(ctx context.Context, id ProviderSubscriptionId, input AcceptOwnershipRequest) error {
+	result, err := c.SubscriptionAcceptOwnership(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing SubscriptionAcceptOwnership: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(); err != nil {
+		return fmt.Errorf("polling after SubscriptionAcceptOwnership: %+v", err)
+	}
+
+	return nil
+}

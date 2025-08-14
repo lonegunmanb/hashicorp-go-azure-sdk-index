@@ -1,0 +1,109 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type OnPremisesPublishing struct {
+	// If you're configuring a traffic manager in front of multiple app proxy applications, this user-friendly URL points to
+	// the traffic manager.
+	AlternateUrl nullable.Type[string] `json:"alternateUrl,omitempty"`
+
+	// The duration the connector waits for a response from the backend application before closing the connection. Possible
+	// values are default, long. When set to default, the backend application timeout has a length of 85 seconds. When set
+	// to long, the backend timeout is increased to 180 seconds. Use long if your server takes more than 85 seconds to
+	// respond to requests or if you are unable to access the application and the error status is 'Backend Timeout'. Default
+	// value is default.
+	ApplicationServerTimeout nullable.Type[string] `json:"applicationServerTimeout,omitempty"`
+
+	// System-defined value that indicates whether this application is an application proxy configured application. The
+	// possible values are quickaccessapp and nonwebapp. Read-only.
+	ApplicationType nullable.Type[string] `json:"applicationType,omitempty"`
+
+	// Details the pre-authentication setting for the application. Pre-authentication enforces that users must authenticate
+	// before accessing the app. Pass through doesn't require authentication. Possible values are: passthru,
+	// aadPreAuthentication.
+	ExternalAuthenticationType *ExternalAuthenticationType `json:"externalAuthenticationType,omitempty"`
+
+	// The published external URL for the application. For example, https://intranet-contoso.msappproxy.net/.
+	ExternalUrl nullable.Type[string] `json:"externalUrl,omitempty"`
+
+	// The internal url of the application. For example, https://intranet/.
+	InternalUrl nullable.Type[string] `json:"internalUrl,omitempty"`
+
+	// Indicates whether the application is accessible via a Global Secure Access client on a managed device.
+	IsAccessibleViaZTNAClient nullable.Type[bool] `json:"isAccessibleViaZTNAClient,omitempty"`
+
+	// Indicates whether backend SSL certificate validation is enabled for the application. For all new Application Proxy
+	// apps, the property is set to true by default. For all existing apps, the property is set to false.
+	IsBackendCertificateValidationEnabled nullable.Type[bool] `json:"isBackendCertificateValidationEnabled,omitempty"`
+
+	// Indicates Microsoft Entra Private Access should handle DNS resolution. false by default.
+	IsDnsResolutionEnabled nullable.Type[bool] `json:"isDnsResolutionEnabled,omitempty"`
+
+	// Indicates if the HTTPOnly cookie flag should be set in the HTTP response headers. Set this value to true to have
+	// Application Proxy cookies include the HTTPOnly flag in the HTTP response headers. If using Remote Desktop Services,
+	// set this value to False. Default value is false.
+	IsHttpOnlyCookieEnabled nullable.Type[bool] `json:"isHttpOnlyCookieEnabled,omitempty"`
+
+	// Indicates if the application is currently being published via Application Proxy or not. This is preset by the system.
+	// Read-only.
+	IsOnPremPublishingEnabled nullable.Type[bool] `json:"isOnPremPublishingEnabled,omitempty"`
+
+	// Indicates if the Persistent cookie flag should be set in the HTTP response headers. Keep this value set to false.
+	// Only use this setting for applications that can't share cookies between processes. For more information about cookie
+	// settings, see Cookie settings for accessing on-premises applications in Microsoft Entra ID. Default value is false.
+	IsPersistentCookieEnabled nullable.Type[bool] `json:"isPersistentCookieEnabled,omitempty"`
+
+	// Indicates if the Secure cookie flag should be set in the HTTP response headers. Set this value to true to transmit
+	// cookies over a secure channel such as an encrypted HTTPS request. Default value is true.
+	IsSecureCookieEnabled nullable.Type[bool] `json:"isSecureCookieEnabled,omitempty"`
+
+	// Indicates whether validation of the state parameter when the client uses the OAuth 2.0 authorization code grant flow
+	// is enabled. This setting allows admins to specify whether they want to enable CSRF protection for their apps.
+	IsStateSessionEnabled nullable.Type[bool] `json:"isStateSessionEnabled,omitempty"`
+
+	// Indicates if the application should translate urls in the response headers. Keep this value as true unless your
+	// application required the original host header in the authentication request. Default value is true.
+	IsTranslateHostHeaderEnabled nullable.Type[bool] `json:"isTranslateHostHeaderEnabled,omitempty"`
+
+	// Indicates if the application should translate urls in the application body. Keep this value as false unless you have
+	// hardcoded HTML links to other on-premises applications and don't use custom domains. For more information, see Link
+	// translation with Application Proxy. Default value is false.
+	IsTranslateLinksInBodyEnabled nullable.Type[bool] `json:"isTranslateLinksInBodyEnabled,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Represents the application segment collection for an on-premises wildcard application. This property is deprecated
+	// and will stop returning data on June 1, 2023. Use segmentsConfiguration instead.
+	OnPremisesApplicationSegments *[]OnPremisesApplicationSegment `json:"onPremisesApplicationSegments,omitempty"`
+
+	// Represents the collection of application segments for an on-premises wildcard application that's published through
+	// Microsoft Entra application proxy.
+	SegmentsConfiguration SegmentConfiguration `json:"segmentsConfiguration"`
+
+	// Represents the single sign-on configuration for the on-premises application.
+	SingleSignOnSettings *OnPremisesPublishingSingleSignOn `json:"singleSignOnSettings,omitempty"`
+
+	// Indicates whether the application should use alternateUrl instead of externalUrl.
+	UseAlternateUrlForTranslationAndRedirect nullable.Type[bool] `json:"useAlternateUrlForTranslationAndRedirect,omitempty"`
+
+	// Details of the certificate associated with the application when a custom domain is in use. null when using the
+	// default domain. Read-only.
+	VerifiedCustomDomainCertificatesMetadata *VerifiedCustomDomainCertificatesMetadata `json:"verifiedCustomDomainCertificatesMetadata,omitempty"`
+
+	// The associated key credential for the custom domain used.
+	VerifiedCustomDomainKeyCredential *KeyCredential `json:"verifiedCustomDomainKeyCredential,omitempty"`
+
+	// The associated password credential for the custom domain used.
+	VerifiedCustomDomainPasswordCredential *PasswordCredential `json:"verifiedCustomDomainPasswordCredential,omitempty"`
+
+	WafAllowedHeaders *WafAllowedHeadersDictionary `json:"wafAllowedHeaders,omitempty"`
+	WafIPRanges       *[]IPRange                   `json:"wafIpRanges,omitempty"`
+	WafProvider       nullable.Type[string]        `json:"wafProvider,omitempty"`
+}

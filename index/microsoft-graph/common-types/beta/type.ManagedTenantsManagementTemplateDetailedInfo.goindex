@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ManagedTenantsManagementTemplateDetailedInfo struct {
+	Category *ManagedTenantsManagementCategory `json:"category,omitempty"`
+
+	// The display name for the management template. Required. Read-only.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// The unique identifier for the management template. Required. Read-only.
+	ManagementTemplateId *string `json:"managementTemplateId,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	Version *int64 `json:"version,omitempty"`
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseManagedAppDataIngestionLocation(input string) (*ManagedAppDataIngestionLocation, error) {
+	vals := map[string]ManagedAppDataIngestionLocation{
+		"camera":              ManagedAppDataIngestionLocation_Camera,
+		"onedriveforbusiness": ManagedAppDataIngestionLocation_OneDriveForBusiness,
+		"photolibrary":        ManagedAppDataIngestionLocation_PhotoLibrary,
+		"sharepoint":          ManagedAppDataIngestionLocation_SharePoint,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagedAppDataIngestionLocation(input)
+	return &out, nil
+}

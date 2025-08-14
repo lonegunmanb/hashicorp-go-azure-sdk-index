@@ -1,0 +1,10 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/dbnodes
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *DbNodeProperties) SetTimeMaintenanceWindowEndAsTime(input time.Time) {
+	formatted := input.Format("2006-01-02T15:04:05Z07:00")
+	o.TimeMaintenanceWindowEnd = &formatted
+}

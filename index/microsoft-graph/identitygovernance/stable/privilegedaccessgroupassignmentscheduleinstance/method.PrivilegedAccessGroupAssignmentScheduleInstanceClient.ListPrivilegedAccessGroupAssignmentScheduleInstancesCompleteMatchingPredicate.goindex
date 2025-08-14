@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/privilegedaccessgroupassignmentscheduleinstance
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c PrivilegedAccessGroupAssignmentScheduleInstanceClient) ListPrivilegedAccessGroupAssignmentScheduleInstancesCompleteMatchingPredicate(ctx context.Context, options ListPrivilegedAccessGroupAssignmentScheduleInstancesOperationOptions, predicate PrivilegedAccessGroupAssignmentScheduleInstanceOperationPredicate) (result ListPrivilegedAccessGroupAssignmentScheduleInstancesCompleteResult, err error) {
+	items := make([]stable.PrivilegedAccessGroupAssignmentScheduleInstance, 0)
+
+	resp, err := c.ListPrivilegedAccessGroupAssignmentScheduleInstances(ctx, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListPrivilegedAccessGroupAssignmentScheduleInstancesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

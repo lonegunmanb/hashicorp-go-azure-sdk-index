@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s OnAttributeCollectionStartCustomExtension) CustomCalloutExtension() BaseCustomCalloutExtensionImpl {
+	return BaseCustomCalloutExtensionImpl{
+		AuthenticationConfiguration: s.AuthenticationConfiguration,
+		ClientConfiguration:         s.ClientConfiguration,
+		Description:                 s.Description,
+		DisplayName:                 s.DisplayName,
+		EndpointConfiguration:       s.EndpointConfiguration,
+		Id:                          s.Id,
+		ODataId:                     s.ODataId,
+		ODataType:                   s.ODataType,
+	}
+}

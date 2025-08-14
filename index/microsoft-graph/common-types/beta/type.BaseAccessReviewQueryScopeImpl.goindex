@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type BaseAccessReviewQueryScopeImpl struct {
+	// The query representing what will be reviewed in an access review.
+	Query nullable.Type[string] `json:"query,omitempty"`
+
+	// In the scenario where reviewers need to be specified dynamically, this property is used to indicate the relative
+	// source of the query. This property is only required if a relative query is specified. For example, ./manager.
+	QueryRoot nullable.Type[string] `json:"queryRoot,omitempty"`
+
+	// Indicates the type of query. Types include MicrosoftGraph and ARM.
+	QueryType nullable.Type[string] `json:"queryType,omitempty"`
+
+	// Fields inherited from AccessReviewScope
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

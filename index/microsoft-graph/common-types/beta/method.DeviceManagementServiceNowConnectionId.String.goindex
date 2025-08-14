@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DeviceManagementServiceNowConnectionId) String() string {
+	components := []string{
+		fmt.Sprintf("Service Now Connection: %q", id.ServiceNowConnectionId),
+	}
+	return fmt.Sprintf("Device Management Service Now Connection (%s)", strings.Join(components, "\n"))
+}

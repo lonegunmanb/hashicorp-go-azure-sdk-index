@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2025-07-01/backupinstances
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c BackupInstancesClient) AdhocBackupThenPoll(ctx context.Context, id BackupInstanceId, input TriggerBackupRequest) error {
+	result, err := c.AdhocBackup(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing AdhocBackup: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after AdhocBackup: %+v", err)
+	}
+
+	return nil
+}

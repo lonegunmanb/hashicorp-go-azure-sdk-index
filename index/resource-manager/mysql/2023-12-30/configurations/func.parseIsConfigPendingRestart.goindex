@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mysql/2023-12-30/configurations
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseIsConfigPendingRestart(input string) (*IsConfigPendingRestart, error) {
+	vals := map[string]IsConfigPendingRestart{
+		"false": IsConfigPendingRestartFalse,
+		"true":  IsConfigPendingRestartTrue,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IsConfigPendingRestart(input)
+	return &out, nil
+}

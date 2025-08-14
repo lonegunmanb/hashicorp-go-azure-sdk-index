@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/devicemanagementtroubleshootingevent
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDeviceManagementTroubleshootingEventClientWithBaseURI(sdkApi sdkEnv.Api) (*DeviceManagementTroubleshootingEventClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "devicemanagementtroubleshootingevent", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DeviceManagementTroubleshootingEventClient: %+v", err)
+	}
+
+	return &DeviceManagementTroubleshootingEventClient{
+		Client: client,
+	}, nil
+}

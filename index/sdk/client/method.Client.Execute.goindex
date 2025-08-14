@@ -1,0 +1,190 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client
+import (
+	"bytes"
+	"context"
+	"crypto/tls"
+	"encoding/json"
+	"encoding/xml"
+	"errors"
+	"fmt"
+	"io"
+	"log"
+	"math"
+	"net"
+	"net/http"
+	"net/url"
+	"regexp"
+	"runtime"
+	"strconv"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/auth"
+	"github.com/hashicorp/go-azure-sdk/sdk/internal/accept"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+	"github.com/hashicorp/go-retryablehttp"
+)
+func (c *Client) Execute(ctx context.Context, req *Request) (*Response, error) {
+	if req.Request == nil {
+		return nil, fmt.Errorf("req.Request was nil")
+	}
+
+	// Authorize the request
+	if c.AuthorizeRequest != nil {
+		if err := c.AuthorizeRequest(ctx, req.Request, c.Authorizer); err != nil {
+			return nil, fmt.Errorf("authorizing request: %+v", err)
+		}
+	} else if c.Authorizer != nil {
+		if err := auth.SetAuthHeader(ctx, req.Request, c.Authorizer); err != nil {
+			return nil, fmt.Errorf("authorizing request: %+v", err)
+		}
+	}
+
+	var err error
+
+	// Check we can read the request body and set a default empty body
+	var reqBody []byte
+	if req.Body != nil {
+		reqBody, err = io.ReadAll(req.Body)
+		if err != nil {
+			return nil, fmt.Errorf("reading request body: %v", err)
+		}
+		req.Body = io.NopCloser(bytes.NewBuffer(reqBody))
+	}
+
+	// Instantiate a RetryableHttp client and configure its CheckRetry func
+	r := c.retryableClient(ctx, func(ctx context.Context, r *http.Response, err error) (bool, error) {
+		// Eventual consistency checks
+		if r != nil && !c.DisableRetries {
+			if r.StatusCode == http.StatusFailedDependency {
+				return true, nil
+			}
+
+			// Some APIs don't return a response in time
+			if r.StatusCode == http.StatusRequestTimeout {
+				return true, nil
+			}
+
+			// Extract OData from response, intentionally ignoring any errors as it's not crucial to extract
+			// valid OData at this point (valid json can still error here, such as any non-object literal)
+			o, _ := odata.FromResponse(r)
+
+			if f := req.RetryFunc; f != nil {
+				shouldRetry, err := f(r, o)
+				if err != nil || shouldRetry {
+					return shouldRetry, err
+				}
+			}
+		}
+
+		// Check for failed connections etc and decide if retries are appropriate
+		if r == nil {
+			if req.IsIdempotent() {
+				if !isResourceManagerHost(req) {
+					return extendedRetryPolicy(r, err)
+				}
+
+				return retryablehttp.DefaultRetryPolicy(ctx, r, err)
+			}
+
+			return false, fmt.Errorf("HTTP response was nil; connection may have been reset")
+		}
+
+		// Fall back to default retry policy to handle rate limiting, server errors etc.
+		return retryablehttp.DefaultRetryPolicy(ctx, r, err)
+	})
+
+	// Derive an *http.Client for sending the request
+	client := r.StandardClient()
+
+	// Configure any RequestMiddlewares
+	if c.RequestMiddlewares != nil {
+		for _, m := range *c.RequestMiddlewares {
+			r, err := m(req.Request)
+			if err != nil {
+				return nil, err
+			}
+			req.Request = r
+		}
+	}
+
+	// Send the request
+	resp := &Response{}
+	resp.Response, err = client.Do(req.Request)
+	if err != nil {
+		return resp, err
+	}
+	if resp.Response == nil {
+		return resp, fmt.Errorf("HTTP response was nil; connection may have been reset")
+	}
+
+	// Configure any ResponseMiddlewares
+	if c.ResponseMiddlewares != nil {
+		for _, m := range *c.ResponseMiddlewares {
+			r, err := m(req.Request, resp.Response)
+			if err != nil {
+				return resp, err
+			}
+			resp.Response = r
+		}
+	}
+
+	// Extract OData from response, intentionally ignoring any errors as it's not crucial to extract
+	// valid OData at this point (valid json can still error here, such as any non-object literal)
+	resp.OData, _ = odata.FromResponse(resp.Response)
+
+	// Determine whether response status is valid
+	if !containsStatusCode(req.ValidStatusCodes, resp.StatusCode) {
+		// The status code didn't match, but we also need to check the ValidStatusFunc, if provided
+		// Note that the odata argument here is a best-effort and may be nil
+		if f := req.ValidStatusFunc; f != nil && f(resp.Response, resp.OData) {
+			return resp, nil
+		}
+
+		status := fmt.Sprintf("%d", resp.StatusCode)
+
+		// Prefer the status text returned in the response, but fall back to predefined status if absent
+		statusText := resp.Status
+		if statusText == "" {
+			statusText = http.StatusText(resp.StatusCode)
+		}
+		if statusText != "" {
+			status = fmt.Sprintf("%s (%s)", status, statusText)
+		}
+
+		// Determine suitable error text
+		var errText string
+
+		// Use a custom response error handler if provided
+		if req.CustomErrorParser != nil {
+			if err = req.CustomErrorParser.FromResponse(resp.Response); err != nil {
+				errText = err.Error()
+			}
+		}
+
+		// Fall back to parsing error text from OData
+		if errText == "" {
+			switch {
+			case resp.OData != nil && resp.OData.Error != nil && resp.OData.Error.String() != "":
+				errText = fmt.Sprintf("error: %s", resp.OData.Error)
+
+			default:
+				defer resp.Body.Close()
+
+				respBody, err := io.ReadAll(resp.Body)
+				if err != nil {
+					return resp, fmt.Errorf("unexpected status %s, could not read response body", status)
+				}
+				if len(respBody) == 0 {
+					return resp, fmt.Errorf("unexpected status %s received with no body", status)
+				}
+
+				errText = fmt.Sprintf("response: %s", respBody)
+			}
+		}
+
+		return resp, fmt.Errorf("unexpected status %s with %s", status, errText)
+	}
+
+	return resp, nil
+}

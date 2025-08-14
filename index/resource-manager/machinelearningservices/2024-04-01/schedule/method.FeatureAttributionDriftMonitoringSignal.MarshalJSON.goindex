@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/schedule
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s FeatureAttributionDriftMonitoringSignal) MarshalJSON() ([]byte, error) {
+	type wrapper FeatureAttributionDriftMonitoringSignal
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling FeatureAttributionDriftMonitoringSignal: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling FeatureAttributionDriftMonitoringSignal: %+v", err)
+	}
+
+	decoded["signalType"] = "FeatureAttributionDrift"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling FeatureAttributionDriftMonitoringSignal: %+v", err)
+	}
+
+	return encoded, nil
+}

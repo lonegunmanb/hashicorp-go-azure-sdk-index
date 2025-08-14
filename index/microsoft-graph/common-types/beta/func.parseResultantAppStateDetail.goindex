@@ -1,0 +1,53 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseResultantAppStateDetail(input string) (*ResultantAppStateDetail, error) {
+	vals := map[string]ResultantAppStateDetail{
+		"appremovedbysupersedence":            ResultantAppStateDetail_AppRemovedBySupersedence,
+		"autoinstalldisabled":                 ResultantAppStateDetail_AutoInstallDisabled,
+		"contentdownloaded":                   ResultantAppStateDetail_ContentDownloaded,
+		"dependencyfailedtoinstall":           ResultantAppStateDetail_DependencyFailedToInstall,
+		"dependencypendingreboot":             ResultantAppStateDetail_DependencyPendingReboot,
+		"dependencywithautoinstalldisabled":   ResultantAppStateDetail_DependencyWithAutoInstallDisabled,
+		"dependencywithrequirementsnotmet":    ResultantAppStateDetail_DependencyWithRequirementsNotMet,
+		"filesystemrequirementnotmet":         ResultantAppStateDetail_FileSystemRequirementNotMet,
+		"installingdependencies":              ResultantAppStateDetail_InstallingDependencies,
+		"iosappstoreupdatefailedtoinstall":    ResultantAppStateDetail_IosAppStoreUpdateFailedToInstall,
+		"managedappnolongerpresent":           ResultantAppStateDetail_ManagedAppNoLongerPresent,
+		"minimumcpuspeednotmet":               ResultantAppStateDetail_MinimumCpuSpeedNotMet,
+		"minimumdiskspacenotmet":              ResultantAppStateDetail_MinimumDiskSpaceNotMet,
+		"minimumlogicalprocessorcountnotmet":  ResultantAppStateDetail_MinimumLogicalProcessorCountNotMet,
+		"minimumosversionnotmet":              ResultantAppStateDetail_MinimumOsVersionNotMet,
+		"minimumphysicalmemorynotmet":         ResultantAppStateDetail_MinimumPhysicalMemoryNotMet,
+		"noadditionaldetails":                 ResultantAppStateDetail_NoAdditionalDetails,
+		"pendingreboot":                       ResultantAppStateDetail_PendingReboot,
+		"platformnotapplicable":               ResultantAppStateDetail_PlatformNotApplicable,
+		"powershellscriptrequirementnotmet":   ResultantAppStateDetail_PowerShellScriptRequirementNotMet,
+		"processorarchitecturenotapplicable":  ResultantAppStateDetail_ProcessorArchitectureNotApplicable,
+		"registryrequirementnotmet":           ResultantAppStateDetail_RegistryRequirementNotMet,
+		"removingsupersededapps":              ResultantAppStateDetail_RemovingSupersededApps,
+		"seeinstallerrorcode":                 ResultantAppStateDetail_SeeInstallErrorCode,
+		"seeuninstallerrorcode":               ResultantAppStateDetail_SeeUninstallErrorCode,
+		"supersededappuninstallfailed":        ResultantAppStateDetail_SupersededAppUninstallFailed,
+		"supersededappuninstallpendingreboot": ResultantAppStateDetail_SupersededAppUninstallPendingReboot,
+		"supersededappsdetected":              ResultantAppStateDetail_SupersededAppsDetected,
+		"supersedingappsdetected":             ResultantAppStateDetail_SupersedingAppsDetected,
+		"supersedingappsnotapplicable":        ResultantAppStateDetail_SupersedingAppsNotApplicable,
+		"uninstallpendingreboot":              ResultantAppStateDetail_UninstallPendingReboot,
+		"untargetedsupersedingappsdetected":   ResultantAppStateDetail_UntargetedSupersedingAppsDetected,
+		"userisnotloggedintoappstore":         ResultantAppStateDetail_UserIsNotLoggedIntoAppStore,
+		"userrejectedinstall":                 ResultantAppStateDetail_UserRejectedInstall,
+		"userrejectedupdate":                  ResultantAppStateDetail_UserRejectedUpdate,
+		"vppapphasupdateavailable":            ResultantAppStateDetail_VppAppHasUpdateAvailable,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ResultantAppStateDetail(input)
+	return &out, nil
+}

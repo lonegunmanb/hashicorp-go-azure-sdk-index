@@ -1,0 +1,11 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationrecoveryplans
+import (
+	"encoding/json"
+	"fmt"
+)
+type RecoveryPlanAction struct {
+	ActionName         string                              `json:"actionName"`
+	CustomDetails      RecoveryPlanActionDetails           `json:"customDetails"`
+	FailoverDirections []PossibleOperationsDirections      `json:"failoverDirections"`
+	FailoverTypes      []ReplicationProtectedItemOperation `json:"failoverTypes"`
+}

@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cosmosdb/2024-08-15/graphapicompute
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s SqlDedicatedGatewayServiceResourceCreateUpdateProperties) MarshalJSON() ([]byte, error) {
+	type wrapper SqlDedicatedGatewayServiceResourceCreateUpdateProperties
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling SqlDedicatedGatewayServiceResourceCreateUpdateProperties: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling SqlDedicatedGatewayServiceResourceCreateUpdateProperties: %+v", err)
+	}
+
+	decoded["serviceType"] = "SqlDedicatedGateway"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling SqlDedicatedGatewayServiceResourceCreateUpdateProperties: %+v", err)
+	}
+
+	return encoded, nil
+}

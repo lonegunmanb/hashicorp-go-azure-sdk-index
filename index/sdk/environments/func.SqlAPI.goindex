@@ -1,0 +1,11 @@
+package github.com/hashicorp/go-azure-sdk/sdk/environments
+import "github.com/hashicorp/go-azure-helpers/lang/pointer"
+func SqlAPI(domainSuffix string) *ApiEndpoint {
+	return &ApiEndpoint{
+		domainSuffix:       pointer.To(domainSuffix),
+		endpoint:           nil,
+		appId:              pointer.To(sqlDatabaseAppId),
+		name:               "AzureSqlDatabase",
+		resourceIdentifier: nil,
+	}
+}

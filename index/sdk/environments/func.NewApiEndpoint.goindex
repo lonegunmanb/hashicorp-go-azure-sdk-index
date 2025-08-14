@@ -1,0 +1,11 @@
+package github.com/hashicorp/go-azure-sdk/sdk/environments
+import (
+	"github.com/hashicorp/go-azure-helpers/lang/pointer"
+)
+func NewApiEndpoint(name, endpoint string, appId *string) *ApiEndpoint {
+	return &ApiEndpoint{
+		appId:    appId,
+		endpoint: pointer.To(endpoint),
+		name:     name,
+	}
+}

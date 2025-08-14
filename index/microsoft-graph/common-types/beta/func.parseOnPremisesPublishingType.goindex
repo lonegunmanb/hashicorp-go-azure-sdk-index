@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseOnPremisesPublishingType(input string) (*OnPremisesPublishingType, error) {
+	vals := map[string]OnPremisesPublishingType{
+		"applicationproxy": OnPremisesPublishingType_ApplicationProxy,
+		"authentication":   OnPremisesPublishingType_Authentication,
+		"exchangeonline":   OnPremisesPublishingType_ExchangeOnline,
+		"intunepfx":        OnPremisesPublishingType_IntunePfx,
+		"oflinedomainjoin": OnPremisesPublishingType_OflineDomainJoin,
+		"provisioning":     OnPremisesPublishingType_Provisioning,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := OnPremisesPublishingType(input)
+	return &out, nil
+}

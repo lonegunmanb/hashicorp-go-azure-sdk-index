@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/virtualmachinescalesetvms
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDiffDiskOptions(input string) (*DiffDiskOptions, error) {
+	vals := map[string]DiffDiskOptions{
+		"local": DiffDiskOptionsLocal,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DiffDiskOptions(input)
+	return &out, nil
+}

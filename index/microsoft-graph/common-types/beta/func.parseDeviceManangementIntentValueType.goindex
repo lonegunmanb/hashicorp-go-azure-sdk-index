@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeviceManangementIntentValueType(input string) (*DeviceManangementIntentValueType, error) {
+	vals := map[string]DeviceManangementIntentValueType{
+		"abstractcomplex": DeviceManangementIntentValueType_AbstractComplex,
+		"boolean":         DeviceManangementIntentValueType_Boolean,
+		"collection":      DeviceManangementIntentValueType_Collection,
+		"complex":         DeviceManangementIntentValueType_Complex,
+		"integer":         DeviceManangementIntentValueType_Integer,
+		"string":          DeviceManangementIntentValueType_String,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceManangementIntentValueType(input)
+	return &out, nil
+}

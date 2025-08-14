@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/desktopvirtualization/2024-04-03/sessionhost
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseStatus(input string) (*Status, error) {
+	vals := map[string]Status{
+		"available":                   StatusAvailable,
+		"disconnected":                StatusDisconnected,
+		"domaintrustrelationshiplost": StatusDomainTrustRelationshipLost,
+		"fslogixnothealthy":           StatusFSLogixNotHealthy,
+		"needsassistance":             StatusNeedsAssistance,
+		"noheartbeat":                 StatusNoHeartbeat,
+		"notjoinedtodomain":           StatusNotJoinedToDomain,
+		"shutdown":                    StatusShutdown,
+		"sxsstacklistenernotready":    StatusSxSStackListenerNotReady,
+		"unavailable":                 StatusUnavailable,
+		"upgradefailed":               StatusUpgradeFailed,
+		"upgrading":                   StatusUpgrading,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Status(input)
+	return &out, nil
+}

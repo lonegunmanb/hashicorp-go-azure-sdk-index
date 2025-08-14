@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerservice/2025-02-01/maintenanceconfigurations
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c MaintenanceConfigurationsClient) ListByManagedClusterCompleteMatchingPredicate(ctx context.Context, id commonids.KubernetesClusterId, predicate MaintenanceConfigurationOperationPredicate) (result ListByManagedClusterCompleteResult, err error) {
+	items := make([]MaintenanceConfiguration, 0)
+
+	resp, err := c.ListByManagedCluster(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByManagedClusterCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

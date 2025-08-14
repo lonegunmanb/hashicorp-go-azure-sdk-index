@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerservice/2025-02-01/managedclusters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseOutboundType(input string) (*OutboundType, error) {
+	vals := map[string]OutboundType{
+		"loadbalancer":           OutboundTypeLoadBalancer,
+		"managednatgateway":      OutboundTypeManagedNATGateway,
+		"none":                   OutboundTypeNone,
+		"userassignednatgateway": OutboundTypeUserAssignedNATGateway,
+		"userdefinedrouting":     OutboundTypeUserDefinedRouting,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := OutboundType(input)
+	return &out, nil
+}

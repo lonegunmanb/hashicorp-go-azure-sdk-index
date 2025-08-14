@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2019-10-01/charges
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalChargeSummaryImplementation(input []byte) (ChargeSummary, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling ChargeSummary into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["kind"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "legacy") {
+		var out LegacyChargeSummary
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into LegacyChargeSummary: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "modern") {
+		var out ModernChargeSummary
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ModernChargeSummary: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseChargeSummaryImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseChargeSummaryImpl: %+v", err)
+	}
+
+	return RawChargeSummaryImpl{
+		chargeSummary: parent,
+		Type:          value,
+		Values:        temp,
+	}, nil
+
+}

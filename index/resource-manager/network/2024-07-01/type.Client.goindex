@@ -1,0 +1,261 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/v2024_07_01
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/adminrulecollections"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/adminrules"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/applicationgatewayprivateendpointconnections"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/applicationgatewayprivatelinkresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/applicationgateways"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/applicationgatewaywafdynamicmanifests"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/applicationsecuritygroups"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/availabledelegations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/availableservicealiases"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/azurefirewalls"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/bastionhosts"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/bastionshareablelink"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/bgpservicecommunities"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/checkdnsavailabilities"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/cloudservicepublicipaddresses"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/connectionmonitors"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/connectivityconfigurations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/customipprefixes"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/ddoscustompolicies"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/ddosprotectionplans"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/dscpconfiguration"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/dscpconfigurations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/endpointservices"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/expressroutecircuitarptable"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/expressroutecircuitauthorizations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/expressroutecircuitconnections"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/expressroutecircuitpeerings"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/expressroutecircuitroutestable"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/expressroutecircuitroutestablesummary"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/expressroutecircuits"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/expressroutecircuitstats"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/expressrouteconnections"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/expressroutecrossconnectionarptable"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/expressroutecrossconnectionpeerings"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/expressroutecrossconnectionroutetable"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/expressroutecrossconnectionroutetablesummary"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/expressroutecrossconnections"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/expressroutegateways"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/expressroutelinks"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/expressrouteportauthorizations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/expressrouteports"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/expressrouteportslocations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/expressrouteproviderports"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/expressrouteserviceproviders"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/firewallpolicies"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/firewallpolicyrulecollectiongroups"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/flowlogs"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/ipallocations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/ipampools"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/ipgroups"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/loadbalancers"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/localnetworkgateways"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/natgateways"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/networkgroups"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/networkinterfaces"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/networkmanageractiveconfigurations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/networkmanageractiveconnectivityconfigurations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/networkmanagerconnections"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/networkmanagereffectiveconnectivityconfiguration"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/networkmanagereffectivesecurityadminrules"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/networkmanagerroutingconfigurations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/networkmanagers"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/networkprofiles"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/networksecuritygroups"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/networksecurityperimeteraccessrules"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/networksecurityperimeterassociableresourcetypes"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/networksecurityperimeterassociations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/networksecurityperimeterlinkreferences"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/networksecurityperimeterlinks"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/networksecurityperimeterloggingconfigurations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/networksecurityperimeterprofiles"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/networksecurityperimeters"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/networkvirtualappliances"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/networkwatchers"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/p2svpngateways"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/packetcaptures"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/peerexpressroutecircuitconnections"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/privatednszonegroups"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/privateendpoints"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/privatelinkservices"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/publicipaddresses"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/publicipprefixes"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/reachabilityanalysisintent"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/reachabilityanalysisintents"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/reachabilityanalysisruns"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/routefilterrules"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/routefilters"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/routes"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/routetables"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/routingrulecollections"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/routingrules"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/scopeconnections"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/securityadminconfigurations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/securitypartnerproviders"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/securityrules"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/securityuserconfigurations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/securityuserrulecollections"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/securityuserrules"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/serviceendpointpolicies"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/serviceendpointpolicydefinitions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/servicetags"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/staticcidrs"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/staticmembers"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/subnets"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/trafficanalytics"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/usages"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/verifierworkspaces"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/vipswap"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/virtualappliancesites"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/virtualapplianceskus"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/virtualnetworkgatewayconnections"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/virtualnetworkgateways"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/virtualnetworkpeerings"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/virtualnetworks"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/virtualnetworktap"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/virtualnetworktaps"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/virtualrouterpeerings"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/virtualrouters"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/virtualwans"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/vmsspublicipaddresses"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/vpngateways"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/vpnlinkconnections"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/vpnserverconfigurations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/vpnsites"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/webapplicationfirewallpolicies"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/webcategories"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	AdminRuleCollections                             *adminrulecollections.AdminRuleCollectionsClient
+	AdminRules                                       *adminrules.AdminRulesClient
+	ApplicationGatewayPrivateEndpointConnections     *applicationgatewayprivateendpointconnections.ApplicationGatewayPrivateEndpointConnectionsClient
+	ApplicationGatewayPrivateLinkResources           *applicationgatewayprivatelinkresources.ApplicationGatewayPrivateLinkResourcesClient
+	ApplicationGatewayWafDynamicManifests            *applicationgatewaywafdynamicmanifests.ApplicationGatewayWafDynamicManifestsClient
+	ApplicationGateways                              *applicationgateways.ApplicationGatewaysClient
+	ApplicationSecurityGroups                        *applicationsecuritygroups.ApplicationSecurityGroupsClient
+	AvailableDelegations                             *availabledelegations.AvailableDelegationsClient
+	AvailableServiceAliases                          *availableservicealiases.AvailableServiceAliasesClient
+	AzureFirewalls                                   *azurefirewalls.AzureFirewallsClient
+	BastionHosts                                     *bastionhosts.BastionHostsClient
+	BastionShareableLink                             *bastionshareablelink.BastionShareableLinkClient
+	BgpServiceCommunities                            *bgpservicecommunities.BgpServiceCommunitiesClient
+	CheckDnsAvailabilities                           *checkdnsavailabilities.CheckDnsAvailabilitiesClient
+	CloudServicePublicIPAddresses                    *cloudservicepublicipaddresses.CloudServicePublicIPAddressesClient
+	ConnectionMonitors                               *connectionmonitors.ConnectionMonitorsClient
+	ConnectivityConfigurations                       *connectivityconfigurations.ConnectivityConfigurationsClient
+	CustomIPPrefixes                                 *customipprefixes.CustomIPPrefixesClient
+	DdosCustomPolicies                               *ddoscustompolicies.DdosCustomPoliciesClient
+	DdosProtectionPlans                              *ddosprotectionplans.DdosProtectionPlansClient
+	DscpConfiguration                                *dscpconfiguration.DscpConfigurationClient
+	DscpConfigurations                               *dscpconfigurations.DscpConfigurationsClient
+	EndpointServices                                 *endpointservices.EndpointServicesClient
+	ExpressRouteCircuitArpTable                      *expressroutecircuitarptable.ExpressRouteCircuitArpTableClient
+	ExpressRouteCircuitAuthorizations                *expressroutecircuitauthorizations.ExpressRouteCircuitAuthorizationsClient
+	ExpressRouteCircuitConnections                   *expressroutecircuitconnections.ExpressRouteCircuitConnectionsClient
+	ExpressRouteCircuitPeerings                      *expressroutecircuitpeerings.ExpressRouteCircuitPeeringsClient
+	ExpressRouteCircuitRoutesTable                   *expressroutecircuitroutestable.ExpressRouteCircuitRoutesTableClient
+	ExpressRouteCircuitRoutesTableSummary            *expressroutecircuitroutestablesummary.ExpressRouteCircuitRoutesTableSummaryClient
+	ExpressRouteCircuitStats                         *expressroutecircuitstats.ExpressRouteCircuitStatsClient
+	ExpressRouteCircuits                             *expressroutecircuits.ExpressRouteCircuitsClient
+	ExpressRouteConnections                          *expressrouteconnections.ExpressRouteConnectionsClient
+	ExpressRouteCrossConnectionArpTable              *expressroutecrossconnectionarptable.ExpressRouteCrossConnectionArpTableClient
+	ExpressRouteCrossConnectionPeerings              *expressroutecrossconnectionpeerings.ExpressRouteCrossConnectionPeeringsClient
+	ExpressRouteCrossConnectionRouteTable            *expressroutecrossconnectionroutetable.ExpressRouteCrossConnectionRouteTableClient
+	ExpressRouteCrossConnectionRouteTableSummary     *expressroutecrossconnectionroutetablesummary.ExpressRouteCrossConnectionRouteTableSummaryClient
+	ExpressRouteCrossConnections                     *expressroutecrossconnections.ExpressRouteCrossConnectionsClient
+	ExpressRouteGateways                             *expressroutegateways.ExpressRouteGatewaysClient
+	ExpressRouteLinks                                *expressroutelinks.ExpressRouteLinksClient
+	ExpressRoutePortAuthorizations                   *expressrouteportauthorizations.ExpressRoutePortAuthorizationsClient
+	ExpressRoutePorts                                *expressrouteports.ExpressRoutePortsClient
+	ExpressRoutePortsLocations                       *expressrouteportslocations.ExpressRoutePortsLocationsClient
+	ExpressRouteProviderPorts                        *expressrouteproviderports.ExpressRouteProviderPortsClient
+	ExpressRouteServiceProviders                     *expressrouteserviceproviders.ExpressRouteServiceProvidersClient
+	FirewallPolicies                                 *firewallpolicies.FirewallPoliciesClient
+	FirewallPolicyRuleCollectionGroups               *firewallpolicyrulecollectiongroups.FirewallPolicyRuleCollectionGroupsClient
+	FlowLogs                                         *flowlogs.FlowLogsClient
+	IPAllocations                                    *ipallocations.IPAllocationsClient
+	IPGroups                                         *ipgroups.IPGroupsClient
+	IPamPools                                        *ipampools.IPamPoolsClient
+	LoadBalancers                                    *loadbalancers.LoadBalancersClient
+	LocalNetworkGateways                             *localnetworkgateways.LocalNetworkGatewaysClient
+	NatGateways                                      *natgateways.NatGatewaysClient
+	NetworkGroups                                    *networkgroups.NetworkGroupsClient
+	NetworkInterfaces                                *networkinterfaces.NetworkInterfacesClient
+	NetworkManagerActiveConfigurations               *networkmanageractiveconfigurations.NetworkManagerActiveConfigurationsClient
+	NetworkManagerActiveConnectivityConfigurations   *networkmanageractiveconnectivityconfigurations.NetworkManagerActiveConnectivityConfigurationsClient
+	NetworkManagerConnections                        *networkmanagerconnections.NetworkManagerConnectionsClient
+	NetworkManagerEffectiveConnectivityConfiguration *networkmanagereffectiveconnectivityconfiguration.NetworkManagerEffectiveConnectivityConfigurationClient
+	NetworkManagerEffectiveSecurityAdminRules        *networkmanagereffectivesecurityadminrules.NetworkManagerEffectiveSecurityAdminRulesClient
+	NetworkManagerRoutingConfigurations              *networkmanagerroutingconfigurations.NetworkManagerRoutingConfigurationsClient
+	NetworkManagers                                  *networkmanagers.NetworkManagersClient
+	NetworkProfiles                                  *networkprofiles.NetworkProfilesClient
+	NetworkSecurityGroups                            *networksecuritygroups.NetworkSecurityGroupsClient
+	NetworkSecurityPerimeterAccessRules              *networksecurityperimeteraccessrules.NetworkSecurityPerimeterAccessRulesClient
+	NetworkSecurityPerimeterAssociableResourceTypes  *networksecurityperimeterassociableresourcetypes.NetworkSecurityPerimeterAssociableResourceTypesClient
+	NetworkSecurityPerimeterAssociations             *networksecurityperimeterassociations.NetworkSecurityPerimeterAssociationsClient
+	NetworkSecurityPerimeterLinkReferences           *networksecurityperimeterlinkreferences.NetworkSecurityPerimeterLinkReferencesClient
+	NetworkSecurityPerimeterLinks                    *networksecurityperimeterlinks.NetworkSecurityPerimeterLinksClient
+	NetworkSecurityPerimeterLoggingConfigurations    *networksecurityperimeterloggingconfigurations.NetworkSecurityPerimeterLoggingConfigurationsClient
+	NetworkSecurityPerimeterProfiles                 *networksecurityperimeterprofiles.NetworkSecurityPerimeterProfilesClient
+	NetworkSecurityPerimeters                        *networksecurityperimeters.NetworkSecurityPerimetersClient
+	NetworkVirtualAppliances                         *networkvirtualappliances.NetworkVirtualAppliancesClient
+	NetworkWatchers                                  *networkwatchers.NetworkWatchersClient
+	P2sVpnGateways                                   *p2svpngateways.P2sVpnGatewaysClient
+	PacketCaptures                                   *packetcaptures.PacketCapturesClient
+	PeerExpressRouteCircuitConnections               *peerexpressroutecircuitconnections.PeerExpressRouteCircuitConnectionsClient
+	PrivateDnsZoneGroups                             *privatednszonegroups.PrivateDnsZoneGroupsClient
+	PrivateEndpoints                                 *privateendpoints.PrivateEndpointsClient
+	PrivateLinkServices                              *privatelinkservices.PrivateLinkServicesClient
+	PublicIPAddresses                                *publicipaddresses.PublicIPAddressesClient
+	PublicIPPrefixes                                 *publicipprefixes.PublicIPPrefixesClient
+	ReachabilityAnalysisIntent                       *reachabilityanalysisintent.ReachabilityAnalysisIntentClient
+	ReachabilityAnalysisIntents                      *reachabilityanalysisintents.ReachabilityAnalysisIntentsClient
+	ReachabilityAnalysisRuns                         *reachabilityanalysisruns.ReachabilityAnalysisRunsClient
+	RouteFilterRules                                 *routefilterrules.RouteFilterRulesClient
+	RouteFilters                                     *routefilters.RouteFiltersClient
+	RouteTables                                      *routetables.RouteTablesClient
+	Routes                                           *routes.RoutesClient
+	RoutingRuleCollections                           *routingrulecollections.RoutingRuleCollectionsClient
+	RoutingRules                                     *routingrules.RoutingRulesClient
+	ScopeConnections                                 *scopeconnections.ScopeConnectionsClient
+	SecurityAdminConfigurations                      *securityadminconfigurations.SecurityAdminConfigurationsClient
+	SecurityPartnerProviders                         *securitypartnerproviders.SecurityPartnerProvidersClient
+	SecurityRules                                    *securityrules.SecurityRulesClient
+	SecurityUserConfigurations                       *securityuserconfigurations.SecurityUserConfigurationsClient
+	SecurityUserRuleCollections                      *securityuserrulecollections.SecurityUserRuleCollectionsClient
+	SecurityUserRules                                *securityuserrules.SecurityUserRulesClient
+	ServiceEndpointPolicies                          *serviceendpointpolicies.ServiceEndpointPoliciesClient
+	ServiceEndpointPolicyDefinitions                 *serviceendpointpolicydefinitions.ServiceEndpointPolicyDefinitionsClient
+	ServiceTags                                      *servicetags.ServiceTagsClient
+	StaticCidrs                                      *staticcidrs.StaticCidrsClient
+	StaticMembers                                    *staticmembers.StaticMembersClient
+	Subnets                                          *subnets.SubnetsClient
+	TrafficAnalytics                                 *trafficanalytics.TrafficAnalyticsClient
+	Usages                                           *usages.UsagesClient
+	VMSSPublicIPAddresses                            *vmsspublicipaddresses.VMSSPublicIPAddressesClient
+	VerifierWorkspaces                               *verifierworkspaces.VerifierWorkspacesClient
+	VipSwap                                          *vipswap.VipSwapClient
+	VirtualApplianceSites                            *virtualappliancesites.VirtualApplianceSitesClient
+	VirtualApplianceSkus                             *virtualapplianceskus.VirtualApplianceSkusClient
+	VirtualNetworkGatewayConnections                 *virtualnetworkgatewayconnections.VirtualNetworkGatewayConnectionsClient
+	VirtualNetworkGateways                           *virtualnetworkgateways.VirtualNetworkGatewaysClient
+	VirtualNetworkPeerings                           *virtualnetworkpeerings.VirtualNetworkPeeringsClient
+	VirtualNetworkTap                                *virtualnetworktap.VirtualNetworkTapClient
+	VirtualNetworkTaps                               *virtualnetworktaps.VirtualNetworkTapsClient
+	VirtualNetworks                                  *virtualnetworks.VirtualNetworksClient
+	VirtualRouterPeerings                            *virtualrouterpeerings.VirtualRouterPeeringsClient
+	VirtualRouters                                   *virtualrouters.VirtualRoutersClient
+	VirtualWANs                                      *virtualwans.VirtualWANsClient
+	VpnGateways                                      *vpngateways.VpnGatewaysClient
+	VpnLinkConnections                               *vpnlinkconnections.VpnLinkConnectionsClient
+	VpnServerConfigurations                          *vpnserverconfigurations.VpnServerConfigurationsClient
+	VpnSites                                         *vpnsites.VpnSitesClient
+	WebApplicationFirewallPolicies                   *webapplicationfirewallpolicies.WebApplicationFirewallPoliciesClient
+	WebCategories                                    *webcategories.WebCategoriesClient
+}

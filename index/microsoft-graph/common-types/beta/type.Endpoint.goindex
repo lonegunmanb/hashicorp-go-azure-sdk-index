@@ -1,0 +1,44 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type Endpoint struct {
+	// Describes the capability that is associated with this resource. (for example, Messages, Conversations, etc.) Not
+	// nullable. Read-only.
+	Capability *string `json:"capability,omitempty"`
+
+	// Application id of the publishing underlying service. Not nullable. Read-only.
+	ProviderId nullable.Type[string] `json:"providerId,omitempty"`
+
+	// Name of the publishing underlying service. Read-only.
+	ProviderName nullable.Type[string] `json:"providerName,omitempty"`
+
+	// For Microsoft 365 groups, this is set to a well-known name for the resource (for example, Yammer.FeedURL etc.). Not
+	// nullable. Read-only.
+	ProviderResourceId nullable.Type[string] `json:"providerResourceId,omitempty"`
+
+	// URL of the published resource. Not nullable. Read-only.
+	Uri *string `json:"uri,omitempty"`
+
+	// Fields inherited from DirectoryObject
+
+	// Date and time when this object was deleted. Always null when the object hasn't been deleted.
+	DeletedDateTime nullable.Type[string] `json:"deletedDateTime,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

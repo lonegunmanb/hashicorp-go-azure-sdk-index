@@ -1,0 +1,50 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s *SharedInsight) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		LastShared            *SharingDetail         `json:"lastShared,omitempty"`
+		ResourceReference     *ResourceReference     `json:"resourceReference,omitempty"`
+		ResourceVisualization *ResourceVisualization `json:"resourceVisualization,omitempty"`
+		SharingHistory        *[]SharingDetail       `json:"sharingHistory,omitempty"`
+		Id                    *string                `json:"id,omitempty"`
+		ODataId               *string                `json:"@odata.id,omitempty"`
+		ODataType             *string                `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.LastShared = decoded.LastShared
+	s.ResourceReference = decoded.ResourceReference
+	s.ResourceVisualization = decoded.ResourceVisualization
+	s.SharingHistory = decoded.SharingHistory
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling SharedInsight into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["lastSharedMethod"]; ok {
+		impl, err := UnmarshalEntityImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'LastSharedMethod' for 'SharedInsight': %+v", err)
+		}
+		s.LastSharedMethod = impl
+	}
+
+	if v, ok := temp["resource"]; ok {
+		impl, err := UnmarshalEntityImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Resource' for 'SharedInsight': %+v", err)
+		}
+		s.Resource = impl
+	}
+
+	return nil
+}

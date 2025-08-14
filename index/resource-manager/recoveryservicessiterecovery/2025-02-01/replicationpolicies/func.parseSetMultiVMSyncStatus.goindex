@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationpolicies
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSetMultiVMSyncStatus(input string) (*SetMultiVMSyncStatus, error) {
+	vals := map[string]SetMultiVMSyncStatus{
+		"disable": SetMultiVMSyncStatusDisable,
+		"enable":  SetMultiVMSyncStatusEnable,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SetMultiVMSyncStatus(input)
+	return &out, nil
+}

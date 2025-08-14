@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2022-06-15/eventsubscriptions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalDeadLetterDestinationImplementation(input []byte) (DeadLetterDestination, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling DeadLetterDestination into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["endpointType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "StorageBlob") {
+		var out StorageBlobDeadLetterDestination
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into StorageBlobDeadLetterDestination: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseDeadLetterDestinationImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseDeadLetterDestinationImpl: %+v", err)
+	}
+
+	return RawDeadLetterDestinationImpl{
+		deadLetterDestination: parent,
+		Type:                  value,
+		Values:                temp,
+	}, nil
+
+}

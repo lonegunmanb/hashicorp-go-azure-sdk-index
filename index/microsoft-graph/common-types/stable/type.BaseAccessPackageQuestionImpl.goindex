@@ -1,0 +1,39 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type BaseAccessPackageQuestionImpl struct {
+	// Specifies whether the requestor is allowed to edit answers to questions for an assignment by posting an update to
+	// accessPackageAssignmentRequest.
+	IsAnswerEditable nullable.Type[bool] `json:"isAnswerEditable,omitempty"`
+
+	// Whether the requestor is required to supply an answer or not.
+	IsRequired nullable.Type[bool] `json:"isRequired,omitempty"`
+
+	// The text of the question represented in a format for a specific locale.
+	Localizations *[]AccessPackageLocalizedText `json:"localizations,omitempty"`
+
+	// Relative position of this question when displaying a list of questions to the requestor.
+	Sequence nullable.Type[int64] `json:"sequence,omitempty"`
+
+	// The text of the question to show to the requestor.
+	Text nullable.Type[string] `json:"text,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

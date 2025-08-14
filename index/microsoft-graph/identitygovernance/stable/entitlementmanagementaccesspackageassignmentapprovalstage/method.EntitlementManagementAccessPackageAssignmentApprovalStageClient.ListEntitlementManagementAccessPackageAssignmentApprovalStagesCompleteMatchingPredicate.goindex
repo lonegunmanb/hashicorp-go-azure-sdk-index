@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementaccesspackageassignmentapprovalstage
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c EntitlementManagementAccessPackageAssignmentApprovalStageClient) ListEntitlementManagementAccessPackageAssignmentApprovalStagesCompleteMatchingPredicate(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalId, options ListEntitlementManagementAccessPackageAssignmentApprovalStagesOperationOptions, predicate ApprovalStageOperationPredicate) (result ListEntitlementManagementAccessPackageAssignmentApprovalStagesCompleteResult, err error) {
+	items := make([]stable.ApprovalStage, 0)
+
+	resp, err := c.ListEntitlementManagementAccessPackageAssignmentApprovalStages(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListEntitlementManagementAccessPackageAssignmentApprovalStagesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

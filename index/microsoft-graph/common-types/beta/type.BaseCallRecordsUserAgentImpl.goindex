@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type BaseCallRecordsUserAgentImpl struct {
+	// Identifies the version of application software used by this endpoint.
+	ApplicationVersion nullable.Type[string] `json:"applicationVersion,omitempty"`
+
+	// User-agent header value reported by this endpoint.
+	HeaderValue nullable.Type[string] `json:"headerValue,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

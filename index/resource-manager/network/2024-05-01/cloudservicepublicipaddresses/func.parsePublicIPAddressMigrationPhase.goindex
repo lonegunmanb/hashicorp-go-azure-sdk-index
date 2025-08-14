@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-05-01/cloudservicepublicipaddresses
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePublicIPAddressMigrationPhase(input string) (*PublicIPAddressMigrationPhase, error) {
+	vals := map[string]PublicIPAddressMigrationPhase{
+		"abort":     PublicIPAddressMigrationPhaseAbort,
+		"commit":    PublicIPAddressMigrationPhaseCommit,
+		"committed": PublicIPAddressMigrationPhaseCommitted,
+		"none":      PublicIPAddressMigrationPhaseNone,
+		"prepare":   PublicIPAddressMigrationPhasePrepare,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PublicIPAddressMigrationPhase(input)
+	return &out, nil
+}

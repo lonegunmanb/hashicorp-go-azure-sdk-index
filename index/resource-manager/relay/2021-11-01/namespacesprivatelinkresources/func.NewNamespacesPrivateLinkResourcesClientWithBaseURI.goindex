@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/relay/2021-11-01/namespacesprivatelinkresources
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewNamespacesPrivateLinkResourcesClientWithBaseURI(sdkApi sdkEnv.Api) (*NamespacesPrivateLinkResourcesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "namespacesprivatelinkresources", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating NamespacesPrivateLinkResourcesClient: %+v", err)
+	}
+
+	return &NamespacesPrivateLinkResourcesClient{
+		Client: client,
+	}, nil
+}

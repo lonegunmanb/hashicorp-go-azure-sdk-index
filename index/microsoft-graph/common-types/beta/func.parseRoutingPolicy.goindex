@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRoutingPolicy(input string) (*RoutingPolicy, error) {
+	vals := map[string]RoutingPolicy{
+		"disableforwarding":            RoutingPolicy_DisableForwarding,
+		"disableforwardingexceptphone": RoutingPolicy_DisableForwardingExceptPhone,
+		"nomissedcall":                 RoutingPolicy_NoMissedCall,
+		"none":                         RoutingPolicy_None,
+		"preferskypeforbusiness":       RoutingPolicy_PreferSkypeForBusiness,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RoutingPolicy(input)
+	return &out, nil
+}

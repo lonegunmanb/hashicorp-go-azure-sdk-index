@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type RecordingInfo struct {
+	// The participant who initiated the recording.
+	InitiatedBy *ParticipantInfo `json:"initiatedBy,omitempty"`
+
+	// The identities of recording initiator.
+	Initiator IdentitySet `json:"initiator"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	RecordingStatus *RecordingStatus `json:"recordingStatus,omitempty"`
+}

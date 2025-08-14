@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2024-02-01/afdprofiles
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseScrubbingRuleEntryMatchOperator(input string) (*ScrubbingRuleEntryMatchOperator, error) {
+	vals := map[string]ScrubbingRuleEntryMatchOperator{
+		"equalsany": ScrubbingRuleEntryMatchOperatorEqualsAny,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ScrubbingRuleEntryMatchOperator(input)
+	return &out, nil
+}

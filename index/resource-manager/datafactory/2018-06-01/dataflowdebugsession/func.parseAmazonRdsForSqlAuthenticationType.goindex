@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/dataflowdebugsession
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAmazonRdsForSqlAuthenticationType(input string) (*AmazonRdsForSqlAuthenticationType, error) {
+	vals := map[string]AmazonRdsForSqlAuthenticationType{
+		"sql":     AmazonRdsForSqlAuthenticationTypeSQL,
+		"windows": AmazonRdsForSqlAuthenticationTypeWindows,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AmazonRdsForSqlAuthenticationType(input)
+	return &out, nil
+}

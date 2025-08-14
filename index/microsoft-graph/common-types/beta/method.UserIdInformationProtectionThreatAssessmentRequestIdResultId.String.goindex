@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id UserIdInformationProtectionThreatAssessmentRequestIdResultId) String() string {
+	components := []string{
+		fmt.Sprintf("User: %q", id.UserId),
+		fmt.Sprintf("Threat Assessment Request: %q", id.ThreatAssessmentRequestId),
+		fmt.Sprintf("Threat Assessment Result: %q", id.ThreatAssessmentResultId),
+	}
+	return fmt.Sprintf("User Id Information Protection Threat Assessment Request Id Result (%s)", strings.Join(components, "\n"))
+}

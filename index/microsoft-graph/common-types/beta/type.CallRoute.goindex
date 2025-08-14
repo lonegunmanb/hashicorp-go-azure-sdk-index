@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type CallRoute struct {
+	Final IdentitySet `json:"final"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	Original    IdentitySet  `json:"original"`
+	RoutingType *RoutingType `json:"routingType,omitempty"`
+}

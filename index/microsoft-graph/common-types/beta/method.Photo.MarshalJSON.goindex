@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s Photo) MarshalJSON() ([]byte, error) {
+	type wrapper Photo
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling Photo: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling Photo: %+v", err)
+	}
+
+	delete(decoded, "cameraMake")
+	delete(decoded, "cameraModel")
+	delete(decoded, "iso")
+	delete(decoded, "takenDateTime")
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling Photo: %+v", err)
+	}
+
+	return encoded, nil
+}

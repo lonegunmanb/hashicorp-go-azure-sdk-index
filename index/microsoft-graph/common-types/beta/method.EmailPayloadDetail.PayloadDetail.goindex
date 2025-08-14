@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s EmailPayloadDetail) PayloadDetail() BasePayloadDetailImpl {
+	return BasePayloadDetailImpl{
+		Coachmarks:  s.Coachmarks,
+		Content:     s.Content,
+		ODataId:     s.ODataId,
+		ODataType:   s.ODataType,
+		PhishingUrl: s.PhishingUrl,
+	}
+}

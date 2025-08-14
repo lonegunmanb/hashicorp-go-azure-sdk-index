@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenoteoperation
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewOnenoteOperationClientWithBaseURI(sdkApi sdkEnv.Api) (*OnenoteOperationClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "onenoteoperation", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating OnenoteOperationClient: %+v", err)
+	}
+
+	return &OnenoteOperationClient{
+		Client: client,
+	}, nil
+}

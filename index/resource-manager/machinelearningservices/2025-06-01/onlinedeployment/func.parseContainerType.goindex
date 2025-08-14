@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2025-06-01/onlinedeployment
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseContainerType(input string) (*ContainerType, error) {
+	vals := map[string]ContainerType{
+		"inferenceserver":    ContainerTypeInferenceServer,
+		"storageinitializer": ContainerTypeStorageInitializer,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ContainerType(input)
+	return &out, nil
+}

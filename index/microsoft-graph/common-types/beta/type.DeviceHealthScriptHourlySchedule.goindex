@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type DeviceHealthScriptHourlySchedule struct {
+
+	// Fields inherited from DeviceHealthScriptRunSchedule
+
+	// The x value of every x hours for hourly schedule, every x days for Daily Schedule, every x weeks for weekly schedule,
+	// every x months for Monthly Schedule. Valid values 1 to 23
+	Interval *int64 `json:"interval,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/virtualmachinescalesets
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o DeleteInstancesOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.ForceDeletion != nil {
+		out.Append("forceDeletion", fmt.Sprintf("%v", *o.ForceDeletion))
+	}
+	return &out
+}

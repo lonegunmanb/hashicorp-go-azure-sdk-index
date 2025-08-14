@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/dataflowdebugsession
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s AzureKeyVaultLinkedService) MarshalJSON() ([]byte, error) {
+	type wrapper AzureKeyVaultLinkedService
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AzureKeyVaultLinkedService: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AzureKeyVaultLinkedService: %+v", err)
+	}
+
+	decoded["type"] = "AzureKeyVault"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AzureKeyVaultLinkedService: %+v", err)
+	}
+
+	return encoded, nil
+}

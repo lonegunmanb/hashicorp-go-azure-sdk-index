@@ -1,0 +1,87 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *OutlookTask) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AssignedTo                    nullable.Type[string]                `json:"assignedTo,omitempty"`
+		Body                          *ItemBody                            `json:"body,omitempty"`
+		CompletedDateTime             *DateTimeTimeZone                    `json:"completedDateTime,omitempty"`
+		DueDateTime                   *DateTimeTimeZone                    `json:"dueDateTime,omitempty"`
+		HasAttachments                nullable.Type[bool]                  `json:"hasAttachments,omitempty"`
+		Importance                    *Importance                          `json:"importance,omitempty"`
+		IsReminderOn                  nullable.Type[bool]                  `json:"isReminderOn,omitempty"`
+		MultiValueExtendedProperties  *[]MultiValueLegacyExtendedProperty  `json:"multiValueExtendedProperties,omitempty"`
+		Owner                         nullable.Type[string]                `json:"owner,omitempty"`
+		ParentFolderId                nullable.Type[string]                `json:"parentFolderId,omitempty"`
+		Recurrence                    *PatternedRecurrence                 `json:"recurrence,omitempty"`
+		ReminderDateTime              *DateTimeTimeZone                    `json:"reminderDateTime,omitempty"`
+		Sensitivity                   *Sensitivity                         `json:"sensitivity,omitempty"`
+		SingleValueExtendedProperties *[]SingleValueLegacyExtendedProperty `json:"singleValueExtendedProperties,omitempty"`
+		StartDateTime                 *DateTimeTimeZone                    `json:"startDateTime,omitempty"`
+		Status                        *TaskStatus                          `json:"status,omitempty"`
+		Subject                       nullable.Type[string]                `json:"subject,omitempty"`
+		Categories                    *[]string                            `json:"categories,omitempty"`
+		ChangeKey                     nullable.Type[string]                `json:"changeKey,omitempty"`
+		CreatedDateTime               nullable.Type[string]                `json:"createdDateTime,omitempty"`
+		LastModifiedDateTime          nullable.Type[string]                `json:"lastModifiedDateTime,omitempty"`
+		Id                            *string                              `json:"id,omitempty"`
+		ODataId                       *string                              `json:"@odata.id,omitempty"`
+		ODataType                     *string                              `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AssignedTo = decoded.AssignedTo
+	s.Body = decoded.Body
+	s.CompletedDateTime = decoded.CompletedDateTime
+	s.DueDateTime = decoded.DueDateTime
+	s.HasAttachments = decoded.HasAttachments
+	s.Importance = decoded.Importance
+	s.IsReminderOn = decoded.IsReminderOn
+	s.MultiValueExtendedProperties = decoded.MultiValueExtendedProperties
+	s.Owner = decoded.Owner
+	s.ParentFolderId = decoded.ParentFolderId
+	s.Recurrence = decoded.Recurrence
+	s.ReminderDateTime = decoded.ReminderDateTime
+	s.Sensitivity = decoded.Sensitivity
+	s.SingleValueExtendedProperties = decoded.SingleValueExtendedProperties
+	s.StartDateTime = decoded.StartDateTime
+	s.Status = decoded.Status
+	s.Subject = decoded.Subject
+	s.Categories = decoded.Categories
+	s.ChangeKey = decoded.ChangeKey
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling OutlookTask into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["attachments"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling Attachments into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]Attachment, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalAttachmentImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'Attachments' for 'OutlookTask': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.Attachments = &output
+	}
+
+	return nil
+}

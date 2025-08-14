@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/backuppolicies
+import (
+	"encoding/json"
+	"fmt"
+)
+type SimpleSchedulePolicyV2 struct {
+	DailySchedule        *DailySchedule   `json:"dailySchedule,omitempty"`
+	HourlySchedule       *HourlySchedule  `json:"hourlySchedule,omitempty"`
+	ScheduleRunFrequency *ScheduleRunType `json:"scheduleRunFrequency,omitempty"`
+	WeeklySchedule       *WeeklySchedule  `json:"weeklySchedule,omitempty"`
+
+	// Fields inherited from SchedulePolicy
+
+	SchedulePolicyType string `json:"schedulePolicyType"`
+}

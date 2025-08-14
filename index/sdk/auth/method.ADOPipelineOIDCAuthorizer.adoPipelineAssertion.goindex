@@ -1,0 +1,61 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"io"
+	"net/http"
+	"net/url"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	"golang.org/x/oauth2"
+)
+func (a *ADOPipelineOIDCAuthorizer) adoPipelineAssertion(ctx context.Context, _ *http.Request) (*string, error) {
+	req, err := http.NewRequestWithContext(ctx, http.MethodPost, a.conf.IDTokenRequestURL, http.NoBody)
+	if err != nil {
+		return nil, fmt.Errorf("adoPipelineAssertion: failed to build request: %+v", err)
+	}
+
+	query, err := url.ParseQuery(req.URL.RawQuery)
+	if err != nil {
+		return nil, fmt.Errorf("adoPipelineAssertion: cannot parse URL query")
+	}
+	if query.Get("api-version") == "" {
+		query.Add("api-version", adoPipelineOIDCAPIVersion)
+	}
+	if query.Get("serviceConnectionId") == "" {
+		query.Add("serviceConnectionId", a.conf.ServiceConnectionID)
+	}
+	if query.Get("audience") == "" {
+		query.Add("audience", "api://AzureADTokenExchange")
+	}
+	req.URL.RawQuery = query.Encode()
+
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", a.conf.IDTokenRequestToken))
+	req.Header.Set("Content-Type", "application/json")
+
+	resp, err := Client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("adoPipelineAssertion: cannot request token: %v", err)
+	}
+
+	defer resp.Body.Close()
+	body, err := io.ReadAll(io.LimitReader(resp.Body, 1<<20))
+	if err != nil {
+		return nil, fmt.Errorf("adoPipelineAssertion: cannot parse response: %v", err)
+	}
+
+	if c := resp.StatusCode; c < 200 || c > 299 {
+		return nil, fmt.Errorf("adoPipelineAssertion: received HTTP status %d with response: %s", resp.StatusCode, body)
+	}
+
+	var tokenRes struct {
+		Value *string `json:"oidcToken"`
+	}
+	if err := json.Unmarshal(body, &tokenRes); err != nil {
+		return nil, fmt.Errorf("adoPipelineAssertion: cannot unmarshal response: %v", err)
+	}
+
+	return tokenRes.Value, nil
+}

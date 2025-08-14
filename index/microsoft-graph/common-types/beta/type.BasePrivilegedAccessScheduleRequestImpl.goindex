@@ -1,0 +1,69 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type BasePrivilegedAccessScheduleRequestImpl struct {
+	// Represents the type of operation on the group membership or ownership assignment request. The possible values are:
+	// adminAssign, adminUpdate, adminRemove, selfActivate, selfDeactivate, adminExtend, adminRenew. adminAssign: For
+	// administrators to assign group membership or ownership to principals.adminRemove: For administrators to remove
+	// principals from group membership or ownership. adminUpdate: For administrators to change existing group membership or
+	// ownership assignments.adminExtend: For administrators to extend expiring assignments.adminRenew: For administrators
+	// to renew expired assignments.selfActivate: For principals to activate their assignments.selfDeactivate: For
+	// principals to deactivate their active assignments.
+	Action *ScheduleRequestActions `json:"action,omitempty"`
+
+	// Determines whether the call is a validation or an actual call. Only set this property if you want to check whether an
+	// activation is subject to additional rules like MFA before actually submitting the request.
+	IsValidationOnly nullable.Type[bool] `json:"isValidationOnly,omitempty"`
+
+	// A message provided by users and administrators when create they create the
+	// privilegedAccessGroupAssignmentScheduleRequest object.
+	Justification nullable.Type[string] `json:"justification,omitempty"`
+
+	// The period of the group membership or ownership assignment. Recurring schedules are currently unsupported.
+	ScheduleInfo *RequestSchedule `json:"scheduleInfo,omitempty"`
+
+	// Ticket details linked to the group membership or ownership assignment request including details of the ticket number
+	// and ticket system.
+	TicketInfo *TicketInfo `json:"ticketInfo,omitempty"`
+
+	// Fields inherited from Request
+
+	// The identifier of the approval of the request.
+	ApprovalId nullable.Type[string] `json:"approvalId,omitempty"`
+
+	// The request completion date time.
+	CompletedDateTime nullable.Type[string] `json:"completedDateTime,omitempty"`
+
+	// The principal that created the request.
+	CreatedBy IdentitySet `json:"createdBy"`
+
+	// The request creation date time.
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// Free text field to define any custom data for the request. Not used.
+	CustomData nullable.Type[string] `json:"customData,omitempty"`
+
+	// The status of the request. Not nullable. The possible values are: Canceled, Denied, Failed, Granted,
+	// PendingAdminDecision, PendingApproval, PendingProvisioning, PendingScheduleCreation, Provisioned, Revoked, and
+	// ScheduleCreated. Not nullable.
+	Status *string `json:"status,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

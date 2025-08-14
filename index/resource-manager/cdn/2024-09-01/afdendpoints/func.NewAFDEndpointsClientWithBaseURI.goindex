@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2024-09-01/afdendpoints
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAFDEndpointsClientWithBaseURI(sdkApi sdkEnv.Api) (*AFDEndpointsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "afdendpoints", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AFDEndpointsClient: %+v", err)
+	}
+
+	return &AFDEndpointsClient{
+		Client: client,
+	}, nil
+}

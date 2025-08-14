@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/savingsplan
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCommitmentGrain(input string) (*CommitmentGrain, error) {
+	vals := map[string]CommitmentGrain{
+		"hourly": CommitmentGrainHourly,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CommitmentGrain(input)
+	return &out, nil
+}

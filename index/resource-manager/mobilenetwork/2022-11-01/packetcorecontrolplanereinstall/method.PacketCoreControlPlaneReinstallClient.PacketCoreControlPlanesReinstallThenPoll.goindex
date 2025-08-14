@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mobilenetwork/2022-11-01/packetcorecontrolplanereinstall
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c PacketCoreControlPlaneReinstallClient) PacketCoreControlPlanesReinstallThenPoll(ctx context.Context, id PacketCoreControlPlaneId) error {
+	result, err := c.PacketCoreControlPlanesReinstall(ctx, id)
+	if err != nil {
+		return fmt.Errorf("performing PacketCoreControlPlanesReinstall: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after PacketCoreControlPlanesReinstall: %+v", err)
+	}
+
+	return nil
+}

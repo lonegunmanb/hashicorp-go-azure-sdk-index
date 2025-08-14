@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2024-04-01/replicationevents
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type EventProperties struct {
+	AffectedObjectCorrelationId *string                      `json:"affectedObjectCorrelationId,omitempty"`
+	AffectedObjectFriendlyName  *string                      `json:"affectedObjectFriendlyName,omitempty"`
+	Description                 *string                      `json:"description,omitempty"`
+	EventCode                   *string                      `json:"eventCode,omitempty"`
+	EventSpecificDetails        EventSpecificDetails         `json:"eventSpecificDetails"`
+	EventType                   *string                      `json:"eventType,omitempty"`
+	FabricId                    *string                      `json:"fabricId,omitempty"`
+	HealthErrors                *[]HealthError               `json:"healthErrors,omitempty"`
+	ProviderSpecificDetails     EventProviderSpecificDetails `json:"providerSpecificDetails"`
+	Severity                    *string                      `json:"severity,omitempty"`
+	TimeOfOccurrence            *string                      `json:"timeOfOccurrence,omitempty"`
+}

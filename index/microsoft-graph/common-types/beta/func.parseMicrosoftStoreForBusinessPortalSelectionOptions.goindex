@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMicrosoftStoreForBusinessPortalSelectionOptions(input string) (*MicrosoftStoreForBusinessPortalSelectionOptions, error) {
+	vals := map[string]MicrosoftStoreForBusinessPortalSelectionOptions{
+		"companyportal": MicrosoftStoreForBusinessPortalSelectionOptions_CompanyPortal,
+		"none":          MicrosoftStoreForBusinessPortalSelectionOptions_None,
+		"privatestore":  MicrosoftStoreForBusinessPortalSelectionOptions_PrivateStore,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MicrosoftStoreForBusinessPortalSelectionOptions(input)
+	return &out, nil
+}

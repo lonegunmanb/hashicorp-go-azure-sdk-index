@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseGroupPolicyConfigurationIngestionType(input string) (*GroupPolicyConfigurationIngestionType, error) {
+	vals := map[string]GroupPolicyConfigurationIngestionType{
+		"builtin": GroupPolicyConfigurationIngestionType_BuiltIn,
+		"custom":  GroupPolicyConfigurationIngestionType_Custom,
+		"mixed":   GroupPolicyConfigurationIngestionType_Mixed,
+		"unknown": GroupPolicyConfigurationIngestionType_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := GroupPolicyConfigurationIngestionType(input)
+	return &out, nil
+}

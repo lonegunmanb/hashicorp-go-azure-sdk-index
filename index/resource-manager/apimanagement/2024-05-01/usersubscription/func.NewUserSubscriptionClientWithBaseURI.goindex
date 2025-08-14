@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/usersubscription
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewUserSubscriptionClientWithBaseURI(sdkApi sdkEnv.Api) (*UserSubscriptionClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "usersubscription", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating UserSubscriptionClient: %+v", err)
+	}
+
+	return &UserSubscriptionClient{
+		Client: client,
+	}, nil
+}

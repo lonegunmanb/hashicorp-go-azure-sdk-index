@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2024-04-01/backupinstances
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s OperationJobExtendedInfo) MarshalJSON() ([]byte, error) {
+	type wrapper OperationJobExtendedInfo
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling OperationJobExtendedInfo: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling OperationJobExtendedInfo: %+v", err)
+	}
+
+	decoded["objectType"] = "OperationJobExtendedInfo"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling OperationJobExtendedInfo: %+v", err)
+	}
+
+	return encoded, nil
+}

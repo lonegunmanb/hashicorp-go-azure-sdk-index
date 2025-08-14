@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2024-08-01/migrations
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type MigrationResourcePropertiesForPatch struct {
+	Cancel                                    *CancelEnum                       `json:"cancel,omitempty"`
+	DbsToCancelMigrationOn                    *[]string                         `json:"dbsToCancelMigrationOn,omitempty"`
+	DbsToMigrate                              *[]string                         `json:"dbsToMigrate,omitempty"`
+	DbsToTriggerCutoverOn                     *[]string                         `json:"dbsToTriggerCutoverOn,omitempty"`
+	MigrateRoles                              *MigrateRolesEnum                 `json:"migrateRoles,omitempty"`
+	MigrationMode                             *MigrationMode                    `json:"migrationMode,omitempty"`
+	MigrationWindowStartTimeInUtc             *string                           `json:"migrationWindowStartTimeInUtc,omitempty"`
+	OverwriteDbsInTarget                      *OverwriteDbsInTargetEnum         `json:"overwriteDbsInTarget,omitempty"`
+	SecretParameters                          *MigrationSecretParameters        `json:"secretParameters,omitempty"`
+	SetupLogicalReplicationOnSourceDbIfNeeded *LogicalReplicationOnSourceDbEnum `json:"setupLogicalReplicationOnSourceDbIfNeeded,omitempty"`
+	SourceDbServerFullyQualifiedDomainName    *string                           `json:"sourceDbServerFullyQualifiedDomainName,omitempty"`
+	SourceDbServerResourceId                  *string                           `json:"sourceDbServerResourceId,omitempty"`
+	StartDataMigration                        *StartDataMigrationEnum           `json:"startDataMigration,omitempty"`
+	TargetDbServerFullyQualifiedDomainName    *string                           `json:"targetDbServerFullyQualifiedDomainName,omitempty"`
+	TriggerCutover                            *TriggerCutoverEnum               `json:"triggerCutover,omitempty"`
+}

@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s ComanagedDevicesSummary) MarshalJSON() ([]byte, error) {
+	type wrapper ComanagedDevicesSummary
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ComanagedDevicesSummary: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ComanagedDevicesSummary: %+v", err)
+	}
+
+	delete(decoded, "compliancePolicyCount")
+	delete(decoded, "configurationSettingsCount")
+	delete(decoded, "endpointProtectionCount")
+	delete(decoded, "inventoryCount")
+	delete(decoded, "modernAppsCount")
+	delete(decoded, "officeAppsCount")
+	delete(decoded, "resourceAccessCount")
+	delete(decoded, "totalComanagedCount")
+	delete(decoded, "windowsUpdateForBusinessCount")
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ComanagedDevicesSummary: %+v", err)
+	}
+
+	return encoded, nil
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/webapplicationfirewallpolicies
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseExceptionEntryMatchVariable(input string) (*ExceptionEntryMatchVariable, error) {
+	vals := map[string]ExceptionEntryMatchVariable{
+		"remoteaddr":    ExceptionEntryMatchVariableRemoteAddr,
+		"requestheader": ExceptionEntryMatchVariableRequestHeader,
+		"requesturi":    ExceptionEntryMatchVariableRequestURI,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ExceptionEntryMatchVariable(input)
+	return &out, nil
+}

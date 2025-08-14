@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/codeversion
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c CodeVersionClient) RegistryCodeVersionsListComplete(ctx context.Context, id RegistryCodeId, options RegistryCodeVersionsListOperationOptions) (RegistryCodeVersionsListCompleteResult, error) {
+	return c.RegistryCodeVersionsListCompleteMatchingPredicate(ctx, id, options, CodeVersionResourceOperationPredicate{})
+}

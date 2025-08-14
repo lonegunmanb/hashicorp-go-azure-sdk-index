@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dnsresolver/2025-05-01/dnsresolverpolicies
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDnsResolverPoliciesClientWithBaseURI(sdkApi sdkEnv.Api) (*DnsResolverPoliciesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "dnsresolverpolicies", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DnsResolverPoliciesClient: %+v", err)
+	}
+
+	return &DnsResolverPoliciesClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/maintenancewindowoptions
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewMaintenanceWindowOptionsClientWithBaseURI(sdkApi sdkEnv.Api) (*MaintenanceWindowOptionsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "maintenancewindowoptions", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating MaintenanceWindowOptionsClient: %+v", err)
+	}
+
+	return &MaintenanceWindowOptionsClient{
+		Client: client,
+	}, nil
+}

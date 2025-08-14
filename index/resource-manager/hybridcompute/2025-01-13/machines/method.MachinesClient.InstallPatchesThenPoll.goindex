@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2025-01-13/machines
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c MachinesClient) InstallPatchesThenPoll(ctx context.Context, id MachineId, input MachineInstallPatchesParameters) error {
+	result, err := c.InstallPatches(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing InstallPatches: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after InstallPatches: %+v", err)
+	}
+
+	return nil
+}

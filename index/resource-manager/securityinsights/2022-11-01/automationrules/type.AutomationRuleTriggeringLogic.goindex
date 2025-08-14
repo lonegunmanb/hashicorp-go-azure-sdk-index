@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-11-01/automationrules
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type AutomationRuleTriggeringLogic struct {
+	Conditions        *[]AutomationRuleCondition `json:"conditions,omitempty"`
+	ExpirationTimeUtc *string                    `json:"expirationTimeUtc,omitempty"`
+	IsEnabled         bool                       `json:"isEnabled"`
+	TriggersOn        TriggersOn                 `json:"triggersOn"`
+	TriggersWhen      TriggersWhen               `json:"triggersWhen"`
+}

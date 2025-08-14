@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-01-01/netappresource
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseInAvailabilityReasonType(input string) (*InAvailabilityReasonType, error) {
+	vals := map[string]InAvailabilityReasonType{
+		"alreadyexists": InAvailabilityReasonTypeAlreadyExists,
+		"invalid":       InAvailabilityReasonTypeInvalid,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := InAvailabilityReasonType(input)
+	return &out, nil
+}

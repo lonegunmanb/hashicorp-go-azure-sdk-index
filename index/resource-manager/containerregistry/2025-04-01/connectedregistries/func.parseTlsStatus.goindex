@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerregistry/2025-04-01/connectedregistries
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTlsStatus(input string) (*TlsStatus, error) {
+	vals := map[string]TlsStatus{
+		"disabled": TlsStatusDisabled,
+		"enabled":  TlsStatusEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TlsStatus(input)
+	return &out, nil
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2021-07-01/proximityplacementgroups
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseProximityPlacementGroupType(input string) (*ProximityPlacementGroupType, error) {
+	vals := map[string]ProximityPlacementGroupType{
+		"standard": ProximityPlacementGroupTypeStandard,
+		"ultra":    ProximityPlacementGroupTypeUltra,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ProximityPlacementGroupType(input)
+	return &out, nil
+}

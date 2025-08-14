@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerservice/2025-02-01/maintenanceconfigurations
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id MaintenanceConfigurationId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Managed Cluster Name: %q", id.ManagedClusterName),
+		fmt.Sprintf("Maintenance Configuration Name: %q", id.MaintenanceConfigurationName),
+	}
+	return fmt.Sprintf("Maintenance Configuration (%s)", strings.Join(components, "\n"))
+}

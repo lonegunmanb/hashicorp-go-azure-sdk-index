@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationprotecteditems
+import (
+	"encoding/json"
+	"fmt"
+)
+type InMageReprotectInput struct {
+	DatastoreName      *string                   `json:"datastoreName,omitempty"`
+	DiskExclusionInput *InMageDiskExclusionInput `json:"diskExclusionInput,omitempty"`
+	DisksToInclude     *[]string                 `json:"disksToInclude,omitempty"`
+	MasterTargetId     string                    `json:"masterTargetId"`
+	ProcessServerId    string                    `json:"processServerId"`
+	ProfileId          string                    `json:"profileId"`
+	RetentionDrive     string                    `json:"retentionDrive"`
+	RunAsAccountId     *string                   `json:"runAsAccountId,omitempty"`
+
+	// Fields inherited from ReverseReplicationProviderSpecificInput
+
+	InstanceType string `json:"instanceType"`
+}

@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/desktopvirtualization/2024-04-03/hostpool
+
+func (p RegistrationTokenMinimalOperationPredicate) Matches(input RegistrationTokenMinimal) bool {
+
+	if p.ExpirationTime != nil && (input.ExpirationTime == nil || *p.ExpirationTime != *input.ExpirationTime) {
+		return false
+	}
+
+	if p.Token != nil && (input.Token == nil || *p.Token != *input.Token) {
+		return false
+	}
+
+	return true
+}

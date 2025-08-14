@@ -1,0 +1,87 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type IosVppEBook struct {
+	// The Apple ID associated with Vpp token.
+	AppleId nullable.Type[string] `json:"appleId,omitempty"`
+
+	// Genres.
+	Genres *[]string `json:"genres,omitempty"`
+
+	// Language.
+	Language nullable.Type[string] `json:"language,omitempty"`
+
+	// Seller.
+	Seller nullable.Type[string] `json:"seller,omitempty"`
+
+	// Total license count.
+	TotalLicenseCount *int64 `json:"totalLicenseCount,omitempty"`
+
+	// Used license count.
+	UsedLicenseCount *int64 `json:"usedLicenseCount,omitempty"`
+
+	// The Vpp token's organization name.
+	VppOrganizationName nullable.Type[string] `json:"vppOrganizationName,omitempty"`
+
+	// The Vpp token ID.
+	VppTokenId *string `json:"vppTokenId,omitempty"`
+
+	// Fields inherited from ManagedEBook
+
+	// The list of assignments for this eBook.
+	Assignments *[]ManagedEBookAssignment `json:"assignments,omitempty"`
+
+	// The date and time when the eBook file was created.
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+
+	// Description.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// The list of installation states for this eBook.
+	DeviceStates *[]DeviceInstallState `json:"deviceStates,omitempty"`
+
+	// Name of the eBook.
+	DisplayName *string `json:"displayName,omitempty"`
+
+	// The more information Url.
+	InformationUrl nullable.Type[string] `json:"informationUrl,omitempty"`
+
+	// Mobile App Install Summary.
+	InstallSummary *EBookInstallSummary `json:"installSummary,omitempty"`
+
+	// Book cover.
+	LargeCover *MimeContent `json:"largeCover,omitempty"`
+
+	// The date and time when the eBook was last modified.
+	LastModifiedDateTime *string `json:"lastModifiedDateTime,omitempty"`
+
+	// The privacy statement Url.
+	PrivacyInformationUrl nullable.Type[string] `json:"privacyInformationUrl,omitempty"`
+
+	// The date and time when the eBook was published.
+	PublishedDateTime *string `json:"publishedDateTime,omitempty"`
+
+	// Publisher.
+	Publisher nullable.Type[string] `json:"publisher,omitempty"`
+
+	// The list of installation states for this eBook.
+	UserStateSummary *[]UserInstallStateSummary `json:"userStateSummary,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

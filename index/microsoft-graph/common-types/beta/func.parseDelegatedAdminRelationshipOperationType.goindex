@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDelegatedAdminRelationshipOperationType(input string) (*DelegatedAdminRelationshipOperationType, error) {
+	vals := map[string]DelegatedAdminRelationshipOperationType{
+		"delegatedadminaccessassignmentupdate": DelegatedAdminRelationshipOperationType_DelegatedAdminAccessAssignmentUpdate,
+		"delegatedadminrelationshipupdate":     DelegatedAdminRelationshipOperationType_DelegatedAdminRelationshipUpdate,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DelegatedAdminRelationshipOperationType(input)
+	return &out, nil
+}

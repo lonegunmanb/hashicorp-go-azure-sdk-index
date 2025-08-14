@@ -1,0 +1,11 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id GroupIdThreadIdPostIdInReplyToAttachmentId) ID() string {
+	fmtString := "/groups/%s/threads/%s/posts/%s/inReplyTo/attachments/%s"
+	return fmt.Sprintf(fmtString, id.GroupId, id.ConversationThreadId, id.PostId, id.AttachmentId)
+}

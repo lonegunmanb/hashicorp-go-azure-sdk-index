@@ -1,0 +1,70 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type AccessPackageAssignmentRequest struct {
+	// The access package associated with the accessPackageAssignmentRequest. An access package defines the collections of
+	// resource roles and the policies for how one or more users can get access to those resources. Read-only. Nullable.
+	// Supports $expand.
+	AccessPackage *AccessPackage `json:"accessPackage,omitempty"`
+
+	// Answers provided by the requestor to accessPackageQuestions asked of them at the time of request.
+	Answers *[]AccessPackageAnswer `json:"answers,omitempty"`
+
+	// For a requestType of userAdd or adminAdd, this is an access package assignment requested to be created. For a
+	// requestType of userRemove, adminRemove or systemRemove, this has the id property of an existing assignment to be
+	// removed. Supports $expand.
+	Assignment *AccessPackageAssignment `json:"assignment,omitempty"`
+
+	// The date of the end of processing, either successful or failure, of a request. The Timestamp type represents date and
+	// time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is
+	// 2014-01-01T00:00:00Z. Read-only.
+	CompletedDateTime nullable.Type[string] `json:"completedDateTime,omitempty"`
+
+	// The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example,
+	// midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only. Supports $filter.
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// Information about all the custom extension calls that were made during the access package assignment workflow.
+	CustomExtensionCalloutInstances *[]CustomExtensionCalloutInstance `json:"customExtensionCalloutInstances,omitempty"`
+
+	// The requestor's supplied justification.
+	Justification nullable.Type[string] `json:"justification,omitempty"`
+
+	// The type of the request. The possible values are: notSpecified, userAdd, UserExtend, userUpdate, userRemove,
+	// adminAdd, adminUpdate, adminRemove, systemAdd, systemUpdate, systemRemove, onBehalfAdd (not supported),
+	// unknownFutureValue. Requests from the user have a requestType of userAdd, userUpdate, or userRemove. This property
+	// can't be changed once set.
+	RequestType *AccessPackageRequestType `json:"requestType,omitempty"`
+
+	// The subject who requested or, if a direct assignment, was assigned. Read-only. Nullable. Supports $expand.
+	Requestor *AccessPackageSubject `json:"requestor,omitempty"`
+
+	// The range of dates that access is to be assigned to the requestor. This property can't be changed once set, but a new
+	// schedule for an assignment can be included in another userUpdate or UserExtend or adminUpdate assignment request.
+	Schedule *EntitlementManagementSchedule `json:"schedule,omitempty"`
+
+	// The state of the request. The possible values are: submitted, pendingApproval, delivering, delivered, deliveryFailed,
+	// denied, scheduled, canceled, partiallyDelivered, unknownFutureValue. Read-only. Supports $filter (eq).
+	State *AccessPackageRequestState `json:"state,omitempty"`
+
+	// More information on the request processing status. Read-only.
+	Status nullable.Type[string] `json:"status,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

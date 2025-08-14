@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicefabric/2021-06-01/clusterversion
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewClusterVersionClientWithBaseURI(sdkApi sdkEnv.Api) (*ClusterVersionClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "clusterversion", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ClusterVersionClient: %+v", err)
+	}
+
+	return &ClusterVersionClient{
+		Client: client,
+	}, nil
+}

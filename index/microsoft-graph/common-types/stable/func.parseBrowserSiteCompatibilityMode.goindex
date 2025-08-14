@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseBrowserSiteCompatibilityMode(input string) (*BrowserSiteCompatibilityMode, error) {
+	vals := map[string]BrowserSiteCompatibilityMode{
+		"default":                     BrowserSiteCompatibilityMode_Default,
+		"internetexplorer10":          BrowserSiteCompatibilityMode_InternetExplorer10,
+		"internetexplorer11":          BrowserSiteCompatibilityMode_InternetExplorer11,
+		"internetexplorer5":           BrowserSiteCompatibilityMode_InternetExplorer5,
+		"internetexplorer7":           BrowserSiteCompatibilityMode_InternetExplorer7,
+		"internetexplorer7enterprise": BrowserSiteCompatibilityMode_InternetExplorer7Enterprise,
+		"internetexplorer8":           BrowserSiteCompatibilityMode_InternetExplorer8,
+		"internetexplorer8enterprise": BrowserSiteCompatibilityMode_InternetExplorer8Enterprise,
+		"internetexplorer9":           BrowserSiteCompatibilityMode_InternetExplorer9,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := BrowserSiteCompatibilityMode(input)
+	return &out, nil
+}

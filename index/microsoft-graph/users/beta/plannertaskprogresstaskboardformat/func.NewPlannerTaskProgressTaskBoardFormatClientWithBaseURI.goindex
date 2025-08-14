@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/plannertaskprogresstaskboardformat
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPlannerTaskProgressTaskBoardFormatClientWithBaseURI(sdkApi sdkEnv.Api) (*PlannerTaskProgressTaskBoardFormatClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "plannertaskprogresstaskboardformat", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PlannerTaskProgressTaskBoardFormatClient: %+v", err)
+	}
+
+	return &PlannerTaskProgressTaskBoardFormatClient{
+		Client: client,
+	}, nil
+}

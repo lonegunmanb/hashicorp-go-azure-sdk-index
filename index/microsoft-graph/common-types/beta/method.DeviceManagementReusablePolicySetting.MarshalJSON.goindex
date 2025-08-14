@@ -1,0 +1,36 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s DeviceManagementReusablePolicySetting) MarshalJSON() ([]byte, error) {
+	type wrapper DeviceManagementReusablePolicySetting
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling DeviceManagementReusablePolicySetting: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling DeviceManagementReusablePolicySetting: %+v", err)
+	}
+
+	delete(decoded, "createdDateTime")
+	delete(decoded, "lastModifiedDateTime")
+	delete(decoded, "referencingConfigurationPolicyCount")
+	delete(decoded, "version")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.deviceManagementReusablePolicySetting"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling DeviceManagementReusablePolicySetting: %+v", err)
+	}
+
+	return encoded, nil
+}

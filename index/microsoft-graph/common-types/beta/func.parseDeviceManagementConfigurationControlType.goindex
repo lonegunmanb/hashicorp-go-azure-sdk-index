@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeviceManagementConfigurationControlType(input string) (*DeviceManagementConfigurationControlType, error) {
+	vals := map[string]DeviceManagementConfigurationControlType{
+		"contextpane":     DeviceManagementConfigurationControlType_ContextPane,
+		"default":         DeviceManagementConfigurationControlType_Default,
+		"dropdown":        DeviceManagementConfigurationControlType_Dropdown,
+		"largetextbox":    DeviceManagementConfigurationControlType_LargeTextBox,
+		"multiheadergrid": DeviceManagementConfigurationControlType_MultiheaderGrid,
+		"smalltextbox":    DeviceManagementConfigurationControlType_SmallTextBox,
+		"toggle":          DeviceManagementConfigurationControlType_Toggle,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceManagementConfigurationControlType(input)
+	return &out, nil
+}

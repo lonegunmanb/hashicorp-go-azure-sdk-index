@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRunState(input string) (*RunState, error) {
+	vals := map[string]RunState{
+		"fail":          RunState_Fail,
+		"notapplicable": RunState_NotApplicable,
+		"pending":       RunState_Pending,
+		"scripterror":   RunState_ScriptError,
+		"success":       RunState_Success,
+		"unknown":       RunState_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RunState(input)
+	return &out, nil
+}

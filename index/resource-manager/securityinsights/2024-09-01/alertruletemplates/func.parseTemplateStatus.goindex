@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2024-09-01/alertruletemplates
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTemplateStatus(input string) (*TemplateStatus, error) {
+	vals := map[string]TemplateStatus{
+		"available":    TemplateStatusAvailable,
+		"installed":    TemplateStatusInstalled,
+		"notavailable": TemplateStatusNotAvailable,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TemplateStatus(input)
+	return &out, nil
+}

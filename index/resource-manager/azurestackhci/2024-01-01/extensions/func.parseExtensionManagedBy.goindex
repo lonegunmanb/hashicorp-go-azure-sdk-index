@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/azurestackhci/2024-01-01/extensions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseExtensionManagedBy(input string) (*ExtensionManagedBy, error) {
+	vals := map[string]ExtensionManagedBy{
+		"azure": ExtensionManagedByAzure,
+		"user":  ExtensionManagedByUser,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ExtensionManagedBy(input)
+	return &out, nil
+}

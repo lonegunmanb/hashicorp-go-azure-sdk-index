@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/managementgroups/2023-04-01/managementgroups
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o GetOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+	if o.CacheControl != nil {
+		out.Append("Cache-Control", fmt.Sprintf("%v", *o.CacheControl))
+	}
+	return &out
+}

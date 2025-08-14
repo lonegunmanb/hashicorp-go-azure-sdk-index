@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/imageversions
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ImageVersionId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Dev Center Name: %q", id.DevCenterName),
+		fmt.Sprintf("Gallery Name: %q", id.GalleryName),
+		fmt.Sprintf("Image Name: %q", id.ImageName),
+		fmt.Sprintf("Version Name: %q", id.VersionName),
+	}
+	return fmt.Sprintf("Image Version (%s)", strings.Join(components, "\n"))
+}

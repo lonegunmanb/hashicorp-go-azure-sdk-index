@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/policyinsights/2024-10-01/policyevents
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c PolicyEventsClient) ListQueryResultsForSubscriptionCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, options ListQueryResultsForSubscriptionOperationOptions, predicate PolicyEventOperationPredicate) (result ListQueryResultsForSubscriptionCompleteResult, err error) {
+	items := make([]PolicyEvent, 0)
+
+	resp, err := c.ListQueryResultsForSubscription(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListQueryResultsForSubscriptionCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

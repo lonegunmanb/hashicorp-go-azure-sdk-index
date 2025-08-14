@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeviceManagementExchangeConnectorStatus(input string) (*DeviceManagementExchangeConnectorStatus, error) {
+	vals := map[string]DeviceManagementExchangeConnectorStatus{
+		"connected":         DeviceManagementExchangeConnectorStatus_Connected,
+		"connectionpending": DeviceManagementExchangeConnectorStatus_ConnectionPending,
+		"disconnected":      DeviceManagementExchangeConnectorStatus_Disconnected,
+		"none":              DeviceManagementExchangeConnectorStatus_None,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceManagementExchangeConnectorStatus(input)
+	return &out, nil
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2025-06-01/featuresetversion
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMaterializationStoreType(input string) (*MaterializationStoreType, error) {
+	vals := map[string]MaterializationStoreType{
+		"none":             MaterializationStoreTypeNone,
+		"offline":          MaterializationStoreTypeOffline,
+		"online":           MaterializationStoreTypeOnline,
+		"onlineandoffline": MaterializationStoreTypeOnlineAndOffline,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MaterializationStoreType(input)
+	return &out, nil
+}

@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id PolicyHomeRealmDiscoveryPolicyIdAppliesToId) String() string {
+	components := []string{
+		fmt.Sprintf("Home Realm Discovery Policy: %q", id.HomeRealmDiscoveryPolicyId),
+		fmt.Sprintf("Directory Object: %q", id.DirectoryObjectId),
+	}
+	return fmt.Sprintf("Policy Home Realm Discovery Policy Id Applies To (%s)", strings.Join(components, "\n"))
+}

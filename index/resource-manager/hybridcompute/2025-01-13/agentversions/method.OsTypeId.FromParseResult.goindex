@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2025-01-13/agentversions
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *OsTypeId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.OsTypeName, ok = input.Parsed["osTypeName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "osTypeName", input)
+	}
+
+	return nil
+}

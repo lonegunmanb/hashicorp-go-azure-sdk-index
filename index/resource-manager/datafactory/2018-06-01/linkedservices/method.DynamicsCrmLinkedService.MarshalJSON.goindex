@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/linkedservices
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s DynamicsCrmLinkedService) MarshalJSON() ([]byte, error) {
+	type wrapper DynamicsCrmLinkedService
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling DynamicsCrmLinkedService: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling DynamicsCrmLinkedService: %+v", err)
+	}
+
+	decoded["type"] = "DynamicsCrm"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling DynamicsCrmLinkedService: %+v", err)
+	}
+
+	return encoded, nil
+}

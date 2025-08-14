@@ -1,0 +1,45 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s ManagedTenantsDeviceCompliancePolicySettingStateSummary) MarshalJSON() ([]byte, error) {
+	type wrapper ManagedTenantsDeviceCompliancePolicySettingStateSummary
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ManagedTenantsDeviceCompliancePolicySettingStateSummary: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ManagedTenantsDeviceCompliancePolicySettingStateSummary: %+v", err)
+	}
+
+	delete(decoded, "conflictDeviceCount")
+	delete(decoded, "errorDeviceCount")
+	delete(decoded, "failedDeviceCount")
+	delete(decoded, "intuneAccountId")
+	delete(decoded, "intuneSettingId")
+	delete(decoded, "lastRefreshedDateTime")
+	delete(decoded, "notApplicableDeviceCount")
+	delete(decoded, "pendingDeviceCount")
+	delete(decoded, "policyType")
+	delete(decoded, "settingName")
+	delete(decoded, "succeededDeviceCount")
+	delete(decoded, "tenantDisplayName")
+	delete(decoded, "tenantId")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.managedTenants.deviceCompliancePolicySettingStateSummary"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ManagedTenantsDeviceCompliancePolicySettingStateSummary: %+v", err)
+	}
+
+	return encoded, nil
+}

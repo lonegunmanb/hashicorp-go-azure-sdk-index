@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/aad/2025-06-01/domainservices
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *LdapsSettings) GetCertificateNotAfterAsTime() (*time.Time, error) {
+	if o.CertificateNotAfter == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.CertificateNotAfter, "2006-01-02T15:04:05Z07:00")
+}

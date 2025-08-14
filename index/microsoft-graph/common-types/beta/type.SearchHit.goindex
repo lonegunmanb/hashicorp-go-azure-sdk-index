@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type SearchHit struct {
+	// The name of the content source that the externalItem is part of.
+	ContentSource nullable.Type[string] `json:"contentSource,omitempty"`
+
+	// The internal identifier for the item. The format of the identifier varies based on the entity type. For details, see
+	// hitId format.
+	HitId nullable.Type[string] `json:"hitId,omitempty"`
+
+	// Indicates whether the current result is collapses when the collapseProperties property in the searchRequest is used.
+	IsCollapsed nullable.Type[bool] `json:"isCollapsed,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The rank or the order of the result.
+	Rank nullable.Type[int64] `json:"rank,omitempty"`
+
+	Resource Entity `json:"resource"`
+
+	// ID of the result template for rendering the search result. This ID must map to a display layout in the
+	// resultTemplates dictionary, included in the searchresponse as well.
+	ResultTemplateId nullable.Type[string] `json:"resultTemplateId,omitempty"`
+
+	// A summary of the result, if a summary is available.
+	Summary nullable.Type[string] `json:"summary,omitempty"`
+
+	_Id      nullable.Type[string] `json:"_id,omitempty"`
+	_Score   nullable.Type[int64]  `json:"_score,omitempty"`
+	_Source  Entity                `json:"_source"`
+	_Summary nullable.Type[string] `json:"_summary,omitempty"`
+}

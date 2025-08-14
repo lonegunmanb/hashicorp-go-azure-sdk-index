@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/appplatform/2024-01-01-preview/appplatform
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTrafficDirection(input string) (*TrafficDirection, error) {
+	vals := map[string]TrafficDirection{
+		"inbound":  TrafficDirectionInbound,
+		"outbound": TrafficDirectionOutbound,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TrafficDirection(input)
+	return &out, nil
+}

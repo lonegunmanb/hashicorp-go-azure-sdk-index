@@ -1,0 +1,10 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2025-04-01/providers
+
+func (p ProviderPermissionOperationPredicate) Matches(input ProviderPermission) bool {
+
+	if p.ApplicationId != nil && (input.ApplicationId == nil || *p.ApplicationId != *input.ApplicationId) {
+		return false
+	}
+
+	return true
+}

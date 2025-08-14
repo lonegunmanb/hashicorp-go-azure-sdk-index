@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-11-01/appserviceplans
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseScmType(input string) (*ScmType, error) {
+	vals := map[string]ScmType{
+		"bitbucketgit": ScmTypeBitbucketGit,
+		"bitbuckethg":  ScmTypeBitbucketHg,
+		"codeplexgit":  ScmTypeCodePlexGit,
+		"codeplexhg":   ScmTypeCodePlexHg,
+		"dropbox":      ScmTypeDropbox,
+		"externalgit":  ScmTypeExternalGit,
+		"externalhg":   ScmTypeExternalHg,
+		"github":       ScmTypeGitHub,
+		"localgit":     ScmTypeLocalGit,
+		"none":         ScmTypeNone,
+		"onedrive":     ScmTypeOneDrive,
+		"tfs":          ScmTypeTfs,
+		"vso":          ScmTypeVSO,
+		"vstsrm":       ScmTypeVSTSRM,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ScmType(input)
+	return &out, nil
+}

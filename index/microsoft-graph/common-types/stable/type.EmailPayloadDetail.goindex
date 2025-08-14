@@ -1,0 +1,39 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type EmailPayloadDetail struct {
+	// Email address of the user.
+	FromEmail nullable.Type[string] `json:"fromEmail,omitempty"`
+
+	// Display name of the user.
+	FromName nullable.Type[string] `json:"fromName,omitempty"`
+
+	// Indicates whether the sender isn't from the user's organization.
+	IsExternalSender nullable.Type[bool] `json:"isExternalSender,omitempty"`
+
+	// The subject of the email address sent to the user.
+	Subject nullable.Type[string] `json:"subject,omitempty"`
+
+	// Fields inherited from PayloadDetail
+
+	Coachmarks *[]PayloadCoachmark `json:"coachmarks,omitempty"`
+
+	// Payload content details.
+	Content nullable.Type[string] `json:"content,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The phishing URL used to target a user.
+	PhishingUrl nullable.Type[string] `json:"phishingUrl,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

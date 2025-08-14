@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/databricks/2024-05-01/privatelinkresources
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c PrivateLinkResourcesClient) ListComplete(ctx context.Context, id WorkspaceId) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, GroupIdInformationOperationPredicate{})
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/patch
+import (
+	"encoding/json"
+	"fmt"
+)
+type ValidateOracleAzureDbForPostgreSqlSyncTaskProperties struct {
+	Input  *MigrateOracleAzureDbPostgreSqlSyncTaskInput     `json:"input,omitempty"`
+	Output *[]ValidateOracleAzureDbPostgreSqlSyncTaskOutput `json:"output,omitempty"`
+
+	// Fields inherited from ProjectTaskProperties
+
+	ClientData *map[string]string   `json:"clientData,omitempty"`
+	Commands   *[]CommandProperties `json:"commands,omitempty"`
+	Errors     *[]ODataError        `json:"errors,omitempty"`
+	State      *TaskState           `json:"state,omitempty"`
+	TaskType   string               `json:"taskType"`
+}

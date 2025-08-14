@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/usageright
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewUsageRightClientWithBaseURI(sdkApi sdkEnv.Api) (*UsageRightClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "usageright", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating UsageRightClient: %+v", err)
+	}
+
+	return &UsageRightClient{
+		Client: client,
+	}, nil
+}

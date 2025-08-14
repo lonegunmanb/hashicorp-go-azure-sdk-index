@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-09-01/connectionmonitors
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDestinationPortBehavior(input string) (*DestinationPortBehavior, error) {
+	vals := map[string]DestinationPortBehavior{
+		"listenifavailable": DestinationPortBehaviorListenIfAvailable,
+		"none":              DestinationPortBehaviorNone,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DestinationPortBehavior(input)
+	return &out, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/securityinformationprotectionsensitivitylabel
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSecurityInformationProtectionSensitivityLabelClientWithBaseURI(sdkApi sdkEnv.Api) (*SecurityInformationProtectionSensitivityLabelClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "securityinformationprotectionsensitivitylabel", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SecurityInformationProtectionSensitivityLabelClient: %+v", err)
+	}
+
+	return &SecurityInformationProtectionSensitivityLabelClient{
+		Client: client,
+	}, nil
+}

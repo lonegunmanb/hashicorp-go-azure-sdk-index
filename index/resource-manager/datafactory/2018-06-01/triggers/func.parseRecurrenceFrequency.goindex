@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/triggers
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRecurrenceFrequency(input string) (*RecurrenceFrequency, error) {
+	vals := map[string]RecurrenceFrequency{
+		"day":          RecurrenceFrequencyDay,
+		"hour":         RecurrenceFrequencyHour,
+		"minute":       RecurrenceFrequencyMinute,
+		"month":        RecurrenceFrequencyMonth,
+		"notspecified": RecurrenceFrequencyNotSpecified,
+		"week":         RecurrenceFrequencyWeek,
+		"year":         RecurrenceFrequencyYear,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RecurrenceFrequency(input)
+	return &out, nil
+}

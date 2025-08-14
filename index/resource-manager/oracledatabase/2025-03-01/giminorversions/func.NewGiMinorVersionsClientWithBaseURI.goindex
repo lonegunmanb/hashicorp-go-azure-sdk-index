@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/giminorversions
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewGiMinorVersionsClientWithBaseURI(sdkApi sdkEnv.Api) (*GiMinorVersionsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "giminorversions", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating GiMinorVersionsClient: %+v", err)
+	}
+
+	return &GiMinorVersionsClient{
+		Client: client,
+	}, nil
+}

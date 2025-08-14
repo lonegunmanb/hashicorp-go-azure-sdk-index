@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicefabricmanagedcluster/2024-04-01/nodetype
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewNodeTypeClientWithBaseURI(sdkApi sdkEnv.Api) (*NodeTypeClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "nodetype", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating NodeTypeClient: %+v", err)
+	}
+
+	return &NodeTypeClient{
+		Client: client,
+	}, nil
+}

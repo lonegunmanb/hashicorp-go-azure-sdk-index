@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/outlook
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewOutlookClientWithBaseURI(sdkApi sdkEnv.Api) (*OutlookClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "outlook", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating OutlookClient: %+v", err)
+	}
+
+	return &OutlookClient{
+		Client: client,
+	}, nil
+}

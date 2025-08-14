@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/device
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DeviceClient) ListDevicesComplete(ctx context.Context, options ListDevicesOperationOptions) (ListDevicesCompleteResult, error) {
+	return c.ListDevicesCompleteMatchingPredicate(ctx, options, DeviceOperationPredicate{})
+}

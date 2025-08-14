@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/reservationtransactions
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewReservationTransactionsClientWithBaseURI(sdkApi sdkEnv.Api) (*ReservationTransactionsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "reservationtransactions", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ReservationTransactionsClient: %+v", err)
+	}
+
+	return &ReservationTransactionsClient{
+		Client: client,
+	}, nil
+}

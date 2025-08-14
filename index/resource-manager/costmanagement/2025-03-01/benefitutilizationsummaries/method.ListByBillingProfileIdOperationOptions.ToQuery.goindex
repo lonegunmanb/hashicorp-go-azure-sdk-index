@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2025-03-01/benefitutilizationsummaries
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ListByBillingProfileIdOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.Filter != nil {
+		out.Append("filter", fmt.Sprintf("%v", *o.Filter))
+	}
+	if o.GrainParameter != nil {
+		out.Append("grainParameter", fmt.Sprintf("%v", *o.GrainParameter))
+	}
+	return &out
+}

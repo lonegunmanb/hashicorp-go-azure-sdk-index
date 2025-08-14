@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/policyinsights/2024-10-01/remediations
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c RemediationsClient) ListDeploymentsAtManagementGroupComplete(ctx context.Context, id Providers2RemediationId, options ListDeploymentsAtManagementGroupOperationOptions) (ListDeploymentsAtManagementGroupCompleteResult, error) {
+	return c.ListDeploymentsAtManagementGroupCompleteMatchingPredicate(ctx, id, options, RemediationDeploymentOperationPredicate{})
+}

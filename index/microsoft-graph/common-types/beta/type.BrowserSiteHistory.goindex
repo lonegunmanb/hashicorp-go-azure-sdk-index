@@ -1,0 +1,42 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type BrowserSiteHistory struct {
+	// Controls the behavior of redirected sites. If true, indicates that the site will open in Internet Explorer 11 or
+	// Microsoft Edge even if the site is navigated to as part of a HTTP or meta refresh redirection chain.
+	AllowRedirect nullable.Type[bool] `json:"allowRedirect,omitempty"`
+
+	// The comment for the site.
+	Comment *string `json:"comment,omitempty"`
+
+	// Controls what compatibility setting is used for specific sites or domains. The possible values are: default,
+	// internetExplorer8Enterprise, internetExplorer7Enterprise, internetExplorer11, internetExplorer10, internetExplorer9,
+	// internetExplorer8, internetExplorer7, internetExplorer5, unknownFutureValue.
+	CompatibilityMode *BrowserSiteCompatibilityMode `json:"compatibilityMode,omitempty"`
+
+	// The user who last modified the site.
+	LastModifiedBy IdentitySet `json:"lastModifiedBy"`
+
+	// The merge type of the site. The possible values are: noMerge, default, unknownFutureValue.
+	MergeType *BrowserSiteMergeType `json:"mergeType,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The date and time when the site was last published.
+	PublishedDateTime *string `json:"publishedDateTime,omitempty"`
+
+	// The target environment that the site should open in. The possible values are: internetExplorerMode,
+	// internetExplorer11, microsoftEdge, configurable, none, unknownFutureValue.Prior to June 15, 2022, the
+	// internetExplorer11 option would allow opening a site in the Internet Explorer 11 (IE11) desktop application.
+	// Following the retirement of IE11 on June 15, 2022, the internetExplorer11 option will no longer open an IE11 window
+	// and will instead behave the same as the internetExplorerMode option.
+	TargetEnvironment *BrowserSiteTargetEnvironment `json:"targetEnvironment,omitempty"`
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/registeredserverresource
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewRegisteredServerResourceClientWithBaseURI(sdkApi sdkEnv.Api) (*RegisteredServerResourceClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "registeredserverresource", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating RegisteredServerResourceClient: %+v", err)
+	}
+
+	return &RegisteredServerResourceClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/devicecompliancepolicydevicestatus
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DeviceCompliancePolicyDeviceStatusClient) ListDeviceCompliancePolicyDeviceStatusesCompleteMatchingPredicate(ctx context.Context, id beta.DeviceManagementDeviceCompliancePolicyId, options ListDeviceCompliancePolicyDeviceStatusesOperationOptions, predicate DeviceComplianceDeviceStatusOperationPredicate) (result ListDeviceCompliancePolicyDeviceStatusesCompleteResult, err error) {
+	items := make([]beta.DeviceComplianceDeviceStatus, 0)
+
+	resp, err := c.ListDeviceCompliancePolicyDeviceStatuses(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListDeviceCompliancePolicyDeviceStatusesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

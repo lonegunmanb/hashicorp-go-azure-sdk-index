@@ -1,0 +1,89 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *EdiscoveryCase) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		ClosedDateTime          nullable.Type[string]               `json:"closedDateTime,omitempty"`
+		CreatedDateTime         nullable.Type[string]               `json:"createdDateTime,omitempty"`
+		Custodians              *[]EdiscoveryCustodian              `json:"custodians,omitempty"`
+		Description             nullable.Type[string]               `json:"description,omitempty"`
+		DisplayName             nullable.Type[string]               `json:"displayName,omitempty"`
+		ExternalId              nullable.Type[string]               `json:"externalId,omitempty"`
+		LastModifiedDateTime    nullable.Type[string]               `json:"lastModifiedDateTime,omitempty"`
+		LegalHolds              *[]EdiscoveryLegalHold              `json:"legalHolds,omitempty"`
+		NoncustodialDataSources *[]EdiscoveryNoncustodialDataSource `json:"noncustodialDataSources,omitempty"`
+		ReviewSets              *[]EdiscoveryReviewSet              `json:"reviewSets,omitempty"`
+		Settings                *EdiscoveryCaseSettings             `json:"settings,omitempty"`
+		SourceCollections       *[]EdiscoverySourceCollection       `json:"sourceCollections,omitempty"`
+		Status                  *EdiscoveryCaseStatus               `json:"status,omitempty"`
+		Tags                    *[]EdiscoveryTag                    `json:"tags,omitempty"`
+		Id                      *string                             `json:"id,omitempty"`
+		ODataId                 *string                             `json:"@odata.id,omitempty"`
+		ODataType               *string                             `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.ClosedDateTime = decoded.ClosedDateTime
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Custodians = decoded.Custodians
+	s.Description = decoded.Description
+	s.DisplayName = decoded.DisplayName
+	s.ExternalId = decoded.ExternalId
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.LegalHolds = decoded.LegalHolds
+	s.NoncustodialDataSources = decoded.NoncustodialDataSources
+	s.ReviewSets = decoded.ReviewSets
+	s.Settings = decoded.Settings
+	s.SourceCollections = decoded.SourceCollections
+	s.Status = decoded.Status
+	s.Tags = decoded.Tags
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling EdiscoveryCase into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["closedBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'ClosedBy' for 'EdiscoveryCase': %+v", err)
+		}
+		s.ClosedBy = impl
+	}
+
+	if v, ok := temp["lastModifiedBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'LastModifiedBy' for 'EdiscoveryCase': %+v", err)
+		}
+		s.LastModifiedBy = impl
+	}
+
+	if v, ok := temp["operations"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling Operations into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]EdiscoveryCaseOperation, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalEdiscoveryCaseOperationImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'Operations' for 'EdiscoveryCase': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.Operations = &output
+	}
+
+	return nil
+}

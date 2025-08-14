@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s DeviceManagement) MarshalJSON() ([]byte, error) {
+	type wrapper DeviceManagement
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling DeviceManagement: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling DeviceManagement: %+v", err)
+	}
+
+	delete(decoded, "deviceComplianceReportSummarizationDateTime")
+	delete(decoded, "lastReportAggregationDateTime")
+	delete(decoded, "legacyPcManangementEnabled")
+	delete(decoded, "unlicensedAdminstratorsEnabled")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.deviceManagement"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling DeviceManagement: %+v", err)
+	}
+
+	return encoded, nil
+}

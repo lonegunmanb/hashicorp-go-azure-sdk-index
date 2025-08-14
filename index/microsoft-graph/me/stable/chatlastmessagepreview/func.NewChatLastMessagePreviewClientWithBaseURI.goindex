@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/chatlastmessagepreview
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewChatLastMessagePreviewClientWithBaseURI(sdkApi sdkEnv.Api) (*ChatLastMessagePreviewClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "chatlastmessagepreview", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ChatLastMessagePreviewClient: %+v", err)
+	}
+
+	return &ChatLastMessagePreviewClient{
+		Client: client,
+	}, nil
+}

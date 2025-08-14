@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/virtualmachinescalesets
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDomainNameLabelScopeTypes(input string) (*DomainNameLabelScopeTypes, error) {
+	vals := map[string]DomainNameLabelScopeTypes{
+		"noreuse":            DomainNameLabelScopeTypesNoReuse,
+		"resourcegroupreuse": DomainNameLabelScopeTypesResourceGroupReuse,
+		"subscriptionreuse":  DomainNameLabelScopeTypesSubscriptionReuse,
+		"tenantreuse":        DomainNameLabelScopeTypesTenantReuse,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DomainNameLabelScopeTypes(input)
+	return &out, nil
+}

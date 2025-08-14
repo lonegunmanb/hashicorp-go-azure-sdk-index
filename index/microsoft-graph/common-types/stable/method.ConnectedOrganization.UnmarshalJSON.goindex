@@ -1,0 +1,93 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *ConnectedOrganization) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		CreatedDateTime            nullable.Type[string]       `json:"createdDateTime,omitempty"`
+		Description                nullable.Type[string]       `json:"description,omitempty"`
+		DisplayName                nullable.Type[string]       `json:"displayName,omitempty"`
+		ExternalSponsors_ODataBind *[]string                   `json:"externalSponsors@odata.bind,omitempty"`
+		InternalSponsors_ODataBind *[]string                   `json:"internalSponsors@odata.bind,omitempty"`
+		ModifiedDateTime           nullable.Type[string]       `json:"modifiedDateTime,omitempty"`
+		State                      *ConnectedOrganizationState `json:"state,omitempty"`
+		Id                         *string                     `json:"id,omitempty"`
+		ODataId                    *string                     `json:"@odata.id,omitempty"`
+		ODataType                  *string                     `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Description = decoded.Description
+	s.DisplayName = decoded.DisplayName
+	s.ExternalSponsors_ODataBind = decoded.ExternalSponsors_ODataBind
+	s.InternalSponsors_ODataBind = decoded.InternalSponsors_ODataBind
+	s.ModifiedDateTime = decoded.ModifiedDateTime
+	s.State = decoded.State
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling ConnectedOrganization into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["externalSponsors"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling ExternalSponsors into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]DirectoryObject, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalDirectoryObjectImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'ExternalSponsors' for 'ConnectedOrganization': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.ExternalSponsors = &output
+	}
+
+	if v, ok := temp["identitySources"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling IdentitySources into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]IdentitySource, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalIdentitySourceImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'IdentitySources' for 'ConnectedOrganization': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.IdentitySources = &output
+	}
+
+	if v, ok := temp["internalSponsors"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling InternalSponsors into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]DirectoryObject, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalDirectoryObjectImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'InternalSponsors' for 'ConnectedOrganization': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.InternalSponsors = &output
+	}
+
+	return nil
+}

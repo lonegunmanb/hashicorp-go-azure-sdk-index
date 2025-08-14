@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DeviceManagementWindowsDriverUpdateProfileIdAssignmentId) String() string {
+	components := []string{
+		fmt.Sprintf("Windows Driver Update Profile: %q", id.WindowsDriverUpdateProfileId),
+		fmt.Sprintf("Windows Driver Update Profile Assignment: %q", id.WindowsDriverUpdateProfileAssignmentId),
+	}
+	return fmt.Sprintf("Device Management Windows Driver Update Profile Id Assignment (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePlatform(input string) (*Platform, error) {
+	vals := map[string]Platform{
+		"android":       Platform_Android,
+		"ios":           Platform_Ios,
+		"macos":         Platform_MacOS,
+		"tvos":          Platform_TvOS,
+		"unknown":       Platform_Unknown,
+		"visionos":      Platform_VisionOS,
+		"windows":       Platform_Windows,
+		"windowsmobile": Platform_WindowsMobile,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Platform(input)
+	return &out, nil
+}

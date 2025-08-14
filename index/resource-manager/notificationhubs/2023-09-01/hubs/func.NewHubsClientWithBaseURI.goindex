@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/notificationhubs/2023-09-01/hubs
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewHubsClientWithBaseURI(sdkApi sdkEnv.Api) (*HubsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "hubs", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating HubsClient: %+v", err)
+	}
+
+	return &HubsClient{
+		Client: client,
+	}, nil
+}

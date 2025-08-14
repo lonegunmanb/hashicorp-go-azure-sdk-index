@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/permissiongrantpreapprovalpolicy
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPermissionGrantPreApprovalPolicyClientWithBaseURI(sdkApi sdkEnv.Api) (*PermissionGrantPreApprovalPolicyClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "permissiongrantpreapprovalpolicy", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PermissionGrantPreApprovalPolicyClient: %+v", err)
+	}
+
+	return &PermissionGrantPreApprovalPolicyClient{
+		Client: client,
+	}, nil
+}

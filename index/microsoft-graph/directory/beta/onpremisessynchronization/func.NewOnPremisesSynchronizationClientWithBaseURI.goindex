@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/onpremisessynchronization
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewOnPremisesSynchronizationClientWithBaseURI(sdkApi sdkEnv.Api) (*OnPremisesSynchronizationClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "onpremisessynchronization", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating OnPremisesSynchronizationClient: %+v", err)
+	}
+
+	return &OnPremisesSynchronizationClient{
+		Client: client,
+	}, nil
+}

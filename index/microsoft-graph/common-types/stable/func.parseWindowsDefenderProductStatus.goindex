@@ -1,0 +1,43 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWindowsDefenderProductStatus(input string) (*WindowsDefenderProductStatus, error) {
+	vals := map[string]WindowsDefenderProductStatus{
+		"assignaturesoutofdate":                           WindowsDefenderProductStatus_AsSignaturesOutOfDate,
+		"avsignaturesoutofdate":                           WindowsDefenderProductStatus_AvSignaturesOutOfDate,
+		"nofullscanhappenedforspecifiedperiod":            WindowsDefenderProductStatus_NoFullScanHappenedForSpecifiedPeriod,
+		"noquickscanhappenedforspecifiedperiod":           WindowsDefenderProductStatus_NoQuickScanHappenedForSpecifiedPeriod,
+		"nostatus":                                        WindowsDefenderProductStatus_NoStatus,
+		"nostatusflagsset":                                WindowsDefenderProductStatus_NoStatusFlagsSet,
+		"offlinescanrequired":                             WindowsDefenderProductStatus_OfflineScanRequired,
+		"pendingfullscanduetothreataction":                WindowsDefenderProductStatus_PendingFullScanDueToThreatAction,
+		"pendingmanualstepsduetothreataction":             WindowsDefenderProductStatus_PendingManualStepsDueToThreatAction,
+		"pendingrebootduetothreataction":                  WindowsDefenderProductStatus_PendingRebootDueToThreatAction,
+		"platformabouttobeoutdated":                       WindowsDefenderProductStatus_PlatformAboutToBeOutdated,
+		"platformoutofdate":                               WindowsDefenderProductStatus_PlatformOutOfDate,
+		"platformupdateinprogress":                        WindowsDefenderProductStatus_PlatformUpdateInProgress,
+		"productexpired":                                  WindowsDefenderProductStatus_ProductExpired,
+		"productrunninginevaluationmode":                  WindowsDefenderProductStatus_ProductRunningInEvaluationMode,
+		"productrunninginnongenuinemode":                  WindowsDefenderProductStatus_ProductRunningInNonGenuineMode,
+		"samplespendingsubmission":                        WindowsDefenderProductStatus_SamplesPendingSubmission,
+		"servicenotrunning":                               WindowsDefenderProductStatus_ServiceNotRunning,
+		"serviceshutdownaspartofsystemshutdown":           WindowsDefenderProductStatus_ServiceShutdownAsPartOfSystemShutdown,
+		"servicestartedwithoutmalwareprotection":          WindowsDefenderProductStatus_ServiceStartedWithoutMalwareProtection,
+		"signatureorplatformendoflifeispastorisimpending": WindowsDefenderProductStatus_SignatureOrPlatformEndOfLifeIsPastOrIsImpending,
+		"systeminitiatedcleaninprogress":                  WindowsDefenderProductStatus_SystemInitiatedCleanInProgress,
+		"systeminitiatedscaninprogress":                   WindowsDefenderProductStatus_SystemInitiatedScanInProgress,
+		"threatremediationfailedcritically":               WindowsDefenderProductStatus_ThreatRemediationFailedCritically,
+		"threatremediationfailednoncritically":            WindowsDefenderProductStatus_ThreatRemediationFailedNonCritically,
+		"windowssmodesignaturesinuseonnonwin10sinstall":   WindowsDefenderProductStatus_WindowsSModeSignaturesInUseOnNonWin10SInstall,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsDefenderProductStatus(input)
+	return &out, nil
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2022-03-02/incrementalrestorepoints
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAccessLevel(input string) (*AccessLevel, error) {
+	vals := map[string]AccessLevel{
+		"none":  AccessLevelNone,
+		"read":  AccessLevelRead,
+		"write": AccessLevelWrite,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AccessLevel(input)
+	return &out, nil
+}

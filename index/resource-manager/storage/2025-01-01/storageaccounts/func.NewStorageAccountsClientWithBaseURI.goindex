@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storage/2025-01-01/storageaccounts
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewStorageAccountsClientWithBaseURI(sdkApi sdkEnv.Api) (*StorageAccountsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "storageaccounts", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating StorageAccountsClient: %+v", err)
+	}
+
+	return &StorageAccountsClient{
+		Client: client,
+	}, nil
+}

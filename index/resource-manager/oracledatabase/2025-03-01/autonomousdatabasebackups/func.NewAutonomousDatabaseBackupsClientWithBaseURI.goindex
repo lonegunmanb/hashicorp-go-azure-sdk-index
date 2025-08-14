@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/autonomousdatabasebackups
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAutonomousDatabaseBackupsClientWithBaseURI(sdkApi sdkEnv.Api) (*AutonomousDatabaseBackupsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "autonomousdatabasebackups", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AutonomousDatabaseBackupsClient: %+v", err)
+	}
+
+	return &AutonomousDatabaseBackupsClient{
+		Client: client,
+	}, nil
+}

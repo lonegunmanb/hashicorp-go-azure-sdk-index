@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/onenotenotebooksectiongroupsection
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c OnenoteNotebookSectionGroupSectionClient) ListOnenoteNotebookSectionGroupSectionsComplete(ctx context.Context, id beta.GroupIdOnenoteNotebookIdSectionGroupId, options ListOnenoteNotebookSectionGroupSectionsOperationOptions) (ListOnenoteNotebookSectionGroupSectionsCompleteResult, error) {
+	return c.ListOnenoteNotebookSectionGroupSectionsCompleteMatchingPredicate(ctx, id, options, OnenoteSectionOperationPredicate{})
+}

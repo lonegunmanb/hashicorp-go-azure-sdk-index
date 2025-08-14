@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDetectedAppPlatformType(input string) (*DetectedAppPlatformType, error) {
+	vals := map[string]DetectedAppPlatformType{
+		"androiddedicatedandfullymanaged": DetectedAppPlatformType_AndroidDedicatedAndFullyManaged,
+		"androiddeviceadministrator":      DetectedAppPlatformType_AndroidDeviceAdministrator,
+		"androidosp":                      DetectedAppPlatformType_AndroidOSP,
+		"androidworkprofile":              DetectedAppPlatformType_AndroidWorkProfile,
+		"chromeos":                        DetectedAppPlatformType_ChromeOS,
+		"ios":                             DetectedAppPlatformType_Ios,
+		"macos":                           DetectedAppPlatformType_MacOS,
+		"unknown":                         DetectedAppPlatformType_Unknown,
+		"windows":                         DetectedAppPlatformType_Windows,
+		"windowsholographic":              DetectedAppPlatformType_WindowsHolographic,
+		"windowsmobile":                   DetectedAppPlatformType_WindowsMobile,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DetectedAppPlatformType(input)
+	return &out, nil
+}

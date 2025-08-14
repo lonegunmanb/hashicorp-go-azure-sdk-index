@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-09-01/webcategories
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id AzureWebCategoryId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Azure Web Category Name: %q", id.AzureWebCategoryName),
+	}
+	return fmt.Sprintf("Azure Web Category (%s)", strings.Join(components, "\n"))
+}

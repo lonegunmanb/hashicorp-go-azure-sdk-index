@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRecommendationPriority(input string) (*RecommendationPriority, error) {
+	vals := map[string]RecommendationPriority{
+		"high":   RecommendationPriority_High,
+		"low":    RecommendationPriority_Low,
+		"medium": RecommendationPriority_Medium,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RecommendationPriority(input)
+	return &out, nil
+}

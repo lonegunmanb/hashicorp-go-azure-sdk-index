@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"context"
+	"crypto/tls"
+	"log"
+	"math"
+	"net"
+	"net/http"
+	"net/url"
+	"runtime"
+	"strconv"
+	"time"
+
+	"github.com/hashicorp/go-retryablehttp"
+)
+func defaultHttpClientParams() httpClientParams {
+	return httpClientParams{
+		instanceMetadataService: false,
+
+		retryWaitMin:  1 * time.Second,
+		retryWaitMax:  30 * time.Second,
+		retryMaxCount: 8,
+		useProxy:      true,
+	}
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2024-09-01/scriptcmdlets
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseScriptCmdletProvisioningState(input string) (*ScriptCmdletProvisioningState, error) {
+	vals := map[string]ScriptCmdletProvisioningState{
+		"canceled":  ScriptCmdletProvisioningStateCanceled,
+		"failed":    ScriptCmdletProvisioningStateFailed,
+		"succeeded": ScriptCmdletProvisioningStateSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ScriptCmdletProvisioningState(input)
+	return &out, nil
+}

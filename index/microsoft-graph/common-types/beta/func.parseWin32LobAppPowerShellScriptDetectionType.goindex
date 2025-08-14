@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWin32LobAppPowerShellScriptDetectionType(input string) (*Win32LobAppPowerShellScriptDetectionType, error) {
+	vals := map[string]Win32LobAppPowerShellScriptDetectionType{
+		"boolean":       Win32LobAppPowerShellScriptDetectionType_Boolean,
+		"datetime":      Win32LobAppPowerShellScriptDetectionType_DateTime,
+		"float":         Win32LobAppPowerShellScriptDetectionType_Float,
+		"integer":       Win32LobAppPowerShellScriptDetectionType_Integer,
+		"notconfigured": Win32LobAppPowerShellScriptDetectionType_NotConfigured,
+		"string":        Win32LobAppPowerShellScriptDetectionType_String,
+		"version":       Win32LobAppPowerShellScriptDetectionType_Version,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Win32LobAppPowerShellScriptDetectionType(input)
+	return &out, nil
+}

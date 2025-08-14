@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/lifecycleworkflowtaskdefinition
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c LifecycleWorkflowTaskDefinitionClient) ListLifecycleWorkflowTaskDefinitionsComplete(ctx context.Context, options ListLifecycleWorkflowTaskDefinitionsOperationOptions) (ListLifecycleWorkflowTaskDefinitionsCompleteResult, error) {
+	return c.ListLifecycleWorkflowTaskDefinitionsCompleteMatchingPredicate(ctx, options, IdentityGovernanceTaskDefinitionOperationPredicate{})
+}

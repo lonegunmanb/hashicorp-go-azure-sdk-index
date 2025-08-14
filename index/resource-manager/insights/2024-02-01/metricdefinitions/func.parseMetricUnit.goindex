@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2024-02-01/metricdefinitions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMetricUnit(input string) (*MetricUnit, error) {
+	vals := map[string]MetricUnit{
+		"bitspersecond":  MetricUnitBitsPerSecond,
+		"byteseconds":    MetricUnitByteSeconds,
+		"bytes":          MetricUnitBytes,
+		"bytespersecond": MetricUnitBytesPerSecond,
+		"cores":          MetricUnitCores,
+		"count":          MetricUnitCount,
+		"countpersecond": MetricUnitCountPerSecond,
+		"millicores":     MetricUnitMilliCores,
+		"milliseconds":   MetricUnitMilliSeconds,
+		"nanocores":      MetricUnitNanoCores,
+		"percent":        MetricUnitPercent,
+		"seconds":        MetricUnitSeconds,
+		"unspecified":    MetricUnitUnspecified,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MetricUnit(input)
+	return &out, nil
+}

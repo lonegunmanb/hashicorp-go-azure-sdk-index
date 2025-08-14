@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mongocluster/2024-07-01/mongoclusters
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewMongoClustersClientWithBaseURI(sdkApi sdkEnv.Api) (*MongoClustersClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "mongoclusters", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating MongoClustersClient: %+v", err)
+	}
+
+	return &MongoClustersClient{
+		Client: client,
+	}, nil
+}

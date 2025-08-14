@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mobilenetwork/2022-11-01/packetcoredataplane
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPacketCoreDataPlaneClientWithBaseURI(sdkApi sdkEnv.Api) (*PacketCoreDataPlaneClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "packetcoredataplane", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PacketCoreDataPlaneClient: %+v", err)
+	}
+
+	return &PacketCoreDataPlaneClient{
+		Client: client,
+	}, nil
+}

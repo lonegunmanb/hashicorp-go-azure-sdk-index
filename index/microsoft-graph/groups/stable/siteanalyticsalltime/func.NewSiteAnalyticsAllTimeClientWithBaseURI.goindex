@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteanalyticsalltime
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSiteAnalyticsAllTimeClientWithBaseURI(sdkApi sdkEnv.Api) (*SiteAnalyticsAllTimeClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "siteanalyticsalltime", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SiteAnalyticsAllTimeClient: %+v", err)
+	}
+
+	return &SiteAnalyticsAllTimeClient{
+		Client: client,
+	}, nil
+}

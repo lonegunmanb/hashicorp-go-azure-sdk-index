@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/webapps
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c WebAppsClient) ListSiteBackupsSlotComplete(ctx context.Context, id SlotId) (ListSiteBackupsSlotCompleteResult, error) {
+	return c.ListSiteBackupsSlotCompleteMatchingPredicate(ctx, id, BackupItemOperationPredicate{})
+}

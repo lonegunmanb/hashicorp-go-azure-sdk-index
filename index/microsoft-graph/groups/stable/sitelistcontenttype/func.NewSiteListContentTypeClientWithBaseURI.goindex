@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/sitelistcontenttype
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSiteListContentTypeClientWithBaseURI(sdkApi sdkEnv.Api) (*SiteListContentTypeClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "sitelistcontenttype", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SiteListContentTypeClient: %+v", err)
+	}
+
+	return &SiteListContentTypeClient{
+		Client: client,
+	}, nil
+}

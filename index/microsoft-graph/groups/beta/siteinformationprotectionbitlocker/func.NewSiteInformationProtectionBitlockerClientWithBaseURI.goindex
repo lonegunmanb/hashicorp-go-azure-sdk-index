@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/siteinformationprotectionbitlocker
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSiteInformationProtectionBitlockerClientWithBaseURI(sdkApi sdkEnv.Api) (*SiteInformationProtectionBitlockerClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "siteinformationprotectionbitlocker", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SiteInformationProtectionBitlockerClient: %+v", err)
+	}
+
+	return &SiteInformationProtectionBitlockerClient{
+		Client: client,
+	}, nil
+}

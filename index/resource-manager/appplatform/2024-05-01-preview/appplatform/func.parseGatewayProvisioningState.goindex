@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/appplatform/2024-05-01-preview/appplatform
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseGatewayProvisioningState(input string) (*GatewayProvisioningState, error) {
+	vals := map[string]GatewayProvisioningState{
+		"creating":  GatewayProvisioningStateCreating,
+		"deleting":  GatewayProvisioningStateDeleting,
+		"failed":    GatewayProvisioningStateFailed,
+		"succeeded": GatewayProvisioningStateSucceeded,
+		"updating":  GatewayProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := GatewayProvisioningState(input)
+	return &out, nil
+}

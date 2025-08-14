@@ -1,0 +1,48 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCloudPCPolicyTimezone(input string) (*CloudPCPolicyTimezone, error) {
+	vals := map[string]CloudPCPolicyTimezone{
+		"acst": CloudPCPolicyTimezone_Acst,
+		"akst": CloudPCPolicyTimezone_Akst,
+		"art":  CloudPCPolicyTimezone_Art,
+		"ast":  CloudPCPolicyTimezone_Ast,
+		"azot": CloudPCPolicyTimezone_Azot,
+		"bit":  CloudPCPolicyTimezone_Bit,
+		"bst":  CloudPCPolicyTimezone_Bst,
+		"cat":  CloudPCPolicyTimezone_Cat,
+		"cet":  CloudPCPolicyTimezone_Cet,
+		"cst":  CloudPCPolicyTimezone_Cst,
+		"east": CloudPCPolicyTimezone_East,
+		"eat":  CloudPCPolicyTimezone_Eat,
+		"est":  CloudPCPolicyTimezone_Est,
+		"fjt":  CloudPCPolicyTimezone_Fjt,
+		"get":  CloudPCPolicyTimezone_Get,
+		"gmt":  CloudPCPolicyTimezone_Gmt,
+		"gst":  CloudPCPolicyTimezone_Gst,
+		"hst":  CloudPCPolicyTimezone_Hst,
+		"ist":  CloudPCPolicyTimezone_Ist,
+		"jst":  CloudPCPolicyTimezone_Jst,
+		"lint": CloudPCPolicyTimezone_Lint,
+		"mit":  CloudPCPolicyTimezone_Mit,
+		"mst":  CloudPCPolicyTimezone_Mst,
+		"nst":  CloudPCPolicyTimezone_Nst,
+		"nut":  CloudPCPolicyTimezone_Nut,
+		"pgt":  CloudPCPolicyTimezone_Pgt,
+		"pkt":  CloudPCPolicyTimezone_Pkt,
+		"pst":  CloudPCPolicyTimezone_Pst,
+		"sbt":  CloudPCPolicyTimezone_Sbt,
+		"tha":  CloudPCPolicyTimezone_Tha,
+		"tot":  CloudPCPolicyTimezone_Tot,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CloudPCPolicyTimezone(input)
+	return &out, nil
+}

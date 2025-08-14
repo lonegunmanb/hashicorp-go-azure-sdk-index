@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/digitaltwins/2023-01-31/timeseriesdatabaseconnections
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTimeSeriesDatabaseConnectionsClientWithBaseURI(sdkApi sdkEnv.Api) (*TimeSeriesDatabaseConnectionsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "timeseriesdatabaseconnections", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TimeSeriesDatabaseConnectionsClient: %+v", err)
+	}
+
+	return &TimeSeriesDatabaseConnectionsClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s SwapShiftsChangeRequest) ScheduleChangeRequest() BaseScheduleChangeRequestImpl {
+	return BaseScheduleChangeRequestImpl{
+		AssignedTo:            s.AssignedTo,
+		ManagerActionDateTime: s.ManagerActionDateTime,
+		ManagerActionMessage:  s.ManagerActionMessage,
+		ManagerUserId:         s.ManagerUserId,
+		SenderDateTime:        s.SenderDateTime,
+		SenderMessage:         s.SenderMessage,
+		SenderUserId:          s.SenderUserId,
+		State:                 s.State,
+		CreatedBy:             s.CreatedBy,
+		CreatedDateTime:       s.CreatedDateTime,
+		LastModifiedBy:        s.LastModifiedBy,
+		LastModifiedDateTime:  s.LastModifiedDateTime,
+		Id:                    s.Id,
+		ODataId:               s.ODataId,
+		ODataType:             s.ODataType,
+	}
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/blueprints/2018-11-01-preview/artifact
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseArtifactKind(input string) (*ArtifactKind, error) {
+	vals := map[string]ArtifactKind{
+		"policyassignment": ArtifactKindPolicyAssignment,
+		"roleassignment":   ArtifactKindRoleAssignment,
+		"template":         ArtifactKindTemplate,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ArtifactKind(input)
+	return &out, nil
+}

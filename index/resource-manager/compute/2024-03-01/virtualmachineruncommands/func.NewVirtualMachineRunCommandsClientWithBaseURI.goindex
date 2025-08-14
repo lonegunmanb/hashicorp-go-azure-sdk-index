@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-03-01/virtualmachineruncommands
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewVirtualMachineRunCommandsClientWithBaseURI(sdkApi sdkEnv.Api) (*VirtualMachineRunCommandsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "virtualmachineruncommands", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating VirtualMachineRunCommandsClient: %+v", err)
+	}
+
+	return &VirtualMachineRunCommandsClient{
+		Client: client,
+	}, nil
+}

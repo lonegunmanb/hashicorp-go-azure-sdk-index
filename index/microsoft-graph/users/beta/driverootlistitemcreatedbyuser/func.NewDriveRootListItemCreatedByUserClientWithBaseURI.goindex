@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/driverootlistitemcreatedbyuser
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDriveRootListItemCreatedByUserClientWithBaseURI(sdkApi sdkEnv.Api) (*DriveRootListItemCreatedByUserClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "driverootlistitemcreatedbyuser", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DriveRootListItemCreatedByUserClient: %+v", err)
+	}
+
+	return &DriveRootListItemCreatedByUserClient{
+		Client: client,
+	}, nil
+}

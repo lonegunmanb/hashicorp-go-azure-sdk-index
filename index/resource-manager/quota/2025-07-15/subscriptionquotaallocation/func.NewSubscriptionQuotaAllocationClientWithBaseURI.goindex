@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-07-15/subscriptionquotaallocation
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSubscriptionQuotaAllocationClientWithBaseURI(sdkApi sdkEnv.Api) (*SubscriptionQuotaAllocationClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "subscriptionquotaallocation", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SubscriptionQuotaAllocationClient: %+v", err)
+	}
+
+	return &SubscriptionQuotaAllocationClient{
+		Client: client,
+	}, nil
+}

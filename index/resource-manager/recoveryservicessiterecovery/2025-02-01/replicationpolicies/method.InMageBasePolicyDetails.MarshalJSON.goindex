@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationpolicies
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s InMageBasePolicyDetails) MarshalJSON() ([]byte, error) {
+	type wrapper InMageBasePolicyDetails
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling InMageBasePolicyDetails: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling InMageBasePolicyDetails: %+v", err)
+	}
+
+	decoded["instanceType"] = "InMageBasePolicyDetails"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling InMageBasePolicyDetails: %+v", err)
+	}
+
+	return encoded, nil
+}

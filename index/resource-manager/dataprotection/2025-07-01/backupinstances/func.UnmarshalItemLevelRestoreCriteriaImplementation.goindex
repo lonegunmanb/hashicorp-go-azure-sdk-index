@@ -1,0 +1,81 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2025-07-01/backupinstances
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalItemLevelRestoreCriteriaImplementation(input []byte) (ItemLevelRestoreCriteria, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling ItemLevelRestoreCriteria into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["objectType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "ItemPathBasedRestoreCriteria") {
+		var out ItemPathBasedRestoreCriteria
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ItemPathBasedRestoreCriteria: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "KubernetesClusterRestoreCriteria") {
+		var out KubernetesClusterRestoreCriteria
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into KubernetesClusterRestoreCriteria: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "KubernetesClusterVaultTierRestoreCriteria") {
+		var out KubernetesClusterVaultTierRestoreCriteria
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into KubernetesClusterVaultTierRestoreCriteria: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "KubernetesPVRestoreCriteria") {
+		var out KubernetesPVRestoreCriteria
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into KubernetesPVRestoreCriteria: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "KubernetesStorageClassRestoreCriteria") {
+		var out KubernetesStorageClassRestoreCriteria
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into KubernetesStorageClassRestoreCriteria: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "RangeBasedItemLevelRestoreCriteria") {
+		var out RangeBasedItemLevelRestoreCriteria
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into RangeBasedItemLevelRestoreCriteria: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseItemLevelRestoreCriteriaImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseItemLevelRestoreCriteriaImpl: %+v", err)
+	}
+
+	return RawItemLevelRestoreCriteriaImpl{
+		itemLevelRestoreCriteria: parent,
+		Type:                     value,
+		Values:                   temp,
+	}, nil
+
+}

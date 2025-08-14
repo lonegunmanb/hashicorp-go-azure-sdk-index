@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2025-06-01/job
+import (
+	"encoding/json"
+	"fmt"
+)
+type CommandJob struct {
+	CodeId               *string                   `json:"codeId,omitempty"`
+	Command              string                    `json:"command"`
+	Distribution         DistributionConfiguration `json:"distribution"`
+	EnvironmentId        string                    `json:"environmentId"`
+	EnvironmentVariables *map[string]string        `json:"environmentVariables,omitempty"`
+	Inputs               *map[string]JobInput      `json:"inputs,omitempty"`
+	Limits               JobLimits                 `json:"limits"`
+	Outputs              *map[string]JobOutput     `json:"outputs,omitempty"`
+	Parameters           *interface{}              `json:"parameters,omitempty"`
+	QueueSettings        *QueueSettings            `json:"queueSettings,omitempty"`
+	Resources            *JobResourceConfiguration `json:"resources,omitempty"`
+
+	// Fields inherited from JobBase
+
+	ComponentId         *string                `json:"componentId,omitempty"`
+	ComputeId           *string                `json:"computeId,omitempty"`
+	Description         *string                `json:"description,omitempty"`
+	DisplayName         *string                `json:"displayName,omitempty"`
+	ExperimentName      *string                `json:"experimentName,omitempty"`
+	Identity            IdentityConfiguration  `json:"identity"`
+	IsArchived          *bool                  `json:"isArchived,omitempty"`
+	JobType             JobType                `json:"jobType"`
+	NotificationSetting *NotificationSetting   `json:"notificationSetting,omitempty"`
+	Properties          *map[string]string     `json:"properties,omitempty"`
+	Services            *map[string]JobService `json:"services,omitempty"`
+	Status              *JobStatus             `json:"status,omitempty"`
+	Tags                *map[string]string     `json:"tags,omitempty"`
+}

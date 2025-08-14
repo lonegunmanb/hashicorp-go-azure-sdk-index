@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type IdentityGovernanceCustomTaskExtensionCallbackData struct {
+	// Operation status that's provided by the Azure Logic App indicating whenever the Azure Logic App has run successfully
+	// or not. Supported values: completed, failed, unknownFutureValue.
+	OperationStatus *IdentityGovernanceCustomTaskExtensionOperationStatus `json:"operationStatus,omitempty"`
+
+	// Fields inherited from CustomExtensionData
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

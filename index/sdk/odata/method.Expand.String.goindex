@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/sdk/odata
+import (
+	"fmt"
+	"net/http"
+	"net/url"
+	"strconv"
+	"strings"
+)
+func (e Expand) String() (val string) {
+	val = e.Relationship
+	if len(e.Select) > 0 {
+		val = fmt.Sprintf("%s($select=%s)", val, strings.Join(e.Select, ","))
+	}
+	return
+}

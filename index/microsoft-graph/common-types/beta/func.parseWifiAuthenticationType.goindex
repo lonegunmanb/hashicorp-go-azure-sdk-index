@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWifiAuthenticationType(input string) (*WifiAuthenticationType, error) {
+	vals := map[string]WifiAuthenticationType{
+		"guest":         WifiAuthenticationType_Guest,
+		"machine":       WifiAuthenticationType_Machine,
+		"machineoruser": WifiAuthenticationType_MachineOrUser,
+		"none":          WifiAuthenticationType_None,
+		"user":          WifiAuthenticationType_User,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WifiAuthenticationType(input)
+	return &out, nil
+}

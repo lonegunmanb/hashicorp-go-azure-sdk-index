@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/blueprints/2018-11-01-preview/publishedartifact
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id VersionArtifactScopedId) ID() string {
+	fmtString := "/%s/providers/Microsoft.Blueprint/blueprints/%s/versions/%s/artifacts/%s"
+	return fmt.Sprintf(fmtString, strings.TrimPrefix(id.ResourceScope, "/"), id.BlueprintName, id.VersionId, id.ArtifactName)
+}

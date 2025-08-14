@@ -1,0 +1,67 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalIdentityProviderBaseImplementation(input []byte) (IdentityProviderBase, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling IdentityProviderBase into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.appleManagedIdentityProvider") {
+		var out AppleManagedIdentityProvider
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AppleManagedIdentityProvider: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.builtInIdentityProvider") {
+		var out BuiltInIdentityProvider
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into BuiltInIdentityProvider: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.samlOrWsFedProvider") {
+		var out SamlOrWsFedProvider
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SamlOrWsFedProvider: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.socialIdentityProvider") {
+		var out SocialIdentityProvider
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SocialIdentityProvider: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseIdentityProviderBaseImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseIdentityProviderBaseImpl: %+v", err)
+	}
+
+	return RawIdentityProviderBaseImpl{
+		identityProviderBase: parent,
+		Type:                 value,
+		Values:               temp,
+	}, nil
+
+}

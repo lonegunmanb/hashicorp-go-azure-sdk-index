@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2023-12-15-preview/eventsubscriptions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEndpointType(input string) (*EndpointType, error) {
+	vals := map[string]EndpointType{
+		"azurefunction":      EndpointTypeAzureFunction,
+		"eventhub":           EndpointTypeEventHub,
+		"hybridconnection":   EndpointTypeHybridConnection,
+		"monitoralert":       EndpointTypeMonitorAlert,
+		"namespacetopic":     EndpointTypeNamespaceTopic,
+		"partnerdestination": EndpointTypePartnerDestination,
+		"servicebusqueue":    EndpointTypeServiceBusQueue,
+		"servicebustopic":    EndpointTypeServiceBusTopic,
+		"storagequeue":       EndpointTypeStorageQueue,
+		"webhook":            EndpointTypeWebHook,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EndpointType(input)
+	return &out, nil
+}

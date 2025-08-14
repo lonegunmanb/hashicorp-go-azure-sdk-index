@@ -1,0 +1,61 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *LearningProvider) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		DisplayName                   string                `json:"displayName"`
+		IsCourseActivitySyncEnabled   nullable.Type[bool]   `json:"isCourseActivitySyncEnabled,omitempty"`
+		LearningContents              *[]LearningContent    `json:"learningContents,omitempty"`
+		LoginWebUrl                   nullable.Type[string] `json:"loginWebUrl,omitempty"`
+		LongLogoWebUrlForDarkTheme    string                `json:"longLogoWebUrlForDarkTheme"`
+		LongLogoWebUrlForLightTheme   string                `json:"longLogoWebUrlForLightTheme"`
+		SquareLogoWebUrlForDarkTheme  string                `json:"squareLogoWebUrlForDarkTheme"`
+		SquareLogoWebUrlForLightTheme string                `json:"squareLogoWebUrlForLightTheme"`
+		Id                            *string               `json:"id,omitempty"`
+		ODataId                       *string               `json:"@odata.id,omitempty"`
+		ODataType                     *string               `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.DisplayName = decoded.DisplayName
+	s.IsCourseActivitySyncEnabled = decoded.IsCourseActivitySyncEnabled
+	s.LearningContents = decoded.LearningContents
+	s.LoginWebUrl = decoded.LoginWebUrl
+	s.LongLogoWebUrlForDarkTheme = decoded.LongLogoWebUrlForDarkTheme
+	s.LongLogoWebUrlForLightTheme = decoded.LongLogoWebUrlForLightTheme
+	s.SquareLogoWebUrlForDarkTheme = decoded.SquareLogoWebUrlForDarkTheme
+	s.SquareLogoWebUrlForLightTheme = decoded.SquareLogoWebUrlForLightTheme
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling LearningProvider into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["learningCourseActivities"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling LearningCourseActivities into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]LearningCourseActivity, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalLearningCourseActivityImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'LearningCourseActivities' for 'LearningProvider': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.LearningCourseActivities = &output
+	}
+
+	return nil
+}

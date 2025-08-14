@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id UserIdInsightSharedId) String() string {
+	components := []string{
+		fmt.Sprintf("User: %q", id.UserId),
+		fmt.Sprintf("Shared Insight: %q", id.SharedInsightId),
+	}
+	return fmt.Sprintf("User Id Insight Shared (%s)", strings.Join(components, "\n"))
+}

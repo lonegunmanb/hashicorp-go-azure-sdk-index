@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCloudPCRegionGroup(input string) (*CloudPCRegionGroup, error) {
+	vals := map[string]CloudPCRegionGroup{
+		"asia":            CloudPCRegionGroup_Asia,
+		"australasia":     CloudPCRegionGroup_Australasia,
+		"australia":       CloudPCRegionGroup_Australia,
+		"canada":          CloudPCRegionGroup_Canada,
+		"default":         CloudPCRegionGroup_Default,
+		"euap":            CloudPCRegionGroup_Euap,
+		"europe":          CloudPCRegionGroup_Europe,
+		"europeunion":     CloudPCRegionGroup_EuropeUnion,
+		"france":          CloudPCRegionGroup_France,
+		"germany":         CloudPCRegionGroup_Germany,
+		"india":           CloudPCRegionGroup_India,
+		"japan":           CloudPCRegionGroup_Japan,
+		"mexico":          CloudPCRegionGroup_Mexico,
+		"middleeast":      CloudPCRegionGroup_MiddleEast,
+		"norway":          CloudPCRegionGroup_Norway,
+		"southamerica":    CloudPCRegionGroup_SouthAmerica,
+		"southkorea":      CloudPCRegionGroup_SouthKorea,
+		"switzerland":     CloudPCRegionGroup_Switzerland,
+		"unitedkingdom":   CloudPCRegionGroup_UnitedKingdom,
+		"uscentral":       CloudPCRegionGroup_UsCentral,
+		"useast":          CloudPCRegionGroup_UsEast,
+		"usgovernment":    CloudPCRegionGroup_UsGovernment,
+		"usgovernmentdod": CloudPCRegionGroup_UsGovernmentDOD,
+		"uswest":          CloudPCRegionGroup_UsWest,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CloudPCRegionGroup(input)
+	return &out, nil
+}

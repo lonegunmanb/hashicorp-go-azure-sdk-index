@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseKeyUsages(input string) (*KeyUsages, error) {
+	vals := map[string]KeyUsages{
+		"digitalsignature": KeyUsages_DigitalSignature,
+		"keyencipherment":  KeyUsages_KeyEncipherment,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := KeyUsages(input)
+	return &out, nil
+}

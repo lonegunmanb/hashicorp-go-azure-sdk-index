@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsbaselineapphealthmetric
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewUserExperienceAnalyticsBaselineAppHealthMetricClientWithBaseURI(sdkApi sdkEnv.Api) (*UserExperienceAnalyticsBaselineAppHealthMetricClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "userexperienceanalyticsbaselineapphealthmetric", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating UserExperienceAnalyticsBaselineAppHealthMetricClient: %+v", err)
+	}
+
+	return &UserExperienceAnalyticsBaselineAppHealthMetricClient{
+		Client: client,
+	}, nil
+}

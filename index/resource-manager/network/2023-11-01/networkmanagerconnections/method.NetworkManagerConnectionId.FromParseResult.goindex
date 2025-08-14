@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-11-01/networkmanagerconnections
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *NetworkManagerConnectionId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.NetworkManagerConnectionName, ok = input.Parsed["networkManagerConnectionName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "networkManagerConnectionName", input)
+	}
+
+	return nil
+}

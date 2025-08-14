@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2023-12-01-preview/alertrules
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type FusionAlertRuleProperties struct {
+	AlertRuleTemplateName     string                            `json:"alertRuleTemplateName"`
+	Description               *string                           `json:"description,omitempty"`
+	DisplayName               *string                           `json:"displayName,omitempty"`
+	Enabled                   bool                              `json:"enabled"`
+	LastModifiedUtc           *string                           `json:"lastModifiedUtc,omitempty"`
+	ScenarioExclusionPatterns *[]FusionScenarioExclusionPattern `json:"scenarioExclusionPatterns,omitempty"`
+	Severity                  *AlertSeverity                    `json:"severity,omitempty"`
+	SourceSettings            *[]FusionSourceSettings           `json:"sourceSettings,omitempty"`
+	SubTechniques             *[]string                         `json:"subTechniques,omitempty"`
+	Tactics                   *[]AttackTactic                   `json:"tactics,omitempty"`
+	Techniques                *[]string                         `json:"techniques,omitempty"`
+}

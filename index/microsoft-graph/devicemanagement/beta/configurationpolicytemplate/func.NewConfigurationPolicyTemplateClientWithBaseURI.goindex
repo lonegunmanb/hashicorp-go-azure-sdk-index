@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/configurationpolicytemplate
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewConfigurationPolicyTemplateClientWithBaseURI(sdkApi sdkEnv.Api) (*ConfigurationPolicyTemplateClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "configurationpolicytemplate", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ConfigurationPolicyTemplateClient: %+v", err)
+	}
+
+	return &ConfigurationPolicyTemplateClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/advisor/2023-01-01/getrecommendations
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewGetRecommendationsClientWithBaseURI(sdkApi sdkEnv.Api) (*GetRecommendationsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "getrecommendations", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating GetRecommendationsClient: %+v", err)
+	}
+
+	return &GetRecommendationsClient{
+		Client: client,
+	}, nil
+}

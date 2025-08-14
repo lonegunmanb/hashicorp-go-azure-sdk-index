@@ -1,0 +1,69 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *BaseBaseSitePageImpl) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		PageLayout           *PageLayoutType       `json:"pageLayout,omitempty"`
+		PublishingState      *PublicationFacet     `json:"publishingState,omitempty"`
+		Title                nullable.Type[string] `json:"title,omitempty"`
+		CreatedByUser        *User                 `json:"createdByUser,omitempty"`
+		CreatedDateTime      *string               `json:"createdDateTime,omitempty"`
+		Description          nullable.Type[string] `json:"description,omitempty"`
+		ETag                 nullable.Type[string] `json:"eTag,omitempty"`
+		LastModifiedByUser   *User                 `json:"lastModifiedByUser,omitempty"`
+		LastModifiedDateTime *string               `json:"lastModifiedDateTime,omitempty"`
+		Name                 nullable.Type[string] `json:"name,omitempty"`
+		ParentReference      *ItemReference        `json:"parentReference,omitempty"`
+		WebUrl               nullable.Type[string] `json:"webUrl,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.PageLayout = decoded.PageLayout
+	s.PublishingState = decoded.PublishingState
+	s.Title = decoded.Title
+	s.CreatedByUser = decoded.CreatedByUser
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Description = decoded.Description
+	s.ETag = decoded.ETag
+	s.Id = decoded.Id
+	s.LastModifiedByUser = decoded.LastModifiedByUser
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.Name = decoded.Name
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.ParentReference = decoded.ParentReference
+	s.WebUrl = decoded.WebUrl
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling BaseBaseSitePageImpl into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["createdBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'CreatedBy' for 'BaseBaseSitePageImpl': %+v", err)
+		}
+		s.CreatedBy = &impl
+	}
+
+	if v, ok := temp["lastModifiedBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'LastModifiedBy' for 'BaseBaseSitePageImpl': %+v", err)
+		}
+		s.LastModifiedBy = &impl
+	}
+
+	return nil
+}

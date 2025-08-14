@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/windowsdriverupdateprofileassignment
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c WindowsDriverUpdateProfileAssignmentClient) ListWindowsDriverUpdateProfileAssignmentsComplete(ctx context.Context, id beta.DeviceManagementWindowsDriverUpdateProfileId, options ListWindowsDriverUpdateProfileAssignmentsOperationOptions) (ListWindowsDriverUpdateProfileAssignmentsCompleteResult, error) {
+	return c.ListWindowsDriverUpdateProfileAssignmentsCompleteMatchingPredicate(ctx, id, options, WindowsDriverUpdateProfileAssignmentOperationPredicate{})
+}

@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2023-03-15-preview/scheduledqueryrules
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseTimeAggregation(input string) (*TimeAggregation, error) {
+	vals := map[string]TimeAggregation{
+		"average": TimeAggregationAverage,
+		"count":   TimeAggregationCount,
+		"maximum": TimeAggregationMaximum,
+		"minimum": TimeAggregationMinimum,
+		"total":   TimeAggregationTotal,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := TimeAggregation(input)
+	return &out, nil
+}

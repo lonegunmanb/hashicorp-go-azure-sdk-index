@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2024-04-01/backupinstances
+import (
+	"encoding/json"
+	"fmt"
+)
+type AzureBackupRecoveryTimeBasedRestoreRequest struct {
+	RecoveryPointTime string `json:"recoveryPointTime"`
+
+	// Fields inherited from AzureBackupRestoreRequest
+
+	IdentityDetails                *IdentityDetails      `json:"identityDetails,omitempty"`
+	ObjectType                     string                `json:"objectType"`
+	ResourceGuardOperationRequests *[]string             `json:"resourceGuardOperationRequests,omitempty"`
+	RestoreTargetInfo              RestoreTargetInfoBase `json:"restoreTargetInfo"`
+	SourceDataStoreType            SourceDataStoreType   `json:"sourceDataStoreType"`
+	SourceResourceId               *string               `json:"sourceResourceId,omitempty"`
+}

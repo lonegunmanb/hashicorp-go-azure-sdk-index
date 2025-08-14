@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2019-10-01/reservationdetails
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ReservationDetailsClient) ReservationsDetailsListByReservationOrderAndReservationCompleteMatchingPredicate(ctx context.Context, id ReservationId, options ReservationsDetailsListByReservationOrderAndReservationOperationOptions, predicate ReservationDetailOperationPredicate) (result ReservationsDetailsListByReservationOrderAndReservationCompleteResult, err error) {
+	items := make([]ReservationDetail, 0)
+
+	resp, err := c.ReservationsDetailsListByReservationOrderAndReservation(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ReservationsDetailsListByReservationOrderAndReservationCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

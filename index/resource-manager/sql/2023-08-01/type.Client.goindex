@@ -1,0 +1,287 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/v2023_08_01
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/backupshorttermretentionpolicies"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/blobauditing"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/databaseadvancedthreatprotectionsettings"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/databaseadvisors"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/databaseautomatictuning"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/databasecolumns"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/databaseencryptionprotectorrevalidate"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/databaseencryptionprotectorrevert"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/databaseextensions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/databaseoperations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/databaserecommendedactions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/databases"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/databaseschemas"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/databasesecurityalertpolicies"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/databasesqlvulnerabilityassessmentbaselines"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/databasesqlvulnerabilityassessmentexecutescan"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/databasesqlvulnerabilityassessmentrulebaselines"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/databasesqlvulnerabilityassessmentscanresult"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/databasesqlvulnerabilityassessmentscans"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/databasesqlvulnerabilityassessmentssettings"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/databasetables"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/databaseusages"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/databasevulnerabilityassessmentrulebaselines"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/databasevulnerabilityassessments"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/databasevulnerabilityassessmentscans"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/datamaskingpolicies"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/datamaskingrules"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/datawarehouseuseractivities"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/deletedservers"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/distributedavailabilitygroups"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/elasticpooloperations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/elasticpools"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/encryptionprotectors"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/endpointcertificates"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/failovergroups"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/firewallrules"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/geobackuppolicies"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/instancefailovergroups"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/instancepools"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/ipv6firewallrules"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/jobagents"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/jobcredentials"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/jobexecutions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/jobprivateendpoints"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/jobs"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/jobstepexecutions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/jobsteps"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/jobtargetexecutions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/jobtargetgroups"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/jobversions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/ledgerdigestuploads"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/locationcapabilities"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/longtermretentionbackups"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/longtermretentionmanagedinstancebackups"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/longtermretentionpolicies"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/maintenancewindowoptions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/maintenancewindows"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/managedbackupshorttermretentionpolicies"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/manageddatabaseadvancedthreatprotectionsettings"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/manageddatabasecolumns"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/manageddatabasemoveoperations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/manageddatabasequeries"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/manageddatabaserestoredetails"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/manageddatabases"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/manageddatabaseschemas"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/manageddatabasesecurityalertpolicies"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/manageddatabasesecurityevents"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/manageddatabasesensitivitylabels"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/manageddatabasetables"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/manageddatabasetransparentdataencryption"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/manageddatabasevulnerabilityassessmentrulebaselines"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/manageddatabasevulnerabilityassessments"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/manageddatabasevulnerabilityassessmentscans"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/managedinstanceadministrators"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/managedinstanceadvancedthreatprotectionsettings"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/managedinstanceazureadonlyauthentications"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/managedinstancedtcs"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/managedinstanceencryptionprotectors"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/managedinstancekeys"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/managedinstancelongtermretentionpolicies"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/managedinstanceoperations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/managedinstanceprivateendpointconnections"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/managedinstanceprivatelinkresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/managedinstances"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/managedinstancetdecertificates"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/managedinstancevulnerabilityassessments"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/managedledgerdigestuploads"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/managedrestorabledroppeddatabasebackupshorttermretentionpolicies"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/managedserverdnsaliases"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/managedserversecurityalertpolicies"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/networksecurityperimeterconfigurations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/outboundfirewallrules"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/privateendpointconnections"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/privatelinkresources"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/recoverabledatabases"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/recoverablemanageddatabases"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/replicationlinks"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/restorabledroppeddatabases"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/restorabledroppedmanageddatabases"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/restorepoints"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/sensitivitylabels"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/serveradvancedthreatprotectionsettings"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/serveradvisors"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/serverautomatictuning"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/serverazureadadministrators"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/serverazureadonlyauthentications"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/serverconfigurationoptions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/serverconnectionpolicies"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/serverdevopsaudit"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/serverdnsaliases"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/serverkeys"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/serveroperations"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/servers"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/serversecurityalertpolicies"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/servertrustcertificates"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/servertrustgroups"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/serverusages"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/servervulnerabilityassessments"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/sqlagent"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/sqlvulnerabilityassessmentbaseline"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/sqlvulnerabilityassessmentexecutescan"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/sqlvulnerabilityassessmentrulebaseline"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/sqlvulnerabilityassessmentscanresult"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/sqlvulnerabilityassessmentscans"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/sqlvulnerabilityassessmentssettings"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/startstopmanagedinstanceschedules"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/subscriptionusages"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/synapselinkworkspaces"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/syncagents"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/syncgroups"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/syncmembers"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/tdecertificates"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/timezones"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/transparentdataencryptions"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/usages"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/virtualclusters"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/virtualnetworkrules"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/workloadclassifiers"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/workloadgroups"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	BackupShortTermRetentionPolicies                                 *backupshorttermretentionpolicies.BackupShortTermRetentionPoliciesClient
+	BlobAuditing                                                     *blobauditing.BlobAuditingClient
+	DataMaskingPolicies                                              *datamaskingpolicies.DataMaskingPoliciesClient
+	DataMaskingRules                                                 *datamaskingrules.DataMaskingRulesClient
+	DataWarehouseUserActivities                                      *datawarehouseuseractivities.DataWarehouseUserActivitiesClient
+	DatabaseAdvancedThreatProtectionSettings                         *databaseadvancedthreatprotectionsettings.DatabaseAdvancedThreatProtectionSettingsClient
+	DatabaseAdvisors                                                 *databaseadvisors.DatabaseAdvisorsClient
+	DatabaseAutomaticTuning                                          *databaseautomatictuning.DatabaseAutomaticTuningClient
+	DatabaseColumns                                                  *databasecolumns.DatabaseColumnsClient
+	DatabaseEncryptionProtectorRevalidate                            *databaseencryptionprotectorrevalidate.DatabaseEncryptionProtectorRevalidateClient
+	DatabaseEncryptionProtectorRevert                                *databaseencryptionprotectorrevert.DatabaseEncryptionProtectorRevertClient
+	DatabaseExtensions                                               *databaseextensions.DatabaseExtensionsClient
+	DatabaseOperations                                               *databaseoperations.DatabaseOperationsClient
+	DatabaseRecommendedActions                                       *databaserecommendedactions.DatabaseRecommendedActionsClient
+	DatabaseSchemas                                                  *databaseschemas.DatabaseSchemasClient
+	DatabaseSecurityAlertPolicies                                    *databasesecurityalertpolicies.DatabaseSecurityAlertPoliciesClient
+	DatabaseSqlVulnerabilityAssessmentBaselines                      *databasesqlvulnerabilityassessmentbaselines.DatabaseSqlVulnerabilityAssessmentBaselinesClient
+	DatabaseSqlVulnerabilityAssessmentExecuteScan                    *databasesqlvulnerabilityassessmentexecutescan.DatabaseSqlVulnerabilityAssessmentExecuteScanClient
+	DatabaseSqlVulnerabilityAssessmentRuleBaselines                  *databasesqlvulnerabilityassessmentrulebaselines.DatabaseSqlVulnerabilityAssessmentRuleBaselinesClient
+	DatabaseSqlVulnerabilityAssessmentScanResult                     *databasesqlvulnerabilityassessmentscanresult.DatabaseSqlVulnerabilityAssessmentScanResultClient
+	DatabaseSqlVulnerabilityAssessmentScans                          *databasesqlvulnerabilityassessmentscans.DatabaseSqlVulnerabilityAssessmentScansClient
+	DatabaseSqlVulnerabilityAssessmentsSettings                      *databasesqlvulnerabilityassessmentssettings.DatabaseSqlVulnerabilityAssessmentsSettingsClient
+	DatabaseTables                                                   *databasetables.DatabaseTablesClient
+	DatabaseUsages                                                   *databaseusages.DatabaseUsagesClient
+	DatabaseVulnerabilityAssessmentRuleBaselines                     *databasevulnerabilityassessmentrulebaselines.DatabaseVulnerabilityAssessmentRuleBaselinesClient
+	DatabaseVulnerabilityAssessmentScans                             *databasevulnerabilityassessmentscans.DatabaseVulnerabilityAssessmentScansClient
+	DatabaseVulnerabilityAssessments                                 *databasevulnerabilityassessments.DatabaseVulnerabilityAssessmentsClient
+	Databases                                                        *databases.DatabasesClient
+	DeletedServers                                                   *deletedservers.DeletedServersClient
+	DistributedAvailabilityGroups                                    *distributedavailabilitygroups.DistributedAvailabilityGroupsClient
+	ElasticPoolOperations                                            *elasticpooloperations.ElasticPoolOperationsClient
+	ElasticPools                                                     *elasticpools.ElasticPoolsClient
+	EncryptionProtectors                                             *encryptionprotectors.EncryptionProtectorsClient
+	EndpointCertificates                                             *endpointcertificates.EndpointCertificatesClient
+	FailoverGroups                                                   *failovergroups.FailoverGroupsClient
+	FirewallRules                                                    *firewallrules.FirewallRulesClient
+	GeoBackupPolicies                                                *geobackuppolicies.GeoBackupPoliciesClient
+	IPv6FirewallRules                                                *ipv6firewallrules.IPv6FirewallRulesClient
+	InstanceFailoverGroups                                           *instancefailovergroups.InstanceFailoverGroupsClient
+	InstancePools                                                    *instancepools.InstancePoolsClient
+	JobAgents                                                        *jobagents.JobAgentsClient
+	JobCredentials                                                   *jobcredentials.JobCredentialsClient
+	JobExecutions                                                    *jobexecutions.JobExecutionsClient
+	JobPrivateEndpoints                                              *jobprivateendpoints.JobPrivateEndpointsClient
+	JobStepExecutions                                                *jobstepexecutions.JobStepExecutionsClient
+	JobSteps                                                         *jobsteps.JobStepsClient
+	JobTargetExecutions                                              *jobtargetexecutions.JobTargetExecutionsClient
+	JobTargetGroups                                                  *jobtargetgroups.JobTargetGroupsClient
+	JobVersions                                                      *jobversions.JobVersionsClient
+	Jobs                                                             *jobs.JobsClient
+	LedgerDigestUploads                                              *ledgerdigestuploads.LedgerDigestUploadsClient
+	LocationCapabilities                                             *locationcapabilities.LocationCapabilitiesClient
+	LongTermRetentionBackups                                         *longtermretentionbackups.LongTermRetentionBackupsClient
+	LongTermRetentionManagedInstanceBackups                          *longtermretentionmanagedinstancebackups.LongTermRetentionManagedInstanceBackupsClient
+	LongTermRetentionPolicies                                        *longtermretentionpolicies.LongTermRetentionPoliciesClient
+	MaintenanceWindowOptions                                         *maintenancewindowoptions.MaintenanceWindowOptionsClient
+	MaintenanceWindows                                               *maintenancewindows.MaintenanceWindowsClient
+	ManagedBackupShortTermRetentionPolicies                          *managedbackupshorttermretentionpolicies.ManagedBackupShortTermRetentionPoliciesClient
+	ManagedDatabaseAdvancedThreatProtectionSettings                  *manageddatabaseadvancedthreatprotectionsettings.ManagedDatabaseAdvancedThreatProtectionSettingsClient
+	ManagedDatabaseColumns                                           *manageddatabasecolumns.ManagedDatabaseColumnsClient
+	ManagedDatabaseMoveOperations                                    *manageddatabasemoveoperations.ManagedDatabaseMoveOperationsClient
+	ManagedDatabaseQueries                                           *manageddatabasequeries.ManagedDatabaseQueriesClient
+	ManagedDatabaseRestoreDetails                                    *manageddatabaserestoredetails.ManagedDatabaseRestoreDetailsClient
+	ManagedDatabaseSchemas                                           *manageddatabaseschemas.ManagedDatabaseSchemasClient
+	ManagedDatabaseSecurityAlertPolicies                             *manageddatabasesecurityalertpolicies.ManagedDatabaseSecurityAlertPoliciesClient
+	ManagedDatabaseSecurityEvents                                    *manageddatabasesecurityevents.ManagedDatabaseSecurityEventsClient
+	ManagedDatabaseSensitivityLabels                                 *manageddatabasesensitivitylabels.ManagedDatabaseSensitivityLabelsClient
+	ManagedDatabaseTables                                            *manageddatabasetables.ManagedDatabaseTablesClient
+	ManagedDatabaseTransparentDataEncryption                         *manageddatabasetransparentdataencryption.ManagedDatabaseTransparentDataEncryptionClient
+	ManagedDatabaseVulnerabilityAssessmentRuleBaselines              *manageddatabasevulnerabilityassessmentrulebaselines.ManagedDatabaseVulnerabilityAssessmentRuleBaselinesClient
+	ManagedDatabaseVulnerabilityAssessmentScans                      *manageddatabasevulnerabilityassessmentscans.ManagedDatabaseVulnerabilityAssessmentScansClient
+	ManagedDatabaseVulnerabilityAssessments                          *manageddatabasevulnerabilityassessments.ManagedDatabaseVulnerabilityAssessmentsClient
+	ManagedDatabases                                                 *manageddatabases.ManagedDatabasesClient
+	ManagedInstanceAdministrators                                    *managedinstanceadministrators.ManagedInstanceAdministratorsClient
+	ManagedInstanceAdvancedThreatProtectionSettings                  *managedinstanceadvancedthreatprotectionsettings.ManagedInstanceAdvancedThreatProtectionSettingsClient
+	ManagedInstanceAzureADOnlyAuthentications                        *managedinstanceazureadonlyauthentications.ManagedInstanceAzureADOnlyAuthenticationsClient
+	ManagedInstanceDtcs                                              *managedinstancedtcs.ManagedInstanceDtcsClient
+	ManagedInstanceEncryptionProtectors                              *managedinstanceencryptionprotectors.ManagedInstanceEncryptionProtectorsClient
+	ManagedInstanceKeys                                              *managedinstancekeys.ManagedInstanceKeysClient
+	ManagedInstanceLongTermRetentionPolicies                         *managedinstancelongtermretentionpolicies.ManagedInstanceLongTermRetentionPoliciesClient
+	ManagedInstanceOperations                                        *managedinstanceoperations.ManagedInstanceOperationsClient
+	ManagedInstancePrivateEndpointConnections                        *managedinstanceprivateendpointconnections.ManagedInstancePrivateEndpointConnectionsClient
+	ManagedInstancePrivateLinkResources                              *managedinstanceprivatelinkresources.ManagedInstancePrivateLinkResourcesClient
+	ManagedInstanceTdeCertificates                                   *managedinstancetdecertificates.ManagedInstanceTdeCertificatesClient
+	ManagedInstanceVulnerabilityAssessments                          *managedinstancevulnerabilityassessments.ManagedInstanceVulnerabilityAssessmentsClient
+	ManagedInstances                                                 *managedinstances.ManagedInstancesClient
+	ManagedLedgerDigestUploads                                       *managedledgerdigestuploads.ManagedLedgerDigestUploadsClient
+	ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies *managedrestorabledroppeddatabasebackupshorttermretentionpolicies.ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesClient
+	ManagedServerDnsAliases                                          *managedserverdnsaliases.ManagedServerDnsAliasesClient
+	ManagedServerSecurityAlertPolicies                               *managedserversecurityalertpolicies.ManagedServerSecurityAlertPoliciesClient
+	NetworkSecurityPerimeterConfigurations                           *networksecurityperimeterconfigurations.NetworkSecurityPerimeterConfigurationsClient
+	OutboundFirewallRules                                            *outboundfirewallrules.OutboundFirewallRulesClient
+	PrivateEndpointConnections                                       *privateendpointconnections.PrivateEndpointConnectionsClient
+	PrivateLinkResources                                             *privatelinkresources.PrivateLinkResourcesClient
+	RecoverableDatabases                                             *recoverabledatabases.RecoverableDatabasesClient
+	RecoverableManagedDatabases                                      *recoverablemanageddatabases.RecoverableManagedDatabasesClient
+	ReplicationLinks                                                 *replicationlinks.ReplicationLinksClient
+	RestorableDroppedDatabases                                       *restorabledroppeddatabases.RestorableDroppedDatabasesClient
+	RestorableDroppedManagedDatabases                                *restorabledroppedmanageddatabases.RestorableDroppedManagedDatabasesClient
+	RestorePoints                                                    *restorepoints.RestorePointsClient
+	SensitivityLabels                                                *sensitivitylabels.SensitivityLabelsClient
+	ServerAdvancedThreatProtectionSettings                           *serveradvancedthreatprotectionsettings.ServerAdvancedThreatProtectionSettingsClient
+	ServerAdvisors                                                   *serveradvisors.ServerAdvisorsClient
+	ServerAutomaticTuning                                            *serverautomatictuning.ServerAutomaticTuningClient
+	ServerAzureADAdministrators                                      *serverazureadadministrators.ServerAzureADAdministratorsClient
+	ServerAzureADOnlyAuthentications                                 *serverazureadonlyauthentications.ServerAzureADOnlyAuthenticationsClient
+	ServerConfigurationOptions                                       *serverconfigurationoptions.ServerConfigurationOptionsClient
+	ServerConnectionPolicies                                         *serverconnectionpolicies.ServerConnectionPoliciesClient
+	ServerDevOpsAudit                                                *serverdevopsaudit.ServerDevOpsAuditClient
+	ServerDnsAliases                                                 *serverdnsaliases.ServerDnsAliasesClient
+	ServerKeys                                                       *serverkeys.ServerKeysClient
+	ServerOperations                                                 *serveroperations.ServerOperationsClient
+	ServerSecurityAlertPolicies                                      *serversecurityalertpolicies.ServerSecurityAlertPoliciesClient
+	ServerTrustCertificates                                          *servertrustcertificates.ServerTrustCertificatesClient
+	ServerTrustGroups                                                *servertrustgroups.ServerTrustGroupsClient
+	ServerUsages                                                     *serverusages.ServerUsagesClient
+	ServerVulnerabilityAssessments                                   *servervulnerabilityassessments.ServerVulnerabilityAssessmentsClient
+	Servers                                                          *servers.ServersClient
+	SqlAgent                                                         *sqlagent.SqlAgentClient
+	SqlVulnerabilityAssessmentBaseline                               *sqlvulnerabilityassessmentbaseline.SqlVulnerabilityAssessmentBaselineClient
+	SqlVulnerabilityAssessmentExecuteScan                            *sqlvulnerabilityassessmentexecutescan.SqlVulnerabilityAssessmentExecuteScanClient
+	SqlVulnerabilityAssessmentRuleBaseline                           *sqlvulnerabilityassessmentrulebaseline.SqlVulnerabilityAssessmentRuleBaselineClient
+	SqlVulnerabilityAssessmentScanResult                             *sqlvulnerabilityassessmentscanresult.SqlVulnerabilityAssessmentScanResultClient
+	SqlVulnerabilityAssessmentScans                                  *sqlvulnerabilityassessmentscans.SqlVulnerabilityAssessmentScansClient
+	SqlVulnerabilityAssessmentsSettings                              *sqlvulnerabilityassessmentssettings.SqlVulnerabilityAssessmentsSettingsClient
+	StartStopManagedInstanceSchedules                                *startstopmanagedinstanceschedules.StartStopManagedInstanceSchedulesClient
+	SubscriptionUsages                                               *subscriptionusages.SubscriptionUsagesClient
+	SynapseLinkWorkspaces                                            *synapselinkworkspaces.SynapseLinkWorkspacesClient
+	SyncAgents                                                       *syncagents.SyncAgentsClient
+	SyncGroups                                                       *syncgroups.SyncGroupsClient
+	SyncMembers                                                      *syncmembers.SyncMembersClient
+	TdeCertificates                                                  *tdecertificates.TdeCertificatesClient
+	TimeZones                                                        *timezones.TimeZonesClient
+	TransparentDataEncryptions                                       *transparentdataencryptions.TransparentDataEncryptionsClient
+	Usages                                                           *usages.UsagesClient
+	VirtualClusters                                                  *virtualclusters.VirtualClustersClient
+	VirtualNetworkRules                                              *virtualnetworkrules.VirtualNetworkRulesClient
+	WorkloadClassifiers                                              *workloadclassifiers.WorkloadClassifiersClient
+	WorkloadGroups                                                   *workloadgroups.WorkloadGroupsClient
+}

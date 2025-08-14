@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2023-09-01/firewallstatus
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseHealthStatus(input string) (*HealthStatus, error) {
+	vals := map[string]HealthStatus{
+		"green":        HealthStatusGREEN,
+		"initializing": HealthStatusINITIALIZING,
+		"red":          HealthStatusRED,
+		"yellow":       HealthStatusYELLOW,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := HealthStatus(input)
+	return &out, nil
+}

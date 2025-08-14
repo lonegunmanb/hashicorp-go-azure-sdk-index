@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automanage/2022-05-04/configurationprofilehcrpassignments
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewConfigurationProfileHCRPAssignmentsClientWithBaseURI(sdkApi sdkEnv.Api) (*ConfigurationProfileHCRPAssignmentsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "configurationprofilehcrpassignments", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ConfigurationProfileHCRPAssignmentsClient: %+v", err)
+	}
+
+	return &ConfigurationProfileHCRPAssignmentsClient{
+		Client: client,
+	}, nil
+}

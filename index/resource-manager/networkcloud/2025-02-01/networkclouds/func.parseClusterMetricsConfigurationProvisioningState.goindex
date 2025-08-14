@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/networkcloud/2025-02-01/networkclouds
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseClusterMetricsConfigurationProvisioningState(input string) (*ClusterMetricsConfigurationProvisioningState, error) {
+	vals := map[string]ClusterMetricsConfigurationProvisioningState{
+		"accepted":     ClusterMetricsConfigurationProvisioningStateAccepted,
+		"canceled":     ClusterMetricsConfigurationProvisioningStateCanceled,
+		"failed":       ClusterMetricsConfigurationProvisioningStateFailed,
+		"provisioning": ClusterMetricsConfigurationProvisioningStateProvisioning,
+		"succeeded":    ClusterMetricsConfigurationProvisioningStateSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ClusterMetricsConfigurationProvisioningState(input)
+	return &out, nil
+}

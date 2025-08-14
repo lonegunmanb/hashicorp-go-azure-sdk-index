@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePersonAnnualEventType(input string) (*PersonAnnualEventType, error) {
+	vals := map[string]PersonAnnualEventType{
+		"birthday": PersonAnnualEventType_Birthday,
+		"other":    PersonAnnualEventType_Other,
+		"wedding":  PersonAnnualEventType_Wedding,
+		"work":     PersonAnnualEventType_Work,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PersonAnnualEventType(input)
+	return &out, nil
+}

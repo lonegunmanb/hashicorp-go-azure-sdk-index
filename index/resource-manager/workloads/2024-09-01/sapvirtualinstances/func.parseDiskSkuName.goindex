@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/workloads/2024-09-01/sapvirtualinstances
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDiskSkuName(input string) (*DiskSkuName, error) {
+	vals := map[string]DiskSkuName{
+		"premium_lrs":     DiskSkuNamePremiumLRS,
+		"premiumv2_lrs":   DiskSkuNamePremiumVTwoLRS,
+		"premium_zrs":     DiskSkuNamePremiumZRS,
+		"standard_lrs":    DiskSkuNameStandardLRS,
+		"standardssd_lrs": DiskSkuNameStandardSSDLRS,
+		"standardssd_zrs": DiskSkuNameStandardSSDZRS,
+		"ultrassd_lrs":    DiskSkuNameUltraSSDLRS,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DiskSkuName(input)
+	return &out, nil
+}

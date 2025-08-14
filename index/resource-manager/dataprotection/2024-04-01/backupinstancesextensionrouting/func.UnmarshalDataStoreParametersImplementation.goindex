@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2024-04-01/backupinstancesextensionrouting
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalDataStoreParametersImplementation(input []byte) (DataStoreParameters, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling DataStoreParameters into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["objectType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "AzureOperationalStoreParameters") {
+		var out AzureOperationalStoreParameters
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureOperationalStoreParameters: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseDataStoreParametersImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseDataStoreParametersImpl: %+v", err)
+	}
+
+	return RawDataStoreParametersImpl{
+		dataStoreParameters: parent,
+		Type:                value,
+		Values:              temp,
+	}, nil
+
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/orbital/2022-11-01/spacecraft
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePolarization(input string) (*Polarization, error) {
+	vals := map[string]Polarization{
+		"lhcp":             PolarizationLHCP,
+		"linearhorizontal": PolarizationLinearHorizontal,
+		"linearvertical":   PolarizationLinearVertical,
+		"rhcp":             PolarizationRHCP,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Polarization(input)
+	return &out, nil
+}

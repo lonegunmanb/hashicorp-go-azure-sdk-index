@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/elastic/2023-06-01/monitorsresource
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c MonitorsResourceClient) MonitorsDeleteThenPoll(ctx context.Context, id MonitorId) error {
+	result, err := c.MonitorsDelete(ctx, id)
+	if err != nil {
+		return fmt.Errorf("performing MonitorsDelete: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after MonitorsDelete: %+v", err)
+	}
+
+	return nil
+}

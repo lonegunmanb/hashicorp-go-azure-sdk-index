@@ -1,0 +1,37 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/restores
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/zones"
+)
+type IaasVMRestoreRequest struct {
+	AffinityGroup                   *string                          `json:"affinityGroup,omitempty"`
+	CreateNewCloudService           *bool                            `json:"createNewCloudService,omitempty"`
+	DiskEncryptionSetId             *string                          `json:"diskEncryptionSetId,omitempty"`
+	EncryptionDetails               *EncryptionDetails               `json:"encryptionDetails,omitempty"`
+	ExtendedLocation                *ExtendedLocation                `json:"extendedLocation,omitempty"`
+	IdentityBasedRestoreDetails     *IdentityBasedRestoreDetails     `json:"identityBasedRestoreDetails,omitempty"`
+	IdentityInfo                    *IdentityInfo                    `json:"identityInfo,omitempty"`
+	OriginalStorageAccountOption    *bool                            `json:"originalStorageAccountOption,omitempty"`
+	RecoveryPointId                 *string                          `json:"recoveryPointId,omitempty"`
+	RecoveryType                    *RecoveryType                    `json:"recoveryType,omitempty"`
+	Region                          *string                          `json:"region,omitempty"`
+	RestoreDiskLunList              *[]int64                         `json:"restoreDiskLunList,omitempty"`
+	RestoreWithManagedDisks         *bool                            `json:"restoreWithManagedDisks,omitempty"`
+	SecuredVMDetails                *SecuredVMDetails                `json:"securedVMDetails,omitempty"`
+	SourceResourceId                *string                          `json:"sourceResourceId,omitempty"`
+	StorageAccountId                *string                          `json:"storageAccountId,omitempty"`
+	SubnetId                        *string                          `json:"subnetId,omitempty"`
+	TargetDiskNetworkAccessSettings *TargetDiskNetworkAccessSettings `json:"targetDiskNetworkAccessSettings,omitempty"`
+	TargetDomainNameId              *string                          `json:"targetDomainNameId,omitempty"`
+	TargetResourceGroupId           *string                          `json:"targetResourceGroupId,omitempty"`
+	TargetVirtualMachineId          *string                          `json:"targetVirtualMachineId,omitempty"`
+	VirtualNetworkId                *string                          `json:"virtualNetworkId,omitempty"`
+	Zones                           *zones.Schema                    `json:"zones,omitempty"`
+
+	// Fields inherited from RestoreRequest
+
+	ObjectType                     string    `json:"objectType"`
+	ResourceGuardOperationRequests *[]string `json:"resourceGuardOperationRequests,omitempty"`
+}

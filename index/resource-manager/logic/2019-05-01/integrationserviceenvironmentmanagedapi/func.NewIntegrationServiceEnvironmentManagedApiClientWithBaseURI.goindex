@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationserviceenvironmentmanagedapi
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewIntegrationServiceEnvironmentManagedApiClientWithBaseURI(sdkApi sdkEnv.Api) (*IntegrationServiceEnvironmentManagedApiClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "integrationserviceenvironmentmanagedapi", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating IntegrationServiceEnvironmentManagedApiClient: %+v", err)
+	}
+
+	return &IntegrationServiceEnvironmentManagedApiClient{
+		Client: client,
+	}, nil
+}

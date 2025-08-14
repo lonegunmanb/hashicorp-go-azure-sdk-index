@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalSignInIdentityImplementation(input []byte) (SignInIdentity, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling SignInIdentity into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.servicePrincipalSignIn") {
+		var out ServicePrincipalSignIn
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ServicePrincipalSignIn: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.userSignIn") {
+		var out UserSignIn
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into UserSignIn: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseSignInIdentityImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseSignInIdentityImpl: %+v", err)
+	}
+
+	return RawSignInIdentityImpl{
+		signInIdentity: parent,
+		Type:           value,
+		Values:         temp,
+	}, nil
+
+}

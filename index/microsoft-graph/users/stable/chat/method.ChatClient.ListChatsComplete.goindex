@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/chat
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ChatClient) ListChatsComplete(ctx context.Context, id stable.UserId, options ListChatsOperationOptions) (ListChatsCompleteResult, error) {
+	return c.ListChatsCompleteMatchingPredicate(ctx, id, options, ChatOperationPredicate{})
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/signalr/2024-03-01/signalr
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseServiceKind(input string) (*ServiceKind, error) {
+	vals := map[string]ServiceKind{
+		"rawwebsockets": ServiceKindRawWebSockets,
+		"signalr":       ServiceKindSignalR,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ServiceKind(input)
+	return &out, nil
+}

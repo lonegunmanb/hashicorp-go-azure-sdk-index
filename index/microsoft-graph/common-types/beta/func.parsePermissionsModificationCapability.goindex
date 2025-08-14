@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePermissionsModificationCapability(input string) (*PermissionsModificationCapability, error) {
+	vals := map[string]PermissionsModificationCapability{
+		"enabled":               PermissionsModificationCapability_Enabled,
+		"norecentdatacollected": PermissionsModificationCapability_NoRecentDataCollected,
+		"notconfigured":         PermissionsModificationCapability_NotConfigured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PermissionsModificationCapability(input)
+	return &out, nil
+}

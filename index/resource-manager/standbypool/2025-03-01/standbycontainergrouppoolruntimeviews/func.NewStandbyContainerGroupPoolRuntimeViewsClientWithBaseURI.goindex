@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/standbypool/2025-03-01/standbycontainergrouppoolruntimeviews
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewStandbyContainerGroupPoolRuntimeViewsClientWithBaseURI(sdkApi sdkEnv.Api) (*StandbyContainerGroupPoolRuntimeViewsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "standbycontainergrouppoolruntimeviews", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating StandbyContainerGroupPoolRuntimeViewsClient: %+v", err)
+	}
+
+	return &StandbyContainerGroupPoolRuntimeViewsClient{
+		Client: client,
+	}, nil
+}

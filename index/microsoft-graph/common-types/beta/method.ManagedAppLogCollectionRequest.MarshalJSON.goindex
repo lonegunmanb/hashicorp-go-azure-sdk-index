@@ -1,0 +1,38 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s ManagedAppLogCollectionRequest) MarshalJSON() ([]byte, error) {
+	type wrapper ManagedAppLogCollectionRequest
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ManagedAppLogCollectionRequest: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ManagedAppLogCollectionRequest: %+v", err)
+	}
+
+	delete(decoded, "completedDateTime")
+	delete(decoded, "managedAppRegistrationId")
+	delete(decoded, "requestedBy")
+	delete(decoded, "requestedByUserPrincipalName")
+	delete(decoded, "requestedDateTime")
+	delete(decoded, "uploadedLogs")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.managedAppLogCollectionRequest"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ManagedAppLogCollectionRequest: %+v", err)
+	}
+
+	return encoded, nil
+}

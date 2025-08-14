@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/importedwindowsautopilotdeviceidentity
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewImportedWindowsAutopilotDeviceIdentityClientWithBaseURI(sdkApi sdkEnv.Api) (*ImportedWindowsAutopilotDeviceIdentityClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "importedwindowsautopilotdeviceidentity", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ImportedWindowsAutopilotDeviceIdentityClient: %+v", err)
+	}
+
+	return &ImportedWindowsAutopilotDeviceIdentityClient{
+		Client: client,
+	}, nil
+}

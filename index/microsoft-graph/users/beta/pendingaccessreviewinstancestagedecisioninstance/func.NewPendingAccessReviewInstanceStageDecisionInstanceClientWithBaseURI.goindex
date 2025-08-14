@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/pendingaccessreviewinstancestagedecisioninstance
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPendingAccessReviewInstanceStageDecisionInstanceClientWithBaseURI(sdkApi sdkEnv.Api) (*PendingAccessReviewInstanceStageDecisionInstanceClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "pendingaccessreviewinstancestagedecisioninstance", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PendingAccessReviewInstanceStageDecisionInstanceClient: %+v", err)
+	}
+
+	return &PendingAccessReviewInstanceStageDecisionInstanceClient{
+		Client: client,
+	}, nil
+}

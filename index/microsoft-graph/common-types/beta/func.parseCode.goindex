@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCode(input string) (*Code, error) {
+	vals := map[string]Code{
+		"datatypemissing":                         Code_DatatypeMissing,
+		"datatypenotsupported":                    Code_DatatypeNotSupported,
+		"descriptioninvalid":                      Code_DescriptionInvalid,
+		"descriptionmissing":                      Code_DescriptionMissing,
+		"descriptiontoolarge":                     Code_DescriptionTooLarge,
+		"duplicatelocales":                        Code_DuplicateLocales,
+		"duplicaterules":                          Code_DuplicateRules,
+		"englishlocalemissing":                    Code_EnglishLocaleMissing,
+		"jsonfileinvalid":                         Code_JsonFileInvalid,
+		"jsonfilemissing":                         Code_JsonFileMissing,
+		"jsonfiletoolarge":                        Code_JsonFileTooLarge,
+		"moreinfouriinvalid":                      Code_MoreInfoUriInvalid,
+		"moreinfourimissing":                      Code_MoreInfoUriMissing,
+		"moreinfouritoolarge":                     Code_MoreInfoUriTooLarge,
+		"none":                                    Code_None,
+		"operandinvalid":                          Code_OperandInvalid,
+		"operandmissing":                          Code_OperandMissing,
+		"operandtoolarge":                         Code_OperandTooLarge,
+		"operatordatatypecombinationnotsupported": Code_OperatorDataTypeCombinationNotSupported,
+		"operatormissing":                         Code_OperatorMissing,
+		"operatornotsupported":                    Code_OperatorNotSupported,
+		"remediationstringsmissing":               Code_RemediationStringsMissing,
+		"rulesmissing":                            Code_RulesMissing,
+		"settingnameinvalid":                      Code_SettingNameInvalid,
+		"settingnamemissing":                      Code_SettingNameMissing,
+		"settingnametoolarge":                     Code_SettingNameTooLarge,
+		"titleinvalid":                            Code_TitleInvalid,
+		"titlemissing":                            Code_TitleMissing,
+		"titletoolarge":                           Code_TitleTooLarge,
+		"toomanyrulesspecified":                   Code_TooManyRulesSpecified,
+		"unknown":                                 Code_Unknown,
+		"unrecognizedlocale":                      Code_UnrecognizedLocale,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Code(input)
+	return &out, nil
+}

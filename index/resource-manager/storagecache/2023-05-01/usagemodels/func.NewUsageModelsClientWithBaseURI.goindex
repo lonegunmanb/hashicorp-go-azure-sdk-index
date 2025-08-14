@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagecache/2023-05-01/usagemodels
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewUsageModelsClientWithBaseURI(sdkApi sdkEnv.Api) (*UsageModelsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "usagemodels", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating UsageModelsClient: %+v", err)
+	}
+
+	return &UsageModelsClient{
+		Client: client,
+	}, nil
+}

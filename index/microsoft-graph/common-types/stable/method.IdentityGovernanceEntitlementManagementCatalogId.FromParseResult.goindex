@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *IdentityGovernanceEntitlementManagementCatalogId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.AccessPackageCatalogId, ok = input.Parsed["accessPackageCatalogId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "accessPackageCatalogId", input)
+	}
+
+	return nil
+}

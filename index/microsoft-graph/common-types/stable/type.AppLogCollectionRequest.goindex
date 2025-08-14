@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type AppLogCollectionRequest struct {
+	// Time at which the upload log request reached a completed state if not completed yet NULL will be returned.
+	CompletedDateTime nullable.Type[string] `json:"completedDateTime,omitempty"`
+
+	// List of log folders.
+	CustomLogFolders *[]string `json:"customLogFolders,omitempty"`
+
+	// Indicates error message if any during the upload process.
+	ErrorMessage nullable.Type[string] `json:"errorMessage,omitempty"`
+
+	// AppLogUploadStatus
+	Status *AppLogUploadState `json:"status,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

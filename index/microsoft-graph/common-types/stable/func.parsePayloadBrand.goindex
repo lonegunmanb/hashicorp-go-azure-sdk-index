@@ -1,0 +1,37 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePayloadBrand(input string) (*PayloadBrand, error) {
+	vals := map[string]PayloadBrand{
+		"adobe":           PayloadBrand_Adobe,
+		"americanexpress": PayloadBrand_AmericanExpress,
+		"capitalone":      PayloadBrand_CapitalOne,
+		"dhl":             PayloadBrand_Dhl,
+		"docusign":        PayloadBrand_DocuSign,
+		"dropbox":         PayloadBrand_Dropbox,
+		"facebook":        PayloadBrand_Facebook,
+		"firstamerican":   PayloadBrand_FirstAmerican,
+		"microsoft":       PayloadBrand_Microsoft,
+		"netflix":         PayloadBrand_Netflix,
+		"other":           PayloadBrand_Other,
+		"scotiabank":      PayloadBrand_Scotiabank,
+		"sendgrid":        PayloadBrand_SendGrid,
+		"stewarttitle":    PayloadBrand_StewartTitle,
+		"syrinxcloud":     PayloadBrand_SyrinxCloud,
+		"teams":           PayloadBrand_Teams,
+		"tesco":           PayloadBrand_Tesco,
+		"unknown":         PayloadBrand_Unknown,
+		"wellsfargo":      PayloadBrand_WellsFargo,
+		"zoom":            PayloadBrand_Zoom,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PayloadBrand(input)
+	return &out, nil
+}

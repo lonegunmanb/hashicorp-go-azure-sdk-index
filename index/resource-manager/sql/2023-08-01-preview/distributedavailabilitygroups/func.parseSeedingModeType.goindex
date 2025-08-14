@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/distributedavailabilitygroups
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSeedingModeType(input string) (*SeedingModeType, error) {
+	vals := map[string]SeedingModeType{
+		"automatic": SeedingModeTypeAutomatic,
+		"manual":    SeedingModeTypeManual,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SeedingModeType(input)
+	return &out, nil
+}

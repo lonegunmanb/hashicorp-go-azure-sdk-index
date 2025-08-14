@@ -1,0 +1,11 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id GroupIdTeamPrimaryChannelMessageId) ID() string {
+	fmtString := "/groups/%s/team/primaryChannel/messages/%s"
+	return fmt.Sprintf(fmtString, id.GroupId, id.ChatMessageId)
+}

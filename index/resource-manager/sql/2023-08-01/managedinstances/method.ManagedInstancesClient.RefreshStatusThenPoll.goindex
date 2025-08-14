@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/managedinstances
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ManagedInstancesClient) RefreshStatusThenPoll(ctx context.Context, id commonids.SqlManagedInstanceId) error {
+	result, err := c.RefreshStatus(ctx, id)
+	if err != nil {
+		return fmt.Errorf("performing RefreshStatus: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after RefreshStatus: %+v", err)
+	}
+
+	return nil
+}

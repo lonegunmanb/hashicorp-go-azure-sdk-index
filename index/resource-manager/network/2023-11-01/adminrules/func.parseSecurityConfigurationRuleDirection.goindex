@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-11-01/adminrules
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityConfigurationRuleDirection(input string) (*SecurityConfigurationRuleDirection, error) {
+	vals := map[string]SecurityConfigurationRuleDirection{
+		"inbound":  SecurityConfigurationRuleDirectionInbound,
+		"outbound": SecurityConfigurationRuleDirectionOutbound,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityConfigurationRuleDirection(input)
+	return &out, nil
+}

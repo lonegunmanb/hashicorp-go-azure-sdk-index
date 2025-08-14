@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-07-15/groupquotas
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c GroupQuotasClient) ListComplete(ctx context.Context, id commonids.ManagementGroupId) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, GroupQuotasEntityOperationPredicate{})
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/defender
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDefenderClientWithBaseURI(sdkApi sdkEnv.Api) (*DefenderClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "defender", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DefenderClient: %+v", err)
+	}
+
+	return &DefenderClient{
+		Client: client,
+	}, nil
+}

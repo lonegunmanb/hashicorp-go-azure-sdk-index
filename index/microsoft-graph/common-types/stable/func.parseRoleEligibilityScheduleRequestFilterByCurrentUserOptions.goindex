@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRoleEligibilityScheduleRequestFilterByCurrentUserOptions(input string) (*RoleEligibilityScheduleRequestFilterByCurrentUserOptions, error) {
+	vals := map[string]RoleEligibilityScheduleRequestFilterByCurrentUserOptions{
+		"approver":  RoleEligibilityScheduleRequestFilterByCurrentUserOptions_Approver,
+		"createdby": RoleEligibilityScheduleRequestFilterByCurrentUserOptions_CreatedBy,
+		"principal": RoleEligibilityScheduleRequestFilterByCurrentUserOptions_Principal,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RoleEligibilityScheduleRequestFilterByCurrentUserOptions(input)
+	return &out, nil
+}

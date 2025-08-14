@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchannelplannerplantaskdetail
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTeamChannelPlannerPlanTaskDetailClientWithBaseURI(sdkApi sdkEnv.Api) (*TeamChannelPlannerPlanTaskDetailClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "teamchannelplannerplantaskdetail", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TeamChannelPlannerPlanTaskDetailClient: %+v", err)
+	}
+
+	return &TeamChannelPlannerPlanTaskDetailClient{
+		Client: client,
+	}, nil
+}

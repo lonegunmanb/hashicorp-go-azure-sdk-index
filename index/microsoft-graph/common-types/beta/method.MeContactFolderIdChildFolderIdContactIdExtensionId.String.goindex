@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id MeContactFolderIdChildFolderIdContactIdExtensionId) String() string {
+	components := []string{
+		fmt.Sprintf("Contact Folder: %q", id.ContactFolderId),
+		fmt.Sprintf("Contact Folder Id 1: %q", id.ContactFolderId1),
+		fmt.Sprintf("Contact: %q", id.ContactId),
+		fmt.Sprintf("Extension: %q", id.ExtensionId),
+	}
+	return fmt.Sprintf("Me Contact Folder Id Child Folder Id Contact Id Extension (%s)", strings.Join(components, "\n"))
+}

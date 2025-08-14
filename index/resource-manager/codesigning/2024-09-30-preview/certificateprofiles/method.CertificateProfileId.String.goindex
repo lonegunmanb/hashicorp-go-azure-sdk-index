@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/codesigning/2024-09-30-preview/certificateprofiles
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id CertificateProfileId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Code Signing Account Name: %q", id.CodeSigningAccountName),
+		fmt.Sprintf("Certificate Profile Name: %q", id.CertificateProfileName),
+	}
+	return fmt.Sprintf("Certificate Profile (%s)", strings.Join(components, "\n"))
+}

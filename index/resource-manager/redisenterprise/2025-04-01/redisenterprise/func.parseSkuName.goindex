@@ -1,0 +1,72 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/redisenterprise/2025-04-01/redisenterprise
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSkuName(input string) (*SkuName, error) {
+	vals := map[string]SkuName{
+		"balanced_b5":           SkuNameBalancedBFive,
+		"balanced_b500":         SkuNameBalancedBFiveHundred,
+		"balanced_b50":          SkuNameBalancedBFiveZero,
+		"balanced_b1":           SkuNameBalancedBOne,
+		"balanced_b150":         SkuNameBalancedBOneFiveZero,
+		"balanced_b100":         SkuNameBalancedBOneHundred,
+		"balanced_b1000":        SkuNameBalancedBOneThousand,
+		"balanced_b10":          SkuNameBalancedBOneZero,
+		"balanced_b700":         SkuNameBalancedBSevenHundred,
+		"balanced_b3":           SkuNameBalancedBThree,
+		"balanced_b350":         SkuNameBalancedBThreeFiveZero,
+		"balanced_b250":         SkuNameBalancedBTwoFiveZero,
+		"balanced_b20":          SkuNameBalancedBTwoZero,
+		"balanced_b0":           SkuNameBalancedBZero,
+		"computeoptimized_x5":   SkuNameComputeOptimizedXFive,
+		"computeoptimized_x500": SkuNameComputeOptimizedXFiveHundred,
+		"computeoptimized_x50":  SkuNameComputeOptimizedXFiveZero,
+		"computeoptimized_x150": SkuNameComputeOptimizedXOneFiveZero,
+		"computeoptimized_x100": SkuNameComputeOptimizedXOneHundred,
+		"computeoptimized_x10":  SkuNameComputeOptimizedXOneZero,
+		"computeoptimized_x700": SkuNameComputeOptimizedXSevenHundred,
+		"computeoptimized_x3":   SkuNameComputeOptimizedXThree,
+		"computeoptimized_x350": SkuNameComputeOptimizedXThreeFiveZero,
+		"computeoptimized_x250": SkuNameComputeOptimizedXTwoFiveZero,
+		"computeoptimized_x20":  SkuNameComputeOptimizedXTwoZero,
+		"enterprise_e5":         SkuNameEnterpriseEFive,
+		"enterprise_e50":        SkuNameEnterpriseEFiveZero,
+		"enterprise_e400":       SkuNameEnterpriseEFourHundred,
+		"enterprise_e1":         SkuNameEnterpriseEOne,
+		"enterprise_e100":       SkuNameEnterpriseEOneHundred,
+		"enterprise_e10":        SkuNameEnterpriseEOneZero,
+		"enterprise_e200":       SkuNameEnterpriseETwoHundred,
+		"enterprise_e20":        SkuNameEnterpriseETwoZero,
+		"enterpriseflash_f1500": SkuNameEnterpriseFlashFOneFiveHundred,
+		"enterpriseflash_f700":  SkuNameEnterpriseFlashFSevenHundred,
+		"enterpriseflash_f300":  SkuNameEnterpriseFlashFThreeHundred,
+		"flashoptimized_a500":   SkuNameFlashOptimizedAFiveHundred,
+		"flashoptimized_a4500":  SkuNameFlashOptimizedAFourFiveHundred,
+		"flashoptimized_a1500":  SkuNameFlashOptimizedAOneFiveHundred,
+		"flashoptimized_a1000":  SkuNameFlashOptimizedAOneThousand,
+		"flashoptimized_a700":   SkuNameFlashOptimizedASevenHundred,
+		"flashoptimized_a250":   SkuNameFlashOptimizedATwoFiveZero,
+		"flashoptimized_a2000":  SkuNameFlashOptimizedATwoThousand,
+		"memoryoptimized_m500":  SkuNameMemoryOptimizedMFiveHundred,
+		"memoryoptimized_m50":   SkuNameMemoryOptimizedMFiveZero,
+		"memoryoptimized_m1500": SkuNameMemoryOptimizedMOneFiveHundred,
+		"memoryoptimized_m150":  SkuNameMemoryOptimizedMOneFiveZero,
+		"memoryoptimized_m100":  SkuNameMemoryOptimizedMOneHundred,
+		"memoryoptimized_m1000": SkuNameMemoryOptimizedMOneThousand,
+		"memoryoptimized_m10":   SkuNameMemoryOptimizedMOneZero,
+		"memoryoptimized_m700":  SkuNameMemoryOptimizedMSevenHundred,
+		"memoryoptimized_m350":  SkuNameMemoryOptimizedMThreeFiveZero,
+		"memoryoptimized_m250":  SkuNameMemoryOptimizedMTwoFiveZero,
+		"memoryoptimized_m2000": SkuNameMemoryOptimizedMTwoThousand,
+		"memoryoptimized_m20":   SkuNameMemoryOptimizedMTwoZero,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SkuName(input)
+	return &out, nil
+}

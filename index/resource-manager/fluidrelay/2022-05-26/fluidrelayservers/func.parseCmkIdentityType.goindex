@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/fluidrelay/2022-05-26/fluidrelayservers
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCmkIdentityType(input string) (*CmkIdentityType, error) {
+	vals := map[string]CmkIdentityType{
+		"systemassigned": CmkIdentityTypeSystemAssigned,
+		"userassigned":   CmkIdentityTypeUserAssigned,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CmkIdentityType(input)
+	return &out, nil
+}

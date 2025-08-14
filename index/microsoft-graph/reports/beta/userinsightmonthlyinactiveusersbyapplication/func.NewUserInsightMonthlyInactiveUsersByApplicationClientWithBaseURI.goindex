@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightmonthlyinactiveusersbyapplication
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewUserInsightMonthlyInactiveUsersByApplicationClientWithBaseURI(sdkApi sdkEnv.Api) (*UserInsightMonthlyInactiveUsersByApplicationClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "userinsightmonthlyinactiveusersbyapplication", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating UserInsightMonthlyInactiveUsersByApplicationClient: %+v", err)
+	}
+
+	return &UserInsightMonthlyInactiveUsersByApplicationClient{
+		Client: client,
+	}, nil
+}

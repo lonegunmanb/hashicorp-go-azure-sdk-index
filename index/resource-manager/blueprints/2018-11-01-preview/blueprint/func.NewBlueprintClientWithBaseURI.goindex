@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/blueprints/2018-11-01-preview/blueprint
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewBlueprintClientWithBaseURI(sdkApi sdkEnv.Api) (*BlueprintClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "blueprint", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating BlueprintClient: %+v", err)
+	}
+
+	return &BlueprintClient{
+		Client: client,
+	}, nil
+}

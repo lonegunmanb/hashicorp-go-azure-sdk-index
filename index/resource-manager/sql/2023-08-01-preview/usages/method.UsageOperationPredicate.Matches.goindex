@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/usages
+
+func (p UsageOperationPredicate) Matches(input Usage) bool {
+
+	if p.CurrentValue != nil && (input.CurrentValue == nil || *p.CurrentValue != *input.CurrentValue) {
+		return false
+	}
+
+	if p.Id != nil && (input.Id == nil || *p.Id != *input.Id) {
+		return false
+	}
+
+	if p.Limit != nil && (input.Limit == nil || *p.Limit != *input.Limit) {
+		return false
+	}
+
+	if p.RequestedLimit != nil && (input.RequestedLimit == nil || *p.RequestedLimit != *input.RequestedLimit) {
+		return false
+	}
+
+	if p.Type != nil && (input.Type == nil || *p.Type != *input.Type) {
+		return false
+	}
+
+	if p.Unit != nil && (input.Unit == nil || *p.Unit != *input.Unit) {
+		return false
+	}
+
+	return true
+}

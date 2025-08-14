@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/appconsentrequestsforapprovaluserconsentrequest
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c AppConsentRequestsForApprovalUserConsentRequestClient) ListAppConsentRequestsForApprovalUserConsentRequestsCompleteMatchingPredicate(ctx context.Context, id beta.UserIdAppConsentRequestsForApprovalId, options ListAppConsentRequestsForApprovalUserConsentRequestsOperationOptions, predicate UserConsentRequestOperationPredicate) (result ListAppConsentRequestsForApprovalUserConsentRequestsCompleteResult, err error) {
+	items := make([]beta.UserConsentRequest, 0)
+
+	resp, err := c.ListAppConsentRequestsForApprovalUserConsentRequests(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListAppConsentRequestsForApprovalUserConsentRequestsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

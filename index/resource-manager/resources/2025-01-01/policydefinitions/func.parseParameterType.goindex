@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2025-01-01/policydefinitions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseParameterType(input string) (*ParameterType, error) {
+	vals := map[string]ParameterType{
+		"array":    ParameterTypeArray,
+		"boolean":  ParameterTypeBoolean,
+		"datetime": ParameterTypeDateTime,
+		"float":    ParameterTypeFloat,
+		"integer":  ParameterTypeInteger,
+		"object":   ParameterTypeObject,
+		"string":   ParameterTypeString,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ParameterType(input)
+	return &out, nil
+}

@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeviceEnrollmentType(input string) (*DeviceEnrollmentType, error) {
+	vals := map[string]DeviceEnrollmentType{
+		"applebulkwithuser":                     DeviceEnrollmentType_AppleBulkWithUser,
+		"applebulkwithoutuser":                  DeviceEnrollmentType_AppleBulkWithoutUser,
+		"appleuserenrollment":                   DeviceEnrollmentType_AppleUserEnrollment,
+		"appleuserenrollmentwithserviceaccount": DeviceEnrollmentType_AppleUserEnrollmentWithServiceAccount,
+		"deviceenrollmentmanager":               DeviceEnrollmentType_DeviceEnrollmentManager,
+		"unknown":                               DeviceEnrollmentType_Unknown,
+		"userenrollment":                        DeviceEnrollmentType_UserEnrollment,
+		"windowsautoenrollment":                 DeviceEnrollmentType_WindowsAutoEnrollment,
+		"windowsazureadjoin":                    DeviceEnrollmentType_WindowsAzureADJoin,
+		"windowsazureadjoinusingdeviceauth":     DeviceEnrollmentType_WindowsAzureADJoinUsingDeviceAuth,
+		"windowsbulkazuredomainjoin":            DeviceEnrollmentType_WindowsBulkAzureDomainJoin,
+		"windowsbulkuserless":                   DeviceEnrollmentType_WindowsBulkUserless,
+		"windowscomanagement":                   DeviceEnrollmentType_WindowsCoManagement,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceEnrollmentType(input)
+	return &out, nil
+}

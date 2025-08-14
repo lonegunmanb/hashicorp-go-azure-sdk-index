@@ -1,0 +1,43 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCategoryColor(input string) (*CategoryColor, error) {
+	vals := map[string]CategoryColor{
+		"none":     CategoryColor_None,
+		"preset0":  CategoryColor_Preset0,
+		"preset1":  CategoryColor_Preset1,
+		"preset10": CategoryColor_Preset10,
+		"preset11": CategoryColor_Preset11,
+		"preset12": CategoryColor_Preset12,
+		"preset13": CategoryColor_Preset13,
+		"preset14": CategoryColor_Preset14,
+		"preset15": CategoryColor_Preset15,
+		"preset16": CategoryColor_Preset16,
+		"preset17": CategoryColor_Preset17,
+		"preset18": CategoryColor_Preset18,
+		"preset19": CategoryColor_Preset19,
+		"preset2":  CategoryColor_Preset2,
+		"preset20": CategoryColor_Preset20,
+		"preset21": CategoryColor_Preset21,
+		"preset22": CategoryColor_Preset22,
+		"preset23": CategoryColor_Preset23,
+		"preset24": CategoryColor_Preset24,
+		"preset3":  CategoryColor_Preset3,
+		"preset4":  CategoryColor_Preset4,
+		"preset5":  CategoryColor_Preset5,
+		"preset6":  CategoryColor_Preset6,
+		"preset7":  CategoryColor_Preset7,
+		"preset8":  CategoryColor_Preset8,
+		"preset9":  CategoryColor_Preset9,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CategoryColor(input)
+	return &out, nil
+}

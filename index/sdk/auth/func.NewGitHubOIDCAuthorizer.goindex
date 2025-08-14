@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"io"
+	"net/http"
+	"net/url"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	"golang.org/x/oauth2"
+)
+func NewGitHubOIDCAuthorizer(ctx context.Context, options GitHubOIDCAuthorizerOptions) (Authorizer, error) {
+	scope, err := environments.Scope(options.Api)
+	if err != nil {
+		return nil, fmt.Errorf("determining scope for %q: %+v", options.Api.Name(), err)
+	}
+
+	conf := gitHubOIDCConfig{
+		Environment:         options.Environment,
+		TenantID:            options.TenantId,
+		AuxiliaryTenantIDs:  options.AuxiliaryTenantIds,
+		ClientID:            options.ClientId,
+		IDTokenRequestURL:   options.IdTokenRequestUrl,
+		IDTokenRequestToken: options.IdTokenRequestToken,
+		Scopes: []string{
+			*scope,
+		},
+	}
+
+	return conf.TokenSource(ctx)
+}

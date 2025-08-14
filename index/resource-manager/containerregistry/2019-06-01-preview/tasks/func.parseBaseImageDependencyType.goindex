@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerregistry/2019-06-01-preview/tasks
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseBaseImageDependencyType(input string) (*BaseImageDependencyType, error) {
+	vals := map[string]BaseImageDependencyType{
+		"buildtime": BaseImageDependencyTypeBuildTime,
+		"runtime":   BaseImageDependencyTypeRunTime,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := BaseImageDependencyType(input)
+	return &out, nil
+}

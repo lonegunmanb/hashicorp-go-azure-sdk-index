@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-07-15/quotainformation
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalLimitJsonObjectImplementation(input []byte) (LimitJsonObject, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling LimitJsonObject into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["limitObjectType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "LimitValue") {
+		var out LimitObject
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into LimitObject: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseLimitJsonObjectImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseLimitJsonObjectImpl: %+v", err)
+	}
+
+	return RawLimitJsonObjectImpl{
+		limitJsonObject: parent,
+		Type:            value,
+		Values:          temp,
+	}, nil
+
+}

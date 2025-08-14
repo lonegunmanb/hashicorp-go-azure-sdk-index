@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/oauth2permissiongrant
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c OAuth2PermissionGrantClient) ListOAuth2PermissionGrantsComplete(ctx context.Context, id stable.ServicePrincipalId, options ListOAuth2PermissionGrantsOperationOptions) (ListOAuth2PermissionGrantsCompleteResult, error) {
+	return c.ListOAuth2PermissionGrantsCompleteMatchingPredicate(ctx, id, options, OAuth2PermissionGrantOperationPredicate{})
+}

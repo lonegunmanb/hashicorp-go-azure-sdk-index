@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/workspaces
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewWorkspacesClientWithBaseURI(sdkApi sdkEnv.Api) (*WorkspacesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "workspaces", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating WorkspacesClient: %+v", err)
+	}
+
+	return &WorkspacesClient{
+		Client: client,
+	}, nil
+}

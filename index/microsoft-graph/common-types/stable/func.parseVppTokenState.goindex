@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVppTokenState(input string) (*VppTokenState, error) {
+	vals := map[string]VppTokenState{
+		"assignedtoexternalmdm": VppTokenState_AssignedToExternalMDM,
+		"expired":               VppTokenState_Expired,
+		"invalid":               VppTokenState_Invalid,
+		"unknown":               VppTokenState_Unknown,
+		"valid":                 VppTokenState_Valid,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VppTokenState(input)
+	return &out, nil
+}

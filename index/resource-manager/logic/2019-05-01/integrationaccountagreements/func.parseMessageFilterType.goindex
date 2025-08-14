@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationaccountagreements
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMessageFilterType(input string) (*MessageFilterType, error) {
+	vals := map[string]MessageFilterType{
+		"exclude":      MessageFilterTypeExclude,
+		"include":      MessageFilterTypeInclude,
+		"notspecified": MessageFilterTypeNotSpecified,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MessageFilterType(input)
+	return &out, nil
+}

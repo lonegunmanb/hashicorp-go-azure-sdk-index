@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicebus/2024-01-01/rules
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c RulesClient) ListBySubscriptionsComplete(ctx context.Context, id Subscriptions2Id, options ListBySubscriptionsOperationOptions) (ListBySubscriptionsCompleteResult, error) {
+	return c.ListBySubscriptionsCompleteMatchingPredicate(ctx, id, options, RuleOperationPredicate{})
+}

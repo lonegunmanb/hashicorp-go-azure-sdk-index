@@ -1,0 +1,70 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type DeviceManagementIntent struct {
+	// Collection of assignments
+	Assignments *[]DeviceManagementIntentAssignment `json:"assignments,omitempty"`
+
+	// Collection of setting categories within the intent
+	Categories *[]DeviceManagementIntentSettingCategory `json:"categories,omitempty"`
+
+	// The user given description
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// Collection of settings and their states and counts of devices that belong to corresponding state for all settings
+	// within the intent
+	DeviceSettingStateSummaries *[]DeviceManagementIntentDeviceSettingStateSummary `json:"deviceSettingStateSummaries,omitempty"`
+
+	// A summary of device states and counts of devices that belong to corresponding state for all devices that the intent
+	// is applied to
+	DeviceStateSummary *DeviceManagementIntentDeviceStateSummary `json:"deviceStateSummary,omitempty"`
+
+	// Collection of states of all devices that the intent is applied to
+	DeviceStates *[]DeviceManagementIntentDeviceState `json:"deviceStates,omitempty"`
+
+	// The user given display name
+	DisplayName *string `json:"displayName,omitempty"`
+
+	// Signifies whether or not the intent is assigned to users
+	IsAssigned *bool `json:"isAssigned,omitempty"`
+
+	// Signifies whether or not the intent is being migrated to the configurationPolicies endpoint
+	IsMigratingToConfigurationPolicy nullable.Type[bool] `json:"isMigratingToConfigurationPolicy,omitempty"`
+
+	// When the intent was last modified
+	LastModifiedDateTime *string `json:"lastModifiedDateTime,omitempty"`
+
+	// List of Scope Tags for this Entity instance.
+	RoleScopeTagIds *[]string `json:"roleScopeTagIds,omitempty"`
+
+	// Collection of all settings to be applied
+	Settings *[]DeviceManagementSettingInstance `json:"settings,omitempty"`
+
+	// The ID of the template this intent was created from (if any)
+	TemplateId nullable.Type[string] `json:"templateId,omitempty"`
+
+	// A summary of user states and counts of users that belong to corresponding state for all users that the intent is
+	// applied to
+	UserStateSummary *DeviceManagementIntentUserStateSummary `json:"userStateSummary,omitempty"`
+
+	// Collection of states of all users that the intent is applied to
+	UserStates *[]DeviceManagementIntentUserState `json:"userStates,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

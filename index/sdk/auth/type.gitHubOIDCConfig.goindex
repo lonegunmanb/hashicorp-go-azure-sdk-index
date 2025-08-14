@@ -1,0 +1,42 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"io"
+	"net/http"
+	"net/url"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	"golang.org/x/oauth2"
+)
+type gitHubOIDCConfig struct {
+	// Environment is the national cloud environment to use
+	Environment environments.Environment
+
+	// TenantID is the required tenant ID for the primary token
+	TenantID string
+
+	// AuxiliaryTenantIDs is an optional list of tenant IDs for which to obtain additional tokens
+	AuxiliaryTenantIDs []string
+
+	// ClientID is the application's ID.
+	ClientID string
+
+	// IDTokenRequestURL is the URL for GitHub's OIDC provider.
+	IDTokenRequestURL string
+
+	// IDTokenRequestToken is the bearer token for the request to the OIDC provider.
+	IDTokenRequestToken string
+
+	// Scopes specifies a list of requested permission scopes (used for v2 tokens)
+	Scopes []string
+
+	// TokenURL is the clientCredentialsToken endpoint, which overrides the default endpoint constructed from a tenant ID
+	TokenURL string
+
+	// Audience optionally specifies the intended audience of the
+	// request.  If empty, the value of TokenURL is used as the
+	// intended audience.
+	Audience string
+}

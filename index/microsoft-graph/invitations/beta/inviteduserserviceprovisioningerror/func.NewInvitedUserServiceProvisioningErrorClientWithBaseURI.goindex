@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/invitations/beta/inviteduserserviceprovisioningerror
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewInvitedUserServiceProvisioningErrorClientWithBaseURI(sdkApi sdkEnv.Api) (*InvitedUserServiceProvisioningErrorClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "inviteduserserviceprovisioningerror", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating InvitedUserServiceProvisioningErrorClient: %+v", err)
+	}
+
+	return &InvitedUserServiceProvisioningErrorClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/netapp/2025-03-01/backuppolicy
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewBackupPolicyClientWithBaseURI(sdkApi sdkEnv.Api) (*BackupPolicyClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "backuppolicy", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating BackupPolicyClient: %+v", err)
+	}
+
+	return &BackupPolicyClient{
+		Client: client,
+	}, nil
+}

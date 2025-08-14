@@ -1,0 +1,52 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type UnifiedRoleManagementPolicy struct {
+	// Description for the policy.
+	Description *string `json:"description,omitempty"`
+
+	// Display name for the policy.
+	DisplayName *string `json:"displayName,omitempty"`
+
+	// The list of effective rules like approval rules and expiration rules evaluated based on inherited referenced rules.
+	// For example, if there is a tenant-wide policy to enforce enabling an approval rule, the effective rule will be to
+	// enable approval even if the policy has a rule to disable approval. Supports $expand.
+	EffectiveRules *[]UnifiedRoleManagementPolicyRule `json:"effectiveRules,omitempty"`
+
+	// This can only be set to true for a single tenant-wide policy which will apply to all scopes and roles. Set the
+	// scopeId to / and scopeType to Directory. Supports $filter (eq, ne).
+	IsOrganizationDefault nullable.Type[bool] `json:"isOrganizationDefault,omitempty"`
+
+	// The identity who last modified the role setting.
+	LastModifiedBy Identity `json:"lastModifiedBy"`
+
+	// The time when the role setting was last modified.
+	LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+
+	// The collection of rules like approval rules and expiration rules. Supports $expand.
+	Rules *[]UnifiedRoleManagementPolicyRule `json:"rules,omitempty"`
+
+	// The identifier of the scope where the policy is created. Can be / for the tenant or a group ID. Required.
+	ScopeId string `json:"scopeId"`
+
+	// The type of the scope where the policy is created. One of Directory, DirectoryRole, Group. Required.
+	ScopeType string `json:"scopeType"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

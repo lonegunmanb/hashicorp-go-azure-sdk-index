@@ -1,0 +1,119 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/appcredentialsigninactivity"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/applicationsignindetailedsummary"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/authenticationmethod"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/authenticationmethoduserregistrationdetail"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/credentialuserregistrationdetail"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/dailyprintusage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/dailyprintusagebyprinter"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/dailyprintusagebyuser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/dailyprintusagesummariesbyprinter"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/dailyprintusagesummariesbyuser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/healthmonitoring"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/healthmonitoringalert"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/healthmonitoringalertconfiguration"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/monthlyprintusagebyprinter"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/monthlyprintusagebyuser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/monthlyprintusagesummariesbyprinter"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/monthlyprintusagesummariesbyuser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/partner"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/partnerbilling"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/partnerbillingmanifest"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/partnerbillingoperation"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/partnerbillingreconciliation"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/partnerbillingreconciliationbilled"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/partnerbillingreconciliationunbilled"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/partnerbillingusage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/partnerbillingusagebilled"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/partnerbillingusageunbilled"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/report"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/security"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/serviceactivity"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/serviceprincipalsigninactivity"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/sla"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/slaazureadauthentication"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/usercredentialusagedetail"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsight"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightdaily"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightdailyactiveuser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightdailyauthentication"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightdailyinactiveuser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightdailyinactiveusersbyapplication"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightdailymfacompletion"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightdailymfatelecomfraud"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightdailysignup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightdailysummary"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightdailyusercount"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightmonthly"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightmonthlyactiveuser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightmonthlyauthentication"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightmonthlyinactiveuser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightmonthlyinactiveusersbyapplication"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightmonthlymfacompletion"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightmonthlymfaregistereduser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightmonthlyrequest"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightmonthlysignup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/userinsightmonthlysummary"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	AppCredentialSignInActivity                  *appcredentialsigninactivity.AppCredentialSignInActivityClient
+	ApplicationSignInDetailedSummary             *applicationsignindetailedsummary.ApplicationSignInDetailedSummaryClient
+	AuthenticationMethod                         *authenticationmethod.AuthenticationMethodClient
+	AuthenticationMethodUserRegistrationDetail   *authenticationmethoduserregistrationdetail.AuthenticationMethodUserRegistrationDetailClient
+	CredentialUserRegistrationDetail             *credentialuserregistrationdetail.CredentialUserRegistrationDetailClient
+	DailyPrintUsage                              *dailyprintusage.DailyPrintUsageClient
+	DailyPrintUsageByPrinter                     *dailyprintusagebyprinter.DailyPrintUsageByPrinterClient
+	DailyPrintUsageByUser                        *dailyprintusagebyuser.DailyPrintUsageByUserClient
+	DailyPrintUsageSummariesByPrinter            *dailyprintusagesummariesbyprinter.DailyPrintUsageSummariesByPrinterClient
+	DailyPrintUsageSummariesByUser               *dailyprintusagesummariesbyuser.DailyPrintUsageSummariesByUserClient
+	HealthMonitoring                             *healthmonitoring.HealthMonitoringClient
+	HealthMonitoringAlert                        *healthmonitoringalert.HealthMonitoringAlertClient
+	HealthMonitoringAlertConfiguration           *healthmonitoringalertconfiguration.HealthMonitoringAlertConfigurationClient
+	MonthlyPrintUsageByPrinter                   *monthlyprintusagebyprinter.MonthlyPrintUsageByPrinterClient
+	MonthlyPrintUsageByUser                      *monthlyprintusagebyuser.MonthlyPrintUsageByUserClient
+	MonthlyPrintUsageSummariesByPrinter          *monthlyprintusagesummariesbyprinter.MonthlyPrintUsageSummariesByPrinterClient
+	MonthlyPrintUsageSummariesByUser             *monthlyprintusagesummariesbyuser.MonthlyPrintUsageSummariesByUserClient
+	Partner                                      *partner.PartnerClient
+	PartnerBilling                               *partnerbilling.PartnerBillingClient
+	PartnerBillingManifest                       *partnerbillingmanifest.PartnerBillingManifestClient
+	PartnerBillingOperation                      *partnerbillingoperation.PartnerBillingOperationClient
+	PartnerBillingReconciliation                 *partnerbillingreconciliation.PartnerBillingReconciliationClient
+	PartnerBillingReconciliationBilled           *partnerbillingreconciliationbilled.PartnerBillingReconciliationBilledClient
+	PartnerBillingReconciliationUnbilled         *partnerbillingreconciliationunbilled.PartnerBillingReconciliationUnbilledClient
+	PartnerBillingUsage                          *partnerbillingusage.PartnerBillingUsageClient
+	PartnerBillingUsageBilled                    *partnerbillingusagebilled.PartnerBillingUsageBilledClient
+	PartnerBillingUsageUnbilled                  *partnerbillingusageunbilled.PartnerBillingUsageUnbilledClient
+	Report                                       *report.ReportClient
+	Security                                     *security.SecurityClient
+	ServiceActivity                              *serviceactivity.ServiceActivityClient
+	ServicePrincipalSignInActivity               *serviceprincipalsigninactivity.ServicePrincipalSignInActivityClient
+	Sla                                          *sla.SlaClient
+	SlaAzureADAuthentication                     *slaazureadauthentication.SlaAzureADAuthenticationClient
+	UserCredentialUsageDetail                    *usercredentialusagedetail.UserCredentialUsageDetailClient
+	UserInsight                                  *userinsight.UserInsightClient
+	UserInsightDaily                             *userinsightdaily.UserInsightDailyClient
+	UserInsightDailyActiveUser                   *userinsightdailyactiveuser.UserInsightDailyActiveUserClient
+	UserInsightDailyAuthentication               *userinsightdailyauthentication.UserInsightDailyAuthenticationClient
+	UserInsightDailyInactiveUser                 *userinsightdailyinactiveuser.UserInsightDailyInactiveUserClient
+	UserInsightDailyInactiveUsersByApplication   *userinsightdailyinactiveusersbyapplication.UserInsightDailyInactiveUsersByApplicationClient
+	UserInsightDailyMfaCompletion                *userinsightdailymfacompletion.UserInsightDailyMfaCompletionClient
+	UserInsightDailyMfaTelecomFraud              *userinsightdailymfatelecomfraud.UserInsightDailyMfaTelecomFraudClient
+	UserInsightDailySignUp                       *userinsightdailysignup.UserInsightDailySignUpClient
+	UserInsightDailySummary                      *userinsightdailysummary.UserInsightDailySummaryClient
+	UserInsightDailyUserCount                    *userinsightdailyusercount.UserInsightDailyUserCountClient
+	UserInsightMonthly                           *userinsightmonthly.UserInsightMonthlyClient
+	UserInsightMonthlyActiveUser                 *userinsightmonthlyactiveuser.UserInsightMonthlyActiveUserClient
+	UserInsightMonthlyAuthentication             *userinsightmonthlyauthentication.UserInsightMonthlyAuthenticationClient
+	UserInsightMonthlyInactiveUser               *userinsightmonthlyinactiveuser.UserInsightMonthlyInactiveUserClient
+	UserInsightMonthlyInactiveUsersByApplication *userinsightmonthlyinactiveusersbyapplication.UserInsightMonthlyInactiveUsersByApplicationClient
+	UserInsightMonthlyMfaCompletion              *userinsightmonthlymfacompletion.UserInsightMonthlyMfaCompletionClient
+	UserInsightMonthlyMfaRegisteredUser          *userinsightmonthlymfaregistereduser.UserInsightMonthlyMfaRegisteredUserClient
+	UserInsightMonthlyRequest                    *userinsightmonthlyrequest.UserInsightMonthlyRequestClient
+	UserInsightMonthlySignUp                     *userinsightmonthlysignup.UserInsightMonthlySignUpClient
+	UserInsightMonthlySummary                    *userinsightmonthlysummary.UserInsightMonthlySummaryClient
+}

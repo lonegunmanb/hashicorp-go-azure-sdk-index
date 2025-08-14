@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mongocluster/2024-07-01/privatelinks
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPrivateLinksClientWithBaseURI(sdkApi sdkEnv.Api) (*PrivateLinksClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "privatelinks", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PrivateLinksClient: %+v", err)
+	}
+
+	return &PrivateLinksClient{
+		Client: client,
+	}, nil
+}

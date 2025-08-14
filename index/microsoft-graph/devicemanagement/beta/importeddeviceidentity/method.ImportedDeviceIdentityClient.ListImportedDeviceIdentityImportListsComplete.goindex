@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/importeddeviceidentity
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ImportedDeviceIdentityClient) ListImportedDeviceIdentityImportListsComplete(ctx context.Context, input ListImportedDeviceIdentityImportListsRequest, options ListImportedDeviceIdentityImportListsOperationOptions) (ListImportedDeviceIdentityImportListsCompleteResult, error) {
+	return c.ListImportedDeviceIdentityImportListsCompleteMatchingPredicate(ctx, input, options, ImportedDeviceIdentityResultOperationPredicate{})
+}

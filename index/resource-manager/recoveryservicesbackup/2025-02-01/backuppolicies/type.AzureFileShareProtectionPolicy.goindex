@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/backuppolicies
+import (
+	"encoding/json"
+	"fmt"
+)
+type AzureFileShareProtectionPolicy struct {
+	RetentionPolicy      RetentionPolicy       `json:"retentionPolicy"`
+	SchedulePolicy       SchedulePolicy        `json:"schedulePolicy"`
+	TimeZone             *string               `json:"timeZone,omitempty"`
+	VaultRetentionPolicy *VaultRetentionPolicy `json:"vaultRetentionPolicy,omitempty"`
+	WorkLoadType         *WorkloadType         `json:"workLoadType,omitempty"`
+
+	// Fields inherited from ProtectionPolicy
+
+	BackupManagementType           string    `json:"backupManagementType"`
+	ProtectedItemsCount            *int64    `json:"protectedItemsCount,omitempty"`
+	ResourceGuardOperationRequests *[]string `json:"resourceGuardOperationRequests,omitempty"`
+}

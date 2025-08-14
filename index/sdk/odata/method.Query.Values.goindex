@@ -1,0 +1,44 @@
+package github.com/hashicorp/go-azure-sdk/sdk/odata
+import (
+	"fmt"
+	"net/http"
+	"net/url"
+	"strconv"
+	"strings"
+)
+func (q Query) Values() url.Values {
+	p := url.Values{}
+
+	if q.Count {
+		p.Add("$count", fmt.Sprintf("%t", q.Count))
+	}
+	if expand := q.Expand.String(); expand != "" {
+		p.Add("$expand", expand)
+	}
+	if q.Filter != "" {
+		p.Add("$filter", q.Filter)
+	}
+	if format := string(q.Format); format != "" {
+		p.Add("$format", format)
+	}
+	if orderBy := q.OrderBy.String(); orderBy != "" {
+		p.Add("$orderby", orderBy)
+	}
+	if q.Search != "" {
+		p.Add("$search", fmt.Sprintf(`"%s"`, q.Search))
+	}
+	if len(q.Select) > 0 {
+		p.Add("$select", strings.Join(q.Select, ","))
+	}
+	if q.Skip > 0 {
+		p.Add("$skip", strconv.Itoa(q.Skip))
+	}
+	if q.Top > 0 {
+		p.Add("$top", strconv.Itoa(q.Top))
+	}
+	if q.DeltaToken != "" {
+		p.Add("$deltatoken", q.DeltaToken)
+	}
+
+	return p
+}

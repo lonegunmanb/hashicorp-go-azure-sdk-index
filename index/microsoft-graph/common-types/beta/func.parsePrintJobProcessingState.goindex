@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePrintJobProcessingState(input string) (*PrintJobProcessingState, error) {
+	vals := map[string]PrintJobProcessingState{
+		"aborted":    PrintJobProcessingState_Aborted,
+		"canceled":   PrintJobProcessingState_Canceled,
+		"completed":  PrintJobProcessingState_Completed,
+		"paused":     PrintJobProcessingState_Paused,
+		"pending":    PrintJobProcessingState_Pending,
+		"processing": PrintJobProcessingState_Processing,
+		"stopped":    PrintJobProcessingState_Stopped,
+		"unknown":    PrintJobProcessingState_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PrintJobProcessingState(input)
+	return &out, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type DefaultColumnValue struct {
+	// The formula used to compute the default value for the column.
+	Formula nullable.Type[string] `json:"formula,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The direct value to use as the default value for the column.
+	Value nullable.Type[string] `json:"value,omitempty"`
+}

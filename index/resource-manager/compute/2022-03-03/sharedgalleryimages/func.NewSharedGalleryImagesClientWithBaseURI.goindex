@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2022-03-03/sharedgalleryimages
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSharedGalleryImagesClientWithBaseURI(sdkApi sdkEnv.Api) (*SharedGalleryImagesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "sharedgalleryimages", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SharedGalleryImagesClient: %+v", err)
+	}
+
+	return &SharedGalleryImagesClient{
+		Client: client,
+	}, nil
+}

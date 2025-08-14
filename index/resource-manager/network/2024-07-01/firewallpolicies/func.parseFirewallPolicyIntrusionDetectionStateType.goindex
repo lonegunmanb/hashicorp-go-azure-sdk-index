@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/firewallpolicies
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseFirewallPolicyIntrusionDetectionStateType(input string) (*FirewallPolicyIntrusionDetectionStateType, error) {
+	vals := map[string]FirewallPolicyIntrusionDetectionStateType{
+		"alert": FirewallPolicyIntrusionDetectionStateTypeAlert,
+		"deny":  FirewallPolicyIntrusionDetectionStateTypeDeny,
+		"off":   FirewallPolicyIntrusionDetectionStateTypeOff,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FirewallPolicyIntrusionDetectionStateType(input)
+	return &out, nil
+}

@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/apimanagementgatewayskus
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ApiManagementGatewaySkusClient) ListAvailableSkusComplete(ctx context.Context, id GatewayId) (ListAvailableSkusCompleteResult, error) {
+	return c.ListAvailableSkusCompleteMatchingPredicate(ctx, id, GatewayResourceSkuResultOperationPredicate{})
+}

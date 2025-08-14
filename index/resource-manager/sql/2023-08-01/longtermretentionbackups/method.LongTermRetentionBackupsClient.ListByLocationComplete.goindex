@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/longtermretentionbackups
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c LongTermRetentionBackupsClient) ListByLocationComplete(ctx context.Context, id LocationId, options ListByLocationOperationOptions) (ListByLocationCompleteResult, error) {
+	return c.ListByLocationCompleteMatchingPredicate(ctx, id, options, LongTermRetentionBackupOperationPredicate{})
+}

@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2023-12-15-preview/eventsubscriptions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalDeliveryAttributeMappingImplementation(input []byte) (DeliveryAttributeMapping, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling DeliveryAttributeMapping into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "Dynamic") {
+		var out DynamicDeliveryAttributeMapping
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into DynamicDeliveryAttributeMapping: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "Static") {
+		var out StaticDeliveryAttributeMapping
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into StaticDeliveryAttributeMapping: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseDeliveryAttributeMappingImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseDeliveryAttributeMappingImpl: %+v", err)
+	}
+
+	return RawDeliveryAttributeMappingImpl{
+		deliveryAttributeMapping: parent,
+		Type:                     value,
+		Values:                   temp,
+	}, nil
+
+}

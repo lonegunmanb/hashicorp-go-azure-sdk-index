@@ -1,0 +1,48 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *ManagedTenantsWorkloadActionDeploymentStatus) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		ActionId               *string                             `json:"actionId,omitempty"`
+		DeployedPolicyId       nullable.Type[string]               `json:"deployedPolicyId,omitempty"`
+		ExcludeGroups          *[]string                           `json:"excludeGroups,omitempty"`
+		IncludeAllUsers        *bool                               `json:"includeAllUsers,omitempty"`
+		IncludeGroups          *[]string                           `json:"includeGroups,omitempty"`
+		LastDeploymentDateTime nullable.Type[string]               `json:"lastDeploymentDateTime,omitempty"`
+		ODataId                *string                             `json:"@odata.id,omitempty"`
+		ODataType              *string                             `json:"@odata.type,omitempty"`
+		Status                 *ManagedTenantsWorkloadActionStatus `json:"status,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.ActionId = decoded.ActionId
+	s.DeployedPolicyId = decoded.DeployedPolicyId
+	s.ExcludeGroups = decoded.ExcludeGroups
+	s.IncludeAllUsers = decoded.IncludeAllUsers
+	s.IncludeGroups = decoded.IncludeGroups
+	s.LastDeploymentDateTime = decoded.LastDeploymentDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.Status = decoded.Status
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling ManagedTenantsWorkloadActionDeploymentStatus into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["error"]; ok {
+		impl, err := UnmarshalGenericErrorImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Error' for 'ManagedTenantsWorkloadActionDeploymentStatus': %+v", err)
+		}
+		s.Error = impl
+	}
+
+	return nil
+}

@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAuthMethodsType(input string) (*AuthMethodsType, error) {
+	vals := map[string]AuthMethodsType{
+		"alternatemobilephone":   AuthMethodsType_AlternateMobilePhone,
+		"appnotification":        AuthMethodsType_AppNotification,
+		"appnotificationandcode": AuthMethodsType_AppNotificationAndCode,
+		"appnotificationcode":    AuthMethodsType_AppNotificationCode,
+		"apppassword":            AuthMethodsType_AppPassword,
+		"email":                  AuthMethodsType_Email,
+		"fido":                   AuthMethodsType_Fido,
+		"mobilephone":            AuthMethodsType_MobilePhone,
+		"mobilephoneandsms":      AuthMethodsType_MobilePhoneAndSMS,
+		"mobilesms":              AuthMethodsType_MobileSMS,
+		"officephone":            AuthMethodsType_OfficePhone,
+		"securityquestion":       AuthMethodsType_SecurityQuestion,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AuthMethodsType(input)
+	return &out, nil
+}

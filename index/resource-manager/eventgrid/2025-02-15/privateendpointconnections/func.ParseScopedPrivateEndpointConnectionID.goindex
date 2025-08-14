@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2025-02-15/privateendpointconnections
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseScopedPrivateEndpointConnectionID(input string) (*ScopedPrivateEndpointConnectionId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&ScopedPrivateEndpointConnectionId{})
+	parsed, err := parser.Parse(input, false)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := ScopedPrivateEndpointConnectionId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

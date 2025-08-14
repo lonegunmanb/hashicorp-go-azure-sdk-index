@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/digitaltwins/2023-01-31/timeseriesdatabaseconnections
+import (
+	"encoding/json"
+	"fmt"
+)
+type AzureDataExplorerConnectionProperties struct {
+	AdxDatabaseName                         string  `json:"adxDatabaseName"`
+	AdxEndpointUri                          string  `json:"adxEndpointUri"`
+	AdxRelationshipLifecycleEventsTableName *string `json:"adxRelationshipLifecycleEventsTableName,omitempty"`
+	AdxResourceId                           string  `json:"adxResourceId"`
+	AdxTableName                            *string `json:"adxTableName,omitempty"`
+	AdxTwinLifecycleEventsTableName         *string `json:"adxTwinLifecycleEventsTableName,omitempty"`
+	EventHubConsumerGroup                   *string `json:"eventHubConsumerGroup,omitempty"`
+	EventHubEndpointUri                     string  `json:"eventHubEndpointUri"`
+	EventHubEntityPath                      string  `json:"eventHubEntityPath"`
+	EventHubNamespaceResourceId             string  `json:"eventHubNamespaceResourceId"`
+	RecordPropertyAndItemRemovals           *bool   `json:"recordPropertyAndItemRemovals,omitempty"`
+
+	// Fields inherited from TimeSeriesDatabaseConnectionProperties
+
+	ConnectionType    ConnectionType                     `json:"connectionType"`
+	Identity          *ManagedIdentityReference          `json:"identity,omitempty"`
+	ProvisioningState *TimeSeriesDatabaseConnectionState `json:"provisioningState,omitempty"`
+}

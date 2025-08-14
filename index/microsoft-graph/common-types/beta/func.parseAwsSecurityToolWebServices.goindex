@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAwsSecurityToolWebServices(input string) (*AwsSecurityToolWebServices, error) {
+	vals := map[string]AwsSecurityToolWebServices{
+		"cloudtrail":  AwsSecurityToolWebServices_CloudTrail,
+		"detective":   AwsSecurityToolWebServices_Detective,
+		"guardduty":   AwsSecurityToolWebServices_GuardDuty,
+		"inspector":   AwsSecurityToolWebServices_Inspector,
+		"macie":       AwsSecurityToolWebServices_Macie,
+		"securityhub": AwsSecurityToolWebServices_SecurityHub,
+		"wafshield":   AwsSecurityToolWebServices_WafShield,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AwsSecurityToolWebServices(input)
+	return &out, nil
+}

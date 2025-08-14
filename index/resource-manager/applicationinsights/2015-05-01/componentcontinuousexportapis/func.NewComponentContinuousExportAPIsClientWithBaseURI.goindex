@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/applicationinsights/2015-05-01/componentcontinuousexportapis
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewComponentContinuousExportAPIsClientWithBaseURI(sdkApi sdkEnv.Api) (*ComponentContinuousExportAPIsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "componentcontinuousexportapis", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ComponentContinuousExportAPIsClient: %+v", err)
+	}
+
+	return &ComponentContinuousExportAPIsClient{
+		Client: client,
+	}, nil
+}

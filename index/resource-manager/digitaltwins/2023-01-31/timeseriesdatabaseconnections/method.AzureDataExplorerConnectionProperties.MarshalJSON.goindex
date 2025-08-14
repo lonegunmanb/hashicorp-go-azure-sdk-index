@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/digitaltwins/2023-01-31/timeseriesdatabaseconnections
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s AzureDataExplorerConnectionProperties) MarshalJSON() ([]byte, error) {
+	type wrapper AzureDataExplorerConnectionProperties
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling AzureDataExplorerConnectionProperties: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling AzureDataExplorerConnectionProperties: %+v", err)
+	}
+
+	decoded["connectionType"] = "AzureDataExplorer"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling AzureDataExplorerConnectionProperties: %+v", err)
+	}
+
+	return encoded, nil
+}

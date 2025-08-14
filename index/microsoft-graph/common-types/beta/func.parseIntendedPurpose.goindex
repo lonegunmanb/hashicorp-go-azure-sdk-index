@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseIntendedPurpose(input string) (*IntendedPurpose, error) {
+	vals := map[string]IntendedPurpose{
+		"smimeencryption": IntendedPurpose_SmimeEncryption,
+		"smimesigning":    IntendedPurpose_SmimeSigning,
+		"unassigned":      IntendedPurpose_Unassigned,
+		"vpn":             IntendedPurpose_Vpn,
+		"wifi":            IntendedPurpose_Wifi,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IntendedPurpose(input)
+	return &out, nil
+}

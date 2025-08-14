@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type WindowsUpdatesExpediteSettings struct {
+	// True indicates that the deployment of the content is expedited.
+	IsExpedited nullable.Type[bool] `json:"isExpedited,omitempty"`
+
+	// True indicates that the deployment is an expedite readiness test.
+	IsReadinessTest nullable.Type[bool] `json:"isReadinessTest,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+}

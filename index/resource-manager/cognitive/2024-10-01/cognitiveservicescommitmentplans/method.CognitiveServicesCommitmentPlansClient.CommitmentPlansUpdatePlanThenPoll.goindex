@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cognitive/2024-10-01/cognitiveservicescommitmentplans
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c CognitiveServicesCommitmentPlansClient) CommitmentPlansUpdatePlanThenPoll(ctx context.Context, id CommitmentPlanId, input PatchResourceTagsAndSku) error {
+	result, err := c.CommitmentPlansUpdatePlan(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing CommitmentPlansUpdatePlan: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after CommitmentPlansUpdatePlan: %+v", err)
+	}
+
+	return nil
+}

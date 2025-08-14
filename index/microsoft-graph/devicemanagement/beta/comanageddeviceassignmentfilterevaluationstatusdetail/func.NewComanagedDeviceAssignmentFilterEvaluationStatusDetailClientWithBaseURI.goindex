@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/comanageddeviceassignmentfilterevaluationstatusdetail
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewComanagedDeviceAssignmentFilterEvaluationStatusDetailClientWithBaseURI(sdkApi sdkEnv.Api) (*ComanagedDeviceAssignmentFilterEvaluationStatusDetailClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "comanageddeviceassignmentfilterevaluationstatusdetail", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ComanagedDeviceAssignmentFilterEvaluationStatusDetailClient: %+v", err)
+	}
+
+	return &ComanagedDeviceAssignmentFilterEvaluationStatusDetailClient{
+		Client: client,
+	}, nil
+}

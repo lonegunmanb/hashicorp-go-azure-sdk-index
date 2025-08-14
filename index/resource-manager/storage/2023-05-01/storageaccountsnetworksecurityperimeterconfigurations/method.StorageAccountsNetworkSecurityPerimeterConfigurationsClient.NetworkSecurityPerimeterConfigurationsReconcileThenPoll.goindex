@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/storageaccountsnetworksecurityperimeterconfigurations
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c StorageAccountsNetworkSecurityPerimeterConfigurationsClient) NetworkSecurityPerimeterConfigurationsReconcileThenPoll(ctx context.Context, id NetworkSecurityPerimeterConfigurationId) error {
+	result, err := c.NetworkSecurityPerimeterConfigurationsReconcile(ctx, id)
+	if err != nil {
+		return fmt.Errorf("performing NetworkSecurityPerimeterConfigurationsReconcile: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after NetworkSecurityPerimeterConfigurationsReconcile: %+v", err)
+	}
+
+	return nil
+}

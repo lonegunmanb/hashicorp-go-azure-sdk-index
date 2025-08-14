@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/applicationpackage
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewApplicationPackageClientWithBaseURI(sdkApi sdkEnv.Api) (*ApplicationPackageClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "applicationpackage", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ApplicationPackageClient: %+v", err)
+	}
+
+	return &ApplicationPackageClient{
+		Client: client,
+	}, nil
+}

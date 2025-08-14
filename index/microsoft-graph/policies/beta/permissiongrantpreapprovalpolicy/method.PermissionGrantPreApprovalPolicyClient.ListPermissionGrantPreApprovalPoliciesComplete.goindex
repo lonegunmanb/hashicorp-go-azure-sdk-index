@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/permissiongrantpreapprovalpolicy
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c PermissionGrantPreApprovalPolicyClient) ListPermissionGrantPreApprovalPoliciesComplete(ctx context.Context, options ListPermissionGrantPreApprovalPoliciesOperationOptions) (ListPermissionGrantPreApprovalPoliciesCompleteResult, error) {
+	return c.ListPermissionGrantPreApprovalPoliciesCompleteMatchingPredicate(ctx, options, PermissionGrantPreApprovalPolicyOperationPredicate{})
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2022-03-01/shares
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSharesClientWithBaseURI(sdkApi sdkEnv.Api) (*SharesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "shares", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SharesClient: %+v", err)
+	}
+
+	return &SharesClient{
+		Client: client,
+	}, nil
+}

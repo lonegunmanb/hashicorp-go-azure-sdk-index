@@ -1,0 +1,8 @@
+package github.com/hashicorp/go-azure-sdk/sdk/internal/azurecli
+
+func (c *cachedCliData) Get(index string) ([]byte, bool) {
+	if data, ok := c.data[index]; ok {
+		return data, true
+	}
+	return nil, false
+}

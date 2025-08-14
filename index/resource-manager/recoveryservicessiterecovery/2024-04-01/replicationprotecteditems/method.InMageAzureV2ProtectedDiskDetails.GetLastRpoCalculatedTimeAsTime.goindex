@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2024-04-01/replicationprotecteditems
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *InMageAzureV2ProtectedDiskDetails) GetLastRpoCalculatedTimeAsTime() (*time.Time, error) {
+	if o.LastRpoCalculatedTime == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.LastRpoCalculatedTime, "2006-01-02T15:04:05Z07:00")
+}

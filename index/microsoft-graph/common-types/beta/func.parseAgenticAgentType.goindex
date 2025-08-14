@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAgenticAgentType(input string) (*AgenticAgentType, error) {
+	vals := map[string]AgenticAgentType{
+		"agenticapp":         AgenticAgentType_AgenticApp,
+		"agenticappbuilder":  AgenticAgentType_AgenticAppBuilder,
+		"agenticappinstance": AgenticAgentType_AgenticAppInstance,
+		"notagentic":         AgenticAgentType_NotAgentic,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AgenticAgentType(input)
+	return &out, nil
+}

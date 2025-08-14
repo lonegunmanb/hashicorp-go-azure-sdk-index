@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityAuditLogUserType(input string) (*SecurityAuditLogUserType, error) {
+	vals := map[string]SecurityAuditLogUserType{
+		"admin":             SecurityAuditLogUserType_Admin,
+		"application":       SecurityAuditLogUserType_Application,
+		"custompolicy":      SecurityAuditLogUserType_CustomPolicy,
+		"dcadmin":           SecurityAuditLogUserType_DcAdmin,
+		"guest":             SecurityAuditLogUserType_Guest,
+		"partnertechnician": SecurityAuditLogUserType_PartnerTechnician,
+		"regular":           SecurityAuditLogUserType_Regular,
+		"reserved":          SecurityAuditLogUserType_Reserved,
+		"serviceprincipal":  SecurityAuditLogUserType_ServicePrincipal,
+		"system":            SecurityAuditLogUserType_System,
+		"systempolicy":      SecurityAuditLogUserType_SystemPolicy,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityAuditLogUserType(input)
+	return &out, nil
+}

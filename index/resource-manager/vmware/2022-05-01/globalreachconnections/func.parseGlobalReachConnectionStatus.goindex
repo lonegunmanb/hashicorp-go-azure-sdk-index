@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2022-05-01/globalreachconnections
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseGlobalReachConnectionStatus(input string) (*GlobalReachConnectionStatus, error) {
+	vals := map[string]GlobalReachConnectionStatus{
+		"connected":    GlobalReachConnectionStatusConnected,
+		"connecting":   GlobalReachConnectionStatusConnecting,
+		"disconnected": GlobalReachConnectionStatusDisconnected,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := GlobalReachConnectionStatus(input)
+	return &out, nil
+}

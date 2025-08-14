@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2025-01-01/policysetdefinitionversions
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id Providers2PolicySetDefinitionVersionId) String() string {
+	components := []string{
+		fmt.Sprintf("Management Group Name: %q", id.ManagementGroupName),
+		fmt.Sprintf("Policy Set Definition Name: %q", id.PolicySetDefinitionName),
+		fmt.Sprintf("Version Name: %q", id.VersionName),
+	}
+	return fmt.Sprintf("Providers 2 Policy Set Definition Version (%s)", strings.Join(components, "\n"))
+}

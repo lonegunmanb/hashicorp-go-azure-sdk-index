@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type AndroidFotaDeploymentAssignment struct {
+	// The Azure Active Directory (Azure AD) we are deploying firmware updates to (e.g.:
+	// d93c8f48-bd42-4514-ba40-bc6b84780930). NOTE: Use this property moving forward because the existing property, target,
+	// is deprecated.
+	AssignmentTarget DeviceAndAppManagementAssignmentTarget `json:"assignmentTarget"`
+
+	// The display name of the Azure AD security group used for the assignment.
+	DisplayName *string `json:"displayName,omitempty"`
+
+	// A unique identifier assigned to each Android FOTA Assignment entity
+	Id nullable.Type[string] `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The AAD Group we are deploying firmware updates to
+	Target *AndroidFotaDeploymentAssignmentTarget `json:"target,omitempty"`
+}

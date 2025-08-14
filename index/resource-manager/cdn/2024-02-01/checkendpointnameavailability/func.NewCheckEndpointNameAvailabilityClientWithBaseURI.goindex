@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2024-02-01/checkendpointnameavailability
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewCheckEndpointNameAvailabilityClientWithBaseURI(sdkApi sdkEnv.Api) (*CheckEndpointNameAvailabilityClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "checkendpointnameavailability", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating CheckEndpointNameAvailabilityClient: %+v", err)
+	}
+
+	return &CheckEndpointNameAvailabilityClient{
+		Client: client,
+	}, nil
+}

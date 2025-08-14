@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/globalparameters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseGlobalParameterType(input string) (*GlobalParameterType, error) {
+	vals := map[string]GlobalParameterType{
+		"array":  GlobalParameterTypeArray,
+		"bool":   GlobalParameterTypeBool,
+		"float":  GlobalParameterTypeFloat,
+		"int":    GlobalParameterTypeInt,
+		"object": GlobalParameterTypeObject,
+		"string": GlobalParameterTypeString,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := GlobalParameterType(input)
+	return &out, nil
+}

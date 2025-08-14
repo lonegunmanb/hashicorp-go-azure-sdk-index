@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/images
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewImagesClientWithBaseURI(sdkApi sdkEnv.Api) (*ImagesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "images", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ImagesClient: %+v", err)
+	}
+
+	return &ImagesClient{
+		Client: client,
+	}, nil
+}

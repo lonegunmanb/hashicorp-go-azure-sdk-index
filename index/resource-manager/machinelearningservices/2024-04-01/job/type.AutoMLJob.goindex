@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/job
+import (
+	"encoding/json"
+	"fmt"
+)
+type AutoMLJob struct {
+	EnvironmentId        *string                   `json:"environmentId,omitempty"`
+	EnvironmentVariables *map[string]string        `json:"environmentVariables,omitempty"`
+	Outputs              *map[string]JobOutput     `json:"outputs,omitempty"`
+	QueueSettings        *QueueSettings            `json:"queueSettings,omitempty"`
+	Resources            *JobResourceConfiguration `json:"resources,omitempty"`
+	TaskDetails          AutoMLVertical            `json:"taskDetails"`
+
+	// Fields inherited from JobBase
+
+	ComponentId         *string                `json:"componentId,omitempty"`
+	ComputeId           *string                `json:"computeId,omitempty"`
+	Description         *string                `json:"description,omitempty"`
+	DisplayName         *string                `json:"displayName,omitempty"`
+	ExperimentName      *string                `json:"experimentName,omitempty"`
+	Identity            IdentityConfiguration  `json:"identity"`
+	IsArchived          *bool                  `json:"isArchived,omitempty"`
+	JobType             JobType                `json:"jobType"`
+	NotificationSetting *NotificationSetting   `json:"notificationSetting,omitempty"`
+	Properties          *map[string]string     `json:"properties,omitempty"`
+	Services            *map[string]JobService `json:"services,omitempty"`
+	Status              *JobStatus             `json:"status,omitempty"`
+	Tags                *map[string]string     `json:"tags,omitempty"`
+}

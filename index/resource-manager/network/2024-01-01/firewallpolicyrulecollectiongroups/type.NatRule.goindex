@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-01-01/firewallpolicyrulecollectiongroups
+import (
+	"encoding/json"
+	"fmt"
+)
+type NatRule struct {
+	DestinationAddresses *[]string                            `json:"destinationAddresses,omitempty"`
+	DestinationPorts     *[]string                            `json:"destinationPorts,omitempty"`
+	IPProtocols          *[]FirewallPolicyRuleNetworkProtocol `json:"ipProtocols,omitempty"`
+	SourceAddresses      *[]string                            `json:"sourceAddresses,omitempty"`
+	SourceIPGroups       *[]string                            `json:"sourceIpGroups,omitempty"`
+	TranslatedAddress    *string                              `json:"translatedAddress,omitempty"`
+	TranslatedFqdn       *string                              `json:"translatedFqdn,omitempty"`
+	TranslatedPort       *string                              `json:"translatedPort,omitempty"`
+
+	// Fields inherited from FirewallPolicyRule
+
+	Description *string                `json:"description,omitempty"`
+	Name        *string                `json:"name,omitempty"`
+	RuleType    FirewallPolicyRuleType `json:"ruleType"`
+}

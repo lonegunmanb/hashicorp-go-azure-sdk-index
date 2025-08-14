@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2024-10-01/protectionintent
+import (
+	"strings"
+)
+func parseValidationStatus(input string) (*ValidationStatus, error) {
+	vals := map[string]ValidationStatus{
+		"failed":    ValidationStatusFailed,
+		"invalid":   ValidationStatusInvalid,
+		"succeeded": ValidationStatusSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ValidationStatus(input)
+	return &out, nil
+}

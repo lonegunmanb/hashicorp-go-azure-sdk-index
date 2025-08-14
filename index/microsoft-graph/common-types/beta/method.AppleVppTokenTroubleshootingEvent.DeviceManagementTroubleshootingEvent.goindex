@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s AppleVppTokenTroubleshootingEvent) DeviceManagementTroubleshootingEvent() BaseDeviceManagementTroubleshootingEventImpl {
+	return BaseDeviceManagementTroubleshootingEventImpl{
+		AdditionalInformation:       s.AdditionalInformation,
+		CorrelationId:               s.CorrelationId,
+		EventDateTime:               s.EventDateTime,
+		EventName:                   s.EventName,
+		TroubleshootingErrorDetails: s.TroubleshootingErrorDetails,
+		Id:                          s.Id,
+		ODataId:                     s.ODataId,
+		ODataType:                   s.ODataType,
+	}
+}

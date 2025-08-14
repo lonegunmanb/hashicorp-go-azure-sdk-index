@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagemover/2024-07-01/agents
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *AgentId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.SubscriptionId, ok = input.Parsed["subscriptionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subscriptionId", input)
+	}
+
+	if id.ResourceGroupName, ok = input.Parsed["resourceGroupName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "resourceGroupName", input)
+	}
+
+	if id.StorageMoverName, ok = input.Parsed["storageMoverName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "storageMoverName", input)
+	}
+
+	if id.AgentName, ok = input.Parsed["agentName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "agentName", input)
+	}
+
+	return nil
+}

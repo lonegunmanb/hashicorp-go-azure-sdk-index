@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2025-06-01/schedule
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEmailNotificationEnableType(input string) (*EmailNotificationEnableType, error) {
+	vals := map[string]EmailNotificationEnableType{
+		"jobcancelled": EmailNotificationEnableTypeJobCancelled,
+		"jobcompleted": EmailNotificationEnableTypeJobCompleted,
+		"jobfailed":    EmailNotificationEnableTypeJobFailed,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EmailNotificationEnableType(input)
+	return &out, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/nginx/2024-11-01-preview/nginxdeployment
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewNginxDeploymentClientWithBaseURI(sdkApi sdkEnv.Api) (*NginxDeploymentClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "nginxdeployment", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating NginxDeploymentClient: %+v", err)
+	}
+
+	return &NginxDeploymentClient{
+		Client: client,
+	}, nil
+}

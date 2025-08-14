@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type LocalAdminSettings struct {
+	// Indicates whether global administrators are local administrators on all Microsoft Entra-joined devices. This setting
+	// only applies to future registrations. Default is true.
+	EnableGlobalAdmins nullable.Type[bool] `json:"enableGlobalAdmins,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Determines the users and groups that become local administrators on Microsoft Entra joined devices that they
+	// register.
+	RegisteringUsers DeviceRegistrationMembership `json:"registeringUsers"`
+}

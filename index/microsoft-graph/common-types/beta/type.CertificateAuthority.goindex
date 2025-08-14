@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type CertificateAuthority struct {
+	// Required. The base64 encoded string representing the public certificate.
+	Certificate string `json:"certificate"`
+
+	// The URL of the certificate revocation list.
+	CertificateRevocationListUrl nullable.Type[string] `json:"certificateRevocationListUrl,omitempty"`
+
+	// The URL contains the list of all revoked certificates since the last time a full certificate revocaton list was
+	// created.
+	DeltaCertificateRevocationListUrl nullable.Type[string] `json:"deltaCertificateRevocationListUrl,omitempty"`
+
+	// Required. true if the trusted certificate is a root authority, false if the trusted certificate is an intermediate
+	// authority.
+	IsRootAuthority bool `json:"isRootAuthority"`
+
+	// The issuer of the certificate, calculated from the certificate value. Read-only.
+	Issuer *string `json:"issuer,omitempty"`
+
+	// The subject key identifier of the certificate, calculated from the certificate value. Read-only.
+	IssuerSki *string `json:"issuerSki,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+}

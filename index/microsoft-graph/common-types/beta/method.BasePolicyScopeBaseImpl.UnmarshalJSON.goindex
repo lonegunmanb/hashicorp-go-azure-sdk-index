@@ -1,0 +1,63 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func (s *BasePolicyScopeBaseImpl) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		Activities    *UserActivityTypes `json:"activities,omitempty"`
+		ExecutionMode *ExecutionMode     `json:"executionMode,omitempty"`
+		ODataId       *string            `json:"@odata.id,omitempty"`
+		ODataType     *string            `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.Activities = decoded.Activities
+	s.ExecutionMode = decoded.ExecutionMode
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling BasePolicyScopeBaseImpl into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["locations"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling Locations into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]PolicyLocation, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalPolicyLocationImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'Locations' for 'BasePolicyScopeBaseImpl': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.Locations = output
+	}
+
+	if v, ok := temp["policyActions"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling PolicyActions into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]DlpActionInfo, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalDlpActionInfoImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'PolicyActions' for 'BasePolicyScopeBaseImpl': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.PolicyActions = output
+	}
+
+	return nil
+}

@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationrecoveryplans
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s RecoveryPlanInMageRcmFailbackFailoverInput) MarshalJSON() ([]byte, error) {
+	type wrapper RecoveryPlanInMageRcmFailbackFailoverInput
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling RecoveryPlanInMageRcmFailbackFailoverInput: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling RecoveryPlanInMageRcmFailbackFailoverInput: %+v", err)
+	}
+
+	decoded["instanceType"] = "InMageRcmFailback"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling RecoveryPlanInMageRcmFailbackFailoverInput: %+v", err)
+	}
+
+	return encoded, nil
+}

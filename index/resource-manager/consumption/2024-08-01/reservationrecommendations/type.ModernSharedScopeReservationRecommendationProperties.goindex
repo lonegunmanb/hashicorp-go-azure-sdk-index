@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/reservationrecommendations
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type ModernSharedScopeReservationRecommendationProperties struct {
+
+	// Fields inherited from ModernReservationRecommendationProperties
+
+	CostWithNoReservedInstances    *Amount        `json:"costWithNoReservedInstances,omitempty"`
+	FirstUsageDate                 *string        `json:"firstUsageDate,omitempty"`
+	InstanceFlexibilityGroup       *string        `json:"instanceFlexibilityGroup,omitempty"`
+	InstanceFlexibilityRatio       *float64       `json:"instanceFlexibilityRatio,omitempty"`
+	LastUsageDate                  *string        `json:"lastUsageDate,omitempty"`
+	Location                       *string        `json:"location,omitempty"`
+	LookBackPeriod                 *int64         `json:"lookBackPeriod,omitempty"`
+	MeterId                        *string        `json:"meterId,omitempty"`
+	NetSavings                     *Amount        `json:"netSavings,omitempty"`
+	NormalizedSize                 *string        `json:"normalizedSize,omitempty"`
+	RecommendedQuantity            *float64       `json:"recommendedQuantity,omitempty"`
+	RecommendedQuantityNormalized  *float64       `json:"recommendedQuantityNormalized,omitempty"`
+	ResourceType                   *string        `json:"resourceType,omitempty"`
+	Scope                          string         `json:"scope"`
+	SkuName                        *string        `json:"skuName,omitempty"`
+	SkuProperties                  *[]SkuProperty `json:"skuProperties,omitempty"`
+	Term                           *string        `json:"term,omitempty"`
+	TotalCostWithReservedInstances *Amount        `json:"totalCostWithReservedInstances,omitempty"`
+	TotalHours                     *int64         `json:"totalHours,omitempty"`
+}

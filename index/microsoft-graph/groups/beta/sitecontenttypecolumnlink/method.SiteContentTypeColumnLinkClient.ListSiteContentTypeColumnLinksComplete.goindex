@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitecontenttypecolumnlink
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SiteContentTypeColumnLinkClient) ListSiteContentTypeColumnLinksComplete(ctx context.Context, id beta.GroupIdSiteIdContentTypeId, options ListSiteContentTypeColumnLinksOperationOptions) (ListSiteContentTypeColumnLinksCompleteResult, error) {
+	return c.ListSiteContentTypeColumnLinksCompleteMatchingPredicate(ctx, id, options, ColumnLinkOperationPredicate{})
+}

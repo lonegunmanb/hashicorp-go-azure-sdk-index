@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagecache/2024-07-01/importjobs
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseImportStatusType(input string) (*ImportStatusType, error) {
+	vals := map[string]ImportStatusType{
+		"canceled":         ImportStatusTypeCanceled,
+		"cancelling":       ImportStatusTypeCancelling,
+		"completed":        ImportStatusTypeCompleted,
+		"completedpartial": ImportStatusTypeCompletedPartial,
+		"failed":           ImportStatusTypeFailed,
+		"inprogress":       ImportStatusTypeInProgress,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ImportStatusType(input)
+	return &out, nil
+}

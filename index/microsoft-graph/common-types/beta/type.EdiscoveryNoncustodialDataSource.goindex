@@ -1,0 +1,48 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type EdiscoveryNoncustodialDataSource struct {
+	// Indicates if hold is applied to noncustodial data source (such as mailbox or site).
+	ApplyHoldToSource nullable.Type[bool] `json:"applyHoldToSource,omitempty"`
+
+	// User source or SharePoint site data source as noncustodial data source.
+	DataSource *EdiscoveryDataSource `json:"dataSource,omitempty"`
+
+	// Fields inherited from EdiscoveryDataSourceContainer
+
+	// Created date and time of the dataSourceContainer entity.
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// Display name of the dataSourceContainer entity.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	HoldStatus         *EdiscoveryDataSourceHoldStatus `json:"holdStatus,omitempty"`
+	LastIndexOperation *EdiscoveryCaseIndexOperation   `json:"lastIndexOperation,omitempty"`
+
+	// Last modified date and time of the dataSourceContainer.
+	LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+
+	// Date and time that the dataSourceContainer was released from the case.
+	ReleasedDateTime nullable.Type[string] `json:"releasedDateTime,omitempty"`
+
+	// Latest status of the dataSourceContainer. Possible values are: Active, Released.
+	Status *EdiscoveryDataSourceContainerStatus `json:"status,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

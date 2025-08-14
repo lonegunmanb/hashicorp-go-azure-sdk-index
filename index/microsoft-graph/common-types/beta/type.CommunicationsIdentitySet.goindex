@@ -1,0 +1,51 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type CommunicationsIdentitySet struct {
+	// The application instance associated with this action.
+	ApplicationInstance Identity `json:"applicationInstance"`
+
+	// An identity the participant would like to present itself as to the other participants in the call.
+	AssertedIdentity Identity `json:"assertedIdentity"`
+
+	// The Azure Communication Services user associated with this action.
+	AzureCommunicationServicesUser Identity `json:"azureCommunicationServicesUser"`
+
+	// The encrypted user associated with this action.
+	Encrypted Identity `json:"encrypted"`
+
+	// Type of endpoint the participant uses. Possible values are: default, voicemail, skypeForBusiness,
+	// skypeForBusinessVoipPhone and unknownFutureValue.
+	EndpointType *EndpointType `json:"endpointType,omitempty"`
+
+	// The guest user associated with this action.
+	Guest Identity `json:"guest"`
+
+	// The Skype for Business on-premises user associated with this action.
+	OnPremises Identity `json:"onPremises"`
+
+	// The phone user associated with this action.
+	Phone Identity `json:"phone"`
+
+	// Fields inherited from IdentitySet
+
+	// The Identity of the Application. This property is read-only.
+	Application Identity `json:"application"`
+
+	// The Identity of the Device. This property is read-only.
+	Device Identity `json:"device"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The Identity of the User. This property is read-only.
+	User Identity `json:"user"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

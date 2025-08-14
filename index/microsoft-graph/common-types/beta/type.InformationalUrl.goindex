@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type InformationalUrl struct {
+	// CDN URL to the application's logo, Read-only.
+	LogoUrl nullable.Type[string] `json:"logoUrl,omitempty"`
+
+	// Link to the application's marketing page. For example, https://www.contoso.com/app/marketing
+	MarketingUrl nullable.Type[string] `json:"marketingUrl,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Link to the application's privacy statement. For example, https://www.contoso.com/app/privacy
+	PrivacyStatementUrl nullable.Type[string] `json:"privacyStatementUrl,omitempty"`
+
+	// Link to the application's support page. For example, https://www.contoso.com/app/support
+	SupportUrl nullable.Type[string] `json:"supportUrl,omitempty"`
+
+	// Link to the application's terms of service statement. For example, https://www.contoso.com/app/termsofservice
+	TermsOfServiceUrl nullable.Type[string] `json:"termsOfServiceUrl,omitempty"`
+}

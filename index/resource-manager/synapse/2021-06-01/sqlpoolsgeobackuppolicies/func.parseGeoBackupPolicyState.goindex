@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/sqlpoolsgeobackuppolicies
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseGeoBackupPolicyState(input string) (*GeoBackupPolicyState, error) {
+	vals := map[string]GeoBackupPolicyState{
+		"disabled": GeoBackupPolicyStateDisabled,
+		"enabled":  GeoBackupPolicyStateEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := GeoBackupPolicyState(input)
+	return &out, nil
+}

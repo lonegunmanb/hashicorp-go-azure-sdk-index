@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/search/2025-05-01/querykeys
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ListBySearchServiceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+	if o.XMsClientRequestId != nil {
+		out.Append("x-ms-client-request-id", fmt.Sprintf("%v", *o.XMsClientRequestId))
+	}
+	return &out
+}

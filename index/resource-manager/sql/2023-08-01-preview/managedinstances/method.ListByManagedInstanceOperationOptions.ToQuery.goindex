@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/managedinstances
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ListByManagedInstanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.AggregationFunction != nil {
+		out.Append("aggregationFunction", fmt.Sprintf("%v", *o.AggregationFunction))
+	}
+	if o.Databases != nil {
+		out.Append("databases", fmt.Sprintf("%v", *o.Databases))
+	}
+	if o.EndTime != nil {
+		out.Append("endTime", fmt.Sprintf("%v", *o.EndTime))
+	}
+	if o.Interval != nil {
+		out.Append("interval", fmt.Sprintf("%v", *o.Interval))
+	}
+	if o.NumberOfQueries != nil {
+		out.Append("numberOfQueries", fmt.Sprintf("%v", *o.NumberOfQueries))
+	}
+	if o.ObservationMetric != nil {
+		out.Append("observationMetric", fmt.Sprintf("%v", *o.ObservationMetric))
+	}
+	if o.StartTime != nil {
+		out.Append("startTime", fmt.Sprintf("%v", *o.StartTime))
+	}
+	return &out
+}

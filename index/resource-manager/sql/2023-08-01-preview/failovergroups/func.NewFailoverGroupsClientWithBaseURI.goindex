@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/failovergroups
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewFailoverGroupsClientWithBaseURI(sdkApi sdkEnv.Api) (*FailoverGroupsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "failovergroups", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating FailoverGroupsClient: %+v", err)
+	}
+
+	return &FailoverGroupsClient{
+		Client: client,
+	}, nil
+}

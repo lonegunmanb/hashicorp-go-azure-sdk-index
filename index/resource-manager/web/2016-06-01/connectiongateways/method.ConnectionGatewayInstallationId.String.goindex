@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2016-06-01/connectiongateways
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ConnectionGatewayInstallationId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
+		fmt.Sprintf("Gateway: %q", id.GatewayId),
+	}
+	return fmt.Sprintf("Connection Gateway Installation (%s)", strings.Join(components, "\n"))
+}

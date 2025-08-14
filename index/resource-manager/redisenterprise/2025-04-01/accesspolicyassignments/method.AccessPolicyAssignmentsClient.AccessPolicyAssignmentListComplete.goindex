@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/redisenterprise/2025-04-01/accesspolicyassignments
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c AccessPolicyAssignmentsClient) AccessPolicyAssignmentListComplete(ctx context.Context, id DatabaseId) (AccessPolicyAssignmentListCompleteResult, error) {
+	return c.AccessPolicyAssignmentListCompleteMatchingPredicate(ctx, id, AccessPolicyAssignmentOperationPredicate{})
+}

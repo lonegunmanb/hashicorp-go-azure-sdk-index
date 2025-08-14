@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2024-11-01/managedhsms
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DeletedManagedHSMId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
+		fmt.Sprintf("Deleted Managed H S M Name: %q", id.DeletedManagedHSMName),
+	}
+	return fmt.Sprintf("Deleted Managed H S M (%s)", strings.Join(components, "\n"))
+}

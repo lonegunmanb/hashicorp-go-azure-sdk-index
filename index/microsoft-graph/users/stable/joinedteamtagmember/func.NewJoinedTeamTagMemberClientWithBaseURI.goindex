@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamtagmember
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewJoinedTeamTagMemberClientWithBaseURI(sdkApi sdkEnv.Api) (*JoinedTeamTagMemberClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "joinedteamtagmember", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating JoinedTeamTagMemberClient: %+v", err)
+	}
+
+	return &JoinedTeamTagMemberClient{
+		Client: client,
+	}, nil
+}

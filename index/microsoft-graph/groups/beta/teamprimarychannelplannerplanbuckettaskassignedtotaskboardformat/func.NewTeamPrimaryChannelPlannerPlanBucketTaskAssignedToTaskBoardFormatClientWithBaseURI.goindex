@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelplannerplanbuckettaskassignedtotaskboardformat
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTeamPrimaryChannelPlannerPlanBucketTaskAssignedToTaskBoardFormatClientWithBaseURI(sdkApi sdkEnv.Api) (*TeamPrimaryChannelPlannerPlanBucketTaskAssignedToTaskBoardFormatClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "teamprimarychannelplannerplanbuckettaskassignedtotaskboardformat", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TeamPrimaryChannelPlannerPlanBucketTaskAssignedToTaskBoardFormatClient: %+v", err)
+	}
+
+	return &TeamPrimaryChannelPlannerPlanBucketTaskAssignedToTaskBoardFormatClient{
+		Client: client,
+	}, nil
+}

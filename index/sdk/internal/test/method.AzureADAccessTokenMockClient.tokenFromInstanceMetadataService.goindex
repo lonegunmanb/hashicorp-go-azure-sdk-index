@@ -1,0 +1,54 @@
+package github.com/hashicorp/go-azure-sdk/sdk/internal/test
+import (
+	"bytes"
+	"fmt"
+	"io"
+	"net/http"
+	"net/url"
+	"regexp"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func (c *AzureADAccessTokenMockClient) tokenFromInstanceMetadataService(resp *http.Response) (*http.Response, error) {
+	if resp.Request.Method != http.MethodGet {
+		return nil, fmt.Errorf("unexpected request method, should be GET, received %s", resp.Request.Method)
+	}
+
+	if expected := "/metadata/identity/oauth2/token"; resp.Request.URL.Path != expected {
+		return nil, fmt.Errorf("unexpected URL path, expected %q, received %q", expected, resp.Request.URL.Path)
+	}
+
+	if resp.Request.Header.Get("Metadata") != "true" {
+		resp.StatusCode = http.StatusBadRequest
+		resp.Body = io.NopCloser(bytes.NewBufferString(`{"error":"missing or invalid 'Metadata' header"}`))
+		return resp, nil
+	}
+
+	apiVersion := resp.Request.Form.Get("api-version")
+	if apiVersion == "" {
+		resp.StatusCode = http.StatusBadRequest
+		resp.Body = io.NopCloser(bytes.NewBufferString(`{"error":"missing 'api-version' field"}`))
+		return resp, nil
+	}
+
+	clientId := resp.Request.Form.Get("client_id")
+	if clientId == "" {
+		resp.StatusCode = http.StatusBadRequest
+		resp.Body = io.NopCloser(bytes.NewBufferString(`{"error":"missing 'client_id' field"}`))
+		return resp, nil
+	}
+
+	resource := resp.Request.Form.Get("resource")
+	if resource == "" {
+		resp.StatusCode = http.StatusBadRequest
+		resp.Body = io.NopCloser(bytes.NewBufferString(`{"error":"missing 'resource' field"}`))
+		return resp, nil
+	}
+
+	body := fmt.Sprintf(`{"access_token":"%s","client_id":"%s","expires_in":"86391","expires_on":"1611701390","ext_expires_in":"86399","not_before":"1611614690","resource":"%s","token_type":"Bearer"}`,
+		DummyAccessToken, clientId, resource)
+
+	resp.Body = io.NopCloser(bytes.NewBufferString(body))
+
+	return resp, nil
+}

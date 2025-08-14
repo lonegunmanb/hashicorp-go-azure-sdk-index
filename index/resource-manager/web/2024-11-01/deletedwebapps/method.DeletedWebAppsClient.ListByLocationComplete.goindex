@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-11-01/deletedwebapps
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DeletedWebAppsClient) ListByLocationComplete(ctx context.Context, id ProviderLocationId) (ListByLocationCompleteResult, error) {
+	return c.ListByLocationCompleteMatchingPredicate(ctx, id, DeletedSiteOperationPredicate{})
+}

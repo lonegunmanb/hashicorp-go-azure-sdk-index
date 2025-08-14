@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/fabric/v2023_11_01
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/fabric/2023-11-01/fabriccapacities"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	fabricCapacitiesClient, err := fabriccapacities.NewFabricCapacitiesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building FabricCapacities client: %+v", err)
+	}
+	configureFunc(fabricCapacitiesClient.Client)
+
+	return &Client{
+		FabricCapacities: fabricCapacitiesClient,
+	}, nil
+}

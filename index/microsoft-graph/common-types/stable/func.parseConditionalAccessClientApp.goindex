@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseConditionalAccessClientApp(input string) (*ConditionalAccessClientApp, error) {
+	vals := map[string]ConditionalAccessClientApp{
+		"all":                         ConditionalAccessClientApp_All,
+		"browser":                     ConditionalAccessClientApp_Browser,
+		"eassupported":                ConditionalAccessClientApp_EasSupported,
+		"exchangeactivesync":          ConditionalAccessClientApp_ExchangeActiveSync,
+		"mobileappsanddesktopclients": ConditionalAccessClientApp_MobileAppsAndDesktopClients,
+		"other":                       ConditionalAccessClientApp_Other,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ConditionalAccessClientApp(input)
+	return &out, nil
+}

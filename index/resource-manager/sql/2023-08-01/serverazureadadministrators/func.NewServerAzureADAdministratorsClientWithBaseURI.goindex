@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/serverazureadadministrators
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewServerAzureADAdministratorsClientWithBaseURI(sdkApi sdkEnv.Api) (*ServerAzureADAdministratorsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "serverazureadadministrators", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ServerAzureADAdministratorsClient: %+v", err)
+	}
+
+	return &ServerAzureADAdministratorsClient{
+		Client: client,
+	}, nil
+}

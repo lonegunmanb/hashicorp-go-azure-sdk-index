@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devcenter/2025-02-01/projectpolicies
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePolicyAction(input string) (*PolicyAction, error) {
+	vals := map[string]PolicyAction{
+		"allow": PolicyActionAllow,
+		"deny":  PolicyActionDeny,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PolicyAction(input)
+	return &out, nil
+}

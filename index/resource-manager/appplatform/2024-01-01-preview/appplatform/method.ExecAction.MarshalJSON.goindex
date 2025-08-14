@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/appplatform/2024-01-01-preview/appplatform
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s ExecAction) MarshalJSON() ([]byte, error) {
+	type wrapper ExecAction
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ExecAction: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ExecAction: %+v", err)
+	}
+
+	decoded["type"] = "ExecAction"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ExecAction: %+v", err)
+	}
+
+	return encoded, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/permissionsmanagementscheduledpermissionsapproval
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPermissionsManagementScheduledPermissionsApprovalClientWithBaseURI(sdkApi sdkEnv.Api) (*PermissionsManagementScheduledPermissionsApprovalClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "permissionsmanagementscheduledpermissionsapproval", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PermissionsManagementScheduledPermissionsApprovalClient: %+v", err)
+	}
+
+	return &PermissionsManagementScheduledPermissionsApprovalClient{
+		Client: client,
+	}, nil
+}

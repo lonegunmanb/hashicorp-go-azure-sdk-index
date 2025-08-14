@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type PartnerSecurityPartnerSecurity struct {
+	// The security alerts or a vulnerability of a Cloud Solution Provider (CSP) partner's customer that the partner must be
+	// made aware of for further action.
+	SecurityAlerts *[]PartnerSecurityPartnerSecurityAlert `json:"securityAlerts,omitempty"`
+
+	// The security score calculated for the CSP partner and their customers.
+	SecurityScore *PartnerSecurityPartnerSecurityScore `json:"securityScore,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

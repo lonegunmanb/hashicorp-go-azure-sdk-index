@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2024-08-01/servers
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseGeoRedundantBackupEnum(input string) (*GeoRedundantBackupEnum, error) {
+	vals := map[string]GeoRedundantBackupEnum{
+		"disabled": GeoRedundantBackupEnumDisabled,
+		"enabled":  GeoRedundantBackupEnumEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := GeoRedundantBackupEnum(input)
+	return &out, nil
+}

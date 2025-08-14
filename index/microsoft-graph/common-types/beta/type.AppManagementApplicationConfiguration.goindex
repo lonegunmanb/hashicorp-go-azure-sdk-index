@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type AppManagementApplicationConfiguration struct {
+	// Property to restrict creation or update of apps based on their target signInAudience types.
+	Audiences *AudiencesConfiguration `json:"audiences,omitempty"`
+
+	// Configuration object for restrictions on identifierUris property for an application.
+	IdentifierUris *IdentifierUriConfiguration `json:"identifierUris,omitempty"`
+
+	// Fields inherited from AppManagementConfiguration
+
+	KeyCredentials *[]KeyCredentialConfiguration `json:"keyCredentials,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	PasswordCredentials *[]PasswordCredentialConfiguration `json:"passwordCredentials,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

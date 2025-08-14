@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2022-08-08/testjobstream
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c TestJobStreamClient) ListByTestJobComplete(ctx context.Context, id RunbookId, options ListByTestJobOperationOptions) (ListByTestJobCompleteResult, error) {
+	return c.ListByTestJobCompleteMatchingPredicate(ctx, id, options, JobStreamOperationPredicate{})
+}

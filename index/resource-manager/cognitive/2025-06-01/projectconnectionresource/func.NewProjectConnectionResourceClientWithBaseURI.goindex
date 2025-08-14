@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cognitive/2025-06-01/projectconnectionresource
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewProjectConnectionResourceClientWithBaseURI(sdkApi sdkEnv.Api) (*ProjectConnectionResourceClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "projectconnectionresource", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ProjectConnectionResourceClient: %+v", err)
+	}
+
+	return &ProjectConnectionResourceClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,76 @@
+package github.com/hashicorp/go-azure-sdk/sdk/auth
+import (
+	"bytes"
+	"context"
+	"crypto"
+	"crypto/ecdsa"
+	"crypto/rand"
+	"crypto/rsa"
+	"crypto/sha1"
+	"crypto/x509"
+	"encoding/base64"
+	"encoding/json"
+	"fmt"
+	"io"
+	"net/http"
+	"net/url"
+	"strconv"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/environments"
+	"github.com/hashicorp/go-uuid"
+	"golang.org/x/oauth2"
+)
+func (c *clientAssertionToken) encode(key crypto.PrivateKey) (*string, error) {
+	var err error
+
+	c.claims.NotBefore = time.Now().Unix()
+	c.claims.Expiry = time.Now().Add(time.Hour).Unix()
+	c.claims.JwtId, err = uuid.GenerateUUID()
+	if err != nil {
+		return nil, err
+	}
+
+	var hash = crypto.SHA256
+	var sign func([]byte, []byte) ([]byte, error)
+
+	// determine algorithm and signing function, fail for unsupported keys
+	if k, ok := key.(*ecdsa.PrivateKey); ok {
+		c.header.Algorithm = "ES256"
+		sign = func(data []byte, sum []byte) ([]byte, error) {
+			return ecdsa.SignASN1(rand.Reader, k, sum)
+		}
+	} else if k, ok := key.(*rsa.PrivateKey); ok {
+		c.header.Algorithm = "RS256"
+		sign = func(data []byte, sum []byte) ([]byte, error) {
+			return rsa.SignPKCS1v15(rand.Reader, k, hash, sum)
+		}
+	} else {
+		return nil, fmt.Errorf("unrecognized/unsupported key type: %T", key)
+	}
+
+	// encode the header
+	hs, err := c.header.encode()
+	if err != nil {
+		return nil, err
+	}
+
+	// encode the claims
+	cs, err := c.claims.encode()
+	if err != nil {
+		return nil, err
+	}
+
+	// sign the token
+	ss := fmt.Sprintf("%s.%s", hs, cs)
+	h := hash.New()
+	h.Write([]byte(ss))
+	sig, err := sign([]byte(ss), h.Sum(nil))
+	if err != nil {
+		return nil, err
+	}
+
+	ret := fmt.Sprintf("%s.%s", ss, base64.RawURLEncoding.EncodeToString(sig))
+	return &ret, nil
+}

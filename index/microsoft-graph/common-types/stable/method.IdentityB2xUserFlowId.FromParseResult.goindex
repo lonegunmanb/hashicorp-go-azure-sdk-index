@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *IdentityB2xUserFlowId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.B2xIdentityUserFlowId, ok = input.Parsed["b2xIdentityUserFlowId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "b2xIdentityUserFlowId", input)
+	}
+
+	return nil
+}

@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2021-11-01/eventhubsclusters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseClusterSkuName(input string) (*ClusterSkuName, error) {
+	vals := map[string]ClusterSkuName{
+		"dedicated": ClusterSkuNameDedicated,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ClusterSkuName(input)
+	return &out, nil
+}

@@ -1,0 +1,74 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *SwapShiftsChangeRequest) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		RecipientShiftId        nullable.Type[string]       `json:"recipientShiftId,omitempty"`
+		RecipientActionDateTime nullable.Type[string]       `json:"recipientActionDateTime,omitempty"`
+		RecipientActionMessage  nullable.Type[string]       `json:"recipientActionMessage,omitempty"`
+		RecipientUserId         nullable.Type[string]       `json:"recipientUserId,omitempty"`
+		SenderShiftId           nullable.Type[string]       `json:"senderShiftId,omitempty"`
+		AssignedTo              *ScheduleChangeRequestActor `json:"assignedTo,omitempty"`
+		ManagerActionDateTime   nullable.Type[string]       `json:"managerActionDateTime,omitempty"`
+		ManagerActionMessage    nullable.Type[string]       `json:"managerActionMessage,omitempty"`
+		ManagerUserId           nullable.Type[string]       `json:"managerUserId,omitempty"`
+		SenderDateTime          nullable.Type[string]       `json:"senderDateTime,omitempty"`
+		SenderMessage           nullable.Type[string]       `json:"senderMessage,omitempty"`
+		SenderUserId            nullable.Type[string]       `json:"senderUserId,omitempty"`
+		State                   *ScheduleChangeState        `json:"state,omitempty"`
+		CreatedDateTime         nullable.Type[string]       `json:"createdDateTime,omitempty"`
+		LastModifiedDateTime    nullable.Type[string]       `json:"lastModifiedDateTime,omitempty"`
+		Id                      *string                     `json:"id,omitempty"`
+		ODataId                 *string                     `json:"@odata.id,omitempty"`
+		ODataType               *string                     `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.RecipientShiftId = decoded.RecipientShiftId
+	s.AssignedTo = decoded.AssignedTo
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ManagerActionDateTime = decoded.ManagerActionDateTime
+	s.ManagerActionMessage = decoded.ManagerActionMessage
+	s.ManagerUserId = decoded.ManagerUserId
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.RecipientActionDateTime = decoded.RecipientActionDateTime
+	s.RecipientActionMessage = decoded.RecipientActionMessage
+	s.RecipientUserId = decoded.RecipientUserId
+	s.SenderDateTime = decoded.SenderDateTime
+	s.SenderMessage = decoded.SenderMessage
+	s.SenderShiftId = decoded.SenderShiftId
+	s.SenderUserId = decoded.SenderUserId
+	s.State = decoded.State
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling SwapShiftsChangeRequest into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["createdBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'CreatedBy' for 'SwapShiftsChangeRequest': %+v", err)
+		}
+		s.CreatedBy = impl
+	}
+
+	if v, ok := temp["lastModifiedBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'LastModifiedBy' for 'SwapShiftsChangeRequest': %+v", err)
+		}
+		s.LastModifiedBy = &impl
+	}
+
+	return nil
+}

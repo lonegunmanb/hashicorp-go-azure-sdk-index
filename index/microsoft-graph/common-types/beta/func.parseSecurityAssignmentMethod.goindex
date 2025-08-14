@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityAssignmentMethod(input string) (*SecurityAssignmentMethod, error) {
+	vals := map[string]SecurityAssignmentMethod{
+		"auto":       SecurityAssignmentMethod_Auto,
+		"privileged": SecurityAssignmentMethod_Privileged,
+		"standard":   SecurityAssignmentMethod_Standard,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityAssignmentMethod(input)
+	return &out, nil
+}

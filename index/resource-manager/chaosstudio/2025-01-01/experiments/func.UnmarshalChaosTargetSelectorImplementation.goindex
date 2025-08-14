@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2025-01-01/experiments
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalChaosTargetSelectorImplementation(input []byte) (ChaosTargetSelector, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling ChaosTargetSelector into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "List") {
+		var out ChaosTargetListSelector
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ChaosTargetListSelector: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "Query") {
+		var out ChaosTargetQuerySelector
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ChaosTargetQuerySelector: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseChaosTargetSelectorImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseChaosTargetSelectorImpl: %+v", err)
+	}
+
+	return RawChaosTargetSelectorImpl{
+		chaosTargetSelector: parent,
+		Type:                value,
+		Values:              temp,
+	}, nil
+
+}

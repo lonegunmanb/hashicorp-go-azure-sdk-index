@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-11-01/virtualappliancesites
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewVirtualApplianceSitesClientWithBaseURI(sdkApi sdkEnv.Api) (*VirtualApplianceSitesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "virtualappliancesites", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating VirtualApplianceSitesClient: %+v", err)
+	}
+
+	return &VirtualApplianceSitesClient{
+		Client: client,
+	}, nil
+}

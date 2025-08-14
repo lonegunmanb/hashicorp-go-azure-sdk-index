@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2024-09-01/hosts
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalHostPropertiesImplementation(input []byte) (HostProperties, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling HostProperties into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["kind"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "General") {
+		var out GeneralHostProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into GeneralHostProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "Specialized") {
+		var out SpecializedHostProperties
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SpecializedHostProperties: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseHostPropertiesImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseHostPropertiesImpl: %+v", err)
+	}
+
+	return RawHostPropertiesImpl{
+		hostProperties: parent,
+		Type:           value,
+		Values:         temp,
+	}, nil
+
+}

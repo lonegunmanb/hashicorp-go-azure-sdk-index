@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dynatrace/2024-04-24/monitors
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c MonitorsClient) UpgradePlanThenPoll(ctx context.Context, id MonitorId, input UpgradePlanRequest) error {
+	result, err := c.UpgradePlan(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing UpgradePlan: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after UpgradePlan: %+v", err)
+	}
+
+	return nil
+}

@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/virtualendpointsnapshot
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c VirtualEndpointSnapshotClient) ListVirtualEndpointSnapshotsCompleteMatchingPredicate(ctx context.Context, options ListVirtualEndpointSnapshotsOperationOptions, predicate CloudPCSnapshotOperationPredicate) (result ListVirtualEndpointSnapshotsCompleteResult, err error) {
+	items := make([]beta.CloudPCSnapshot, 0)
+
+	resp, err := c.ListVirtualEndpointSnapshots(ctx, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListVirtualEndpointSnapshotsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

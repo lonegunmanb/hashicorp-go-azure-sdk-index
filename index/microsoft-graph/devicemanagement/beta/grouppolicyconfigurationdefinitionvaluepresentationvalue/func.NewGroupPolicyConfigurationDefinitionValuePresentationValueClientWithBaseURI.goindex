@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/grouppolicyconfigurationdefinitionvaluepresentationvalue
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewGroupPolicyConfigurationDefinitionValuePresentationValueClientWithBaseURI(sdkApi sdkEnv.Api) (*GroupPolicyConfigurationDefinitionValuePresentationValueClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "grouppolicyconfigurationdefinitionvaluepresentationvalue", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating GroupPolicyConfigurationDefinitionValuePresentationValueClient: %+v", err)
+	}
+
+	return &GroupPolicyConfigurationDefinitionValuePresentationValueClient{
+		Client: client,
+	}, nil
+}

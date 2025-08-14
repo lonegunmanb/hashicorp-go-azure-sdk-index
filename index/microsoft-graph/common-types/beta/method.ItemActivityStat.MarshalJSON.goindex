@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s ItemActivityStat) MarshalJSON() ([]byte, error) {
+	type wrapper ItemActivityStat
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ItemActivityStat: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ItemActivityStat: %+v", err)
+	}
+
+	delete(decoded, "access")
+	delete(decoded, "create")
+	delete(decoded, "delete")
+	delete(decoded, "edit")
+	delete(decoded, "endDateTime")
+	delete(decoded, "incompleteData")
+	delete(decoded, "isTrending")
+	delete(decoded, "move")
+	delete(decoded, "startDateTime")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.itemActivityStat"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ItemActivityStat: %+v", err)
+	}
+
+	return encoded, nil
+}

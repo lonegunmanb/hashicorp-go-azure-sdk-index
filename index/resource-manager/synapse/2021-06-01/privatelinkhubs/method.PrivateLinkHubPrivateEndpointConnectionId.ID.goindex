@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/privatelinkhubs
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id PrivateLinkHubPrivateEndpointConnectionId) ID() string {
+	fmtString := "/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Synapse/privateLinkHubs/%s/privateEndpointConnections/%s"
+	return fmt.Sprintf(fmtString, id.SubscriptionId, id.ResourceGroupName, id.PrivateLinkHubName, id.PrivateEndpointConnectionName)
+}

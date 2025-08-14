@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-11-01/scopeconnections
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseScopeConnectionState(input string) (*ScopeConnectionState, error) {
+	vals := map[string]ScopeConnectionState{
+		"conflict":  ScopeConnectionStateConflict,
+		"connected": ScopeConnectionStateConnected,
+		"pending":   ScopeConnectionStatePending,
+		"rejected":  ScopeConnectionStateRejected,
+		"revoked":   ScopeConnectionStateRevoked,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ScopeConnectionState(input)
+	return &out, nil
+}

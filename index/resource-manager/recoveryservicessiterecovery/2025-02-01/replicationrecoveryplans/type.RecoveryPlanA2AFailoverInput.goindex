@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationrecoveryplans
+import (
+	"encoding/json"
+	"fmt"
+)
+type RecoveryPlanA2AFailoverInput struct {
+	CloudServiceCreationOption *string                 `json:"cloudServiceCreationOption,omitempty"`
+	MultiVMSyncPointOption     *MultiVMSyncPointOption `json:"multiVmSyncPointOption,omitempty"`
+	RecoveryPointType          A2ARpRecoveryPointType  `json:"recoveryPointType"`
+
+	// Fields inherited from RecoveryPlanProviderSpecificFailoverInput
+
+	InstanceType string `json:"instanceType"`
+}

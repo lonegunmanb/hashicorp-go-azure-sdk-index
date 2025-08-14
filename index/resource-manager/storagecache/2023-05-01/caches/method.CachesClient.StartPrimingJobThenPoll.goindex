@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagecache/2023-05-01/caches
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c CachesClient) StartPrimingJobThenPoll(ctx context.Context, id CacheId, input PrimingJob) error {
+	result, err := c.StartPrimingJob(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing StartPrimingJob: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after StartPrimingJob: %+v", err)
+	}
+
+	return nil
+}

@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-09-01/connectionmonitors
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseOutputType(input string) (*OutputType, error) {
+	vals := map[string]OutputType{
+		"workspace": OutputTypeWorkspace,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := OutputType(input)
+	return &out, nil
+}

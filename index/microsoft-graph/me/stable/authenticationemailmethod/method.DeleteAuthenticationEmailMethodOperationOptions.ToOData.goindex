@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/authenticationemailmethod
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o DeleteAuthenticationEmailMethodOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}

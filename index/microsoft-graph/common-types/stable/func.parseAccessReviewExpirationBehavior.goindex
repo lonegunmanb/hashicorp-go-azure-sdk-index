@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAccessReviewExpirationBehavior(input string) (*AccessReviewExpirationBehavior, error) {
+	vals := map[string]AccessReviewExpirationBehavior{
+		"acceptaccessrecommendation": AccessReviewExpirationBehavior_AcceptAccessRecommendation,
+		"keepaccess":                 AccessReviewExpirationBehavior_KeepAccess,
+		"removeaccess":               AccessReviewExpirationBehavior_RemoveAccess,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AccessReviewExpirationBehavior(input)
+	return &out, nil
+}

@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamchannelmember
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c JoinedTeamChannelMemberClient) RemoveJoinedTeamChannelMembersComplete(ctx context.Context, id stable.MeJoinedTeamIdChannelId, input RemoveJoinedTeamChannelMembersRequest, options RemoveJoinedTeamChannelMembersOperationOptions) (RemoveJoinedTeamChannelMembersCompleteResult, error) {
+	return c.RemoveJoinedTeamChannelMembersCompleteMatchingPredicate(ctx, id, input, options, ActionResultPartOperationPredicate{})
+}

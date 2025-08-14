@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityProtocolType(input string) (*SecurityProtocolType, error) {
+	vals := map[string]SecurityProtocolType{
+		"tcp": SecurityProtocolType_Tcp,
+		"udp": SecurityProtocolType_Udp,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityProtocolType(input)
+	return &out, nil
+}

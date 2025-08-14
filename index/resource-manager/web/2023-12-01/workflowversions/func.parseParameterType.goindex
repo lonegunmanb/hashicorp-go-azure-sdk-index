@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/workflowversions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseParameterType(input string) (*ParameterType, error) {
+	vals := map[string]ParameterType{
+		"array":        ParameterTypeArray,
+		"bool":         ParameterTypeBool,
+		"float":        ParameterTypeFloat,
+		"int":          ParameterTypeInt,
+		"notspecified": ParameterTypeNotSpecified,
+		"object":       ParameterTypeObject,
+		"secureobject": ParameterTypeSecureObject,
+		"securestring": ParameterTypeSecureString,
+		"string":       ParameterTypeString,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ParameterType(input)
+	return &out, nil
+}

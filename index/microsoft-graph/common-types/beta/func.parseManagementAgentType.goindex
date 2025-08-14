@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseManagementAgentType(input string) (*ManagementAgentType, error) {
+	vals := map[string]ManagementAgentType{
+		"configurationmanagerclient":        ManagementAgentType_ConfigurationManagerClient,
+		"configurationmanagerclientmdm":     ManagementAgentType_ConfigurationManagerClientMdm,
+		"configurationmanagerclientmdmeas":  ManagementAgentType_ConfigurationManagerClientMdmEas,
+		"eas":                               ManagementAgentType_Eas,
+		"easintuneclient":                   ManagementAgentType_EasIntuneClient,
+		"easmdm":                            ManagementAgentType_EasMdm,
+		"google":                            ManagementAgentType_Google,
+		"googleclouddevicepolicycontroller": ManagementAgentType_GoogleCloudDevicePolicyController,
+		"intuneaosp":                        ManagementAgentType_IntuneAosp,
+		"intuneclient":                      ManagementAgentType_IntuneClient,
+		"jamf":                              ManagementAgentType_Jamf,
+		"mdm":                               ManagementAgentType_Mdm,
+		"microsoft365managedmdm":            ManagementAgentType_Microsoft365ManagedMdm,
+		"mssense":                           ManagementAgentType_MsSense,
+		"unknown":                           ManagementAgentType_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagementAgentType(input)
+	return &out, nil
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/routes
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAFDEndpointProtocols(input string) (*AFDEndpointProtocols, error) {
+	vals := map[string]AFDEndpointProtocols{
+		"http":  AFDEndpointProtocolsHTTP,
+		"https": AFDEndpointProtocolsHTTPS,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AFDEndpointProtocols(input)
+	return &out, nil
+}

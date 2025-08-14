@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerservice/2024-04-01/fleetupdatestrategies
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c FleetUpdateStrategiesClient) ListByFleetCompleteMatchingPredicate(ctx context.Context, id FleetId, predicate FleetUpdateStrategyOperationPredicate) (result ListByFleetCompleteResult, err error) {
+	items := make([]FleetUpdateStrategy, 0)
+
+	resp, err := c.ListByFleet(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByFleetCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

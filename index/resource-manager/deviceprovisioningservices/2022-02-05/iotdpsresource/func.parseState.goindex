@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/deviceprovisioningservices/2022-02-05/iotdpsresource
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseState(input string) (*State, error) {
+	vals := map[string]State{
+		"activating":       StateActivating,
+		"activationfailed": StateActivationFailed,
+		"active":           StateActive,
+		"deleted":          StateDeleted,
+		"deleting":         StateDeleting,
+		"deletionfailed":   StateDeletionFailed,
+		"failingover":      StateFailingOver,
+		"failoverfailed":   StateFailoverFailed,
+		"resuming":         StateResuming,
+		"suspended":        StateSuspended,
+		"suspending":       StateSuspending,
+		"transitioning":    StateTransitioning,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := State(input)
+	return &out, nil
+}

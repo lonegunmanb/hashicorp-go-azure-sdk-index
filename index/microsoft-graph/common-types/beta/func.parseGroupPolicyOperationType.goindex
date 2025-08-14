@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseGroupPolicyOperationType(input string) (*GroupPolicyOperationType, error) {
+	vals := map[string]GroupPolicyOperationType{
+		"addlanguagefiles":    GroupPolicyOperationType_AddLanguageFiles,
+		"none":                GroupPolicyOperationType_None,
+		"remove":              GroupPolicyOperationType_Remove,
+		"removelanguagefiles": GroupPolicyOperationType_RemoveLanguageFiles,
+		"updatelanguagefiles": GroupPolicyOperationType_UpdateLanguageFiles,
+		"upload":              GroupPolicyOperationType_Upload,
+		"uploadnewversion":    GroupPolicyOperationType_UploadNewVersion,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := GroupPolicyOperationType(input)
+	return &out, nil
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/databaseautomatictuning
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAutomaticTuningOptionModeDesired(input string) (*AutomaticTuningOptionModeDesired, error) {
+	vals := map[string]AutomaticTuningOptionModeDesired{
+		"default": AutomaticTuningOptionModeDesiredDefault,
+		"off":     AutomaticTuningOptionModeDesiredOff,
+		"on":      AutomaticTuningOptionModeDesiredOn,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AutomaticTuningOptionModeDesired(input)
+	return &out, nil
+}

@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSecurityScopeType(input string) (*SecurityScopeType, error) {
+	vals := map[string]SecurityScopeType{
+		"devicegroup": SecurityScopeType_DeviceGroup,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SecurityScopeType(input)
+	return &out, nil
+}

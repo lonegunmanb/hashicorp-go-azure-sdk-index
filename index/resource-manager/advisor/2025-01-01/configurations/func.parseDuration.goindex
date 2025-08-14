@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/advisor/2025-01-01/configurations
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDuration(input string) (*Duration, error) {
+	vals := map[string]Duration{
+		"90": DurationNineZero,
+		"14": DurationOneFour,
+		"7":  DurationSeven,
+		"60": DurationSixZero,
+		"30": DurationThreeZero,
+		"21": DurationTwoOne,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Duration(input)
+	return &out, nil
+}

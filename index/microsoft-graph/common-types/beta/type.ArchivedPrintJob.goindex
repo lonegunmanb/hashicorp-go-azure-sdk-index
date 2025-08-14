@@ -1,0 +1,58 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ArchivedPrintJob struct {
+	// True if the job was acquired by a printer; false otherwise. Read-only.
+	AcquiredByPrinter *bool `json:"acquiredByPrinter,omitempty"`
+
+	// The dateTimeOffset when the job was acquired by the printer, if any. Read-only.
+	AcquiredDateTime nullable.Type[string] `json:"acquiredDateTime,omitempty"`
+
+	// The number of black and white pages that were printed. Read-only.
+	BlackAndWhitePageCount *int64 `json:"blackAndWhitePageCount,omitempty"`
+
+	// The number of color pages that were printed. Read-only.
+	ColorPageCount *int64 `json:"colorPageCount,omitempty"`
+
+	// The dateTimeOffset when the job was completed, canceled, or aborted. Read-only.
+	CompletionDateTime nullable.Type[string] `json:"completionDateTime,omitempty"`
+
+	// The number of copies that were printed. Read-only.
+	CopiesPrinted *int64 `json:"copiesPrinted,omitempty"`
+
+	// The user who created the print job. Read-only.
+	CreatedBy *UserIdentity `json:"createdBy,omitempty"`
+
+	// The dateTimeOffset when the job was created. Read-only.
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+
+	// The number of duplex (double-sided) pages that were printed. Read-only.
+	DuplexPageCount *int64 `json:"duplexPageCount,omitempty"`
+
+	// The archived print job's GUID. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The total number of pages that were printed. Read-only.
+	PageCount *int64 `json:"pageCount,omitempty"`
+
+	// The printer ID that the job was queued for. Read-only.
+	PrinterId nullable.Type[string] `json:"printerId,omitempty"`
+
+	// The printer name that the job was queued for. Read-only.
+	PrinterName nullable.Type[string] `json:"printerName,omitempty"`
+
+	ProcessingState *PrintJobProcessingState `json:"processingState,omitempty"`
+
+	// The number of simplex (single-sided) pages that were printed. Read-only.
+	SimplexPageCount *int64 `json:"simplexPageCount,omitempty"`
+}

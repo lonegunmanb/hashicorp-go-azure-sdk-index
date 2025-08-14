@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2024-10-01/recoverypointsrecommendedformove
+import (
+	"encoding/json"
+	"fmt"
+)
+type AzureFileShareRecoveryPoint struct {
+	FileShareSnapshotUri     *string                         `json:"fileShareSnapshotUri,omitempty"`
+	RecoveryPointProperties  *RecoveryPointProperties        `json:"recoveryPointProperties,omitempty"`
+	RecoveryPointSizeInGB    *int64                          `json:"recoveryPointSizeInGB,omitempty"`
+	RecoveryPointTierDetails *[]RecoveryPointTierInformation `json:"recoveryPointTierDetails,omitempty"`
+	RecoveryPointTime        *string                         `json:"recoveryPointTime,omitempty"`
+	RecoveryPointType        *string                         `json:"recoveryPointType,omitempty"`
+
+	// Fields inherited from RecoveryPoint
+
+	ObjectType string `json:"objectType"`
+}

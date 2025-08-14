@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/firewallpolicies
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseFirewallPolicyFilterRuleCollectionActionType(input string) (*FirewallPolicyFilterRuleCollectionActionType, error) {
+	vals := map[string]FirewallPolicyFilterRuleCollectionActionType{
+		"allow": FirewallPolicyFilterRuleCollectionActionTypeAllow,
+		"deny":  FirewallPolicyFilterRuleCollectionActionTypeDeny,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FirewallPolicyFilterRuleCollectionActionType(input)
+	return &out, nil
+}

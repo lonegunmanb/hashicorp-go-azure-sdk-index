@@ -1,0 +1,36 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseManagedDeviceRemoteAction(input string) (*ManagedDeviceRemoteAction, error) {
+	vals := map[string]ManagedDeviceRemoteAction{
+		"activatedeviceesim":        ManagedDeviceRemoteAction_ActivateDeviceEsim,
+		"collectdiagnostics":        ManagedDeviceRemoteAction_CollectDiagnostics,
+		"customtextnotification":    ManagedDeviceRemoteAction_CustomTextNotification,
+		"delete":                    ManagedDeviceRemoteAction_Delete,
+		"deprovision":               ManagedDeviceRemoteAction_Deprovision,
+		"disable":                   ManagedDeviceRemoteAction_Disable,
+		"fullscan":                  ManagedDeviceRemoteAction_FullScan,
+		"initiatedeviceattestation": ManagedDeviceRemoteAction_InitiateDeviceAttestation,
+		"initiatemobiledevicemanagementkeyrecovery": ManagedDeviceRemoteAction_InitiateMobileDeviceManagementKeyRecovery,
+		"initiateondemandproactiveremediation":      ManagedDeviceRemoteAction_InitiateOnDemandProactiveRemediation,
+		"movedevicetoorganizationalunit":            ManagedDeviceRemoteAction_MoveDeviceToOrganizationalUnit,
+		"quickscan":                                 ManagedDeviceRemoteAction_QuickScan,
+		"rebootnow":                                 ManagedDeviceRemoteAction_RebootNow,
+		"reenable":                                  ManagedDeviceRemoteAction_Reenable,
+		"retire":                                    ManagedDeviceRemoteAction_Retire,
+		"setdevicename":                             ManagedDeviceRemoteAction_SetDeviceName,
+		"signatureupdate":                           ManagedDeviceRemoteAction_SignatureUpdate,
+		"syncdevice":                                ManagedDeviceRemoteAction_SyncDevice,
+		"wipe":                                      ManagedDeviceRemoteAction_Wipe,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagedDeviceRemoteAction(input)
+	return &out, nil
+}

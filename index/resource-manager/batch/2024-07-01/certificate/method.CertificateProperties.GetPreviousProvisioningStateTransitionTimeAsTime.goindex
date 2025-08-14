@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/batch/2024-07-01/certificate
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *CertificateProperties) GetPreviousProvisioningStateTransitionTimeAsTime() (*time.Time, error) {
+	if o.PreviousProvisioningStateTransitionTime == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.PreviousProvisioningStateTransitionTime, "2006-01-02T15:04:05Z07:00")
+}

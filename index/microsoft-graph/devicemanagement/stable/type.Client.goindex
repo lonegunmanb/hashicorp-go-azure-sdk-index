@@ -1,0 +1,239 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/applepushnotificationcertificate"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/auditevent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/compliancemanagementpartner"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/conditionalaccesssetting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/detectedapp"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/detectedappmanageddevice"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/devicecategory"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/devicecompliancepolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/devicecompliancepolicyassignment"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/devicecompliancepolicydevicesettingstatesummary"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/devicecompliancepolicydevicestatesummary"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/devicecompliancepolicydevicestatus"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/devicecompliancepolicydevicestatusoverview"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/devicecompliancepolicyscheduledactionsforrule"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/devicecompliancepolicyscheduledactionsforrulescheduledactionconfiguration"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/devicecompliancepolicysettingstatesummary"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/devicecompliancepolicysettingstatesummarydevicecompliancesettingstate"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/devicecompliancepolicyuserstatus"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/devicecompliancepolicyuserstatusoverview"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/deviceconfiguration"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/deviceconfigurationassignment"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/deviceconfigurationdevicesettingstatesummary"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/deviceconfigurationdevicestatesummary"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/deviceconfigurationdevicestatus"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/deviceconfigurationdevicestatusoverview"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/deviceconfigurationuserstatus"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/deviceconfigurationuserstatusoverview"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/deviceenrollmentconfiguration"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/deviceenrollmentconfigurationassignment"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/devicemanagement"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/devicemanagementpartner"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/exchangeconnector"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/importedwindowsautopilotdeviceidentity"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/iosupdatestatus"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/manageddevice"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/manageddevicedevicecategory"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/manageddevicedevicecompliancepolicystate"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/manageddevicedeviceconfigurationstate"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/manageddevicelogcollectionrequest"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/manageddeviceoverview"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/manageddeviceuser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/manageddevicewindowsprotectionstate"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/manageddevicewindowsprotectionstatedetectedmalwarestate"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/mobileapptroubleshootingevent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/mobileapptroubleshootingeventapplogcollectionrequest"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/mobilethreatdefenseconnector"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/notificationmessagetemplate"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/notificationmessagetemplatelocalizednotificationmessage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/rebootdevicemanagementuserexperienceanalyticsbaselineanalyticsmetrics"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/remoteassistancepartner"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/report"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/reportexportjob"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/resourceoperation"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/roleassignment"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/roleassignmentroledefinition"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/roledefinition"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/roledefinitionroleassignment"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/roledefinitionroleassignmentroledefinition"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/softwareupdatestatussummary"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/telecomexpensemanagementpartner"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/termsandcondition"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/termsandconditionacceptancestatus"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/termsandconditionacceptancestatustermsandcondition"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/termsandconditionassignment"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/troubleshootingevent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsapphealthapplicationperformance"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsapphealthapplicationperformancebyappversiondetail"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsapphealthapplicationperformancebyappversiondeviceid"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsapphealthapplicationperformancebyosversion"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsapphealthdevicemodelperformance"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsapphealthdeviceperformance"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsapphealthdeviceperformancedetail"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsapphealthosversionperformance"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsapphealthoverview"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsapphealthoverviewmetricvalue"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsbaseline"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsbaselineapphealthmetric"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsbaselinebatteryhealthmetric"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsbaselinebestpracticesmetric"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsbaselinedevicebootperformancemetric"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsbaselineresourceperformancemetric"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsbaselineworkfromanywheremetric"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticscategory"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticscategorymetricvalue"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsdeviceperformance"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsdevicescore"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsdevicestartuphistory"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsdevicestartupprocess"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsdevicestartupprocessperformance"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsmetrichistory"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsmodelscore"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsoverview"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsscorehistory"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsworkfromanywherehardwarereadinessmetric"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsworkfromanywheremetric"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsworkfromanywheremetricmetricdevice"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/userexperienceanalyticsworkfromanywheremodelperformance"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/virtualendpoint"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/virtualendpointauditevent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/virtualendpointcloudpc"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/virtualendpointdeviceimage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/virtualendpointgalleryimage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/virtualendpointonpremisesconnection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/virtualendpointprovisioningpolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/virtualendpointprovisioningpolicyassignment"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/virtualendpointprovisioningpolicyassignmentassigneduser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/virtualendpointprovisioningpolicyassignmentassignedusermailboxsetting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/virtualendpointprovisioningpolicyassignmentassigneduserserviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/virtualendpointusersetting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/virtualendpointusersettingassignment"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/windowsautopilotdeviceidentity"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/windowsinformationprotectionapplearningsummary"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/windowsinformationprotectionnetworklearningsummary"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/windowsmalwareinformation"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/windowsmalwareinformationdevicemalwarestate"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	ApplePushNotificationCertificate                                                *applepushnotificationcertificate.ApplePushNotificationCertificateClient
+	AuditEvent                                                                      *auditevent.AuditEventClient
+	ComplianceManagementPartner                                                     *compliancemanagementpartner.ComplianceManagementPartnerClient
+	ConditionalAccessSetting                                                        *conditionalaccesssetting.ConditionalAccessSettingClient
+	DetectedApp                                                                     *detectedapp.DetectedAppClient
+	DetectedAppManagedDevice                                                        *detectedappmanageddevice.DetectedAppManagedDeviceClient
+	DeviceCategory                                                                  *devicecategory.DeviceCategoryClient
+	DeviceCompliancePolicy                                                          *devicecompliancepolicy.DeviceCompliancePolicyClient
+	DeviceCompliancePolicyAssignment                                                *devicecompliancepolicyassignment.DeviceCompliancePolicyAssignmentClient
+	DeviceCompliancePolicyDeviceSettingStateSummary                                 *devicecompliancepolicydevicesettingstatesummary.DeviceCompliancePolicyDeviceSettingStateSummaryClient
+	DeviceCompliancePolicyDeviceStateSummary                                        *devicecompliancepolicydevicestatesummary.DeviceCompliancePolicyDeviceStateSummaryClient
+	DeviceCompliancePolicyDeviceStatus                                              *devicecompliancepolicydevicestatus.DeviceCompliancePolicyDeviceStatusClient
+	DeviceCompliancePolicyDeviceStatusOverview                                      *devicecompliancepolicydevicestatusoverview.DeviceCompliancePolicyDeviceStatusOverviewClient
+	DeviceCompliancePolicyScheduledActionsForRule                                   *devicecompliancepolicyscheduledactionsforrule.DeviceCompliancePolicyScheduledActionsForRuleClient
+	DeviceCompliancePolicyScheduledActionsForRuleScheduledActionConfiguration       *devicecompliancepolicyscheduledactionsforrulescheduledactionconfiguration.DeviceCompliancePolicyScheduledActionsForRuleScheduledActionConfigurationClient
+	DeviceCompliancePolicySettingStateSummary                                       *devicecompliancepolicysettingstatesummary.DeviceCompliancePolicySettingStateSummaryClient
+	DeviceCompliancePolicySettingStateSummaryDeviceComplianceSettingState           *devicecompliancepolicysettingstatesummarydevicecompliancesettingstate.DeviceCompliancePolicySettingStateSummaryDeviceComplianceSettingStateClient
+	DeviceCompliancePolicyUserStatus                                                *devicecompliancepolicyuserstatus.DeviceCompliancePolicyUserStatusClient
+	DeviceCompliancePolicyUserStatusOverview                                        *devicecompliancepolicyuserstatusoverview.DeviceCompliancePolicyUserStatusOverviewClient
+	DeviceConfiguration                                                             *deviceconfiguration.DeviceConfigurationClient
+	DeviceConfigurationAssignment                                                   *deviceconfigurationassignment.DeviceConfigurationAssignmentClient
+	DeviceConfigurationDeviceSettingStateSummary                                    *deviceconfigurationdevicesettingstatesummary.DeviceConfigurationDeviceSettingStateSummaryClient
+	DeviceConfigurationDeviceStateSummary                                           *deviceconfigurationdevicestatesummary.DeviceConfigurationDeviceStateSummaryClient
+	DeviceConfigurationDeviceStatus                                                 *deviceconfigurationdevicestatus.DeviceConfigurationDeviceStatusClient
+	DeviceConfigurationDeviceStatusOverview                                         *deviceconfigurationdevicestatusoverview.DeviceConfigurationDeviceStatusOverviewClient
+	DeviceConfigurationUserStatus                                                   *deviceconfigurationuserstatus.DeviceConfigurationUserStatusClient
+	DeviceConfigurationUserStatusOverview                                           *deviceconfigurationuserstatusoverview.DeviceConfigurationUserStatusOverviewClient
+	DeviceEnrollmentConfiguration                                                   *deviceenrollmentconfiguration.DeviceEnrollmentConfigurationClient
+	DeviceEnrollmentConfigurationAssignment                                         *deviceenrollmentconfigurationassignment.DeviceEnrollmentConfigurationAssignmentClient
+	DeviceManagement                                                                *devicemanagement.DeviceManagementClient
+	DeviceManagementPartner                                                         *devicemanagementpartner.DeviceManagementPartnerClient
+	ExchangeConnector                                                               *exchangeconnector.ExchangeConnectorClient
+	ImportedWindowsAutopilotDeviceIdentity                                          *importedwindowsautopilotdeviceidentity.ImportedWindowsAutopilotDeviceIdentityClient
+	IosUpdateStatus                                                                 *iosupdatestatus.IosUpdateStatusClient
+	ManagedDevice                                                                   *manageddevice.ManagedDeviceClient
+	ManagedDeviceDeviceCategory                                                     *manageddevicedevicecategory.ManagedDeviceDeviceCategoryClient
+	ManagedDeviceDeviceCompliancePolicyState                                        *manageddevicedevicecompliancepolicystate.ManagedDeviceDeviceCompliancePolicyStateClient
+	ManagedDeviceDeviceConfigurationState                                           *manageddevicedeviceconfigurationstate.ManagedDeviceDeviceConfigurationStateClient
+	ManagedDeviceLogCollectionRequest                                               *manageddevicelogcollectionrequest.ManagedDeviceLogCollectionRequestClient
+	ManagedDeviceOverview                                                           *manageddeviceoverview.ManagedDeviceOverviewClient
+	ManagedDeviceUser                                                               *manageddeviceuser.ManagedDeviceUserClient
+	ManagedDeviceWindowsProtectionState                                             *manageddevicewindowsprotectionstate.ManagedDeviceWindowsProtectionStateClient
+	ManagedDeviceWindowsProtectionStateDetectedMalwareState                         *manageddevicewindowsprotectionstatedetectedmalwarestate.ManagedDeviceWindowsProtectionStateDetectedMalwareStateClient
+	MobileAppTroubleshootingEvent                                                   *mobileapptroubleshootingevent.MobileAppTroubleshootingEventClient
+	MobileAppTroubleshootingEventAppLogCollectionRequest                            *mobileapptroubleshootingeventapplogcollectionrequest.MobileAppTroubleshootingEventAppLogCollectionRequestClient
+	MobileThreatDefenseConnector                                                    *mobilethreatdefenseconnector.MobileThreatDefenseConnectorClient
+	NotificationMessageTemplate                                                     *notificationmessagetemplate.NotificationMessageTemplateClient
+	NotificationMessageTemplateLocalizedNotificationMessage                         *notificationmessagetemplatelocalizednotificationmessage.NotificationMessageTemplateLocalizedNotificationMessageClient
+	RebootDeviceManagementUserExperienceAnalyticsBaselineAnalyticsMetrics           *rebootdevicemanagementuserexperienceanalyticsbaselineanalyticsmetrics.RebootDeviceManagementUserExperienceAnalyticsBaselineAnalyticsMetricsClient
+	RemoteAssistancePartner                                                         *remoteassistancepartner.RemoteAssistancePartnerClient
+	Report                                                                          *report.ReportClient
+	ReportExportJob                                                                 *reportexportjob.ReportExportJobClient
+	ResourceOperation                                                               *resourceoperation.ResourceOperationClient
+	RoleAssignment                                                                  *roleassignment.RoleAssignmentClient
+	RoleAssignmentRoleDefinition                                                    *roleassignmentroledefinition.RoleAssignmentRoleDefinitionClient
+	RoleDefinition                                                                  *roledefinition.RoleDefinitionClient
+	RoleDefinitionRoleAssignment                                                    *roledefinitionroleassignment.RoleDefinitionRoleAssignmentClient
+	RoleDefinitionRoleAssignmentRoleDefinition                                      *roledefinitionroleassignmentroledefinition.RoleDefinitionRoleAssignmentRoleDefinitionClient
+	SoftwareUpdateStatusSummary                                                     *softwareupdatestatussummary.SoftwareUpdateStatusSummaryClient
+	TelecomExpenseManagementPartner                                                 *telecomexpensemanagementpartner.TelecomExpenseManagementPartnerClient
+	TermsAndCondition                                                               *termsandcondition.TermsAndConditionClient
+	TermsAndConditionAcceptanceStatus                                               *termsandconditionacceptancestatus.TermsAndConditionAcceptanceStatusClient
+	TermsAndConditionAcceptanceStatusTermsAndCondition                              *termsandconditionacceptancestatustermsandcondition.TermsAndConditionAcceptanceStatusTermsAndConditionClient
+	TermsAndConditionAssignment                                                     *termsandconditionassignment.TermsAndConditionAssignmentClient
+	TroubleshootingEvent                                                            *troubleshootingevent.TroubleshootingEventClient
+	UserExperienceAnalyticsAppHealthApplicationPerformance                          *userexperienceanalyticsapphealthapplicationperformance.UserExperienceAnalyticsAppHealthApplicationPerformanceClient
+	UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetail        *userexperienceanalyticsapphealthapplicationperformancebyappversiondetail.UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetailClient
+	UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId      *userexperienceanalyticsapphealthapplicationperformancebyappversiondeviceid.UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdClient
+	UserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersion               *userexperienceanalyticsapphealthapplicationperformancebyosversion.UserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersionClient
+	UserExperienceAnalyticsAppHealthDeviceModelPerformance                          *userexperienceanalyticsapphealthdevicemodelperformance.UserExperienceAnalyticsAppHealthDeviceModelPerformanceClient
+	UserExperienceAnalyticsAppHealthDevicePerformance                               *userexperienceanalyticsapphealthdeviceperformance.UserExperienceAnalyticsAppHealthDevicePerformanceClient
+	UserExperienceAnalyticsAppHealthDevicePerformanceDetail                         *userexperienceanalyticsapphealthdeviceperformancedetail.UserExperienceAnalyticsAppHealthDevicePerformanceDetailClient
+	UserExperienceAnalyticsAppHealthOSVersionPerformance                            *userexperienceanalyticsapphealthosversionperformance.UserExperienceAnalyticsAppHealthOSVersionPerformanceClient
+	UserExperienceAnalyticsAppHealthOverview                                        *userexperienceanalyticsapphealthoverview.UserExperienceAnalyticsAppHealthOverviewClient
+	UserExperienceAnalyticsAppHealthOverviewMetricValue                             *userexperienceanalyticsapphealthoverviewmetricvalue.UserExperienceAnalyticsAppHealthOverviewMetricValueClient
+	UserExperienceAnalyticsBaseline                                                 *userexperienceanalyticsbaseline.UserExperienceAnalyticsBaselineClient
+	UserExperienceAnalyticsBaselineAppHealthMetric                                  *userexperienceanalyticsbaselineapphealthmetric.UserExperienceAnalyticsBaselineAppHealthMetricClient
+	UserExperienceAnalyticsBaselineBatteryHealthMetric                              *userexperienceanalyticsbaselinebatteryhealthmetric.UserExperienceAnalyticsBaselineBatteryHealthMetricClient
+	UserExperienceAnalyticsBaselineBestPracticesMetric                              *userexperienceanalyticsbaselinebestpracticesmetric.UserExperienceAnalyticsBaselineBestPracticesMetricClient
+	UserExperienceAnalyticsBaselineDeviceBootPerformanceMetric                      *userexperienceanalyticsbaselinedevicebootperformancemetric.UserExperienceAnalyticsBaselineDeviceBootPerformanceMetricClient
+	UserExperienceAnalyticsBaselineResourcePerformanceMetric                        *userexperienceanalyticsbaselineresourceperformancemetric.UserExperienceAnalyticsBaselineResourcePerformanceMetricClient
+	UserExperienceAnalyticsBaselineWorkFromAnywhereMetric                           *userexperienceanalyticsbaselineworkfromanywheremetric.UserExperienceAnalyticsBaselineWorkFromAnywhereMetricClient
+	UserExperienceAnalyticsCategory                                                 *userexperienceanalyticscategory.UserExperienceAnalyticsCategoryClient
+	UserExperienceAnalyticsCategoryMetricValue                                      *userexperienceanalyticscategorymetricvalue.UserExperienceAnalyticsCategoryMetricValueClient
+	UserExperienceAnalyticsDevicePerformance                                        *userexperienceanalyticsdeviceperformance.UserExperienceAnalyticsDevicePerformanceClient
+	UserExperienceAnalyticsDeviceScore                                              *userexperienceanalyticsdevicescore.UserExperienceAnalyticsDeviceScoreClient
+	UserExperienceAnalyticsDeviceStartupHistory                                     *userexperienceanalyticsdevicestartuphistory.UserExperienceAnalyticsDeviceStartupHistoryClient
+	UserExperienceAnalyticsDeviceStartupProcess                                     *userexperienceanalyticsdevicestartupprocess.UserExperienceAnalyticsDeviceStartupProcessClient
+	UserExperienceAnalyticsDeviceStartupProcessPerformance                          *userexperienceanalyticsdevicestartupprocessperformance.UserExperienceAnalyticsDeviceStartupProcessPerformanceClient
+	UserExperienceAnalyticsMetricHistory                                            *userexperienceanalyticsmetrichistory.UserExperienceAnalyticsMetricHistoryClient
+	UserExperienceAnalyticsModelScore                                               *userexperienceanalyticsmodelscore.UserExperienceAnalyticsModelScoreClient
+	UserExperienceAnalyticsOverview                                                 *userexperienceanalyticsoverview.UserExperienceAnalyticsOverviewClient
+	UserExperienceAnalyticsScoreHistory                                             *userexperienceanalyticsscorehistory.UserExperienceAnalyticsScoreHistoryClient
+	UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric                  *userexperienceanalyticsworkfromanywherehardwarereadinessmetric.UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricClient
+	UserExperienceAnalyticsWorkFromAnywhereMetric                                   *userexperienceanalyticsworkfromanywheremetric.UserExperienceAnalyticsWorkFromAnywhereMetricClient
+	UserExperienceAnalyticsWorkFromAnywhereMetricMetricDevice                       *userexperienceanalyticsworkfromanywheremetricmetricdevice.UserExperienceAnalyticsWorkFromAnywhereMetricMetricDeviceClient
+	UserExperienceAnalyticsWorkFromAnywhereModelPerformance                         *userexperienceanalyticsworkfromanywheremodelperformance.UserExperienceAnalyticsWorkFromAnywhereModelPerformanceClient
+	VirtualEndpoint                                                                 *virtualendpoint.VirtualEndpointClient
+	VirtualEndpointAuditEvent                                                       *virtualendpointauditevent.VirtualEndpointAuditEventClient
+	VirtualEndpointCloudPC                                                          *virtualendpointcloudpc.VirtualEndpointCloudPCClient
+	VirtualEndpointDeviceImage                                                      *virtualendpointdeviceimage.VirtualEndpointDeviceImageClient
+	VirtualEndpointGalleryImage                                                     *virtualendpointgalleryimage.VirtualEndpointGalleryImageClient
+	VirtualEndpointOnPremisesConnection                                             *virtualendpointonpremisesconnection.VirtualEndpointOnPremisesConnectionClient
+	VirtualEndpointProvisioningPolicy                                               *virtualendpointprovisioningpolicy.VirtualEndpointProvisioningPolicyClient
+	VirtualEndpointProvisioningPolicyAssignment                                     *virtualendpointprovisioningpolicyassignment.VirtualEndpointProvisioningPolicyAssignmentClient
+	VirtualEndpointProvisioningPolicyAssignmentAssignedUser                         *virtualendpointprovisioningpolicyassignmentassigneduser.VirtualEndpointProvisioningPolicyAssignmentAssignedUserClient
+	VirtualEndpointProvisioningPolicyAssignmentAssignedUserMailboxSetting           *virtualendpointprovisioningpolicyassignmentassignedusermailboxsetting.VirtualEndpointProvisioningPolicyAssignmentAssignedUserMailboxSettingClient
+	VirtualEndpointProvisioningPolicyAssignmentAssignedUserServiceProvisioningError *virtualendpointprovisioningpolicyassignmentassigneduserserviceprovisioningerror.VirtualEndpointProvisioningPolicyAssignmentAssignedUserServiceProvisioningErrorClient
+	VirtualEndpointUserSetting                                                      *virtualendpointusersetting.VirtualEndpointUserSettingClient
+	VirtualEndpointUserSettingAssignment                                            *virtualendpointusersettingassignment.VirtualEndpointUserSettingAssignmentClient
+	WindowsAutopilotDeviceIdentity                                                  *windowsautopilotdeviceidentity.WindowsAutopilotDeviceIdentityClient
+	WindowsInformationProtectionAppLearningSummary                                  *windowsinformationprotectionapplearningsummary.WindowsInformationProtectionAppLearningSummaryClient
+	WindowsInformationProtectionNetworkLearningSummary                              *windowsinformationprotectionnetworklearningsummary.WindowsInformationProtectionNetworkLearningSummaryClient
+	WindowsMalwareInformation                                                       *windowsmalwareinformation.WindowsMalwareInformationClient
+	WindowsMalwareInformationDeviceMalwareState                                     *windowsmalwareinformationdevicemalwarestate.WindowsMalwareInformationDeviceMalwareStateClient
+}

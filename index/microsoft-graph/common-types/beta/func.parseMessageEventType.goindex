@@ -1,0 +1,38 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMessageEventType(input string) (*MessageEventType, error) {
+	vals := map[string]MessageEventType{
+		"delayed":                     MessageEventType_Delayed,
+		"delivered":                   MessageEventType_Delivered,
+		"distributiongroupexpanded":   MessageEventType_DistributionGroupExpanded,
+		"dlpruletriggered":            MessageEventType_DlpRuleTriggered,
+		"dropped":                     MessageEventType_Dropped,
+		"failed":                      MessageEventType_Failed,
+		"journaled":                   MessageEventType_Journaled,
+		"malwaredetected":             MessageEventType_MalwareDetected,
+		"malwaredetectedinattachment": MessageEventType_MalwareDetectedInAttachment,
+		"malwaredetectedinmessage":    MessageEventType_MalwareDetectedInMessage,
+		"processingfailed":            MessageEventType_ProcessingFailed,
+		"received":                    MessageEventType_Received,
+		"recipientsadded":             MessageEventType_RecipientsAdded,
+		"redirected":                  MessageEventType_Redirected,
+		"resolved":                    MessageEventType_Resolved,
+		"sent":                        MessageEventType_Sent,
+		"spamdetected":                MessageEventType_SpamDetected,
+		"submitted":                   MessageEventType_Submitted,
+		"transportruletriggered":      MessageEventType_TransportRuleTriggered,
+		"ttdelivered":                 MessageEventType_TtDelivered,
+		"ttzapped":                    MessageEventType_TtZapped,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MessageEventType(input)
+	return &out, nil
+}

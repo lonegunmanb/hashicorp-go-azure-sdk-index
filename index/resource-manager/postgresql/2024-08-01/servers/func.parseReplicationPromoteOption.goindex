@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2024-08-01/servers
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseReplicationPromoteOption(input string) (*ReplicationPromoteOption, error) {
+	vals := map[string]ReplicationPromoteOption{
+		"forced":  ReplicationPromoteOptionForced,
+		"planned": ReplicationPromoteOptionPlanned,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ReplicationPromoteOption(input)
+	return &out, nil
+}

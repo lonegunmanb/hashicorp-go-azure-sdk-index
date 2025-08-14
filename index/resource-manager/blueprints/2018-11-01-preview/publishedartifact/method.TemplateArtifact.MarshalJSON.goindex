@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/blueprints/2018-11-01-preview/publishedartifact
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s TemplateArtifact) MarshalJSON() ([]byte, error) {
+	type wrapper TemplateArtifact
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling TemplateArtifact: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling TemplateArtifact: %+v", err)
+	}
+
+	decoded["kind"] = "template"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling TemplateArtifact: %+v", err)
+	}
+
+	return encoded, nil
+}

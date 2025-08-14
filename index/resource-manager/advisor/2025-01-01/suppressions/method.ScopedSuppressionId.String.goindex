@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/advisor/2025-01-01/suppressions
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ScopedSuppressionId) String() string {
+	components := []string{
+		fmt.Sprintf("Resource Uri: %q", id.ResourceUri),
+		fmt.Sprintf("Recommendation: %q", id.RecommendationId),
+		fmt.Sprintf("Suppression Name: %q", id.SuppressionName),
+	}
+	return fmt.Sprintf("Scoped Suppression (%s)", strings.Join(components, "\n"))
+}

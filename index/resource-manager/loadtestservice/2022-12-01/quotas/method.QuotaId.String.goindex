@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/loadtestservice/2022-12-01/quotas
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id QuotaId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Location Name: %q", id.LocationName),
+		fmt.Sprintf("Quota Name: %q", id.QuotaName),
+	}
+	return fmt.Sprintf("Quota (%s)", strings.Join(components, "\n"))
+}

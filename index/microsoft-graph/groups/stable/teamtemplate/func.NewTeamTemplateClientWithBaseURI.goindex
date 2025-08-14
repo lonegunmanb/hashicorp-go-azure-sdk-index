@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/teamtemplate
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTeamTemplateClientWithBaseURI(sdkApi sdkEnv.Api) (*TeamTemplateClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "teamtemplate", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TeamTemplateClient: %+v", err)
+	}
+
+	return &TeamTemplateClient{
+		Client: client,
+	}, nil
+}

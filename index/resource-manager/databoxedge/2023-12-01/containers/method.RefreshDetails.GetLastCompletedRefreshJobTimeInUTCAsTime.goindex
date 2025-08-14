@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2023-12-01/containers
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *RefreshDetails) GetLastCompletedRefreshJobTimeInUTCAsTime() (*time.Time, error) {
+	if o.LastCompletedRefreshJobTimeInUTC == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.LastCompletedRefreshJobTimeInUTC, "2006-01-02T15:04:05Z07:00")
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2023-09-01/expressroutecircuits
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseExpressRouteCircuitSkuFamily(input string) (*ExpressRouteCircuitSkuFamily, error) {
+	vals := map[string]ExpressRouteCircuitSkuFamily{
+		"metereddata":   ExpressRouteCircuitSkuFamilyMeteredData,
+		"unlimiteddata": ExpressRouteCircuitSkuFamilyUnlimitedData,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ExpressRouteCircuitSkuFamily(input)
+	return &out, nil
+}

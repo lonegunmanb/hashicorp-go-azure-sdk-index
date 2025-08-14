@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/healthmonitoringalert
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewHealthMonitoringAlertClientWithBaseURI(sdkApi sdkEnv.Api) (*HealthMonitoringAlertClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "healthmonitoringalert", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating HealthMonitoringAlertClient: %+v", err)
+	}
+
+	return &HealthMonitoringAlertClient{
+		Client: client,
+	}, nil
+}

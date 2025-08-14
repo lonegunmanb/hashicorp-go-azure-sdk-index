@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingaccount
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePaymentTermsEligibilityCode(input string) (*PaymentTermsEligibilityCode, error) {
+	vals := map[string]PaymentTermsEligibilityCode{
+		"billingaccountnotfound":         PaymentTermsEligibilityCodeBillingAccountNotFound,
+		"inactivebillingaccount":         PaymentTermsEligibilityCodeInactiveBillingAccount,
+		"ineligiblebillingaccountstatus": PaymentTermsEligibilityCodeIneligibleBillingAccountStatus,
+		"invalidbillingaccounttype":      PaymentTermsEligibilityCodeInvalidBillingAccountType,
+		"invaliddateformat":              PaymentTermsEligibilityCodeInvalidDateFormat,
+		"invaliddaterange":               PaymentTermsEligibilityCodeInvalidDateRange,
+		"invalidterms":                   PaymentTermsEligibilityCodeInvalidTerms,
+		"nulloremptypaymentterms":        PaymentTermsEligibilityCodeNullOrEmptyPaymentTerms,
+		"other":                          PaymentTermsEligibilityCodeOther,
+		"overlappingpaymentterms":        PaymentTermsEligibilityCodeOverlappingPaymentTerms,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PaymentTermsEligibilityCode(input)
+	return &out, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2025-01-01/policydefinitionversions
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPolicyDefinitionVersionsClientWithBaseURI(sdkApi sdkEnv.Api) (*PolicyDefinitionVersionsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "policydefinitionversions", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PolicyDefinitionVersionsClient: %+v", err)
+	}
+
+	return &PolicyDefinitionVersionsClient{
+		Client: client,
+	}, nil
+}

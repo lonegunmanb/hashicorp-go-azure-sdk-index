@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2024-02-01/afdendpoints
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAfdProvisioningState(input string) (*AfdProvisioningState, error) {
+	vals := map[string]AfdProvisioningState{
+		"creating":  AfdProvisioningStateCreating,
+		"deleting":  AfdProvisioningStateDeleting,
+		"failed":    AfdProvisioningStateFailed,
+		"succeeded": AfdProvisioningStateSucceeded,
+		"updating":  AfdProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AfdProvisioningState(input)
+	return &out, nil
+}

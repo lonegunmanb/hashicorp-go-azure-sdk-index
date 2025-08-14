@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ReportUserInsightDailyActiveUserId) String() string {
+	components := []string{
+		fmt.Sprintf("Active Users Metric: %q", id.ActiveUsersMetricId),
+	}
+	return fmt.Sprintf("Report User Insight Daily Active User (%s)", strings.Join(components, "\n"))
+}

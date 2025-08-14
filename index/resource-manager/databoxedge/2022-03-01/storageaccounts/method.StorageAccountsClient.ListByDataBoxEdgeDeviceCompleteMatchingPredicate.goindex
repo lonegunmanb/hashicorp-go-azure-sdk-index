@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/databoxedge/2022-03-01/storageaccounts
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c StorageAccountsClient) ListByDataBoxEdgeDeviceCompleteMatchingPredicate(ctx context.Context, id DataBoxEdgeDeviceId, predicate StorageAccountOperationPredicate) (result ListByDataBoxEdgeDeviceCompleteResult, err error) {
+	items := make([]StorageAccount, 0)
+
+	resp, err := c.ListByDataBoxEdgeDevice(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListByDataBoxEdgeDeviceCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

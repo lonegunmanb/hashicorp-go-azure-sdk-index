@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/codeversion
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePendingUploadType(input string) (*PendingUploadType, error) {
+	vals := map[string]PendingUploadType{
+		"none":                   PendingUploadTypeNone,
+		"temporaryblobreference": PendingUploadTypeTemporaryBlobReference,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PendingUploadType(input)
+	return &out, nil
+}

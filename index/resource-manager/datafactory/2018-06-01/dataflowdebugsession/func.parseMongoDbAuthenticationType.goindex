@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/dataflowdebugsession
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMongoDbAuthenticationType(input string) (*MongoDbAuthenticationType, error) {
+	vals := map[string]MongoDbAuthenticationType{
+		"anonymous": MongoDbAuthenticationTypeAnonymous,
+		"basic":     MongoDbAuthenticationTypeBasic,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MongoDbAuthenticationType(input)
+	return &out, nil
+}

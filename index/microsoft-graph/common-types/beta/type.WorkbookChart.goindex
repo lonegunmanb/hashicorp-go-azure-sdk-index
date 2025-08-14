@@ -1,0 +1,47 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type WorkbookChart struct {
+	// Represents chart axes. Read-only.
+	Axes *WorkbookChartAxes `json:"axes,omitempty"`
+
+	// Represents the datalabels on the chart. Read-only.
+	DataLabels *WorkbookChartDataLabels `json:"dataLabels,omitempty"`
+
+	// Encapsulates the format properties for the chart area. Read-only.
+	Format *WorkbookChartAreaFormat `json:"format,omitempty"`
+
+	// Represents the legend for the chart. Read-only.
+	Legend *WorkbookChartLegend `json:"legend,omitempty"`
+
+	// Represents the name of a chart object.
+	Name nullable.Type[string] `json:"name,omitempty"`
+
+	// Represents either a single series or collection of series in the chart. Read-only.
+	Series *[]WorkbookChartSeries `json:"series,omitempty"`
+
+	// Represents the title of the specified chart, including the text, visibility, position and formating of the title.
+	// Read-only.
+	Title *WorkbookChartTitle `json:"title,omitempty"`
+
+	// The worksheet containing the current chart. Read-only.
+	Worksheet *WorkbookWorksheet `json:"worksheet,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWindows10VpnConnectionType(input string) (*Windows10VpnConnectionType, error) {
+	vals := map[string]Windows10VpnConnectionType{
+		"automatic":                  Windows10VpnConnectionType_Automatic,
+		"checkpointcapsulevpn":       Windows10VpnConnectionType_CheckPointCapsuleVpn,
+		"ciscoanyconnect":            Windows10VpnConnectionType_CiscoAnyConnect,
+		"citrix":                     Windows10VpnConnectionType_Citrix,
+		"dellsonicwallmobileconnect": Windows10VpnConnectionType_DellSonicWallMobileConnect,
+		"f5edgeclient":               Windows10VpnConnectionType_F5EdgeClient,
+		"ikev2":                      Windows10VpnConnectionType_IkEv2,
+		"l2tp":                       Windows10VpnConnectionType_L2tp,
+		"microsofttunnel":            Windows10VpnConnectionType_MicrosoftTunnel,
+		"paloaltoglobalprotect":      Windows10VpnConnectionType_PaloAltoGlobalProtect,
+		"pptp":                       Windows10VpnConnectionType_Pptp,
+		"pulsesecure":                Windows10VpnConnectionType_PulseSecure,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Windows10VpnConnectionType(input)
+	return &out, nil
+}

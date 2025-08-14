@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/workflowversions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseOpenAuthenticationProviderType(input string) (*OpenAuthenticationProviderType, error) {
+	vals := map[string]OpenAuthenticationProviderType{
+		"aad": OpenAuthenticationProviderTypeAAD,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := OpenAuthenticationProviderType(input)
+	return &out, nil
+}

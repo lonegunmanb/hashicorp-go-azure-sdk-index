@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/plannertaskdetail
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewPlannerTaskDetailClientWithBaseURI(sdkApi sdkEnv.Api) (*PlannerTaskDetailClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "plannertaskdetail", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating PlannerTaskDetailClient: %+v", err)
+	}
+
+	return &PlannerTaskDetailClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/storagetaskassignments
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewStorageTaskAssignmentsClientWithBaseURI(sdkApi sdkEnv.Api) (*StorageTaskAssignmentsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "storagetaskassignments", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating StorageTaskAssignmentsClient: %+v", err)
+	}
+
+	return &StorageTaskAssignmentsClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mariadb/2018-06-01/topquerystatistics
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c TopQueryStatisticsClient) ListByServerComplete(ctx context.Context, id ServerId, input TopQueryStatisticsInput) (ListByServerCompleteResult, error) {
+	return c.ListByServerCompleteMatchingPredicate(ctx, id, input, QueryStatisticOperationPredicate{})
+}

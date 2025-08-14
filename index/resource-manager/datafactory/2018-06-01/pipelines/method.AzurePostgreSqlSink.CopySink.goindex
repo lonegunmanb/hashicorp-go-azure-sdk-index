@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/pipelines
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s AzurePostgreSqlSink) CopySink() BaseCopySinkImpl {
+	return BaseCopySinkImpl{
+		DisableMetricsCollection: s.DisableMetricsCollection,
+		MaxConcurrentConnections: s.MaxConcurrentConnections,
+		SinkRetryCount:           s.SinkRetryCount,
+		SinkRetryWait:            s.SinkRetryWait,
+		Type:                     s.Type,
+		WriteBatchSize:           s.WriteBatchSize,
+		WriteBatchTimeout:        s.WriteBatchTimeout,
+	}
+}

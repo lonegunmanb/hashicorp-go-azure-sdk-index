@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type ApplyLabelAction struct {
+	ActionSource *ActionSource `json:"actionSource,omitempty"`
+
+	// The collection of specific actions that should be taken by the consuming application to label the document. See
+	// informationProtectionAction for the full list.
+	Actions *[]InformationProtectionAction `json:"actions,omitempty"`
+
+	// Object that describes the details of the label to apply.
+	Label *LabelDetails `json:"label,omitempty"`
+
+	// If the label was the result of an automatic classification, supply the list of sensitive info type GUIDs that
+	// resulted in the returned label.
+	ResponsibleSensitiveTypeIds *[]string `json:"responsibleSensitiveTypeIds,omitempty"`
+
+	// Fields inherited from InformationProtectionAction
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

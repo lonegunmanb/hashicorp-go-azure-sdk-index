@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type Win32LobAppFileSystemRule struct {
+	// A value indicating whether to expand environment variables in the 32-bit context on 64-bit systems.
+	Check32BitOn64System *bool `json:"check32BitOn64System,omitempty"`
+
+	// The file or folder comparison value.
+	ComparisonValue nullable.Type[string] `json:"comparisonValue,omitempty"`
+
+	// The file or folder name to look up.
+	FileOrFolderName nullable.Type[string] `json:"fileOrFolderName,omitempty"`
+
+	// A list of possible operations for rules used to make determinations about an application based on files or folders.
+	// Unless noted, can be used with either detection or requirement rules.
+	OperationType *Win32LobAppFileSystemOperationType `json:"operationType,omitempty"`
+
+	// Contains properties for detection operator.
+	Operator *Win32LobAppRuleOperator `json:"operator,omitempty"`
+
+	// The file or folder path to look up.
+	Path nullable.Type[string] `json:"path,omitempty"`
+
+	// Fields inherited from Win32LobAppRule
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Contains rule types for Win32 LOB apps.
+	RuleType *Win32LobAppRuleType `json:"ruleType,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

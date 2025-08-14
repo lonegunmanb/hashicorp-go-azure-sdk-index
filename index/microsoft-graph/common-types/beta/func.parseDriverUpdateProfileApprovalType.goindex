@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDriverUpdateProfileApprovalType(input string) (*DriverUpdateProfileApprovalType, error) {
+	vals := map[string]DriverUpdateProfileApprovalType{
+		"automatic": DriverUpdateProfileApprovalType_Automatic,
+		"manual":    DriverUpdateProfileApprovalType_Manual,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DriverUpdateProfileApprovalType(input)
+	return &out, nil
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/exadbvmclusters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseGridImageType(input string) (*GridImageType, error) {
+	vals := map[string]GridImageType{
+		"customimage":   GridImageTypeCustomImage,
+		"releaseupdate": GridImageTypeReleaseUpdate,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := GridImageType(input)
+	return &out, nil
+}

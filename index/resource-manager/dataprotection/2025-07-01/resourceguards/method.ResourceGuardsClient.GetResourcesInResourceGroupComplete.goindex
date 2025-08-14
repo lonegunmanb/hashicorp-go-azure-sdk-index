@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2025-07-01/resourceguards
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ResourceGuardsClient) GetResourcesInResourceGroupComplete(ctx context.Context, id commonids.ResourceGroupId) (GetResourcesInResourceGroupCompleteResult, error) {
+	return c.GetResourcesInResourceGroupCompleteMatchingPredicate(ctx, id, ResourceGuardResourceOperationPredicate{})
+}

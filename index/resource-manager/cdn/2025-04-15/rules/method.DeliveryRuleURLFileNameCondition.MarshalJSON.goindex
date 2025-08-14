@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-04-15/rules
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s DeliveryRuleURLFileNameCondition) MarshalJSON() ([]byte, error) {
+	type wrapper DeliveryRuleURLFileNameCondition
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling DeliveryRuleURLFileNameCondition: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling DeliveryRuleURLFileNameCondition: %+v", err)
+	}
+
+	decoded["name"] = "UrlFileName"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling DeliveryRuleURLFileNameCondition: %+v", err)
+	}
+
+	return encoded, nil
+}

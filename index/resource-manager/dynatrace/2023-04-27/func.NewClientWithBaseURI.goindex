@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dynatrace/v2023_04_27
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/dynatrace/2023-04-27/monitors"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/dynatrace/2023-04-27/singlesignon"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/dynatrace/2023-04-27/tagrules"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	monitorsClient, err := monitors.NewMonitorsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Monitors client: %+v", err)
+	}
+	configureFunc(monitorsClient.Client)
+
+	singleSignOnClient, err := singlesignon.NewSingleSignOnClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SingleSignOn client: %+v", err)
+	}
+	configureFunc(singleSignOnClient.Client)
+
+	tagRulesClient, err := tagrules.NewTagRulesClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building TagRules client: %+v", err)
+	}
+	configureFunc(tagRulesClient.Client)
+
+	return &Client{
+		Monitors:     monitorsClient,
+		SingleSignOn: singleSignOnClient,
+		TagRules:     tagRulesClient,
+	}, nil
+}

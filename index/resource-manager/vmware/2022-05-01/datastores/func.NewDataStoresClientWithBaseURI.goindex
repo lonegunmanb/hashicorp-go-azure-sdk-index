@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2022-05-01/datastores
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDataStoresClientWithBaseURI(sdkApi sdkEnv.Api) (*DataStoresClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "datastores", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DataStoresClient: %+v", err)
+	}
+
+	return &DataStoresClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id PolicyRoleManagementPolicyIdEffectiveRuleId) String() string {
+	components := []string{
+		fmt.Sprintf("Unified Role Management Policy: %q", id.UnifiedRoleManagementPolicyId),
+		fmt.Sprintf("Unified Role Management Policy Rule: %q", id.UnifiedRoleManagementPolicyRuleId),
+	}
+	return fmt.Sprintf("Policy Role Management Policy Id Effective Rule (%s)", strings.Join(components, "\n"))
+}

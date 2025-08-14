@@ -1,0 +1,38 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/oracledatabase/2025-03-01/autonomousdatabases
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAutonomousDatabaseLifecycleState(input string) (*AutonomousDatabaseLifecycleState, error) {
+	vals := map[string]AutonomousDatabaseLifecycleState{
+		"available":               AutonomousDatabaseLifecycleStateAvailable,
+		"availableneedsattention": AutonomousDatabaseLifecycleStateAvailableNeedsAttention,
+		"backupinprogress":        AutonomousDatabaseLifecycleStateBackupInProgress,
+		"inaccessible":            AutonomousDatabaseLifecycleStateInaccessible,
+		"maintenanceinprogress":   AutonomousDatabaseLifecycleStateMaintenanceInProgress,
+		"provisioning":            AutonomousDatabaseLifecycleStateProvisioning,
+		"recreating":              AutonomousDatabaseLifecycleStateRecreating,
+		"restarting":              AutonomousDatabaseLifecycleStateRestarting,
+		"restorefailed":           AutonomousDatabaseLifecycleStateRestoreFailed,
+		"restoreinprogress":       AutonomousDatabaseLifecycleStateRestoreInProgress,
+		"rolechangeinprogress":    AutonomousDatabaseLifecycleStateRoleChangeInProgress,
+		"scaleinprogress":         AutonomousDatabaseLifecycleStateScaleInProgress,
+		"standby":                 AutonomousDatabaseLifecycleStateStandby,
+		"starting":                AutonomousDatabaseLifecycleStateStarting,
+		"stopped":                 AutonomousDatabaseLifecycleStateStopped,
+		"stopping":                AutonomousDatabaseLifecycleStateStopping,
+		"terminated":              AutonomousDatabaseLifecycleStateTerminated,
+		"terminating":             AutonomousDatabaseLifecycleStateTerminating,
+		"unavailable":             AutonomousDatabaseLifecycleStateUnavailable,
+		"updating":                AutonomousDatabaseLifecycleStateUpdating,
+		"upgrading":               AutonomousDatabaseLifecycleStateUpgrading,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AutonomousDatabaseLifecycleState(input)
+	return &out, nil
+}

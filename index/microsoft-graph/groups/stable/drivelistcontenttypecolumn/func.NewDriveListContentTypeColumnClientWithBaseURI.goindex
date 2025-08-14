@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/drivelistcontenttypecolumn
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDriveListContentTypeColumnClientWithBaseURI(sdkApi sdkEnv.Api) (*DriveListContentTypeColumnClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "drivelistcontenttypecolumn", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DriveListContentTypeColumnClient: %+v", err)
+	}
+
+	return &DriveListContentTypeColumnClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *ReportUserInsightMonthlyActiveUserId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.ActiveUsersMetricId, ok = input.Parsed["activeUsersMetricId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "activeUsersMetricId", input)
+	}
+
+	return nil
+}

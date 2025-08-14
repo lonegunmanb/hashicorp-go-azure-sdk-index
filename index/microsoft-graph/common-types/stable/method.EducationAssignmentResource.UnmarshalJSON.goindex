@@ -1,0 +1,38 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *EducationAssignmentResource) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		DistributeForStudentWork nullable.Type[bool] `json:"distributeForStudentWork,omitempty"`
+		Id                       *string             `json:"id,omitempty"`
+		ODataId                  *string             `json:"@odata.id,omitempty"`
+		ODataType                *string             `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.DistributeForStudentWork = decoded.DistributeForStudentWork
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling EducationAssignmentResource into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["resource"]; ok {
+		impl, err := UnmarshalEducationResourceImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Resource' for 'EducationAssignmentResource': %+v", err)
+		}
+		s.Resource = impl
+	}
+
+	return nil
+}

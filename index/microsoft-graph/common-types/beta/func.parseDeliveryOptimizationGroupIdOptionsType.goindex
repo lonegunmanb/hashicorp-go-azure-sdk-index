@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeliveryOptimizationGroupIdOptionsType(input string) (*DeliveryOptimizationGroupIdOptionsType, error) {
+	vals := map[string]DeliveryOptimizationGroupIdOptionsType{
+		"adsite":                 DeliveryOptimizationGroupIdOptionsType_AdSite,
+		"authenticateddomainsid": DeliveryOptimizationGroupIdOptionsType_AuthenticatedDomainSid,
+		"dhcpuseroption":         DeliveryOptimizationGroupIdOptionsType_DhcpUserOption,
+		"dnssuffix":              DeliveryOptimizationGroupIdOptionsType_DnsSuffix,
+		"notconfigured":          DeliveryOptimizationGroupIdOptionsType_NotConfigured,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeliveryOptimizationGroupIdOptionsType(input)
+	return &out, nil
+}

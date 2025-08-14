@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resourcegraph/2024-04-01/graphqueries
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewGraphqueriesClientWithBaseURI(sdkApi sdkEnv.Api) (*GraphqueriesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "graphqueries", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating GraphqueriesClient: %+v", err)
+	}
+
+	return &GraphqueriesClient{
+		Client: client,
+	}, nil
+}

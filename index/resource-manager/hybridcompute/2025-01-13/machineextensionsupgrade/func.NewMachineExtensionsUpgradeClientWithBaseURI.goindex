@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2025-01-13/machineextensionsupgrade
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewMachineExtensionsUpgradeClientWithBaseURI(sdkApi sdkEnv.Api) (*MachineExtensionsUpgradeClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "machineextensionsupgrade", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating MachineExtensionsUpgradeClient: %+v", err)
+	}
+
+	return &MachineExtensionsUpgradeClient{
+		Client: client,
+	}, nil
+}

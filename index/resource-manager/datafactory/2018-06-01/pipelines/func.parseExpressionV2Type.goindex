@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/pipelines
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseExpressionV2Type(input string) (*ExpressionV2Type, error) {
+	vals := map[string]ExpressionV2Type{
+		"binary":   ExpressionV2TypeBinary,
+		"constant": ExpressionV2TypeConstant,
+		"field":    ExpressionV2TypeField,
+		"nary":     ExpressionV2TypeNAry,
+		"unary":    ExpressionV2TypeUnary,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ExpressionV2Type(input)
+	return &out, nil
+}

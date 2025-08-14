@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseLanManagerAuthenticationLevel(input string) (*LanManagerAuthenticationLevel, error) {
+	vals := map[string]LanManagerAuthenticationLevel{
+		"lmandnltm":             LanManagerAuthenticationLevel_LmAndNltm,
+		"lmandntlmonly":         LanManagerAuthenticationLevel_LmAndNtlmOnly,
+		"lmandntlmv2":           LanManagerAuthenticationLevel_LmAndNtlmV2,
+		"lmntlmandntlmv2":       LanManagerAuthenticationLevel_LmNtlmAndNtlmV2,
+		"lmntlmv2andnotlm":      LanManagerAuthenticationLevel_LmNtlmV2AndNotLm,
+		"lmntlmv2andnotlmorntm": LanManagerAuthenticationLevel_LmNtlmV2AndNotLmOrNtm,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := LanManagerAuthenticationLevel(input)
+	return &out, nil
+}

@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationaccountagreements
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSegmentTerminatorSuffix(input string) (*SegmentTerminatorSuffix, error) {
+	vals := map[string]SegmentTerminatorSuffix{
+		"cr":           SegmentTerminatorSuffixCR,
+		"crlf":         SegmentTerminatorSuffixCRLF,
+		"lf":           SegmentTerminatorSuffixLF,
+		"none":         SegmentTerminatorSuffixNone,
+		"notspecified": SegmentTerminatorSuffixNotSpecified,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SegmentTerminatorSuffix(input)
+	return &out, nil
+}

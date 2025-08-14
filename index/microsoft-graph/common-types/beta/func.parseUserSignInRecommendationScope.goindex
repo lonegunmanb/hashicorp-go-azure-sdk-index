@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseUserSignInRecommendationScope(input string) (*UserSignInRecommendationScope, error) {
+	vals := map[string]UserSignInRecommendationScope{
+		"application": UserSignInRecommendationScope_Application,
+		"tenant":      UserSignInRecommendationScope_Tenant,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UserSignInRecommendationScope(input)
+	return &out, nil
+}

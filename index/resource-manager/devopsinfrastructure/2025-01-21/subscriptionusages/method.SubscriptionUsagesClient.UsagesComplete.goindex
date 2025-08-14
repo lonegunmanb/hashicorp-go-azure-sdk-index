@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devopsinfrastructure/2025-01-21/subscriptionusages
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SubscriptionUsagesClient) UsagesComplete(ctx context.Context, id LocationId) (UsagesCompleteResult, error) {
+	return c.UsagesCompleteMatchingPredicate(ctx, id, QuotaOperationPredicate{})
+}

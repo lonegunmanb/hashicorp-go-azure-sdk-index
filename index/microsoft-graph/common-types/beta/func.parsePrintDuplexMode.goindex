@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePrintDuplexMode(input string) (*PrintDuplexMode, error) {
+	vals := map[string]PrintDuplexMode{
+		"fliponlongedge":  PrintDuplexMode_FlipOnLongEdge,
+		"fliponshortedge": PrintDuplexMode_FlipOnShortEdge,
+		"onesided":        PrintDuplexMode_OneSided,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PrintDuplexMode(input)
+	return &out, nil
+}

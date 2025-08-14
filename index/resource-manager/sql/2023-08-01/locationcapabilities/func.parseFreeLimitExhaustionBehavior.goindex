@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01/locationcapabilities
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseFreeLimitExhaustionBehavior(input string) (*FreeLimitExhaustionBehavior, error) {
+	vals := map[string]FreeLimitExhaustionBehavior{
+		"autopause":     FreeLimitExhaustionBehaviorAutoPause,
+		"billoverusage": FreeLimitExhaustionBehaviorBillOverUsage,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FreeLimitExhaustionBehavior(input)
+	return &out, nil
+}

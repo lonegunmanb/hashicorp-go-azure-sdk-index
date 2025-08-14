@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-05-01/networkinterfaces
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c NetworkInterfacesClient) ListVirtualMachineScaleSetNetworkInterfacesComplete(ctx context.Context, id VirtualMachineScaleSetId) (ListVirtualMachineScaleSetNetworkInterfacesCompleteResult, error) {
+	return c.ListVirtualMachineScaleSetNetworkInterfacesCompleteMatchingPredicate(ctx, id, NetworkInterfaceOperationPredicate{})
+}

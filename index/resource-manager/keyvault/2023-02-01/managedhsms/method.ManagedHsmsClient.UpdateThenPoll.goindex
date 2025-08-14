@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2023-02-01/managedhsms
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/polling"
+)
+func (c ManagedHsmsClient) UpdateThenPoll(ctx context.Context, id ManagedHSMId, input ManagedHsm) error {
+	result, err := c.Update(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing Update: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(); err != nil {
+		return fmt.Errorf("polling after Update: %+v", err)
+	}
+
+	return nil
+}

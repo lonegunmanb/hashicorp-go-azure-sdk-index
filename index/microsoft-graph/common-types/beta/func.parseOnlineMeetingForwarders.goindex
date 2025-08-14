@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseOnlineMeetingForwarders(input string) (*OnlineMeetingForwarders, error) {
+	vals := map[string]OnlineMeetingForwarders{
+		"everyone":  OnlineMeetingForwarders_Everyone,
+		"organizer": OnlineMeetingForwarders_Organizer,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := OnlineMeetingForwarders(input)
+	return &out, nil
+}

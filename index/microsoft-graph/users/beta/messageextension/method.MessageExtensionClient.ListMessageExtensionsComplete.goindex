@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/messageextension
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c MessageExtensionClient) ListMessageExtensionsComplete(ctx context.Context, id beta.UserIdMessageId, options ListMessageExtensionsOperationOptions) (ListMessageExtensionsCompleteResult, error) {
+	return c.ListMessageExtensionsCompleteMatchingPredicate(ctx, id, options, ExtensionOperationPredicate{})
+}

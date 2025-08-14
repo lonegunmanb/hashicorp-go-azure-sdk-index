@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/security/2019-01-01-preview/subassessments
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *ScopedSubAssessmentId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.Scope, ok = input.Parsed["scope"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "scope", input)
+	}
+
+	if id.AssessmentName, ok = input.Parsed["assessmentName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "assessmentName", input)
+	}
+
+	if id.SubAssessmentName, ok = input.Parsed["subAssessmentName"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "subAssessmentName", input)
+	}
+
+	return nil
+}

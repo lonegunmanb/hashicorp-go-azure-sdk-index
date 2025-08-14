@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/auditlogs/beta/directoryprovisioning
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDirectoryProvisioningClientWithBaseURI(sdkApi sdkEnv.Api) (*DirectoryProvisioningClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "directoryprovisioning", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DirectoryProvisioningClient: %+v", err)
+	}
+
+	return &DirectoryProvisioningClient{
+		Client: client,
+	}, nil
+}

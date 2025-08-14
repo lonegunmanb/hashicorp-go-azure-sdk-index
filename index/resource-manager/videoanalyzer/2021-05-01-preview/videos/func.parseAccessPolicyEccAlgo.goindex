@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/videoanalyzer/2021-05-01-preview/videos
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAccessPolicyEccAlgo(input string) (*AccessPolicyEccAlgo, error) {
+	vals := map[string]AccessPolicyEccAlgo{
+		"es512": AccessPolicyEccAlgoESFiveOneTwo,
+		"es384": AccessPolicyEccAlgoESThreeEightFour,
+		"es256": AccessPolicyEccAlgoESTwoFiveSix,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AccessPolicyEccAlgo(input)
+	return &out, nil
+}

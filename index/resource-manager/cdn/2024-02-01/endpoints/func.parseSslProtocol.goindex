@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2024-02-01/endpoints
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSslProtocol(input string) (*SslProtocol, error) {
+	vals := map[string]SslProtocol{
+		"tlsv1":   SslProtocolTLSvOne,
+		"tlsv1.1": SslProtocolTLSvOnePointOne,
+		"tlsv1.2": SslProtocolTLSvOnePointTwo,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SslProtocol(input)
+	return &out, nil
+}

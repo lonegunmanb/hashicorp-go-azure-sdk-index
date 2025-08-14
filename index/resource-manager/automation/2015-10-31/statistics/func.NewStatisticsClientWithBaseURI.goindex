@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/statistics
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewStatisticsClientWithBaseURI(sdkApi sdkEnv.Api) (*StatisticsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "statistics", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating StatisticsClient: %+v", err)
+	}
+
+	return &StatisticsClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+)
+type Print struct {
+	// The list of available print connectors.
+	Connectors *[]PrintConnector `json:"connectors,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The list of print long running operations.
+	Operations *[]PrintOperation `json:"operations,omitempty"`
+
+	// The list of printers registered in the tenant.
+	Printers *[]Printer `json:"printers,omitempty"`
+
+	// The list of available Universal Print service endpoints.
+	Services *[]PrintService `json:"services,omitempty"`
+
+	// Tenant-wide settings for the Universal Print service.
+	Settings *PrintSettings `json:"settings,omitempty"`
+
+	// The list of printer shares registered in the tenant.
+	Shares *[]PrinterShare `json:"shares,omitempty"`
+
+	// List of abstract definition for a task that can be triggered when various events occur within Universal Print.
+	TaskDefinitions *[]PrintTaskDefinition `json:"taskDefinitions,omitempty"`
+}

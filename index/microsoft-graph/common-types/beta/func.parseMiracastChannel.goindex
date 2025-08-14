@@ -1,0 +1,38 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMiracastChannel(input string) (*MiracastChannel, error) {
+	vals := map[string]MiracastChannel{
+		"eight":                MiracastChannel_Eight,
+		"eleven":               MiracastChannel_Eleven,
+		"five":                 MiracastChannel_Five,
+		"forty":                MiracastChannel_Forty,
+		"fortyeight":           MiracastChannel_FortyEight,
+		"fortyfour":            MiracastChannel_FortyFour,
+		"four":                 MiracastChannel_Four,
+		"nine":                 MiracastChannel_Nine,
+		"one":                  MiracastChannel_One,
+		"onehundredfiftyseven": MiracastChannel_OneHundredFiftySeven,
+		"onehundredfiftythree": MiracastChannel_OneHundredFiftyThree,
+		"onehundredfortynine":  MiracastChannel_OneHundredFortyNine,
+		"onehundredsixtyfive":  MiracastChannel_OneHundredSixtyFive,
+		"onehundredsixtyone":   MiracastChannel_OneHundredSixtyOne,
+		"seven":                MiracastChannel_Seven,
+		"six":                  MiracastChannel_Six,
+		"ten":                  MiracastChannel_Ten,
+		"thirtysix":            MiracastChannel_ThirtySix,
+		"three":                MiracastChannel_Three,
+		"two":                  MiracastChannel_Two,
+		"userdefined":          MiracastChannel_UserDefined,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MiracastChannel(input)
+	return &out, nil
+}

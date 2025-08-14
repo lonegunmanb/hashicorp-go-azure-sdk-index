@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id PolicyClaimsMappingPolicyIdAppliesToId) String() string {
+	components := []string{
+		fmt.Sprintf("Claims Mapping Policy: %q", id.ClaimsMappingPolicyId),
+		fmt.Sprintf("Directory Object: %q", id.DirectoryObjectId),
+	}
+	return fmt.Sprintf("Policy Claims Mapping Policy Id Applies To (%s)", strings.Join(components, "\n"))
+}

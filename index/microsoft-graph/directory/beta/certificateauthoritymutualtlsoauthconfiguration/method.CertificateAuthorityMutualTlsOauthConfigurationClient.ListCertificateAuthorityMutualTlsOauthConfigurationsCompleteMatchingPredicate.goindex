@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/certificateauthoritymutualtlsoauthconfiguration
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c CertificateAuthorityMutualTlsOauthConfigurationClient) ListCertificateAuthorityMutualTlsOauthConfigurationsCompleteMatchingPredicate(ctx context.Context, options ListCertificateAuthorityMutualTlsOauthConfigurationsOperationOptions, predicate MutualTlsOauthConfigurationOperationPredicate) (result ListCertificateAuthorityMutualTlsOauthConfigurationsCompleteResult, err error) {
+	items := make([]beta.MutualTlsOauthConfiguration, 0)
+
+	resp, err := c.ListCertificateAuthorityMutualTlsOauthConfigurations(ctx, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListCertificateAuthorityMutualTlsOauthConfigurationsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

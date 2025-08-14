@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/invitedby
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewInvitedByClientWithBaseURI(sdkApi sdkEnv.Api) (*InvitedByClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "invitedby", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating InvitedByClient: %+v", err)
+	}
+
+	return &InvitedByClient{
+		Client: client,
+	}, nil
+}

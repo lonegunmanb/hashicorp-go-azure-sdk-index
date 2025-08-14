@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cosmosdb/2022-05-15/graphapicompute
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type DataTransferServiceResourceProperties struct {
+	Locations *[]RegionalServiceResource `json:"locations,omitempty"`
+
+	// Fields inherited from ServiceResourceProperties
+
+	CreationTime  *string        `json:"creationTime,omitempty"`
+	InstanceCount *int64         `json:"instanceCount,omitempty"`
+	InstanceSize  *ServiceSize   `json:"instanceSize,omitempty"`
+	ServiceType   ServiceType    `json:"serviceType"`
+	Status        *ServiceStatus `json:"status,omitempty"`
+}

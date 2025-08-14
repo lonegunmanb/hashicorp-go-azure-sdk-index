@@ -1,0 +1,207 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *BaseMessageImpl) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		Body                          *ItemBody                            `json:"body,omitempty"`
+		BodyPreview                   nullable.Type[string]                `json:"bodyPreview,omitempty"`
+		ConversationId                nullable.Type[string]                `json:"conversationId,omitempty"`
+		ConversationIndex             nullable.Type[string]                `json:"conversationIndex,omitempty"`
+		Flag                          *FollowupFlag                        `json:"flag,omitempty"`
+		HasAttachments                nullable.Type[bool]                  `json:"hasAttachments,omitempty"`
+		Importance                    *Importance                          `json:"importance,omitempty"`
+		InferenceClassification       *InferenceClassificationType         `json:"inferenceClassification,omitempty"`
+		InternetMessageHeaders        *[]InternetMessageHeader             `json:"internetMessageHeaders,omitempty"`
+		InternetMessageId             nullable.Type[string]                `json:"internetMessageId,omitempty"`
+		IsDeliveryReceiptRequested    nullable.Type[bool]                  `json:"isDeliveryReceiptRequested,omitempty"`
+		IsDraft                       nullable.Type[bool]                  `json:"isDraft,omitempty"`
+		IsRead                        nullable.Type[bool]                  `json:"isRead,omitempty"`
+		IsReadReceiptRequested        nullable.Type[bool]                  `json:"isReadReceiptRequested,omitempty"`
+		Mentions                      *[]Mention                           `json:"mentions,omitempty"`
+		MentionsPreview               *MentionsPreview                     `json:"mentionsPreview,omitempty"`
+		MultiValueExtendedProperties  *[]MultiValueLegacyExtendedProperty  `json:"multiValueExtendedProperties,omitempty"`
+		ParentFolderId                nullable.Type[string]                `json:"parentFolderId,omitempty"`
+		ReceivedDateTime              nullable.Type[string]                `json:"receivedDateTime,omitempty"`
+		SentDateTime                  nullable.Type[string]                `json:"sentDateTime,omitempty"`
+		SingleValueExtendedProperties *[]SingleValueLegacyExtendedProperty `json:"singleValueExtendedProperties,omitempty"`
+		Subject                       nullable.Type[string]                `json:"subject,omitempty"`
+		UniqueBody                    *ItemBody                            `json:"uniqueBody,omitempty"`
+		UnsubscribeData               *[]string                            `json:"unsubscribeData,omitempty"`
+		UnsubscribeEnabled            nullable.Type[bool]                  `json:"unsubscribeEnabled,omitempty"`
+		WebLink                       nullable.Type[string]                `json:"webLink,omitempty"`
+		Categories                    *[]string                            `json:"categories,omitempty"`
+		ChangeKey                     nullable.Type[string]                `json:"changeKey,omitempty"`
+		CreatedDateTime               nullable.Type[string]                `json:"createdDateTime,omitempty"`
+		LastModifiedDateTime          nullable.Type[string]                `json:"lastModifiedDateTime,omitempty"`
+		Id                            *string                              `json:"id,omitempty"`
+		ODataId                       *string                              `json:"@odata.id,omitempty"`
+		ODataType                     *string                              `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.Body = decoded.Body
+	s.BodyPreview = decoded.BodyPreview
+	s.ConversationId = decoded.ConversationId
+	s.ConversationIndex = decoded.ConversationIndex
+	s.Flag = decoded.Flag
+	s.HasAttachments = decoded.HasAttachments
+	s.Importance = decoded.Importance
+	s.InferenceClassification = decoded.InferenceClassification
+	s.InternetMessageHeaders = decoded.InternetMessageHeaders
+	s.InternetMessageId = decoded.InternetMessageId
+	s.IsDeliveryReceiptRequested = decoded.IsDeliveryReceiptRequested
+	s.IsDraft = decoded.IsDraft
+	s.IsRead = decoded.IsRead
+	s.IsReadReceiptRequested = decoded.IsReadReceiptRequested
+	s.Mentions = decoded.Mentions
+	s.MentionsPreview = decoded.MentionsPreview
+	s.MultiValueExtendedProperties = decoded.MultiValueExtendedProperties
+	s.ParentFolderId = decoded.ParentFolderId
+	s.ReceivedDateTime = decoded.ReceivedDateTime
+	s.SentDateTime = decoded.SentDateTime
+	s.SingleValueExtendedProperties = decoded.SingleValueExtendedProperties
+	s.Subject = decoded.Subject
+	s.UniqueBody = decoded.UniqueBody
+	s.UnsubscribeData = decoded.UnsubscribeData
+	s.UnsubscribeEnabled = decoded.UnsubscribeEnabled
+	s.WebLink = decoded.WebLink
+	s.Categories = decoded.Categories
+	s.ChangeKey = decoded.ChangeKey
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling BaseMessageImpl into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["attachments"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling Attachments into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]Attachment, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalAttachmentImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'Attachments' for 'BaseMessageImpl': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.Attachments = &output
+	}
+
+	if v, ok := temp["bccRecipients"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling BccRecipients into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]Recipient, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalRecipientImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'BccRecipients' for 'BaseMessageImpl': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.BccRecipients = &output
+	}
+
+	if v, ok := temp["ccRecipients"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling CcRecipients into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]Recipient, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalRecipientImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'CcRecipients' for 'BaseMessageImpl': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.CcRecipients = &output
+	}
+
+	if v, ok := temp["extensions"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling Extensions into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]Extension, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalExtensionImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'Extensions' for 'BaseMessageImpl': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.Extensions = &output
+	}
+
+	if v, ok := temp["from"]; ok {
+		impl, err := UnmarshalRecipientImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'From' for 'BaseMessageImpl': %+v", err)
+		}
+		s.From = impl
+	}
+
+	if v, ok := temp["replyTo"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling ReplyTo into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]Recipient, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalRecipientImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'ReplyTo' for 'BaseMessageImpl': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.ReplyTo = &output
+	}
+
+	if v, ok := temp["sender"]; ok {
+		impl, err := UnmarshalRecipientImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Sender' for 'BaseMessageImpl': %+v", err)
+		}
+		s.Sender = impl
+	}
+
+	if v, ok := temp["toRecipients"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling ToRecipients into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]Recipient, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalRecipientImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'ToRecipients' for 'BaseMessageImpl': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.ToRecipients = &output
+	}
+
+	return nil
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWindowsInformationProtectionEnforcementLevel(input string) (*WindowsInformationProtectionEnforcementLevel, error) {
+	vals := map[string]WindowsInformationProtectionEnforcementLevel{
+		"encryptandauditonly":   WindowsInformationProtectionEnforcementLevel_EncryptAndAuditOnly,
+		"encryptauditandblock":  WindowsInformationProtectionEnforcementLevel_EncryptAuditAndBlock,
+		"encryptauditandprompt": WindowsInformationProtectionEnforcementLevel_EncryptAuditAndPrompt,
+		"noprotection":          WindowsInformationProtectionEnforcementLevel_NoProtection,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := WindowsInformationProtectionEnforcementLevel(input)
+	return &out, nil
+}

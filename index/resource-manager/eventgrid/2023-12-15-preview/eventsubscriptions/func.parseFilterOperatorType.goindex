@@ -1,0 +1,36 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2023-12-15-preview/eventsubscriptions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseFilterOperatorType(input string) (*FilterOperatorType, error) {
+	vals := map[string]FilterOperatorType{
+		"boolequals":                FilterOperatorTypeBoolEquals,
+		"isnotnull":                 FilterOperatorTypeIsNotNull,
+		"isnullorundefined":         FilterOperatorTypeIsNullOrUndefined,
+		"numbergreaterthan":         FilterOperatorTypeNumberGreaterThan,
+		"numbergreaterthanorequals": FilterOperatorTypeNumberGreaterThanOrEquals,
+		"numberin":                  FilterOperatorTypeNumberIn,
+		"numberinrange":             FilterOperatorTypeNumberInRange,
+		"numberlessthan":            FilterOperatorTypeNumberLessThan,
+		"numberlessthanorequals":    FilterOperatorTypeNumberLessThanOrEquals,
+		"numbernotin":               FilterOperatorTypeNumberNotIn,
+		"numbernotinrange":          FilterOperatorTypeNumberNotInRange,
+		"stringbeginswith":          FilterOperatorTypeStringBeginsWith,
+		"stringcontains":            FilterOperatorTypeStringContains,
+		"stringendswith":            FilterOperatorTypeStringEndsWith,
+		"stringin":                  FilterOperatorTypeStringIn,
+		"stringnotbeginswith":       FilterOperatorTypeStringNotBeginsWith,
+		"stringnotcontains":         FilterOperatorTypeStringNotContains,
+		"stringnotendswith":         FilterOperatorTypeStringNotEndsWith,
+		"stringnotin":               FilterOperatorTypeStringNotIn,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FilterOperatorType(input)
+	return &out, nil
+}

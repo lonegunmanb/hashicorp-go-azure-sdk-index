@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerregistry/2025-04-01/replications
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseZoneRedundancy(input string) (*ZoneRedundancy, error) {
+	vals := map[string]ZoneRedundancy{
+		"disabled": ZoneRedundancyDisabled,
+		"enabled":  ZoneRedundancyEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ZoneRedundancy(input)
+	return &out, nil
+}

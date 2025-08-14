@@ -1,0 +1,11 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DeviceManagementResourceAccessProfileIdAssignmentId) ID() string {
+	fmtString := "/deviceManagement/resourceAccessProfiles/%s/assignments/%s"
+	return fmt.Sprintf(fmtString, id.DeviceManagementResourceAccessProfileBaseId, id.DeviceManagementResourceAccessProfileAssignmentId)
+}

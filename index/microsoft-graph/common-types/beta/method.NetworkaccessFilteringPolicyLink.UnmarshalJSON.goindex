@@ -1,0 +1,46 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s *NetworkaccessFilteringPolicyLink) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		CreatedDateTime      *string              `json:"createdDateTime,omitempty"`
+		LastModifiedDateTime *string              `json:"lastModifiedDateTime,omitempty"`
+		LoggingState         *NetworkaccessStatus `json:"loggingState,omitempty"`
+		Priority             int64                `json:"priority"`
+		State                *NetworkaccessStatus `json:"state,omitempty"`
+		Version              *string              `json:"version,omitempty"`
+		Id                   *string              `json:"id,omitempty"`
+		ODataId              *string              `json:"@odata.id,omitempty"`
+		ODataType            *string              `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.LoggingState = decoded.LoggingState
+	s.Priority = decoded.Priority
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.State = decoded.State
+	s.Version = decoded.Version
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling NetworkaccessFilteringPolicyLink into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["policy"]; ok {
+		impl, err := UnmarshalNetworkaccessPolicyImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Policy' for 'NetworkaccessFilteringPolicyLink': %+v", err)
+		}
+		s.Policy = &impl
+	}
+
+	return nil
+}

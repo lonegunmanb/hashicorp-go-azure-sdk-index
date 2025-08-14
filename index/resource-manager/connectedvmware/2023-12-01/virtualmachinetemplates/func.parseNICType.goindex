@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/connectedvmware/2023-12-01/virtualmachinetemplates
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNICType(input string) (*NICType, error) {
+	vals := map[string]NICType{
+		"e1000":   NICTypeEOneThousand,
+		"e1000e":  NICTypeEOneThousande,
+		"pcnet32": NICTypePcnetThreeTwo,
+		"vmxnet":  NICTypeVMxnet,
+		"vmxnet3": NICTypeVMxnetThree,
+		"vmxnet2": NICTypeVMxnetTwo,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NICType(input)
+	return &out, nil
+}

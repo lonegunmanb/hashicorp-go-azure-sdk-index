@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/devicemanagementresourcenamespaceresourceactionresourcescope
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDeviceManagementResourceNamespaceResourceActionResourceScopeClientWithBaseURI(sdkApi sdkEnv.Api) (*DeviceManagementResourceNamespaceResourceActionResourceScopeClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "devicemanagementresourcenamespaceresourceactionresourcescope", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DeviceManagementResourceNamespaceResourceActionResourceScopeClient: %+v", err)
+	}
+
+	return &DeviceManagementResourceNamespaceResourceActionResourceScopeClient{
+		Client: client,
+	}, nil
+}

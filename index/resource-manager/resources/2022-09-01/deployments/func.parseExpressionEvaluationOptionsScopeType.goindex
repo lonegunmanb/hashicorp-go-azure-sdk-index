@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2022-09-01/deployments
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseExpressionEvaluationOptionsScopeType(input string) (*ExpressionEvaluationOptionsScopeType, error) {
+	vals := map[string]ExpressionEvaluationOptionsScopeType{
+		"inner":        ExpressionEvaluationOptionsScopeTypeInner,
+		"notspecified": ExpressionEvaluationOptionsScopeTypeNotSpecified,
+		"outer":        ExpressionEvaluationOptionsScopeTypeOuter,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ExpressionEvaluationOptionsScopeType(input)
+	return &out, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2023-11-01/objectdatatypes
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewObjectDataTypesClientWithBaseURI(sdkApi sdkEnv.Api) (*ObjectDataTypesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "objectdatatypes", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ObjectDataTypesClient: %+v", err)
+	}
+
+	return &ObjectDataTypesClient{
+		Client: client,
+	}, nil
+}

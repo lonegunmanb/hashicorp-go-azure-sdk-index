@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mysql/2023-12-30/advancedthreatprotectionsettings
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAdvancedThreatProtectionProvisioningState(input string) (*AdvancedThreatProtectionProvisioningState, error) {
+	vals := map[string]AdvancedThreatProtectionProvisioningState{
+		"canceled":  AdvancedThreatProtectionProvisioningStateCanceled,
+		"failed":    AdvancedThreatProtectionProvisioningStateFailed,
+		"succeeded": AdvancedThreatProtectionProvisioningStateSucceeded,
+		"updating":  AdvancedThreatProtectionProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AdvancedThreatProtectionProvisioningState(input)
+	return &out, nil
+}

@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventhub/2024-01-01/namespacesnetworksecurityperimeterconfigurations
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNetworkSecurityPerimeterConfigurationProvisioningState(input string) (*NetworkSecurityPerimeterConfigurationProvisioningState, error) {
+	vals := map[string]NetworkSecurityPerimeterConfigurationProvisioningState{
+		"accepted":            NetworkSecurityPerimeterConfigurationProvisioningStateAccepted,
+		"canceled":            NetworkSecurityPerimeterConfigurationProvisioningStateCanceled,
+		"creating":            NetworkSecurityPerimeterConfigurationProvisioningStateCreating,
+		"deleted":             NetworkSecurityPerimeterConfigurationProvisioningStateDeleted,
+		"deleting":            NetworkSecurityPerimeterConfigurationProvisioningStateDeleting,
+		"failed":              NetworkSecurityPerimeterConfigurationProvisioningStateFailed,
+		"invalidresponse":     NetworkSecurityPerimeterConfigurationProvisioningStateInvalidResponse,
+		"succeeded":           NetworkSecurityPerimeterConfigurationProvisioningStateSucceeded,
+		"succeededwithissues": NetworkSecurityPerimeterConfigurationProvisioningStateSucceededWithIssues,
+		"unknown":             NetworkSecurityPerimeterConfigurationProvisioningStateUnknown,
+		"updating":            NetworkSecurityPerimeterConfigurationProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NetworkSecurityPerimeterConfigurationProvisioningState(input)
+	return &out, nil
+}

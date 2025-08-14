@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/webapps
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c WebAppsClient) InstallSiteExtensionSlotThenPoll(ctx context.Context, id SlotSiteExtensionId) error {
+	result, err := c.InstallSiteExtensionSlot(ctx, id)
+	if err != nil {
+		return fmt.Errorf("performing InstallSiteExtensionSlot: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after InstallSiteExtensionSlot: %+v", err)
+	}
+
+	return nil
+}

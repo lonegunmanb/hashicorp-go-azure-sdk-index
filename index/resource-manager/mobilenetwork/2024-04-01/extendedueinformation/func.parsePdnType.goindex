@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mobilenetwork/2024-04-01/extendedueinformation
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePdnType(input string) (*PdnType, error) {
+	vals := map[string]PdnType{
+		"ipv4": PdnTypeIPVFour,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PdnType(input)
+	return &out, nil
+}

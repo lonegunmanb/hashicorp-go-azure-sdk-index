@@ -1,0 +1,91 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalEdiscoveryCaseOperationImplementation(input []byte) (EdiscoveryCaseOperation, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling EdiscoveryCaseOperation into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.ediscovery.addToReviewSetOperation") {
+		var out EdiscoveryAddToReviewSetOperation
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into EdiscoveryAddToReviewSetOperation: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.ediscovery.caseExportOperation") {
+		var out EdiscoveryCaseExportOperation
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into EdiscoveryCaseExportOperation: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.ediscovery.caseHoldOperation") {
+		var out EdiscoveryCaseHoldOperation
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into EdiscoveryCaseHoldOperation: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.ediscovery.caseIndexOperation") {
+		var out EdiscoveryCaseIndexOperation
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into EdiscoveryCaseIndexOperation: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.ediscovery.estimateStatisticsOperation") {
+		var out EdiscoveryEstimateStatisticsOperation
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into EdiscoveryEstimateStatisticsOperation: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.ediscovery.purgeDataOperation") {
+		var out EdiscoveryPurgeDataOperation
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into EdiscoveryPurgeDataOperation: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.ediscovery.tagOperation") {
+		var out EdiscoveryTagOperation
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into EdiscoveryTagOperation: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseEdiscoveryCaseOperationImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseEdiscoveryCaseOperationImpl: %+v", err)
+	}
+
+	return RawEdiscoveryCaseOperationImpl{
+		ediscoveryCaseOperation: parent,
+		Type:                    value,
+		Values:                  temp,
+	}, nil
+
+}

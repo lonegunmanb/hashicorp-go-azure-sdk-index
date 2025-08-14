@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicebus/2024-01-01/disasterrecoveryconfigs
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDisasterRecoveryConfigsClientWithBaseURI(sdkApi sdkEnv.Api) (*DisasterRecoveryConfigsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "disasterrecoveryconfigs", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DisasterRecoveryConfigsClient: %+v", err)
+	}
+
+	return &DisasterRecoveryConfigsClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id PolicyCrossTenantAccessPolicyPartnerId) String() string {
+	components := []string{
+		fmt.Sprintf("Cross Tenant Access Policy Configuration Partner Tenant: %q", id.CrossTenantAccessPolicyConfigurationPartnerTenantId),
+	}
+	return fmt.Sprintf("Policy Cross Tenant Access Policy Partner (%s)", strings.Join(components, "\n"))
+}

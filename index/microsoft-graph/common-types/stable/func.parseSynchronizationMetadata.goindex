@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSynchronizationMetadata(input string) (*SynchronizationMetadata, error) {
+	vals := map[string]SynchronizationMetadata{
+		"configurationfields":                      SynchronizationMetadata_ConfigurationFields,
+		"galleryapplicationidentifier":             SynchronizationMetadata_GalleryApplicationIdentifier,
+		"galleryapplicationkey":                    SynchronizationMetadata_GalleryApplicationKey,
+		"isoauthenabled":                           SynchronizationMetadata_IsOAuthEnabled,
+		"issynchronizationagentassignmentrequired": SynchronizationMetadata_IsSynchronizationAgentAssignmentRequired,
+		"issynchronizationagentrequired":           SynchronizationMetadata_IsSynchronizationAgentRequired,
+		"issynchronizationinpreview":               SynchronizationMetadata_IsSynchronizationInPreview,
+		"oauthsettings":                            SynchronizationMetadata_OAuthSettings,
+		"synchronizationlearnmoreibizafwlink":      SynchronizationMetadata_SynchronizationLearnMoreIbizaFwLink,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SynchronizationMetadata(input)
+	return &out, nil
+}

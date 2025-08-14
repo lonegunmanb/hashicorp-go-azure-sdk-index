@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/networkcloud/2025-02-01/networkclouds
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseBmcKeySetProvisioningState(input string) (*BmcKeySetProvisioningState, error) {
+	vals := map[string]BmcKeySetProvisioningState{
+		"accepted":     BmcKeySetProvisioningStateAccepted,
+		"canceled":     BmcKeySetProvisioningStateCanceled,
+		"failed":       BmcKeySetProvisioningStateFailed,
+		"provisioning": BmcKeySetProvisioningStateProvisioning,
+		"succeeded":    BmcKeySetProvisioningStateSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := BmcKeySetProvisioningState(input)
+	return &out, nil
+}

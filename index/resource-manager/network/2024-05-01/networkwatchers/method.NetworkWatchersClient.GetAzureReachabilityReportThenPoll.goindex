@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-05-01/networkwatchers
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c NetworkWatchersClient) GetAzureReachabilityReportThenPoll(ctx context.Context, id NetworkWatcherId, input AzureReachabilityReportParameters) error {
+	result, err := c.GetAzureReachabilityReport(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing GetAzureReachabilityReport: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after GetAzureReachabilityReport: %+v", err)
+	}
+
+	return nil
+}

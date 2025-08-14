@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/customauthenticationextension
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewCustomAuthenticationExtensionClientWithBaseURI(sdkApi sdkEnv.Api) (*CustomAuthenticationExtensionClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "customauthenticationextension", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating CustomAuthenticationExtensionClient: %+v", err)
+	}
+
+	return &CustomAuthenticationExtensionClient{
+		Client: client,
+	}, nil
+}

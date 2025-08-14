@@ -1,0 +1,43 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type SecurityHostComponent struct {
+	// The type of component that was detected (for example, Operating System, Framework, Remote Access, or Server).
+	Category nullable.Type[string] `json:"category,omitempty"`
+
+	// The first date and time when Microsoft Defender Threat Intelligence observed this web component. The timestamp type
+	// represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1,
+	// 2014, is 2014-01-01T00:00:00Z.
+	FirstSeenDateTime *string `json:"firstSeenDateTime,omitempty"`
+
+	Host *SecurityHost `json:"host,omitempty"`
+
+	// The most recent date and time when Microsoft Defender Threat Intelligence observed this web component. The timestamp
+	// type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on
+	// Jan 1, 2014, is 2014-01-01T00:00:00Z.
+	LastSeenDateTime *string `json:"lastSeenDateTime,omitempty"`
+
+	// A name running on the artifact, for example, Microsoft IIS.
+	Name *string `json:"name,omitempty"`
+
+	// The component version running on the artifact, for example, v8.5. This shouldn't be assumed to be strictly numerical.
+	Version nullable.Type[string] `json:"version,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCallRecordsWifiBand(input string) (*CallRecordsWifiBand, error) {
+	vals := map[string]CallRecordsWifiBand{
+		"frequency24ghz": CallRecordsWifiBand_Frequency24GHz,
+		"frequency50ghz": CallRecordsWifiBand_Frequency50GHz,
+		"frequency60ghz": CallRecordsWifiBand_Frequency60GHz,
+		"unknown":        CallRecordsWifiBand_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CallRecordsWifiBand(input)
+	return &out, nil
+}

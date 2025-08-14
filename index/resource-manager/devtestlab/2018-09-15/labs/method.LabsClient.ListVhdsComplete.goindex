@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/labs
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c LabsClient) ListVhdsComplete(ctx context.Context, id LabId) (ListVhdsCompleteResult, error) {
+	return c.ListVhdsCompleteMatchingPredicate(ctx, id, LabVhdOperationPredicate{})
+}

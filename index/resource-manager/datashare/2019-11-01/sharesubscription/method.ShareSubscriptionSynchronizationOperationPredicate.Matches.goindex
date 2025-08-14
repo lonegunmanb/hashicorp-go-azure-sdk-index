@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2019-11-01/sharesubscription
+
+func (p ShareSubscriptionSynchronizationOperationPredicate) Matches(input ShareSubscriptionSynchronization) bool {
+
+	if p.DurationMs != nil && (input.DurationMs == nil || *p.DurationMs != *input.DurationMs) {
+		return false
+	}
+
+	if p.EndTime != nil && (input.EndTime == nil || *p.EndTime != *input.EndTime) {
+		return false
+	}
+
+	if p.Message != nil && (input.Message == nil || *p.Message != *input.Message) {
+		return false
+	}
+
+	if p.StartTime != nil && (input.StartTime == nil || *p.StartTime != *input.StartTime) {
+		return false
+	}
+
+	if p.Status != nil && (input.Status == nil || *p.Status != *input.Status) {
+		return false
+	}
+
+	if p.SynchronizationId != nil && *p.SynchronizationId != input.SynchronizationId {
+		return false
+	}
+
+	return true
+}

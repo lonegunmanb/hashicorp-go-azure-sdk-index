@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitecontenttypecolumnposition
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SiteContentTypeColumnPositionClient) ListSiteContentTypeColumnPositionsCompleteMatchingPredicate(ctx context.Context, id beta.GroupIdSiteIdContentTypeId, options ListSiteContentTypeColumnPositionsOperationOptions, predicate ColumnDefinitionOperationPredicate) (result ListSiteContentTypeColumnPositionsCompleteResult, err error) {
+	items := make([]beta.ColumnDefinition, 0)
+
+	resp, err := c.ListSiteContentTypeColumnPositions(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListSiteContentTypeColumnPositionsCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

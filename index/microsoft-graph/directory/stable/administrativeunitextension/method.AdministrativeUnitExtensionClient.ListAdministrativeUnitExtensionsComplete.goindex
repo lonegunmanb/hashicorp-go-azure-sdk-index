@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/stable/administrativeunitextension
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c AdministrativeUnitExtensionClient) ListAdministrativeUnitExtensionsComplete(ctx context.Context, id stable.DirectoryAdministrativeUnitId, options ListAdministrativeUnitExtensionsOperationOptions) (ListAdministrativeUnitExtensionsCompleteResult, error) {
+	return c.ListAdministrativeUnitExtensionsCompleteMatchingPredicate(ctx, id, options, ExtensionOperationPredicate{})
+}

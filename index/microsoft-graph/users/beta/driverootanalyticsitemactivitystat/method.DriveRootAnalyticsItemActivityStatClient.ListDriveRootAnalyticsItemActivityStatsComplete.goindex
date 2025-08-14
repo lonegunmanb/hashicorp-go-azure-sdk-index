@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/driverootanalyticsitemactivitystat
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DriveRootAnalyticsItemActivityStatClient) ListDriveRootAnalyticsItemActivityStatsComplete(ctx context.Context, id beta.UserIdDriveId, options ListDriveRootAnalyticsItemActivityStatsOperationOptions) (ListDriveRootAnalyticsItemActivityStatsCompleteResult, error) {
+	return c.ListDriveRootAnalyticsItemActivityStatsCompleteMatchingPredicate(ctx, id, options, ItemActivityStatOperationPredicate{})
+}

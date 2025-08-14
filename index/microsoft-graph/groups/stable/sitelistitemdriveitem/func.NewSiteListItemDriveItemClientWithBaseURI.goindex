@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/sitelistitemdriveitem
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSiteListItemDriveItemClientWithBaseURI(sdkApi sdkEnv.Api) (*SiteListItemDriveItemClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "sitelistitemdriveitem", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SiteListItemDriveItemClient: %+v", err)
+	}
+
+	return &SiteListItemDriveItemClient{
+		Client: client,
+	}, nil
+}

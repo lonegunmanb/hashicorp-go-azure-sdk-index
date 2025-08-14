@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type AccessReviewInstanceDecisionItemServicePrincipalResource struct {
+	// The globally unique identifier of the application to which access has been granted.
+	AppId nullable.Type[string] `json:"appId,omitempty"`
+
+	// Fields inherited from AccessReviewInstanceDecisionItemResource
+
+	// Display name of the resource
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// Identifier of the resource
+	Id nullable.Type[string] `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Type of resource. Types include: Group, ServicePrincipal, DirectoryRole, AzureRole, AccessPackageAssignmentPolicy.
+	Type nullable.Type[string] `json:"type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

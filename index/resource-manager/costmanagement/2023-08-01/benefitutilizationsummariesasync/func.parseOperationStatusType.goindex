@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-08-01/benefitutilizationsummariesasync
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseOperationStatusType(input string) (*OperationStatusType, error) {
+	vals := map[string]OperationStatusType{
+		"complete": OperationStatusTypeComplete,
+		"failed":   OperationStatusTypeFailed,
+		"running":  OperationStatusTypeRunning,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := OperationStatusType(input)
+	return &out, nil
+}

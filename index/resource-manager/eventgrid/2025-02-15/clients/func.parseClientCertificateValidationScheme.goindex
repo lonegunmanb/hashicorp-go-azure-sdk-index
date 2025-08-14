@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2025-02-15/clients
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseClientCertificateValidationScheme(input string) (*ClientCertificateValidationScheme, error) {
+	vals := map[string]ClientCertificateValidationScheme{
+		"dnsmatchesauthenticationname":     ClientCertificateValidationSchemeDnsMatchesAuthenticationName,
+		"emailmatchesauthenticationname":   ClientCertificateValidationSchemeEmailMatchesAuthenticationName,
+		"ipmatchesauthenticationname":      ClientCertificateValidationSchemeIPMatchesAuthenticationName,
+		"subjectmatchesauthenticationname": ClientCertificateValidationSchemeSubjectMatchesAuthenticationName,
+		"thumbprintmatch":                  ClientCertificateValidationSchemeThumbprintMatch,
+		"urimatchesauthenticationname":     ClientCertificateValidationSchemeUriMatchesAuthenticationName,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ClientCertificateValidationScheme(input)
+	return &out, nil
+}

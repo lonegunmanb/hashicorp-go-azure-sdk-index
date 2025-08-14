@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/authorization/2020-10-01/roleeligibilityschedules
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *RoleEligibilityScheduleProperties) GetEndDateTimeAsTime() (*time.Time, error) {
+	if o.EndDateTime == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.EndDateTime, "2006-01-02T15:04:05Z07:00")
+}

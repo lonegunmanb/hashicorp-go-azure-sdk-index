@@ -1,0 +1,57 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type SecurityDetectionRule struct {
+	// Complex type representing the actions taken when a detection is made by this rule.
+	DetectionAction *SecurityDetectionAction `json:"detectionAction,omitempty"`
+
+	// The ID of the detector that triggered the alert. Also see the 'detectorId' field in microsoft.graph.security.alert.
+	DetectorId nullable.Type[string] `json:"detectorId,omitempty"`
+
+	// Complex type holding details about the last run of this rule.
+	LastRunDetails *SecurityRunDetails `json:"lastRunDetails,omitempty"`
+
+	// Complex type holding data about the advanced hunting query of this rule.
+	QueryCondition *SecurityQueryCondition `json:"queryCondition,omitempty"`
+
+	// Complex type holding data about the triggering schedule of this rule.
+	Schedule *SecurityRuleSchedule `json:"schedule,omitempty"`
+
+	// Fields inherited from SecurityProtectionRule
+
+	// Name of the user or application that created the rule.
+	CreatedBy *string `json:"createdBy,omitempty"`
+
+	// Timestamp of rule creation.
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+
+	// Name of the rule.
+	DisplayName *string `json:"displayName,omitempty"`
+
+	// Whether rule is turned on for the tenant.
+	IsEnabled *bool `json:"isEnabled,omitempty"`
+
+	// Name of the user or application who last updated the rule.
+	LastModifiedBy *string `json:"lastModifiedBy,omitempty"`
+
+	// Timestamp of when the rule was last updated.
+	LastModifiedDateTime *string `json:"lastModifiedDateTime,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

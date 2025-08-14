@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type PlannerPlanContext struct {
+	// Nullable. An app-defined type of association between the plannerPlan and the app. The app can use this information to
+	// track different kinds of relationships to the same plannerPlan.
+	AssociationType nullable.Type[string] `json:"associationType,omitempty"`
+
+	// Read-only. The date and time when the plannerPlanContext was created. The Timestamp type represents date and time
+	// information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is
+	// 2014-01-01T00:00:00Z.
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// The segments of the name of the external experience. Segments represent a hierarchical structure that allows other
+	// apps to display the relationship.
+	DisplayNameSegments *[]string `json:"displayNameSegments,omitempty"`
+
+	// Read-only. Indicates whether the plan is created from the specified context. Auto-generated based on whether the
+	// context is specified as part of plan creation.
+	IsCreationContext nullable.Type[bool] `json:"isCreationContext,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Read-only. ID of the app that created the plannerPlanContext.
+	OwnerAppId nullable.Type[string] `json:"ownerAppId,omitempty"`
+}

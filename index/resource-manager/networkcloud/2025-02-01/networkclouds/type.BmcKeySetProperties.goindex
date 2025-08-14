@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/networkcloud/2025-02-01/networkclouds
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type BmcKeySetProperties struct {
+	AzureGroupId          string                      `json:"azureGroupId"`
+	DetailedStatus        *BmcKeySetDetailedStatus    `json:"detailedStatus,omitempty"`
+	DetailedStatusMessage *string                     `json:"detailedStatusMessage,omitempty"`
+	Expiration            string                      `json:"expiration"`
+	LastValidation        *string                     `json:"lastValidation,omitempty"`
+	PrivilegeLevel        BmcKeySetPrivilegeLevel     `json:"privilegeLevel"`
+	ProvisioningState     *BmcKeySetProvisioningState `json:"provisioningState,omitempty"`
+	UserList              []KeySetUser                `json:"userList"`
+	UserListStatus        *[]KeySetUserStatus         `json:"userListStatus,omitempty"`
+}

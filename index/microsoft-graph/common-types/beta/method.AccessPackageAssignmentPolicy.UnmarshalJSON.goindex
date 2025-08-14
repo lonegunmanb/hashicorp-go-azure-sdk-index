@@ -1,0 +1,83 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *AccessPackageAssignmentPolicy) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AccessPackage                     *AccessPackage                     `json:"accessPackage,omitempty"`
+		AccessPackageCatalog              *AccessPackageCatalog              `json:"accessPackageCatalog,omitempty"`
+		AccessPackageId                   nullable.Type[string]              `json:"accessPackageId,omitempty"`
+		AccessPackageNotificationSettings *AccessPackageNotificationSettings `json:"accessPackageNotificationSettings,omitempty"`
+		AccessReviewSettings              *AssignmentReviewSettings          `json:"accessReviewSettings,omitempty"`
+		CanExtend                         nullable.Type[bool]                `json:"canExtend,omitempty"`
+		CreatedBy                         nullable.Type[string]              `json:"createdBy,omitempty"`
+		CreatedDateTime                   nullable.Type[string]              `json:"createdDateTime,omitempty"`
+		CustomExtensionHandlers           *[]CustomExtensionHandler          `json:"customExtensionHandlers,omitempty"`
+		CustomExtensionStageSettings      *[]CustomExtensionStageSetting     `json:"customExtensionStageSettings,omitempty"`
+		Description                       nullable.Type[string]              `json:"description,omitempty"`
+		DisplayName                       nullable.Type[string]              `json:"displayName,omitempty"`
+		DurationInDays                    nullable.Type[int64]               `json:"durationInDays,omitempty"`
+		ExpirationDateTime                nullable.Type[string]              `json:"expirationDateTime,omitempty"`
+		ModifiedBy                        nullable.Type[string]              `json:"modifiedBy,omitempty"`
+		ModifiedDateTime                  nullable.Type[string]              `json:"modifiedDateTime,omitempty"`
+		RequestApprovalSettings           *ApprovalSettings                  `json:"requestApprovalSettings,omitempty"`
+		RequestorSettings                 *RequestorSettings                 `json:"requestorSettings,omitempty"`
+		VerifiableCredentialSettings      *VerifiableCredentialSettings      `json:"verifiableCredentialSettings,omitempty"`
+		Id                                *string                            `json:"id,omitempty"`
+		ODataId                           *string                            `json:"@odata.id,omitempty"`
+		ODataType                         *string                            `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AccessPackage = decoded.AccessPackage
+	s.AccessPackageCatalog = decoded.AccessPackageCatalog
+	s.AccessPackageId = decoded.AccessPackageId
+	s.AccessPackageNotificationSettings = decoded.AccessPackageNotificationSettings
+	s.AccessReviewSettings = decoded.AccessReviewSettings
+	s.CanExtend = decoded.CanExtend
+	s.CreatedBy = decoded.CreatedBy
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.CustomExtensionHandlers = decoded.CustomExtensionHandlers
+	s.CustomExtensionStageSettings = decoded.CustomExtensionStageSettings
+	s.Description = decoded.Description
+	s.DisplayName = decoded.DisplayName
+	s.DurationInDays = decoded.DurationInDays
+	s.ExpirationDateTime = decoded.ExpirationDateTime
+	s.ModifiedBy = decoded.ModifiedBy
+	s.ModifiedDateTime = decoded.ModifiedDateTime
+	s.RequestApprovalSettings = decoded.RequestApprovalSettings
+	s.RequestorSettings = decoded.RequestorSettings
+	s.VerifiableCredentialSettings = decoded.VerifiableCredentialSettings
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling AccessPackageAssignmentPolicy into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["questions"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling Questions into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]AccessPackageQuestion, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalAccessPackageQuestionImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'Questions' for 'AccessPackageAssignmentPolicy': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.Questions = &output
+	}
+
+	return nil
+}

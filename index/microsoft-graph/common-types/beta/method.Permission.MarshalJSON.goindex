@@ -1,0 +1,42 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s Permission) MarshalJSON() ([]byte, error) {
+	type wrapper Permission
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling Permission: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling Permission: %+v", err)
+	}
+
+	delete(decoded, "grantedTo")
+	delete(decoded, "grantedToIdentities")
+	delete(decoded, "grantedToIdentitiesV2")
+	delete(decoded, "grantedToV2")
+	delete(decoded, "hasPassword")
+	delete(decoded, "inheritedFrom")
+	delete(decoded, "invitation")
+	delete(decoded, "link")
+	delete(decoded, "roles")
+	delete(decoded, "shareId")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.permission"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling Permission: %+v", err)
+	}
+
+	return encoded, nil
+}

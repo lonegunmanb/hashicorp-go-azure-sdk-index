@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservices/2024-04-01/vaults
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVaultUpgradeState(input string) (*VaultUpgradeState, error) {
+	vals := map[string]VaultUpgradeState{
+		"failed":     VaultUpgradeStateFailed,
+		"inprogress": VaultUpgradeStateInProgress,
+		"unknown":    VaultUpgradeStateUnknown,
+		"upgraded":   VaultUpgradeStateUpgraded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VaultUpgradeState(input)
+	return &out, nil
+}

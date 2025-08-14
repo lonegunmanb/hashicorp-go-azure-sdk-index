@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-10-01/resources
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ResourcesClient) UpdateByIdThenPoll(ctx context.Context, id commonids.ScopeId, input GenericResource) error {
+	result, err := c.UpdateById(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing UpdateById: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after UpdateById: %+v", err)
+	}
+
+	return nil
+}

@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/templatedevicetemplatedeviceinstance
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c TemplateDeviceTemplateDeviceInstanceClient) ListTemplateDeviceInstancesComplete(ctx context.Context, id beta.DirectoryTemplateDeviceTemplateId, options ListTemplateDeviceInstancesOperationOptions) (ListTemplateDeviceInstancesCompleteResult, error) {
+	return c.ListTemplateDeviceInstancesCompleteMatchingPredicate(ctx, id, options, DeviceOperationPredicate{})
+}

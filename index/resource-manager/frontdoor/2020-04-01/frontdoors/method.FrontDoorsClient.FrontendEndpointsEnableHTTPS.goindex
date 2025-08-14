@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/frontdoor/2020-04-01/frontdoors
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/polling"
+)
+func (c FrontDoorsClient) FrontendEndpointsEnableHTTPS(ctx context.Context, id FrontendEndpointId, input CustomHTTPSConfiguration) (result FrontendEndpointsEnableHTTPSOperationResponse, err error) {
+	req, err := c.preparerForFrontendEndpointsEnableHTTPS(ctx, id, input)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "frontdoors.FrontDoorsClient", "FrontendEndpointsEnableHTTPS", nil, "Failure preparing request")
+		return
+	}
+
+	result, err = c.senderForFrontendEndpointsEnableHTTPS(ctx, req)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "frontdoors.FrontDoorsClient", "FrontendEndpointsEnableHTTPS", result.HttpResponse, "Failure sending request")
+		return
+	}
+
+	return
+}

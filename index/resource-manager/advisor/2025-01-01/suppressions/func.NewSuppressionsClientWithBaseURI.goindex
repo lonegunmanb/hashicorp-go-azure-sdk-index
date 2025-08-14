@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/advisor/2025-01-01/suppressions
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSuppressionsClientWithBaseURI(sdkApi sdkEnv.Api) (*SuppressionsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "suppressions", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SuppressionsClient: %+v", err)
+	}
+
+	return &SuppressionsClient{
+		Client: client,
+	}, nil
+}

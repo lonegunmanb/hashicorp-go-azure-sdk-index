@@ -1,0 +1,91 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type DeviceManagementAutopilotEvent struct {
+	// Time spent in user ESP.
+	AccountSetupDuration *string `json:"accountSetupDuration,omitempty"`
+
+	// Deployment states for Autopilot devices
+	AccountSetupStatus *WindowsAutopilotDeploymentState `json:"accountSetupStatus,omitempty"`
+
+	// Autopilot deployment duration including enrollment.
+	DeploymentDuration *string `json:"deploymentDuration,omitempty"`
+
+	// Deployment end time.
+	DeploymentEndDateTime *string `json:"deploymentEndDateTime,omitempty"`
+
+	// Deployment start time.
+	DeploymentStartDateTime *string `json:"deploymentStartDateTime,omitempty"`
+
+	// Deployment states for Autopilot devices
+	DeploymentState *WindowsAutopilotDeploymentState `json:"deploymentState,omitempty"`
+
+	// Total deployment duration from enrollment to Desktop screen.
+	DeploymentTotalDuration *string `json:"deploymentTotalDuration,omitempty"`
+
+	// Device id associated with the object
+	DeviceId nullable.Type[string] `json:"deviceId,omitempty"`
+
+	// Device registration date.
+	DeviceRegisteredDateTime *string `json:"deviceRegisteredDateTime,omitempty"`
+
+	// Device serial number.
+	DeviceSerialNumber nullable.Type[string] `json:"deviceSerialNumber,omitempty"`
+
+	// Time spent in device ESP.
+	DeviceSetupDuration *string `json:"deviceSetupDuration,omitempty"`
+
+	// Deployment states for Autopilot devices
+	DeviceSetupStatus *WindowsAutopilotDeploymentState `json:"deviceSetupStatus,omitempty"`
+
+	// Enrollment failure details.
+	EnrollmentFailureDetails nullable.Type[string] `json:"enrollmentFailureDetails,omitempty"`
+
+	// Device enrollment start date.
+	EnrollmentStartDateTime *string `json:"enrollmentStartDateTime,omitempty"`
+
+	EnrollmentState *EnrollmentState                `json:"enrollmentState,omitempty"`
+	EnrollmentType  *WindowsAutopilotEnrollmentType `json:"enrollmentType,omitempty"`
+
+	// Time when the event occurred .
+	EventDateTime *string `json:"eventDateTime,omitempty"`
+
+	// Managed device name.
+	ManagedDeviceName nullable.Type[string] `json:"managedDeviceName,omitempty"`
+
+	// Device operating system version.
+	OsVersion nullable.Type[string] `json:"osVersion,omitempty"`
+
+	// UserId id associated with the object
+	UserId nullable.Type[string] `json:"userId,omitempty"`
+
+	// User principal name used to enroll the device.
+	UserPrincipalName nullable.Type[string] `json:"userPrincipalName,omitempty"`
+
+	// Enrollment Status Page profile name
+	Windows10EnrollmentCompletionPageConfigurationDisplayName nullable.Type[string] `json:"windows10EnrollmentCompletionPageConfigurationDisplayName,omitempty"`
+
+	// Enrollment Status Page profile ID
+	Windows10EnrollmentCompletionPageConfigurationId nullable.Type[string] `json:"windows10EnrollmentCompletionPageConfigurationId,omitempty"`
+
+	// Autopilot profile name.
+	WindowsAutopilotDeploymentProfileDisplayName nullable.Type[string] `json:"windowsAutopilotDeploymentProfileDisplayName,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

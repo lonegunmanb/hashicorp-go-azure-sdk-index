@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hardwaresecuritymodules/2021-11-30/dedicatedhsms
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSkuName(input string) (*SkuName, error) {
+	vals := map[string]SkuName{
+		"payshield10k_lmk1_cps60":       SkuNamePayShieldOneZeroKLMKOneCPSSixZero,
+		"payshield10k_lmk1_cps250":      SkuNamePayShieldOneZeroKLMKOneCPSTwoFiveZero,
+		"payshield10k_lmk1_cps2500":     SkuNamePayShieldOneZeroKLMKOneCPSTwoFiveZeroZero,
+		"payshield10k_lmk2_cps60":       SkuNamePayShieldOneZeroKLMKTwoCPSSixZero,
+		"payshield10k_lmk2_cps250":      SkuNamePayShieldOneZeroKLMKTwoCPSTwoFiveZero,
+		"payshield10k_lmk2_cps2500":     SkuNamePayShieldOneZeroKLMKTwoCPSTwoFiveZeroZero,
+		"safenet luna network hsm a790": SkuNameSafeNetLunaNetworkHSMASevenNineZero,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SkuName(input)
+	return &out, nil
+}

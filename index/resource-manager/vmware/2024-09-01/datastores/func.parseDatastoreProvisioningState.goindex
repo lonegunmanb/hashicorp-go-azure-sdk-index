@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2024-09-01/datastores
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDatastoreProvisioningState(input string) (*DatastoreProvisioningState, error) {
+	vals := map[string]DatastoreProvisioningState{
+		"canceled":  DatastoreProvisioningStateCanceled,
+		"cancelled": DatastoreProvisioningStateCancelled,
+		"creating":  DatastoreProvisioningStateCreating,
+		"deleting":  DatastoreProvisioningStateDeleting,
+		"failed":    DatastoreProvisioningStateFailed,
+		"pending":   DatastoreProvisioningStatePending,
+		"succeeded": DatastoreProvisioningStateSucceeded,
+		"updating":  DatastoreProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DatastoreProvisioningState(input)
+	return &out, nil
+}

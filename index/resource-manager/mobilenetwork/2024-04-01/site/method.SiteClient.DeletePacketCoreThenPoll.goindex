@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mobilenetwork/2024-04-01/site
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c SiteClient) DeletePacketCoreThenPoll(ctx context.Context, id SiteId, input SiteDeletePacketCore) error {
+	result, err := c.DeletePacketCore(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing DeletePacketCore: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after DeletePacketCore: %+v", err)
+	}
+
+	return nil
+}

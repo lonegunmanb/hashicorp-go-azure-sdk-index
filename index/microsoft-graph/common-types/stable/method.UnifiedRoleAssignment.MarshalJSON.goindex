@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s UnifiedRoleAssignment) MarshalJSON() ([]byte, error) {
+	type wrapper UnifiedRoleAssignment
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling UnifiedRoleAssignment: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling UnifiedRoleAssignment: %+v", err)
+	}
+
+	delete(decoded, "directoryScope")
+	delete(decoded, "principal")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.unifiedRoleAssignment"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling UnifiedRoleAssignment: %+v", err)
+	}
+
+	return encoded, nil
+}

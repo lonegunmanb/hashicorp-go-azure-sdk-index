@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/synchronizationtemplateschema
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSynchronizationTemplateSchemaClientWithBaseURI(sdkApi sdkEnv.Api) (*SynchronizationTemplateSchemaClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "synchronizationtemplateschema", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SynchronizationTemplateSchemaClient: %+v", err)
+	}
+
+	return &SynchronizationTemplateSchemaClient{
+		Client: client,
+	}, nil
+}

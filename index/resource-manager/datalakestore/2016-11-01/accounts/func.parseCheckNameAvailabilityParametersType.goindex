@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datalakestore/2016-11-01/accounts
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCheckNameAvailabilityParametersType(input string) (*CheckNameAvailabilityParametersType, error) {
+	vals := map[string]CheckNameAvailabilityParametersType{
+		"microsoft.datalakestore/accounts": CheckNameAvailabilityParametersTypeMicrosoftPointDataLakeStoreAccounts,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CheckNameAvailabilityParametersType(input)
+	return &out, nil
+}

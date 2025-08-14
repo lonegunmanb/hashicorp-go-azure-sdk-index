@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s SecurityEndpointDiscoveredCloudAppDetail) SecurityDiscoveredCloudAppDetail() BaseSecurityDiscoveredCloudAppDetailImpl {
+	return BaseSecurityDiscoveredCloudAppDetailImpl{
+		AppInfo:                       s.AppInfo,
+		Category:                      s.Category,
+		Description:                   s.Description,
+		DisplayName:                   s.DisplayName,
+		Domains:                       s.Domains,
+		DownloadNetworkTrafficInBytes: s.DownloadNetworkTrafficInBytes,
+		FirstSeenDateTime:             s.FirstSeenDateTime,
+		IPAddressCount:                s.IPAddressCount,
+		IPAddresses:                   s.IPAddresses,
+		LastSeenDateTime:              s.LastSeenDateTime,
+		RiskScore:                     s.RiskScore,
+		Tags:                          s.Tags,
+		TransactionCount:              s.TransactionCount,
+		UploadNetworkTrafficInBytes:   s.UploadNetworkTrafficInBytes,
+		UserCount:                     s.UserCount,
+		Users:                         s.Users,
+		Id:                            s.Id,
+		ODataId:                       s.ODataId,
+		ODataType:                     s.ODataType,
+	}
+}

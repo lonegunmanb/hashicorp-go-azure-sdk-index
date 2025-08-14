@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/fileshares
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseLeaseState(input string) (*LeaseState, error) {
+	vals := map[string]LeaseState{
+		"available": LeaseStateAvailable,
+		"breaking":  LeaseStateBreaking,
+		"broken":    LeaseStateBroken,
+		"expired":   LeaseStateExpired,
+		"leased":    LeaseStateLeased,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := LeaseState(input)
+	return &out, nil
+}

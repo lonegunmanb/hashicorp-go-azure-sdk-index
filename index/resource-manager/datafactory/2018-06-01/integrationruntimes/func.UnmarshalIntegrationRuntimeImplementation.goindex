@@ -1,0 +1,49 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/integrationruntimes
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalIntegrationRuntimeImplementation(input []byte) (IntegrationRuntime, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling IntegrationRuntime into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "Managed") {
+		var out ManagedIntegrationRuntime
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into ManagedIntegrationRuntime: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "SelfHosted") {
+		var out SelfHostedIntegrationRuntime
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SelfHostedIntegrationRuntime: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseIntegrationRuntimeImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseIntegrationRuntimeImpl: %+v", err)
+	}
+
+	return RawIntegrationRuntimeImpl{
+		integrationRuntime: parent,
+		Type:               value,
+		Values:             temp,
+	}, nil
+
+}

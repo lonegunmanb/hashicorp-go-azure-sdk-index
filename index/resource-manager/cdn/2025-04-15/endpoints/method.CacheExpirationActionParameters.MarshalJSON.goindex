@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-04-15/endpoints
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s CacheExpirationActionParameters) MarshalJSON() ([]byte, error) {
+	type wrapper CacheExpirationActionParameters
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling CacheExpirationActionParameters: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling CacheExpirationActionParameters: %+v", err)
+	}
+
+	decoded["typeName"] = "DeliveryRuleCacheExpirationActionParameters"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling CacheExpirationActionParameters: %+v", err)
+	}
+
+	return encoded, nil
+}

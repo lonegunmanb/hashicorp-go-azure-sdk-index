@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/automation/2015-10-31/runbook
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRunbookTypeEnum(input string) (*RunbookTypeEnum, error) {
+	vals := map[string]RunbookTypeEnum{
+		"graph":                   RunbookTypeEnumGraph,
+		"graphpowershell":         RunbookTypeEnumGraphPowerShell,
+		"graphpowershellworkflow": RunbookTypeEnumGraphPowerShellWorkflow,
+		"powershell":              RunbookTypeEnumPowerShell,
+		"powershellworkflow":      RunbookTypeEnumPowerShellWorkflow,
+		"python3":                 RunbookTypeEnumPythonThree,
+		"python2":                 RunbookTypeEnumPythonTwo,
+		"script":                  RunbookTypeEnumScript,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RunbookTypeEnum(input)
+	return &out, nil
+}

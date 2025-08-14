@@ -1,0 +1,106 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s *CommunicationsIdentitySet) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		EndpointType *EndpointType `json:"endpointType,omitempty"`
+		ODataId      *string       `json:"@odata.id,omitempty"`
+		ODataType    *string       `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.EndpointType = decoded.EndpointType
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling CommunicationsIdentitySet into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["application"]; ok {
+		impl, err := UnmarshalIdentityImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Application' for 'CommunicationsIdentitySet': %+v", err)
+		}
+		s.Application = impl
+	}
+
+	if v, ok := temp["applicationInstance"]; ok {
+		impl, err := UnmarshalIdentityImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'ApplicationInstance' for 'CommunicationsIdentitySet': %+v", err)
+		}
+		s.ApplicationInstance = impl
+	}
+
+	if v, ok := temp["assertedIdentity"]; ok {
+		impl, err := UnmarshalIdentityImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'AssertedIdentity' for 'CommunicationsIdentitySet': %+v", err)
+		}
+		s.AssertedIdentity = impl
+	}
+
+	if v, ok := temp["azureCommunicationServicesUser"]; ok {
+		impl, err := UnmarshalIdentityImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'AzureCommunicationServicesUser' for 'CommunicationsIdentitySet': %+v", err)
+		}
+		s.AzureCommunicationServicesUser = impl
+	}
+
+	if v, ok := temp["device"]; ok {
+		impl, err := UnmarshalIdentityImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Device' for 'CommunicationsIdentitySet': %+v", err)
+		}
+		s.Device = impl
+	}
+
+	if v, ok := temp["encrypted"]; ok {
+		impl, err := UnmarshalIdentityImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Encrypted' for 'CommunicationsIdentitySet': %+v", err)
+		}
+		s.Encrypted = impl
+	}
+
+	if v, ok := temp["guest"]; ok {
+		impl, err := UnmarshalIdentityImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Guest' for 'CommunicationsIdentitySet': %+v", err)
+		}
+		s.Guest = impl
+	}
+
+	if v, ok := temp["onPremises"]; ok {
+		impl, err := UnmarshalIdentityImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'OnPremises' for 'CommunicationsIdentitySet': %+v", err)
+		}
+		s.OnPremises = impl
+	}
+
+	if v, ok := temp["phone"]; ok {
+		impl, err := UnmarshalIdentityImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Phone' for 'CommunicationsIdentitySet': %+v", err)
+		}
+		s.Phone = impl
+	}
+
+	if v, ok := temp["user"]; ok {
+		impl, err := UnmarshalIdentityImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'User' for 'CommunicationsIdentitySet': %+v", err)
+		}
+		s.User = impl
+	}
+
+	return nil
+}

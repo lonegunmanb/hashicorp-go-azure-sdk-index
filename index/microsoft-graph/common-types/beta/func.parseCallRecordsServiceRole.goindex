@@ -1,0 +1,38 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCallRecordsServiceRole(input string) (*CallRecordsServiceRole, error) {
+	vals := map[string]CallRecordsServiceRole{
+		"audioteleconferencercontroller":                          CallRecordsServiceRole_AudioTeleconferencerController,
+		"conferencingannouncementservice":                         CallRecordsServiceRole_ConferencingAnnouncementService,
+		"conferencingattendant":                                   CallRecordsServiceRole_ConferencingAttendant,
+		"custombot":                                               CallRecordsServiceRole_CustomBot,
+		"exchangeunifiedmessagingservice":                         CallRecordsServiceRole_ExchangeUnifiedMessagingService,
+		"gateway":                                                 CallRecordsServiceRole_Gateway,
+		"mediacontroller":                                         CallRecordsServiceRole_MediaController,
+		"mediationserver":                                         CallRecordsServiceRole_MediationServer,
+		"mediationservercloudconnectoredition":                    CallRecordsServiceRole_MediationServerCloudConnectorEdition,
+		"responsegroupservice":                                    CallRecordsServiceRole_ResponseGroupService,
+		"responsegroupserviceannouncementservice":                 CallRecordsServiceRole_ResponseGroupServiceAnnouncementService,
+		"skypeforbusinessapplicationsharingmcu":                   CallRecordsServiceRole_SkypeForBusinessApplicationSharingMcu,
+		"skypeforbusinessattendant":                               CallRecordsServiceRole_SkypeForBusinessAttendant,
+		"skypeforbusinessaudiovideomcu":                           CallRecordsServiceRole_SkypeForBusinessAudioVideoMcu,
+		"skypeforbusinessautoattendant":                           CallRecordsServiceRole_SkypeForBusinessAutoAttendant,
+		"skypeforbusinesscallqueues":                              CallRecordsServiceRole_SkypeForBusinessCallQueues,
+		"skypeforbusinessmicrosoftteamsgateway":                   CallRecordsServiceRole_SkypeForBusinessMicrosoftTeamsGateway,
+		"skypeforbusinessunifiedcommunicationapplicationplatform": CallRecordsServiceRole_SkypeForBusinessUnifiedCommunicationApplicationPlatform,
+		"skypetranslator":                                         CallRecordsServiceRole_SkypeTranslator,
+		"unknown":                                                 CallRecordsServiceRole_Unknown,
+		"voicemail":                                               CallRecordsServiceRole_Voicemail,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CallRecordsServiceRole(input)
+	return &out, nil
+}

@@ -1,0 +1,70 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *TeamworkDevice) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		Activity             *TeamworkDeviceActivity      `json:"activity,omitempty"`
+		ActivityState        *TeamworkDeviceActivityState `json:"activityState,omitempty"`
+		CompanyAssetTag      nullable.Type[string]        `json:"companyAssetTag,omitempty"`
+		Configuration        *TeamworkDeviceConfiguration `json:"configuration,omitempty"`
+		CreatedDateTime      nullable.Type[string]        `json:"createdDateTime,omitempty"`
+		CurrentUser          *TeamworkUserIdentity        `json:"currentUser,omitempty"`
+		DeviceType           *TeamworkDeviceType          `json:"deviceType,omitempty"`
+		HardwareDetail       *TeamworkHardwareDetail      `json:"hardwareDetail,omitempty"`
+		Health               *TeamworkDeviceHealth        `json:"health,omitempty"`
+		HealthStatus         *TeamworkDeviceHealthStatus  `json:"healthStatus,omitempty"`
+		LastModifiedDateTime nullable.Type[string]        `json:"lastModifiedDateTime,omitempty"`
+		Notes                nullable.Type[string]        `json:"notes,omitempty"`
+		Operations           *[]TeamworkDeviceOperation   `json:"operations,omitempty"`
+		Id                   *string                      `json:"id,omitempty"`
+		ODataId              *string                      `json:"@odata.id,omitempty"`
+		ODataType            *string                      `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.Activity = decoded.Activity
+	s.ActivityState = decoded.ActivityState
+	s.CompanyAssetTag = decoded.CompanyAssetTag
+	s.Configuration = decoded.Configuration
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.CurrentUser = decoded.CurrentUser
+	s.DeviceType = decoded.DeviceType
+	s.HardwareDetail = decoded.HardwareDetail
+	s.Health = decoded.Health
+	s.HealthStatus = decoded.HealthStatus
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.Notes = decoded.Notes
+	s.Operations = decoded.Operations
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling TeamworkDevice into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["createdBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'CreatedBy' for 'TeamworkDevice': %+v", err)
+		}
+		s.CreatedBy = impl
+	}
+
+	if v, ok := temp["lastModifiedBy"]; ok {
+		impl, err := UnmarshalIdentitySetImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'LastModifiedBy' for 'TeamworkDevice': %+v", err)
+		}
+		s.LastModifiedBy = impl
+	}
+
+	return nil
+}

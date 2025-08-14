@@ -1,0 +1,59 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalScheduleChangeRequestImplementation(input []byte) (ScheduleChangeRequest, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling ScheduleChangeRequest into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.offerShiftRequest") {
+		var out OfferShiftRequest
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into OfferShiftRequest: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.openShiftChangeRequest") {
+		var out OpenShiftChangeRequest
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into OpenShiftChangeRequest: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.timeOffRequest") {
+		var out TimeOffRequest
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into TimeOffRequest: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseScheduleChangeRequestImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseScheduleChangeRequestImpl: %+v", err)
+	}
+
+	return RawScheduleChangeRequestImpl{
+		scheduleChangeRequest: parent,
+		Type:                  value,
+		Values:                temp,
+	}, nil
+
+}

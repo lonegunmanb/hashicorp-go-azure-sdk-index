@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type EmergencyCallerInfo struct {
+	// The display name of the emergency caller.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// The location of the emergency caller.
+	Location Location `json:"location"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The phone number of the emergency caller.
+	PhoneNumber nullable.Type[string] `json:"phoneNumber,omitempty"`
+
+	// The tenant ID of the emergency caller.
+	TenantId nullable.Type[string] `json:"tenantId,omitempty"`
+
+	// The user principal name of the emergency caller.
+	Upn nullable.Type[string] `json:"upn,omitempty"`
+}

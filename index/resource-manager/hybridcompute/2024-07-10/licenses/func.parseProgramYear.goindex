@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2024-07-10/licenses
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseProgramYear(input string) (*ProgramYear, error) {
+	vals := map[string]ProgramYear{
+		"year 1": ProgramYearYearOne,
+		"year 3": ProgramYearYearThree,
+		"year 2": ProgramYearYearTwo,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ProgramYear(input)
+	return &out, nil
+}

@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2024-09-01/customdomains
+import (
+	"encoding/json"
+	"fmt"
+)
+type KeyVaultCertificateSourceParameters struct {
+	DeleteRule        DeleteRule `json:"deleteRule"`
+	ResourceGroupName string     `json:"resourceGroupName"`
+	SecretName        string     `json:"secretName"`
+	SecretVersion     *string    `json:"secretVersion,omitempty"`
+	SubscriptionId    string     `json:"subscriptionId"`
+	UpdateRule        UpdateRule `json:"updateRule"`
+	VaultName         string     `json:"vaultName"`
+
+	// Fields inherited from CertificateSourceParameters
+
+	TypeName CertificateSourceParametersType `json:"typeName"`
+}

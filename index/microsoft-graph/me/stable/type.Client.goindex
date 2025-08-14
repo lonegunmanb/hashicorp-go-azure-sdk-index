@@ -1,0 +1,787 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/activity"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/activityhistoryitem"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/activityhistoryitemactivity"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/agreementacceptance"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/approleassignment"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/authentication"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/authenticationemailmethod"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/authenticationfido2method"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/authenticationmethod"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/authenticationmicrosoftauthenticatormethod"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/authenticationmicrosoftauthenticatormethoddevice"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/authenticationoperation"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/authenticationpasswordmethod"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/authenticationphonemethod"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/authenticationplatformcredentialmethod"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/authenticationplatformcredentialmethoddevice"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/authenticationsoftwareoathmethod"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/authenticationtemporaryaccesspassmethod"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/authenticationwindowshelloforbusinessmethod"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/authenticationwindowshelloforbusinessmethoddevice"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/chat"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/chatinstalledapp"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/chatinstalledappteamsapp"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/chatinstalledappteamsappdefinition"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/chatlastmessagepreview"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/chatmember"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/chatmessage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/chatmessagehostedcontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/chatmessagereply"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/chatmessagereplyhostedcontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/chatpermissiongrant"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/chatpinnedmessage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/chatpinnedmessagemessage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/chattab"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/chattabteamsapp"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/cloudclipboard"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/cloudclipboarditem"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/contact"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/contactextension"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/contactfolder"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/contactfolderchildfolder"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/contactfolderchildfoldercontact"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/contactfolderchildfoldercontactextension"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/contactfolderchildfoldercontactphoto"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/contactfoldercontact"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/contactfoldercontactextension"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/contactfoldercontactphoto"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/contactphoto"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/createdobject"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/devicemanagementtroubleshootingevent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/directreport"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drive"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivebundle"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivebundlecontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivecreatedbyuser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivecreatedbyusermailboxsetting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivecreatedbyuserserviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivefollowing"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivefollowingcontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitem"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemanalytics"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemanalyticsalltime"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemanalyticsitemactivitystat"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemanalyticsitemactivitystatactivity"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemanalyticsitemactivitystatactivitydriveitem"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemanalyticsitemactivitystatactivitydriveitemcontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemanalyticslastsevenday"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemchild"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemchildcontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemcontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemcreatedbyuser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemcreatedbyusermailboxsetting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemcreatedbyuserserviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemlastmodifiedbyuser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemlastmodifiedbyusermailboxsetting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemlastmodifiedbyuserserviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemlistitem"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemlistitemanalytics"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemlistitemcreatedbyuser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemlistitemcreatedbyusermailboxsetting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemlistitemcreatedbyuserserviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemlistitemdocumentsetversion"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemlistitemdocumentsetversionfield"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemlistitemdriveitem"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemlistitemdriveitemcontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemlistitemfield"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemlistitemlastmodifiedbyuser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemlistitemlastmodifiedbyusermailboxsetting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemlistitemlastmodifiedbyuserserviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemlistitemversion"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemlistitemversionfield"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitempermission"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemretentionlabel"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemsubscription"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemthumbnail"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemversion"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveitemversioncontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelastmodifiedbyuser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelastmodifiedbyusermailboxsetting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelastmodifiedbyuserserviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelist"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistcolumn"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistcolumnsourcecolumn"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistcontenttype"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistcontenttypebase"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistcontenttypebasetype"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistcontenttypecolumn"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistcontenttypecolumnlink"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistcontenttypecolumnposition"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistcontenttypecolumnsourcecolumn"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistcreatedbyuser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistcreatedbyusermailboxsetting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistcreatedbyuserserviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistdrive"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistitem"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistitemanalytics"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistitemcreatedbyuser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistitemcreatedbyusermailboxsetting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistitemcreatedbyuserserviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistitemdocumentsetversion"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistitemdocumentsetversionfield"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistitemdriveitem"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistitemdriveitemcontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistitemfield"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistitemlastmodifiedbyuser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistitemlastmodifiedbyusermailboxsetting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistitemlastmodifiedbyuserserviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistitemversion"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistitemversionfield"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistlastmodifiedbyuser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistlastmodifiedbyusermailboxsetting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistlastmodifiedbyuserserviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistoperation"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivelistsubscription"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driveroot"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootanalytics"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootanalyticsalltime"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootanalyticsitemactivitystat"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootanalyticsitemactivitystatactivity"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootanalyticsitemactivitystatactivitydriveitem"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootanalyticsitemactivitystatactivitydriveitemcontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootanalyticslastsevenday"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootchild"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootchildcontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootcontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootcreatedbyuser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootcreatedbyusermailboxsetting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootcreatedbyuserserviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootlastmodifiedbyuser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootlastmodifiedbyusermailboxsetting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootlastmodifiedbyuserserviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootlistitem"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootlistitemanalytics"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootlistitemcreatedbyuser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootlistitemcreatedbyusermailboxsetting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootlistitemcreatedbyuserserviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootlistitemdocumentsetversion"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootlistitemdocumentsetversionfield"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootlistitemdriveitem"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootlistitemdriveitemcontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootlistitemfield"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootlistitemlastmodifiedbyuser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootlistitemlastmodifiedbyusermailboxsetting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootlistitemlastmodifiedbyuserserviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootlistitemversion"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootlistitemversionfield"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootpermission"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootretentionlabel"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootsubscription"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootthumbnail"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootversion"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/driverootversioncontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivespecial"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/drivespecialcontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/employeeexperience"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/employeeexperiencelearningcourseactivity"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/event"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/eventattachment"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/eventcalendar"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/eventextension"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/eventinstance"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/extension"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/followedsite"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/inferenceclassification"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/inferenceclassificationoverride"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/insight"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/insightshared"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/insightsharedlastsharedmethod"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/insightsharedresource"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/insighttrending"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/insighttrendingresource"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/insightused"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/insightusedresource"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteam"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamallchannel"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamchannel"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamchannelallmember"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamchannelfilesfolder"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamchannelfilesfoldercontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamchannelmember"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamchannelmessage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamchannelmessagehostedcontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamchannelmessagereply"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamchannelmessagereplyhostedcontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamchannelsharedwithteam"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamchannelsharedwithteamallowedmember"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamchannelsharedwithteamteam"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamchanneltab"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamchanneltabteamsapp"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamgroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamgroupserviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamincomingchannel"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteaminstalledapp"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteaminstalledappteamsapp"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteaminstalledappteamsappdefinition"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteammember"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamoperation"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteampermissiongrant"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamphoto"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamprimarychannel"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamprimarychannelallmember"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamprimarychannelfilesfolder"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamprimarychannelfilesfoldercontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamprimarychannelmember"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamprimarychannelmessage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamprimarychannelmessagehostedcontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamprimarychannelmessagereply"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamprimarychannelmessagereplyhostedcontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamprimarychannelsharedwithteam"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamprimarychannelsharedwithteamallowedmember"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamprimarychannelsharedwithteamteam"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamprimarychanneltab"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamprimarychanneltabteamsapp"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamschedule"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamscheduledaynote"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamscheduleoffershiftrequest"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamscheduleopenshift"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamscheduleopenshiftchangerequest"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamscheduleschedulinggroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamscheduleshift"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamscheduleswapshiftschangerequest"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamscheduletimecard"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamscheduletimeoffreason"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamscheduletimeoffrequest"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamscheduletimesoff"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamtag"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamtagmember"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamtemplate"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/licensedetail"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/mailboxsetting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/mailfolder"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/mailfolderchildfolder"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/mailfolderchildfoldermessage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/mailfolderchildfoldermessageattachment"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/mailfolderchildfoldermessageextension"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/mailfolderchildfoldermessagerule"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/mailfoldermessage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/mailfoldermessageattachment"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/mailfoldermessageextension"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/mailfoldermessagerule"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/managedappregistration"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/manageddevice"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/manageddevicedevicecategory"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/manageddevicedevicecompliancepolicystate"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/manageddevicedeviceconfigurationstate"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/manageddevicelogcollectionrequest"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/manageddeviceuser"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/manageddevicewindowsprotectionstate"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/manageddevicewindowsprotectionstatedetectedmalwarestate"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/manager"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/me"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/memberof"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/message"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/messageattachment"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/messageextension"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/oauth2permissiongrant"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenote"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotenotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotenotebooksection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotenotebooksectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotenotebooksectiongroupparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotenotebooksectiongroupparentsectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotenotebooksectiongroupsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotenotebooksectiongroupsectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotenotebooksectiongroupsectionpage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotenotebooksectiongroupsectionpagecontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotenotebooksectiongroupsectionpageparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotenotebooksectiongroupsectionpageparentsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotenotebooksectiongroupsectionparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotenotebooksectiongroupsectionparentsectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotenotebooksectionpage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotenotebooksectionpagecontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotenotebooksectionpageparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotenotebooksectionpageparentsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotenotebooksectionparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotenotebooksectionparentsectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenoteoperation"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotepage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotepagecontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotepageparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotepageparentsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenoteresource"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenoteresourcecontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotesection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotesectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotesectiongroupparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotesectiongroupparentsectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotesectiongroupsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotesectiongroupsectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotesectiongroupsectionpage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotesectiongroupsectionpagecontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotesectiongroupsectionpageparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotesectiongroupsectionpageparentsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotesectiongroupsectionparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotesectiongroupsectionparentsectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotesectionpage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotesectionpagecontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotesectionpageparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotesectionpageparentsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotesectionparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onenotesectionparentsectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onlinemeeting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onlinemeetingattendancereport"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onlinemeetingattendancereportattendancerecord"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onlinemeetingattendeereport"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onlinemeetingrecording"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onlinemeetingrecordingcontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onlinemeetingtranscript"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onlinemeetingtranscriptcontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onlinemeetingtranscriptmetadatacontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/outlook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/outlookmastercategory"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/owneddevice"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/ownedobject"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/permissiongrant"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/person"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/photo"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/planner"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/plannerplan"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/plannerplanbucket"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/plannerplanbuckettask"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/plannerplanbuckettaskassignedtotaskboardformat"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/plannerplanbuckettaskbuckettaskboardformat"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/plannerplanbuckettaskdetail"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/plannerplanbuckettaskprogresstaskboardformat"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/plannerplandetail"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/plannerplantask"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/plannerplantaskassignedtotaskboardformat"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/plannerplantaskbuckettaskboardformat"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/plannerplantaskdetail"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/plannerplantaskprogresstaskboardformat"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/plannertask"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/plannertaskassignedtotaskboardformat"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/plannertaskbuckettaskboardformat"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/plannertaskdetail"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/plannertaskprogresstaskboardformat"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/presence"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/registereddevice"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/scopedrolememberof"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/serviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/setting"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/settingiteminsight"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/settingshiftpreference"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/settingstorage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/settingstoragequota"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/settingstoragequotaservice"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/settingwindow"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/settingwindowinstance"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/solution"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/solutionworkingtimeschedule"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/sponsor"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/teamwork"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/teamworkassociatedteam"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/teamworkassociatedteamteam"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/teamworkinstalledapp"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/teamworkinstalledappchat"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/teamworkinstalledappteamsapp"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/teamworkinstalledappteamsappdefinition"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/todo"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/todolist"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/todolistextension"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/todolisttask"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/todolisttaskattachment"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/todolisttaskattachmentsession"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/todolisttaskattachmentsessioncontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/todolisttaskchecklistitem"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/todolisttaskextension"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/todolisttasklinkedresource"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/transitivememberof"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	Activity                                                    *activity.ActivityClient
+	ActivityHistoryItem                                         *activityhistoryitem.ActivityHistoryItemClient
+	ActivityHistoryItemActivity                                 *activityhistoryitemactivity.ActivityHistoryItemActivityClient
+	AgreementAcceptance                                         *agreementacceptance.AgreementAcceptanceClient
+	AppRoleAssignment                                           *approleassignment.AppRoleAssignmentClient
+	Authentication                                              *authentication.AuthenticationClient
+	AuthenticationEmailMethod                                   *authenticationemailmethod.AuthenticationEmailMethodClient
+	AuthenticationFido2Method                                   *authenticationfido2method.AuthenticationFido2MethodClient
+	AuthenticationMethod                                        *authenticationmethod.AuthenticationMethodClient
+	AuthenticationMicrosoftAuthenticatorMethod                  *authenticationmicrosoftauthenticatormethod.AuthenticationMicrosoftAuthenticatorMethodClient
+	AuthenticationMicrosoftAuthenticatorMethodDevice            *authenticationmicrosoftauthenticatormethoddevice.AuthenticationMicrosoftAuthenticatorMethodDeviceClient
+	AuthenticationOperation                                     *authenticationoperation.AuthenticationOperationClient
+	AuthenticationPasswordMethod                                *authenticationpasswordmethod.AuthenticationPasswordMethodClient
+	AuthenticationPhoneMethod                                   *authenticationphonemethod.AuthenticationPhoneMethodClient
+	AuthenticationPlatformCredentialMethod                      *authenticationplatformcredentialmethod.AuthenticationPlatformCredentialMethodClient
+	AuthenticationPlatformCredentialMethodDevice                *authenticationplatformcredentialmethoddevice.AuthenticationPlatformCredentialMethodDeviceClient
+	AuthenticationSoftwareOathMethod                            *authenticationsoftwareoathmethod.AuthenticationSoftwareOathMethodClient
+	AuthenticationTemporaryAccessPassMethod                     *authenticationtemporaryaccesspassmethod.AuthenticationTemporaryAccessPassMethodClient
+	AuthenticationWindowsHelloForBusinessMethod                 *authenticationwindowshelloforbusinessmethod.AuthenticationWindowsHelloForBusinessMethodClient
+	AuthenticationWindowsHelloForBusinessMethodDevice           *authenticationwindowshelloforbusinessmethoddevice.AuthenticationWindowsHelloForBusinessMethodDeviceClient
+	Chat                                                        *chat.ChatClient
+	ChatInstalledApp                                            *chatinstalledapp.ChatInstalledAppClient
+	ChatInstalledAppTeamsApp                                    *chatinstalledappteamsapp.ChatInstalledAppTeamsAppClient
+	ChatInstalledAppTeamsAppDefinition                          *chatinstalledappteamsappdefinition.ChatInstalledAppTeamsAppDefinitionClient
+	ChatLastMessagePreview                                      *chatlastmessagepreview.ChatLastMessagePreviewClient
+	ChatMember                                                  *chatmember.ChatMemberClient
+	ChatMessage                                                 *chatmessage.ChatMessageClient
+	ChatMessageHostedContent                                    *chatmessagehostedcontent.ChatMessageHostedContentClient
+	ChatMessageReply                                            *chatmessagereply.ChatMessageReplyClient
+	ChatMessageReplyHostedContent                               *chatmessagereplyhostedcontent.ChatMessageReplyHostedContentClient
+	ChatPermissionGrant                                         *chatpermissiongrant.ChatPermissionGrantClient
+	ChatPinnedMessage                                           *chatpinnedmessage.ChatPinnedMessageClient
+	ChatPinnedMessageMessage                                    *chatpinnedmessagemessage.ChatPinnedMessageMessageClient
+	ChatTab                                                     *chattab.ChatTabClient
+	ChatTabTeamsApp                                             *chattabteamsapp.ChatTabTeamsAppClient
+	CloudClipboard                                              *cloudclipboard.CloudClipboardClient
+	CloudClipboardItem                                          *cloudclipboarditem.CloudClipboardItemClient
+	Contact                                                     *contact.ContactClient
+	ContactExtension                                            *contactextension.ContactExtensionClient
+	ContactFolder                                               *contactfolder.ContactFolderClient
+	ContactFolderChildFolder                                    *contactfolderchildfolder.ContactFolderChildFolderClient
+	ContactFolderChildFolderContact                             *contactfolderchildfoldercontact.ContactFolderChildFolderContactClient
+	ContactFolderChildFolderContactExtension                    *contactfolderchildfoldercontactextension.ContactFolderChildFolderContactExtensionClient
+	ContactFolderChildFolderContactPhoto                        *contactfolderchildfoldercontactphoto.ContactFolderChildFolderContactPhotoClient
+	ContactFolderContact                                        *contactfoldercontact.ContactFolderContactClient
+	ContactFolderContactExtension                               *contactfoldercontactextension.ContactFolderContactExtensionClient
+	ContactFolderContactPhoto                                   *contactfoldercontactphoto.ContactFolderContactPhotoClient
+	ContactPhoto                                                *contactphoto.ContactPhotoClient
+	CreatedObject                                               *createdobject.CreatedObjectClient
+	DeviceManagementTroubleshootingEvent                        *devicemanagementtroubleshootingevent.DeviceManagementTroubleshootingEventClient
+	DirectReport                                                *directreport.DirectReportClient
+	Drive                                                       *drive.DriveClient
+	DriveBundle                                                 *drivebundle.DriveBundleClient
+	DriveBundleContent                                          *drivebundlecontent.DriveBundleContentClient
+	DriveCreatedByUser                                          *drivecreatedbyuser.DriveCreatedByUserClient
+	DriveCreatedByUserMailboxSetting                            *drivecreatedbyusermailboxsetting.DriveCreatedByUserMailboxSettingClient
+	DriveCreatedByUserServiceProvisioningError                  *drivecreatedbyuserserviceprovisioningerror.DriveCreatedByUserServiceProvisioningErrorClient
+	DriveFollowing                                              *drivefollowing.DriveFollowingClient
+	DriveFollowingContent                                       *drivefollowingcontent.DriveFollowingContentClient
+	DriveItem                                                   *driveitem.DriveItemClient
+	DriveItemAnalytics                                          *driveitemanalytics.DriveItemAnalyticsClient
+	DriveItemAnalyticsAllTime                                   *driveitemanalyticsalltime.DriveItemAnalyticsAllTimeClient
+	DriveItemAnalyticsItemActivityStat                          *driveitemanalyticsitemactivitystat.DriveItemAnalyticsItemActivityStatClient
+	DriveItemAnalyticsItemActivityStatActivity                  *driveitemanalyticsitemactivitystatactivity.DriveItemAnalyticsItemActivityStatActivityClient
+	DriveItemAnalyticsItemActivityStatActivityDriveItem         *driveitemanalyticsitemactivitystatactivitydriveitem.DriveItemAnalyticsItemActivityStatActivityDriveItemClient
+	DriveItemAnalyticsItemActivityStatActivityDriveItemContent  *driveitemanalyticsitemactivitystatactivitydriveitemcontent.DriveItemAnalyticsItemActivityStatActivityDriveItemContentClient
+	DriveItemAnalyticsLastSevenDay                              *driveitemanalyticslastsevenday.DriveItemAnalyticsLastSevenDayClient
+	DriveItemChild                                              *driveitemchild.DriveItemChildClient
+	DriveItemChildContent                                       *driveitemchildcontent.DriveItemChildContentClient
+	DriveItemContent                                            *driveitemcontent.DriveItemContentClient
+	DriveItemCreatedByUser                                      *driveitemcreatedbyuser.DriveItemCreatedByUserClient
+	DriveItemCreatedByUserMailboxSetting                        *driveitemcreatedbyusermailboxsetting.DriveItemCreatedByUserMailboxSettingClient
+	DriveItemCreatedByUserServiceProvisioningError              *driveitemcreatedbyuserserviceprovisioningerror.DriveItemCreatedByUserServiceProvisioningErrorClient
+	DriveItemLastModifiedByUser                                 *driveitemlastmodifiedbyuser.DriveItemLastModifiedByUserClient
+	DriveItemLastModifiedByUserMailboxSetting                   *driveitemlastmodifiedbyusermailboxsetting.DriveItemLastModifiedByUserMailboxSettingClient
+	DriveItemLastModifiedByUserServiceProvisioningError         *driveitemlastmodifiedbyuserserviceprovisioningerror.DriveItemLastModifiedByUserServiceProvisioningErrorClient
+	DriveItemListItem                                           *driveitemlistitem.DriveItemListItemClient
+	DriveItemListItemAnalytics                                  *driveitemlistitemanalytics.DriveItemListItemAnalyticsClient
+	DriveItemListItemCreatedByUser                              *driveitemlistitemcreatedbyuser.DriveItemListItemCreatedByUserClient
+	DriveItemListItemCreatedByUserMailboxSetting                *driveitemlistitemcreatedbyusermailboxsetting.DriveItemListItemCreatedByUserMailboxSettingClient
+	DriveItemListItemCreatedByUserServiceProvisioningError      *driveitemlistitemcreatedbyuserserviceprovisioningerror.DriveItemListItemCreatedByUserServiceProvisioningErrorClient
+	DriveItemListItemDocumentSetVersion                         *driveitemlistitemdocumentsetversion.DriveItemListItemDocumentSetVersionClient
+	DriveItemListItemDocumentSetVersionField                    *driveitemlistitemdocumentsetversionfield.DriveItemListItemDocumentSetVersionFieldClient
+	DriveItemListItemDriveItem                                  *driveitemlistitemdriveitem.DriveItemListItemDriveItemClient
+	DriveItemListItemDriveItemContent                           *driveitemlistitemdriveitemcontent.DriveItemListItemDriveItemContentClient
+	DriveItemListItemField                                      *driveitemlistitemfield.DriveItemListItemFieldClient
+	DriveItemListItemLastModifiedByUser                         *driveitemlistitemlastmodifiedbyuser.DriveItemListItemLastModifiedByUserClient
+	DriveItemListItemLastModifiedByUserMailboxSetting           *driveitemlistitemlastmodifiedbyusermailboxsetting.DriveItemListItemLastModifiedByUserMailboxSettingClient
+	DriveItemListItemLastModifiedByUserServiceProvisioningError *driveitemlistitemlastmodifiedbyuserserviceprovisioningerror.DriveItemListItemLastModifiedByUserServiceProvisioningErrorClient
+	DriveItemListItemVersion                                    *driveitemlistitemversion.DriveItemListItemVersionClient
+	DriveItemListItemVersionField                               *driveitemlistitemversionfield.DriveItemListItemVersionFieldClient
+	DriveItemPermission                                         *driveitempermission.DriveItemPermissionClient
+	DriveItemRetentionLabel                                     *driveitemretentionlabel.DriveItemRetentionLabelClient
+	DriveItemSubscription                                       *driveitemsubscription.DriveItemSubscriptionClient
+	DriveItemThumbnail                                          *driveitemthumbnail.DriveItemThumbnailClient
+	DriveItemVersion                                            *driveitemversion.DriveItemVersionClient
+	DriveItemVersionContent                                     *driveitemversioncontent.DriveItemVersionContentClient
+	DriveLastModifiedByUser                                     *drivelastmodifiedbyuser.DriveLastModifiedByUserClient
+	DriveLastModifiedByUserMailboxSetting                       *drivelastmodifiedbyusermailboxsetting.DriveLastModifiedByUserMailboxSettingClient
+	DriveLastModifiedByUserServiceProvisioningError             *drivelastmodifiedbyuserserviceprovisioningerror.DriveLastModifiedByUserServiceProvisioningErrorClient
+	DriveList                                                   *drivelist.DriveListClient
+	DriveListColumn                                             *drivelistcolumn.DriveListColumnClient
+	DriveListColumnSourceColumn                                 *drivelistcolumnsourcecolumn.DriveListColumnSourceColumnClient
+	DriveListContentType                                        *drivelistcontenttype.DriveListContentTypeClient
+	DriveListContentTypeBase                                    *drivelistcontenttypebase.DriveListContentTypeBaseClient
+	DriveListContentTypeBaseType                                *drivelistcontenttypebasetype.DriveListContentTypeBaseTypeClient
+	DriveListContentTypeColumn                                  *drivelistcontenttypecolumn.DriveListContentTypeColumnClient
+	DriveListContentTypeColumnLink                              *drivelistcontenttypecolumnlink.DriveListContentTypeColumnLinkClient
+	DriveListContentTypeColumnPosition                          *drivelistcontenttypecolumnposition.DriveListContentTypeColumnPositionClient
+	DriveListContentTypeColumnSourceColumn                      *drivelistcontenttypecolumnsourcecolumn.DriveListContentTypeColumnSourceColumnClient
+	DriveListCreatedByUser                                      *drivelistcreatedbyuser.DriveListCreatedByUserClient
+	DriveListCreatedByUserMailboxSetting                        *drivelistcreatedbyusermailboxsetting.DriveListCreatedByUserMailboxSettingClient
+	DriveListCreatedByUserServiceProvisioningError              *drivelistcreatedbyuserserviceprovisioningerror.DriveListCreatedByUserServiceProvisioningErrorClient
+	DriveListDrive                                              *drivelistdrive.DriveListDriveClient
+	DriveListItem                                               *drivelistitem.DriveListItemClient
+	DriveListItemAnalytics                                      *drivelistitemanalytics.DriveListItemAnalyticsClient
+	DriveListItemCreatedByUser                                  *drivelistitemcreatedbyuser.DriveListItemCreatedByUserClient
+	DriveListItemCreatedByUserMailboxSetting                    *drivelistitemcreatedbyusermailboxsetting.DriveListItemCreatedByUserMailboxSettingClient
+	DriveListItemCreatedByUserServiceProvisioningError          *drivelistitemcreatedbyuserserviceprovisioningerror.DriveListItemCreatedByUserServiceProvisioningErrorClient
+	DriveListItemDocumentSetVersion                             *drivelistitemdocumentsetversion.DriveListItemDocumentSetVersionClient
+	DriveListItemDocumentSetVersionField                        *drivelistitemdocumentsetversionfield.DriveListItemDocumentSetVersionFieldClient
+	DriveListItemDriveItem                                      *drivelistitemdriveitem.DriveListItemDriveItemClient
+	DriveListItemDriveItemContent                               *drivelistitemdriveitemcontent.DriveListItemDriveItemContentClient
+	DriveListItemField                                          *drivelistitemfield.DriveListItemFieldClient
+	DriveListItemLastModifiedByUser                             *drivelistitemlastmodifiedbyuser.DriveListItemLastModifiedByUserClient
+	DriveListItemLastModifiedByUserMailboxSetting               *drivelistitemlastmodifiedbyusermailboxsetting.DriveListItemLastModifiedByUserMailboxSettingClient
+	DriveListItemLastModifiedByUserServiceProvisioningError     *drivelistitemlastmodifiedbyuserserviceprovisioningerror.DriveListItemLastModifiedByUserServiceProvisioningErrorClient
+	DriveListItemVersion                                        *drivelistitemversion.DriveListItemVersionClient
+	DriveListItemVersionField                                   *drivelistitemversionfield.DriveListItemVersionFieldClient
+	DriveListLastModifiedByUser                                 *drivelistlastmodifiedbyuser.DriveListLastModifiedByUserClient
+	DriveListLastModifiedByUserMailboxSetting                   *drivelistlastmodifiedbyusermailboxsetting.DriveListLastModifiedByUserMailboxSettingClient
+	DriveListLastModifiedByUserServiceProvisioningError         *drivelistlastmodifiedbyuserserviceprovisioningerror.DriveListLastModifiedByUserServiceProvisioningErrorClient
+	DriveListOperation                                          *drivelistoperation.DriveListOperationClient
+	DriveListSubscription                                       *drivelistsubscription.DriveListSubscriptionClient
+	DriveRoot                                                   *driveroot.DriveRootClient
+	DriveRootAnalytics                                          *driverootanalytics.DriveRootAnalyticsClient
+	DriveRootAnalyticsAllTime                                   *driverootanalyticsalltime.DriveRootAnalyticsAllTimeClient
+	DriveRootAnalyticsItemActivityStat                          *driverootanalyticsitemactivitystat.DriveRootAnalyticsItemActivityStatClient
+	DriveRootAnalyticsItemActivityStatActivity                  *driverootanalyticsitemactivitystatactivity.DriveRootAnalyticsItemActivityStatActivityClient
+	DriveRootAnalyticsItemActivityStatActivityDriveItem         *driverootanalyticsitemactivitystatactivitydriveitem.DriveRootAnalyticsItemActivityStatActivityDriveItemClient
+	DriveRootAnalyticsItemActivityStatActivityDriveItemContent  *driverootanalyticsitemactivitystatactivitydriveitemcontent.DriveRootAnalyticsItemActivityStatActivityDriveItemContentClient
+	DriveRootAnalyticsLastSevenDay                              *driverootanalyticslastsevenday.DriveRootAnalyticsLastSevenDayClient
+	DriveRootChild                                              *driverootchild.DriveRootChildClient
+	DriveRootChildContent                                       *driverootchildcontent.DriveRootChildContentClient
+	DriveRootContent                                            *driverootcontent.DriveRootContentClient
+	DriveRootCreatedByUser                                      *driverootcreatedbyuser.DriveRootCreatedByUserClient
+	DriveRootCreatedByUserMailboxSetting                        *driverootcreatedbyusermailboxsetting.DriveRootCreatedByUserMailboxSettingClient
+	DriveRootCreatedByUserServiceProvisioningError              *driverootcreatedbyuserserviceprovisioningerror.DriveRootCreatedByUserServiceProvisioningErrorClient
+	DriveRootLastModifiedByUser                                 *driverootlastmodifiedbyuser.DriveRootLastModifiedByUserClient
+	DriveRootLastModifiedByUserMailboxSetting                   *driverootlastmodifiedbyusermailboxsetting.DriveRootLastModifiedByUserMailboxSettingClient
+	DriveRootLastModifiedByUserServiceProvisioningError         *driverootlastmodifiedbyuserserviceprovisioningerror.DriveRootLastModifiedByUserServiceProvisioningErrorClient
+	DriveRootListItem                                           *driverootlistitem.DriveRootListItemClient
+	DriveRootListItemAnalytics                                  *driverootlistitemanalytics.DriveRootListItemAnalyticsClient
+	DriveRootListItemCreatedByUser                              *driverootlistitemcreatedbyuser.DriveRootListItemCreatedByUserClient
+	DriveRootListItemCreatedByUserMailboxSetting                *driverootlistitemcreatedbyusermailboxsetting.DriveRootListItemCreatedByUserMailboxSettingClient
+	DriveRootListItemCreatedByUserServiceProvisioningError      *driverootlistitemcreatedbyuserserviceprovisioningerror.DriveRootListItemCreatedByUserServiceProvisioningErrorClient
+	DriveRootListItemDocumentSetVersion                         *driverootlistitemdocumentsetversion.DriveRootListItemDocumentSetVersionClient
+	DriveRootListItemDocumentSetVersionField                    *driverootlistitemdocumentsetversionfield.DriveRootListItemDocumentSetVersionFieldClient
+	DriveRootListItemDriveItem                                  *driverootlistitemdriveitem.DriveRootListItemDriveItemClient
+	DriveRootListItemDriveItemContent                           *driverootlistitemdriveitemcontent.DriveRootListItemDriveItemContentClient
+	DriveRootListItemField                                      *driverootlistitemfield.DriveRootListItemFieldClient
+	DriveRootListItemLastModifiedByUser                         *driverootlistitemlastmodifiedbyuser.DriveRootListItemLastModifiedByUserClient
+	DriveRootListItemLastModifiedByUserMailboxSetting           *driverootlistitemlastmodifiedbyusermailboxsetting.DriveRootListItemLastModifiedByUserMailboxSettingClient
+	DriveRootListItemLastModifiedByUserServiceProvisioningError *driverootlistitemlastmodifiedbyuserserviceprovisioningerror.DriveRootListItemLastModifiedByUserServiceProvisioningErrorClient
+	DriveRootListItemVersion                                    *driverootlistitemversion.DriveRootListItemVersionClient
+	DriveRootListItemVersionField                               *driverootlistitemversionfield.DriveRootListItemVersionFieldClient
+	DriveRootPermission                                         *driverootpermission.DriveRootPermissionClient
+	DriveRootRetentionLabel                                     *driverootretentionlabel.DriveRootRetentionLabelClient
+	DriveRootSubscription                                       *driverootsubscription.DriveRootSubscriptionClient
+	DriveRootThumbnail                                          *driverootthumbnail.DriveRootThumbnailClient
+	DriveRootVersion                                            *driverootversion.DriveRootVersionClient
+	DriveRootVersionContent                                     *driverootversioncontent.DriveRootVersionContentClient
+	DriveSpecial                                                *drivespecial.DriveSpecialClient
+	DriveSpecialContent                                         *drivespecialcontent.DriveSpecialContentClient
+	EmployeeExperience                                          *employeeexperience.EmployeeExperienceClient
+	EmployeeExperienceLearningCourseActivity                    *employeeexperiencelearningcourseactivity.EmployeeExperienceLearningCourseActivityClient
+	Event                                                       *event.EventClient
+	EventAttachment                                             *eventattachment.EventAttachmentClient
+	EventCalendar                                               *eventcalendar.EventCalendarClient
+	EventExtension                                              *eventextension.EventExtensionClient
+	EventInstance                                               *eventinstance.EventInstanceClient
+	Extension                                                   *extension.ExtensionClient
+	FollowedSite                                                *followedsite.FollowedSiteClient
+	InferenceClassification                                     *inferenceclassification.InferenceClassificationClient
+	InferenceClassificationOverride                             *inferenceclassificationoverride.InferenceClassificationOverrideClient
+	Insight                                                     *insight.InsightClient
+	InsightShared                                               *insightshared.InsightSharedClient
+	InsightSharedLastSharedMethod                               *insightsharedlastsharedmethod.InsightSharedLastSharedMethodClient
+	InsightSharedResource                                       *insightsharedresource.InsightSharedResourceClient
+	InsightTrending                                             *insighttrending.InsightTrendingClient
+	InsightTrendingResource                                     *insighttrendingresource.InsightTrendingResourceClient
+	InsightUsed                                                 *insightused.InsightUsedClient
+	InsightUsedResource                                         *insightusedresource.InsightUsedResourceClient
+	JoinedTeam                                                  *joinedteam.JoinedTeamClient
+	JoinedTeamAllChannel                                        *joinedteamallchannel.JoinedTeamAllChannelClient
+	JoinedTeamChannel                                           *joinedteamchannel.JoinedTeamChannelClient
+	JoinedTeamChannelAllMember                                  *joinedteamchannelallmember.JoinedTeamChannelAllMemberClient
+	JoinedTeamChannelFilesFolder                                *joinedteamchannelfilesfolder.JoinedTeamChannelFilesFolderClient
+	JoinedTeamChannelFilesFolderContent                         *joinedteamchannelfilesfoldercontent.JoinedTeamChannelFilesFolderContentClient
+	JoinedTeamChannelMember                                     *joinedteamchannelmember.JoinedTeamChannelMemberClient
+	JoinedTeamChannelMessage                                    *joinedteamchannelmessage.JoinedTeamChannelMessageClient
+	JoinedTeamChannelMessageHostedContent                       *joinedteamchannelmessagehostedcontent.JoinedTeamChannelMessageHostedContentClient
+	JoinedTeamChannelMessageReply                               *joinedteamchannelmessagereply.JoinedTeamChannelMessageReplyClient
+	JoinedTeamChannelMessageReplyHostedContent                  *joinedteamchannelmessagereplyhostedcontent.JoinedTeamChannelMessageReplyHostedContentClient
+	JoinedTeamChannelSharedWithTeam                             *joinedteamchannelsharedwithteam.JoinedTeamChannelSharedWithTeamClient
+	JoinedTeamChannelSharedWithTeamAllowedMember                *joinedteamchannelsharedwithteamallowedmember.JoinedTeamChannelSharedWithTeamAllowedMemberClient
+	JoinedTeamChannelSharedWithTeamTeam                         *joinedteamchannelsharedwithteamteam.JoinedTeamChannelSharedWithTeamTeamClient
+	JoinedTeamChannelTab                                        *joinedteamchanneltab.JoinedTeamChannelTabClient
+	JoinedTeamChannelTabTeamsApp                                *joinedteamchanneltabteamsapp.JoinedTeamChannelTabTeamsAppClient
+	JoinedTeamGroup                                             *joinedteamgroup.JoinedTeamGroupClient
+	JoinedTeamGroupServiceProvisioningError                     *joinedteamgroupserviceprovisioningerror.JoinedTeamGroupServiceProvisioningErrorClient
+	JoinedTeamIncomingChannel                                   *joinedteamincomingchannel.JoinedTeamIncomingChannelClient
+	JoinedTeamInstalledApp                                      *joinedteaminstalledapp.JoinedTeamInstalledAppClient
+	JoinedTeamInstalledAppTeamsApp                              *joinedteaminstalledappteamsapp.JoinedTeamInstalledAppTeamsAppClient
+	JoinedTeamInstalledAppTeamsAppDefinition                    *joinedteaminstalledappteamsappdefinition.JoinedTeamInstalledAppTeamsAppDefinitionClient
+	JoinedTeamMember                                            *joinedteammember.JoinedTeamMemberClient
+	JoinedTeamOperation                                         *joinedteamoperation.JoinedTeamOperationClient
+	JoinedTeamPermissionGrant                                   *joinedteampermissiongrant.JoinedTeamPermissionGrantClient
+	JoinedTeamPhoto                                             *joinedteamphoto.JoinedTeamPhotoClient
+	JoinedTeamPrimaryChannel                                    *joinedteamprimarychannel.JoinedTeamPrimaryChannelClient
+	JoinedTeamPrimaryChannelAllMember                           *joinedteamprimarychannelallmember.JoinedTeamPrimaryChannelAllMemberClient
+	JoinedTeamPrimaryChannelFilesFolder                         *joinedteamprimarychannelfilesfolder.JoinedTeamPrimaryChannelFilesFolderClient
+	JoinedTeamPrimaryChannelFilesFolderContent                  *joinedteamprimarychannelfilesfoldercontent.JoinedTeamPrimaryChannelFilesFolderContentClient
+	JoinedTeamPrimaryChannelMember                              *joinedteamprimarychannelmember.JoinedTeamPrimaryChannelMemberClient
+	JoinedTeamPrimaryChannelMessage                             *joinedteamprimarychannelmessage.JoinedTeamPrimaryChannelMessageClient
+	JoinedTeamPrimaryChannelMessageHostedContent                *joinedteamprimarychannelmessagehostedcontent.JoinedTeamPrimaryChannelMessageHostedContentClient
+	JoinedTeamPrimaryChannelMessageReply                        *joinedteamprimarychannelmessagereply.JoinedTeamPrimaryChannelMessageReplyClient
+	JoinedTeamPrimaryChannelMessageReplyHostedContent           *joinedteamprimarychannelmessagereplyhostedcontent.JoinedTeamPrimaryChannelMessageReplyHostedContentClient
+	JoinedTeamPrimaryChannelSharedWithTeam                      *joinedteamprimarychannelsharedwithteam.JoinedTeamPrimaryChannelSharedWithTeamClient
+	JoinedTeamPrimaryChannelSharedWithTeamAllowedMember         *joinedteamprimarychannelsharedwithteamallowedmember.JoinedTeamPrimaryChannelSharedWithTeamAllowedMemberClient
+	JoinedTeamPrimaryChannelSharedWithTeamTeam                  *joinedteamprimarychannelsharedwithteamteam.JoinedTeamPrimaryChannelSharedWithTeamTeamClient
+	JoinedTeamPrimaryChannelTab                                 *joinedteamprimarychanneltab.JoinedTeamPrimaryChannelTabClient
+	JoinedTeamPrimaryChannelTabTeamsApp                         *joinedteamprimarychanneltabteamsapp.JoinedTeamPrimaryChannelTabTeamsAppClient
+	JoinedTeamSchedule                                          *joinedteamschedule.JoinedTeamScheduleClient
+	JoinedTeamScheduleDayNote                                   *joinedteamscheduledaynote.JoinedTeamScheduleDayNoteClient
+	JoinedTeamScheduleOfferShiftRequest                         *joinedteamscheduleoffershiftrequest.JoinedTeamScheduleOfferShiftRequestClient
+	JoinedTeamScheduleOpenShift                                 *joinedteamscheduleopenshift.JoinedTeamScheduleOpenShiftClient
+	JoinedTeamScheduleOpenShiftChangeRequest                    *joinedteamscheduleopenshiftchangerequest.JoinedTeamScheduleOpenShiftChangeRequestClient
+	JoinedTeamScheduleSchedulingGroup                           *joinedteamscheduleschedulinggroup.JoinedTeamScheduleSchedulingGroupClient
+	JoinedTeamScheduleShift                                     *joinedteamscheduleshift.JoinedTeamScheduleShiftClient
+	JoinedTeamScheduleSwapShiftsChangeRequest                   *joinedteamscheduleswapshiftschangerequest.JoinedTeamScheduleSwapShiftsChangeRequestClient
+	JoinedTeamScheduleTimeCard                                  *joinedteamscheduletimecard.JoinedTeamScheduleTimeCardClient
+	JoinedTeamScheduleTimeOffReason                             *joinedteamscheduletimeoffreason.JoinedTeamScheduleTimeOffReasonClient
+	JoinedTeamScheduleTimeOffRequest                            *joinedteamscheduletimeoffrequest.JoinedTeamScheduleTimeOffRequestClient
+	JoinedTeamScheduleTimesOff                                  *joinedteamscheduletimesoff.JoinedTeamScheduleTimesOffClient
+	JoinedTeamTag                                               *joinedteamtag.JoinedTeamTagClient
+	JoinedTeamTagMember                                         *joinedteamtagmember.JoinedTeamTagMemberClient
+	JoinedTeamTemplate                                          *joinedteamtemplate.JoinedTeamTemplateClient
+	LicenseDetail                                               *licensedetail.LicenseDetailClient
+	MailFolder                                                  *mailfolder.MailFolderClient
+	MailFolderChildFolder                                       *mailfolderchildfolder.MailFolderChildFolderClient
+	MailFolderChildFolderMessage                                *mailfolderchildfoldermessage.MailFolderChildFolderMessageClient
+	MailFolderChildFolderMessageAttachment                      *mailfolderchildfoldermessageattachment.MailFolderChildFolderMessageAttachmentClient
+	MailFolderChildFolderMessageExtension                       *mailfolderchildfoldermessageextension.MailFolderChildFolderMessageExtensionClient
+	MailFolderChildFolderMessageRule                            *mailfolderchildfoldermessagerule.MailFolderChildFolderMessageRuleClient
+	MailFolderMessage                                           *mailfoldermessage.MailFolderMessageClient
+	MailFolderMessageAttachment                                 *mailfoldermessageattachment.MailFolderMessageAttachmentClient
+	MailFolderMessageExtension                                  *mailfoldermessageextension.MailFolderMessageExtensionClient
+	MailFolderMessageRule                                       *mailfoldermessagerule.MailFolderMessageRuleClient
+	MailboxSetting                                              *mailboxsetting.MailboxSettingClient
+	ManagedAppRegistration                                      *managedappregistration.ManagedAppRegistrationClient
+	ManagedDevice                                               *manageddevice.ManagedDeviceClient
+	ManagedDeviceDeviceCategory                                 *manageddevicedevicecategory.ManagedDeviceDeviceCategoryClient
+	ManagedDeviceDeviceCompliancePolicyState                    *manageddevicedevicecompliancepolicystate.ManagedDeviceDeviceCompliancePolicyStateClient
+	ManagedDeviceDeviceConfigurationState                       *manageddevicedeviceconfigurationstate.ManagedDeviceDeviceConfigurationStateClient
+	ManagedDeviceLogCollectionRequest                           *manageddevicelogcollectionrequest.ManagedDeviceLogCollectionRequestClient
+	ManagedDeviceUser                                           *manageddeviceuser.ManagedDeviceUserClient
+	ManagedDeviceWindowsProtectionState                         *manageddevicewindowsprotectionstate.ManagedDeviceWindowsProtectionStateClient
+	ManagedDeviceWindowsProtectionStateDetectedMalwareState     *manageddevicewindowsprotectionstatedetectedmalwarestate.ManagedDeviceWindowsProtectionStateDetectedMalwareStateClient
+	Manager                                                     *manager.ManagerClient
+	Me                                                          *me.MeClient
+	MemberOf                                                    *memberof.MemberOfClient
+	Message                                                     *message.MessageClient
+	MessageAttachment                                           *messageattachment.MessageAttachmentClient
+	MessageExtension                                            *messageextension.MessageExtensionClient
+	OAuth2PermissionGrant                                       *oauth2permissiongrant.OAuth2PermissionGrantClient
+	Onenote                                                     *onenote.OnenoteClient
+	OnenoteNotebook                                             *onenotenotebook.OnenoteNotebookClient
+	OnenoteNotebookSection                                      *onenotenotebooksection.OnenoteNotebookSectionClient
+	OnenoteNotebookSectionGroup                                 *onenotenotebooksectiongroup.OnenoteNotebookSectionGroupClient
+	OnenoteNotebookSectionGroupParentNotebook                   *onenotenotebooksectiongroupparentnotebook.OnenoteNotebookSectionGroupParentNotebookClient
+	OnenoteNotebookSectionGroupParentSectionGroup               *onenotenotebooksectiongroupparentsectiongroup.OnenoteNotebookSectionGroupParentSectionGroupClient
+	OnenoteNotebookSectionGroupSection                          *onenotenotebooksectiongroupsection.OnenoteNotebookSectionGroupSectionClient
+	OnenoteNotebookSectionGroupSectionGroup                     *onenotenotebooksectiongroupsectiongroup.OnenoteNotebookSectionGroupSectionGroupClient
+	OnenoteNotebookSectionGroupSectionPage                      *onenotenotebooksectiongroupsectionpage.OnenoteNotebookSectionGroupSectionPageClient
+	OnenoteNotebookSectionGroupSectionPageContent               *onenotenotebooksectiongroupsectionpagecontent.OnenoteNotebookSectionGroupSectionPageContentClient
+	OnenoteNotebookSectionGroupSectionPageParentNotebook        *onenotenotebooksectiongroupsectionpageparentnotebook.OnenoteNotebookSectionGroupSectionPageParentNotebookClient
+	OnenoteNotebookSectionGroupSectionPageParentSection         *onenotenotebooksectiongroupsectionpageparentsection.OnenoteNotebookSectionGroupSectionPageParentSectionClient
+	OnenoteNotebookSectionGroupSectionParentNotebook            *onenotenotebooksectiongroupsectionparentnotebook.OnenoteNotebookSectionGroupSectionParentNotebookClient
+	OnenoteNotebookSectionGroupSectionParentSectionGroup        *onenotenotebooksectiongroupsectionparentsectiongroup.OnenoteNotebookSectionGroupSectionParentSectionGroupClient
+	OnenoteNotebookSectionPage                                  *onenotenotebooksectionpage.OnenoteNotebookSectionPageClient
+	OnenoteNotebookSectionPageContent                           *onenotenotebooksectionpagecontent.OnenoteNotebookSectionPageContentClient
+	OnenoteNotebookSectionPageParentNotebook                    *onenotenotebooksectionpageparentnotebook.OnenoteNotebookSectionPageParentNotebookClient
+	OnenoteNotebookSectionPageParentSection                     *onenotenotebooksectionpageparentsection.OnenoteNotebookSectionPageParentSectionClient
+	OnenoteNotebookSectionParentNotebook                        *onenotenotebooksectionparentnotebook.OnenoteNotebookSectionParentNotebookClient
+	OnenoteNotebookSectionParentSectionGroup                    *onenotenotebooksectionparentsectiongroup.OnenoteNotebookSectionParentSectionGroupClient
+	OnenoteOperation                                            *onenoteoperation.OnenoteOperationClient
+	OnenotePage                                                 *onenotepage.OnenotePageClient
+	OnenotePageContent                                          *onenotepagecontent.OnenotePageContentClient
+	OnenotePageParentNotebook                                   *onenotepageparentnotebook.OnenotePageParentNotebookClient
+	OnenotePageParentSection                                    *onenotepageparentsection.OnenotePageParentSectionClient
+	OnenoteResource                                             *onenoteresource.OnenoteResourceClient
+	OnenoteResourceContent                                      *onenoteresourcecontent.OnenoteResourceContentClient
+	OnenoteSection                                              *onenotesection.OnenoteSectionClient
+	OnenoteSectionGroup                                         *onenotesectiongroup.OnenoteSectionGroupClient
+	OnenoteSectionGroupParentNotebook                           *onenotesectiongroupparentnotebook.OnenoteSectionGroupParentNotebookClient
+	OnenoteSectionGroupParentSectionGroup                       *onenotesectiongroupparentsectiongroup.OnenoteSectionGroupParentSectionGroupClient
+	OnenoteSectionGroupSection                                  *onenotesectiongroupsection.OnenoteSectionGroupSectionClient
+	OnenoteSectionGroupSectionGroup                             *onenotesectiongroupsectiongroup.OnenoteSectionGroupSectionGroupClient
+	OnenoteSectionGroupSectionPage                              *onenotesectiongroupsectionpage.OnenoteSectionGroupSectionPageClient
+	OnenoteSectionGroupSectionPageContent                       *onenotesectiongroupsectionpagecontent.OnenoteSectionGroupSectionPageContentClient
+	OnenoteSectionGroupSectionPageParentNotebook                *onenotesectiongroupsectionpageparentnotebook.OnenoteSectionGroupSectionPageParentNotebookClient
+	OnenoteSectionGroupSectionPageParentSection                 *onenotesectiongroupsectionpageparentsection.OnenoteSectionGroupSectionPageParentSectionClient
+	OnenoteSectionGroupSectionParentNotebook                    *onenotesectiongroupsectionparentnotebook.OnenoteSectionGroupSectionParentNotebookClient
+	OnenoteSectionGroupSectionParentSectionGroup                *onenotesectiongroupsectionparentsectiongroup.OnenoteSectionGroupSectionParentSectionGroupClient
+	OnenoteSectionPage                                          *onenotesectionpage.OnenoteSectionPageClient
+	OnenoteSectionPageContent                                   *onenotesectionpagecontent.OnenoteSectionPageContentClient
+	OnenoteSectionPageParentNotebook                            *onenotesectionpageparentnotebook.OnenoteSectionPageParentNotebookClient
+	OnenoteSectionPageParentSection                             *onenotesectionpageparentsection.OnenoteSectionPageParentSectionClient
+	OnenoteSectionParentNotebook                                *onenotesectionparentnotebook.OnenoteSectionParentNotebookClient
+	OnenoteSectionParentSectionGroup                            *onenotesectionparentsectiongroup.OnenoteSectionParentSectionGroupClient
+	OnlineMeeting                                               *onlinemeeting.OnlineMeetingClient
+	OnlineMeetingAttendanceReport                               *onlinemeetingattendancereport.OnlineMeetingAttendanceReportClient
+	OnlineMeetingAttendanceReportAttendanceRecord               *onlinemeetingattendancereportattendancerecord.OnlineMeetingAttendanceReportAttendanceRecordClient
+	OnlineMeetingAttendeeReport                                 *onlinemeetingattendeereport.OnlineMeetingAttendeeReportClient
+	OnlineMeetingRecording                                      *onlinemeetingrecording.OnlineMeetingRecordingClient
+	OnlineMeetingRecordingContent                               *onlinemeetingrecordingcontent.OnlineMeetingRecordingContentClient
+	OnlineMeetingTranscript                                     *onlinemeetingtranscript.OnlineMeetingTranscriptClient
+	OnlineMeetingTranscriptContent                              *onlinemeetingtranscriptcontent.OnlineMeetingTranscriptContentClient
+	OnlineMeetingTranscriptMetadataContent                      *onlinemeetingtranscriptmetadatacontent.OnlineMeetingTranscriptMetadataContentClient
+	Outlook                                                     *outlook.OutlookClient
+	OutlookMasterCategory                                       *outlookmastercategory.OutlookMasterCategoryClient
+	OwnedDevice                                                 *owneddevice.OwnedDeviceClient
+	OwnedObject                                                 *ownedobject.OwnedObjectClient
+	PermissionGrant                                             *permissiongrant.PermissionGrantClient
+	Person                                                      *person.PersonClient
+	Photo                                                       *photo.PhotoClient
+	Planner                                                     *planner.PlannerClient
+	PlannerPlan                                                 *plannerplan.PlannerPlanClient
+	PlannerPlanBucket                                           *plannerplanbucket.PlannerPlanBucketClient
+	PlannerPlanBucketTask                                       *plannerplanbuckettask.PlannerPlanBucketTaskClient
+	PlannerPlanBucketTaskAssignedToTaskBoardFormat              *plannerplanbuckettaskassignedtotaskboardformat.PlannerPlanBucketTaskAssignedToTaskBoardFormatClient
+	PlannerPlanBucketTaskBucketTaskBoardFormat                  *plannerplanbuckettaskbuckettaskboardformat.PlannerPlanBucketTaskBucketTaskBoardFormatClient
+	PlannerPlanBucketTaskDetail                                 *plannerplanbuckettaskdetail.PlannerPlanBucketTaskDetailClient
+	PlannerPlanBucketTaskProgressTaskBoardFormat                *plannerplanbuckettaskprogresstaskboardformat.PlannerPlanBucketTaskProgressTaskBoardFormatClient
+	PlannerPlanDetail                                           *plannerplandetail.PlannerPlanDetailClient
+	PlannerPlanTask                                             *plannerplantask.PlannerPlanTaskClient
+	PlannerPlanTaskAssignedToTaskBoardFormat                    *plannerplantaskassignedtotaskboardformat.PlannerPlanTaskAssignedToTaskBoardFormatClient
+	PlannerPlanTaskBucketTaskBoardFormat                        *plannerplantaskbuckettaskboardformat.PlannerPlanTaskBucketTaskBoardFormatClient
+	PlannerPlanTaskDetail                                       *plannerplantaskdetail.PlannerPlanTaskDetailClient
+	PlannerPlanTaskProgressTaskBoardFormat                      *plannerplantaskprogresstaskboardformat.PlannerPlanTaskProgressTaskBoardFormatClient
+	PlannerTask                                                 *plannertask.PlannerTaskClient
+	PlannerTaskAssignedToTaskBoardFormat                        *plannertaskassignedtotaskboardformat.PlannerTaskAssignedToTaskBoardFormatClient
+	PlannerTaskBucketTaskBoardFormat                            *plannertaskbuckettaskboardformat.PlannerTaskBucketTaskBoardFormatClient
+	PlannerTaskDetail                                           *plannertaskdetail.PlannerTaskDetailClient
+	PlannerTaskProgressTaskBoardFormat                          *plannertaskprogresstaskboardformat.PlannerTaskProgressTaskBoardFormatClient
+	Presence                                                    *presence.PresenceClient
+	RegisteredDevice                                            *registereddevice.RegisteredDeviceClient
+	ScopedRoleMemberOf                                          *scopedrolememberof.ScopedRoleMemberOfClient
+	ServiceProvisioningError                                    *serviceprovisioningerror.ServiceProvisioningErrorClient
+	Setting                                                     *setting.SettingClient
+	SettingItemInsight                                          *settingiteminsight.SettingItemInsightClient
+	SettingShiftPreference                                      *settingshiftpreference.SettingShiftPreferenceClient
+	SettingStorage                                              *settingstorage.SettingStorageClient
+	SettingStorageQuota                                         *settingstoragequota.SettingStorageQuotaClient
+	SettingStorageQuotaService                                  *settingstoragequotaservice.SettingStorageQuotaServiceClient
+	SettingWindow                                               *settingwindow.SettingWindowClient
+	SettingWindowInstance                                       *settingwindowinstance.SettingWindowInstanceClient
+	Solution                                                    *solution.SolutionClient
+	SolutionWorkingTimeSchedule                                 *solutionworkingtimeschedule.SolutionWorkingTimeScheduleClient
+	Sponsor                                                     *sponsor.SponsorClient
+	Teamwork                                                    *teamwork.TeamworkClient
+	TeamworkAssociatedTeam                                      *teamworkassociatedteam.TeamworkAssociatedTeamClient
+	TeamworkAssociatedTeamTeam                                  *teamworkassociatedteamteam.TeamworkAssociatedTeamTeamClient
+	TeamworkInstalledApp                                        *teamworkinstalledapp.TeamworkInstalledAppClient
+	TeamworkInstalledAppChat                                    *teamworkinstalledappchat.TeamworkInstalledAppChatClient
+	TeamworkInstalledAppTeamsApp                                *teamworkinstalledappteamsapp.TeamworkInstalledAppTeamsAppClient
+	TeamworkInstalledAppTeamsAppDefinition                      *teamworkinstalledappteamsappdefinition.TeamworkInstalledAppTeamsAppDefinitionClient
+	Todo                                                        *todo.TodoClient
+	TodoList                                                    *todolist.TodoListClient
+	TodoListExtension                                           *todolistextension.TodoListExtensionClient
+	TodoListTask                                                *todolisttask.TodoListTaskClient
+	TodoListTaskAttachment                                      *todolisttaskattachment.TodoListTaskAttachmentClient
+	TodoListTaskAttachmentSession                               *todolisttaskattachmentsession.TodoListTaskAttachmentSessionClient
+	TodoListTaskAttachmentSessionContent                        *todolisttaskattachmentsessioncontent.TodoListTaskAttachmentSessionContentClient
+	TodoListTaskChecklistItem                                   *todolisttaskchecklistitem.TodoListTaskChecklistItemClient
+	TodoListTaskExtension                                       *todolisttaskextension.TodoListTaskExtensionClient
+	TodoListTaskLinkedResource                                  *todolisttasklinkedresource.TodoListTaskLinkedResourceClient
+	TransitiveMemberOf                                          *transitivememberof.TransitiveMemberOfClient
+}

@@ -1,0 +1,11 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DeviceManagementWindowsAutopilotDeploymentProfileIdAssignedDeviceId) ID() string {
+	fmtString := "/deviceManagement/windowsAutopilotDeploymentProfiles/%s/assignedDevices/%s"
+	return fmt.Sprintf(fmtString, id.WindowsAutopilotDeploymentProfileId, id.WindowsAutopilotDeviceIdentityId)
+}

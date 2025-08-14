@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/videoindexer/2025-04-01/arc
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseScope(input string) (*Scope, error) {
+	vals := map[string]Scope{
+		"account": ScopeAccount,
+		"project": ScopeProject,
+		"video":   ScopeVideo,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Scope(input)
+	return &out, nil
+}

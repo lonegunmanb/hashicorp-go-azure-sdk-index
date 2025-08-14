@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/virtualnetworkgateways
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVirtualNetworkGatewayConnectionMode(input string) (*VirtualNetworkGatewayConnectionMode, error) {
+	vals := map[string]VirtualNetworkGatewayConnectionMode{
+		"default":       VirtualNetworkGatewayConnectionModeDefault,
+		"initiatoronly": VirtualNetworkGatewayConnectionModeInitiatorOnly,
+		"responderonly": VirtualNetworkGatewayConnectionModeResponderOnly,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VirtualNetworkGatewayConnectionMode(input)
+	return &out, nil
+}

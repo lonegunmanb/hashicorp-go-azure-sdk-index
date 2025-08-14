@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/eventgrid/2025-02-15/permissionbindings
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePermissionType(input string) (*PermissionType, error) {
+	vals := map[string]PermissionType{
+		"publisher":  PermissionTypePublisher,
+		"subscriber": PermissionTypeSubscriber,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PermissionType(input)
+	return &out, nil
+}

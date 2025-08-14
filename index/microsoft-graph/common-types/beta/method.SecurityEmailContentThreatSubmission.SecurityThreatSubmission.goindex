@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s SecurityEmailContentThreatSubmission) SecurityThreatSubmission() BaseSecurityThreatSubmissionImpl {
+	return BaseSecurityThreatSubmissionImpl{
+		AdminReview:     s.AdminReview,
+		Category:        s.Category,
+		ClientSource:    s.ClientSource,
+		ContentType:     s.ContentType,
+		CreatedBy:       s.CreatedBy,
+		CreatedDateTime: s.CreatedDateTime,
+		Result:          s.Result,
+		Source:          s.Source,
+		Status:          s.Status,
+		TenantId:        s.TenantId,
+		Id:              s.Id,
+		ODataId:         s.ODataId,
+		ODataType:       s.ODataType,
+	}
+}

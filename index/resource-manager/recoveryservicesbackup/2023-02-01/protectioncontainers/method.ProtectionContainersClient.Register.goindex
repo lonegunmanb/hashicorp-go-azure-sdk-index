@@ -1,0 +1,29 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2023-02-01/protectioncontainers
+import (
+	"context"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+)
+func (c ProtectionContainersClient) Register(ctx context.Context, id ProtectionContainerId, input ProtectionContainerResource) (result RegisterOperationResponse, err error) {
+	req, err := c.preparerForRegister(ctx, id, input)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "protectioncontainers.ProtectionContainersClient", "Register", nil, "Failure preparing request")
+		return
+	}
+
+	result.HttpResponse, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "protectioncontainers.ProtectionContainersClient", "Register", result.HttpResponse, "Failure sending request")
+		return
+	}
+
+	result, err = c.responderForRegister(result.HttpResponse)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "protectioncontainers.ProtectionContainersClient", "Register", result.HttpResponse, "Failure responding to request")
+		return
+	}
+
+	return
+}

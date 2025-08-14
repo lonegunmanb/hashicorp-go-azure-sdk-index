@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/appplatform/2024-05-01-preview/appplatform
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseBuilderProvisioningState(input string) (*BuilderProvisioningState, error) {
+	vals := map[string]BuilderProvisioningState{
+		"creating":  BuilderProvisioningStateCreating,
+		"deleting":  BuilderProvisioningStateDeleting,
+		"failed":    BuilderProvisioningStateFailed,
+		"succeeded": BuilderProvisioningStateSucceeded,
+		"updating":  BuilderProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := BuilderProvisioningState(input)
+	return &out, nil
+}

@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/comanageddevicedetectedapp
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ComanagedDeviceDetectedAppClient) ListComanagedDeviceDetectedAppsComplete(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, options ListComanagedDeviceDetectedAppsOperationOptions) (ListComanagedDeviceDetectedAppsCompleteResult, error) {
+	return c.ListComanagedDeviceDetectedAppsCompleteMatchingPredicate(ctx, id, options, DetectedAppOperationPredicate{})
+}

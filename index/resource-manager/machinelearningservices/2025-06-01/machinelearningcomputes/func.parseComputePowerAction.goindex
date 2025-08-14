@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2025-06-01/machinelearningcomputes
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseComputePowerAction(input string) (*ComputePowerAction, error) {
+	vals := map[string]ComputePowerAction{
+		"start": ComputePowerActionStart,
+		"stop":  ComputePowerActionStop,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ComputePowerAction(input)
+	return &out, nil
+}

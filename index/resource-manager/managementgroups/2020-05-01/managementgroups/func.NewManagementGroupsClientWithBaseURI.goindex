@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/managementgroups/2020-05-01/managementgroups
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewManagementGroupsClientWithBaseURI(sdkApi sdkEnv.Api) (*ManagementGroupsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "managementgroups", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ManagementGroupsClient: %+v", err)
+	}
+
+	return &ManagementGroupsClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2023-02-01/protectioncontainers
+import (
+	"encoding/json"
+	"fmt"
+)
+type AzureStorageContainer struct {
+	AcquireStorageAccountLock *AcquireStorageAccountLock `json:"acquireStorageAccountLock,omitempty"`
+	ProtectedItemCount        *int64                     `json:"protectedItemCount,omitempty"`
+	ResourceGroup             *string                    `json:"resourceGroup,omitempty"`
+	SourceResourceId          *string                    `json:"sourceResourceId,omitempty"`
+	StorageAccountVersion     *string                    `json:"storageAccountVersion,omitempty"`
+
+	// Fields inherited from ProtectionContainer
+
+	BackupManagementType  *BackupManagementType    `json:"backupManagementType,omitempty"`
+	ContainerType         ProtectableContainerType `json:"containerType"`
+	FriendlyName          *string                  `json:"friendlyName,omitempty"`
+	HealthStatus          *string                  `json:"healthStatus,omitempty"`
+	ProtectableObjectType *string                  `json:"protectableObjectType,omitempty"`
+	RegistrationStatus    *string                  `json:"registrationStatus,omitempty"`
+}

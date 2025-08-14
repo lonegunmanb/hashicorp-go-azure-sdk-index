@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseVppTokenActionFailureReason(input string) (*VppTokenActionFailureReason, error) {
+	vals := map[string]VppTokenActionFailureReason{
+		"applefailure": VppTokenActionFailureReason_AppleFailure,
+		"expiredapplepushnotificationcertificate": VppTokenActionFailureReason_ExpiredApplePushNotificationCertificate,
+		"expiredvpptoken":                         VppTokenActionFailureReason_ExpiredVppToken,
+		"internalerror":                           VppTokenActionFailureReason_InternalError,
+		"none":                                    VppTokenActionFailureReason_None,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := VppTokenActionFailureReason(input)
+	return &out, nil
+}

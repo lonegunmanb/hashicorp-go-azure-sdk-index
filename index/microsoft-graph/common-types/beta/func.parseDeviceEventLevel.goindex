@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeviceEventLevel(input string) (*DeviceEventLevel, error) {
+	vals := map[string]DeviceEventLevel{
+		"critical":    DeviceEventLevel_Critical,
+		"error":       DeviceEventLevel_Error,
+		"information": DeviceEventLevel_Information,
+		"none":        DeviceEventLevel_None,
+		"verbose":     DeviceEventLevel_Verbose,
+		"warning":     DeviceEventLevel_Warning,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceEventLevel(input)
+	return &out, nil
+}

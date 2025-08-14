@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DirectoryCertificateAuthorityCertificateBasedApplicationConfigurationIdTrustedCertificateAuthorityId) String() string {
+	components := []string{
+		fmt.Sprintf("Certificate Based Application Configuration: %q", id.CertificateBasedApplicationConfigurationId),
+		fmt.Sprintf("Certificate Authority As Entity: %q", id.CertificateAuthorityAsEntityId),
+	}
+	return fmt.Sprintf("Directory Certificate Authority Certificate Based Application Configuration Id Trusted Certificate Authority (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,55 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s *AccessReviewStageSettings) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		DecisionsThatWillMoveToNextStage *[]string                    `json:"decisionsThatWillMoveToNextStage,omitempty"`
+		DependsOn                        *[]string                    `json:"dependsOn,omitempty"`
+		DurationInDays                   int64                        `json:"durationInDays"`
+		FallbackReviewers                *[]AccessReviewReviewerScope `json:"fallbackReviewers,omitempty"`
+		ODataId                          *string                      `json:"@odata.id,omitempty"`
+		ODataType                        *string                      `json:"@odata.type,omitempty"`
+		RecommendationsEnabled           bool                         `json:"recommendationsEnabled"`
+		Reviewers                        *[]AccessReviewReviewerScope `json:"reviewers,omitempty"`
+		StageId                          string                       `json:"stageId"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.DecisionsThatWillMoveToNextStage = decoded.DecisionsThatWillMoveToNextStage
+	s.DependsOn = decoded.DependsOn
+	s.DurationInDays = decoded.DurationInDays
+	s.FallbackReviewers = decoded.FallbackReviewers
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.RecommendationsEnabled = decoded.RecommendationsEnabled
+	s.Reviewers = decoded.Reviewers
+	s.StageId = decoded.StageId
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling AccessReviewStageSettings into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["recommendationInsightSettings"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling RecommendationInsightSettings into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]AccessReviewRecommendationInsightSetting, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalAccessReviewRecommendationInsightSettingImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'RecommendationInsightSettings' for 'AccessReviewStageSettings': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.RecommendationInsightSettings = &output
+	}
+
+	return nil
+}

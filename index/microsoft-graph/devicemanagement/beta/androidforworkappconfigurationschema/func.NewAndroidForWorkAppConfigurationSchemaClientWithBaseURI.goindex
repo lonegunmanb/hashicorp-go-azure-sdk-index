@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/androidforworkappconfigurationschema
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAndroidForWorkAppConfigurationSchemaClientWithBaseURI(sdkApi sdkEnv.Api) (*AndroidForWorkAppConfigurationSchemaClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "androidforworkappconfigurationschema", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AndroidForWorkAppConfigurationSchemaClient: %+v", err)
+	}
+
+	return &AndroidForWorkAppConfigurationSchemaClient{
+		Client: client,
+	}, nil
+}

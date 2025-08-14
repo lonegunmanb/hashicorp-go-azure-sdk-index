@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/operationalizationclusters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSslConfigStatus(input string) (*SslConfigStatus, error) {
+	vals := map[string]SslConfigStatus{
+		"auto":     SslConfigStatusAuto,
+		"disabled": SslConfigStatusDisabled,
+		"enabled":  SslConfigStatusEnabled,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SslConfigStatus(input)
+	return &out, nil
+}

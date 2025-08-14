@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/eventattachment
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewEventAttachmentClientWithBaseURI(sdkApi sdkEnv.Api) (*EventAttachmentClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "eventattachment", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating EventAttachmentClient: %+v", err)
+	}
+
+	return &EventAttachmentClient{
+		Client: client,
+	}, nil
+}

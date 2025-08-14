@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/desktopvirtualization/2024-04-03/scalingplanpersonalschedule
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseStartupBehavior(input string) (*StartupBehavior, error) {
+	vals := map[string]StartupBehavior{
+		"all":              StartupBehaviorAll,
+		"none":             StartupBehaviorNone,
+		"withassigneduser": StartupBehaviorWithAssignedUser,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := StartupBehavior(input)
+	return &out, nil
+}

@@ -1,0 +1,52 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2020-10-01/deploymentscripts
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/identity"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/systemdata"
+)
+func UnmarshalDeploymentScriptImplementation(input []byte) (DeploymentScript, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling DeploymentScript into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["kind"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "AzureCLI") {
+		var out AzureCliScript
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzureCliScript: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "AzurePowerShell") {
+		var out AzurePowerShellScript
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into AzurePowerShellScript: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseDeploymentScriptImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseDeploymentScriptImpl: %+v", err)
+	}
+
+	return RawDeploymentScriptImpl{
+		deploymentScript: parent,
+		Type:             value,
+		Values:           temp,
+	}, nil
+
+}

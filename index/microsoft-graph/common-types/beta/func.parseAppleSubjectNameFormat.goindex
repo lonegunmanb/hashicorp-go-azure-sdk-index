@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAppleSubjectNameFormat(input string) (*AppleSubjectNameFormat, error) {
+	vals := map[string]AppleSubjectNameFormat{
+		"commonname":               AppleSubjectNameFormat_CommonName,
+		"commonnameasemail":        AppleSubjectNameFormat_CommonNameAsEmail,
+		"commonnameasimei":         AppleSubjectNameFormat_CommonNameAsIMEI,
+		"commonnameasserialnumber": AppleSubjectNameFormat_CommonNameAsSerialNumber,
+		"commonnameincludingemail": AppleSubjectNameFormat_CommonNameIncludingEmail,
+		"custom":                   AppleSubjectNameFormat_Custom,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AppleSubjectNameFormat(input)
+	return &out, nil
+}

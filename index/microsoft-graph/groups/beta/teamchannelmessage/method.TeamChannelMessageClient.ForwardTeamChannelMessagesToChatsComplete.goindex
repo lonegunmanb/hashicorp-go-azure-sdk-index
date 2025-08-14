@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchannelmessage
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c TeamChannelMessageClient) ForwardTeamChannelMessagesToChatsComplete(ctx context.Context, id beta.GroupIdTeamChannelId, input ForwardTeamChannelMessagesToChatsRequest, options ForwardTeamChannelMessagesToChatsOperationOptions) (ForwardTeamChannelMessagesToChatsCompleteResult, error) {
+	return c.ForwardTeamChannelMessagesToChatsCompleteMatchingPredicate(ctx, id, input, options, ActionResultPartOperationPredicate{})
+}

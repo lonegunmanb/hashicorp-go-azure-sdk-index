@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/webapps
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o DeleteSlotOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.DeleteEmptyServerFarm != nil {
+		out.Append("deleteEmptyServerFarm", fmt.Sprintf("%v", *o.DeleteEmptyServerFarm))
+	}
+	if o.DeleteMetrics != nil {
+		out.Append("deleteMetrics", fmt.Sprintf("%v", *o.DeleteMetrics))
+	}
+	return &out
+}

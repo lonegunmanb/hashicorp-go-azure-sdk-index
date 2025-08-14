@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/protectionpolicies
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/polling"
+)
+func (c ProtectionPoliciesClient) Delete(ctx context.Context, id BackupPolicyId) (result DeleteOperationResponse, err error) {
+	req, err := c.preparerForDelete(ctx, id)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "protectionpolicies.ProtectionPoliciesClient", "Delete", nil, "Failure preparing request")
+		return
+	}
+
+	result, err = c.senderForDelete(ctx, req)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "protectionpolicies.ProtectionPoliciesClient", "Delete", result.HttpResponse, "Failure sending request")
+		return
+	}
+
+	return
+}

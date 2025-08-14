@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DeviceManagementIntuneBrandingProfileIdAssignmentId) String() string {
+	components := []string{
+		fmt.Sprintf("Intune Branding Profile: %q", id.IntuneBrandingProfileId),
+		fmt.Sprintf("Intune Branding Profile Assignment: %q", id.IntuneBrandingProfileAssignmentId),
+	}
+	return fmt.Sprintf("Device Management Intune Branding Profile Id Assignment (%s)", strings.Join(components, "\n"))
+}

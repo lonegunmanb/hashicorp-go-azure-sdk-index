@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *DeviceManagementDeviceCompliancePolicyIdAssignmentId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.DeviceCompliancePolicyId, ok = input.Parsed["deviceCompliancePolicyId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "deviceCompliancePolicyId", input)
+	}
+
+	if id.DeviceCompliancePolicyAssignmentId, ok = input.Parsed["deviceCompliancePolicyAssignmentId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "deviceCompliancePolicyAssignmentId", input)
+	}
+
+	return nil
+}

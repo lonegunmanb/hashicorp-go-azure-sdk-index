@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNotificationTemplateBrandingOptions(input string) (*NotificationTemplateBrandingOptions, error) {
+	vals := map[string]NotificationTemplateBrandingOptions{
+		"includecompanylogo":        NotificationTemplateBrandingOptions_IncludeCompanyLogo,
+		"includecompanyname":        NotificationTemplateBrandingOptions_IncludeCompanyName,
+		"includecompanyportallink":  NotificationTemplateBrandingOptions_IncludeCompanyPortalLink,
+		"includecontactinformation": NotificationTemplateBrandingOptions_IncludeContactInformation,
+		"includedevicedetails":      NotificationTemplateBrandingOptions_IncludeDeviceDetails,
+		"none":                      NotificationTemplateBrandingOptions_None,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NotificationTemplateBrandingOptions(input)
+	return &out, nil
+}

@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePermissionsDefinitionIdentityType(input string) (*PermissionsDefinitionIdentityType, error) {
+	vals := map[string]PermissionsDefinitionIdentityType{
+		"application":     PermissionsDefinitionIdentityType_Application,
+		"managedidentity": PermissionsDefinitionIdentityType_ManagedIdentity,
+		"role":            PermissionsDefinitionIdentityType_Role,
+		"serviceaccount":  PermissionsDefinitionIdentityType_ServiceAccount,
+		"user":            PermissionsDefinitionIdentityType_User,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PermissionsDefinitionIdentityType(input)
+	return &out, nil
+}

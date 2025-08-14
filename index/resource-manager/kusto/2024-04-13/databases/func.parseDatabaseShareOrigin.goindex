@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/kusto/2024-04-13/databases
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDatabaseShareOrigin(input string) (*DatabaseShareOrigin, error) {
+	vals := map[string]DatabaseShareOrigin{
+		"datashare": DatabaseShareOriginDataShare,
+		"direct":    DatabaseShareOriginDirect,
+		"other":     DatabaseShareOriginOther,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DatabaseShareOrigin(input)
+	return &out, nil
+}

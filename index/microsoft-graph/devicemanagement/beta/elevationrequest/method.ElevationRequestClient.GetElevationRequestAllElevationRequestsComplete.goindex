@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/elevationrequest
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ElevationRequestClient) GetElevationRequestAllElevationRequestsComplete(ctx context.Context, id beta.DeviceManagementElevationRequestId, options GetElevationRequestAllElevationRequestsOperationOptions) (GetElevationRequestAllElevationRequestsCompleteResult, error) {
+	return c.GetElevationRequestAllElevationRequestsCompleteMatchingPredicate(ctx, id, options, PrivilegeManagementElevationRequestOperationPredicate{})
+}

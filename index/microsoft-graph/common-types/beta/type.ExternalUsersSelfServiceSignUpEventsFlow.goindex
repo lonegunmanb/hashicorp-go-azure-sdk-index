@@ -1,0 +1,58 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ExternalUsersSelfServiceSignUpEventsFlow struct {
+	// The configuration for what to invoke when attributes are ready to be collected from the user.
+	OnAttributeCollection OnAttributeCollectionHandler `json:"onAttributeCollection"`
+
+	// The configuration for what to invoke when attribution collection starts.
+	OnAttributeCollectionStart OnAttributeCollectionStartHandler `json:"onAttributeCollectionStart"`
+
+	// The configuration for what to invoke when attributes are submitted at the end of attribution collection.
+	OnAttributeCollectionSubmit OnAttributeCollectionSubmitHandler `json:"onAttributeCollectionSubmit"`
+
+	// Required. The configuration for what to invoke when authentication methods are ready to be presented to the user.
+	// Must have at least one identity provider linked. Supports $filter (eq). See support for filtering on user flows for
+	// syntax information.
+	OnAuthenticationMethodLoadStart OnAuthenticationMethodLoadStartHandler `json:"onAuthenticationMethodLoadStart"`
+
+	// Required. The configuration for what to invoke when an authentication flow is ready to be initiated.
+	OnInteractiveAuthFlowStart OnInteractiveAuthFlowStartHandler `json:"onInteractiveAuthFlowStart"`
+
+	// The configuration for what to invoke during user creation.
+	OnUserCreateStart OnUserCreateStartHandler `json:"onUserCreateStart"`
+
+	// Fields inherited from AuthenticationEventsFlow
+
+	// The conditions representing the context of the authentication request that's used to decide whether the events policy
+	// is invoked. Supports $filter (eq). See support for filtering on user flows for syntax information.
+	Conditions *AuthenticationConditions `json:"conditions,omitempty"`
+
+	// The description of the events policy.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// Required. The display name for the events policy.
+	DisplayName string `json:"displayName"`
+
+	// The priority to use for each individual event of the events policy. If multiple competing listeners for an event have
+	// the same priority, one is chosen and an error is silently logged. Defaults to 500.
+	Priority *int64 `json:"priority,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

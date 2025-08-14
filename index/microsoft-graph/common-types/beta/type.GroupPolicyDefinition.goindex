@@ -1,0 +1,73 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type GroupPolicyDefinition struct {
+	// The group policy category associated with the definition.
+	Category *GroupPolicyCategory `json:"category,omitempty"`
+
+	// The localized full category path for the policy.
+	CategoryPath nullable.Type[string] `json:"categoryPath,omitempty"`
+
+	// Group Policy Definition Class Type.
+	ClassType *GroupPolicyDefinitionClassType `json:"classType,omitempty"`
+
+	// The group policy file associated with the definition.
+	DefinitionFile *GroupPolicyDefinitionFile `json:"definitionFile,omitempty"`
+
+	// The localized policy name.
+	DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+
+	// The localized explanation or help text associated with the policy. The default value is empty.
+	ExplainText nullable.Type[string] `json:"explainText,omitempty"`
+
+	// The category id of the parent category
+	GroupPolicyCategoryId *string `json:"groupPolicyCategoryId,omitempty"`
+
+	// Signifies whether or not there are related definitions to this definition
+	HasRelatedDefinitions *bool `json:"hasRelatedDefinitions,omitempty"`
+
+	// The date and time the entity was last modified.
+	LastModifiedDateTime *string `json:"lastModifiedDateTime,omitempty"`
+
+	// Minimum required CSP version for device configuration in this definition
+	MinDeviceCspVersion nullable.Type[string] `json:"minDeviceCspVersion,omitempty"`
+
+	// Minimum required CSP version for user configuration in this definition
+	MinUserCspVersion nullable.Type[string] `json:"minUserCspVersion,omitempty"`
+
+	// Definition of the next version of this definition
+	NextVersionDefinition *GroupPolicyDefinition `json:"nextVersionDefinition,omitempty"`
+
+	// Type of Group Policy File or Definition.
+	PolicyType *GroupPolicyType `json:"policyType,omitempty"`
+
+	// The group policy presentations associated with the definition.
+	Presentations *[]GroupPolicyPresentation `json:"presentations,omitempty"`
+
+	// Definition of the previous version of this definition
+	PreviousVersionDefinition *GroupPolicyDefinition `json:"previousVersionDefinition,omitempty"`
+
+	// Localized string used to specify what operating system or application version is affected by the policy.
+	SupportedOn nullable.Type[string] `json:"supportedOn,omitempty"`
+
+	// Setting definition version
+	Version nullable.Type[string] `json:"version,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2024-11-01/keys
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseJsonWebKeyOperation(input string) (*JsonWebKeyOperation, error) {
+	vals := map[string]JsonWebKeyOperation{
+		"decrypt":   JsonWebKeyOperationDecrypt,
+		"encrypt":   JsonWebKeyOperationEncrypt,
+		"import":    JsonWebKeyOperationImport,
+		"release":   JsonWebKeyOperationRelease,
+		"sign":      JsonWebKeyOperationSign,
+		"unwrapkey": JsonWebKeyOperationUnwrapKey,
+		"verify":    JsonWebKeyOperationVerify,
+		"wrapkey":   JsonWebKeyOperationWrapKey,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := JsonWebKeyOperation(input)
+	return &out, nil
+}

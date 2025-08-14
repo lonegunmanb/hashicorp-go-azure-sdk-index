@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/appplatform/2024-01-01-preview/appplatform
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCustomizedAcceleratorProvisioningState(input string) (*CustomizedAcceleratorProvisioningState, error) {
+	vals := map[string]CustomizedAcceleratorProvisioningState{
+		"canceled":  CustomizedAcceleratorProvisioningStateCanceled,
+		"creating":  CustomizedAcceleratorProvisioningStateCreating,
+		"deleting":  CustomizedAcceleratorProvisioningStateDeleting,
+		"failed":    CustomizedAcceleratorProvisioningStateFailed,
+		"succeeded": CustomizedAcceleratorProvisioningStateSucceeded,
+		"updating":  CustomizedAcceleratorProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CustomizedAcceleratorProvisioningState(input)
+	return &out, nil
+}

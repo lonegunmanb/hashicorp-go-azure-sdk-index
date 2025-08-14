@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/onenotenotebooksectiongroupsectionpage
+import (
+	"context"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o GetOnenoteNotebookSectionGroupSectionPageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Expand != nil {
+		out.Expand = *o.Expand
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	if o.Select != nil {
+		out.Select = *o.Select
+	}
+	return &out
+}

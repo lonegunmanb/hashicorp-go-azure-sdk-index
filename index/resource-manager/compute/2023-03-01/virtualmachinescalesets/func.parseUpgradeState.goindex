@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2023-03-01/virtualmachinescalesets
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseUpgradeState(input string) (*UpgradeState, error) {
+	vals := map[string]UpgradeState{
+		"cancelled":      UpgradeStateCancelled,
+		"completed":      UpgradeStateCompleted,
+		"faulted":        UpgradeStateFaulted,
+		"rollingforward": UpgradeStateRollingForward,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UpgradeState(input)
+	return &out, nil
+}

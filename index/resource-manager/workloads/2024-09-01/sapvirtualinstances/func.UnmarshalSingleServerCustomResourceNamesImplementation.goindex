@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/workloads/2024-09-01/sapvirtualinstances
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalSingleServerCustomResourceNamesImplementation(input []byte) (SingleServerCustomResourceNames, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling SingleServerCustomResourceNames into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["namingPatternType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "FullResourceName") {
+		var out SingleServerFullResourceNames
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SingleServerFullResourceNames: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseSingleServerCustomResourceNamesImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseSingleServerCustomResourceNamesImpl: %+v", err)
+	}
+
+	return RawSingleServerCustomResourceNamesImpl{
+		singleServerCustomResourceNames: parent,
+		Type:                            value,
+		Values:                          temp,
+	}, nil
+
+}

@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseManagedTenantsManagementParameterValueType(input string) (*ManagedTenantsManagementParameterValueType, error) {
+	vals := map[string]ManagedTenantsManagementParameterValueType{
+		"boolean":           ManagedTenantsManagementParameterValueType_Boolean,
+		"booleancollection": ManagedTenantsManagementParameterValueType_BooleanCollection,
+		"guid":              ManagedTenantsManagementParameterValueType_Guid,
+		"guidcollection":    ManagedTenantsManagementParameterValueType_GuidCollection,
+		"integer":           ManagedTenantsManagementParameterValueType_Integer,
+		"integercollection": ManagedTenantsManagementParameterValueType_IntegerCollection,
+		"string":            ManagedTenantsManagementParameterValueType_String,
+		"stringcollection":  ManagedTenantsManagementParameterValueType_StringCollection,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagedTenantsManagementParameterValueType(input)
+	return &out, nil
+}

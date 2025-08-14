@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2024-09-01/dataconnectors
+import (
+	"encoding/json"
+	"fmt"
+)
+type OAuthModel struct {
+	AccessTokenPrepend                   *string            `json:"accessTokenPrepend,omitempty"`
+	AuthorizationCode                    *string            `json:"authorizationCode,omitempty"`
+	AuthorizationEndpoint                *string            `json:"authorizationEndpoint,omitempty"`
+	AuthorizationEndpointHeaders         *map[string]string `json:"authorizationEndpointHeaders,omitempty"`
+	AuthorizationEndpointQueryParameters *map[string]string `json:"authorizationEndpointQueryParameters,omitempty"`
+	ClientId                             string             `json:"clientId"`
+	ClientSecret                         string             `json:"clientSecret"`
+	GrantType                            string             `json:"grantType"`
+	IsCredentialsInHeaders               *bool              `json:"isCredentialsInHeaders,omitempty"`
+	IsJwtBearerFlow                      *bool              `json:"isJwtBearerFlow,omitempty"`
+	RedirectUri                          *string            `json:"redirectUri,omitempty"`
+	Scope                                *string            `json:"scope,omitempty"`
+	TokenEndpoint                        string             `json:"tokenEndpoint"`
+	TokenEndpointHeaders                 *map[string]string `json:"tokenEndpointHeaders,omitempty"`
+	TokenEndpointQueryParameters         *map[string]string `json:"tokenEndpointQueryParameters,omitempty"`
+
+	// Fields inherited from CcpAuthConfig
+
+	Type CcpAuthType `json:"type"`
+}

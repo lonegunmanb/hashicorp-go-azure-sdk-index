@@ -1,0 +1,54 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/protectionpolicies
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s *AzureIaaSVMProtectionPolicy) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		InstantRPDetails               *InstantRPAdditionalDetails    `json:"instantRPDetails,omitempty"`
+		InstantRpRetentionRangeInDays  *int64                         `json:"instantRpRetentionRangeInDays,omitempty"`
+		PolicyType                     *IAASVMPolicyType              `json:"policyType,omitempty"`
+		SnapshotConsistencyType        *IaasVMSnapshotConsistencyType `json:"snapshotConsistencyType,omitempty"`
+		TieringPolicy                  *map[string]TieringPolicy      `json:"tieringPolicy,omitempty"`
+		TimeZone                       *string                        `json:"timeZone,omitempty"`
+		BackupManagementType           string                         `json:"backupManagementType"`
+		ProtectedItemsCount            *int64                         `json:"protectedItemsCount,omitempty"`
+		ResourceGuardOperationRequests *[]string                      `json:"resourceGuardOperationRequests,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.InstantRPDetails = decoded.InstantRPDetails
+	s.InstantRpRetentionRangeInDays = decoded.InstantRpRetentionRangeInDays
+	s.PolicyType = decoded.PolicyType
+	s.SnapshotConsistencyType = decoded.SnapshotConsistencyType
+	s.TieringPolicy = decoded.TieringPolicy
+	s.TimeZone = decoded.TimeZone
+	s.BackupManagementType = decoded.BackupManagementType
+	s.ProtectedItemsCount = decoded.ProtectedItemsCount
+	s.ResourceGuardOperationRequests = decoded.ResourceGuardOperationRequests
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling AzureIaaSVMProtectionPolicy into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["retentionPolicy"]; ok {
+		impl, err := UnmarshalRetentionPolicyImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'RetentionPolicy' for 'AzureIaaSVMProtectionPolicy': %+v", err)
+		}
+		s.RetentionPolicy = impl
+	}
+
+	if v, ok := temp["schedulePolicy"]; ok {
+		impl, err := UnmarshalSchedulePolicyImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'SchedulePolicy' for 'AzureIaaSVMProtectionPolicy': %+v", err)
+		}
+		s.SchedulePolicy = impl
+	}
+
+	return nil
+}

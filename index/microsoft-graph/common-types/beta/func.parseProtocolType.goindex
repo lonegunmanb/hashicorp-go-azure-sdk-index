@@ -1,0 +1,42 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseProtocolType(input string) (*ProtocolType, error) {
+	vals := map[string]ProtocolType{
+		"authenticationtransfer":                 ProtocolType_AuthenticationTransfer,
+		"authorizationcodewithpkce":              ProtocolType_AuthorizationCodeWithPkce,
+		"authorizationcodewithoutpkce":           ProtocolType_AuthorizationCodeWithoutPkce,
+		"clientcredentials":                      ProtocolType_ClientCredentials,
+		"devicecode":                             ProtocolType_DeviceCode,
+		"directusergrant":                        ProtocolType_DirectUserGrant,
+		"encryptedauthorizeresponse":             ProtocolType_EncryptedAuthorizeResponse,
+		"implicitaccesstokenandgetresponsemode":  ProtocolType_ImplicitAccessTokenAndGetResponseMode,
+		"implicitaccesstokenandpostresponsemode": ProtocolType_ImplicitAccessTokenAndPostResponseMode,
+		"implicitidtokenandgetresponsemode":      ProtocolType_ImplicitIdTokenAndGetResponseMode,
+		"implicitidtokenandpostresponsemode":     ProtocolType_ImplicitIdTokenAndPostResponseMode,
+		"kerberos":                               ProtocolType_Kerberos,
+		"nativeauth":                             ProtocolType_NativeAuth,
+		"none":                                   ProtocolType_None,
+		"oauth2":                                 ProtocolType_OAuth2,
+		"onbehalfof":                             ProtocolType_OnBehalfOf,
+		"prtbrokerbased":                         ProtocolType_PrtBrokerBased,
+		"prtgrant":                               ProtocolType_PrtGrant,
+		"prtnonbrokerbased":                      ProtocolType_PrtNonBrokerBased,
+		"refreshtokengrant":                      ProtocolType_RefreshTokenGrant,
+		"ropc":                                   ProtocolType_Ropc,
+		"saml20":                                 ProtocolType_Saml20,
+		"samlonbehalfof":                         ProtocolType_SamlOnBehalfOf,
+		"seamlesssso":                            ProtocolType_SeamlessSso,
+		"wsfederation":                           ProtocolType_WsFederation,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ProtocolType(input)
+	return &out, nil
+}

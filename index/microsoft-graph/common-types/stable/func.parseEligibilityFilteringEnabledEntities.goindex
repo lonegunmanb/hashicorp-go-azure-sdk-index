@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEligibilityFilteringEnabledEntities(input string) (*EligibilityFilteringEnabledEntities, error) {
+	vals := map[string]EligibilityFilteringEnabledEntities{
+		"none":              EligibilityFilteringEnabledEntities_None,
+		"offershiftrequest": EligibilityFilteringEnabledEntities_OfferShiftRequest,
+		"swaprequest":       EligibilityFilteringEnabledEntities_SwapRequest,
+		"timeoffreason":     EligibilityFilteringEnabledEntities_TimeOffReason,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EligibilityFilteringEnabledEntities(input)
+	return &out, nil
+}

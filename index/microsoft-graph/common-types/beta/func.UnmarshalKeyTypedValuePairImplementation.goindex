@@ -1,0 +1,65 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalKeyTypedValuePairImplementation(input []byte) (KeyTypedValuePair, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling KeyTypedValuePair into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.keyBooleanValuePair") {
+		var out KeyBooleanValuePair
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into KeyBooleanValuePair: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.keyIntegerValuePair") {
+		var out KeyIntegerValuePair
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into KeyIntegerValuePair: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.keyRealValuePair") {
+		var out KeyRealValuePair
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into KeyRealValuePair: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.keyStringValuePair") {
+		var out KeyStringValuePair
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into KeyStringValuePair: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseKeyTypedValuePairImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseKeyTypedValuePairImpl: %+v", err)
+	}
+
+	return RawKeyTypedValuePairImpl{
+		keyTypedValuePair: parent,
+		Type:              value,
+		Values:            temp,
+	}, nil
+
+}

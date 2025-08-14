@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type IncomingContext struct {
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// The id of the participant that is under observation. Read-only.
+	ObservedParticipantId nullable.Type[string] `json:"observedParticipantId,omitempty"`
+
+	// The identity that the call is happening on behalf of.
+	OnBehalfOf IdentitySet `json:"onBehalfOf"`
+
+	// The id of the participant that triggered the incoming call. Read-only.
+	SourceParticipantId nullable.Type[string] `json:"sourceParticipantId,omitempty"`
+
+	// The identity that transferred the call.
+	Transferor IdentitySet `json:"transferor"`
+}

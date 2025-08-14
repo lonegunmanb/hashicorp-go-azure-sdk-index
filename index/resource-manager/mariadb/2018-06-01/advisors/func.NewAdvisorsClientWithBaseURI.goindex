@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mariadb/2018-06-01/advisors
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAdvisorsClientWithBaseURI(sdkApi sdkEnv.Api) (*AdvisorsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "advisors", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AdvisorsClient: %+v", err)
+	}
+
+	return &AdvisorsClient{
+		Client: client,
+	}, nil
+}

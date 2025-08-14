@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2022-10-01-preview/bookmarkrelations
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewBookmarkRelationsClientWithBaseURI(sdkApi sdkEnv.Api) (*BookmarkRelationsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "bookmarkrelations", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating BookmarkRelationsClient: %+v", err)
+	}
+
+	return &BookmarkRelationsClient{
+		Client: client,
+	}, nil
+}

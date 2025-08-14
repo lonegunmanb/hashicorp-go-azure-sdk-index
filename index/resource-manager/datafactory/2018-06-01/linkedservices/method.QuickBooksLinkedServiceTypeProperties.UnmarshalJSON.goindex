@@ -1,0 +1,64 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/linkedservices
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s *QuickBooksLinkedServiceTypeProperties) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		CompanyId             *interface{} `json:"companyId,omitempty"`
+		ConnectionProperties  *interface{} `json:"connectionProperties,omitempty"`
+		ConsumerKey           *interface{} `json:"consumerKey,omitempty"`
+		EncryptedCredential   *string      `json:"encryptedCredential,omitempty"`
+		Endpoint              *interface{} `json:"endpoint,omitempty"`
+		UseEncryptedEndpoints *bool        `json:"useEncryptedEndpoints,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.CompanyId = decoded.CompanyId
+	s.ConnectionProperties = decoded.ConnectionProperties
+	s.ConsumerKey = decoded.ConsumerKey
+	s.EncryptedCredential = decoded.EncryptedCredential
+	s.Endpoint = decoded.Endpoint
+	s.UseEncryptedEndpoints = decoded.UseEncryptedEndpoints
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling QuickBooksLinkedServiceTypeProperties into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["accessToken"]; ok {
+		impl, err := UnmarshalSecretBaseImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'AccessToken' for 'QuickBooksLinkedServiceTypeProperties': %+v", err)
+		}
+		s.AccessToken = impl
+	}
+
+	if v, ok := temp["accessTokenSecret"]; ok {
+		impl, err := UnmarshalSecretBaseImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'AccessTokenSecret' for 'QuickBooksLinkedServiceTypeProperties': %+v", err)
+		}
+		s.AccessTokenSecret = impl
+	}
+
+	if v, ok := temp["consumerSecret"]; ok {
+		impl, err := UnmarshalSecretBaseImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'ConsumerSecret' for 'QuickBooksLinkedServiceTypeProperties': %+v", err)
+		}
+		s.ConsumerSecret = impl
+	}
+
+	if v, ok := temp["refreshToken"]; ok {
+		impl, err := UnmarshalSecretBaseImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'RefreshToken' for 'QuickBooksLinkedServiceTypeProperties': %+v", err)
+		}
+		s.RefreshToken = impl
+	}
+
+	return nil
+}

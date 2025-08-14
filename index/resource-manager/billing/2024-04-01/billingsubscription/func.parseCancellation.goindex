@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingsubscription
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCancellation(input string) (*Cancellation, error) {
+	vals := map[string]Cancellation{
+		"allowed":    CancellationAllowed,
+		"notallowed": CancellationNotAllowed,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Cancellation(input)
+	return &out, nil
+}

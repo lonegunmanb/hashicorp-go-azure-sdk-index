@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/hardwareconfigurationdevicerunstate
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c HardwareConfigurationDeviceRunStateClient) ListHardwareConfigurationDeviceRunStatesCompleteMatchingPredicate(ctx context.Context, id beta.DeviceManagementHardwareConfigurationId, options ListHardwareConfigurationDeviceRunStatesOperationOptions, predicate HardwareConfigurationDeviceStateOperationPredicate) (result ListHardwareConfigurationDeviceRunStatesCompleteResult, err error) {
+	items := make([]beta.HardwareConfigurationDeviceState, 0)
+
+	resp, err := c.ListHardwareConfigurationDeviceRunStates(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListHardwareConfigurationDeviceRunStatesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/communication
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewCommunicationClientWithBaseURI(sdkApi sdkEnv.Api) (*CommunicationClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "communication", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating CommunicationClient: %+v", err)
+	}
+
+	return &CommunicationClient{
+		Client: client,
+	}, nil
+}

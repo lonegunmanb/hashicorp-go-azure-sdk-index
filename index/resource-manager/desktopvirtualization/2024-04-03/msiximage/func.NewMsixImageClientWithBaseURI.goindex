@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/desktopvirtualization/2024-04-03/msiximage
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewMsixImageClientWithBaseURI(sdkApi sdkEnv.Api) (*MsixImageClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "msiximage", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating MsixImageClient: %+v", err)
+	}
+
+	return &MsixImageClient{
+		Client: client,
+	}, nil
+}

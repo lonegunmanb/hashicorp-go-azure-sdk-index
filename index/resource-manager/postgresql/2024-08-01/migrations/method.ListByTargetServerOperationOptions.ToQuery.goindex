@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2024-08-01/migrations
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o ListByTargetServerOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.MigrationListFilter != nil {
+		out.Append("migrationListFilter", fmt.Sprintf("%v", *o.MigrationListFilter))
+	}
+	return &out
+}

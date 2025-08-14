@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2019-10-17-preview/privatelinkscopedresources
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func NewScopedResourceID(subscriptionId string, resourceGroupName string, privateLinkScopeName string, scopedResourceName string) ScopedResourceId {
+	return ScopedResourceId{
+		SubscriptionId:       subscriptionId,
+		ResourceGroupName:    resourceGroupName,
+		PrivateLinkScopeName: privateLinkScopeName,
+		ScopedResourceName:   scopedResourceName,
+	}
+}

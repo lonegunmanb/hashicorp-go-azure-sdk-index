@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/cloudcertificationauthority
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewCloudCertificationAuthorityClientWithBaseURI(sdkApi sdkEnv.Api) (*CloudCertificationAuthorityClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "cloudcertificationauthority", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating CloudCertificationAuthorityClient: %+v", err)
+	}
+
+	return &CloudCertificationAuthorityClient{
+		Client: client,
+	}, nil
+}

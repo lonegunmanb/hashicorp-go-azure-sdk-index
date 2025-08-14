@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hybridcompute/2024-07-10/machines
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePatchOperationStartedBy(input string) (*PatchOperationStartedBy, error) {
+	vals := map[string]PatchOperationStartedBy{
+		"platform": PatchOperationStartedByPlatform,
+		"user":     PatchOperationStartedByUser,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PatchOperationStartedBy(input)
+	return &out, nil
+}

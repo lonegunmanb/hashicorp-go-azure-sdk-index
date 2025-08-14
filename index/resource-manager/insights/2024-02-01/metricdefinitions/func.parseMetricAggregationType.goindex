@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/insights/2024-02-01/metricdefinitions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMetricAggregationType(input string) (*MetricAggregationType, error) {
+	vals := map[string]MetricAggregationType{
+		"average": MetricAggregationTypeAverage,
+		"count":   MetricAggregationTypeCount,
+		"maximum": MetricAggregationTypeMaximum,
+		"minimum": MetricAggregationTypeMinimum,
+		"none":    MetricAggregationTypeNone,
+		"total":   MetricAggregationTypeTotal,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MetricAggregationType(input)
+	return &out, nil
+}

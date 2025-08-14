@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/chatmessagereply
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ChatMessageReplyClient) ForwardChatMessageRepliesToChatsComplete(ctx context.Context, id beta.MeChatIdMessageId, input ForwardChatMessageRepliesToChatsRequest, options ForwardChatMessageRepliesToChatsOperationOptions) (ForwardChatMessageRepliesToChatsCompleteResult, error) {
+	return c.ForwardChatMessageRepliesToChatsCompleteMatchingPredicate(ctx, id, input, options, ActionResultPartOperationPredicate{})
+}

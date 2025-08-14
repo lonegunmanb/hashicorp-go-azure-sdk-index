@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/logic/2019-05-01/integrationserviceenvironments
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseIntegrationServiceEnvironmentAccessEndpointType(input string) (*IntegrationServiceEnvironmentAccessEndpointType, error) {
+	vals := map[string]IntegrationServiceEnvironmentAccessEndpointType{
+		"external":     IntegrationServiceEnvironmentAccessEndpointTypeExternal,
+		"internal":     IntegrationServiceEnvironmentAccessEndpointTypeInternal,
+		"notspecified": IntegrationServiceEnvironmentAccessEndpointTypeNotSpecified,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IntegrationServiceEnvironmentAccessEndpointType(input)
+	return &out, nil
+}

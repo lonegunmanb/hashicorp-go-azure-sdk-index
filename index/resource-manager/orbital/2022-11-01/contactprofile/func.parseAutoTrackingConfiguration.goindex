@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/orbital/2022-11-01/contactprofile
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAutoTrackingConfiguration(input string) (*AutoTrackingConfiguration, error) {
+	vals := map[string]AutoTrackingConfiguration{
+		"disabled": AutoTrackingConfigurationDisabled,
+		"sband":    AutoTrackingConfigurationSBand,
+		"xband":    AutoTrackingConfigurationXBand,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AutoTrackingConfiguration(input)
+	return &out, nil
+}

@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2022-08-01/performconnectivitycheck
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c PerformConnectivityCheckClient) AsyncThenPoll(ctx context.Context, id ServiceId, input ConnectivityCheckRequest) error {
+	result, err := c.Async(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing Async: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after Async: %+v", err)
+	}
+
+	return nil
+}

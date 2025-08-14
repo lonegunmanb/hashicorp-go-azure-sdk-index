@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/virtualnetworkgateways
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseFailoverTestStatusForSingleTest(input string) (*FailoverTestStatusForSingleTest, error) {
+	vals := map[string]FailoverTestStatusForSingleTest{
+		"completed":   FailoverTestStatusForSingleTestCompleted,
+		"expired":     FailoverTestStatusForSingleTestExpired,
+		"invalid":     FailoverTestStatusForSingleTestInvalid,
+		"notstarted":  FailoverTestStatusForSingleTestNotStarted,
+		"running":     FailoverTestStatusForSingleTestRunning,
+		"startfailed": FailoverTestStatusForSingleTestStartFailed,
+		"starting":    FailoverTestStatusForSingleTestStarting,
+		"stopfailed":  FailoverTestStatusForSingleTestStopFailed,
+		"stopping":    FailoverTestStatusForSingleTestStopping,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FailoverTestStatusForSingleTest(input)
+	return &out, nil
+}

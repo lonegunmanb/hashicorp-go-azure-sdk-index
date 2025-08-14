@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/databricks/2024-05-01/vnetpeering
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewVNetPeeringClientWithBaseURI(sdkApi sdkEnv.Api) (*VNetPeeringClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "vnetpeering", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating VNetPeeringClient: %+v", err)
+	}
+
+	return &VNetPeeringClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2025-06-01/dataconnectors
+import (
+	"encoding/json"
+	"fmt"
+)
+type JwtAuthModel struct {
+	Headers                 *map[string]string `json:"headers,omitempty"`
+	IsCredentialsInHeaders  *bool              `json:"isCredentialsInHeaders,omitempty"`
+	IsJsonRequest           *bool              `json:"isJsonRequest,omitempty"`
+	Password                map[string]string  `json:"password"`
+	QueryParameters         *map[string]string `json:"queryParameters,omitempty"`
+	RequestTimeoutInSeconds *int64             `json:"requestTimeoutInSeconds,omitempty"`
+	TokenEndpoint           string             `json:"tokenEndpoint"`
+	UserName                map[string]string  `json:"userName"`
+
+	// Fields inherited from CcpAuthConfig
+
+	Type CcpAuthType `json:"type"`
+}

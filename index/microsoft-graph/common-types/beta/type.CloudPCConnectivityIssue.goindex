@@ -1,0 +1,41 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type CloudPCConnectivityIssue struct {
+	// The Intune DeviceId of the device the connection is associated with.
+	DeviceId nullable.Type[string] `json:"deviceId,omitempty"`
+
+	// The error code of the connectivity issue.
+	ErrorCode nullable.Type[string] `json:"errorCode,omitempty"`
+
+	// The time that the connection initiated. The time is shown in ISO 8601 format and Coordinated Universal Time (UTC)
+	// time.
+	ErrorDateTime *string `json:"errorDateTime,omitempty"`
+
+	// The detailed description of what went wrong.
+	ErrorDescription nullable.Type[string] `json:"errorDescription,omitempty"`
+
+	// The recommended action to fix the corresponding error.
+	RecommendedAction nullable.Type[string] `json:"recommendedAction,omitempty"`
+
+	// The unique id of user who initialize the connection.
+	UserId nullable.Type[string] `json:"userId,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

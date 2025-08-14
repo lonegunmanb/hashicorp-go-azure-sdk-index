@@ -1,0 +1,52 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type Participant struct {
+	Info                 *ParticipantInfo    `json:"info,omitempty"`
+	IsIdentityAnonymized nullable.Type[bool] `json:"isIdentityAnonymized,omitempty"`
+
+	// true if the participant is in lobby.
+	IsInLobby *bool `json:"isInLobby,omitempty"`
+
+	// true if the participant is muted (client or server muted).
+	IsMuted *bool `json:"isMuted,omitempty"`
+
+	// The list of media streams.
+	MediaStreams *[]MediaStream `json:"mediaStreams,omitempty"`
+
+	// A blob of data provided by the participant in the roster.
+	Metadata nullable.Type[string] `json:"metadata,omitempty"`
+
+	// The participant's preferred display name that overrides the original display name.
+	PreferredDisplayName nullable.Type[string] `json:"preferredDisplayName,omitempty"`
+
+	// Information on whether the participant has recording capability.
+	RecordingInfo *RecordingInfo `json:"recordingInfo,omitempty"`
+
+	// Indicates the reason why the participant was removed from the roster.
+	RemovedState *RemovedState `json:"removedState,omitempty"`
+
+	// Indicates the reason or reasons why media content from this participant is restricted.
+	RestrictedExperience *OnlineMeetingRestricted `json:"restrictedExperience,omitempty"`
+
+	// Indicates the roster sequence number the participant was last updated in.
+	RosterSequenceNumber nullable.Type[int64] `json:"rosterSequenceNumber,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

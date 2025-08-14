@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseFirewallPacketQueueingMethodType(input string) (*FirewallPacketQueueingMethodType, error) {
+	vals := map[string]FirewallPacketQueueingMethodType{
+		"devicedefault": FirewallPacketQueueingMethodType_DeviceDefault,
+		"disabled":      FirewallPacketQueueingMethodType_Disabled,
+		"queueboth":     FirewallPacketQueueingMethodType_QueueBoth,
+		"queueinbound":  FirewallPacketQueueingMethodType_QueueInbound,
+		"queueoutbound": FirewallPacketQueueingMethodType_QueueOutbound,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FirewallPacketQueueingMethodType(input)
+	return &out, nil
+}

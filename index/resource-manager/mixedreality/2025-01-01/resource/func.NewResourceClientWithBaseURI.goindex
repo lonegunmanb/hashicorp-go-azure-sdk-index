@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/mixedreality/2025-01-01/resource
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewResourceClientWithBaseURI(sdkApi sdkEnv.Api) (*ResourceClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "resource", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ResourceClient: %+v", err)
+	}
+
+	return &ResourceClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/costmanagement/2023-08-01/views
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseReportGranularityType(input string) (*ReportGranularityType, error) {
+	vals := map[string]ReportGranularityType{
+		"daily":   ReportGranularityTypeDaily,
+		"monthly": ReportGranularityTypeMonthly,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ReportGranularityType(input)
+	return &out, nil
+}

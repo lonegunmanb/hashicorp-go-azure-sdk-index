@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicefabricmanagedcluster/2024-04-01/services
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseServiceScalingMechanismKind(input string) (*ServiceScalingMechanismKind, error) {
+	vals := map[string]ServiceScalingMechanismKind{
+		"addremoveincrementalnamedpartition": ServiceScalingMechanismKindAddRemoveIncrementalNamedPartition,
+		"scalepartitioninstancecount":        ServiceScalingMechanismKindScalePartitionInstanceCount,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ServiceScalingMechanismKind(input)
+	return &out, nil
+}

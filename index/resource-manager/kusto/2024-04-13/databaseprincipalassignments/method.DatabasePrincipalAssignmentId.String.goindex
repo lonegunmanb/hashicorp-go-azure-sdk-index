@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/kusto/2024-04-13/databaseprincipalassignments
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DatabasePrincipalAssignmentId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Cluster Name: %q", id.ClusterName),
+		fmt.Sprintf("Database Name: %q", id.DatabaseName),
+		fmt.Sprintf("Principal Assignment Name: %q", id.PrincipalAssignmentName),
+	}
+	return fmt.Sprintf("Database Principal Assignment (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWin32LobAppNotification(input string) (*Win32LobAppNotification, error) {
+	vals := map[string]Win32LobAppNotification{
+		"hideall":    Win32LobAppNotification_HideAll,
+		"showall":    Win32LobAppNotification_ShowAll,
+		"showreboot": Win32LobAppNotification_ShowReboot,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Win32LobAppNotification(input)
+	return &out, nil
+}

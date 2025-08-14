@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/hdinsight/2021-06-01/regions
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseFilterMode(input string) (*FilterMode, error) {
+	vals := map[string]FilterMode{
+		"default":   FilterModeDefault,
+		"exclude":   FilterModeExclude,
+		"include":   FilterModeInclude,
+		"recommend": FilterModeRecommend,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FilterMode(input)
+	return &out, nil
+}

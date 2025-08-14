@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/dataprotection/2025-07-01/backuppolicies
+import (
+	"encoding/json"
+	"fmt"
+)
+type AzureBackupRule struct {
+	BackupParameters BackupParameters  `json:"backupParameters"`
+	DataStore        DataStoreInfoBase `json:"dataStore"`
+	Trigger          TriggerContext    `json:"trigger"`
+
+	// Fields inherited from BasePolicyRule
+
+	Name       string `json:"name"`
+	ObjectType string `json:"objectType"`
+}

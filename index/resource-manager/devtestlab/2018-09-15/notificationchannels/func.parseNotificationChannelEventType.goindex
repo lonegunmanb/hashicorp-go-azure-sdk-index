@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/notificationchannels
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNotificationChannelEventType(input string) (*NotificationChannelEventType, error) {
+	vals := map[string]NotificationChannelEventType{
+		"autoshutdown": NotificationChannelEventTypeAutoShutdown,
+		"cost":         NotificationChannelEventTypeCost,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NotificationChannelEventType(input)
+	return &out, nil
+}

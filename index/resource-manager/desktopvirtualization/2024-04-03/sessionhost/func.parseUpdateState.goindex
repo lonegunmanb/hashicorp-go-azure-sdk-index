@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/desktopvirtualization/2024-04-03/sessionhost
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseUpdateState(input string) (*UpdateState, error) {
+	vals := map[string]UpdateState{
+		"failed":    UpdateStateFailed,
+		"initial":   UpdateStateInitial,
+		"pending":   UpdateStatePending,
+		"started":   UpdateStateStarted,
+		"succeeded": UpdateStateSucceeded,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := UpdateState(input)
+	return &out, nil
+}

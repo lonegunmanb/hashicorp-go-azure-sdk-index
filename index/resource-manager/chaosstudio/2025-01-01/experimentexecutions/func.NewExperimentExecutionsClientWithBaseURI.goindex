@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/chaosstudio/2025-01-01/experimentexecutions
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewExperimentExecutionsClientWithBaseURI(sdkApi sdkEnv.Api) (*ExperimentExecutionsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "experimentexecutions", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ExperimentExecutionsClient: %+v", err)
+	}
+
+	return &ExperimentExecutionsClient{
+		Client: client,
+	}, nil
+}

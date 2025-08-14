@@ -1,0 +1,9 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client
+import (
+	"context"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/auth"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+type RequestRetryFunc func(*http.Response, *odata.OData) (bool, error)

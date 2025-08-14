@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DeviceManagementWindowsAutopilotDeploymentProfileIdAssignedDeviceId) String() string {
+	components := []string{
+		fmt.Sprintf("Windows Autopilot Deployment Profile: %q", id.WindowsAutopilotDeploymentProfileId),
+		fmt.Sprintf("Windows Autopilot Device Identity: %q", id.WindowsAutopilotDeviceIdentityId),
+	}
+	return fmt.Sprintf("Device Management Windows Autopilot Deployment Profile Id Assigned Device (%s)", strings.Join(components, "\n"))
+}

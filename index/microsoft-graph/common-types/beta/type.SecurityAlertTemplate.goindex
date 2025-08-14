@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type SecurityAlertTemplate struct {
+	// Category assigned to the alert triggered by the custom detection rule.
+	Category *string `json:"category,omitempty"`
+
+	// Description of the alert triggered by the custom detection rule.
+	Description *string `json:"description,omitempty"`
+
+	// Which asset or assets were impacted based on the alert triggered by the custom detection rule.
+	ImpactedAssets *[]SecurityImpactedAsset `json:"impactedAssets,omitempty"`
+
+	// MITRE technique assigned to the alert triggered by the custom detection rule.
+	MitreTechniques *[]string `json:"mitreTechniques,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Recommended actions to mitigate the threat related to the alert triggered by the custom detection rule.
+	RecommendedActions nullable.Type[string] `json:"recommendedActions,omitempty"`
+
+	Severity *SecurityAlertSeverity `json:"severity,omitempty"`
+
+	// Name of the alert triggered by the custom detection rule.
+	Title *string `json:"title,omitempty"`
+}

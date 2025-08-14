@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/schedule
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMonitoringFeatureFilterType(input string) (*MonitoringFeatureFilterType, error) {
+	vals := map[string]MonitoringFeatureFilterType{
+		"allfeatures":       MonitoringFeatureFilterTypeAllFeatures,
+		"featuresubset":     MonitoringFeatureFilterTypeFeatureSubset,
+		"topnbyattribution": MonitoringFeatureFilterTypeTopNByAttribution,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MonitoringFeatureFilterType(input)
+	return &out, nil
+}

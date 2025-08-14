@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/exchangeonpremisespolicy
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ExchangeOnPremisesPolicyClient) ListExchangeOnPremisesPoliciesCompleteMatchingPredicate(ctx context.Context, options ListExchangeOnPremisesPoliciesOperationOptions, predicate DeviceManagementExchangeOnPremisesPolicyOperationPredicate) (result ListExchangeOnPremisesPoliciesCompleteResult, err error) {
+	items := make([]beta.DeviceManagementExchangeOnPremisesPolicy, 0)
+
+	resp, err := c.ListExchangeOnPremisesPolicies(ctx, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListExchangeOnPremisesPoliciesCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

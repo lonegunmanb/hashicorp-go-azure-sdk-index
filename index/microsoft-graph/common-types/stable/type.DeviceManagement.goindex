@@ -1,0 +1,217 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+)
+type DeviceManagement struct {
+	// Apple push notification certificate.
+	ApplePushNotificationCertificate *ApplePushNotificationCertificate `json:"applePushNotificationCertificate,omitempty"`
+
+	// The Audit Events
+	AuditEvents *[]AuditEvent `json:"auditEvents,omitempty"`
+
+	// The list of Compliance Management Partners configured by the tenant.
+	ComplianceManagementPartners *[]ComplianceManagementPartner `json:"complianceManagementPartners,omitempty"`
+
+	// The Exchange on premises conditional access settings. On premises conditional access will require devices to be both
+	// enrolled and compliant for mail access
+	ConditionalAccessSettings *OnPremisesConditionalAccessSettings `json:"conditionalAccessSettings,omitempty"`
+
+	// The list of detected apps associated with a device.
+	DetectedApps *[]DetectedApp `json:"detectedApps,omitempty"`
+
+	// The list of device categories with the tenant.
+	DeviceCategories *[]DeviceCategory `json:"deviceCategories,omitempty"`
+
+	// The device compliance policies.
+	DeviceCompliancePolicies *[]DeviceCompliancePolicy `json:"deviceCompliancePolicies,omitempty"`
+
+	// The device compliance state summary for this account.
+	DeviceCompliancePolicyDeviceStateSummary *DeviceCompliancePolicyDeviceStateSummary `json:"deviceCompliancePolicyDeviceStateSummary,omitempty"`
+
+	// The summary states of compliance policy settings for this account.
+	DeviceCompliancePolicySettingStateSummaries *[]DeviceCompliancePolicySettingStateSummary `json:"deviceCompliancePolicySettingStateSummaries,omitempty"`
+
+	// The device configuration device state summary for this account.
+	DeviceConfigurationDeviceStateSummaries *DeviceConfigurationDeviceStateSummary `json:"deviceConfigurationDeviceStateSummaries,omitempty"`
+
+	// The device configurations.
+	DeviceConfigurations *[]DeviceConfiguration `json:"deviceConfigurations,omitempty"`
+
+	// The list of device enrollment configurations
+	DeviceEnrollmentConfigurations *[]DeviceEnrollmentConfiguration `json:"deviceEnrollmentConfigurations,omitempty"`
+
+	// The list of Device Management Partners configured by the tenant.
+	DeviceManagementPartners *[]DeviceManagementPartner `json:"deviceManagementPartners,omitempty"`
+
+	// Device protection overview.
+	DeviceProtectionOverview *DeviceProtectionOverview `json:"deviceProtectionOverview,omitempty"`
+
+	// The list of Exchange Connectors configured by the tenant.
+	ExchangeConnectors *[]DeviceManagementExchangeConnector `json:"exchangeConnectors,omitempty"`
+
+	// Collection of imported Windows autopilot devices.
+	ImportedWindowsAutopilotDeviceIdentities *[]ImportedWindowsAutopilotDeviceIdentity `json:"importedWindowsAutopilotDeviceIdentities,omitempty"`
+
+	// Intune Account Id for given tenant
+	IntuneAccountId *string `json:"intuneAccountId,omitempty"`
+
+	// intuneBrand contains data which is used in customizing the appearance of the Company Portal applications as well as
+	// the end user web portal.
+	IntuneBrand *IntuneBrand `json:"intuneBrand,omitempty"`
+
+	// The IOS software update installation statuses for this account.
+	IosUpdateStatuses *[]IosUpdateDeviceStatus `json:"iosUpdateStatuses,omitempty"`
+
+	// Device overview
+	ManagedDeviceOverview *ManagedDeviceOverview `json:"managedDeviceOverview,omitempty"`
+
+	// The list of managed devices.
+	ManagedDevices *[]ManagedDevice `json:"managedDevices,omitempty"`
+
+	// The collection property of MobileAppTroubleshootingEvent.
+	MobileAppTroubleshootingEvents *[]MobileAppTroubleshootingEvent `json:"mobileAppTroubleshootingEvents,omitempty"`
+
+	// The list of Mobile threat Defense connectors configured by the tenant.
+	MobileThreatDefenseConnectors *[]MobileThreatDefenseConnector `json:"mobileThreatDefenseConnectors,omitempty"`
+
+	// The Notification Message Templates.
+	NotificationMessageTemplates *[]NotificationMessageTemplate `json:"notificationMessageTemplates,omitempty"`
+
+	// The remote assist partners.
+	RemoteAssistancePartners *[]RemoteAssistancePartner `json:"remoteAssistancePartners,omitempty"`
+
+	// Reports singleton
+	Reports *DeviceManagementReports `json:"reports,omitempty"`
+
+	// The Resource Operations.
+	ResourceOperations *[]ResourceOperation `json:"resourceOperations,omitempty"`
+
+	// The Role Assignments.
+	RoleAssignments *[]DeviceAndAppManagementRoleAssignment `json:"roleAssignments,omitempty"`
+
+	// The Role Definitions.
+	RoleDefinitions *[]RoleDefinition `json:"roleDefinitions,omitempty"`
+
+	// Account level settings.
+	Settings *DeviceManagementSettings `json:"settings,omitempty"`
+
+	// The software update status summary.
+	SoftwareUpdateStatusSummary *SoftwareUpdateStatusSummary `json:"softwareUpdateStatusSummary,omitempty"`
+
+	// Tenant mobile device management subscription state.
+	SubscriptionState *DeviceManagementSubscriptionState `json:"subscriptionState,omitempty"`
+
+	// The telecom expense management partners.
+	TelecomExpenseManagementPartners *[]TelecomExpenseManagementPartner `json:"telecomExpenseManagementPartners,omitempty"`
+
+	// The terms and conditions associated with device management of the company.
+	TermsAndConditions *[]TermsAndConditions `json:"termsAndConditions,omitempty"`
+
+	// The list of troubleshooting events for the tenant.
+	TroubleshootingEvents *[]DeviceManagementTroubleshootingEvent `json:"troubleshootingEvents,omitempty"`
+
+	// User experience analytics appHealth Application Performance
+	UserExperienceAnalyticsAppHealthApplicationPerformance *[]UserExperienceAnalyticsAppHealthApplicationPerformance `json:"userExperienceAnalyticsAppHealthApplicationPerformance,omitempty"`
+
+	// User experience analytics appHealth Application Performance by App Version details
+	UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails *[]UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails `json:"userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails,omitempty"`
+
+	// User experience analytics appHealth Application Performance by App Version Device Id
+	UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId *[]UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId `json:"userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId,omitempty"`
+
+	// User experience analytics appHealth Application Performance by OS Version
+	UserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersion *[]UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion `json:"userExperienceAnalyticsAppHealthApplicationPerformanceByOSVersion,omitempty"`
+
+	// User experience analytics appHealth Model Performance
+	UserExperienceAnalyticsAppHealthDeviceModelPerformance *[]UserExperienceAnalyticsAppHealthDeviceModelPerformance `json:"userExperienceAnalyticsAppHealthDeviceModelPerformance,omitempty"`
+
+	// User experience analytics appHealth Device Performance
+	UserExperienceAnalyticsAppHealthDevicePerformance *[]UserExperienceAnalyticsAppHealthDevicePerformance `json:"userExperienceAnalyticsAppHealthDevicePerformance,omitempty"`
+
+	// User experience analytics device performance details
+	UserExperienceAnalyticsAppHealthDevicePerformanceDetails *[]UserExperienceAnalyticsAppHealthDevicePerformanceDetails `json:"userExperienceAnalyticsAppHealthDevicePerformanceDetails,omitempty"`
+
+	// User experience analytics appHealth OS version Performance
+	UserExperienceAnalyticsAppHealthOSVersionPerformance *[]UserExperienceAnalyticsAppHealthOSVersionPerformance `json:"userExperienceAnalyticsAppHealthOSVersionPerformance,omitempty"`
+
+	// User experience analytics appHealth overview
+	UserExperienceAnalyticsAppHealthOverview *UserExperienceAnalyticsCategory `json:"userExperienceAnalyticsAppHealthOverview,omitempty"`
+
+	// User experience analytics baselines
+	UserExperienceAnalyticsBaselines *[]UserExperienceAnalyticsBaseline `json:"userExperienceAnalyticsBaselines,omitempty"`
+
+	// User experience analytics categories
+	UserExperienceAnalyticsCategories *[]UserExperienceAnalyticsCategory `json:"userExperienceAnalyticsCategories,omitempty"`
+
+	// User experience analytics device performance
+	UserExperienceAnalyticsDevicePerformance *[]UserExperienceAnalyticsDevicePerformance `json:"userExperienceAnalyticsDevicePerformance,omitempty"`
+
+	// User experience analytics device scores
+	UserExperienceAnalyticsDeviceScores *[]UserExperienceAnalyticsDeviceScores `json:"userExperienceAnalyticsDeviceScores,omitempty"`
+
+	// User experience analytics device Startup History
+	UserExperienceAnalyticsDeviceStartupHistory *[]UserExperienceAnalyticsDeviceStartupHistory `json:"userExperienceAnalyticsDeviceStartupHistory,omitempty"`
+
+	// User experience analytics device Startup Process Performance
+	UserExperienceAnalyticsDeviceStartupProcessPerformance *[]UserExperienceAnalyticsDeviceStartupProcessPerformance `json:"userExperienceAnalyticsDeviceStartupProcessPerformance,omitempty"`
+
+	// User experience analytics device Startup Processes
+	UserExperienceAnalyticsDeviceStartupProcesses *[]UserExperienceAnalyticsDeviceStartupProcess `json:"userExperienceAnalyticsDeviceStartupProcesses,omitempty"`
+
+	// User experience analytics metric history
+	UserExperienceAnalyticsMetricHistory *[]UserExperienceAnalyticsMetricHistory `json:"userExperienceAnalyticsMetricHistory,omitempty"`
+
+	// User experience analytics model scores
+	UserExperienceAnalyticsModelScores *[]UserExperienceAnalyticsModelScores `json:"userExperienceAnalyticsModelScores,omitempty"`
+
+	// User experience analytics overview
+	UserExperienceAnalyticsOverview *UserExperienceAnalyticsOverview `json:"userExperienceAnalyticsOverview,omitempty"`
+
+	// User experience analytics device Startup Score History
+	UserExperienceAnalyticsScoreHistory *[]UserExperienceAnalyticsScoreHistory `json:"userExperienceAnalyticsScoreHistory,omitempty"`
+
+	// User experience analytics device settings
+	UserExperienceAnalyticsSettings *UserExperienceAnalyticsSettings `json:"userExperienceAnalyticsSettings,omitempty"`
+
+	// User experience analytics work from anywhere hardware readiness metrics.
+	UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric *UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric `json:"userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric,omitempty"`
+
+	// User experience analytics work from anywhere metrics.
+	UserExperienceAnalyticsWorkFromAnywhereMetrics *[]UserExperienceAnalyticsWorkFromAnywhereMetric `json:"userExperienceAnalyticsWorkFromAnywhereMetrics,omitempty"`
+
+	// The user experience analytics work from anywhere model performance
+	UserExperienceAnalyticsWorkFromAnywhereModelPerformance *[]UserExperienceAnalyticsWorkFromAnywhereModelPerformance `json:"userExperienceAnalyticsWorkFromAnywhereModelPerformance,omitempty"`
+
+	// Virtual endpoint
+	VirtualEndpoint *VirtualEndpoint `json:"virtualEndpoint,omitempty"`
+
+	// The Windows autopilot device identities contained collection.
+	WindowsAutopilotDeviceIdentities *[]WindowsAutopilotDeviceIdentity `json:"windowsAutopilotDeviceIdentities,omitempty"`
+
+	// The windows information protection app learning summaries.
+	WindowsInformationProtectionAppLearningSummaries *[]WindowsInformationProtectionAppLearningSummary `json:"windowsInformationProtectionAppLearningSummaries,omitempty"`
+
+	// The windows information protection network learning summaries.
+	WindowsInformationProtectionNetworkLearningSummaries *[]WindowsInformationProtectionNetworkLearningSummary `json:"windowsInformationProtectionNetworkLearningSummaries,omitempty"`
+
+	// The list of affected malware in the tenant.
+	WindowsMalwareInformation *[]WindowsMalwareInformation `json:"windowsMalwareInformation,omitempty"`
+
+	// Malware overview for windows devices.
+	WindowsMalwareOverview *WindowsMalwareOverview `json:"windowsMalwareOverview,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

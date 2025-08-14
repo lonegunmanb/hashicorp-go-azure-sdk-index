@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSamlNameIDFormat(input string) (*SamlNameIDFormat, error) {
+	vals := map[string]SamlNameIDFormat{
+		"default":                    SamlNameIDFormat_Default,
+		"emailaddress":               SamlNameIDFormat_EmailAddress,
+		"persistent":                 SamlNameIDFormat_Persistent,
+		"unspecified":                SamlNameIDFormat_Unspecified,
+		"windowsdomainqualifiedname": SamlNameIDFormat_WindowsDomainQualifiedName,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SamlNameIDFormat(input)
+	return &out, nil
+}

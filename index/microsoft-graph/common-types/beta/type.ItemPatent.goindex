@@ -1,0 +1,69 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ItemPatent struct {
+	// Descpription of the patent or filing.
+	Description nullable.Type[string] `json:"description,omitempty"`
+
+	// Title of the patent or filing.
+	DisplayName *string `json:"displayName,omitempty"`
+
+	// Indicates the patent is pending.
+	IsPending nullable.Type[bool] `json:"isPending,omitempty"`
+
+	// The date that the patent was granted.
+	IssuedDate nullable.Type[string] `json:"issuedDate,omitempty"`
+
+	// Authority which granted the patent.
+	IssuingAuthority nullable.Type[string] `json:"issuingAuthority,omitempty"`
+
+	// The patent number.
+	Number nullable.Type[string] `json:"number,omitempty"`
+
+	// URL referencing the patent or filing.
+	WebUrl nullable.Type[string] `json:"webUrl,omitempty"`
+
+	// Fields inherited from ItemFacet
+
+	// The audiences that are able to see the values contained within the associated entity. Possible values are: me,
+	// family, contacts, groupMembers, organization, federatedOrganizations, everyone, unknownFutureValue.
+	AllowedAudiences *AllowedAudiences `json:"allowedAudiences,omitempty"`
+
+	CreatedBy IdentitySet `json:"createdBy"`
+
+	// Provides the dateTimeOffset for when the entity was created.
+	CreatedDateTime *string `json:"createdDateTime,omitempty"`
+
+	// Contains inference detail if the entity is inferred by the creating or modifying application.
+	Inference *InferenceData `json:"inference,omitempty"`
+
+	IsSearchable   nullable.Type[bool] `json:"isSearchable,omitempty"`
+	LastModifiedBy IdentitySet         `json:"lastModifiedBy"`
+
+	// Provides the dateTimeOffset for when the entity was created.
+	LastModifiedDateTime *string `json:"lastModifiedDateTime,omitempty"`
+
+	// Where the values within an entity originated if synced from another service.
+	Source *PersonDataSources `json:"source,omitempty"`
+
+	// Where the values within an entity originated if synced from another source.
+	Sources *[]ProfileSourceAnnotation `json:"sources,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/workspacemanagedsqlserversqlusages
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewWorkspaceManagedSqlServerSqlUsagesClientWithBaseURI(sdkApi sdkEnv.Api) (*WorkspaceManagedSqlServerSqlUsagesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "workspacemanagedsqlserversqlusages", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating WorkspaceManagedSqlServerSqlUsagesClient: %+v", err)
+	}
+
+	return &WorkspaceManagedSqlServerSqlUsagesClient{
+		Client: client,
+	}, nil
+}

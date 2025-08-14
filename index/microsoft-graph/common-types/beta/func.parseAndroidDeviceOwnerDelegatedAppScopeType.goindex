@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAndroidDeviceOwnerDelegatedAppScopeType(input string) (*AndroidDeviceOwnerDelegatedAppScopeType, error) {
+	vals := map[string]AndroidDeviceOwnerDelegatedAppScopeType{
+		"capturenetworkactivitylog": AndroidDeviceOwnerDelegatedAppScopeType_CaptureNetworkActivityLog,
+		"capturesecuritylog":        AndroidDeviceOwnerDelegatedAppScopeType_CaptureSecurityLog,
+		"certificateinstall":        AndroidDeviceOwnerDelegatedAppScopeType_CertificateInstall,
+		"unspecified":               AndroidDeviceOwnerDelegatedAppScopeType_Unspecified,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AndroidDeviceOwnerDelegatedAppScopeType(input)
+	return &out, nil
+}

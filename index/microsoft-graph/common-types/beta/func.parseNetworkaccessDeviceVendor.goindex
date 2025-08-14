@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNetworkaccessDeviceVendor(input string) (*NetworkaccessDeviceVendor, error) {
+	vals := map[string]NetworkaccessDeviceVendor{
+		"barracudanetworks":  NetworkaccessDeviceVendor_BarracudaNetworks,
+		"checkpoint":         NetworkaccessDeviceVendor_CheckPoint,
+		"ciscocatalyst":      NetworkaccessDeviceVendor_CiscoCatalyst,
+		"ciscomeraki":        NetworkaccessDeviceVendor_CiscoMeraki,
+		"citrix":             NetworkaccessDeviceVendor_Citrix,
+		"fortinet":           NetworkaccessDeviceVendor_Fortinet,
+		"hpearuba":           NetworkaccessDeviceVendor_HpeAruba,
+		"netfoundry":         NetworkaccessDeviceVendor_NetFoundry,
+		"nuage":              NetworkaccessDeviceVendor_Nuage,
+		"opensystems":        NetworkaccessDeviceVendor_OpenSystems,
+		"other":              NetworkaccessDeviceVendor_Other,
+		"paloaltonetworks":   NetworkaccessDeviceVendor_PaloAltoNetworks,
+		"riverbedtechnology": NetworkaccessDeviceVendor_RiverbedTechnology,
+		"silverpeak":         NetworkaccessDeviceVendor_SilverPeak,
+		"versa":              NetworkaccessDeviceVendor_Versa,
+		"vmwaresdwan":        NetworkaccessDeviceVendor_VmWareSdWan,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NetworkaccessDeviceVendor(input)
+	return &out, nil
+}

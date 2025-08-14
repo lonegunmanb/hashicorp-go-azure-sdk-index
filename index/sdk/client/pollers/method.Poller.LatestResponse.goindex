@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client/pollers
+import (
+	"context"
+	"fmt"
+	"sync"
+	"time"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+)
+func (p *Poller) LatestResponse() *client.Response {
+	if p.latestError != nil {
+		if v, ok := p.latestError.(PollingCancelledError); ok {
+			return v.HttpResponse
+		}
+		if _, ok := p.latestError.(PollingDroppedConnectionError); ok {
+			return nil
+		}
+		if v, ok := p.latestError.(PollingFailedError); ok {
+			return v.HttpResponse
+		}
+
+		if p.latestError == context.DeadlineExceeded {
+			return nil
+		}
+	}
+
+	if p.latestResponse == nil {
+		return nil
+	}
+
+	return p.latestResponse.HttpResponse
+}

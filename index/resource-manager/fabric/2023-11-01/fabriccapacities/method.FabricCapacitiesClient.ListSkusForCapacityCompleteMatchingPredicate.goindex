@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/fabric/2023-11-01/fabriccapacities
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c FabricCapacitiesClient) ListSkusForCapacityCompleteMatchingPredicate(ctx context.Context, id CapacityId, predicate RpSkuDetailsForExistingResourceOperationPredicate) (result ListSkusForCapacityCompleteResult, err error) {
+	items := make([]RpSkuDetailsForExistingResource, 0)
+
+	resp, err := c.ListSkusForCapacity(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = ListSkusForCapacityCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

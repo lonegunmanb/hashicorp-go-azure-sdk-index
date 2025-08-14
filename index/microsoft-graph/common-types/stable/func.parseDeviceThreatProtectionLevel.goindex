@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeviceThreatProtectionLevel(input string) (*DeviceThreatProtectionLevel, error) {
+	vals := map[string]DeviceThreatProtectionLevel{
+		"high":        DeviceThreatProtectionLevel_High,
+		"low":         DeviceThreatProtectionLevel_Low,
+		"medium":      DeviceThreatProtectionLevel_Medium,
+		"notset":      DeviceThreatProtectionLevel_NotSet,
+		"secured":     DeviceThreatProtectionLevel_Secured,
+		"unavailable": DeviceThreatProtectionLevel_Unavailable,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceThreatProtectionLevel(input)
+	return &out, nil
+}

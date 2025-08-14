@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/sdk/environments
+import (
+	"strings"
+)
+func (e *Environment) IsAzureStack() bool {
+	if strings.EqualFold(e.Name, "AzureStackCloud") {
+		return true
+	}
+
+	if !strings.EqualFold(e.Authorization.IdentityProvider, "AAD") || !strings.EqualFold(e.Authorization.Tenant, "common") {
+		return true
+	}
+
+	return false
+}

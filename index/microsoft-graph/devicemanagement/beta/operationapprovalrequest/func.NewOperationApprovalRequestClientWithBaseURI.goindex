@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/operationapprovalrequest
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewOperationApprovalRequestClientWithBaseURI(sdkApi sdkEnv.Api) (*OperationApprovalRequestClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "operationapprovalrequest", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating OperationApprovalRequestClient: %+v", err)
+	}
+
+	return &OperationApprovalRequestClient{
+		Client: client,
+	}, nil
+}

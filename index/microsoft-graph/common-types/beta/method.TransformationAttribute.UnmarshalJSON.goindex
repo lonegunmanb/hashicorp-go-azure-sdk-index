@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s *TransformationAttribute) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		ODataId           *string `json:"@odata.id,omitempty"`
+		ODataType         *string `json:"@odata.type,omitempty"`
+		TreatAsMultiValue *bool   `json:"treatAsMultiValue,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.TreatAsMultiValue = decoded.TreatAsMultiValue
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling TransformationAttribute into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["attribute"]; ok {
+		impl, err := UnmarshalCustomClaimAttributeBaseImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'Attribute' for 'TransformationAttribute': %+v", err)
+		}
+		s.Attribute = impl
+	}
+
+	return nil
+}

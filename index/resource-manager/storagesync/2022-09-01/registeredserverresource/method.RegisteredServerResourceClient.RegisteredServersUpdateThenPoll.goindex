@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagesync/2022-09-01/registeredserverresource
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c RegisteredServerResourceClient) RegisteredServersUpdateThenPoll(ctx context.Context, id RegisteredServerId, input RegisteredServerUpdateParameters) error {
+	result, err := c.RegisteredServersUpdate(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing RegisteredServersUpdate: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after RegisteredServersUpdate: %+v", err)
+	}
+
+	return nil
+}

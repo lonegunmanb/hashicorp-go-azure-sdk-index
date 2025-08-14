@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager
+import (
+	"context"
+	"errors"
+	"fmt"
+	"net/http"
+	"net/url"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/pointer"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+type provisioningStatePoller struct {
+	apiVersion           string
+	client               *Client
+	initialRetryDuration time.Duration
+	originalUri          string
+	resourcePath         string
+
+	droppedConnectionCount int
+	maxDroppedConnections  int
+}

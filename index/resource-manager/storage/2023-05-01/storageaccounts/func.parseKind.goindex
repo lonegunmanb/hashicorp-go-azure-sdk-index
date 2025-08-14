@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storage/2023-05-01/storageaccounts
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseKind(input string) (*Kind, error) {
+	vals := map[string]Kind{
+		"blobstorage":      KindBlobStorage,
+		"blockblobstorage": KindBlockBlobStorage,
+		"filestorage":      KindFileStorage,
+		"storage":          KindStorage,
+		"storagev2":        KindStorageVTwo,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Kind(input)
+	return &out, nil
+}

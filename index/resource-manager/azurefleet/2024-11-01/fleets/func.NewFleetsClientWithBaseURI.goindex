@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/azurefleet/2024-11-01/fleets
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewFleetsClientWithBaseURI(sdkApi sdkEnv.Api) (*FleetsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "fleets", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating FleetsClient: %+v", err)
+	}
+
+	return &FleetsClient{
+		Client: client,
+	}, nil
+}

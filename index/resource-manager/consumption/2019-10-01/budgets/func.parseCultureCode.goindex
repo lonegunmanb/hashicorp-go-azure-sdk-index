@@ -1,0 +1,38 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2019-10-01/budgets
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCultureCode(input string) (*CultureCode, error) {
+	vals := map[string]CultureCode{
+		"cs-cz": CultureCodeCsNegativecz,
+		"da-dk": CultureCodeDaNegativedk,
+		"de-de": CultureCodeDeNegativede,
+		"en-gb": CultureCodeEnNegativegb,
+		"en-us": CultureCodeEnNegativeus,
+		"es-es": CultureCodeEsNegativees,
+		"fr-fr": CultureCodeFrNegativefr,
+		"hu-hu": CultureCodeHuNegativehu,
+		"it-it": CultureCodeItNegativeit,
+		"ja-jp": CultureCodeJaNegativejp,
+		"ko-kr": CultureCodeKoNegativekr,
+		"nb-no": CultureCodeNbNegativeno,
+		"nl-nl": CultureCodeNlNegativenl,
+		"pl-pl": CultureCodePlNegativepl,
+		"pt-br": CultureCodePtNegativebr,
+		"pt-pt": CultureCodePtNegativept,
+		"ru-ru": CultureCodeRuNegativeru,
+		"sv-se": CultureCodeSvNegativese,
+		"tr-tr": CultureCodeTrNegativetr,
+		"zh-cn": CultureCodeZhNegativecn,
+		"zh-tw": CultureCodeZhNegativetw,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CultureCode(input)
+	return &out, nil
+}

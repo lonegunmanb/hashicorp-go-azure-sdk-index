@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type GroupLifecyclePolicy struct {
+	// List of email address to send notifications for groups without owners. Multiple email address can be defined by
+	// separating email address with a semicolon.
+	AlternateNotificationEmails nullable.Type[string] `json:"alternateNotificationEmails,omitempty"`
+
+	// Number of days before a group expires and needs to be renewed. Once renewed, the group expiration is extended by the
+	// number of days defined.
+	GroupLifetimeInDays nullable.Type[int64] `json:"groupLifetimeInDays,omitempty"`
+
+	// The group type for which the expiration policy applies. Possible values are All, Selected or None.
+	ManagedGroupTypes nullable.Type[string] `json:"managedGroupTypes,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/get
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMongoDbReplication(input string) (*MongoDbReplication, error) {
+	vals := map[string]MongoDbReplication{
+		"continuous": MongoDbReplicationContinuous,
+		"disabled":   MongoDbReplicationDisabled,
+		"onetime":    MongoDbReplicationOneTime,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MongoDbReplication(input)
+	return &out, nil
+}

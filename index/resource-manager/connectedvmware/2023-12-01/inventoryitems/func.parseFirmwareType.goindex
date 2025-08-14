@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/connectedvmware/2023-12-01/inventoryitems
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseFirmwareType(input string) (*FirmwareType, error) {
+	vals := map[string]FirmwareType{
+		"bios": FirmwareTypeBios,
+		"efi":  FirmwareTypeEfi,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := FirmwareType(input)
+	return &out, nil
+}

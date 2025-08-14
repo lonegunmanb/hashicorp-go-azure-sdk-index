@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2022-05-01/privateclouds
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePrivateCloudProvisioningState(input string) (*PrivateCloudProvisioningState, error) {
+	vals := map[string]PrivateCloudProvisioningState{
+		"building":  PrivateCloudProvisioningStateBuilding,
+		"canceled":  PrivateCloudProvisioningStateCanceled,
+		"cancelled": PrivateCloudProvisioningStateCancelled,
+		"deleting":  PrivateCloudProvisioningStateDeleting,
+		"failed":    PrivateCloudProvisioningStateFailed,
+		"pending":   PrivateCloudProvisioningStatePending,
+		"succeeded": PrivateCloudProvisioningStateSucceeded,
+		"updating":  PrivateCloudProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PrivateCloudProvisioningState(input)
+	return &out, nil
+}

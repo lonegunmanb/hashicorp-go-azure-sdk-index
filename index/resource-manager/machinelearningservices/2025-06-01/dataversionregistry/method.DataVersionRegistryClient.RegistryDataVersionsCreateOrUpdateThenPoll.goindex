@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2025-06-01/dataversionregistry
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DataVersionRegistryClient) RegistryDataVersionsCreateOrUpdateThenPoll(ctx context.Context, id VersionId, input DataVersionBaseResource) error {
+	result, err := c.RegistryDataVersionsCreateOrUpdate(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing RegistryDataVersionsCreateOrUpdate: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after RegistryDataVersionsCreateOrUpdate: %+v", err)
+	}
+
+	return nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/importeddeviceidentity
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewImportedDeviceIdentityClientWithBaseURI(sdkApi sdkEnv.Api) (*ImportedDeviceIdentityClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "importeddeviceidentity", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ImportedDeviceIdentityClient: %+v", err)
+	}
+
+	return &ImportedDeviceIdentityClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/synapse/2021-06-01/sqlpoolsmaintenancewindows
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o SqlPoolMaintenanceWindowsGetOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+	if o.MaintenanceWindowName != nil {
+		out.Append("maintenanceWindowName", fmt.Sprintf("%v", *o.MaintenanceWindowName))
+	}
+	return &out
+}

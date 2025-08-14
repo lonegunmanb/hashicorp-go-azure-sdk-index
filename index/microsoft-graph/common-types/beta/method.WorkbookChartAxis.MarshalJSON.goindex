@@ -1,0 +1,34 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s WorkbookChartAxis) MarshalJSON() ([]byte, error) {
+	type wrapper WorkbookChartAxis
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling WorkbookChartAxis: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling WorkbookChartAxis: %+v", err)
+	}
+
+	delete(decoded, "format")
+	delete(decoded, "majorGridlines")
+	delete(decoded, "minorGridlines")
+	delete(decoded, "title")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.workbookChartAxis"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling WorkbookChartAxis: %+v", err)
+	}
+
+	return encoded, nil
+}

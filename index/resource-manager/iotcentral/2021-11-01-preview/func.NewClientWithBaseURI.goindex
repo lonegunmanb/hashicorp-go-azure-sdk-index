@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/iotcentral/v2021_11_01_preview
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/resource-manager/iotcentral/2021-11-01-preview/apps"
+	"github.com/hashicorp/go-azure-sdk/resource-manager/iotcentral/2021-11-01-preview/networking"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *resourcemanager.Client)) (*Client, error) {
+	appsClient, err := apps.NewAppsClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Apps client: %+v", err)
+	}
+	configureFunc(appsClient.Client)
+
+	networkingClient, err := networking.NewNetworkingClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Networking client: %+v", err)
+	}
+	configureFunc(networkingClient.Client)
+
+	return &Client{
+		Apps:       appsClient,
+		Networking: networkingClient,
+	}, nil
+}

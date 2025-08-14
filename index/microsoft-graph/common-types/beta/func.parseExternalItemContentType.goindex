@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseExternalItemContentType(input string) (*ExternalItemContentType, error) {
+	vals := map[string]ExternalItemContentType{
+		"html": ExternalItemContentType_Html,
+		"text": ExternalItemContentType_Text,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ExternalItemContentType(input)
+	return &out, nil
+}

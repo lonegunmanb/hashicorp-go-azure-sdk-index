@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/configurationpolicysetting
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ConfigurationPolicySettingClient) ListConfigurationPolicySettingsComplete(ctx context.Context, id beta.DeviceManagementConfigurationPolicyId, options ListConfigurationPolicySettingsOperationOptions) (ListConfigurationPolicySettingsCompleteResult, error) {
+	return c.ListConfigurationPolicySettingsCompleteMatchingPredicate(ctx, id, options, DeviceManagementConfigurationSettingOperationPredicate{})
+}

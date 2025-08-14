@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/videoanalyzer/2021-05-01-preview/videos
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s EccTokenKey) MarshalJSON() ([]byte, error) {
+	type wrapper EccTokenKey
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling EccTokenKey: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling EccTokenKey: %+v", err)
+	}
+
+	decoded["@type"] = "#Microsoft.VideoAnalyzer.EccTokenKey"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling EccTokenKey: %+v", err)
+	}
+
+	return encoded, nil
+}

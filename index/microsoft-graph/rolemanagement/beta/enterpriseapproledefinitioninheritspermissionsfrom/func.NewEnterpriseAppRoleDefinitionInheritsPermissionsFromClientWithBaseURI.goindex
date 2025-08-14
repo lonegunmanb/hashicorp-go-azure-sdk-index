@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/enterpriseapproledefinitioninheritspermissionsfrom
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewEnterpriseAppRoleDefinitionInheritsPermissionsFromClientWithBaseURI(sdkApi sdkEnv.Api) (*EnterpriseAppRoleDefinitionInheritsPermissionsFromClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "enterpriseapproledefinitioninheritspermissionsfrom", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating EnterpriseAppRoleDefinitionInheritsPermissionsFromClient: %+v", err)
+	}
+
+	return &EnterpriseAppRoleDefinitionInheritsPermissionsFromClient{
+		Client: client,
+	}, nil
+}

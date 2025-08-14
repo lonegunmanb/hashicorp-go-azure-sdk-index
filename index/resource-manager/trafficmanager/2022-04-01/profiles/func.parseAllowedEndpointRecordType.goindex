@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/trafficmanager/2022-04-01/profiles
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAllowedEndpointRecordType(input string) (*AllowedEndpointRecordType, error) {
+	vals := map[string]AllowedEndpointRecordType{
+		"any":         AllowedEndpointRecordTypeAny,
+		"domainname":  AllowedEndpointRecordTypeDomainName,
+		"ipv4address": AllowedEndpointRecordTypeIPvFourAddress,
+		"ipv6address": AllowedEndpointRecordTypeIPvSixAddress,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AllowedEndpointRecordType(input)
+	return &out, nil
+}

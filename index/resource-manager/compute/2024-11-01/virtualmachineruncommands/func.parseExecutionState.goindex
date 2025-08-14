@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2024-11-01/virtualmachineruncommands
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseExecutionState(input string) (*ExecutionState, error) {
+	vals := map[string]ExecutionState{
+		"canceled":  ExecutionStateCanceled,
+		"failed":    ExecutionStateFailed,
+		"pending":   ExecutionStatePending,
+		"running":   ExecutionStateRunning,
+		"succeeded": ExecutionStateSucceeded,
+		"timedout":  ExecutionStateTimedOut,
+		"unknown":   ExecutionStateUnknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ExecutionState(input)
+	return &out, nil
+}

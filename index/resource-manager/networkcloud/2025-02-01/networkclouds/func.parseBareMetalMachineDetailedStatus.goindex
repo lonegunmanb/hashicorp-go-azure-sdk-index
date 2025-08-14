@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/networkcloud/2025-02-01/networkclouds
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseBareMetalMachineDetailedStatus(input string) (*BareMetalMachineDetailedStatus, error) {
+	vals := map[string]BareMetalMachineDetailedStatus{
+		"available":      BareMetalMachineDetailedStatusAvailable,
+		"deprovisioning": BareMetalMachineDetailedStatusDeprovisioning,
+		"error":          BareMetalMachineDetailedStatusError,
+		"preparing":      BareMetalMachineDetailedStatusPreparing,
+		"provisioned":    BareMetalMachineDetailedStatusProvisioned,
+		"provisioning":   BareMetalMachineDetailedStatusProvisioning,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := BareMetalMachineDetailedStatus(input)
+	return &out, nil
+}

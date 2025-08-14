@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2024-11-01/appserviceplans
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c AppServicePlansClient) ListWebAppsByHybridConnectionComplete(ctx context.Context, id HybridConnectionNamespaceRelayId) (result ListWebAppsByHybridConnectionCompleteResult, err error) {
+	items := make([]string, 0)
+
+	resp, err := c.ListWebAppsByHybridConnection(ctx, id)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			items = append(items, v)
+		}
+	}
+
+	result = ListWebAppsByHybridConnectionCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

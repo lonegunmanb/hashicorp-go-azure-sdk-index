@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/machinelearningcomputes
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseApplicationSharingPolicy(input string) (*ApplicationSharingPolicy, error) {
+	vals := map[string]ApplicationSharingPolicy{
+		"personal": ApplicationSharingPolicyPersonal,
+		"shared":   ApplicationSharingPolicyShared,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ApplicationSharingPolicy(input)
+	return &out, nil
+}

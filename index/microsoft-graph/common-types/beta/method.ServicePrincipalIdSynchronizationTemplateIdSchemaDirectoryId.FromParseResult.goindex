@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id *ServicePrincipalIdSynchronizationTemplateIdSchemaDirectoryId) FromParseResult(input resourceids.ParseResult) error {
+	var ok bool
+
+	if id.ServicePrincipalId, ok = input.Parsed["servicePrincipalId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "servicePrincipalId", input)
+	}
+
+	if id.SynchronizationTemplateId, ok = input.Parsed["synchronizationTemplateId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "synchronizationTemplateId", input)
+	}
+
+	if id.DirectoryDefinitionId, ok = input.Parsed["directoryDefinitionId"]; !ok {
+		return resourceids.NewSegmentNotSpecifiedError(id, "directoryDefinitionId", input)
+	}
+
+	return nil
+}

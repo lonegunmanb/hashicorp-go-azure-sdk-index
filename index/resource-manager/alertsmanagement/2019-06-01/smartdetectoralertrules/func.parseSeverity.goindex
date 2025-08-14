@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/alertsmanagement/2019-06-01/smartdetectoralertrules
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSeverity(input string) (*Severity, error) {
+	vals := map[string]Severity{
+		"sev4": SeveritySevFour,
+		"sev1": SeveritySevOne,
+		"sev3": SeveritySevThree,
+		"sev2": SeveritySevTwo,
+		"sev0": SeveritySevZero,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Severity(input)
+	return &out, nil
+}

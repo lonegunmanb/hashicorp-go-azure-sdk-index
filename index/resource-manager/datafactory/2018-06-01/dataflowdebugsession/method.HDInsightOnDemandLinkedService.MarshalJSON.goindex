@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/dataflowdebugsession
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s HDInsightOnDemandLinkedService) MarshalJSON() ([]byte, error) {
+	type wrapper HDInsightOnDemandLinkedService
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling HDInsightOnDemandLinkedService: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling HDInsightOnDemandLinkedService: %+v", err)
+	}
+
+	decoded["type"] = "HDInsightOnDemand"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling HDInsightOnDemandLinkedService: %+v", err)
+	}
+
+	return encoded, nil
+}

@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ServicePrincipalIdDelegatedPermissionClassificationId) String() string {
+	components := []string{
+		fmt.Sprintf("Service Principal: %q", id.ServicePrincipalId),
+		fmt.Sprintf("Delegated Permission Classification: %q", id.DelegatedPermissionClassificationId),
+	}
+	return fmt.Sprintf("Service Principal Id Delegated Permission Classification (%s)", strings.Join(components, "\n"))
+}

@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerregistry/2023-11-01-preview/pipelineruns
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type PipelineRunResponse struct {
+	CatalogDigest           *string                         `json:"catalogDigest,omitempty"`
+	FinishTime              *string                         `json:"finishTime,omitempty"`
+	ImportedArtifacts       *[]string                       `json:"importedArtifacts,omitempty"`
+	PipelineRunErrorMessage *string                         `json:"pipelineRunErrorMessage,omitempty"`
+	Progress                *ProgressProperties             `json:"progress,omitempty"`
+	Source                  *ImportPipelineSourceProperties `json:"source,omitempty"`
+	StartTime               *string                         `json:"startTime,omitempty"`
+	Status                  *string                         `json:"status,omitempty"`
+	Target                  *ExportPipelineTargetProperties `json:"target,omitempty"`
+	Trigger                 *PipelineTriggerDescriptor      `json:"trigger,omitempty"`
+}

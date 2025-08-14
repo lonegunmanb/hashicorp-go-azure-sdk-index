@@ -1,0 +1,58 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type Permission struct {
+	// A format of yyyy-MM-ddTHH:mm:ssZ of DateTimeOffset indicates the expiration time of the permission. DateTime.MinValue
+	// indicates there's no expiration set for this permission. Optional.
+	ExpirationDateTime nullable.Type[string] `json:"expirationDateTime,omitempty"`
+
+	// For user type permissions, the details of the users and applications for this permission. Read-only.
+	GrantedTo *IdentitySet `json:"grantedTo,omitempty"`
+
+	// For type permissions, the details of the users to whom permission was granted. Read-only.
+	GrantedToIdentities *[]IdentitySet `json:"grantedToIdentities,omitempty"`
+
+	// For link type permissions, the details of the users to whom permission was granted. Read-only.
+	GrantedToIdentitiesV2 *[]SharePointIdentitySet `json:"grantedToIdentitiesV2,omitempty"`
+
+	// For user type permissions, the details of the users and applications for this permission. Read-only.
+	GrantedToV2 *SharePointIdentitySet `json:"grantedToV2,omitempty"`
+
+	// Indicates whether the password is set for this permission. This property only appears in the response. Optional.
+	// Read-only. For OneDrive Personal only.
+	HasPassword nullable.Type[bool] `json:"hasPassword,omitempty"`
+
+	// Provides a reference to the ancestor of the current permission, if inherited from an ancestor. Read-only.
+	InheritedFrom *ItemReference `json:"inheritedFrom,omitempty"`
+
+	// Details of any associated sharing invitation for this permission. Read-only.
+	Invitation *SharingInvitation `json:"invitation,omitempty"`
+
+	// Provides the link details of the current permission, if it's a link type permission. Read-only.
+	Link *SharingLink `json:"link,omitempty"`
+
+	// The type of permission, for example, read. See the Roles property values section for the full list of roles.
+	// Read-only.
+	Roles *[]string `json:"roles,omitempty"`
+
+	// A unique token that can be used to access this shared item via the shares API. Read-only.
+	ShareId nullable.Type[string] `json:"shareId,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

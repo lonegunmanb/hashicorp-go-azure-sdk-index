@@ -1,0 +1,28 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type AccessReviewInstanceDecisionItemServicePrincipalTarget struct {
+	// The appId for the service principal entity being reviewed.
+	AppId nullable.Type[string] `json:"appId,omitempty"`
+
+	// The display name of the service principal whose access is being reviewed.
+	ServicePrincipalDisplayName nullable.Type[string] `json:"servicePrincipalDisplayName,omitempty"`
+
+	// The identifier of the service principal whose access is being reviewed.
+	ServicePrincipalId nullable.Type[string] `json:"servicePrincipalId,omitempty"`
+
+	// Fields inherited from AccessReviewInstanceDecisionItemTarget
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

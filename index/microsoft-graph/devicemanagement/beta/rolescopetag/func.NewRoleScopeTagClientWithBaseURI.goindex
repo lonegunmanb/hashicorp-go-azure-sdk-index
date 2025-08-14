@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/rolescopetag
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewRoleScopeTagClientWithBaseURI(sdkApi sdkEnv.Api) (*RoleScopeTagClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "rolescopetag", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating RoleScopeTagClient: %+v", err)
+	}
+
+	return &RoleScopeTagClient{
+		Client: client,
+	}, nil
+}

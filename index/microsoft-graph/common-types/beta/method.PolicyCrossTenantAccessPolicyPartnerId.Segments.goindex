@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id PolicyCrossTenantAccessPolicyPartnerId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.StaticSegment("policies", "policies", "policies"),
+		resourceids.StaticSegment("crossTenantAccessPolicy", "crossTenantAccessPolicy", "crossTenantAccessPolicy"),
+		resourceids.StaticSegment("partners", "partners", "partners"),
+		resourceids.UserSpecifiedSegment("crossTenantAccessPolicyConfigurationPartnerTenantId", "crossTenantAccessPolicyConfigurationPartnerTenantId"),
+	}
+}

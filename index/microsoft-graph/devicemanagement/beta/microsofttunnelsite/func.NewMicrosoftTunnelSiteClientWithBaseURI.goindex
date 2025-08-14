@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/microsofttunnelsite
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewMicrosoftTunnelSiteClientWithBaseURI(sdkApi sdkEnv.Api) (*MicrosoftTunnelSiteClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "microsofttunnelsite", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating MicrosoftTunnelSiteClient: %+v", err)
+	}
+
+	return &MicrosoftTunnelSiteClient{
+		Client: client,
+	}, nil
+}

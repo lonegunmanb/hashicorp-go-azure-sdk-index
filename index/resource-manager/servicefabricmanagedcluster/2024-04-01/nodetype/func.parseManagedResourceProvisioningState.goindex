@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicefabricmanagedcluster/2024-04-01/nodetype
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseManagedResourceProvisioningState(input string) (*ManagedResourceProvisioningState, error) {
+	vals := map[string]ManagedResourceProvisioningState{
+		"canceled":  ManagedResourceProvisioningStateCanceled,
+		"created":   ManagedResourceProvisioningStateCreated,
+		"creating":  ManagedResourceProvisioningStateCreating,
+		"deleted":   ManagedResourceProvisioningStateDeleted,
+		"deleting":  ManagedResourceProvisioningStateDeleting,
+		"failed":    ManagedResourceProvisioningStateFailed,
+		"none":      ManagedResourceProvisioningStateNone,
+		"other":     ManagedResourceProvisioningStateOther,
+		"succeeded": ManagedResourceProvisioningStateSucceeded,
+		"updating":  ManagedResourceProvisioningStateUpdating,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ManagedResourceProvisioningState(input)
+	return &out, nil
+}

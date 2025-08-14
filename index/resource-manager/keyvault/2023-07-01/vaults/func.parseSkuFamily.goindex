@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/keyvault/2023-07-01/vaults
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseSkuFamily(input string) (*SkuFamily, error) {
+	vals := map[string]SkuFamily{
+		"a": SkuFamilyA,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := SkuFamily(input)
+	return &out, nil
+}

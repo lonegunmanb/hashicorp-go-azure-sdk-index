@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/workloads/2024-09-01/sapvirtualinstances
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSAPVirtualInstancesClientWithBaseURI(sdkApi sdkEnv.Api) (*SAPVirtualInstancesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "sapvirtualinstances", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SAPVirtualInstancesClient: %+v", err)
+	}
+
+	return &SAPVirtualInstancesClient{
+		Client: client,
+	}, nil
+}

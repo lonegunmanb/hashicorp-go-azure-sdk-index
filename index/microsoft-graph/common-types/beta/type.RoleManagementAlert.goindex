@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+)
+type RoleManagementAlert struct {
+	// The various configurations of an alert for Microsoft Entra roles. The configurations are predefined and can't be
+	// created or deleted, but some of the configurations can be modified.
+	AlertConfigurations *[]UnifiedRoleManagementAlertConfiguration `json:"alertConfigurations,omitempty"`
+
+	// Defines an alert, its impact, and measures to mitigate or prevent it.
+	AlertDefinitions *[]UnifiedRoleManagementAlertDefinition `json:"alertDefinitions,omitempty"`
+
+	// Represents the alert entity.
+	Alerts *[]UnifiedRoleManagementAlert `json:"alerts,omitempty"`
+
+	// Represents operations on resources that take a long time to complete and can run in the background until completion.
+	Operations *[]LongRunningOperation `json:"operations,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

@@ -1,0 +1,185 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalIdentityFindingImplementation(input []byte) (IdentityFinding, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling IdentityFinding into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.inactiveAwsResourceFinding") {
+		var out InactiveAwsResourceFinding
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into InactiveAwsResourceFinding: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.inactiveAwsRoleFinding") {
+		var out InactiveAwsRoleFinding
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into InactiveAwsRoleFinding: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.inactiveAzureServicePrincipalFinding") {
+		var out InactiveAzureServicePrincipalFinding
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into InactiveAzureServicePrincipalFinding: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.inactiveGcpServiceAccountFinding") {
+		var out InactiveGcpServiceAccountFinding
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into InactiveGcpServiceAccountFinding: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.inactiveServerlessFunctionFinding") {
+		var out InactiveServerlessFunctionFinding
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into InactiveServerlessFunctionFinding: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.inactiveUserFinding") {
+		var out InactiveUserFinding
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into InactiveUserFinding: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.overprovisionedAwsResourceFinding") {
+		var out OverprovisionedAwsResourceFinding
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into OverprovisionedAwsResourceFinding: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.overprovisionedAwsRoleFinding") {
+		var out OverprovisionedAwsRoleFinding
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into OverprovisionedAwsRoleFinding: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.overprovisionedAzureServicePrincipalFinding") {
+		var out OverprovisionedAzureServicePrincipalFinding
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into OverprovisionedAzureServicePrincipalFinding: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.overprovisionedGcpServiceAccountFinding") {
+		var out OverprovisionedGcpServiceAccountFinding
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into OverprovisionedGcpServiceAccountFinding: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.overprovisionedServerlessFunctionFinding") {
+		var out OverprovisionedServerlessFunctionFinding
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into OverprovisionedServerlessFunctionFinding: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.overprovisionedUserFinding") {
+		var out OverprovisionedUserFinding
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into OverprovisionedUserFinding: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.superAwsResourceFinding") {
+		var out SuperAwsResourceFinding
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SuperAwsResourceFinding: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.superAwsRoleFinding") {
+		var out SuperAwsRoleFinding
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SuperAwsRoleFinding: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.superAzureServicePrincipalFinding") {
+		var out SuperAzureServicePrincipalFinding
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SuperAzureServicePrincipalFinding: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.superGcpServiceAccountFinding") {
+		var out SuperGcpServiceAccountFinding
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SuperGcpServiceAccountFinding: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.superServerlessFunctionFinding") {
+		var out SuperServerlessFunctionFinding
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SuperServerlessFunctionFinding: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.superUserFinding") {
+		var out SuperUserFinding
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into SuperUserFinding: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.unenforcedMfaAwsUserFinding") {
+		var out UnenforcedMfaAwsUserFinding
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into UnenforcedMfaAwsUserFinding: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseIdentityFindingImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseIdentityFindingImpl: %+v", err)
+	}
+
+	return RawIdentityFindingImpl{
+		identityFinding: parent,
+		Type:            value,
+		Values:          temp,
+	}, nil
+
+}

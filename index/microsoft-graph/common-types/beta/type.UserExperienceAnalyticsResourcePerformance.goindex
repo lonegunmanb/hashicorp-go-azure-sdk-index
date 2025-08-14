@@ -1,0 +1,61 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type UserExperienceAnalyticsResourcePerformance struct {
+	// AverageSpikeTimeScore of a device or a model type. Valid values 0 to 100
+	AverageSpikeTimeScore *int64 `json:"averageSpikeTimeScore,omitempty"`
+
+	// The name of the processor on the device, For example, 11th Gen Intel(R) Core(TM) i7.
+	CpuDisplayName nullable.Type[string] `json:"cpuDisplayName,omitempty"`
+
+	// The user experience analytics device CPU spike time score. Valid values 0 to 100
+	CpuSpikeTimeScore *int64 `json:"cpuSpikeTimeScore,omitempty"`
+
+	// User experience analytics summarized device count.
+	DeviceCount *int64 `json:"deviceCount,omitempty"`
+
+	// The id of the device.
+	DeviceId nullable.Type[string] `json:"deviceId,omitempty"`
+
+	// The name of the device.
+	DeviceName nullable.Type[string] `json:"deviceName,omitempty"`
+
+	// Resource performance score of a specific device. Valid values 0 to 100
+	DeviceResourcePerformanceScore *int64 `json:"deviceResourcePerformanceScore,omitempty"`
+
+	DiskType     *DiskType                           `json:"diskType,omitempty"`
+	HealthStatus *UserExperienceAnalyticsHealthState `json:"healthStatus,omitempty"`
+
+	// Indicates if machine is physical or virtual. Possible values are: physical or virtual
+	MachineType *UserExperienceAnalyticsMachineType `json:"machineType,omitempty"`
+
+	// The user experience analytics device manufacturer.
+	Manufacturer nullable.Type[string] `json:"manufacturer,omitempty"`
+
+	// The user experience analytics device model.
+	Model nullable.Type[string] `json:"model,omitempty"`
+
+	// The user experience analytics device RAM spike time score. Valid values 0 to 100
+	RamSpikeTimeScore *int64 `json:"ramSpikeTimeScore,omitempty"`
+
+	// The count of cores of the processor of device. Valid values 0 to 512
+	TotalProcessorCoreCount *int64 `json:"totalProcessorCoreCount,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

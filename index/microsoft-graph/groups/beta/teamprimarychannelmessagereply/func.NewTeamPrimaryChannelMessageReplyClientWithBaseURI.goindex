@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelmessagereply
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewTeamPrimaryChannelMessageReplyClientWithBaseURI(sdkApi sdkEnv.Api) (*TeamPrimaryChannelMessageReplyClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "teamprimarychannelmessagereply", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating TeamPrimaryChannelMessageReplyClient: %+v", err)
+	}
+
+	return &TeamPrimaryChannelMessageReplyClient{
+		Client: client,
+	}, nil
+}

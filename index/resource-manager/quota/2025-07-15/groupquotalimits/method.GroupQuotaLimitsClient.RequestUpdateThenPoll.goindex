@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/quota/2025-07-15/groupquotalimits
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c GroupQuotaLimitsClient) RequestUpdateThenPoll(ctx context.Context, id GroupQuotaLimitId, input GroupQuotaLimitList) error {
+	result, err := c.RequestUpdate(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing RequestUpdate: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after RequestUpdate: %+v", err)
+	}
+
+	return nil
+}

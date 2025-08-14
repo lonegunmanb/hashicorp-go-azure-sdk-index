@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/servicefabricmanagedcluster/2024-04-01/applicationtypeversion
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ApplicationTypeVersionClient) ListByApplicationTypesComplete(ctx context.Context, id ApplicationTypeId) (ListByApplicationTypesCompleteResult, error) {
+	return c.ListByApplicationTypesCompleteMatchingPredicate(ctx, id, ApplicationTypeVersionResourceOperationPredicate{})
+}

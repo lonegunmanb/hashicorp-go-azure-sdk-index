@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/billing/2024-04-01/billingrequest
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseBillingRequestType(input string) (*BillingRequestType, error) {
+	vals := map[string]BillingRequestType{
+		"invoiceaccess":       BillingRequestTypeInvoiceAccess,
+		"other":               BillingRequestTypeOther,
+		"provisioningaccess":  BillingRequestTypeProvisioningAccess,
+		"roleassignment":      BillingRequestTypeRoleAssignment,
+		"updatebillingpolicy": BillingRequestTypeUpdateBillingPolicy,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := BillingRequestType(input)
+	return &out, nil
+}

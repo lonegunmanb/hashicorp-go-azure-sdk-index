@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/dataflowdebugsession
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s ImpalaObjectDataset) MarshalJSON() ([]byte, error) {
+	type wrapper ImpalaObjectDataset
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ImpalaObjectDataset: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ImpalaObjectDataset: %+v", err)
+	}
+
+	decoded["type"] = "ImpalaObject"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ImpalaObjectDataset: %+v", err)
+	}
+
+	return encoded, nil
+}

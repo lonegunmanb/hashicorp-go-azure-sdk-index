@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/devicecommandresponsepayload
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDeviceCommandResponsepayloadClientWithBaseURI(sdkApi sdkEnv.Api) (*DeviceCommandResponsepayloadClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "devicecommandresponsepayload", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DeviceCommandResponsepayloadClient: %+v", err)
+	}
+
+	return &DeviceCommandResponsepayloadClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/web/2023-12-01/workflowruns
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id RunId) Segments() []resourceids.Segment {
+	return []resourceids.Segment{
+		resourceids.StaticSegment("staticSubscriptions", "subscriptions", "subscriptions"),
+		resourceids.SubscriptionIdSegment("subscriptionId", "12345678-1234-9876-4563-123456789012"),
+		resourceids.StaticSegment("staticResourceGroups", "resourceGroups", "resourceGroups"),
+		resourceids.ResourceGroupSegment("resourceGroupName", "example-resource-group"),
+		resourceids.StaticSegment("staticProviders", "providers", "providers"),
+		resourceids.ResourceProviderSegment("staticMicrosoftWeb", "Microsoft.Web", "Microsoft.Web"),
+		resourceids.StaticSegment("staticSites", "sites", "sites"),
+		resourceids.UserSpecifiedSegment("siteName", "siteName"),
+		resourceids.StaticSegment("staticHostRuntime", "hostRuntime", "hostRuntime"),
+		resourceids.StaticSegment("staticRuntime", "runtime", "runtime"),
+		resourceids.StaticSegment("staticWebHooks", "webHooks", "webHooks"),
+		resourceids.StaticSegment("staticWorkflow", "workflow", "workflow"),
+		resourceids.StaticSegment("staticApi", "api", "api"),
+		resourceids.StaticSegment("staticManagement", "management", "management"),
+		resourceids.StaticSegment("staticWorkflows", "workflows", "workflows"),
+		resourceids.UserSpecifiedSegment("workflowName", "workflowName"),
+		resourceids.StaticSegment("staticRuns", "runs", "runs"),
+		resourceids.UserSpecifiedSegment("runName", "runName"),
+	}
+}

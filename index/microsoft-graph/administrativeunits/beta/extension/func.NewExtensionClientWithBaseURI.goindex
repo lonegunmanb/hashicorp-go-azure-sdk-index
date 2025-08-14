@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/administrativeunits/beta/extension
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewExtensionClientWithBaseURI(sdkApi sdkEnv.Api) (*ExtensionClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "extension", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ExtensionClient: %+v", err)
+	}
+
+	return &ExtensionClient{
+		Client: client,
+	}, nil
+}

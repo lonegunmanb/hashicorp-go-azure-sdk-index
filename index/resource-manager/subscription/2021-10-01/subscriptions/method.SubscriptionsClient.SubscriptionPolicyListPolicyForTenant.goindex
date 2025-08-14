@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/subscription/2021-10-01/subscriptions
+import (
+	"context"
+	"fmt"
+	"net/http"
+	"net/url"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+)
+func (c SubscriptionsClient) SubscriptionPolicyListPolicyForTenant(ctx context.Context) (resp SubscriptionPolicyListPolicyForTenantOperationResponse, err error) {
+	req, err := c.preparerForSubscriptionPolicyListPolicyForTenant(ctx)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "subscriptions.SubscriptionsClient", "SubscriptionPolicyListPolicyForTenant", nil, "Failure preparing request")
+		return
+	}
+
+	resp.HttpResponse, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "subscriptions.SubscriptionsClient", "SubscriptionPolicyListPolicyForTenant", resp.HttpResponse, "Failure sending request")
+		return
+	}
+
+	resp, err = c.responderForSubscriptionPolicyListPolicyForTenant(resp.HttpResponse)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "subscriptions.SubscriptionsClient", "SubscriptionPolicyListPolicyForTenant", resp.HttpResponse, "Failure responding to request")
+		return
+	}
+	return
+}

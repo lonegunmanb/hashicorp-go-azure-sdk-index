@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/hardwareconfiguration
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c HardwareConfigurationClient) AssignHardwareConfigurationsComplete(ctx context.Context, id beta.DeviceManagementHardwareConfigurationId, input AssignHardwareConfigurationsRequest, options AssignHardwareConfigurationsOperationOptions) (AssignHardwareConfigurationsCompleteResult, error) {
+	return c.AssignHardwareConfigurationsCompleteMatchingPredicate(ctx, id, input, options, HardwareConfigurationAssignmentOperationPredicate{})
+}

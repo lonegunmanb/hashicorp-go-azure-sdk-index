@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ManagedTenantsManagedTenantApiNotification struct {
+	Alert              *ManagedTenantsManagedTenantAlert `json:"alert,omitempty"`
+	CreatedByUserId    nullable.Type[string]             `json:"createdByUserId,omitempty"`
+	CreatedDateTime    nullable.Type[string]             `json:"createdDateTime,omitempty"`
+	IsAcknowledged     nullable.Type[bool]               `json:"isAcknowledged,omitempty"`
+	LastActionByUserId nullable.Type[string]             `json:"lastActionByUserId,omitempty"`
+	LastActionDateTime nullable.Type[string]             `json:"lastActionDateTime,omitempty"`
+	Message            nullable.Type[string]             `json:"message,omitempty"`
+	Title              nullable.Type[string]             `json:"title,omitempty"`
+	UserId             nullable.Type[string]             `json:"userId,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

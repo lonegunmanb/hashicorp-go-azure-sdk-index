@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/group
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewGroupClientWithBaseURI(sdkApi sdkEnv.Api) (*GroupClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "group", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating GroupClient: %+v", err)
+	}
+
+	return &GroupClient{
+		Client: client,
+	}, nil
+}

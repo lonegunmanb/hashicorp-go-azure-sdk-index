@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/agreementacceptance
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewAgreementAcceptanceClientWithBaseURI(sdkApi sdkEnv.Api) (*AgreementAcceptanceClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "agreementacceptance", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating AgreementAcceptanceClient: %+v", err)
+	}
+
+	return &AgreementAcceptanceClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/auditlogs/beta
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/auditlogs/beta/auditlog"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/auditlogs/beta/customsecurityattributeaudit"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/auditlogs/beta/directoryaudit"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/auditlogs/beta/directoryprovisioning"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/auditlogs/beta/provisioning"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/auditlogs/beta/signin"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/auditlogs/beta/signup"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	AuditLog                     *auditlog.AuditLogClient
+	CustomSecurityAttributeAudit *customsecurityattributeaudit.CustomSecurityAttributeAuditClient
+	DirectoryAudit               *directoryaudit.DirectoryAuditClient
+	DirectoryProvisioning        *directoryprovisioning.DirectoryProvisioningClient
+	Provisioning                 *provisioning.ProvisioningClient
+	SignIn                       *signin.SignInClient
+	SignUp                       *signup.SignUpClient
+}

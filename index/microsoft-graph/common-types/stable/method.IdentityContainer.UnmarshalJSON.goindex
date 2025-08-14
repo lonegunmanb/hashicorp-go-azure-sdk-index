@@ -1,0 +1,117 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s *IdentityContainer) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		ApiConnectors     *[]IdentityApiConnector `json:"apiConnectors,omitempty"`
+		B2xUserFlows      *[]B2xIdentityUserFlow  `json:"b2xUserFlows,omitempty"`
+		ConditionalAccess *ConditionalAccessRoot  `json:"conditionalAccess,omitempty"`
+		Id                *string                 `json:"id,omitempty"`
+		ODataId           *string                 `json:"@odata.id,omitempty"`
+		ODataType         *string                 `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.ApiConnectors = decoded.ApiConnectors
+	s.B2xUserFlows = decoded.B2xUserFlows
+	s.ConditionalAccess = decoded.ConditionalAccess
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling IdentityContainer into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["authenticationEventListeners"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling AuthenticationEventListeners into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]AuthenticationEventListener, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalAuthenticationEventListenerImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'AuthenticationEventListeners' for 'IdentityContainer': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.AuthenticationEventListeners = &output
+	}
+
+	if v, ok := temp["authenticationEventsFlows"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling AuthenticationEventsFlows into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]AuthenticationEventsFlow, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalAuthenticationEventsFlowImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'AuthenticationEventsFlows' for 'IdentityContainer': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.AuthenticationEventsFlows = &output
+	}
+
+	if v, ok := temp["customAuthenticationExtensions"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling CustomAuthenticationExtensions into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]CustomAuthenticationExtension, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalCustomAuthenticationExtensionImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'CustomAuthenticationExtensions' for 'IdentityContainer': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.CustomAuthenticationExtensions = &output
+	}
+
+	if v, ok := temp["identityProviders"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling IdentityProviders into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]IdentityProviderBase, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalIdentityProviderBaseImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'IdentityProviders' for 'IdentityContainer': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.IdentityProviders = &output
+	}
+
+	if v, ok := temp["userFlowAttributes"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling UserFlowAttributes into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]IdentityUserFlowAttribute, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalIdentityUserFlowAttributeImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'UserFlowAttributes' for 'IdentityContainer': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.UserFlowAttributes = &output
+	}
+
+	return nil
+}

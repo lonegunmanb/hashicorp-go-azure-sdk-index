@@ -1,0 +1,35 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type ContentModelUsage struct {
+	// Identity of the user, device, or application that first applied the contentModel to the library.
+	CreatedBy IdentitySet `json:"createdBy"`
+
+	// Date and time of the contentModel is first applied.
+	CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+
+	// The ID of the drive where the contentModel is applied.
+	DriveId nullable.Type[string] `json:"driveId,omitempty"`
+
+	// Identity of the user, device, or application that last applied the contentModel to the library.
+	LastModifiedBy IdentitySet `json:"lastModifiedBy"`
+
+	// Date and time of the contentModel is last applied.
+	LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+
+	// The ID of the contentModel.
+	ModelId nullable.Type[string] `json:"modelId,omitempty"`
+
+	// The version of the current applied contentModel.
+	ModelVersion nullable.Type[string] `json:"modelVersion,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+}

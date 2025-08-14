@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+type BaseEndUserNotificationSettingImpl struct {
+	// Notification preference. Possible values are: unknown, microsoft, custom, unknownFutureValue.
+	NotificationPreference *EndUserNotificationPreference `json:"notificationPreference,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Positive reinforcement detail.
+	PositiveReinforcement *PositiveReinforcementNotification `json:"positiveReinforcement,omitempty"`
+
+	// End user notification type. Possible values are: unknown, noTraining, trainingSelected, noNotification,
+	// unknownFutureValue.
+	SettingType *EndUserNotificationSettingType `json:"settingType,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWin32LobAppFileSystemDetectionType(input string) (*Win32LobAppFileSystemDetectionType, error) {
+	vals := map[string]Win32LobAppFileSystemDetectionType{
+		"createddate":   Win32LobAppFileSystemDetectionType_CreatedDate,
+		"doesnotexist":  Win32LobAppFileSystemDetectionType_DoesNotExist,
+		"exists":        Win32LobAppFileSystemDetectionType_Exists,
+		"modifieddate":  Win32LobAppFileSystemDetectionType_ModifiedDate,
+		"notconfigured": Win32LobAppFileSystemDetectionType_NotConfigured,
+		"sizeinmb":      Win32LobAppFileSystemDetectionType_SizeInMB,
+		"version":       Win32LobAppFileSystemDetectionType_Version,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Win32LobAppFileSystemDetectionType(input)
+	return &out, nil
+}

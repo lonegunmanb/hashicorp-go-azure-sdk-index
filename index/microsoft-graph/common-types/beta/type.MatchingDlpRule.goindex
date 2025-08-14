@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type MatchingDlpRule struct {
+	Actions           *[]DlpActionInfo    `json:"actions,omitempty"`
+	IsMostRestrictive nullable.Type[bool] `json:"isMostRestrictive,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	PolicyId   nullable.Type[string] `json:"policyId,omitempty"`
+	PolicyName nullable.Type[string] `json:"policyName,omitempty"`
+	Priority   nullable.Type[int64]  `json:"priority,omitempty"`
+	RuleId     nullable.Type[string] `json:"ruleId,omitempty"`
+	RuleMode   *RuleMode             `json:"ruleMode,omitempty"`
+	RuleName   nullable.Type[string] `json:"ruleName,omitempty"`
+}

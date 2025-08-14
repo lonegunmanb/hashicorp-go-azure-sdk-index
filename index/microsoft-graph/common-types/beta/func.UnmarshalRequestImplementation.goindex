@@ -1,0 +1,67 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func UnmarshalRequestImplementation(input []byte) (Request, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling Request into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.privilegedAccessScheduleRequest") {
+		var out PrivilegedAccessScheduleRequest
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into PrivilegedAccessScheduleRequest: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.unifiedRoleAssignmentScheduleRequest") {
+		var out UnifiedRoleAssignmentScheduleRequest
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into UnifiedRoleAssignmentScheduleRequest: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.unifiedRoleEligibilityScheduleRequest") {
+		var out UnifiedRoleEligibilityScheduleRequest
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into UnifiedRoleEligibilityScheduleRequest: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "#microsoft.graph.userConsentRequest") {
+		var out UserConsentRequest
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into UserConsentRequest: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseRequestImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseRequestImpl: %+v", err)
+	}
+
+	return RawRequestImpl{
+		request: parent,
+		Type:    value,
+		Values:  temp,
+	}, nil
+
+}

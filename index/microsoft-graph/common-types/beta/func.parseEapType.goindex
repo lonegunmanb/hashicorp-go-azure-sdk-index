@@ -1,0 +1,24 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEapType(input string) (*EapType, error) {
+	vals := map[string]EapType{
+		"eapfast": EapType_EapFast,
+		"eapsim":  EapType_EapSim,
+		"eaptls":  EapType_EapTls,
+		"eapttls": EapType_EapTtls,
+		"leap":    EapType_Leap,
+		"peap":    EapType_Peap,
+		"teap":    EapType_Teap,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EapType(input)
+	return &out, nil
+}

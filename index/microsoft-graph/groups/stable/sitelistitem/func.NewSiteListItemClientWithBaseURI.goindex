@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/sitelistitem
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSiteListItemClientWithBaseURI(sdkApi sdkEnv.Api) (*SiteListItemClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "sitelistitem", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SiteListItemClient: %+v", err)
+	}
+
+	return &SiteListItemClient{
+		Client: client,
+	}, nil
+}

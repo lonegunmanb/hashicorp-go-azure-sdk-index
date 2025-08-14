@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicesbackup/2025-02-01/protectionpolicies
+import (
+	"strings"
+)
+func parseRetentionDurationType(input string) (*RetentionDurationType, error) {
+	vals := map[string]RetentionDurationType{
+		"days":    RetentionDurationTypeDays,
+		"invalid": RetentionDurationTypeInvalid,
+		"months":  RetentionDurationTypeMonths,
+		"weeks":   RetentionDurationTypeWeeks,
+		"years":   RetentionDurationTypeYears,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RetentionDurationType(input)
+	return &out, nil
+}

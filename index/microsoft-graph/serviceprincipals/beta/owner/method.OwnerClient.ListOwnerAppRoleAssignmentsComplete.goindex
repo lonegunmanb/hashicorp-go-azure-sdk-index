@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/owner
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c OwnerClient) ListOwnerAppRoleAssignmentsComplete(ctx context.Context, id beta.ServicePrincipalId, options ListOwnerAppRoleAssignmentsOperationOptions) (ListOwnerAppRoleAssignmentsCompleteResult, error) {
+	return c.ListOwnerAppRoleAssignmentsCompleteMatchingPredicate(ctx, id, options, AppRoleAssignmentOperationPredicate{})
+}

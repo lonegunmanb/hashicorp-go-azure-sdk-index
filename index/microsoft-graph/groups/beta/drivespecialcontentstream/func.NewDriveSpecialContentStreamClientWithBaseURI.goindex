@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/drivespecialcontentstream
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewDriveSpecialContentStreamClientWithBaseURI(sdkApi sdkEnv.Api) (*DriveSpecialContentStreamClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "drivespecialcontentstream", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating DriveSpecialContentStreamClient: %+v", err)
+	}
+
+	return &DriveSpecialContentStreamClient{
+		Client: client,
+	}, nil
+}

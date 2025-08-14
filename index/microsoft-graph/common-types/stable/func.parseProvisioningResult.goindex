@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseProvisioningResult(input string) (*ProvisioningResult, error) {
+	vals := map[string]ProvisioningResult{
+		"failure": ProvisioningResult_Failure,
+		"skipped": ProvisioningResult_Skipped,
+		"success": ProvisioningResult_Success,
+		"warning": ProvisioningResult_Warning,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ProvisioningResult(input)
+	return &out, nil
+}

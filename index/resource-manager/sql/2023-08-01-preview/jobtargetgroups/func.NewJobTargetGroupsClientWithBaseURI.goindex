@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/sql/2023-08-01-preview/jobtargetgroups
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewJobTargetGroupsClientWithBaseURI(sdkApi sdkEnv.Api) (*JobTargetGroupsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "jobtargetgroups", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating JobTargetGroupsClient: %+v", err)
+	}
+
+	return &JobTargetGroupsClient{
+		Client: client,
+	}, nil
+}

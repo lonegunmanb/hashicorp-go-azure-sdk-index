@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cdn/2025-06-01/customdomains
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCustomDomainResourceState(input string) (*CustomDomainResourceState, error) {
+	vals := map[string]CustomDomainResourceState{
+		"active":   CustomDomainResourceStateActive,
+		"creating": CustomDomainResourceStateCreating,
+		"deleting": CustomDomainResourceStateDeleting,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CustomDomainResourceState(input)
+	return &out, nil
+}

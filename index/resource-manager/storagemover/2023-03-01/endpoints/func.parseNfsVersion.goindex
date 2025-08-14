@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/storagemover/2023-03-01/endpoints
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseNfsVersion(input string) (*NfsVersion, error) {
+	vals := map[string]NfsVersion{
+		"nfsauto": NfsVersionNFSauto,
+		"nfsv4":   NfsVersionNFSvFour,
+		"nfsv3":   NfsVersionNFSvThree,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := NfsVersion(input)
+	return &out, nil
+}

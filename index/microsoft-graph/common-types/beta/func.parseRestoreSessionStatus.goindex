@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRestoreSessionStatus(input string) (*RestoreSessionStatus, error) {
+	vals := map[string]RestoreSessionStatus{
+		"activating":         RestoreSessionStatus_Activating,
+		"active":             RestoreSessionStatus_Active,
+		"completed":          RestoreSessionStatus_Completed,
+		"completedwitherror": RestoreSessionStatus_CompletedWithError,
+		"draft":              RestoreSessionStatus_Draft,
+		"failed":             RestoreSessionStatus_Failed,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RestoreSessionStatus(input)
+	return &out, nil
+}

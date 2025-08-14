@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/operationalizationclusters
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *ComputeInstanceDataMount) GetMountedOnAsTime() (*time.Time, error) {
+	if o.MountedOn == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.MountedOn, "2006-01-02T15:04:05Z07:00")
+}

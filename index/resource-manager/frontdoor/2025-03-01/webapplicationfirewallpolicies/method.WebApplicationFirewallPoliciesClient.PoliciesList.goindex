@@ -1,0 +1,31 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/frontdoor/2025-03-01/webapplicationfirewallpolicies
+import (
+	"context"
+	"fmt"
+	"net/http"
+	"net/url"
+
+	"github.com/Azure/go-autorest/autorest"
+	"github.com/Azure/go-autorest/autorest/azure"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+)
+func (c WebApplicationFirewallPoliciesClient) PoliciesList(ctx context.Context, id commonids.ResourceGroupId) (resp PoliciesListOperationResponse, err error) {
+	req, err := c.preparerForPoliciesList(ctx, id)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "webapplicationfirewallpolicies.WebApplicationFirewallPoliciesClient", "PoliciesList", nil, "Failure preparing request")
+		return
+	}
+
+	resp.HttpResponse, err = c.Client.Send(req, azure.DoRetryWithRegistration(c.Client))
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "webapplicationfirewallpolicies.WebApplicationFirewallPoliciesClient", "PoliciesList", resp.HttpResponse, "Failure sending request")
+		return
+	}
+
+	resp, err = c.responderForPoliciesList(resp.HttpResponse)
+	if err != nil {
+		err = autorest.NewErrorWithError(err, "webapplicationfirewallpolicies.WebApplicationFirewallPoliciesClient", "PoliciesList", resp.HttpResponse, "Failure responding to request")
+		return
+	}
+	return
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/postgresql/2017-12-01/serveradministrators
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewServerAdministratorsClientWithBaseURI(sdkApi sdkEnv.Api) (*ServerAdministratorsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "serveradministrators", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ServerAdministratorsClient: %+v", err)
+	}
+
+	return &ServerAdministratorsClient{
+		Client: client,
+	}, nil
+}

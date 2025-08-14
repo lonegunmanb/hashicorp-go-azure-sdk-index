@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/kusto/2024-04-13/clusters
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ClustersClient) ListCalloutPoliciesComplete(ctx context.Context, id commonids.KustoClusterId) (ListCalloutPoliciesCompleteResult, error) {
+	return c.ListCalloutPoliciesCompleteMatchingPredicate(ctx, id, CalloutPolicyOperationPredicate{})
+}

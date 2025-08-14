@@ -1,0 +1,33 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datadog/2023-10-20/createresource
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/commonids"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c CreateResourceClient) CreationSupportedListCompleteMatchingPredicate(ctx context.Context, id commonids.SubscriptionId, options CreationSupportedListOperationOptions, predicate CreateResourceSupportedResponseOperationPredicate) (result CreationSupportedListCompleteResult, err error) {
+	items := make([]CreateResourceSupportedResponse, 0)
+
+	resp, err := c.CreationSupportedList(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = CreationSupportedListCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

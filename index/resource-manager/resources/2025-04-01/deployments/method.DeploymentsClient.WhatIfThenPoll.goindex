@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/resources/2025-04-01/deployments
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DeploymentsClient) WhatIfThenPoll(ctx context.Context, id ResourceGroupProviderDeploymentId, input DeploymentWhatIf) error {
+	result, err := c.WhatIf(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing WhatIf: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after WhatIf: %+v", err)
+	}
+
+	return nil
+}

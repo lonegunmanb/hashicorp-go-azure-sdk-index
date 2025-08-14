@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseWin32LobAppRegistryRuleOperationType(input string) (*Win32LobAppRegistryRuleOperationType, error) {
+	vals := map[string]Win32LobAppRegistryRuleOperationType{
+		"doesnotexist":  Win32LobAppRegistryRuleOperationType_DoesNotExist,
+		"exists":        Win32LobAppRegistryRuleOperationType_Exists,
+		"integer":       Win32LobAppRegistryRuleOperationType_Integer,
+		"notconfigured": Win32LobAppRegistryRuleOperationType_NotConfigured,
+		"string":        Win32LobAppRegistryRuleOperationType_String,
+		"version":       Win32LobAppRegistryRuleOperationType_Version,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := Win32LobAppRegistryRuleOperationType(input)
+	return &out, nil
+}

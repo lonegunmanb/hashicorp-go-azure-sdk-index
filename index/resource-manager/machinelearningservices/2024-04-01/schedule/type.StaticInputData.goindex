@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/schedule
+import (
+	"encoding/json"
+	"fmt"
+)
+type StaticInputData struct {
+	PreprocessingComponentId *string `json:"preprocessingComponentId,omitempty"`
+	WindowEnd                string  `json:"windowEnd"`
+	WindowStart              string  `json:"windowStart"`
+
+	// Fields inherited from MonitoringInputDataBase
+
+	Columns       *map[string]string      `json:"columns,omitempty"`
+	DataContext   *string                 `json:"dataContext,omitempty"`
+	InputDataType MonitoringInputDataType `json:"inputDataType"`
+	JobInputType  JobInputType            `json:"jobInputType"`
+	Uri           string                  `json:"uri"`
+}

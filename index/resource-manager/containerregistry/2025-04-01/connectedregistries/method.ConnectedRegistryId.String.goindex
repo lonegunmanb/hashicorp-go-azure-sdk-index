@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerregistry/2025-04-01/connectedregistries
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id ConnectedRegistryId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Registry Name: %q", id.RegistryName),
+		fmt.Sprintf("Connected Registry Name: %q", id.ConnectedRegistryName),
+	}
+	return fmt.Sprintf("Connected Registry (%s)", strings.Join(components, "\n"))
+}

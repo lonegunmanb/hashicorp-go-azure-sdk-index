@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/paloaltonetworks/2025-05-23/firewalls
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseMarketplaceSubscriptionStatus(input string) (*MarketplaceSubscriptionStatus, error) {
+	vals := map[string]MarketplaceSubscriptionStatus{
+		"fulfillmentrequested":    MarketplaceSubscriptionStatusFulfillmentRequested,
+		"notstarted":              MarketplaceSubscriptionStatusNotStarted,
+		"pendingfulfillmentstart": MarketplaceSubscriptionStatusPendingFulfillmentStart,
+		"subscribed":              MarketplaceSubscriptionStatusSubscribed,
+		"suspended":               MarketplaceSubscriptionStatusSuspended,
+		"unsubscribed":            MarketplaceSubscriptionStatusUnsubscribed,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := MarketplaceSubscriptionStatus(input)
+	return &out, nil
+}

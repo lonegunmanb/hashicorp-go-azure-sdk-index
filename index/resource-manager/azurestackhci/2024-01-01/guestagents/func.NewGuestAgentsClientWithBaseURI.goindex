@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/azurestackhci/2024-01-01/guestagents
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewGuestAgentsClientWithBaseURI(sdkApi sdkEnv.Api) (*GuestAgentsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "guestagents", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating GuestAgentsClient: %+v", err)
+	}
+
+	return &GuestAgentsClient{
+		Client: client,
+	}, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/threadpostattachment
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewThreadPostAttachmentClientWithBaseURI(sdkApi sdkEnv.Api) (*ThreadPostAttachmentClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "threadpostattachment", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating ThreadPostAttachmentClient: %+v", err)
+	}
+
+	return &ThreadPostAttachmentClient{
+		Client: client,
+	}, nil
+}

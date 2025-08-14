@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/recoveryservicessiterecovery/2025-02-01/replicationmigrationitems
+import (
+	"encoding/json"
+	"fmt"
+)
+type VMwareCbtMigrateInput struct {
+	OsUpgradeVersion   *string                         `json:"osUpgradeVersion,omitempty"`
+	PerformShutdown    string                          `json:"performShutdown"`
+	PostMigrationSteps *[]ManagedRunCommandScriptInput `json:"postMigrationSteps,omitempty"`
+
+	// Fields inherited from MigrateProviderSpecificInput
+
+	InstanceType string `json:"instanceType"`
+}

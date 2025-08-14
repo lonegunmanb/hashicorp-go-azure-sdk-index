@@ -1,0 +1,21 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/cognitive/2024-10-01/raipolicies
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseRaiPolicyMode(input string) (*RaiPolicyMode, error) {
+	vals := map[string]RaiPolicyMode{
+		"asynchronous_filter": RaiPolicyModeAsynchronousFilter,
+		"blocking":            RaiPolicyModeBlocking,
+		"default":             RaiPolicyModeDefault,
+		"deferred":            RaiPolicyModeDeferred,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := RaiPolicyMode(input)
+	return &out, nil
+}

@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/schedule
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseClassificationModels(input string) (*ClassificationModels, error) {
+	vals := map[string]ClassificationModels{
+		"bernoullinaivebayes":   ClassificationModelsBernoulliNaiveBayes,
+		"decisiontree":          ClassificationModelsDecisionTree,
+		"extremerandomtrees":    ClassificationModelsExtremeRandomTrees,
+		"gradientboosting":      ClassificationModelsGradientBoosting,
+		"knn":                   ClassificationModelsKNN,
+		"lightgbm":              ClassificationModelsLightGBM,
+		"linearsvm":             ClassificationModelsLinearSVM,
+		"logisticregression":    ClassificationModelsLogisticRegression,
+		"multinomialnaivebayes": ClassificationModelsMultinomialNaiveBayes,
+		"randomforest":          ClassificationModelsRandomForest,
+		"sgd":                   ClassificationModelsSGD,
+		"svm":                   ClassificationModelsSVM,
+		"xgboostclassifier":     ClassificationModelsXGBoostClassifier,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := ClassificationModels(input)
+	return &out, nil
+}

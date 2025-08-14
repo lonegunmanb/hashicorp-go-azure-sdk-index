@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeviceComplianceScriptRuleDataType(input string) (*DeviceComplianceScriptRuleDataType, error) {
+	vals := map[string]DeviceComplianceScriptRuleDataType{
+		"base64":        DeviceComplianceScriptRuleDataType_Base64,
+		"boolean":       DeviceComplianceScriptRuleDataType_Boolean,
+		"booleanarray":  DeviceComplianceScriptRuleDataType_BooleanArray,
+		"datetime":      DeviceComplianceScriptRuleDataType_DateTime,
+		"datetimearray": DeviceComplianceScriptRuleDataType_DateTimeArray,
+		"double":        DeviceComplianceScriptRuleDataType_Double,
+		"doublearray":   DeviceComplianceScriptRuleDataType_DoubleArray,
+		"int64":         DeviceComplianceScriptRuleDataType_Int64,
+		"int64array":    DeviceComplianceScriptRuleDataType_Int64Array,
+		"none":          DeviceComplianceScriptRuleDataType_None,
+		"string":        DeviceComplianceScriptRuleDataType_String,
+		"stringarray":   DeviceComplianceScriptRuleDataType_StringArray,
+		"version":       DeviceComplianceScriptRuleDataType_Version,
+		"versionarray":  DeviceComplianceScriptRuleDataType_VersionArray,
+		"xml":           DeviceComplianceScriptRuleDataType_Xml,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceComplianceScriptRuleDataType(input)
+	return &out, nil
+}

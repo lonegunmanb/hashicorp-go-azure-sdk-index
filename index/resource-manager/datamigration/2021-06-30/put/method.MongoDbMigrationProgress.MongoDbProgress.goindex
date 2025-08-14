@@ -1,0 +1,26 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datamigration/2021-06-30/put
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (s MongoDbMigrationProgress) MongoDbProgress() BaseMongoDbProgressImpl {
+	return BaseMongoDbProgressImpl{
+		BytesCopied:     s.BytesCopied,
+		DocumentsCopied: s.DocumentsCopied,
+		ElapsedTime:     s.ElapsedTime,
+		Errors:          s.Errors,
+		EventsPending:   s.EventsPending,
+		EventsReplayed:  s.EventsReplayed,
+		LastEventTime:   s.LastEventTime,
+		LastReplayTime:  s.LastReplayTime,
+		Name:            s.Name,
+		QualifiedName:   s.QualifiedName,
+		ResultType:      s.ResultType,
+		State:           s.State,
+		TotalBytes:      s.TotalBytes,
+		TotalDocuments:  s.TotalDocuments,
+	}
+}

@@ -1,0 +1,81 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2024-04-01/job
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func UnmarshalJobOutputImplementation(input []byte) (JobOutput, error) {
+	if input == nil {
+		return nil, nil
+	}
+
+	var temp map[string]interface{}
+	if err := json.Unmarshal(input, &temp); err != nil {
+		return nil, fmt.Errorf("unmarshaling JobOutput into map[string]interface: %+v", err)
+	}
+
+	var value string
+	if v, ok := temp["jobOutputType"]; ok {
+		value = fmt.Sprintf("%v", v)
+	}
+
+	if strings.EqualFold(value, "custom_model") {
+		var out CustomModelJobOutput
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into CustomModelJobOutput: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "mlflow_model") {
+		var out MLFlowModelJobOutput
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into MLFlowModelJobOutput: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "mltable") {
+		var out MLTableJobOutput
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into MLTableJobOutput: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "triton_model") {
+		var out TritonModelJobOutput
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into TritonModelJobOutput: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "uri_file") {
+		var out UriFileJobOutput
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into UriFileJobOutput: %+v", err)
+		}
+		return out, nil
+	}
+
+	if strings.EqualFold(value, "uri_folder") {
+		var out UriFolderJobOutput
+		if err := json.Unmarshal(input, &out); err != nil {
+			return nil, fmt.Errorf("unmarshaling into UriFolderJobOutput: %+v", err)
+		}
+		return out, nil
+	}
+
+	var parent BaseJobOutputImpl
+	if err := json.Unmarshal(input, &parent); err != nil {
+		return nil, fmt.Errorf("unmarshaling into BaseJobOutputImpl: %+v", err)
+	}
+
+	return RawJobOutputImpl{
+		jobOutput: parent,
+		Type:      value,
+		Values:    temp,
+	}, nil
+
+}

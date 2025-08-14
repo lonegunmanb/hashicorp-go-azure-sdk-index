@@ -1,0 +1,9 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datafactory/2018-06-01/pipelineruns
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *RunFilterParameters) GetLastUpdatedAfterAsTime() (*time.Time, error) {
+	return dates.ParseAsFormat(&o.LastUpdatedAfter, "2006-01-02T15:04:05Z07:00")
+}

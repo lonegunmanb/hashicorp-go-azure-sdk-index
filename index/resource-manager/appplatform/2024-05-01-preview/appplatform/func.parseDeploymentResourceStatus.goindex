@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/appplatform/2024-05-01-preview/appplatform
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeploymentResourceStatus(input string) (*DeploymentResourceStatus, error) {
+	vals := map[string]DeploymentResourceStatus{
+		"running": DeploymentResourceStatusRunning,
+		"stopped": DeploymentResourceStatusStopped,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeploymentResourceStatus(input)
+	return &out, nil
+}

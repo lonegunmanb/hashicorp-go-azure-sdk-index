@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePerUserMfaState(input string) (*PerUserMfaState, error) {
+	vals := map[string]PerUserMfaState{
+		"disabled": PerUserMfaState_Disabled,
+		"enabled":  PerUserMfaState_Enabled,
+		"enforced": PerUserMfaState_Enforced,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PerUserMfaState(input)
+	return &out, nil
+}

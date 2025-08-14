@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/mailfolderuserconfiguration
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewMailFolderUserConfigurationClientWithBaseURI(sdkApi sdkEnv.Api) (*MailFolderUserConfigurationClient, error) {
+	client, err := msgraph.NewClient(sdkApi, "mailfolderuserconfiguration", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating MailFolderUserConfigurationClient: %+v", err)
+	}
+
+	return &MailFolderUserConfigurationClient{
+		Client: client,
+	}, nil
+}

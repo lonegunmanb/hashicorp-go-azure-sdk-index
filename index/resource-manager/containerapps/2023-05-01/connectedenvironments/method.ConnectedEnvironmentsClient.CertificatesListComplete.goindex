@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerapps/2023-05-01/connectedenvironments
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ConnectedEnvironmentsClient) CertificatesListComplete(ctx context.Context, id ConnectedEnvironmentId) (CertificatesListCompleteResult, error) {
+	return c.CertificatesListCompleteMatchingPredicate(ctx, id, CertificateOperationPredicate{})
+}

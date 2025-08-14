@@ -1,0 +1,226 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *MacOSDeviceFeaturesConfiguration) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		AdminShowHostInfo                           *bool                                        `json:"adminShowHostInfo,omitempty"`
+		AppAssociatedDomains                        *[]MacOSAssociatedDomainsItem                `json:"appAssociatedDomains,omitempty"`
+		AssociatedDomains                           *[]KeyValuePair                              `json:"associatedDomains,omitempty"`
+		AuthorizedUsersListHidden                   *bool                                        `json:"authorizedUsersListHidden,omitempty"`
+		AuthorizedUsersListHideAdminUsers           *bool                                        `json:"authorizedUsersListHideAdminUsers,omitempty"`
+		AuthorizedUsersListHideLocalUsers           *bool                                        `json:"authorizedUsersListHideLocalUsers,omitempty"`
+		AuthorizedUsersListHideMobileAccounts       *bool                                        `json:"authorizedUsersListHideMobileAccounts,omitempty"`
+		AuthorizedUsersListIncludeNetworkUsers      *bool                                        `json:"authorizedUsersListIncludeNetworkUsers,omitempty"`
+		AuthorizedUsersListShowOtherManagedUsers    *bool                                        `json:"authorizedUsersListShowOtherManagedUsers,omitempty"`
+		AutoLaunchItems                             *[]MacOSLaunchItem                           `json:"autoLaunchItems,omitempty"`
+		ConsoleAccessDisabled                       *bool                                        `json:"consoleAccessDisabled,omitempty"`
+		ContentCachingBlockDeletion                 *bool                                        `json:"contentCachingBlockDeletion,omitempty"`
+		ContentCachingClientPolicy                  *MacOSContentCachingClientPolicy             `json:"contentCachingClientPolicy,omitempty"`
+		ContentCachingDataPath                      nullable.Type[string]                        `json:"contentCachingDataPath,omitempty"`
+		ContentCachingDisableConnectionSharing      *bool                                        `json:"contentCachingDisableConnectionSharing,omitempty"`
+		ContentCachingEnabled                       *bool                                        `json:"contentCachingEnabled,omitempty"`
+		ContentCachingForceConnectionSharing        *bool                                        `json:"contentCachingForceConnectionSharing,omitempty"`
+		ContentCachingKeepAwake                     *bool                                        `json:"contentCachingKeepAwake,omitempty"`
+		ContentCachingLogClientIdentities           *bool                                        `json:"contentCachingLogClientIdentities,omitempty"`
+		ContentCachingMaxSizeBytes                  nullable.Type[int64]                         `json:"contentCachingMaxSizeBytes,omitempty"`
+		ContentCachingParentSelectionPolicy         *MacOSContentCachingParentSelectionPolicy    `json:"contentCachingParentSelectionPolicy,omitempty"`
+		ContentCachingParents                       *[]string                                    `json:"contentCachingParents,omitempty"`
+		ContentCachingPeerPolicy                    *MacOSContentCachingPeerPolicy               `json:"contentCachingPeerPolicy,omitempty"`
+		ContentCachingPort                          nullable.Type[int64]                         `json:"contentCachingPort,omitempty"`
+		ContentCachingShowAlerts                    *bool                                        `json:"contentCachingShowAlerts,omitempty"`
+		ContentCachingType                          *MacOSContentCachingType                     `json:"contentCachingType,omitempty"`
+		LogOutDisabledWhileLoggedIn                 *bool                                        `json:"logOutDisabledWhileLoggedIn,omitempty"`
+		LoginWindowText                             nullable.Type[string]                        `json:"loginWindowText,omitempty"`
+		PowerOffDisabledWhileLoggedIn               *bool                                        `json:"powerOffDisabledWhileLoggedIn,omitempty"`
+		RestartDisabled                             *bool                                        `json:"restartDisabled,omitempty"`
+		RestartDisabledWhileLoggedIn                *bool                                        `json:"restartDisabledWhileLoggedIn,omitempty"`
+		ScreenLockDisableImmediate                  *bool                                        `json:"screenLockDisableImmediate,omitempty"`
+		ShutDownDisabled                            *bool                                        `json:"shutDownDisabled,omitempty"`
+		ShutDownDisabledWhileLoggedIn               *bool                                        `json:"shutDownDisabledWhileLoggedIn,omitempty"`
+		SleepDisabled                               *bool                                        `json:"sleepDisabled,omitempty"`
+		AirPrintDestinations                        *[]AirPrintDestination                       `json:"airPrintDestinations,omitempty"`
+		Assignments                                 *[]DeviceConfigurationAssignment             `json:"assignments,omitempty"`
+		CreatedDateTime                             *string                                      `json:"createdDateTime,omitempty"`
+		Description                                 nullable.Type[string]                        `json:"description,omitempty"`
+		DeviceManagementApplicabilityRuleDeviceMode *DeviceManagementApplicabilityRuleDeviceMode `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+		DeviceManagementApplicabilityRuleOsEdition  *DeviceManagementApplicabilityRuleOsEdition  `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+		DeviceManagementApplicabilityRuleOsVersion  *DeviceManagementApplicabilityRuleOsVersion  `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+		DeviceSettingStateSummaries                 *[]SettingStateDeviceSummary                 `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                        *DeviceConfigurationDeviceOverview           `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                              *[]DeviceConfigurationDeviceStatus           `json:"deviceStatuses,omitempty"`
+		DisplayName                                 *string                                      `json:"displayName,omitempty"`
+		GroupAssignments                            *[]DeviceConfigurationGroupAssignment        `json:"groupAssignments,omitempty"`
+		LastModifiedDateTime                        *string                                      `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                             *[]string                                    `json:"roleScopeTagIds,omitempty"`
+		SupportsScopeTags                           *bool                                        `json:"supportsScopeTags,omitempty"`
+		UserStatusOverview                          *DeviceConfigurationUserOverview             `json:"userStatusOverview,omitempty"`
+		UserStatuses                                *[]DeviceConfigurationUserStatus             `json:"userStatuses,omitempty"`
+		Version                                     *int64                                       `json:"version,omitempty"`
+		Id                                          *string                                      `json:"id,omitempty"`
+		ODataId                                     *string                                      `json:"@odata.id,omitempty"`
+		ODataType                                   *string                                      `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.AdminShowHostInfo = decoded.AdminShowHostInfo
+	s.AppAssociatedDomains = decoded.AppAssociatedDomains
+	s.AssociatedDomains = decoded.AssociatedDomains
+	s.AuthorizedUsersListHidden = decoded.AuthorizedUsersListHidden
+	s.AuthorizedUsersListHideAdminUsers = decoded.AuthorizedUsersListHideAdminUsers
+	s.AuthorizedUsersListHideLocalUsers = decoded.AuthorizedUsersListHideLocalUsers
+	s.AuthorizedUsersListHideMobileAccounts = decoded.AuthorizedUsersListHideMobileAccounts
+	s.AuthorizedUsersListIncludeNetworkUsers = decoded.AuthorizedUsersListIncludeNetworkUsers
+	s.AuthorizedUsersListShowOtherManagedUsers = decoded.AuthorizedUsersListShowOtherManagedUsers
+	s.AutoLaunchItems = decoded.AutoLaunchItems
+	s.ConsoleAccessDisabled = decoded.ConsoleAccessDisabled
+	s.ContentCachingBlockDeletion = decoded.ContentCachingBlockDeletion
+	s.ContentCachingClientPolicy = decoded.ContentCachingClientPolicy
+	s.ContentCachingDataPath = decoded.ContentCachingDataPath
+	s.ContentCachingDisableConnectionSharing = decoded.ContentCachingDisableConnectionSharing
+	s.ContentCachingEnabled = decoded.ContentCachingEnabled
+	s.ContentCachingForceConnectionSharing = decoded.ContentCachingForceConnectionSharing
+	s.ContentCachingKeepAwake = decoded.ContentCachingKeepAwake
+	s.ContentCachingLogClientIdentities = decoded.ContentCachingLogClientIdentities
+	s.ContentCachingMaxSizeBytes = decoded.ContentCachingMaxSizeBytes
+	s.ContentCachingParentSelectionPolicy = decoded.ContentCachingParentSelectionPolicy
+	s.ContentCachingParents = decoded.ContentCachingParents
+	s.ContentCachingPeerPolicy = decoded.ContentCachingPeerPolicy
+	s.ContentCachingPort = decoded.ContentCachingPort
+	s.ContentCachingShowAlerts = decoded.ContentCachingShowAlerts
+	s.ContentCachingType = decoded.ContentCachingType
+	s.LogOutDisabledWhileLoggedIn = decoded.LogOutDisabledWhileLoggedIn
+	s.LoginWindowText = decoded.LoginWindowText
+	s.PowerOffDisabledWhileLoggedIn = decoded.PowerOffDisabledWhileLoggedIn
+	s.RestartDisabled = decoded.RestartDisabled
+	s.RestartDisabledWhileLoggedIn = decoded.RestartDisabledWhileLoggedIn
+	s.ScreenLockDisableImmediate = decoded.ScreenLockDisableImmediate
+	s.ShutDownDisabled = decoded.ShutDownDisabled
+	s.ShutDownDisabledWhileLoggedIn = decoded.ShutDownDisabledWhileLoggedIn
+	s.SleepDisabled = decoded.SleepDisabled
+	s.AirPrintDestinations = decoded.AirPrintDestinations
+	s.Assignments = decoded.Assignments
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Description = decoded.Description
+	s.DeviceManagementApplicabilityRuleDeviceMode = decoded.DeviceManagementApplicabilityRuleDeviceMode
+	s.DeviceManagementApplicabilityRuleOsEdition = decoded.DeviceManagementApplicabilityRuleOsEdition
+	s.DeviceManagementApplicabilityRuleOsVersion = decoded.DeviceManagementApplicabilityRuleOsVersion
+	s.DeviceSettingStateSummaries = decoded.DeviceSettingStateSummaries
+	s.DeviceStatusOverview = decoded.DeviceStatusOverview
+	s.DeviceStatuses = decoded.DeviceStatuses
+	s.DisplayName = decoded.DisplayName
+	s.GroupAssignments = decoded.GroupAssignments
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.RoleScopeTagIds = decoded.RoleScopeTagIds
+	s.SupportsScopeTags = decoded.SupportsScopeTags
+	s.UserStatusOverview = decoded.UserStatusOverview
+	s.UserStatuses = decoded.UserStatuses
+	s.Version = decoded.Version
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling MacOSDeviceFeaturesConfiguration into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["contentCachingClientListenRanges"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling ContentCachingClientListenRanges into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]IPRange, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalIPRangeImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'ContentCachingClientListenRanges' for 'MacOSDeviceFeaturesConfiguration': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.ContentCachingClientListenRanges = &output
+	}
+
+	if v, ok := temp["contentCachingPeerFilterRanges"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling ContentCachingPeerFilterRanges into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]IPRange, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalIPRangeImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'ContentCachingPeerFilterRanges' for 'MacOSDeviceFeaturesConfiguration': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.ContentCachingPeerFilterRanges = &output
+	}
+
+	if v, ok := temp["contentCachingPeerListenRanges"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling ContentCachingPeerListenRanges into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]IPRange, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalIPRangeImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'ContentCachingPeerListenRanges' for 'MacOSDeviceFeaturesConfiguration': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.ContentCachingPeerListenRanges = &output
+	}
+
+	if v, ok := temp["contentCachingPublicRanges"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling ContentCachingPublicRanges into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]IPRange, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalIPRangeImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'ContentCachingPublicRanges' for 'MacOSDeviceFeaturesConfiguration': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.ContentCachingPublicRanges = &output
+	}
+
+	if v, ok := temp["macOSSingleSignOnExtension"]; ok {
+		impl, err := UnmarshalMacOSSingleSignOnExtensionImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'MacOSSingleSignOnExtension' for 'MacOSDeviceFeaturesConfiguration': %+v", err)
+		}
+		s.MacOSSingleSignOnExtension = &impl
+	}
+
+	if v, ok := temp["singleSignOnExtension"]; ok {
+		impl, err := UnmarshalSingleSignOnExtensionImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'SingleSignOnExtension' for 'MacOSDeviceFeaturesConfiguration': %+v", err)
+		}
+		s.SingleSignOnExtension = impl
+	}
+
+	if v, ok := temp["singleSignOnExtensionPkinitCertificate"]; ok {
+		impl, err := UnmarshalMacOSCertificateProfileBaseImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'SingleSignOnExtensionPkinitCertificate' for 'MacOSDeviceFeaturesConfiguration': %+v", err)
+		}
+		s.SingleSignOnExtensionPkinitCertificate = &impl
+	}
+
+	return nil
+}

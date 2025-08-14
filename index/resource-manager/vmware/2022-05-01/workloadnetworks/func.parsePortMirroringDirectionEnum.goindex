@@ -1,0 +1,20 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/vmware/2022-05-01/workloadnetworks
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parsePortMirroringDirectionEnum(input string) (*PortMirroringDirectionEnum, error) {
+	vals := map[string]PortMirroringDirectionEnum{
+		"bidirectional": PortMirroringDirectionEnumBIDIRECTIONAL,
+		"egress":        PortMirroringDirectionEnumEGRESS,
+		"ingress":       PortMirroringDirectionEnumINGRESS,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := PortMirroringDirectionEnum(input)
+	return &out, nil
+}

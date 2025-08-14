@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/connectedvmware/2023-12-01/clusters
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *ResourceStatus) GetLastUpdatedAtAsTime() (*time.Time, error) {
+	if o.LastUpdatedAt == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.LastUpdatedAt, "2006-01-02T15:04:05Z07:00")
+}

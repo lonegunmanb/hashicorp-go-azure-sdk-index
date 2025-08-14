@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/security/2025-03-01/devops
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func ParseGitHubOwnerIDInsensitively(input string) (*GitHubOwnerId, error) {
+	parser := resourceids.NewParserFromResourceIdType(&GitHubOwnerId{})
+	parsed, err := parser.Parse(input, true)
+	if err != nil {
+		return nil, fmt.Errorf("parsing %q: %+v", input, err)
+	}
+
+	id := GitHubOwnerId{}
+	if err = id.FromParseResult(*parsed); err != nil {
+		return nil, err
+	}
+
+	return &id, nil
+}

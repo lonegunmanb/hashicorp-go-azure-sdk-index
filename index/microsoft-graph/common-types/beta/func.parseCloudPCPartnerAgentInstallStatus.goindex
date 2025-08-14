@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCloudPCPartnerAgentInstallStatus(input string) (*CloudPCPartnerAgentInstallStatus, error) {
+	vals := map[string]CloudPCPartnerAgentInstallStatus{
+		"installfailed":   CloudPCPartnerAgentInstallStatus_InstallFailed,
+		"installed":       CloudPCPartnerAgentInstallStatus_Installed,
+		"installing":      CloudPCPartnerAgentInstallStatus_Installing,
+		"licensed":        CloudPCPartnerAgentInstallStatus_Licensed,
+		"uninstallfailed": CloudPCPartnerAgentInstallStatus_UninstallFailed,
+		"uninstalling":    CloudPCPartnerAgentInstallStatus_Uninstalling,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CloudPCPartnerAgentInstallStatus(input)
+	return &out, nil
+}

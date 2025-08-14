@@ -1,0 +1,16 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/network/2024-07-01/networksecurityperimeterlinks
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id NetworkSecurityPerimeterId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Network Security Perimeter Name: %q", id.NetworkSecurityPerimeterName),
+	}
+	return fmt.Sprintf("Network Security Perimeter (%s)", strings.Join(components, "\n"))
+}

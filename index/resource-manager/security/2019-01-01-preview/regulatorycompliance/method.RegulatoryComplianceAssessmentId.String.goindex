@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/security/2019-01-01-preview/regulatorycompliance
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id RegulatoryComplianceAssessmentId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Regulatory Compliance Standard Name: %q", id.RegulatoryComplianceStandardName),
+		fmt.Sprintf("Regulatory Compliance Control Name: %q", id.RegulatoryComplianceControlName),
+		fmt.Sprintf("Regulatory Compliance Assessment Name: %q", id.RegulatoryComplianceAssessmentName),
+	}
+	return fmt.Sprintf("Regulatory Compliance Assessment (%s)", strings.Join(components, "\n"))
+}

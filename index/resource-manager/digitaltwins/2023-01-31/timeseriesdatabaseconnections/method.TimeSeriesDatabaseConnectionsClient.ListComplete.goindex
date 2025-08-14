@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/digitaltwins/2023-01-31/timeseriesdatabaseconnections
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c TimeSeriesDatabaseConnectionsClient) ListComplete(ctx context.Context, id DigitalTwinsInstanceId) (ListCompleteResult, error) {
+	return c.ListCompleteMatchingPredicate(ctx, id, TimeSeriesDatabaseConnectionOperationPredicate{})
+}

@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id MeProfileWebsiteId) String() string {
+	components := []string{
+		fmt.Sprintf("Person Website: %q", id.PersonWebsiteId),
+	}
+	return fmt.Sprintf("Me Profile Website (%s)", strings.Join(components, "\n"))
+}

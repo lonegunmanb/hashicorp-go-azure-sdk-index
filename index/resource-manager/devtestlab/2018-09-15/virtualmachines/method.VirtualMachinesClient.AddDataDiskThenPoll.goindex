@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/devtestlab/2018-09-15/virtualmachines
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c VirtualMachinesClient) AddDataDiskThenPoll(ctx context.Context, id VirtualMachineId, input DataDiskProperties) error {
+	result, err := c.AddDataDisk(ctx, id, input)
+	if err != nil {
+		return fmt.Errorf("performing AddDataDisk: %+v", err)
+	}
+
+	if err := result.Poller.PollUntilDone(ctx); err != nil {
+		return fmt.Errorf("polling after AddDataDisk: %+v", err)
+	}
+
+	return nil
+}

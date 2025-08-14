@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/datashare/2019-11-01/consumerinvitation
+import (
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+func (o *ConsumerInvitationProperties) GetRespondedAtAsTime() (*time.Time, error) {
+	if o.RespondedAt == nil {
+		return nil, nil
+	}
+	return dates.ParseAsFormat(o.RespondedAt, "2006-01-02T15:04:05Z07:00")
+}

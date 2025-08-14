@@ -1,0 +1,27 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/securityinsights/2024-09-01/dataconnectors
+import (
+	"encoding/json"
+	"fmt"
+)
+func (s GCPAuthModel) MarshalJSON() ([]byte, error) {
+	type wrapper GCPAuthModel
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling GCPAuthModel: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling GCPAuthModel: %+v", err)
+	}
+
+	decoded["type"] = "GCP"
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling GCPAuthModel: %+v", err)
+	}
+
+	return encoded, nil
+}

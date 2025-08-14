@@ -1,0 +1,15 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/policyinsights/2021-10-01/remediations
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id Providers2RemediationId) String() string {
+	components := []string{
+		fmt.Sprintf("Management Group: %q", id.ManagementGroupId),
+		fmt.Sprintf("Remediation Name: %q", id.RemediationName),
+	}
+	return fmt.Sprintf("Providers 2 Remediation (%s)", strings.Join(components, "\n"))
+}

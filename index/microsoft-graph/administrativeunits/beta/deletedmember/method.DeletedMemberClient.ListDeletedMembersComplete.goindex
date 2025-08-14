@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/administrativeunits/beta/deletedmember
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c DeletedMemberClient) ListDeletedMembersComplete(ctx context.Context, id beta.AdministrativeUnitId, options ListDeletedMembersOperationOptions) (ListDeletedMembersCompleteResult, error) {
+	return c.ListDeletedMembersCompleteMatchingPredicate(ctx, id, options, DirectoryObjectOperationPredicate{})
+}

@@ -1,0 +1,12 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/windowsdriverupdateprofile
+import (
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type CreateWindowsDriverUpdateProfileExecuteActionRequest struct {
+	// An enum type to represent approval actions of single or list of drivers.
+	ActionName *beta.DriverApprovalAction `json:"actionName,omitempty"`
+
+	DeploymentDate nullable.Type[string] `json:"deploymentDate,omitempty"`
+	DriverIds      *[]string             `json:"driverIds,omitempty"`
+}

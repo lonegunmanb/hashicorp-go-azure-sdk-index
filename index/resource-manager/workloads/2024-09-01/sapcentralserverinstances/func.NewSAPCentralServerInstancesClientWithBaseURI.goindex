@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/workloads/2024-09-01/sapcentralserverinstances
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSAPCentralServerInstancesClientWithBaseURI(sdkApi sdkEnv.Api) (*SAPCentralServerInstancesClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "sapcentralserverinstances", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SAPCentralServerInstancesClient: %+v", err)
+	}
+
+	return &SAPCentralServerInstancesClient{
+		Client: client,
+	}, nil
+}

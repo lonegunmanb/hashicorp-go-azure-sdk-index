@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2021-07-01/virtualmachinescalesetvms
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseIPVersions(input string) (*IPVersions, error) {
+	vals := map[string]IPVersions{
+		"ipv4": IPVersionsIPvFour,
+		"ipv6": IPVersionsIPvSix,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := IPVersions(input)
+	return &out, nil
+}

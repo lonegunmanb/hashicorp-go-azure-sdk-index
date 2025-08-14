@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/manageddevicecleanuprule
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ManagedDeviceCleanupRuleClient) ListManagedDeviceCleanupRulesComplete(ctx context.Context, options ListManagedDeviceCleanupRulesOperationOptions) (ListManagedDeviceCleanupRulesCompleteResult, error) {
+	return c.ListManagedDeviceCleanupRulesCompleteMatchingPredicate(ctx, options, ManagedDeviceCleanupRuleOperationPredicate{})
+}

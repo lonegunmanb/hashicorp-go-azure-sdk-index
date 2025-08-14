@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/auditlogs/stable/provisioning
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ProvisioningClient) ListProvisioningsComplete(ctx context.Context, options ListProvisioningsOperationOptions) (ListProvisioningsCompleteResult, error) {
+	return c.ListProvisioningsCompleteMatchingPredicate(ctx, options, ProvisioningObjectSummaryOperationPredicate{})
+}

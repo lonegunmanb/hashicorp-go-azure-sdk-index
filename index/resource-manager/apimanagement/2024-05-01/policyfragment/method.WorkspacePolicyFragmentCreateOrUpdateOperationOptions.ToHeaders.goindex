@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2024-05-01/policyfragment
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (o WorkspacePolicyFragmentCreateOrUpdateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+	if o.IfMatch != nil {
+		out.Append("If-Match", fmt.Sprintf("%v", *o.IfMatch))
+	}
+	return &out
+}

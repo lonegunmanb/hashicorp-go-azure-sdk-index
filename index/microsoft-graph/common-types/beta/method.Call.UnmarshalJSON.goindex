@@ -1,0 +1,121 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s *Call) UnmarshalJSON(bytes []byte) error {
+	var decoded struct {
+		ActiveModalities        *[]Modality                  `json:"activeModalities,omitempty"`
+		AnsweredBy              *ParticipantInfo             `json:"answeredBy,omitempty"`
+		AudioRoutingGroups      *[]AudioRoutingGroup         `json:"audioRoutingGroups,omitempty"`
+		CallChainId             nullable.Type[string]        `json:"callChainId,omitempty"`
+		CallRoutes              *[]CallRoute                 `json:"callRoutes,omitempty"`
+		CallbackUri             *string                      `json:"callbackUri,omitempty"`
+		ChatInfo                *ChatInfo                    `json:"chatInfo,omitempty"`
+		ContentSharingSessions  *[]ContentSharingSession     `json:"contentSharingSessions,omitempty"`
+		Direction               *CallDirection               `json:"direction,omitempty"`
+		IncomingContext         *IncomingContext             `json:"incomingContext,omitempty"`
+		MediaState              *CallMediaState              `json:"mediaState,omitempty"`
+		MeetingCapability       *MeetingCapability           `json:"meetingCapability,omitempty"`
+		MyParticipantId         nullable.Type[string]        `json:"myParticipantId,omitempty"`
+		Participants            *[]Participant               `json:"participants,omitempty"`
+		RequestedModalities     *[]Modality                  `json:"requestedModalities,omitempty"`
+		ResultInfo              *ResultInfo                  `json:"resultInfo,omitempty"`
+		RingingTimeoutInSeconds nullable.Type[int64]         `json:"ringingTimeoutInSeconds,omitempty"`
+		RoutingPolicies         *[]RoutingPolicy             `json:"routingPolicies,omitempty"`
+		Source                  *ParticipantInfo             `json:"source,omitempty"`
+		State                   *CallState                   `json:"state,omitempty"`
+		Subject                 nullable.Type[string]        `json:"subject,omitempty"`
+		Targets                 *[]InvitationParticipantInfo `json:"targets,omitempty"`
+		TenantId                nullable.Type[string]        `json:"tenantId,omitempty"`
+		TerminationReason       nullable.Type[string]        `json:"terminationReason,omitempty"`
+		ToneInfo                *ToneInfo                    `json:"toneInfo,omitempty"`
+		Transcription           *CallTranscriptionInfo       `json:"transcription,omitempty"`
+		Id                      *string                      `json:"id,omitempty"`
+		ODataId                 *string                      `json:"@odata.id,omitempty"`
+		ODataType               *string                      `json:"@odata.type,omitempty"`
+	}
+	if err := json.Unmarshal(bytes, &decoded); err != nil {
+		return fmt.Errorf("unmarshaling: %+v", err)
+	}
+
+	s.ActiveModalities = decoded.ActiveModalities
+	s.AnsweredBy = decoded.AnsweredBy
+	s.AudioRoutingGroups = decoded.AudioRoutingGroups
+	s.CallChainId = decoded.CallChainId
+	s.CallRoutes = decoded.CallRoutes
+	s.CallbackUri = decoded.CallbackUri
+	s.ChatInfo = decoded.ChatInfo
+	s.ContentSharingSessions = decoded.ContentSharingSessions
+	s.Direction = decoded.Direction
+	s.IncomingContext = decoded.IncomingContext
+	s.MediaState = decoded.MediaState
+	s.MeetingCapability = decoded.MeetingCapability
+	s.MyParticipantId = decoded.MyParticipantId
+	s.Participants = decoded.Participants
+	s.RequestedModalities = decoded.RequestedModalities
+	s.ResultInfo = decoded.ResultInfo
+	s.RingingTimeoutInSeconds = decoded.RingingTimeoutInSeconds
+	s.RoutingPolicies = decoded.RoutingPolicies
+	s.Source = decoded.Source
+	s.State = decoded.State
+	s.Subject = decoded.Subject
+	s.Targets = decoded.Targets
+	s.TenantId = decoded.TenantId
+	s.TerminationReason = decoded.TerminationReason
+	s.ToneInfo = decoded.ToneInfo
+	s.Transcription = decoded.Transcription
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+
+	var temp map[string]json.RawMessage
+	if err := json.Unmarshal(bytes, &temp); err != nil {
+		return fmt.Errorf("unmarshaling Call into map[string]json.RawMessage: %+v", err)
+	}
+
+	if v, ok := temp["callOptions"]; ok {
+		impl, err := UnmarshalCallOptionsImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'CallOptions' for 'Call': %+v", err)
+		}
+		s.CallOptions = impl
+	}
+
+	if v, ok := temp["mediaConfig"]; ok {
+		impl, err := UnmarshalMediaConfigImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'MediaConfig' for 'Call': %+v", err)
+		}
+		s.MediaConfig = impl
+	}
+
+	if v, ok := temp["meetingInfo"]; ok {
+		impl, err := UnmarshalMeetingInfoImplementation(v)
+		if err != nil {
+			return fmt.Errorf("unmarshaling field 'MeetingInfo' for 'Call': %+v", err)
+		}
+		s.MeetingInfo = impl
+	}
+
+	if v, ok := temp["operations"]; ok {
+		var listTemp []json.RawMessage
+		if err := json.Unmarshal(v, &listTemp); err != nil {
+			return fmt.Errorf("unmarshaling Operations into list []json.RawMessage: %+v", err)
+		}
+
+		output := make([]CommsOperation, 0)
+		for i, val := range listTemp {
+			impl, err := UnmarshalCommsOperationImplementation(val)
+			if err != nil {
+				return fmt.Errorf("unmarshaling index %d field 'Operations' for 'Call': %+v", i, err)
+			}
+			output = append(output, impl)
+		}
+		s.Operations = &output
+	}
+
+	return nil
+}

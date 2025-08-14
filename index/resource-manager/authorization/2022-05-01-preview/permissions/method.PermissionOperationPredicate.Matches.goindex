@@ -1,0 +1,14 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/authorization/2022-05-01-preview/permissions
+
+func (p PermissionOperationPredicate) Matches(input Permission) bool {
+
+	if p.Condition != nil && (input.Condition == nil || *p.Condition != *input.Condition) {
+		return false
+	}
+
+	if p.ConditionVersion != nil && (input.ConditionVersion == nil || *p.ConditionVersion != *input.ConditionVersion) {
+		return false
+	}
+
+	return true
+}

@@ -1,0 +1,39 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseDeviceTypes(input string) (*DeviceTypes, error) {
+	vals := map[string]DeviceTypes{
+		"android":           DeviceTypes_Android,
+		"androidenterprise": DeviceTypes_AndroidEnterprise,
+		"androidforwork":    DeviceTypes_AndroidForWork,
+		"blackberry":        DeviceTypes_Blackberry,
+		"desktop":           DeviceTypes_Desktop,
+		"hololens":          DeviceTypes_HoloLens,
+		"ipad":              DeviceTypes_IPad,
+		"iphone":            DeviceTypes_IPhone,
+		"ipod":              DeviceTypes_IPod,
+		"isocconsumer":      DeviceTypes_ISocConsumer,
+		"mac":               DeviceTypes_Mac,
+		"macmdm":            DeviceTypes_MacMDM,
+		"nokia":             DeviceTypes_Nokia,
+		"palm":              DeviceTypes_Palm,
+		"surfacehub":        DeviceTypes_SurfaceHub,
+		"unix":              DeviceTypes_Unix,
+		"unknown":           DeviceTypes_Unknown,
+		"wince":             DeviceTypes_WinCE,
+		"winembedded":       DeviceTypes_WinEmbedded,
+		"winmo6":            DeviceTypes_WinMO6,
+		"windowsphone":      DeviceTypes_WindowsPhone,
+		"windowsrt":         DeviceTypes_WindowsRT,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := DeviceTypes(input)
+	return &out, nil
+}

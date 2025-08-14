@@ -1,0 +1,39 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+type WindowsInformationProtectionWipeAction struct {
+	// Last checkin time of the device that was targeted by this wipe action.
+	LastCheckInDateTime *string `json:"lastCheckInDateTime,omitempty"`
+
+	Status *ActionState `json:"status,omitempty"`
+
+	// Targeted device Mac address.
+	TargetedDeviceMacAddress nullable.Type[string] `json:"targetedDeviceMacAddress,omitempty"`
+
+	// Targeted device name.
+	TargetedDeviceName nullable.Type[string] `json:"targetedDeviceName,omitempty"`
+
+	// The DeviceRegistrationId being targeted by this wipe action.
+	TargetedDeviceRegistrationId nullable.Type[string] `json:"targetedDeviceRegistrationId,omitempty"`
+
+	// The UserId being targeted by this wipe action.
+	TargetedUserId nullable.Type[string] `json:"targetedUserId,omitempty"`
+
+	// Fields inherited from Entity
+
+	// The unique identifier for an entity. Read-only.
+	Id *string `json:"id,omitempty"`
+
+	// The OData ID of this entity
+	ODataId *string `json:"@odata.id,omitempty"`
+
+	// The OData Type of this entity
+	ODataType *string `json:"@odata.type,omitempty"`
+
+	// Model Behaviors
+	OmitDiscriminatedValue bool `json:"-"`
+}

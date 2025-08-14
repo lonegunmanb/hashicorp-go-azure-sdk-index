@@ -1,0 +1,121 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/accessreviewpolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/activitybasedtimeoutpolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/activitybasedtimeoutpolicyappliesto"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/adminconsentrequestpolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/appmanagementpolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/appmanagementpolicyappliesto"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/authenticationflowspolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/authenticationmethodspolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/authenticationmethodspolicyauthenticationmethodconfiguration"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/authenticationstrengthpolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/authenticationstrengthpolicycombinationconfiguration"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/authorizationpolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/authorizationpolicydefaultuserroleoverride"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/b2cauthenticationmethodspolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/claimsmappingpolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/claimsmappingpolicyappliesto"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/crosstenantaccesspolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/crosstenantaccesspolicydefault"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/crosstenantaccesspolicypartner"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/crosstenantaccesspolicypartneridentitysynchronization"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/crosstenantaccesspolicytemplate"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/crosstenantaccesspolicytemplatemultitenantorganizationidentitysynchronization"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/crosstenantaccesspolicytemplatemultitenantorganizationpartnerconfiguration"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/defaultappmanagementpolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/deviceregistrationpolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/directoryroleaccessreviewpolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/externalidentitiespolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/featurerolloutpolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/featurerolloutpolicyappliesto"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/federatedtokenvalidationpolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/homerealmdiscoverypolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/homerealmdiscoverypolicyappliesto"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/identitysecuritydefaultsenforcementpolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/mobileappmanagementpolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/mobileappmanagementpolicyincludedgroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/mobileappmanagementpolicyincludedgroupserviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/mobiledevicemanagementpolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/mobiledevicemanagementpolicyincludedgroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/mobiledevicemanagementpolicyincludedgroupserviceprovisioningerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/permissiongrantpolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/permissiongrantpolicyexclude"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/permissiongrantpolicyinclude"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/permissiongrantpreapprovalpolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/policy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/rolemanagementpolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/rolemanagementpolicyassignment"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/rolemanagementpolicyassignmentpolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/rolemanagementpolicyeffectiverule"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/rolemanagementpolicyrule"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/serviceprincipalcreationpolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/serviceprincipalcreationpolicyexclude"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/serviceprincipalcreationpolicyinclude"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/tokenissuancepolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/tokenissuancepolicyappliesto"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/tokenlifetimepolicy"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/beta/tokenlifetimepolicyappliesto"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/msgraph"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+type Client struct {
+	AccessReviewPolicy                                                            *accessreviewpolicy.AccessReviewPolicyClient
+	ActivityBasedTimeoutPolicy                                                    *activitybasedtimeoutpolicy.ActivityBasedTimeoutPolicyClient
+	ActivityBasedTimeoutPolicyAppliesTo                                           *activitybasedtimeoutpolicyappliesto.ActivityBasedTimeoutPolicyAppliesToClient
+	AdminConsentRequestPolicy                                                     *adminconsentrequestpolicy.AdminConsentRequestPolicyClient
+	AppManagementPolicy                                                           *appmanagementpolicy.AppManagementPolicyClient
+	AppManagementPolicyAppliesTo                                                  *appmanagementpolicyappliesto.AppManagementPolicyAppliesToClient
+	AuthenticationFlowsPolicy                                                     *authenticationflowspolicy.AuthenticationFlowsPolicyClient
+	AuthenticationMethodsPolicy                                                   *authenticationmethodspolicy.AuthenticationMethodsPolicyClient
+	AuthenticationMethodsPolicyAuthenticationMethodConfiguration                  *authenticationmethodspolicyauthenticationmethodconfiguration.AuthenticationMethodsPolicyAuthenticationMethodConfigurationClient
+	AuthenticationStrengthPolicy                                                  *authenticationstrengthpolicy.AuthenticationStrengthPolicyClient
+	AuthenticationStrengthPolicyCombinationConfiguration                          *authenticationstrengthpolicycombinationconfiguration.AuthenticationStrengthPolicyCombinationConfigurationClient
+	AuthorizationPolicy                                                           *authorizationpolicy.AuthorizationPolicyClient
+	AuthorizationPolicyDefaultUserRoleOverride                                    *authorizationpolicydefaultuserroleoverride.AuthorizationPolicyDefaultUserRoleOverrideClient
+	B2cAuthenticationMethodsPolicy                                                *b2cauthenticationmethodspolicy.B2cAuthenticationMethodsPolicyClient
+	ClaimsMappingPolicy                                                           *claimsmappingpolicy.ClaimsMappingPolicyClient
+	ClaimsMappingPolicyAppliesTo                                                  *claimsmappingpolicyappliesto.ClaimsMappingPolicyAppliesToClient
+	CrossTenantAccessPolicy                                                       *crosstenantaccesspolicy.CrossTenantAccessPolicyClient
+	CrossTenantAccessPolicyDefault                                                *crosstenantaccesspolicydefault.CrossTenantAccessPolicyDefaultClient
+	CrossTenantAccessPolicyPartner                                                *crosstenantaccesspolicypartner.CrossTenantAccessPolicyPartnerClient
+	CrossTenantAccessPolicyPartnerIdentitySynchronization                         *crosstenantaccesspolicypartneridentitysynchronization.CrossTenantAccessPolicyPartnerIdentitySynchronizationClient
+	CrossTenantAccessPolicyTemplate                                               *crosstenantaccesspolicytemplate.CrossTenantAccessPolicyTemplateClient
+	CrossTenantAccessPolicyTemplateMultiTenantOrganizationIdentitySynchronization *crosstenantaccesspolicytemplatemultitenantorganizationidentitysynchronization.CrossTenantAccessPolicyTemplateMultiTenantOrganizationIdentitySynchronizationClient
+	CrossTenantAccessPolicyTemplateMultiTenantOrganizationPartnerConfiguration    *crosstenantaccesspolicytemplatemultitenantorganizationpartnerconfiguration.CrossTenantAccessPolicyTemplateMultiTenantOrganizationPartnerConfigurationClient
+	DefaultAppManagementPolicy                                                    *defaultappmanagementpolicy.DefaultAppManagementPolicyClient
+	DeviceRegistrationPolicy                                                      *deviceregistrationpolicy.DeviceRegistrationPolicyClient
+	DirectoryRoleAccessReviewPolicy                                               *directoryroleaccessreviewpolicy.DirectoryRoleAccessReviewPolicyClient
+	ExternalIdentitiesPolicy                                                      *externalidentitiespolicy.ExternalIdentitiesPolicyClient
+	FeatureRolloutPolicy                                                          *featurerolloutpolicy.FeatureRolloutPolicyClient
+	FeatureRolloutPolicyAppliesTo                                                 *featurerolloutpolicyappliesto.FeatureRolloutPolicyAppliesToClient
+	FederatedTokenValidationPolicy                                                *federatedtokenvalidationpolicy.FederatedTokenValidationPolicyClient
+	HomeRealmDiscoveryPolicy                                                      *homerealmdiscoverypolicy.HomeRealmDiscoveryPolicyClient
+	HomeRealmDiscoveryPolicyAppliesTo                                             *homerealmdiscoverypolicyappliesto.HomeRealmDiscoveryPolicyAppliesToClient
+	IdentitySecurityDefaultsEnforcementPolicy                                     *identitysecuritydefaultsenforcementpolicy.IdentitySecurityDefaultsEnforcementPolicyClient
+	MobileAppManagementPolicy                                                     *mobileappmanagementpolicy.MobileAppManagementPolicyClient
+	MobileAppManagementPolicyIncludedGroup                                        *mobileappmanagementpolicyincludedgroup.MobileAppManagementPolicyIncludedGroupClient
+	MobileAppManagementPolicyIncludedGroupServiceProvisioningError                *mobileappmanagementpolicyincludedgroupserviceprovisioningerror.MobileAppManagementPolicyIncludedGroupServiceProvisioningErrorClient
+	MobileDeviceManagementPolicy                                                  *mobiledevicemanagementpolicy.MobileDeviceManagementPolicyClient
+	MobileDeviceManagementPolicyIncludedGroup                                     *mobiledevicemanagementpolicyincludedgroup.MobileDeviceManagementPolicyIncludedGroupClient
+	MobileDeviceManagementPolicyIncludedGroupServiceProvisioningError             *mobiledevicemanagementpolicyincludedgroupserviceprovisioningerror.MobileDeviceManagementPolicyIncludedGroupServiceProvisioningErrorClient
+	PermissionGrantPolicy                                                         *permissiongrantpolicy.PermissionGrantPolicyClient
+	PermissionGrantPolicyExclude                                                  *permissiongrantpolicyexclude.PermissionGrantPolicyExcludeClient
+	PermissionGrantPolicyInclude                                                  *permissiongrantpolicyinclude.PermissionGrantPolicyIncludeClient
+	PermissionGrantPreApprovalPolicy                                              *permissiongrantpreapprovalpolicy.PermissionGrantPreApprovalPolicyClient
+	Policy                                                                        *policy.PolicyClient
+	RoleManagementPolicy                                                          *rolemanagementpolicy.RoleManagementPolicyClient
+	RoleManagementPolicyAssignment                                                *rolemanagementpolicyassignment.RoleManagementPolicyAssignmentClient
+	RoleManagementPolicyAssignmentPolicy                                          *rolemanagementpolicyassignmentpolicy.RoleManagementPolicyAssignmentPolicyClient
+	RoleManagementPolicyEffectiveRule                                             *rolemanagementpolicyeffectiverule.RoleManagementPolicyEffectiveRuleClient
+	RoleManagementPolicyRule                                                      *rolemanagementpolicyrule.RoleManagementPolicyRuleClient
+	ServicePrincipalCreationPolicy                                                *serviceprincipalcreationpolicy.ServicePrincipalCreationPolicyClient
+	ServicePrincipalCreationPolicyExclude                                         *serviceprincipalcreationpolicyexclude.ServicePrincipalCreationPolicyExcludeClient
+	ServicePrincipalCreationPolicyInclude                                         *serviceprincipalcreationpolicyinclude.ServicePrincipalCreationPolicyIncludeClient
+	TokenIssuancePolicy                                                           *tokenissuancepolicy.TokenIssuancePolicyClient
+	TokenIssuancePolicyAppliesTo                                                  *tokenissuancepolicyappliesto.TokenIssuancePolicyAppliesToClient
+	TokenLifetimePolicy                                                           *tokenlifetimepolicy.TokenLifetimePolicyClient
+	TokenLifetimePolicyAppliesTo                                                  *tokenlifetimepolicyappliesto.TokenLifetimePolicyAppliesToClient
+}

@@ -1,0 +1,13 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id DeviceManagementVirtualEndpointOnPremisesConnectionId) String() string {
+	components := []string{
+		fmt.Sprintf("Cloud P C On Premises Connection: %q", id.CloudPCOnPremisesConnectionId),
+	}
+	return fmt.Sprintf("Device Management Virtual Endpoint On Premises Connection (%s)", strings.Join(components, "\n"))
+}

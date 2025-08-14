@@ -1,0 +1,102 @@
+package github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager
+import (
+	"context"
+	"errors"
+	"fmt"
+	"net/http"
+	"net/url"
+	"strings"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/pointer"
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/client/pollers"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (p *provisioningStatePoller) Poll(ctx context.Context) (*pollers.PollResult, error) {
+	opts := client.RequestOptions{
+		ContentType: "application/json; charset=utf-8",
+		ExpectedStatusCodes: []int{
+			http.StatusOK,
+		},
+		HttpMethod: http.MethodGet,
+		OptionsObject: provisioningStateOptions{
+			apiVersion: p.apiVersion,
+		},
+		Path: p.resourcePath,
+	}
+	req, err := p.client.NewRequest(ctx, opts)
+	if err != nil {
+		return nil, fmt.Errorf("building request: %+v", err)
+	}
+	resp, err := p.client.Execute(ctx, req)
+	if err != nil {
+		var e *url.Error
+		if errors.As(err, &e) {
+			p.droppedConnectionCount++
+			if p.droppedConnectionCount < p.maxDroppedConnections {
+				return &pollers.PollResult{
+					PollInterval: p.initialRetryDuration,
+					Status:       pollers.PollingStatusUnknown,
+				}, nil
+			}
+		}
+
+		return nil, fmt.Errorf("executing request: %+v", err)
+	}
+
+	p.droppedConnectionCount = 0
+
+	if resp == nil {
+		return nil, pollers.PollingDroppedConnectionError{}
+	}
+
+	var result provisioningStateResult
+	if err := resp.Unmarshal(&result); err != nil {
+		return nil, fmt.Errorf("unmarshaling result: %+v", err)
+	}
+
+	s := string(result.Status)
+
+	// if the result has a provisioningState field, we should prioritise that
+	if result.Properties.ProvisioningState != "" {
+		s = string(result.Properties.ProvisioningState)
+	}
+
+	if s == "" {
+		// Some Operations support both an LRO and immediate completion, but _don't_ return a provisioningState field
+		// since we're checking for a 200 OK, if we didn't get a provisioningState field, for the moment we have to
+		// assume that we're done.
+		return &pollers.PollResult{
+			PollInterval: p.initialRetryDuration,
+			Status:       pollers.PollingStatusSucceeded,
+		}, nil
+	}
+
+	if strings.EqualFold(s, string(statusCanceled)) || strings.EqualFold(s, string(statusCancelled)) {
+		return nil, pollers.PollingCancelledError{
+			HttpResponse: resp,
+		}
+	}
+
+	if strings.EqualFold(s, string(statusFailed)) {
+		return nil, pollers.PollingFailedError{
+			HttpResponse: resp,
+		}
+	}
+
+	if strings.EqualFold(s, string(statusSucceeded)) {
+		return &pollers.PollResult{
+			PollInterval: p.initialRetryDuration,
+			Status:       pollers.PollingStatusSucceeded,
+		}, nil
+	}
+
+	// any other condition for polling should be considered in-progress
+	// Note: Some APIs return a polling URL, but complete immediately. These should be considered on a case by case basis
+	// when deciding if the operation should be polled. e.g. taking the HTTP code into account.
+	return &pollers.PollResult{
+		PollInterval: p.initialRetryDuration,
+		Status:       pollers.PollingStatusInProgress,
+	}, nil
+}

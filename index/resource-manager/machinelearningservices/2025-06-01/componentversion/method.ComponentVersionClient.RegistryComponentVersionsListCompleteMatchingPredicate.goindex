@@ -1,0 +1,32 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/machinelearningservices/2025-06-01/componentversion
+import (
+	"context"
+	"fmt"
+	"net/http"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client"
+	"github.com/hashicorp/go-azure-sdk/sdk/odata"
+)
+func (c ComponentVersionClient) RegistryComponentVersionsListCompleteMatchingPredicate(ctx context.Context, id RegistryComponentId, options RegistryComponentVersionsListOperationOptions, predicate ComponentVersionResourceOperationPredicate) (result RegistryComponentVersionsListCompleteResult, err error) {
+	items := make([]ComponentVersionResource, 0)
+
+	resp, err := c.RegistryComponentVersionsList(ctx, id, options)
+	if err != nil {
+		result.LatestHttpResponse = resp.HttpResponse
+		err = fmt.Errorf("loading results: %+v", err)
+		return
+	}
+	if resp.Model != nil {
+		for _, v := range *resp.Model {
+			if predicate.Matches(v) {
+				items = append(items, v)
+			}
+		}
+	}
+
+	result = RegistryComponentVersionsListCompleteResult{
+		LatestHttpResponse: resp.HttpResponse,
+		Items:              items,
+	}
+	return
+}

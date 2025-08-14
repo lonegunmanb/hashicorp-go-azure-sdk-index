@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2022-03-02/incrementalrestorepoints
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseOperatingSystemTypes(input string) (*OperatingSystemTypes, error) {
+	vals := map[string]OperatingSystemTypes{
+		"linux":   OperatingSystemTypesLinux,
+		"windows": OperatingSystemTypesWindows,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := OperatingSystemTypes(input)
+	return &out, nil
+}

@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/redhatopenshift/2023-09-04/syncsets
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewSyncSetsClientWithBaseURI(sdkApi sdkEnv.Api) (*SyncSetsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "syncsets", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating SyncSetsClient: %+v", err)
+	}
+
+	return &SyncSetsClient{
+		Client: client,
+	}, nil
+}

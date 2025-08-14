@@ -1,0 +1,22 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerregistry/2019-06-01-preview/tasks
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+
+	"github.com/hashicorp/go-azure-helpers/lang/dates"
+)
+type TaskProperties struct {
+	AgentConfiguration *AgentProperties    `json:"agentConfiguration,omitempty"`
+	AgentPoolName      *string             `json:"agentPoolName,omitempty"`
+	CreationDate       *string             `json:"creationDate,omitempty"`
+	Credentials        *Credentials        `json:"credentials,omitempty"`
+	IsSystemTask       *bool               `json:"isSystemTask,omitempty"`
+	LogTemplate        *string             `json:"logTemplate,omitempty"`
+	Platform           *PlatformProperties `json:"platform,omitempty"`
+	ProvisioningState  *ProvisioningState  `json:"provisioningState,omitempty"`
+	Status             *TaskStatus         `json:"status,omitempty"`
+	Step               TaskStepProperties  `json:"step"`
+	Timeout            *int64              `json:"timeout,omitempty"`
+	Trigger            *TriggerProperties  `json:"trigger,omitempty"`
+}

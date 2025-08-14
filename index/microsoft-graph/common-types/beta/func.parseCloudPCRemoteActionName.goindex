@@ -1,0 +1,30 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseCloudPCRemoteActionName(input string) (*CloudPCRemoteActionName, error) {
+	vals := map[string]CloudPCRemoteActionName{
+		"changeuseraccounttype": CloudPCRemoteActionName_ChangeUserAccountType,
+		"createsnapshot":        CloudPCRemoteActionName_CreateSnapshot,
+		"moveregion":            CloudPCRemoteActionName_MoveRegion,
+		"placeunderreview":      CloudPCRemoteActionName_PlaceUnderReview,
+		"poweroff":              CloudPCRemoteActionName_PowerOff,
+		"poweron":               CloudPCRemoteActionName_PowerOn,
+		"rename":                CloudPCRemoteActionName_Rename,
+		"reprovision":           CloudPCRemoteActionName_Reprovision,
+		"resize":                CloudPCRemoteActionName_Resize,
+		"restart":               CloudPCRemoteActionName_Restart,
+		"restore":               CloudPCRemoteActionName_Restore,
+		"troubleshoot":          CloudPCRemoteActionName_Troubleshoot,
+		"unknown":               CloudPCRemoteActionName_Unknown,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := CloudPCRemoteActionName(input)
+	return &out, nil
+}

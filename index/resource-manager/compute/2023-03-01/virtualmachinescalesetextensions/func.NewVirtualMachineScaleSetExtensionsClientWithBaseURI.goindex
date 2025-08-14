@@ -1,0 +1,17 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/compute/2023-03-01/virtualmachinescalesetextensions
+import (
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/client/resourcemanager"
+	sdkEnv "github.com/hashicorp/go-azure-sdk/sdk/environments"
+)
+func NewVirtualMachineScaleSetExtensionsClientWithBaseURI(sdkApi sdkEnv.Api) (*VirtualMachineScaleSetExtensionsClient, error) {
+	client, err := resourcemanager.NewClient(sdkApi, "virtualmachinescalesetextensions", defaultApiVersion)
+	if err != nil {
+		return nil, fmt.Errorf("instantiating VirtualMachineScaleSetExtensionsClient: %+v", err)
+	}
+
+	return &VirtualMachineScaleSetExtensionsClient{
+		Client: client,
+	}, nil
+}

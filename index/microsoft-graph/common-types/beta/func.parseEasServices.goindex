@@ -1,0 +1,23 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseEasServices(input string) (*EasServices, error) {
+	vals := map[string]EasServices{
+		"calendars": EasServices_Calendars,
+		"contacts":  EasServices_Contacts,
+		"email":     EasServices_Email,
+		"none":      EasServices_None,
+		"notes":     EasServices_Notes,
+		"reminders": EasServices_Reminders,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := EasServices(input)
+	return &out, nil
+}

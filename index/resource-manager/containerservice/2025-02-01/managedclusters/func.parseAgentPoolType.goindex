@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/containerservice/2025-02-01/managedclusters
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseAgentPoolType(input string) (*AgentPoolType, error) {
+	vals := map[string]AgentPoolType{
+		"availabilityset":         AgentPoolTypeAvailabilitySet,
+		"virtualmachinescalesets": AgentPoolTypeVirtualMachineScaleSets,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := AgentPoolType(input)
+	return &out, nil
+}

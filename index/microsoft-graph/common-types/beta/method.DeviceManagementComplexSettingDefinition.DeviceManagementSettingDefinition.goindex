@@ -1,0 +1,25 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s DeviceManagementComplexSettingDefinition) DeviceManagementSettingDefinition() BaseDeviceManagementSettingDefinitionImpl {
+	return BaseDeviceManagementSettingDefinitionImpl{
+		Constraints:      s.Constraints,
+		Dependencies:     s.Dependencies,
+		Description:      s.Description,
+		DisplayName:      s.DisplayName,
+		DocumentationUrl: s.DocumentationUrl,
+		HeaderSubtitle:   s.HeaderSubtitle,
+		HeaderTitle:      s.HeaderTitle,
+		IsTopLevel:       s.IsTopLevel,
+		Keywords:         s.Keywords,
+		PlaceholderText:  s.PlaceholderText,
+		ValueType:        s.ValueType,
+		Id:               s.Id,
+		ODataId:          s.ODataId,
+		ODataType:        s.ODataType,
+	}
+}

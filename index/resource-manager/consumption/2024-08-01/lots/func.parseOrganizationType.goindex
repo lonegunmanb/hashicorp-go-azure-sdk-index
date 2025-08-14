@@ -1,0 +1,19 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/consumption/2024-08-01/lots
+import (
+	"encoding/json"
+	"fmt"
+	"strings"
+)
+func parseOrganizationType(input string) (*OrganizationType, error) {
+	vals := map[string]OrganizationType{
+		"contributor": OrganizationTypeContributor,
+		"primary":     OrganizationTypePrimary,
+	}
+	if v, ok := vals[strings.ToLower(input)]; ok {
+		return &v, nil
+	}
+
+	// otherwise presume it's an undefined value and best-effort it
+	out := OrganizationType(input)
+	return &out, nil
+}

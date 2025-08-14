@@ -1,0 +1,36 @@
+package github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta
+import (
+	"encoding/json"
+	"fmt"
+
+	"github.com/hashicorp/go-azure-sdk/sdk/nullable"
+)
+func (s ManagedTenantsConditionalAccessPolicyCoverage) MarshalJSON() ([]byte, error) {
+	type wrapper ManagedTenantsConditionalAccessPolicyCoverage
+	wrapped := wrapper(s)
+	encoded, err := json.Marshal(wrapped)
+	if err != nil {
+		return nil, fmt.Errorf("marshaling ManagedTenantsConditionalAccessPolicyCoverage: %+v", err)
+	}
+
+	var decoded map[string]interface{}
+	if err = json.Unmarshal(encoded, &decoded); err != nil {
+		return nil, fmt.Errorf("unmarshaling ManagedTenantsConditionalAccessPolicyCoverage: %+v", err)
+	}
+
+	delete(decoded, "conditionalAccessPolicyState")
+	delete(decoded, "latestPolicyModifiedDateTime")
+	delete(decoded, "requiresDeviceCompliance")
+	delete(decoded, "tenantDisplayName")
+
+	if !s.OmitDiscriminatedValue {
+		decoded["@odata.type"] = "#microsoft.graph.managedTenants.conditionalAccessPolicyCoverage"
+	}
+
+	encoded, err = json.Marshal(decoded)
+	if err != nil {
+		return nil, fmt.Errorf("re-marshaling ManagedTenantsConditionalAccessPolicyCoverage: %+v", err)
+	}
+
+	return encoded, nil
+}

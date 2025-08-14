@@ -1,0 +1,18 @@
+package github.com/hashicorp/go-azure-sdk/resource-manager/apimanagement/2022-08-01/quotabyperiodkeys
+import (
+	"fmt"
+	"strings"
+
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/recaser"
+	"github.com/hashicorp/go-azure-helpers/resourcemanager/resourceids"
+)
+func (id PeriodId) String() string {
+	components := []string{
+		fmt.Sprintf("Subscription: %q", id.SubscriptionId),
+		fmt.Sprintf("Resource Group Name: %q", id.ResourceGroupName),
+		fmt.Sprintf("Service Name: %q", id.ServiceName),
+		fmt.Sprintf("Quota Counter Key: %q", id.QuotaCounterKey),
+		fmt.Sprintf("Quota Period Key: %q", id.QuotaPeriodKey),
+	}
+	return fmt.Sprintf("Period (%s)", strings.Join(components, "\n"))
+}
