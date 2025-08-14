@@ -81,9 +81,8 @@ jobs:
           GOPHON_CPU_LIMIT: "50"
         run: |
           cd ./tmp/go-azure-sdk
-          gophon -pkg=sdk -base=github.com/hashicorp/go-azure-sdk/sdk -dest=../../index
-          gophon -pkg=resource-manager -base=github.com/hashicorp/go-azure-sdk/resource-manager -dest=../../index
-          gophon -pkg=microsoft-graph -base=github.com/hashicorp/go-azure-sdk/microsoft-graph -dest=../../index
+          gophon -pkg=sdk -base=github.com/hashicorp/go-azure-sdk -dest=../../index
+          gophon -pkg=resource-manager -base=github.com/hashicorp/go-azure-sdk -dest=../../index
 
       - name: Commit and push index files
         if: ${{ env.TAG_EXISTS != 'true' }}
