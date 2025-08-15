@@ -32,7 +32,7 @@ jobs:
             # Fetch latest version from repository
             latest=$(gh api repos/hashicorp/go-azure-sdk/tags |\
             jq -r '.[].name' | \
-            grep -E '^[vV]?[0-9]+\.[0-9]+\.[0-9]+$' | \
+            grep -E '^sdk/v[0-9]+\.[0-9]+\.[0-9]+$' | \
             sort -V | \
             tail -n1)
             echo "Found latest version: $latest"
